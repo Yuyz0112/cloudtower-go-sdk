@@ -1,4 +1,4 @@
-module cloudtower-go-sdk
+module github.com/Yuyz0112/cloudtower-go-sdk
 
 go 1.16
 

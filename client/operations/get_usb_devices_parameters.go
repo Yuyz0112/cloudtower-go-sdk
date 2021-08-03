@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"cloudtower-go-sdk/models"
+	"github.com/Yuyz0112/cloudtower-go-sdk/models"
 )
 
 // NewGetUsbDevicesParams creates a new GetUsbDevicesParams object,

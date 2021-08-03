@@ -1,11 +1,12 @@
 package main
 
 import (
-	apiclient "cloudtower-go-sdk/client"
-	"cloudtower-go-sdk/client/operations"
-	"cloudtower-go-sdk/models"
 	"os"
 	"time"
+
+	apiclient "github.com/Yuyz0112/cloudtower-go-sdk/client"
+	"github.com/Yuyz0112/cloudtower-go-sdk/client/operations"
+	"github.com/Yuyz0112/cloudtower-go-sdk/models"
 
 	httptransport "github.com/go-openapi/runtime/client"
 

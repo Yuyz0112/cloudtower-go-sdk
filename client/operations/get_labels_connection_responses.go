@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"cloudtower-go-sdk/models"
+	"github.com/Yuyz0112/cloudtower-go-sdk/models"
 )
 
 // GetLabelsConnectionReader is a Reader for the GetLabelsConnection structure.

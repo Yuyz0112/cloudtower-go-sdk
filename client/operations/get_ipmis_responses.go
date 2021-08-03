@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"cloudtower-go-sdk/models"
+	"github.com/Yuyz0112/cloudtower-go-sdk/models"
 )
 
 // GetIpmisReader is a Reader for the GetIpmis structure.
