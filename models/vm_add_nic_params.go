@@ -19,24 +19,24 @@ import (
 // swagger:model VmAddNicParams
 type VMAddNicParams struct {
 
-	// vm id
+	// data
 	// Required: true
-	VMID *string `json:"vm_id"`
+	Data *VMAddNicParamsData `json:"data"`
 
-	// vm nics
+	// where
 	// Required: true
-	VMNics VMNicParams `json:"vm_nics"`
+	Where *VMWhereInput `json:"where"`
 }
 
 // Validate validates this Vm add nic params
 func (m *VMAddNicParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateVMID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateVMNics(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,26 +46,37 @@ func (m *VMAddNicParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMAddNicParams) validateVMID(formats strfmt.Registry) error {
+func (m *VMAddNicParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("vm_id", "body", m.VMID); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *VMAddNicParams) validateVMNics(formats strfmt.Registry) error {
+func (m *VMAddNicParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("vm_nics", "body", m.VMNics); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
 	}
 
-	if err := m.VMNics.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_nics")
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil
@@ -75,7 +86,11 @@ func (m *VMAddNicParams) validateVMNics(formats strfmt.Registry) error {
 func (m *VMAddNicParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateVMNics(ctx, formats); err != nil {
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,13 +100,29 @@ func (m *VMAddNicParams) ContextValidate(ctx context.Context, formats strfmt.Reg
 	return nil
 }
 
-func (m *VMAddNicParams) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
+func (m *VMAddNicParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_nics")
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
 		}
-		return err
+	}
+
+	return nil
+}
+
+func (m *VMAddNicParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -108,6 +139,90 @@ func (m *VMAddNicParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMAddNicParams) UnmarshalBinary(b []byte) error {
 	var res VMAddNicParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMAddNicParamsData VM add nic params data
+//
+// swagger:model VMAddNicParamsData
+type VMAddNicParamsData struct {
+
+	// vm nics
+	// Required: true
+	VMNics VMNicParams `json:"vm_nics"`
+}
+
+// Validate validates this VM add nic params data
+func (m *VMAddNicParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateVMNics(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMAddNicParamsData) validateVMNics(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"vm_nics", "body", m.VMNics); err != nil {
+		return err
+	}
+
+	if err := m.VMNics.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "vm_nics")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this VM add nic params data based on the context it is used
+func (m *VMAddNicParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateVMNics(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMAddNicParamsData) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "vm_nics")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMAddNicParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMAddNicParamsData) UnmarshalBinary(b []byte) error {
+	var res VMAddNicParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

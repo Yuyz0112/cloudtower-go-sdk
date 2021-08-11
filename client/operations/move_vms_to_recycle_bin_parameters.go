@@ -62,7 +62,7 @@ func NewMoveVmsToRecycleBinParamsWithHTTPClient(client *http.Client) *MoveVmsToR
 type MoveVmsToRecycleBinParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMOperateParams
+	RequestBody *models.VMOperateParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *MoveVmsToRecycleBinParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the move vms to recycle bin params
-func (o *MoveVmsToRecycleBinParams) WithRequestBody(requestBody []*models.VMOperateParams) *MoveVmsToRecycleBinParams {
+func (o *MoveVmsToRecycleBinParams) WithRequestBody(requestBody *models.VMOperateParams) *MoveVmsToRecycleBinParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the move vms to recycle bin params
-func (o *MoveVmsToRecycleBinParams) SetRequestBody(requestBody []*models.VMOperateParams) {
+func (o *MoveVmsToRecycleBinParams) SetRequestBody(requestBody *models.VMOperateParams) {
 	o.RequestBody = requestBody
 }
 

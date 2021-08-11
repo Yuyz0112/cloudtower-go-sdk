@@ -62,7 +62,7 @@ func NewUpdateVMParamsWithHTTPClient(client *http.Client) *UpdateVMParams {
 type UpdateVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMUpdateParams
+	RequestBody *models.VMUpdateParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update Vm params
-func (o *UpdateVMParams) WithRequestBody(requestBody []*models.VMUpdateParams) *UpdateVMParams {
+func (o *UpdateVMParams) WithRequestBody(requestBody *models.VMUpdateParams) *UpdateVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update Vm params
-func (o *UpdateVMParams) SetRequestBody(requestBody []*models.VMUpdateParams) {
+func (o *UpdateVMParams) SetRequestBody(requestBody *models.VMUpdateParams) {
 	o.RequestBody = requestBody
 }
 

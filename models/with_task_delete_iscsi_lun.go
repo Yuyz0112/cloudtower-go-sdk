@@ -14,29 +14,24 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WithTaskMyDatacenter with task my datacenter
+// WithTaskDeleteIscsiLun with task delete iscsi lun
 //
-// swagger:model WithTask_MyDatacenter_
-type WithTaskMyDatacenter struct {
+// swagger:model WithTask_DeleteIscsiLun_
+type WithTaskDeleteIscsiLun struct {
 
 	// data
 	// Required: true
-	Data *MyDatacenter `json:"data"`
+	Data *DeleteIscsiLun `json:"data"`
 
 	// task id
-	// Required: true
-	TaskID *string `json:"task_id"`
+	TaskID *string `json:"task_id,omitempty"`
 }
 
-// Validate validates this with task my datacenter
-func (m *WithTaskMyDatacenter) Validate(formats strfmt.Registry) error {
+// Validate validates this with task delete iscsi lun
+func (m *WithTaskDeleteIscsiLun) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTaskID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,7 +41,7 @@ func (m *WithTaskMyDatacenter) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WithTaskMyDatacenter) validateData(formats strfmt.Registry) error {
+func (m *WithTaskDeleteIscsiLun) validateData(formats strfmt.Registry) error {
 
 	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
@@ -64,17 +59,8 @@ func (m *WithTaskMyDatacenter) validateData(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WithTaskMyDatacenter) validateTaskID(formats strfmt.Registry) error {
-
-	if err := validate.Required("task_id", "body", m.TaskID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this with task my datacenter based on the context it is used
-func (m *WithTaskMyDatacenter) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this with task delete iscsi lun based on the context it is used
+func (m *WithTaskDeleteIscsiLun) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateData(ctx, formats); err != nil {
@@ -87,7 +73,7 @@ func (m *WithTaskMyDatacenter) ContextValidate(ctx context.Context, formats strf
 	return nil
 }
 
-func (m *WithTaskMyDatacenter) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+func (m *WithTaskDeleteIscsiLun) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
@@ -102,7 +88,7 @@ func (m *WithTaskMyDatacenter) contextValidateData(ctx context.Context, formats 
 }
 
 // MarshalBinary interface implementation
-func (m *WithTaskMyDatacenter) MarshalBinary() ([]byte, error) {
+func (m *WithTaskDeleteIscsiLun) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -110,8 +96,8 @@ func (m *WithTaskMyDatacenter) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *WithTaskMyDatacenter) UnmarshalBinary(b []byte) error {
-	var res WithTaskMyDatacenter
+func (m *WithTaskDeleteIscsiLun) UnmarshalBinary(b []byte) error {
+	var res WithTaskDeleteIscsiLun
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

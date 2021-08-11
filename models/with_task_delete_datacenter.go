@@ -24,8 +24,7 @@ type WithTaskDeleteDatacenter struct {
 	Data *DeleteDatacenter `json:"data"`
 
 	// task id
-	// Required: true
-	TaskID *string `json:"task_id"`
+	TaskID *string `json:"task_id,omitempty"`
 }
 
 // Validate validates this with task delete datacenter
@@ -33,10 +32,6 @@ func (m *WithTaskDeleteDatacenter) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTaskID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,15 +54,6 @@ func (m *WithTaskDeleteDatacenter) validateData(formats strfmt.Registry) error {
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *WithTaskDeleteDatacenter) validateTaskID(formats strfmt.Registry) error {
-
-	if err := validate.Required("task_id", "body", m.TaskID); err != nil {
-		return err
 	}
 
 	return nil

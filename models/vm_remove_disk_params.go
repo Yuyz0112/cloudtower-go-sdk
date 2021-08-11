@@ -19,24 +19,24 @@ import (
 // swagger:model VmRemoveDiskParams
 type VMRemoveDiskParams struct {
 
-	// disk ids
+	// data
 	// Required: true
-	DiskIds []string `json:"disk_ids"`
+	Data *VMRemoveDiskParamsData `json:"data"`
 
-	// vm id
+	// where
 	// Required: true
-	VMID *string `json:"vm_id"`
+	Where *VMWhereInput `json:"where"`
 }
 
 // Validate validates this Vm remove disk params
 func (m *VMRemoveDiskParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDiskIds(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateVMID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,26 +46,85 @@ func (m *VMRemoveDiskParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMRemoveDiskParams) validateDiskIds(formats strfmt.Registry) error {
+func (m *VMRemoveDiskParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("disk_ids", "body", m.DiskIds); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *VMRemoveDiskParams) validateVMID(formats strfmt.Registry) error {
+func (m *VMRemoveDiskParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("vm_id", "body", m.VMID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this Vm remove disk params based on context it is used
+// ContextValidate validate this Vm remove disk params based on the context it is used
 func (m *VMRemoveDiskParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMRemoveDiskParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMRemoveDiskParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -80,6 +139,62 @@ func (m *VMRemoveDiskParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMRemoveDiskParams) UnmarshalBinary(b []byte) error {
 	var res VMRemoveDiskParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMRemoveDiskParamsData VM remove disk params data
+//
+// swagger:model VMRemoveDiskParamsData
+type VMRemoveDiskParamsData struct {
+
+	// disk ids
+	// Required: true
+	DiskIds []string `json:"disk_ids"`
+}
+
+// Validate validates this VM remove disk params data
+func (m *VMRemoveDiskParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDiskIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMRemoveDiskParamsData) validateDiskIds(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"disk_ids", "body", m.DiskIds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this VM remove disk params data based on context it is used
+func (m *VMRemoveDiskParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMRemoveDiskParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMRemoveDiskParamsData) UnmarshalBinary(b []byte) error {
+	var res VMRemoveDiskParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

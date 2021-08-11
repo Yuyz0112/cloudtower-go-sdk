@@ -19,24 +19,24 @@ import (
 // swagger:model VmAddDiskParams
 type VMAddDiskParams struct {
 
-	// vm disks
+	// data
 	// Required: true
-	VMDisks *VMAddDiskParamsVMDisks `json:"vm_disks"`
+	Data *VMAddDiskParamsData `json:"data"`
 
-	// vm id
+	// where
 	// Required: true
-	VMID *string `json:"vm_id"`
+	Where *VMWhereInput `json:"where"`
 }
 
 // Validate validates this Vm add disk params
 func (m *VMAddDiskParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateVMDisks(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateVMID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,16 +46,16 @@ func (m *VMAddDiskParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMAddDiskParams) validateVMDisks(formats strfmt.Registry) error {
+func (m *VMAddDiskParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("vm_disks", "body", m.VMDisks); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
 	}
 
-	if m.VMDisks != nil {
-		if err := m.VMDisks.Validate(formats); err != nil {
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vm_disks")
+				return ve.ValidateName("data")
 			}
 			return err
 		}
@@ -64,10 +64,19 @@ func (m *VMAddDiskParams) validateVMDisks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMAddDiskParams) validateVMID(formats strfmt.Registry) error {
+func (m *VMAddDiskParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("vm_id", "body", m.VMID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -77,7 +86,11 @@ func (m *VMAddDiskParams) validateVMID(formats strfmt.Registry) error {
 func (m *VMAddDiskParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateVMDisks(ctx, formats); err != nil {
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,12 +100,26 @@ func (m *VMAddDiskParams) ContextValidate(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
-func (m *VMAddDiskParams) contextValidateVMDisks(ctx context.Context, formats strfmt.Registry) error {
+func (m *VMAddDiskParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.VMDisks != nil {
-		if err := m.VMDisks.ContextValidate(ctx, formats); err != nil {
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vm_disks")
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMAddDiskParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
 			}
 			return err
 		}
@@ -119,10 +146,218 @@ func (m *VMAddDiskParams) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-// VMAddDiskParamsVMDisks VM add disk params VM disks
+// VMAddDiskParamsData VM add disk params data
 //
-// swagger:model VMAddDiskParamsVMDisks
-type VMAddDiskParamsVMDisks struct {
+// swagger:model VMAddDiskParamsData
+type VMAddDiskParamsData struct {
+
+	// io policy
+	IoPolicy VMDiskIoPolicy `json:"io_policy,omitempty"`
+
+	// max bandwidth
+	MaxBandwidth float64 `json:"max_bandwidth,omitempty"`
+
+	// max bandwidth policy
+	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
+
+	// max iops
+	MaxIops float64 `json:"max_iops,omitempty"`
+
+	// max iops policy
+	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
+
+	// vm disks
+	// Required: true
+	VMDisks *VMAddDiskParamsDataVMDisks `json:"vm_disks"`
+}
+
+// Validate validates this VM add disk params data
+func (m *VMAddDiskParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateIoPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxBandwidthPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxIopsPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMDisks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMAddDiskParamsData) validateIoPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.IoPolicy) { // not required
+		return nil
+	}
+
+	if err := m.IoPolicy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "io_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMAddDiskParamsData) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
+		return nil
+	}
+
+	if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "max_bandwidth_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMAddDiskParamsData) validateMaxIopsPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxIopsPolicy) { // not required
+		return nil
+	}
+
+	if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "max_iops_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMAddDiskParamsData) validateVMDisks(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"vm_disks", "body", m.VMDisks); err != nil {
+		return err
+	}
+
+	if m.VMDisks != nil {
+		if err := m.VMDisks.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vm_disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this VM add disk params data based on the context it is used
+func (m *VMAddDiskParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateIoPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxBandwidthPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxIopsPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMDisks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMAddDiskParamsData) contextValidateIoPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "io_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMAddDiskParamsData) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "max_bandwidth_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMAddDiskParamsData) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "max_iops_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMAddDiskParamsData) contextValidateVMDisks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMDisks != nil {
+		if err := m.VMDisks.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vm_disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMAddDiskParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMAddDiskParamsData) UnmarshalBinary(b []byte) error {
+	var res VMAddDiskParamsData
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMAddDiskParamsDataVMDisks VM add disk params data VM disks
+//
+// swagger:model VMAddDiskParamsDataVMDisks
+type VMAddDiskParamsDataVMDisks struct {
 
 	// mount disks
 	MountDisks MountDisksParams `json:"mount_disks,omitempty"`
@@ -131,8 +366,8 @@ type VMAddDiskParamsVMDisks struct {
 	MountNewCreateDisks MountNewCreateDisksParams `json:"mount_new_create_disks,omitempty"`
 }
 
-// Validate validates this VM add disk params VM disks
-func (m *VMAddDiskParamsVMDisks) Validate(formats strfmt.Registry) error {
+// Validate validates this VM add disk params data VM disks
+func (m *VMAddDiskParamsDataVMDisks) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMountDisks(formats); err != nil {
@@ -149,14 +384,14 @@ func (m *VMAddDiskParamsVMDisks) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMAddDiskParamsVMDisks) validateMountDisks(formats strfmt.Registry) error {
+func (m *VMAddDiskParamsDataVMDisks) validateMountDisks(formats strfmt.Registry) error {
 	if swag.IsZero(m.MountDisks) { // not required
 		return nil
 	}
 
 	if err := m.MountDisks.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_disks" + "." + "mount_disks")
+			return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks")
 		}
 		return err
 	}
@@ -164,14 +399,14 @@ func (m *VMAddDiskParamsVMDisks) validateMountDisks(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *VMAddDiskParamsVMDisks) validateMountNewCreateDisks(formats strfmt.Registry) error {
+func (m *VMAddDiskParamsDataVMDisks) validateMountNewCreateDisks(formats strfmt.Registry) error {
 	if swag.IsZero(m.MountNewCreateDisks) { // not required
 		return nil
 	}
 
 	if err := m.MountNewCreateDisks.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_disks" + "." + "mount_new_create_disks")
+			return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks")
 		}
 		return err
 	}
@@ -179,8 +414,8 @@ func (m *VMAddDiskParamsVMDisks) validateMountNewCreateDisks(formats strfmt.Regi
 	return nil
 }
 
-// ContextValidate validate this VM add disk params VM disks based on the context it is used
-func (m *VMAddDiskParamsVMDisks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this VM add disk params data VM disks based on the context it is used
+func (m *VMAddDiskParamsDataVMDisks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateMountDisks(ctx, formats); err != nil {
@@ -197,11 +432,11 @@ func (m *VMAddDiskParamsVMDisks) ContextValidate(ctx context.Context, formats st
 	return nil
 }
 
-func (m *VMAddDiskParamsVMDisks) contextValidateMountDisks(ctx context.Context, formats strfmt.Registry) error {
+func (m *VMAddDiskParamsDataVMDisks) contextValidateMountDisks(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.MountDisks.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_disks" + "." + "mount_disks")
+			return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks")
 		}
 		return err
 	}
@@ -209,11 +444,11 @@ func (m *VMAddDiskParamsVMDisks) contextValidateMountDisks(ctx context.Context, 
 	return nil
 }
 
-func (m *VMAddDiskParamsVMDisks) contextValidateMountNewCreateDisks(ctx context.Context, formats strfmt.Registry) error {
+func (m *VMAddDiskParamsDataVMDisks) contextValidateMountNewCreateDisks(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.MountNewCreateDisks.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_disks" + "." + "mount_new_create_disks")
+			return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks")
 		}
 		return err
 	}
@@ -222,7 +457,7 @@ func (m *VMAddDiskParamsVMDisks) contextValidateMountNewCreateDisks(ctx context.
 }
 
 // MarshalBinary interface implementation
-func (m *VMAddDiskParamsVMDisks) MarshalBinary() ([]byte, error) {
+func (m *VMAddDiskParamsDataVMDisks) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -230,8 +465,8 @@ func (m *VMAddDiskParamsVMDisks) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *VMAddDiskParamsVMDisks) UnmarshalBinary(b []byte) error {
-	var res VMAddDiskParamsVMDisks
+func (m *VMAddDiskParamsDataVMDisks) UnmarshalBinary(b []byte) error {
+	var res VMAddDiskParamsDataVMDisks
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

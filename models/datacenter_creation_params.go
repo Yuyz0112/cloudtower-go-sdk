@@ -20,7 +20,6 @@ import (
 type DatacenterCreationParams struct {
 
 	// cluster ids
-	// Required: true
 	ClusterIds []string `json:"clusterIds"`
 
 	// name
@@ -36,10 +35,6 @@ type DatacenterCreationParams struct {
 func (m *DatacenterCreationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateClusterIds(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -51,15 +46,6 @@ func (m *DatacenterCreationParams) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *DatacenterCreationParams) validateClusterIds(formats strfmt.Registry) error {
-
-	if err := validate.Required("clusterIds", "body", m.ClusterIds); err != nil {
-		return err
-	}
-
 	return nil
 }
 

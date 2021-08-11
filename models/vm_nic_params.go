@@ -84,8 +84,7 @@ type VMNicParamsItems0 struct {
 	IPAddress string `json:"ip_address,omitempty"`
 
 	// local id
-	// Required: true
-	LocalID *string `json:"local_id"`
+	LocalID string `json:"local_id,omitempty"`
 
 	// mac address
 	MacAddress string `json:"mac_address,omitempty"`
@@ -111,10 +110,6 @@ type VMNicParamsItems0 struct {
 func (m *VMNicParamsItems0) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateLocalID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateModel(formats); err != nil {
 		res = append(res, err)
 	}
@@ -126,15 +121,6 @@ func (m *VMNicParamsItems0) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *VMNicParamsItems0) validateLocalID(formats strfmt.Registry) error {
-
-	if err := validate.Required("local_id", "body", m.LocalID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

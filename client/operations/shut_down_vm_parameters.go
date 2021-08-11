@@ -62,7 +62,7 @@ func NewShutDownVMParamsWithHTTPClient(client *http.Client) *ShutDownVMParams {
 type ShutDownVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMOperateParams
+	RequestBody *models.VMOperateParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *ShutDownVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the shut down Vm params
-func (o *ShutDownVMParams) WithRequestBody(requestBody []*models.VMOperateParams) *ShutDownVMParams {
+func (o *ShutDownVMParams) WithRequestBody(requestBody *models.VMOperateParams) *ShutDownVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the shut down Vm params
-func (o *ShutDownVMParams) SetRequestBody(requestBody []*models.VMOperateParams) {
+func (o *ShutDownVMParams) SetRequestBody(requestBody *models.VMOperateParams) {
 	o.RequestBody = requestBody
 }
 

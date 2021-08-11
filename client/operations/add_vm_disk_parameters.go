@@ -62,7 +62,7 @@ func NewAddVMDiskParamsWithHTTPClient(client *http.Client) *AddVMDiskParams {
 type AddVMDiskParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMAddDiskParams
+	RequestBody *models.VMAddDiskParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *AddVMDiskParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the add Vm disk params
-func (o *AddVMDiskParams) WithRequestBody(requestBody []*models.VMAddDiskParams) *AddVMDiskParams {
+func (o *AddVMDiskParams) WithRequestBody(requestBody *models.VMAddDiskParams) *AddVMDiskParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the add Vm disk params
-func (o *AddVMDiskParams) SetRequestBody(requestBody []*models.VMAddDiskParams) {
+func (o *AddVMDiskParams) SetRequestBody(requestBody *models.VMAddDiskParams) {
 	o.RequestBody = requestBody
 }
 

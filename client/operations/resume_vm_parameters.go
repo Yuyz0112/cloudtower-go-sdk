@@ -62,7 +62,7 @@ func NewResumeVMParamsWithHTTPClient(client *http.Client) *ResumeVMParams {
 type ResumeVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMOperateParams
+	RequestBody *models.VMOperateParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *ResumeVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the resume Vm params
-func (o *ResumeVMParams) WithRequestBody(requestBody []*models.VMOperateParams) *ResumeVMParams {
+func (o *ResumeVMParams) WithRequestBody(requestBody *models.VMOperateParams) *ResumeVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the resume Vm params
-func (o *ResumeVMParams) SetRequestBody(requestBody []*models.VMOperateParams) {
+func (o *ResumeVMParams) SetRequestBody(requestBody *models.VMOperateParams) {
 	o.RequestBody = requestBody
 }
 

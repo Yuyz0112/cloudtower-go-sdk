@@ -62,7 +62,7 @@ func NewAddVMNicParamsWithHTTPClient(client *http.Client) *AddVMNicParams {
 type AddVMNicParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMAddNicParams
+	RequestBody *models.VMAddNicParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *AddVMNicParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the add Vm nic params
-func (o *AddVMNicParams) WithRequestBody(requestBody []*models.VMAddNicParams) *AddVMNicParams {
+func (o *AddVMNicParams) WithRequestBody(requestBody *models.VMAddNicParams) *AddVMNicParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the add Vm nic params
-func (o *AddVMNicParams) SetRequestBody(requestBody []*models.VMAddNicParams) {
+func (o *AddVMNicParams) SetRequestBody(requestBody *models.VMAddNicParams) {
 	o.RequestBody = requestBody
 }
 

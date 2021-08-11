@@ -19,32 +19,24 @@ import (
 // swagger:model InstallVmtoolsParams
 type InstallVmtoolsParams struct {
 
-	// cd rom id
+	// data
 	// Required: true
-	CdRomID *string `json:"cd_rom_id"`
+	Data *InstallVmtoolsParamsData `json:"data"`
 
-	// svt image id
+	// where
 	// Required: true
-	SvtImageID *string `json:"svt_image_id"`
-
-	// vm id
-	// Required: true
-	VMID *string `json:"vm_id"`
+	Where *VMWhereInput `json:"where"`
 }
 
 // Validate validates this install vmtools params
 func (m *InstallVmtoolsParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCdRomID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateSvtImageID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVMID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,35 +46,85 @@ func (m *InstallVmtoolsParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InstallVmtoolsParams) validateCdRomID(formats strfmt.Registry) error {
+func (m *InstallVmtoolsParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("cd_rom_id", "body", m.CdRomID); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *InstallVmtoolsParams) validateSvtImageID(formats strfmt.Registry) error {
+func (m *InstallVmtoolsParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("svt_image_id", "body", m.SvtImageID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *InstallVmtoolsParams) validateVMID(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm_id", "body", m.VMID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this install vmtools params based on context it is used
+// ContextValidate validate this install vmtools params based on the context it is used
 func (m *InstallVmtoolsParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InstallVmtoolsParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InstallVmtoolsParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -97,6 +139,79 @@ func (m *InstallVmtoolsParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *InstallVmtoolsParams) UnmarshalBinary(b []byte) error {
 	var res InstallVmtoolsParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// InstallVmtoolsParamsData install vmtools params data
+//
+// swagger:model InstallVmtoolsParamsData
+type InstallVmtoolsParamsData struct {
+
+	// cd rom id
+	// Required: true
+	CdRomID *string `json:"cd_rom_id"`
+
+	// svt image id
+	// Required: true
+	SvtImageID *string `json:"svt_image_id"`
+}
+
+// Validate validates this install vmtools params data
+func (m *InstallVmtoolsParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCdRomID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSvtImageID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InstallVmtoolsParamsData) validateCdRomID(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"cd_rom_id", "body", m.CdRomID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InstallVmtoolsParamsData) validateSvtImageID(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"svt_image_id", "body", m.SvtImageID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this install vmtools params data based on context it is used
+func (m *InstallVmtoolsParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *InstallVmtoolsParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *InstallVmtoolsParamsData) UnmarshalBinary(b []byte) error {
+	var res InstallVmtoolsParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

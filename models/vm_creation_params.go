@@ -11,41 +11,368 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // VMCreationParams Vm creation params
 //
 // swagger:model VmCreationParams
 type VMCreationParams struct {
-	VMCommonParams
-}
 
-// UnmarshalJSON unmarshals this object from a JSON structure
-func (m *VMCreationParams) UnmarshalJSON(raw []byte) error {
-	// AO0
-	var aO0 VMCommonParams
-	if err := swag.ReadJSON(raw, &aO0); err != nil {
-		return err
-	}
-	m.VMCommonParams = aO0
+	// cluster id
+	// Required: true
+	ClusterID *string `json:"cluster_id"`
 
-	return nil
-}
+	// cpu cores
+	// Required: true
+	CPUCores *float64 `json:"cpu_cores"`
 
-// MarshalJSON marshals this object to a JSON structure
-func (m VMCreationParams) MarshalJSON() ([]byte, error) {
-	_parts := make([][]byte, 0, 1)
+	// cpu sockets
+	// Required: true
+	CPUSockets *float64 `json:"cpu_sockets"`
 
-	aO0, err := swag.WriteJSON(m.VMCommonParams)
-	if err != nil {
-		return nil, err
-	}
-	_parts = append(_parts, aO0)
-	return swag.ConcatJSON(_parts...), nil
+	// description
+	Description string `json:"description,omitempty"`
+
+	// firmware
+	// Required: true
+	Firmware *VMFirmware `json:"firmware"`
+
+	// folder id
+	FolderID string `json:"folder_id,omitempty"`
+
+	// guest os type
+	GuestOsType VMGuestsOperationSystem `json:"guest_os_type,omitempty"`
+
+	// ha
+	// Required: true
+	Ha *bool `json:"ha"`
+
+	// host id
+	// Required: true
+	HostID *string `json:"host_id"`
+
+	// io policy
+	IoPolicy VMDiskIoPolicy `json:"io_policy,omitempty"`
+
+	// max bandwidth
+	MaxBandwidth float64 `json:"max_bandwidth,omitempty"`
+
+	// max bandwidth policy
+	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
+
+	// max iops
+	MaxIops float64 `json:"max_iops,omitempty"`
+
+	// max iops policy
+	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
+
+	// memory
+	// Required: true
+	Memory *float64 `json:"memory"`
+
+	// name
+	// Required: true
+	Name *string `json:"name"`
+
+	// status
+	// Required: true
+	Status *VMStatus `json:"status"`
+
+	// vcpu
+	// Required: true
+	Vcpu *float64 `json:"vcpu"`
+
+	// vm disks
+	// Required: true
+	VMDisks *VMDiskParams `json:"vm_disks"`
+
+	// vm nics
+	// Required: true
+	VMNics VMNicParams `json:"vm_nics"`
 }
 
 // Validate validates this Vm creation params
 func (m *VMCreationParams) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateClusterID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCPUCores(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCPUSockets(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFirmware(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGuestOsType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHa(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIoPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxBandwidthPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxIopsPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMemory(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVcpu(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMDisks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMNics(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMCreationParams) validateClusterID(formats strfmt.Registry) error {
+
+	if err := validate.Required("cluster_id", "body", m.ClusterID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateCPUCores(formats strfmt.Registry) error {
+
+	if err := validate.Required("cpu_cores", "body", m.CPUCores); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateCPUSockets(formats strfmt.Registry) error {
+
+	if err := validate.Required("cpu_sockets", "body", m.CPUSockets); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateFirmware(formats strfmt.Registry) error {
+
+	if err := validate.Required("firmware", "body", m.Firmware); err != nil {
+		return err
+	}
+
+	if err := validate.Required("firmware", "body", m.Firmware); err != nil {
+		return err
+	}
+
+	if m.Firmware != nil {
+		if err := m.Firmware.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("firmware")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateGuestOsType(formats strfmt.Registry) error {
+	if swag.IsZero(m.GuestOsType) { // not required
+		return nil
+	}
+
+	if err := m.GuestOsType.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("guest_os_type")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateHa(formats strfmt.Registry) error {
+
+	if err := validate.Required("ha", "body", m.Ha); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateHostID(formats strfmt.Registry) error {
+
+	if err := validate.Required("host_id", "body", m.HostID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateIoPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.IoPolicy) { // not required
+		return nil
+	}
+
+	if err := m.IoPolicy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("io_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
+		return nil
+	}
+
+	if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("max_bandwidth_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateMaxIopsPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxIopsPolicy) { // not required
+		return nil
+	}
+
+	if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("max_iops_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateMemory(formats strfmt.Registry) error {
+
+	if err := validate.Required("memory", "body", m.Memory); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateStatus(formats strfmt.Registry) error {
+
+	if err := validate.Required("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	if err := validate.Required("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateVcpu(formats strfmt.Registry) error {
+
+	if err := validate.Required("vcpu", "body", m.Vcpu); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateVMDisks(formats strfmt.Registry) error {
+
+	if err := validate.Required("vm_disks", "body", m.VMDisks); err != nil {
+		return err
+	}
+
+	if m.VMDisks != nil {
+		if err := m.VMDisks.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) validateVMNics(formats strfmt.Registry) error {
+
+	if err := validate.Required("vm_nics", "body", m.VMNics); err != nil {
+		return err
+	}
+
+	if err := m.VMNics.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("vm_nics")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -53,13 +380,160 @@ func (m *VMCreationParams) Validate(formats strfmt.Registry) error {
 func (m *VMCreationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	// validation for a type composition with VMCommonParams
-	if err := m.VMCommonParams.ContextValidate(ctx, formats); err != nil {
+	if err := m.contextValidateFirmware(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGuestOsType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIoPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxBandwidthPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxIopsPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMDisks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMNics(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *VMCreationParams) contextValidateFirmware(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Firmware != nil {
+		if err := m.Firmware.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("firmware")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) contextValidateGuestOsType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.GuestOsType.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("guest_os_type")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) contextValidateIoPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("io_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("max_bandwidth_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("max_iops_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) contextValidateVMDisks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMDisks != nil {
+		if err := m.VMDisks.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreationParams) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("vm_nics")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMCreationParams) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMCreationParams) UnmarshalBinary(b []byte) error {
+	var res VMCreationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
 	return nil
 }

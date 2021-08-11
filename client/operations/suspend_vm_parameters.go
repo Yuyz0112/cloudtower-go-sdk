@@ -62,7 +62,7 @@ func NewSuspendVMParamsWithHTTPClient(client *http.Client) *SuspendVMParams {
 type SuspendVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMOperateParams
+	RequestBody *models.VMOperateParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *SuspendVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the suspend Vm params
-func (o *SuspendVMParams) WithRequestBody(requestBody []*models.VMOperateParams) *SuspendVMParams {
+func (o *SuspendVMParams) WithRequestBody(requestBody *models.VMOperateParams) *SuspendVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the suspend Vm params
-func (o *SuspendVMParams) SetRequestBody(requestBody []*models.VMOperateParams) {
+func (o *SuspendVMParams) SetRequestBody(requestBody *models.VMOperateParams) {
 	o.RequestBody = requestBody
 }
 

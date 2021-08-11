@@ -19,24 +19,24 @@ import (
 // swagger:model VmAddCdRomParams
 type VMAddCdRomParams struct {
 
-	// vm cd roms
+	// data
 	// Required: true
-	VMCdRoms VMCdRomParams `json:"vm_cd_roms"`
+	Data *VMAddCdRomParamsData `json:"data"`
 
-	// vm id
+	// where
 	// Required: true
-	VMID *string `json:"vm_id"`
+	Where *VMWhereInput `json:"where"`
 }
 
 // Validate validates this Vm add cd rom params
 func (m *VMAddCdRomParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateVMCdRoms(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateVMID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,26 +46,37 @@ func (m *VMAddCdRomParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMAddCdRomParams) validateVMCdRoms(formats strfmt.Registry) error {
+func (m *VMAddCdRomParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("vm_cd_roms", "body", m.VMCdRoms); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
 	}
 
-	if err := m.VMCdRoms.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_cd_roms")
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil
 }
 
-func (m *VMAddCdRomParams) validateVMID(formats strfmt.Registry) error {
+func (m *VMAddCdRomParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("vm_id", "body", m.VMID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -75,7 +86,11 @@ func (m *VMAddCdRomParams) validateVMID(formats strfmt.Registry) error {
 func (m *VMAddCdRomParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateVMCdRoms(ctx, formats); err != nil {
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,13 +100,29 @@ func (m *VMAddCdRomParams) ContextValidate(ctx context.Context, formats strfmt.R
 	return nil
 }
 
-func (m *VMAddCdRomParams) contextValidateVMCdRoms(ctx context.Context, formats strfmt.Registry) error {
+func (m *VMAddCdRomParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.VMCdRoms.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_cd_roms")
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
 		}
-		return err
+	}
+
+	return nil
+}
+
+func (m *VMAddCdRomParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -108,6 +139,90 @@ func (m *VMAddCdRomParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMAddCdRomParams) UnmarshalBinary(b []byte) error {
 	var res VMAddCdRomParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMAddCdRomParamsData VM add cd rom params data
+//
+// swagger:model VMAddCdRomParamsData
+type VMAddCdRomParamsData struct {
+
+	// vm cd roms
+	// Required: true
+	VMCdRoms VMCdRomParams `json:"vm_cd_roms"`
+}
+
+// Validate validates this VM add cd rom params data
+func (m *VMAddCdRomParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateVMCdRoms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMAddCdRomParamsData) validateVMCdRoms(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"vm_cd_roms", "body", m.VMCdRoms); err != nil {
+		return err
+	}
+
+	if err := m.VMCdRoms.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "vm_cd_roms")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this VM add cd rom params data based on the context it is used
+func (m *VMAddCdRomParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateVMCdRoms(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMAddCdRomParamsData) contextValidateVMCdRoms(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.VMCdRoms.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "vm_cd_roms")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMAddCdRomParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMAddCdRomParamsData) UnmarshalBinary(b []byte) error {
+	var res VMAddCdRomParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

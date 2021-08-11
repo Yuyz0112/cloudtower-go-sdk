@@ -69,24 +69,13 @@ func main() {
 	bearerTokenAuth := httptransport.BearerToken(*loginResp.Payload.Data.Token)
 	transport.DefaultAuthentication = bearerTokenAuth
 	c = apiclient.New(transport, strfmt.Default)
-	vmsParams := operations.NewGetVmsParams()
-	vmsParams.RequestBody = &models.GetVmsRequestBody{
+
+	startVmsParams := operations.NewStartVMParams()
+	startVmsParams.RequestBody = &models.VMStartParams{
 		Where: &models.VMWhereInput{
 			Status: models.VMStatusSTOPPED,
 			Name:   strPtr("sdk-test"),
 		},
-	}
-	vmsResp, err := c.Operations.GetVms(vmsParams)
-	if err != nil {
-		panic(err.Error())
-	}
-
-	startVmsParams := operations.NewStartVMParams()
-	startVmsParams.RequestBody = make([]*models.VMStartParams, 0)
-	for _, v := range vmsResp.Payload {
-		startVmsParams.RequestBody = append(startVmsParams.RequestBody, &models.VMStartParams{
-			ID: v.ID,
-		})
 	}
 	startVmsResp, err := c.Operations.StartVM(startVmsParams)
 	if err != nil {

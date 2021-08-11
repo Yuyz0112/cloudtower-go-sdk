@@ -19,19 +19,23 @@ import (
 // swagger:model VmStartParams
 type VMStartParams struct {
 
-	// id
-	// Required: true
-	ID *string `json:"id"`
+	// data
+	Data *VMStartParamsData `json:"data,omitempty"`
 
-	// node ip
-	NodeIP string `json:"node_ip,omitempty"`
+	// where
+	// Required: true
+	Where *VMWhereInput `json:"where"`
 }
 
 // Validate validates this Vm start params
 func (m *VMStartParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -41,17 +45,84 @@ func (m *VMStartParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMStartParams) validateID(formats strfmt.Registry) error {
+func (m *VMStartParams) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
+		return nil
+	}
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this Vm start params based on context it is used
+func (m *VMStartParams) validateWhere(formats strfmt.Registry) error {
+
+	if err := validate.Required("where", "body", m.Where); err != nil {
+		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this Vm start params based on the context it is used
 func (m *VMStartParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMStartParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMStartParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -66,6 +137,43 @@ func (m *VMStartParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMStartParams) UnmarshalBinary(b []byte) error {
 	var res VMStartParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMStartParamsData VM start params data
+//
+// swagger:model VMStartParamsData
+type VMStartParamsData struct {
+
+	// node ip
+	NodeIP string `json:"node_ip,omitempty"`
+}
+
+// Validate validates this VM start params data
+func (m *VMStartParamsData) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this VM start params data based on context it is used
+func (m *VMStartParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMStartParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMStartParamsData) UnmarshalBinary(b []byte) error {
+	var res VMStartParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

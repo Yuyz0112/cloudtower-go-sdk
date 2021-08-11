@@ -62,7 +62,7 @@ func NewAddVMCdRomParamsWithHTTPClient(client *http.Client) *AddVMCdRomParams {
 type AddVMCdRomParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMAddCdRomParams
+	RequestBody *models.VMAddCdRomParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *AddVMCdRomParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the add Vm cd rom params
-func (o *AddVMCdRomParams) WithRequestBody(requestBody []*models.VMAddCdRomParams) *AddVMCdRomParams {
+func (o *AddVMCdRomParams) WithRequestBody(requestBody *models.VMAddCdRomParams) *AddVMCdRomParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the add Vm cd rom params
-func (o *AddVMCdRomParams) SetRequestBody(requestBody []*models.VMAddCdRomParams) {
+func (o *AddVMCdRomParams) SetRequestBody(requestBody *models.VMAddCdRomParams) {
 	o.RequestBody = requestBody
 }
 

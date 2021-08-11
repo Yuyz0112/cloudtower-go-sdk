@@ -19,24 +19,24 @@ import (
 // swagger:model VmMigrateParams
 type VMMigrateParams struct {
 
-	// id
+	// data
 	// Required: true
-	ID *string `json:"id"`
+	Data *VMMigrateParamsData `json:"data"`
 
-	// node ip
+	// where
 	// Required: true
-	NodeIP *string `json:"node_ip"`
+	Where *VMWhereInput `json:"where"`
 }
 
 // Validate validates this Vm migrate params
 func (m *VMMigrateParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateNodeIP(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,26 +46,85 @@ func (m *VMMigrateParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMMigrateParams) validateID(formats strfmt.Registry) error {
+func (m *VMMigrateParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *VMMigrateParams) validateNodeIP(formats strfmt.Registry) error {
+func (m *VMMigrateParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("node_ip", "body", m.NodeIP); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this Vm migrate params based on context it is used
+// ContextValidate validate this Vm migrate params based on the context it is used
 func (m *VMMigrateParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMMigrateParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMMigrateParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -80,6 +139,62 @@ func (m *VMMigrateParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMMigrateParams) UnmarshalBinary(b []byte) error {
 	var res VMMigrateParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMMigrateParamsData VM migrate params data
+//
+// swagger:model VMMigrateParamsData
+type VMMigrateParamsData struct {
+
+	// node ip
+	// Required: true
+	NodeIP *string `json:"node_ip"`
+}
+
+// Validate validates this VM migrate params data
+func (m *VMMigrateParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateNodeIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMMigrateParamsData) validateNodeIP(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"node_ip", "body", m.NodeIP); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this VM migrate params data based on context it is used
+func (m *VMMigrateParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMMigrateParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMMigrateParamsData) UnmarshalBinary(b []byte) error {
+	var res VMMigrateParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

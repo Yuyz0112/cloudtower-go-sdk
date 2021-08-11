@@ -36,19 +36,73 @@ type ClientService interface {
 
 	AddVMNic(params *AddVMNicParams, opts ...ClientOption) (*AddVMNicOK, error)
 
+	CloneIscsiLunFromSnapshot(params *CloneIscsiLunFromSnapshotParams, opts ...ClientOption) (*CloneIscsiLunFromSnapshotOK, error)
+
+	CloneSnapshotGroup(params *CloneSnapshotGroupParams, opts ...ClientOption) (*CloneSnapshotGroupOK, error)
+
+	CloneVM(params *CloneVMParams, opts ...ClientOption) (*CloneVMOK, error)
+
+	CloneVMTemplateFromVM(params *CloneVMTemplateFromVMParams, opts ...ClientOption) (*CloneVMTemplateFromVMOK, error)
+
+	ConvertVMTemplateFromVM(params *ConvertVMTemplateFromVMParams, opts ...ClientOption) (*ConvertVMTemplateFromVMOK, error)
+
 	CreateCluster(params *CreateClusterParams, opts ...ClientOption) (*CreateClusterOK, error)
 
 	CreateDatacenter(params *CreateDatacenterParams, opts ...ClientOption) (*CreateDatacenterOK, error)
 
+	CreateGraph(params *CreateGraphParams, opts ...ClientOption) (*CreateGraphOK, error)
+
+	CreateIscsiLun(params *CreateIscsiLunParams, opts ...ClientOption) (*CreateIscsiLunOK, error)
+
+	CreateIscsiLunSnapshot(params *CreateIscsiLunSnapshotParams, opts ...ClientOption) (*CreateIscsiLunSnapshotOK, error)
+
+	CreateIscsiTarget(params *CreateIscsiTargetParams, opts ...ClientOption) (*CreateIscsiTargetOK, error)
+
+	CreateSnapshotPlan(params *CreateSnapshotPlanParams, opts ...ClientOption) (*CreateSnapshotPlanOK, error)
+
 	CreateVds(params *CreateVdsParams, opts ...ClientOption) (*CreateVdsOK, error)
 
+	CreateView(params *CreateViewParams, opts ...ClientOption) (*CreateViewOK, error)
+
+	CreateVlan(params *CreateVlanParams, opts ...ClientOption) (*CreateVlanOK, error)
+
 	CreateVM(params *CreateVMParams, opts ...ClientOption) (*CreateVMOK, error)
+
+	CreateVMFromTemplate(params *CreateVMFromTemplateParams, opts ...ClientOption) (*CreateVMFromTemplateOK, error)
+
+	CreateVMVlan(params *CreateVMVlanParams, opts ...ClientOption) (*CreateVMVlanOK, error)
+
+	CreateVMVolume(params *CreateVMVolumeParams, opts ...ClientOption) (*CreateVMVolumeOK, error)
 
 	DeleteCluster(params *DeleteClusterParams, opts ...ClientOption) (*DeleteClusterOK, error)
 
 	DeleteDatacenter(params *DeleteDatacenterParams, opts ...ClientOption) (*DeleteDatacenterOK, error)
 
+	DeleteGraph(params *DeleteGraphParams, opts ...ClientOption) (*DeleteGraphOK, error)
+
+	DeleteIscsiLun(params *DeleteIscsiLunParams, opts ...ClientOption) (*DeleteIscsiLunOK, error)
+
+	DeleteIscsiLunSnapshot(params *DeleteIscsiLunSnapshotParams, opts ...ClientOption) (*DeleteIscsiLunSnapshotOK, error)
+
+	DeleteIscsiTarget(params *DeleteIscsiTargetParams, opts ...ClientOption) (*DeleteIscsiTargetOK, error)
+
+	DeleteNfsExport(params *DeleteNfsExportParams, opts ...ClientOption) (*DeleteNfsExportOK, error)
+
+	DeleteSnapshotGroup(params *DeleteSnapshotGroupParams, opts ...ClientOption) (*DeleteSnapshotGroupOK, error)
+
+	DeleteSnapshotPlan(params *DeleteSnapshotPlanParams, opts ...ClientOption) (*DeleteSnapshotPlanOK, error)
+
+	DeleteView(params *DeleteViewParams, opts ...ClientOption) (*DeleteViewOK, error)
+
+	DeleteVlan(params *DeleteVlanParams, opts ...ClientOption) (*DeleteVlanOK, error)
+
 	DeleteVM(params *DeleteVMParams, opts ...ClientOption) (*DeleteVMOK, error)
+
+	DeleteVMTemplateFromVM(params *DeleteVMTemplateFromVMParams, opts ...ClientOption) (*DeleteVMTemplateFromVMOK, error)
+
+	DeleteVMVolumeFromVM(params *DeleteVMVolumeFromVMParams, opts ...ClientOption) (*DeleteVMVolumeFromVMOK, error)
+
+	ExecuteSnapshotPlan(params *ExecuteSnapshotPlanParams, opts ...ClientOption) (*ExecuteSnapshotPlanOK, error)
 
 	ForceRestartVM(params *ForceRestartVMParams, opts ...ClientOption) (*ForceRestartVMOK, error)
 
@@ -356,11 +410,15 @@ type ClientService interface {
 
 	InstallVmtools(params *InstallVmtoolsParams, opts ...ClientOption) (*InstallVmtoolsOK, error)
 
+	KeepSnapshotGroup(params *KeepSnapshotGroupParams, opts ...ClientOption) (*KeepSnapshotGroupOK, error)
+
 	Login(params *LoginParams, opts ...ClientOption) (*LoginOK, error)
 
 	MigRateVM(params *MigRateVMParams, opts ...ClientOption) (*MigRateVMOK, error)
 
 	MoveVmsToRecycleBin(params *MoveVmsToRecycleBinParams, opts ...ClientOption) (*MoveVmsToRecycleBinOK, error)
+
+	RebuildVM(params *RebuildVMParams, opts ...ClientOption) (*RebuildVMOK, error)
 
 	RemoveVMCdRom(params *RemoveVMCdRomParams, opts ...ClientOption) (*RemoveVMCdRomOK, error)
 
@@ -370,7 +428,13 @@ type ClientService interface {
 
 	RestartVM(params *RestartVMParams, opts ...ClientOption) (*RestartVMOK, error)
 
+	ResumeSnapshotPlan(params *ResumeSnapshotPlanParams, opts ...ClientOption) (*ResumeSnapshotPlanOK, error)
+
 	ResumeVM(params *ResumeVMParams, opts ...ClientOption) (*ResumeVMOK, error)
+
+	RollbackIscsiLunFromSnapshot(params *RollbackIscsiLunFromSnapshotParams, opts ...ClientOption) (*RollbackIscsiLunFromSnapshotOK, error)
+
+	RollbackSnapshotGroup(params *RollbackSnapshotGroupParams, opts ...ClientOption) (*RollbackSnapshotGroupOK, error)
 
 	RollbackVM(params *RollbackVMParams, opts ...ClientOption) (*RollbackVMOK, error)
 
@@ -378,13 +442,35 @@ type ClientService interface {
 
 	StartVM(params *StartVMParams, opts ...ClientOption) (*StartVMOK, error)
 
+	SuspendSnapshotPlan(params *SuspendSnapshotPlanParams, opts ...ClientOption) (*SuspendSnapshotPlanOK, error)
+
 	SuspendVM(params *SuspendVMParams, opts ...ClientOption) (*SuspendVMOK, error)
 
 	UpdateCluster(params *UpdateClusterParams, opts ...ClientOption) (*UpdateClusterOK, error)
 
 	UpdateDatacenter(params *UpdateDatacenterParams, opts ...ClientOption) (*UpdateDatacenterOK, error)
 
+	UpdateGraph(params *UpdateGraphParams, opts ...ClientOption) (*UpdateGraphOK, error)
+
+	UpdateIscsiLun(params *UpdateIscsiLunParams, opts ...ClientOption) (*UpdateIscsiLunOK, error)
+
+	UpdateIscsiTarget(params *UpdateIscsiTargetParams, opts ...ClientOption) (*UpdateIscsiTargetOK, error)
+
+	UpdateManagementVlan(params *UpdateManagementVlanParams, opts ...ClientOption) (*UpdateManagementVlanOK, error)
+
+	UpdateMigrationVlan(params *UpdateMigrationVlanParams, opts ...ClientOption) (*UpdateMigrationVlanOK, error)
+
+	UpdateNfsExport(params *UpdateNfsExportParams, opts ...ClientOption) (*UpdateNfsExportOK, error)
+
+	UpdateSnapshotPlan(params *UpdateSnapshotPlanParams, opts ...ClientOption) (*UpdateSnapshotPlanOK, error)
+
+	UpdateView(params *UpdateViewParams, opts ...ClientOption) (*UpdateViewOK, error)
+
+	UpdateVlan(params *UpdateVlanParams, opts ...ClientOption) (*UpdateVlanOK, error)
+
 	UpdateVM(params *UpdateVMParams, opts ...ClientOption) (*UpdateVMOK, error)
+
+	UpdateVMTemplateFromVM(params *UpdateVMTemplateFromVMParams, opts ...ClientOption) (*UpdateVMTemplateFromVMOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -504,6 +590,196 @@ func (a *Client) AddVMNic(params *AddVMNicParams, opts ...ClientOption) (*AddVMN
 }
 
 /*
+  CloneIscsiLunFromSnapshot clone iscsi lun from snapshot API
+*/
+func (a *Client) CloneIscsiLunFromSnapshot(params *CloneIscsiLunFromSnapshotParams, opts ...ClientOption) (*CloneIscsiLunFromSnapshotOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCloneIscsiLunFromSnapshotParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CloneIscsiLunFromSnapshot",
+		Method:             "POST",
+		PathPattern:        "/clone-iscsi-lun-from-snapshot",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CloneIscsiLunFromSnapshotReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CloneIscsiLunFromSnapshotOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CloneIscsiLunFromSnapshot: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CloneSnapshotGroup clone snapshot group API
+*/
+func (a *Client) CloneSnapshotGroup(params *CloneSnapshotGroupParams, opts ...ClientOption) (*CloneSnapshotGroupOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCloneSnapshotGroupParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CloneSnapshotGroup",
+		Method:             "POST",
+		PathPattern:        "/clone-snapshot-group",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CloneSnapshotGroupReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CloneSnapshotGroupOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CloneSnapshotGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CloneVM clone Vm API
+*/
+func (a *Client) CloneVM(params *CloneVMParams, opts ...ClientOption) (*CloneVMOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCloneVMParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CloneVm",
+		Method:             "POST",
+		PathPattern:        "/clone-vm",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CloneVMReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CloneVMOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CloneVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CloneVMTemplateFromVM clone Vm template from Vm API
+*/
+func (a *Client) CloneVMTemplateFromVM(params *CloneVMTemplateFromVMParams, opts ...ClientOption) (*CloneVMTemplateFromVMOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCloneVMTemplateFromVMParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CloneVmTemplateFromVm",
+		Method:             "POST",
+		PathPattern:        "/clone-vm-template-from-vm",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CloneVMTemplateFromVMReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CloneVMTemplateFromVMOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CloneVmTemplateFromVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ConvertVMTemplateFromVM convert Vm template from Vm API
+*/
+func (a *Client) ConvertVMTemplateFromVM(params *ConvertVMTemplateFromVMParams, opts ...ClientOption) (*ConvertVMTemplateFromVMOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewConvertVMTemplateFromVMParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "ConvertVmTemplateFromVm",
+		Method:             "POST",
+		PathPattern:        "/convert-vm-template-from-vm",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ConvertVMTemplateFromVMReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ConvertVMTemplateFromVMOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for ConvertVmTemplateFromVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   CreateCluster create cluster API
 */
 func (a *Client) CreateCluster(params *CreateClusterParams, opts ...ClientOption) (*CreateClusterOK, error) {
@@ -580,6 +856,196 @@ func (a *Client) CreateDatacenter(params *CreateDatacenterParams, opts ...Client
 }
 
 /*
+  CreateGraph create graph API
+*/
+func (a *Client) CreateGraph(params *CreateGraphParams, opts ...ClientOption) (*CreateGraphOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateGraphParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateGraph",
+		Method:             "POST",
+		PathPattern:        "/create-graph",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateGraphReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateGraphOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateGraph: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateIscsiLun create iscsi lun API
+*/
+func (a *Client) CreateIscsiLun(params *CreateIscsiLunParams, opts ...ClientOption) (*CreateIscsiLunOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateIscsiLunParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateIscsiLun",
+		Method:             "POST",
+		PathPattern:        "/create-iscsi-lun",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateIscsiLunReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateIscsiLunOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateIscsiLun: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateIscsiLunSnapshot create iscsi lun snapshot API
+*/
+func (a *Client) CreateIscsiLunSnapshot(params *CreateIscsiLunSnapshotParams, opts ...ClientOption) (*CreateIscsiLunSnapshotOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateIscsiLunSnapshotParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateIscsiLunSnapshot",
+		Method:             "POST",
+		PathPattern:        "/create-iscsi-lun-snapshot",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateIscsiLunSnapshotReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateIscsiLunSnapshotOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateIscsiLunSnapshot: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateIscsiTarget create iscsi target API
+*/
+func (a *Client) CreateIscsiTarget(params *CreateIscsiTargetParams, opts ...ClientOption) (*CreateIscsiTargetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateIscsiTargetParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateIscsiTarget",
+		Method:             "POST",
+		PathPattern:        "/create-iscsi-target",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateIscsiTargetReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateIscsiTargetOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateIscsiTarget: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateSnapshotPlan create snapshot plan API
+*/
+func (a *Client) CreateSnapshotPlan(params *CreateSnapshotPlanParams, opts ...ClientOption) (*CreateSnapshotPlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateSnapshotPlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateSnapshotPlan",
+		Method:             "POST",
+		PathPattern:        "/create-snapshot-plan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateSnapshotPlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateSnapshotPlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateSnapshotPlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   CreateVds create vds API
 */
 func (a *Client) CreateVds(params *CreateVdsParams, opts ...ClientOption) (*CreateVdsOK, error) {
@@ -618,6 +1084,82 @@ func (a *Client) CreateVds(params *CreateVdsParams, opts ...ClientOption) (*Crea
 }
 
 /*
+  CreateView create view API
+*/
+func (a *Client) CreateView(params *CreateViewParams, opts ...ClientOption) (*CreateViewOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateViewParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateView",
+		Method:             "POST",
+		PathPattern:        "/create-view",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateViewReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateViewOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateView: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateVlan create vlan API
+*/
+func (a *Client) CreateVlan(params *CreateVlanParams, opts ...ClientOption) (*CreateVlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateVlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateVlan",
+		Method:             "POST",
+		PathPattern:        "/create-nfs-export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateVlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateVlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateVlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   CreateVM create Vm API
 */
 func (a *Client) CreateVM(params *CreateVMParams, opts ...ClientOption) (*CreateVMOK, error) {
@@ -652,6 +1194,120 @@ func (a *Client) CreateVM(params *CreateVMParams, opts ...ClientOption) (*Create
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for CreateVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateVMFromTemplate create Vm from template API
+*/
+func (a *Client) CreateVMFromTemplate(params *CreateVMFromTemplateParams, opts ...ClientOption) (*CreateVMFromTemplateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateVMFromTemplateParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateVmFromTemplate",
+		Method:             "POST",
+		PathPattern:        "/create-vm-from-template",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateVMFromTemplateReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateVMFromTemplateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateVmFromTemplate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateVMVlan create Vm vlan API
+*/
+func (a *Client) CreateVMVlan(params *CreateVMVlanParams, opts ...ClientOption) (*CreateVMVlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateVMVlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateVmVlan",
+		Method:             "POST",
+		PathPattern:        "/create-vm-vlan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateVMVlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateVMVlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateVmVlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateVMVolume create Vm volume API
+*/
+func (a *Client) CreateVMVolume(params *CreateVMVolumeParams, opts ...ClientOption) (*CreateVMVolumeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateVMVolumeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateVmVolume",
+		Method:             "POST",
+		PathPattern:        "/create-vm-volume",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateVMVolumeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateVMVolumeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateVmVolume: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -732,6 +1388,348 @@ func (a *Client) DeleteDatacenter(params *DeleteDatacenterParams, opts ...Client
 }
 
 /*
+  DeleteGraph delete graph API
+*/
+func (a *Client) DeleteGraph(params *DeleteGraphParams, opts ...ClientOption) (*DeleteGraphOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteGraphParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteGraph",
+		Method:             "POST",
+		PathPattern:        "/delete-Graph",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteGraphReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteGraphOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteGraph: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteIscsiLun delete iscsi lun API
+*/
+func (a *Client) DeleteIscsiLun(params *DeleteIscsiLunParams, opts ...ClientOption) (*DeleteIscsiLunOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteIscsiLunParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteIscsiLun",
+		Method:             "POST",
+		PathPattern:        "/delete-iscsi-lun",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteIscsiLunReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteIscsiLunOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteIscsiLun: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteIscsiLunSnapshot delete iscsi lun snapshot API
+*/
+func (a *Client) DeleteIscsiLunSnapshot(params *DeleteIscsiLunSnapshotParams, opts ...ClientOption) (*DeleteIscsiLunSnapshotOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteIscsiLunSnapshotParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteIscsiLunSnapshot",
+		Method:             "POST",
+		PathPattern:        "/delete-iscsi-lun-snapshot",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteIscsiLunSnapshotReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteIscsiLunSnapshotOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteIscsiLunSnapshot: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteIscsiTarget delete iscsi target API
+*/
+func (a *Client) DeleteIscsiTarget(params *DeleteIscsiTargetParams, opts ...ClientOption) (*DeleteIscsiTargetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteIscsiTargetParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteIscsiTarget",
+		Method:             "POST",
+		PathPattern:        "/delete-iscsi-target",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteIscsiTargetReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteIscsiTargetOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteIscsiTarget: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteNfsExport delete nfs export API
+*/
+func (a *Client) DeleteNfsExport(params *DeleteNfsExportParams, opts ...ClientOption) (*DeleteNfsExportOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteNfsExportParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteNfsExport",
+		Method:             "POST",
+		PathPattern:        "/delete-nfs-export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteNfsExportReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteNfsExportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteNfsExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteSnapshotGroup delete snapshot group API
+*/
+func (a *Client) DeleteSnapshotGroup(params *DeleteSnapshotGroupParams, opts ...ClientOption) (*DeleteSnapshotGroupOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSnapshotGroupParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteSnapshotGroup",
+		Method:             "POST",
+		PathPattern:        "/delete-snapshot-group",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteSnapshotGroupReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteSnapshotGroupOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteSnapshotGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteSnapshotPlan delete snapshot plan API
+*/
+func (a *Client) DeleteSnapshotPlan(params *DeleteSnapshotPlanParams, opts ...ClientOption) (*DeleteSnapshotPlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteSnapshotPlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteSnapshotPlan",
+		Method:             "POST",
+		PathPattern:        "/delete-snapshot-plan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteSnapshotPlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteSnapshotPlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteSnapshotPlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteView delete view API
+*/
+func (a *Client) DeleteView(params *DeleteViewParams, opts ...ClientOption) (*DeleteViewOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteViewParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteView",
+		Method:             "POST",
+		PathPattern:        "/delete-view",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteViewReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteViewOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteView: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteVlan delete vlan API
+*/
+func (a *Client) DeleteVlan(params *DeleteVlanParams, opts ...ClientOption) (*DeleteVlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteVlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteVlan",
+		Method:             "POST",
+		PathPattern:        "/delete-vm-vlan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteVlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteVlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteVlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   DeleteVM delete Vm API
 */
 func (a *Client) DeleteVM(params *DeleteVMParams, opts ...ClientOption) (*DeleteVMOK, error) {
@@ -766,6 +1764,120 @@ func (a *Client) DeleteVM(params *DeleteVMParams, opts ...ClientOption) (*Delete
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for DeleteVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteVMTemplateFromVM delete Vm template from Vm API
+*/
+func (a *Client) DeleteVMTemplateFromVM(params *DeleteVMTemplateFromVMParams, opts ...ClientOption) (*DeleteVMTemplateFromVMOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteVMTemplateFromVMParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteVmTemplateFromVm",
+		Method:             "POST",
+		PathPattern:        "/delete-vm-template",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteVMTemplateFromVMReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteVMTemplateFromVMOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteVmTemplateFromVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteVMVolumeFromVM delete Vm volume from Vm API
+*/
+func (a *Client) DeleteVMVolumeFromVM(params *DeleteVMVolumeFromVMParams, opts ...ClientOption) (*DeleteVMVolumeFromVMOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteVMVolumeFromVMParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteVmVolumeFromVm",
+		Method:             "POST",
+		PathPattern:        "/delete-vm-volume",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DeleteVMVolumeFromVMReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteVMVolumeFromVMOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteVmVolumeFromVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ExecuteSnapshotPlan execute snapshot plan API
+*/
+func (a *Client) ExecuteSnapshotPlan(params *ExecuteSnapshotPlanParams, opts ...ClientOption) (*ExecuteSnapshotPlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExecuteSnapshotPlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "ExecuteSnapshotPlan",
+		Method:             "POST",
+		PathPattern:        "/execute-snapshot-plan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ExecuteSnapshotPlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ExecuteSnapshotPlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for ExecuteSnapshotPlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -6584,6 +7696,44 @@ func (a *Client) InstallVmtools(params *InstallVmtoolsParams, opts ...ClientOpti
 }
 
 /*
+  KeepSnapshotGroup keep snapshot group API
+*/
+func (a *Client) KeepSnapshotGroup(params *KeepSnapshotGroupParams, opts ...ClientOption) (*KeepSnapshotGroupOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewKeepSnapshotGroupParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "KeepSnapshotGroup",
+		Method:             "POST",
+		PathPattern:        "/keep-snapshot-group",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &KeepSnapshotGroupReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*KeepSnapshotGroupOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for KeepSnapshotGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   Login login API
 */
 func (a *Client) Login(params *LoginParams, opts ...ClientOption) (*LoginOK, error) {
@@ -6694,6 +7844,44 @@ func (a *Client) MoveVmsToRecycleBin(params *MoveVmsToRecycleBinParams, opts ...
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for MoveVmsToRecycleBin: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RebuildVM rebuild Vm API
+*/
+func (a *Client) RebuildVM(params *RebuildVMParams, opts ...ClientOption) (*RebuildVMOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRebuildVMParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "RebuildVm",
+		Method:             "POST",
+		PathPattern:        "/rebuild-vm",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &RebuildVMReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RebuildVMOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for RebuildVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -6850,6 +8038,44 @@ func (a *Client) RestartVM(params *RestartVMParams, opts ...ClientOption) (*Rest
 }
 
 /*
+  ResumeSnapshotPlan resume snapshot plan API
+*/
+func (a *Client) ResumeSnapshotPlan(params *ResumeSnapshotPlanParams, opts ...ClientOption) (*ResumeSnapshotPlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewResumeSnapshotPlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "ResumeSnapshotPlan",
+		Method:             "POST",
+		PathPattern:        "/resume-snapshot-plan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ResumeSnapshotPlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ResumeSnapshotPlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for ResumeSnapshotPlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   ResumeVM resume Vm API
 */
 func (a *Client) ResumeVM(params *ResumeVMParams, opts ...ClientOption) (*ResumeVMOK, error) {
@@ -6884,6 +8110,82 @@ func (a *Client) ResumeVM(params *ResumeVMParams, opts ...ClientOption) (*Resume
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for ResumeVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RollbackIscsiLunFromSnapshot rollback iscsi lun from snapshot API
+*/
+func (a *Client) RollbackIscsiLunFromSnapshot(params *RollbackIscsiLunFromSnapshotParams, opts ...ClientOption) (*RollbackIscsiLunFromSnapshotOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRollbackIscsiLunFromSnapshotParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "RollbackIscsiLunFromSnapshot",
+		Method:             "POST",
+		PathPattern:        "/rollback-iscsi-lun-from-snapshot",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &RollbackIscsiLunFromSnapshotReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RollbackIscsiLunFromSnapshotOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for RollbackIscsiLunFromSnapshot: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RollbackSnapshotGroup rollback snapshot group API
+*/
+func (a *Client) RollbackSnapshotGroup(params *RollbackSnapshotGroupParams, opts ...ClientOption) (*RollbackSnapshotGroupOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRollbackSnapshotGroupParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "RollbackSnapshotGroup",
+		Method:             "POST",
+		PathPattern:        "/rollback-snapshot-group",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &RollbackSnapshotGroupReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RollbackSnapshotGroupOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for RollbackSnapshotGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -7002,6 +8304,44 @@ func (a *Client) StartVM(params *StartVMParams, opts ...ClientOption) (*StartVMO
 }
 
 /*
+  SuspendSnapshotPlan suspend snapshot plan API
+*/
+func (a *Client) SuspendSnapshotPlan(params *SuspendSnapshotPlanParams, opts ...ClientOption) (*SuspendSnapshotPlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSuspendSnapshotPlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "SuspendSnapshotPlan",
+		Method:             "POST",
+		PathPattern:        "/suspend-snapshot-plan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &SuspendSnapshotPlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SuspendSnapshotPlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for SuspendSnapshotPlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   SuspendVM suspend Vm API
 */
 func (a *Client) SuspendVM(params *SuspendVMParams, opts ...ClientOption) (*SuspendVMOK, error) {
@@ -7116,6 +8456,348 @@ func (a *Client) UpdateDatacenter(params *UpdateDatacenterParams, opts ...Client
 }
 
 /*
+  UpdateGraph update graph API
+*/
+func (a *Client) UpdateGraph(params *UpdateGraphParams, opts ...ClientOption) (*UpdateGraphOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGraphParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateGraph",
+		Method:             "POST",
+		PathPattern:        "/update-graph",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateGraphReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateGraphOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateGraph: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateIscsiLun update iscsi lun API
+*/
+func (a *Client) UpdateIscsiLun(params *UpdateIscsiLunParams, opts ...ClientOption) (*UpdateIscsiLunOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateIscsiLunParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateIscsiLun",
+		Method:             "POST",
+		PathPattern:        "/update-iscsi-lun",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateIscsiLunReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateIscsiLunOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateIscsiLun: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateIscsiTarget update iscsi target API
+*/
+func (a *Client) UpdateIscsiTarget(params *UpdateIscsiTargetParams, opts ...ClientOption) (*UpdateIscsiTargetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateIscsiTargetParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateIscsiTarget",
+		Method:             "POST",
+		PathPattern:        "/update-iscsi-target",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateIscsiTargetReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateIscsiTargetOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateIscsiTarget: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateManagementVlan update management vlan API
+*/
+func (a *Client) UpdateManagementVlan(params *UpdateManagementVlanParams, opts ...ClientOption) (*UpdateManagementVlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateManagementVlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateManagementVlan",
+		Method:             "POST",
+		PathPattern:        "/update-management-vlan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateManagementVlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateManagementVlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateManagementVlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateMigrationVlan update migration vlan API
+*/
+func (a *Client) UpdateMigrationVlan(params *UpdateMigrationVlanParams, opts ...ClientOption) (*UpdateMigrationVlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateMigrationVlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateMigrationVlan",
+		Method:             "POST",
+		PathPattern:        "/update-migration-vlan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateMigrationVlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateMigrationVlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateMigrationVlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateNfsExport update nfs export API
+*/
+func (a *Client) UpdateNfsExport(params *UpdateNfsExportParams, opts ...ClientOption) (*UpdateNfsExportOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateNfsExportParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateNfsExport",
+		Method:             "POST",
+		PathPattern:        "/update-nfs-export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateNfsExportReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateNfsExportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateNfsExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateSnapshotPlan update snapshot plan API
+*/
+func (a *Client) UpdateSnapshotPlan(params *UpdateSnapshotPlanParams, opts ...ClientOption) (*UpdateSnapshotPlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateSnapshotPlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateSnapshotPlan",
+		Method:             "POST",
+		PathPattern:        "/update-snapshot-plan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateSnapshotPlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateSnapshotPlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateSnapshotPlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateView update view API
+*/
+func (a *Client) UpdateView(params *UpdateViewParams, opts ...ClientOption) (*UpdateViewOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateViewParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateView",
+		Method:             "POST",
+		PathPattern:        "/update-view",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateViewReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateViewOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateView: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateVlan update vlan API
+*/
+func (a *Client) UpdateVlan(params *UpdateVlanParams, opts ...ClientOption) (*UpdateVlanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateVlanParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateVlan",
+		Method:             "POST",
+		PathPattern:        "/update-vm-vlan",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateVlanReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateVlanOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateVlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   UpdateVM update Vm API
 */
 func (a *Client) UpdateVM(params *UpdateVMParams, opts ...ClientOption) (*UpdateVMOK, error) {
@@ -7150,6 +8832,44 @@ func (a *Client) UpdateVM(params *UpdateVMParams, opts ...ClientOption) (*Update
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for UpdateVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateVMTemplateFromVM update Vm template from Vm API
+*/
+func (a *Client) UpdateVMTemplateFromVM(params *UpdateVMTemplateFromVMParams, opts ...ClientOption) (*UpdateVMTemplateFromVMOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateVMTemplateFromVMParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "UpdateVmTemplateFromVm",
+		Method:             "POST",
+		PathPattern:        "/update-vm-template",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &UpdateVMTemplateFromVMReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateVMTemplateFromVMOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateVmTemplateFromVm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -44,13 +44,13 @@ func NewCreateDatacenterOK() *CreateDatacenterOK {
 Ok
 */
 type CreateDatacenterOK struct {
-	Payload []*models.WithTaskMyDatacenter
+	Payload []*models.WithTaskDatacenter
 }
 
 func (o *CreateDatacenterOK) Error() string {
 	return fmt.Sprintf("[POST /create-datacenter][%d] createDatacenterOK  %+v", 200, o.Payload)
 }
-func (o *CreateDatacenterOK) GetPayload() []*models.WithTaskMyDatacenter {
+func (o *CreateDatacenterOK) GetPayload() []*models.WithTaskDatacenter {
 	return o.Payload
 }
 

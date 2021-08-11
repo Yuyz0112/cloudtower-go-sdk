@@ -82,6 +82,25 @@ type MountNewCreateDisksParamsItems0 struct {
 	// Required: true
 	Bus *Bus `json:"bus"`
 
+	// index
+	// Required: true
+	Index *float64 `json:"index"`
+
+	// key
+	Key float64 `json:"key,omitempty"`
+
+	// max bandwidth
+	MaxBandwidth float64 `json:"max_bandwidth,omitempty"`
+
+	// max bandwidth policy
+	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
+
+	// max iops
+	MaxIops float64 `json:"max_iops,omitempty"`
+
+	// max iops policy
+	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
+
 	// vm volume
 	// Required: true
 	VMVolume *MountNewCreateDisksParamsItems0VMVolume `json:"vm_volume"`
@@ -96,6 +115,18 @@ func (m *MountNewCreateDisksParamsItems0) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateBus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIndex(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxBandwidthPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxIopsPolicy(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -140,6 +171,45 @@ func (m *MountNewCreateDisksParamsItems0) validateBus(formats strfmt.Registry) e
 	return nil
 }
 
+func (m *MountNewCreateDisksParamsItems0) validateIndex(formats strfmt.Registry) error {
+
+	if err := validate.Required("index", "body", m.Index); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *MountNewCreateDisksParamsItems0) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
+		return nil
+	}
+
+	if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("max_bandwidth_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *MountNewCreateDisksParamsItems0) validateMaxIopsPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxIopsPolicy) { // not required
+		return nil
+	}
+
+	if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("max_iops_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *MountNewCreateDisksParamsItems0) validateVMVolume(formats strfmt.Registry) error {
 
 	if err := validate.Required("vm_volume", "body", m.VMVolume); err != nil {
@@ -166,6 +236,14 @@ func (m *MountNewCreateDisksParamsItems0) ContextValidate(ctx context.Context, f
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMaxBandwidthPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxIopsPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVMVolume(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -185,6 +263,30 @@ func (m *MountNewCreateDisksParamsItems0) contextValidateBus(ctx context.Context
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *MountNewCreateDisksParamsItems0) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("max_bandwidth_policy")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *MountNewCreateDisksParamsItems0) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("max_iops_policy")
+		}
+		return err
 	}
 
 	return nil

@@ -62,7 +62,7 @@ func NewForceRestartVMParamsWithHTTPClient(client *http.Client) *ForceRestartVMP
 type ForceRestartVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMOperateParams
+	RequestBody *models.VMOperateParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *ForceRestartVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the force restart Vm params
-func (o *ForceRestartVMParams) WithRequestBody(requestBody []*models.VMOperateParams) *ForceRestartVMParams {
+func (o *ForceRestartVMParams) WithRequestBody(requestBody *models.VMOperateParams) *ForceRestartVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the force restart Vm params
-func (o *ForceRestartVMParams) SetRequestBody(requestBody []*models.VMOperateParams) {
+func (o *ForceRestartVMParams) SetRequestBody(requestBody *models.VMOperateParams) {
 	o.RequestBody = requestBody
 }
 

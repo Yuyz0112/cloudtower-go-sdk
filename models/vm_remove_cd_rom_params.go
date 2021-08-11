@@ -19,24 +19,24 @@ import (
 // swagger:model VmRemoveCdRomParams
 type VMRemoveCdRomParams struct {
 
-	// cd rom ids
+	// data
 	// Required: true
-	CdRomIds []string `json:"cd_rom_ids"`
+	Data *VMRemoveCdRomParamsData `json:"data"`
 
-	// vm id
+	// where
 	// Required: true
-	VMID *string `json:"vm_id"`
+	Where *VMWhereInput `json:"where"`
 }
 
 // Validate validates this Vm remove cd rom params
 func (m *VMRemoveCdRomParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCdRomIds(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateVMID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,26 +46,85 @@ func (m *VMRemoveCdRomParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMRemoveCdRomParams) validateCdRomIds(formats strfmt.Registry) error {
+func (m *VMRemoveCdRomParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("cd_rom_ids", "body", m.CdRomIds); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *VMRemoveCdRomParams) validateVMID(formats strfmt.Registry) error {
+func (m *VMRemoveCdRomParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("vm_id", "body", m.VMID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this Vm remove cd rom params based on context it is used
+// ContextValidate validate this Vm remove cd rom params based on the context it is used
 func (m *VMRemoveCdRomParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMRemoveCdRomParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMRemoveCdRomParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -80,6 +139,62 @@ func (m *VMRemoveCdRomParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMRemoveCdRomParams) UnmarshalBinary(b []byte) error {
 	var res VMRemoveCdRomParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMRemoveCdRomParamsData VM remove cd rom params data
+//
+// swagger:model VMRemoveCdRomParamsData
+type VMRemoveCdRomParamsData struct {
+
+	// cd rom ids
+	// Required: true
+	CdRomIds []string `json:"cd_rom_ids"`
+}
+
+// Validate validates this VM remove cd rom params data
+func (m *VMRemoveCdRomParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCdRomIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMRemoveCdRomParamsData) validateCdRomIds(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"cd_rom_ids", "body", m.CdRomIds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this VM remove cd rom params data based on context it is used
+func (m *VMRemoveCdRomParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMRemoveCdRomParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMRemoveCdRomParamsData) UnmarshalBinary(b []byte) error {
+	var res VMRemoveCdRomParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

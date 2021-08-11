@@ -62,7 +62,7 @@ func NewRemoveVMDiskParamsWithHTTPClient(client *http.Client) *RemoveVMDiskParam
 type RemoveVMDiskParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMRemoveDiskParams
+	RequestBody *models.VMRemoveDiskParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *RemoveVMDiskParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the remove Vm disk params
-func (o *RemoveVMDiskParams) WithRequestBody(requestBody []*models.VMRemoveDiskParams) *RemoveVMDiskParams {
+func (o *RemoveVMDiskParams) WithRequestBody(requestBody *models.VMRemoveDiskParams) *RemoveVMDiskParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the remove Vm disk params
-func (o *RemoveVMDiskParams) SetRequestBody(requestBody []*models.VMRemoveDiskParams) {
+func (o *RemoveVMDiskParams) SetRequestBody(requestBody *models.VMRemoveDiskParams) {
 	o.RequestBody = requestBody
 }
 

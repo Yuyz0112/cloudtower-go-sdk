@@ -62,7 +62,7 @@ func NewMigRateVMParamsWithHTTPClient(client *http.Client) *MigRateVMParams {
 type MigRateVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMMigrateParams
+	RequestBody *models.VMMigrateParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *MigRateVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the mig rate Vm params
-func (o *MigRateVMParams) WithRequestBody(requestBody []*models.VMMigrateParams) *MigRateVMParams {
+func (o *MigRateVMParams) WithRequestBody(requestBody *models.VMMigrateParams) *MigRateVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the mig rate Vm params
-func (o *MigRateVMParams) SetRequestBody(requestBody []*models.VMMigrateParams) {
+func (o *MigRateVMParams) SetRequestBody(requestBody *models.VMMigrateParams) {
 	o.RequestBody = requestBody
 }
 

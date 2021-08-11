@@ -62,7 +62,7 @@ func NewRemoveVMNicParamsWithHTTPClient(client *http.Client) *RemoveVMNicParams 
 type RemoveVMNicParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMRemoveNicParams
+	RequestBody *models.VMRemoveNicParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *RemoveVMNicParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the remove Vm nic params
-func (o *RemoveVMNicParams) WithRequestBody(requestBody []*models.VMRemoveNicParams) *RemoveVMNicParams {
+func (o *RemoveVMNicParams) WithRequestBody(requestBody *models.VMRemoveNicParams) *RemoveVMNicParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the remove Vm nic params
-func (o *RemoveVMNicParams) SetRequestBody(requestBody []*models.VMRemoveNicParams) {
+func (o *RemoveVMNicParams) SetRequestBody(requestBody *models.VMRemoveNicParams) {
 	o.RequestBody = requestBody
 }
 

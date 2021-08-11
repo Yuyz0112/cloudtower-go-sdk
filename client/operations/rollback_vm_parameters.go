@@ -62,7 +62,7 @@ func NewRollbackVMParamsWithHTTPClient(client *http.Client) *RollbackVMParams {
 type RollbackVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMRollbackParams
+	RequestBody *models.VMRollbackParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *RollbackVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the rollback Vm params
-func (o *RollbackVMParams) WithRequestBody(requestBody []*models.VMRollbackParams) *RollbackVMParams {
+func (o *RollbackVMParams) WithRequestBody(requestBody *models.VMRollbackParams) *RollbackVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the rollback Vm params
-func (o *RollbackVMParams) SetRequestBody(requestBody []*models.VMRollbackParams) {
+func (o *RollbackVMParams) SetRequestBody(requestBody *models.VMRollbackParams) {
 	o.RequestBody = requestBody
 }
 

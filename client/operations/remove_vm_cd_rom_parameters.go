@@ -62,7 +62,7 @@ func NewRemoveVMCdRomParamsWithHTTPClient(client *http.Client) *RemoveVMCdRomPar
 type RemoveVMCdRomParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMRemoveCdRomParams
+	RequestBody *models.VMRemoveCdRomParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *RemoveVMCdRomParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the remove Vm cd rom params
-func (o *RemoveVMCdRomParams) WithRequestBody(requestBody []*models.VMRemoveCdRomParams) *RemoveVMCdRomParams {
+func (o *RemoveVMCdRomParams) WithRequestBody(requestBody *models.VMRemoveCdRomParams) *RemoveVMCdRomParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the remove Vm cd rom params
-func (o *RemoveVMCdRomParams) SetRequestBody(requestBody []*models.VMRemoveCdRomParams) {
+func (o *RemoveVMCdRomParams) SetRequestBody(requestBody *models.VMRemoveCdRomParams) {
 	o.RequestBody = requestBody
 }
 

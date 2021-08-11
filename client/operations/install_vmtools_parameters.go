@@ -62,7 +62,7 @@ func NewInstallVmtoolsParamsWithHTTPClient(client *http.Client) *InstallVmtoolsP
 type InstallVmtoolsParams struct {
 
 	// RequestBody.
-	RequestBody []*models.InstallVmtoolsParams
+	RequestBody *models.InstallVmtoolsParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *InstallVmtoolsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the install vmtools params
-func (o *InstallVmtoolsParams) WithRequestBody(requestBody []*models.InstallVmtoolsParams) *InstallVmtoolsParams {
+func (o *InstallVmtoolsParams) WithRequestBody(requestBody *models.InstallVmtoolsParams) *InstallVmtoolsParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the install vmtools params
-func (o *InstallVmtoolsParams) SetRequestBody(requestBody []*models.InstallVmtoolsParams) {
+func (o *InstallVmtoolsParams) SetRequestBody(requestBody *models.InstallVmtoolsParams) {
 	o.RequestBody = requestBody
 }
 

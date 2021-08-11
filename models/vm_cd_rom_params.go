@@ -78,12 +78,15 @@ type VMCdRomParamsItems0 struct {
 	// Required: true
 	Boot *float64 `json:"boot"`
 
-	// bus
-	// Required: true
-	Bus *Bus `json:"bus"`
-
 	// elf image id
 	ElfImageID string `json:"elf_image_id,omitempty"`
+
+	// index
+	// Required: true
+	Index *float64 `json:"index"`
+
+	// key
+	Key float64 `json:"key,omitempty"`
 }
 
 // Validate validates this VM cd rom params items0
@@ -94,7 +97,7 @@ func (m *VMCdRomParamsItems0) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateBus(formats); err != nil {
+	if err := m.validateIndex(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -113,53 +116,17 @@ func (m *VMCdRomParamsItems0) validateBoot(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMCdRomParamsItems0) validateBus(formats strfmt.Registry) error {
+func (m *VMCdRomParamsItems0) validateIndex(formats strfmt.Registry) error {
 
-	if err := validate.Required("bus", "body", m.Bus); err != nil {
+	if err := validate.Required("index", "body", m.Index); err != nil {
 		return err
-	}
-
-	if err := validate.Required("bus", "body", m.Bus); err != nil {
-		return err
-	}
-
-	if m.Bus != nil {
-		if err := m.Bus.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("bus")
-			}
-			return err
-		}
 	}
 
 	return nil
 }
 
-// ContextValidate validate this VM cd rom params items0 based on the context it is used
+// ContextValidate validates this VM cd rom params items0 based on context it is used
 func (m *VMCdRomParamsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateBus(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMCdRomParamsItems0) contextValidateBus(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Bus != nil {
-		if err := m.Bus.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("bus")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
