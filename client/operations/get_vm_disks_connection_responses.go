@@ -29,6 +29,12 @@ func (o *GetVMDisksConnectionReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVMDisksConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetVMDisksConnectionOK) readResponse(response runtime.ClientResponse, c
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVMDisksConnectionBadRequest creates a GetVMDisksConnectionBadRequest with default headers values
+func NewGetVMDisksConnectionBadRequest() *GetVMDisksConnectionBadRequest {
+	return &GetVMDisksConnectionBadRequest{}
+}
+
+/* GetVMDisksConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetVMDisksConnectionBadRequest get Vm disks connection bad request
+*/
+type GetVMDisksConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetVMDisksConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vm-disks-connection][%d] getVmDisksConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVMDisksConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVMDisksConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

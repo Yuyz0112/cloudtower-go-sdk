@@ -29,6 +29,12 @@ func (o *DeleteViewReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteViewBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *DeleteViewOK) GetPayload() []*models.WithTaskDeleteView {
 }
 
 func (o *DeleteViewOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteViewBadRequest creates a DeleteViewBadRequest with default headers values
+func NewDeleteViewBadRequest() *DeleteViewBadRequest {
+	return &DeleteViewBadRequest{}
+}
+
+/* DeleteViewBadRequest describes a response with status code 400, with default header values.
+
+DeleteViewBadRequest delete view bad request
+*/
+type DeleteViewBadRequest struct {
+	Payload string
+}
+
+func (o *DeleteViewBadRequest) Error() string {
+	return fmt.Sprintf("[POST /delete-view][%d] deleteViewBadRequest  %+v", 400, o.Payload)
+}
+func (o *DeleteViewBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *DeleteViewBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

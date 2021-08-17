@@ -29,6 +29,12 @@ func (o *GetLabelsConnectionReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetLabelsConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetLabelsConnectionOK) readResponse(response runtime.ClientResponse, co
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetLabelsConnectionBadRequest creates a GetLabelsConnectionBadRequest with default headers values
+func NewGetLabelsConnectionBadRequest() *GetLabelsConnectionBadRequest {
+	return &GetLabelsConnectionBadRequest{}
+}
+
+/* GetLabelsConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetLabelsConnectionBadRequest get labels connection bad request
+*/
+type GetLabelsConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetLabelsConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-labels-connection][%d] getLabelsConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetLabelsConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetLabelsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

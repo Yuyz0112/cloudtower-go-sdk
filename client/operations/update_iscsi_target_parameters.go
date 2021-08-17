@@ -62,7 +62,7 @@ func NewUpdateIscsiTargetParamsWithHTTPClient(client *http.Client) *UpdateIscsiT
 type UpdateIscsiTargetParams struct {
 
 	// RequestBody.
-	RequestBody []models.IscsiTargetUpdationParams
+	RequestBody *models.IscsiTargetUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateIscsiTargetParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update iscsi target params
-func (o *UpdateIscsiTargetParams) WithRequestBody(requestBody []models.IscsiTargetUpdationParams) *UpdateIscsiTargetParams {
+func (o *UpdateIscsiTargetParams) WithRequestBody(requestBody *models.IscsiTargetUpdationParams) *UpdateIscsiTargetParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update iscsi target params
-func (o *UpdateIscsiTargetParams) SetRequestBody(requestBody []models.IscsiTargetUpdationParams) {
+func (o *UpdateIscsiTargetParams) SetRequestBody(requestBody *models.IscsiTargetUpdationParams) {
 	o.RequestBody = requestBody
 }
 

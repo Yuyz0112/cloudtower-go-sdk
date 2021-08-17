@@ -29,6 +29,12 @@ func (o *GetVlansConnectionReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVlansConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetVlansConnectionOK) readResponse(response runtime.ClientResponse, con
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVlansConnectionBadRequest creates a GetVlansConnectionBadRequest with default headers values
+func NewGetVlansConnectionBadRequest() *GetVlansConnectionBadRequest {
+	return &GetVlansConnectionBadRequest{}
+}
+
+/* GetVlansConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetVlansConnectionBadRequest get vlans connection bad request
+*/
+type GetVlansConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetVlansConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vlans-connection][%d] getVlansConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVlansConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVlansConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

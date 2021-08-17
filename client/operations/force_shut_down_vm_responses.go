@@ -29,6 +29,12 @@ func (o *ForceShutDownVMReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewForceShutDownVMBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *ForceShutDownVMOK) GetPayload() []*models.WithTaskVM {
 }
 
 func (o *ForceShutDownVMOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewForceShutDownVMBadRequest creates a ForceShutDownVMBadRequest with default headers values
+func NewForceShutDownVMBadRequest() *ForceShutDownVMBadRequest {
+	return &ForceShutDownVMBadRequest{}
+}
+
+/* ForceShutDownVMBadRequest describes a response with status code 400, with default header values.
+
+ForceShutDownVMBadRequest force shut down Vm bad request
+*/
+type ForceShutDownVMBadRequest struct {
+	Payload string
+}
+
+func (o *ForceShutDownVMBadRequest) Error() string {
+	return fmt.Sprintf("[POST /force/shut-down-vm][%d] forceShutDownVmBadRequest  %+v", 400, o.Payload)
+}
+func (o *ForceShutDownVMBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *ForceShutDownVMBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

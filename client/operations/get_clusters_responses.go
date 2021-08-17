@@ -29,6 +29,12 @@ func (o *GetClustersReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetClustersBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetClustersOK) GetPayload() []*models.Cluster {
 }
 
 func (o *GetClustersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetClustersBadRequest creates a GetClustersBadRequest with default headers values
+func NewGetClustersBadRequest() *GetClustersBadRequest {
+	return &GetClustersBadRequest{}
+}
+
+/* GetClustersBadRequest describes a response with status code 400, with default header values.
+
+GetClustersBadRequest get clusters bad request
+*/
+type GetClustersBadRequest struct {
+	Payload string
+}
+
+func (o *GetClustersBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-clusters][%d] getClustersBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetClustersBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetClustersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

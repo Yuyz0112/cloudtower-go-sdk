@@ -62,7 +62,7 @@ func NewUpdateVlanParamsWithHTTPClient(client *http.Client) *UpdateVlanParams {
 type UpdateVlanParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMVlanUpdationParams
+	RequestBody *models.VMVlanUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateVlanParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update vlan params
-func (o *UpdateVlanParams) WithRequestBody(requestBody []*models.VMVlanUpdationParams) *UpdateVlanParams {
+func (o *UpdateVlanParams) WithRequestBody(requestBody *models.VMVlanUpdationParams) *UpdateVlanParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update vlan params
-func (o *UpdateVlanParams) SetRequestBody(requestBody []*models.VMVlanUpdationParams) {
+func (o *UpdateVlanParams) SetRequestBody(requestBody *models.VMVlanUpdationParams) {
 	o.RequestBody = requestBody
 }
 

@@ -62,7 +62,7 @@ func NewUpdateMigrationVlanParamsWithHTTPClient(client *http.Client) *UpdateMigr
 type UpdateMigrationVlanParams struct {
 
 	// RequestBody.
-	RequestBody []*models.MigrationVlanUpdationParams
+	RequestBody *models.MigrationVlanUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateMigrationVlanParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update migration vlan params
-func (o *UpdateMigrationVlanParams) WithRequestBody(requestBody []*models.MigrationVlanUpdationParams) *UpdateMigrationVlanParams {
+func (o *UpdateMigrationVlanParams) WithRequestBody(requestBody *models.MigrationVlanUpdationParams) *UpdateMigrationVlanParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update migration vlan params
-func (o *UpdateMigrationVlanParams) SetRequestBody(requestBody []*models.MigrationVlanUpdationParams) {
+func (o *UpdateMigrationVlanParams) SetRequestBody(requestBody *models.MigrationVlanUpdationParams) {
 	o.RequestBody = requestBody
 }
 

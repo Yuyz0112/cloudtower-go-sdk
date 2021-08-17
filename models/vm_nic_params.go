@@ -74,6 +74,10 @@ func (m VMNicParams) ContextValidate(ctx context.Context, formats strfmt.Registr
 // swagger:model VMNicParamsItems0
 type VMNicParamsItems0 struct {
 
+	// connect vlan id
+	// Required: true
+	ConnectVlanID *string `json:"connect_vlan_id"`
+
 	// enabled
 	Enabled bool `json:"enabled,omitempty"`
 
@@ -100,27 +104,32 @@ type VMNicParamsItems0 struct {
 
 	// subnet mask
 	SubnetMask string `json:"subnet_mask,omitempty"`
-
-	// vlan id
-	// Required: true
-	VlanID *string `json:"vlan_id"`
 }
 
 // Validate validates this VM nic params items0
 func (m *VMNicParamsItems0) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateModel(formats); err != nil {
+	if err := m.validateConnectVlanID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateVlanID(formats); err != nil {
+	if err := m.validateModel(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *VMNicParamsItems0) validateConnectVlanID(formats strfmt.Registry) error {
+
+	if err := validate.Required("connect_vlan_id", "body", m.ConnectVlanID); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -133,15 +142,6 @@ func (m *VMNicParamsItems0) validateModel(formats strfmt.Registry) error {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("model")
 		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMNicParamsItems0) validateVlanID(formats strfmt.Registry) error {
-
-	if err := validate.Required("vlan_id", "body", m.VlanID); err != nil {
 		return err
 	}
 

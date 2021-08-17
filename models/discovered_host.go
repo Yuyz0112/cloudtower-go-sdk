@@ -635,6 +635,9 @@ type DiscoveredHostIfacesItems0 struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// pci slot name
+	PciSlotName *string `json:"pci_slot_name,omitempty"`
+
 	// rdma enabled
 	RdmaEnabled *bool `json:"rdma_enabled,omitempty"`
 

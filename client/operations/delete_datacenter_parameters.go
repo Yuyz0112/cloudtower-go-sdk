@@ -62,7 +62,7 @@ func NewDeleteDatacenterParamsWithHTTPClient(client *http.Client) *DeleteDatacen
 type DeleteDatacenterParams struct {
 
 	// RequestBody.
-	RequestBody []*models.DatacenterDeletionParams
+	RequestBody *models.DatacenterDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteDatacenterParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete datacenter params
-func (o *DeleteDatacenterParams) WithRequestBody(requestBody []*models.DatacenterDeletionParams) *DeleteDatacenterParams {
+func (o *DeleteDatacenterParams) WithRequestBody(requestBody *models.DatacenterDeletionParams) *DeleteDatacenterParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete datacenter params
-func (o *DeleteDatacenterParams) SetRequestBody(requestBody []*models.DatacenterDeletionParams) {
+func (o *DeleteDatacenterParams) SetRequestBody(requestBody *models.DatacenterDeletionParams) {
 	o.RequestBody = requestBody
 }
 

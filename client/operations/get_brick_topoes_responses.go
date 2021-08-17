@@ -29,6 +29,12 @@ func (o *GetBrickTopoesReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetBrickTopoesBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetBrickTopoesOK) GetPayload() []*models.BrickTopo {
 }
 
 func (o *GetBrickTopoesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetBrickTopoesBadRequest creates a GetBrickTopoesBadRequest with default headers values
+func NewGetBrickTopoesBadRequest() *GetBrickTopoesBadRequest {
+	return &GetBrickTopoesBadRequest{}
+}
+
+/* GetBrickTopoesBadRequest describes a response with status code 400, with default header values.
+
+GetBrickTopoesBadRequest get brick topoes bad request
+*/
+type GetBrickTopoesBadRequest struct {
+	Payload string
+}
+
+func (o *GetBrickTopoesBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-brick-topoes][%d] getBrickTopoesBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetBrickTopoesBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetBrickTopoesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

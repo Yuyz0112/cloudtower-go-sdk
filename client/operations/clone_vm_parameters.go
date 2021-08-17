@@ -62,7 +62,7 @@ func NewCloneVMParamsWithHTTPClient(client *http.Client) *CloneVMParams {
 type CloneVMParams struct {
 
 	// RequestBody.
-	RequestBody []models.VMCloneParams
+	RequestBody []*models.VMCloneParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *CloneVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the clone Vm params
-func (o *CloneVMParams) WithRequestBody(requestBody []models.VMCloneParams) *CloneVMParams {
+func (o *CloneVMParams) WithRequestBody(requestBody []*models.VMCloneParams) *CloneVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the clone Vm params
-func (o *CloneVMParams) SetRequestBody(requestBody []models.VMCloneParams) {
+func (o *CloneVMParams) SetRequestBody(requestBody []*models.VMCloneParams) {
 	o.RequestBody = requestBody
 }
 

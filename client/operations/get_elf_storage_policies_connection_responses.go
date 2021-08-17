@@ -29,6 +29,12 @@ func (o *GetElfStoragePoliciesConnectionReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetElfStoragePoliciesConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetElfStoragePoliciesConnectionOK) readResponse(response runtime.Client
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetElfStoragePoliciesConnectionBadRequest creates a GetElfStoragePoliciesConnectionBadRequest with default headers values
+func NewGetElfStoragePoliciesConnectionBadRequest() *GetElfStoragePoliciesConnectionBadRequest {
+	return &GetElfStoragePoliciesConnectionBadRequest{}
+}
+
+/* GetElfStoragePoliciesConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetElfStoragePoliciesConnectionBadRequest get elf storage policies connection bad request
+*/
+type GetElfStoragePoliciesConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetElfStoragePoliciesConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-elf-storage-policies-connection][%d] getElfStoragePoliciesConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetElfStoragePoliciesConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetElfStoragePoliciesConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

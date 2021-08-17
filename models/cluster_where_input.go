@@ -889,6 +889,12 @@ type ClusterWhereInput struct {
 	// ntp mode not in
 	NtpModeNotIn []NtpMode `json:"ntp_mode_not_in,omitempty"`
 
+	// nvmf enabled
+	NvmfEnabled *bool `json:"nvmf_enabled,omitempty"`
+
+	// nvmf enabled not
+	NvmfEnabledNot *bool `json:"nvmf_enabled_not,omitempty"`
+
 	// password
 	Password *string `json:"password,omitempty"`
 

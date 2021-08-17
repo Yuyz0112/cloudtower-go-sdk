@@ -29,6 +29,12 @@ func (o *GetReportTasksConnectionReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetReportTasksConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetReportTasksConnectionOK) readResponse(response runtime.ClientRespons
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetReportTasksConnectionBadRequest creates a GetReportTasksConnectionBadRequest with default headers values
+func NewGetReportTasksConnectionBadRequest() *GetReportTasksConnectionBadRequest {
+	return &GetReportTasksConnectionBadRequest{}
+}
+
+/* GetReportTasksConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetReportTasksConnectionBadRequest get report tasks connection bad request
+*/
+type GetReportTasksConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetReportTasksConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-report-tasks-connection][%d] getReportTasksConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetReportTasksConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetReportTasksConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -29,6 +29,12 @@ func (o *GetPmemDimmsReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetPmemDimmsBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetPmemDimmsOK) GetPayload() []*models.PmemDimm {
 }
 
 func (o *GetPmemDimmsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetPmemDimmsBadRequest creates a GetPmemDimmsBadRequest with default headers values
+func NewGetPmemDimmsBadRequest() *GetPmemDimmsBadRequest {
+	return &GetPmemDimmsBadRequest{}
+}
+
+/* GetPmemDimmsBadRequest describes a response with status code 400, with default header values.
+
+GetPmemDimmsBadRequest get pmem dimms bad request
+*/
+type GetPmemDimmsBadRequest struct {
+	Payload string
+}
+
+func (o *GetPmemDimmsBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-pmem-dimms][%d] getPmemDimmsBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetPmemDimmsBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetPmemDimmsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

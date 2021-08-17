@@ -29,6 +29,12 @@ func (o *GetIscsiConnectionsReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetIscsiConnectionsBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetIscsiConnectionsOK) GetPayload() []*models.IscsiConnection {
 }
 
 func (o *GetIscsiConnectionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetIscsiConnectionsBadRequest creates a GetIscsiConnectionsBadRequest with default headers values
+func NewGetIscsiConnectionsBadRequest() *GetIscsiConnectionsBadRequest {
+	return &GetIscsiConnectionsBadRequest{}
+}
+
+/* GetIscsiConnectionsBadRequest describes a response with status code 400, with default header values.
+
+GetIscsiConnectionsBadRequest get iscsi connections bad request
+*/
+type GetIscsiConnectionsBadRequest struct {
+	Payload string
+}
+
+func (o *GetIscsiConnectionsBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-iscsi-connections][%d] getIscsiConnectionsBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetIscsiConnectionsBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetIscsiConnectionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

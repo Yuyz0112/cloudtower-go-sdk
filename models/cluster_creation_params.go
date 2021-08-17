@@ -19,8 +19,8 @@ import (
 // swagger:model ClusterCreationParams
 type ClusterCreationParams struct {
 
-	// datacenter Id
-	DatacenterID string `json:"datacenterId,omitempty"`
+	// datacenter id
+	DatacenterID string `json:"datacenter_id,omitempty"`
 
 	// ip
 	// Required: true
@@ -30,11 +30,11 @@ type ClusterCreationParams struct {
 	// Required: true
 	Password *string `json:"password"`
 
-	// primary zone datacenter Id
-	PrimaryZoneDatacenterID string `json:"primaryZoneDatacenterId,omitempty"`
+	// primary zone datacenter id
+	PrimaryZoneDatacenterID string `json:"primary_zone_datacenter_id,omitempty"`
 
-	// secondary zone datacenter Id
-	SecondaryZoneDatacenterID string `json:"secondaryZoneDatacenterId,omitempty"`
+	// secondary zone datacenter id
+	SecondaryZoneDatacenterID string `json:"secondary_zone_datacenter_id,omitempty"`
 
 	// username
 	// Required: true

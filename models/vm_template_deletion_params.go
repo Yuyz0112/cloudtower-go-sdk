@@ -19,16 +19,16 @@ import (
 // swagger:model VmTemplateDeletionParams
 type VMTemplateDeletionParams struct {
 
-	// id
+	// where
 	// Required: true
-	ID *string `json:"id"`
+	Where *VMTemplateWhereInput `json:"where"`
 }
 
 // Validate validates this Vm template deletion params
 func (m *VMTemplateDeletionParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -38,17 +38,49 @@ func (m *VMTemplateDeletionParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMTemplateDeletionParams) validateID(formats strfmt.Registry) error {
+func (m *VMTemplateDeletionParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this Vm template deletion params based on context it is used
+// ContextValidate validate this Vm template deletion params based on the context it is used
 func (m *VMTemplateDeletionParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMTemplateDeletionParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

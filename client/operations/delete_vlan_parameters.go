@@ -62,7 +62,7 @@ func NewDeleteVlanParamsWithHTTPClient(client *http.Client) *DeleteVlanParams {
 type DeleteVlanParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VlanDeletionParams
+	RequestBody *models.VlanDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteVlanParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete vlan params
-func (o *DeleteVlanParams) WithRequestBody(requestBody []*models.VlanDeletionParams) *DeleteVlanParams {
+func (o *DeleteVlanParams) WithRequestBody(requestBody *models.VlanDeletionParams) *DeleteVlanParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete vlan params
-func (o *DeleteVlanParams) SetRequestBody(requestBody []*models.VlanDeletionParams) {
+func (o *DeleteVlanParams) SetRequestBody(requestBody *models.VlanDeletionParams) {
 	o.RequestBody = requestBody
 }
 

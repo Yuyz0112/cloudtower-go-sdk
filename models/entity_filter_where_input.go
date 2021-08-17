@@ -28,6 +28,12 @@ type EntityFilterWhereInput struct {
 	// o r
 	OR []*EntityFilterWhereInput `json:"OR,omitempty"`
 
+	// apply to all clusters
+	ApplyToAllClusters *bool `json:"apply_to_all_clusters,omitempty"`
+
+	// apply to all clusters not
+	ApplyToAllClustersNot *bool `json:"apply_to_all_clusters_not,omitempty"`
+
 	// clusters every
 	ClustersEvery interface{} `json:"clusters_every,omitempty"`
 

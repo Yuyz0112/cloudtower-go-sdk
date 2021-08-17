@@ -62,7 +62,7 @@ func NewUpdateNfsExportParamsWithHTTPClient(client *http.Client) *UpdateNfsExpor
 type UpdateNfsExportParams struct {
 
 	// RequestBody.
-	RequestBody []*models.NfsExportUpdationParams
+	RequestBody *models.NfsExportUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateNfsExportParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update nfs export params
-func (o *UpdateNfsExportParams) WithRequestBody(requestBody []*models.NfsExportUpdationParams) *UpdateNfsExportParams {
+func (o *UpdateNfsExportParams) WithRequestBody(requestBody *models.NfsExportUpdationParams) *UpdateNfsExportParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update nfs export params
-func (o *UpdateNfsExportParams) SetRequestBody(requestBody []*models.NfsExportUpdationParams) {
+func (o *UpdateNfsExportParams) SetRequestBody(requestBody *models.NfsExportUpdationParams) {
 	o.RequestBody = requestBody
 }
 

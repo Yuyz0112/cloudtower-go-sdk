@@ -19,22 +19,24 @@ import (
 // swagger:model VmVlanUpdationParams
 type VMVlanUpdationParams struct {
 
-	// id
+	// data
 	// Required: true
-	ID *string `json:"id"`
+	Data *VMVlanUpdationParamsData `json:"data"`
 
-	// name
-	Name string `json:"name,omitempty"`
-
-	// vlan id
-	VlanID float64 `json:"vlan_id,omitempty"`
+	// where
+	// Required: true
+	Where *VlanWhereInput `json:"where"`
 }
 
 // Validate validates this Vm vlan updation params
 func (m *VMVlanUpdationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -44,17 +46,85 @@ func (m *VMVlanUpdationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMVlanUpdationParams) validateID(formats strfmt.Registry) error {
+func (m *VMVlanUpdationParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this Vm vlan updation params based on context it is used
+func (m *VMVlanUpdationParams) validateWhere(formats strfmt.Registry) error {
+
+	if err := validate.Required("where", "body", m.Where); err != nil {
+		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this Vm vlan updation params based on the context it is used
 func (m *VMVlanUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMVlanUpdationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMVlanUpdationParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -69,6 +139,46 @@ func (m *VMVlanUpdationParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMVlanUpdationParams) UnmarshalBinary(b []byte) error {
 	var res VMVlanUpdationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMVlanUpdationParamsData VM vlan updation params data
+//
+// swagger:model VMVlanUpdationParamsData
+type VMVlanUpdationParamsData struct {
+
+	// name
+	Name string `json:"name,omitempty"`
+
+	// vlan id
+	VlanID float64 `json:"vlan_id,omitempty"`
+}
+
+// Validate validates this VM vlan updation params data
+func (m *VMVlanUpdationParamsData) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this VM vlan updation params data based on context it is used
+func (m *VMVlanUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMVlanUpdationParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMVlanUpdationParamsData) UnmarshalBinary(b []byte) error {
+	var res VMVlanUpdationParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

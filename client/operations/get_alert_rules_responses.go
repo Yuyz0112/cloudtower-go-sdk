@@ -29,6 +29,12 @@ func (o *GetAlertRulesReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAlertRulesBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetAlertRulesOK) GetPayload() []*models.AlertRule {
 }
 
 func (o *GetAlertRulesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAlertRulesBadRequest creates a GetAlertRulesBadRequest with default headers values
+func NewGetAlertRulesBadRequest() *GetAlertRulesBadRequest {
+	return &GetAlertRulesBadRequest{}
+}
+
+/* GetAlertRulesBadRequest describes a response with status code 400, with default header values.
+
+GetAlertRulesBadRequest get alert rules bad request
+*/
+type GetAlertRulesBadRequest struct {
+	Payload string
+}
+
+func (o *GetAlertRulesBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-alert-rules][%d] getAlertRulesBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetAlertRulesBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetAlertRulesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

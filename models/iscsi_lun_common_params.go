@@ -20,9 +20,6 @@ type IscsiLunCommonParams struct {
 	// allowed initiators
 	AllowedInitiators string `json:"allowed_initiators,omitempty"`
 
-	// assigned size
-	AssignedSize float64 `json:"assigned_size,omitempty"`
-
 	// bps
 	Bps float64 `json:"bps,omitempty"`
 
@@ -76,21 +73,6 @@ type IscsiLunCommonParams struct {
 
 	// iops wr max length
 	IopsWrMaxLength float64 `json:"iops_wr_max_length,omitempty"`
-
-	// lun id
-	LunID float64 `json:"lun_id,omitempty"`
-
-	// replica num
-	ReplicaNum float64 `json:"replica_num,omitempty"`
-
-	// stripe num
-	StripeNum float64 `json:"stripe_num,omitempty"`
-
-	// stripe size
-	StripeSize float64 `json:"stripe_size,omitempty"`
-
-	// thin provision
-	ThinProvision bool `json:"thin_provision,omitempty"`
 }
 
 // Validate validates this iscsi lun common params

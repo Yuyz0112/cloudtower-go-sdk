@@ -19,12 +19,138 @@ import (
 // swagger:model GraphUpdationParams
 type GraphUpdationParams struct {
 
+	// data
+	Data *GraphUpdationParamsData `json:"data,omitempty"`
+
+	// where
+	// Required: true
+	Where *GraphWhereInput `json:"where"`
+}
+
+// Validate validates this graph updation params
+func (m *GraphUpdationParams) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GraphUpdationParams) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
+		return nil
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParams) validateWhere(formats strfmt.Registry) error {
+
+	if err := validate.Required("where", "body", m.Where); err != nil {
+		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this graph updation params based on the context it is used
+func (m *GraphUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GraphUpdationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GraphUpdationParams) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GraphUpdationParams) UnmarshalBinary(b []byte) error {
+	var res GraphUpdationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GraphUpdationParamsData graph updation params data
+//
+// swagger:model GraphUpdationParamsData
+type GraphUpdationParamsData struct {
+
 	// connect id
 	ConnectID []string `json:"connect_id"`
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
 
 	// metric count
 	MetricCount float64 `json:"metric_count,omitempty"`
@@ -54,13 +180,9 @@ type GraphUpdationParams struct {
 	Type GraphType `json:"type,omitempty"`
 }
 
-// Validate validates this graph updation params
-func (m *GraphUpdationParams) Validate(formats strfmt.Registry) error {
+// Validate validates this graph updation params data
+func (m *GraphUpdationParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateMetricType(formats); err != nil {
 		res = append(res, err)
@@ -80,23 +202,14 @@ func (m *GraphUpdationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GraphUpdationParams) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphUpdationParams) validateMetricType(formats strfmt.Registry) error {
+func (m *GraphUpdationParamsData) validateMetricType(formats strfmt.Registry) error {
 	if swag.IsZero(m.MetricType) { // not required
 		return nil
 	}
 
 	if err := m.MetricType.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("metric_type")
+			return ve.ValidateName("data" + "." + "metric_type")
 		}
 		return err
 	}
@@ -104,14 +217,14 @@ func (m *GraphUpdationParams) validateMetricType(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *GraphUpdationParams) validateNetwork(formats strfmt.Registry) error {
+func (m *GraphUpdationParamsData) validateNetwork(formats strfmt.Registry) error {
 	if swag.IsZero(m.Network) { // not required
 		return nil
 	}
 
 	if err := m.Network.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("network")
+			return ve.ValidateName("data" + "." + "network")
 		}
 		return err
 	}
@@ -119,14 +232,14 @@ func (m *GraphUpdationParams) validateNetwork(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GraphUpdationParams) validateType(formats strfmt.Registry) error {
+func (m *GraphUpdationParamsData) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
 	}
 
 	if err := m.Type.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("type")
+			return ve.ValidateName("data" + "." + "type")
 		}
 		return err
 	}
@@ -134,8 +247,8 @@ func (m *GraphUpdationParams) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this graph updation params based on the context it is used
-func (m *GraphUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this graph updation params data based on the context it is used
+func (m *GraphUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateMetricType(ctx, formats); err != nil {
@@ -156,11 +269,11 @@ func (m *GraphUpdationParams) ContextValidate(ctx context.Context, formats strfm
 	return nil
 }
 
-func (m *GraphUpdationParams) contextValidateMetricType(ctx context.Context, formats strfmt.Registry) error {
+func (m *GraphUpdationParamsData) contextValidateMetricType(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.MetricType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("metric_type")
+			return ve.ValidateName("data" + "." + "metric_type")
 		}
 		return err
 	}
@@ -168,11 +281,11 @@ func (m *GraphUpdationParams) contextValidateMetricType(ctx context.Context, for
 	return nil
 }
 
-func (m *GraphUpdationParams) contextValidateNetwork(ctx context.Context, formats strfmt.Registry) error {
+func (m *GraphUpdationParamsData) contextValidateNetwork(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Network.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("network")
+			return ve.ValidateName("data" + "." + "network")
 		}
 		return err
 	}
@@ -180,11 +293,11 @@ func (m *GraphUpdationParams) contextValidateNetwork(ctx context.Context, format
 	return nil
 }
 
-func (m *GraphUpdationParams) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+func (m *GraphUpdationParamsData) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("type")
+			return ve.ValidateName("data" + "." + "type")
 		}
 		return err
 	}
@@ -193,7 +306,7 @@ func (m *GraphUpdationParams) contextValidateType(ctx context.Context, formats s
 }
 
 // MarshalBinary interface implementation
-func (m *GraphUpdationParams) MarshalBinary() ([]byte, error) {
+func (m *GraphUpdationParamsData) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -201,8 +314,8 @@ func (m *GraphUpdationParams) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GraphUpdationParams) UnmarshalBinary(b []byte) error {
-	var res GraphUpdationParams
+func (m *GraphUpdationParamsData) UnmarshalBinary(b []byte) error {
+	var res GraphUpdationParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

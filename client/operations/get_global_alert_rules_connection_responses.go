@@ -29,6 +29,12 @@ func (o *GetGlobalAlertRulesConnectionReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetGlobalAlertRulesConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetGlobalAlertRulesConnectionOK) readResponse(response runtime.ClientRe
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetGlobalAlertRulesConnectionBadRequest creates a GetGlobalAlertRulesConnectionBadRequest with default headers values
+func NewGetGlobalAlertRulesConnectionBadRequest() *GetGlobalAlertRulesConnectionBadRequest {
+	return &GetGlobalAlertRulesConnectionBadRequest{}
+}
+
+/* GetGlobalAlertRulesConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetGlobalAlertRulesConnectionBadRequest get global alert rules connection bad request
+*/
+type GetGlobalAlertRulesConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetGlobalAlertRulesConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-global-alert-rules-connection][%d] getGlobalAlertRulesConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetGlobalAlertRulesConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetGlobalAlertRulesConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

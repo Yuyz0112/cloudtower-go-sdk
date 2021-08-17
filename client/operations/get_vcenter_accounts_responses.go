@@ -29,6 +29,12 @@ func (o *GetVcenterAccountsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVcenterAccountsBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetVcenterAccountsOK) GetPayload() []*models.VcenterAccount {
 }
 
 func (o *GetVcenterAccountsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVcenterAccountsBadRequest creates a GetVcenterAccountsBadRequest with default headers values
+func NewGetVcenterAccountsBadRequest() *GetVcenterAccountsBadRequest {
+	return &GetVcenterAccountsBadRequest{}
+}
+
+/* GetVcenterAccountsBadRequest describes a response with status code 400, with default header values.
+
+GetVcenterAccountsBadRequest get vcenter accounts bad request
+*/
+type GetVcenterAccountsBadRequest struct {
+	Payload string
+}
+
+func (o *GetVcenterAccountsBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vcenter-accounts][%d] getVcenterAccountsBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVcenterAccountsBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVcenterAccountsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

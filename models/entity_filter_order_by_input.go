@@ -26,6 +26,12 @@ func NewEntityFilterOrderByInput(value EntityFilterOrderByInput) *EntityFilterOr
 
 const (
 
+	// EntityFilterOrderByInputApplyToAllClustersASC captures enum value "apply_to_all_clusters_ASC"
+	EntityFilterOrderByInputApplyToAllClustersASC EntityFilterOrderByInput = "apply_to_all_clusters_ASC"
+
+	// EntityFilterOrderByInputApplyToAllClustersDESC captures enum value "apply_to_all_clusters_DESC"
+	EntityFilterOrderByInputApplyToAllClustersDESC EntityFilterOrderByInput = "apply_to_all_clusters_DESC"
+
 	// EntityFilterOrderByInputCreatedAtASC captures enum value "createdAt_ASC"
 	EntityFilterOrderByInputCreatedAtASC EntityFilterOrderByInput = "createdAt_ASC"
 
@@ -86,7 +92,7 @@ var entityFilterOrderByInputEnum []interface{}
 
 func init() {
 	var res []EntityFilterOrderByInput
-	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","entity_type_ASC","entity_type_DESC","filter_status_ASC","filter_status_DESC","id_ASC","id_DESC","last_executed_at_ASC","last_executed_at_DESC","name_ASC","name_DESC","preset_ASC","preset_DESC","rules_ASC","rules_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["apply_to_all_clusters_ASC","apply_to_all_clusters_DESC","createdAt_ASC","createdAt_DESC","entity_type_ASC","entity_type_DESC","filter_status_ASC","filter_status_DESC","id_ASC","id_DESC","last_executed_at_ASC","last_executed_at_DESC","name_ASC","name_DESC","preset_ASC","preset_DESC","rules_ASC","rules_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

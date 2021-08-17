@@ -29,6 +29,12 @@ func (o *GetVMSnapshotsConnectionReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVMSnapshotsConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetVMSnapshotsConnectionOK) readResponse(response runtime.ClientRespons
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVMSnapshotsConnectionBadRequest creates a GetVMSnapshotsConnectionBadRequest with default headers values
+func NewGetVMSnapshotsConnectionBadRequest() *GetVMSnapshotsConnectionBadRequest {
+	return &GetVMSnapshotsConnectionBadRequest{}
+}
+
+/* GetVMSnapshotsConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetVMSnapshotsConnectionBadRequest get Vm snapshots connection bad request
+*/
+type GetVMSnapshotsConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetVMSnapshotsConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vm-snapshots-connection][%d] getVmSnapshotsConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVMSnapshotsConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVMSnapshotsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

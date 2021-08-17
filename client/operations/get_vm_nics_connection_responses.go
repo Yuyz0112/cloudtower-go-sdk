@@ -29,6 +29,12 @@ func (o *GetVMNicsConnectionReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVMNicsConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetVMNicsConnectionOK) readResponse(response runtime.ClientResponse, co
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVMNicsConnectionBadRequest creates a GetVMNicsConnectionBadRequest with default headers values
+func NewGetVMNicsConnectionBadRequest() *GetVMNicsConnectionBadRequest {
+	return &GetVMNicsConnectionBadRequest{}
+}
+
+/* GetVMNicsConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetVMNicsConnectionBadRequest get Vm nics connection bad request
+*/
+type GetVMNicsConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetVMNicsConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vm-nics-connection][%d] getVmNicsConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVMNicsConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVMNicsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

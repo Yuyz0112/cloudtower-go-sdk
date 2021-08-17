@@ -29,6 +29,12 @@ func (o *CreateIscsiLunReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewCreateIscsiLunBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *CreateIscsiLunOK) GetPayload() []*models.WithTaskIscsiLun {
 }
 
 func (o *CreateIscsiLunOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateIscsiLunBadRequest creates a CreateIscsiLunBadRequest with default headers values
+func NewCreateIscsiLunBadRequest() *CreateIscsiLunBadRequest {
+	return &CreateIscsiLunBadRequest{}
+}
+
+/* CreateIscsiLunBadRequest describes a response with status code 400, with default header values.
+
+CreateIscsiLunBadRequest create iscsi lun bad request
+*/
+type CreateIscsiLunBadRequest struct {
+	Payload string
+}
+
+func (o *CreateIscsiLunBadRequest) Error() string {
+	return fmt.Sprintf("[POST /create-iscsi-lun][%d] createIscsiLunBadRequest  %+v", 400, o.Payload)
+}
+func (o *CreateIscsiLunBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *CreateIscsiLunBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

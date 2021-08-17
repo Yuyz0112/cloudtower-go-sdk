@@ -62,7 +62,7 @@ func NewDeleteNfsExportParamsWithHTTPClient(client *http.Client) *DeleteNfsExpor
 type DeleteNfsExportParams struct {
 
 	// RequestBody.
-	RequestBody []*models.NfsExportDeletionParams
+	RequestBody *models.NfsExportDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteNfsExportParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete nfs export params
-func (o *DeleteNfsExportParams) WithRequestBody(requestBody []*models.NfsExportDeletionParams) *DeleteNfsExportParams {
+func (o *DeleteNfsExportParams) WithRequestBody(requestBody *models.NfsExportDeletionParams) *DeleteNfsExportParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete nfs export params
-func (o *DeleteNfsExportParams) SetRequestBody(requestBody []*models.NfsExportDeletionParams) {
+func (o *DeleteNfsExportParams) SetRequestBody(requestBody *models.NfsExportDeletionParams) {
 	o.RequestBody = requestBody
 }
 

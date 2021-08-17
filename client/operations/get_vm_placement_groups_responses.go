@@ -29,6 +29,12 @@ func (o *GetVMPlacementGroupsReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVMPlacementGroupsBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetVMPlacementGroupsOK) GetPayload() []*models.VMPlacementGroup {
 }
 
 func (o *GetVMPlacementGroupsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVMPlacementGroupsBadRequest creates a GetVMPlacementGroupsBadRequest with default headers values
+func NewGetVMPlacementGroupsBadRequest() *GetVMPlacementGroupsBadRequest {
+	return &GetVMPlacementGroupsBadRequest{}
+}
+
+/* GetVMPlacementGroupsBadRequest describes a response with status code 400, with default header values.
+
+GetVMPlacementGroupsBadRequest get Vm placement groups bad request
+*/
+type GetVMPlacementGroupsBadRequest struct {
+	Payload string
+}
+
+func (o *GetVMPlacementGroupsBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vm-placement-groups][%d] getVmPlacementGroupsBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVMPlacementGroupsBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVMPlacementGroupsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

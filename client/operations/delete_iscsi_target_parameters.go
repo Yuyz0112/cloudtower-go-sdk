@@ -62,7 +62,7 @@ func NewDeleteIscsiTargetParamsWithHTTPClient(client *http.Client) *DeleteIscsiT
 type DeleteIscsiTargetParams struct {
 
 	// RequestBody.
-	RequestBody []*models.IscsiTargetDeletionParams
+	RequestBody *models.IscsiTargetDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteIscsiTargetParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete iscsi target params
-func (o *DeleteIscsiTargetParams) WithRequestBody(requestBody []*models.IscsiTargetDeletionParams) *DeleteIscsiTargetParams {
+func (o *DeleteIscsiTargetParams) WithRequestBody(requestBody *models.IscsiTargetDeletionParams) *DeleteIscsiTargetParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete iscsi target params
-func (o *DeleteIscsiTargetParams) SetRequestBody(requestBody []*models.IscsiTargetDeletionParams) {
+func (o *DeleteIscsiTargetParams) SetRequestBody(requestBody *models.IscsiTargetDeletionParams) {
 	o.RequestBody = requestBody
 }
 

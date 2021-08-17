@@ -20,15 +20,15 @@ import (
 type DatacenterCreationParams struct {
 
 	// cluster ids
-	ClusterIds []string `json:"clusterIds"`
+	ClusterIds []string `json:"cluster_ids"`
 
 	// name
 	// Required: true
 	Name *string `json:"name"`
 
-	// organization Id
+	// organization id
 	// Required: true
-	OrganizationID *string `json:"organizationId"`
+	OrganizationID *string `json:"organization_id"`
 }
 
 // Validate validates this datacenter creation params
@@ -60,7 +60,7 @@ func (m *DatacenterCreationParams) validateName(formats strfmt.Registry) error {
 
 func (m *DatacenterCreationParams) validateOrganizationID(formats strfmt.Registry) error {
 
-	if err := validate.Required("organizationId", "body", m.OrganizationID); err != nil {
+	if err := validate.Required("organization_id", "body", m.OrganizationID); err != nil {
 		return err
 	}
 

@@ -62,7 +62,7 @@ func NewRollbackSnapshotGroupParamsWithHTTPClient(client *http.Client) *Rollback
 type RollbackSnapshotGroupParams struct {
 
 	// RequestBody.
-	RequestBody []*models.SnapshotGroupRollbackParams
+	RequestBody *models.SnapshotGroupRollbackParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *RollbackSnapshotGroupParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the rollback snapshot group params
-func (o *RollbackSnapshotGroupParams) WithRequestBody(requestBody []*models.SnapshotGroupRollbackParams) *RollbackSnapshotGroupParams {
+func (o *RollbackSnapshotGroupParams) WithRequestBody(requestBody *models.SnapshotGroupRollbackParams) *RollbackSnapshotGroupParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the rollback snapshot group params
-func (o *RollbackSnapshotGroupParams) SetRequestBody(requestBody []*models.SnapshotGroupRollbackParams) {
+func (o *RollbackSnapshotGroupParams) SetRequestBody(requestBody *models.SnapshotGroupRollbackParams) {
 	o.RequestBody = requestBody
 }
 

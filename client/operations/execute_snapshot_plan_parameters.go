@@ -62,7 +62,7 @@ func NewExecuteSnapshotPlanParamsWithHTTPClient(client *http.Client) *ExecuteSna
 type ExecuteSnapshotPlanParams struct {
 
 	// RequestBody.
-	RequestBody []*models.SnapshotPlanExecutionParams
+	RequestBody *models.SnapshotPlanExecutionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *ExecuteSnapshotPlanParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the execute snapshot plan params
-func (o *ExecuteSnapshotPlanParams) WithRequestBody(requestBody []*models.SnapshotPlanExecutionParams) *ExecuteSnapshotPlanParams {
+func (o *ExecuteSnapshotPlanParams) WithRequestBody(requestBody *models.SnapshotPlanExecutionParams) *ExecuteSnapshotPlanParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the execute snapshot plan params
-func (o *ExecuteSnapshotPlanParams) SetRequestBody(requestBody []*models.SnapshotPlanExecutionParams) {
+func (o *ExecuteSnapshotPlanParams) SetRequestBody(requestBody *models.SnapshotPlanExecutionParams) {
 	o.RequestBody = requestBody
 }
 

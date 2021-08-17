@@ -29,6 +29,12 @@ func (o *GetAlertNotifiersConnectionReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAlertNotifiersConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetAlertNotifiersConnectionOK) readResponse(response runtime.ClientResp
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAlertNotifiersConnectionBadRequest creates a GetAlertNotifiersConnectionBadRequest with default headers values
+func NewGetAlertNotifiersConnectionBadRequest() *GetAlertNotifiersConnectionBadRequest {
+	return &GetAlertNotifiersConnectionBadRequest{}
+}
+
+/* GetAlertNotifiersConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetAlertNotifiersConnectionBadRequest get alert notifiers connection bad request
+*/
+type GetAlertNotifiersConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetAlertNotifiersConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-alert-notifiers-connection][%d] getAlertNotifiersConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetAlertNotifiersConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetAlertNotifiersConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

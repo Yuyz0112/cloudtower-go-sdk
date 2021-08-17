@@ -20,12 +20,11 @@ import (
 type VdsCreationParams struct {
 
 	// bond mode
-	// Required: true
-	BondMode *string `json:"bond_mode"`
+	BondMode string `json:"bond_mode,omitempty"`
 
-	// cluster Id
+	// cluster id
 	// Required: true
-	ClusterID *string `json:"clusterId"`
+	ClusterID *string `json:"cluster_id"`
 
 	// name
 	// Required: true
@@ -33,7 +32,7 @@ type VdsCreationParams struct {
 
 	// nic ids
 	// Required: true
-	NicIds []string `json:"nicIds"`
+	NicIds []string `json:"nic_ids"`
 
 	// type
 	// Required: true
@@ -43,10 +42,6 @@ type VdsCreationParams struct {
 // Validate validates this vds creation params
 func (m *VdsCreationParams) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateBondMode(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateClusterID(formats); err != nil {
 		res = append(res, err)
@@ -70,18 +65,9 @@ func (m *VdsCreationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VdsCreationParams) validateBondMode(formats strfmt.Registry) error {
-
-	if err := validate.Required("bond_mode", "body", m.BondMode); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *VdsCreationParams) validateClusterID(formats strfmt.Registry) error {
 
-	if err := validate.Required("clusterId", "body", m.ClusterID); err != nil {
+	if err := validate.Required("cluster_id", "body", m.ClusterID); err != nil {
 		return err
 	}
 
@@ -99,7 +85,7 @@ func (m *VdsCreationParams) validateName(formats strfmt.Registry) error {
 
 func (m *VdsCreationParams) validateNicIds(formats strfmt.Registry) error {
 
-	if err := validate.Required("nicIds", "body", m.NicIds); err != nil {
+	if err := validate.Required("nic_ids", "body", m.NicIds); err != nil {
 		return err
 	}
 

@@ -62,7 +62,7 @@ func NewResumeSnapshotPlanParamsWithHTTPClient(client *http.Client) *ResumeSnaps
 type ResumeSnapshotPlanParams struct {
 
 	// RequestBody.
-	RequestBody []*models.SnapshotPlanResumeParams
+	RequestBody *models.SnapshotPlanResumeParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *ResumeSnapshotPlanParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the resume snapshot plan params
-func (o *ResumeSnapshotPlanParams) WithRequestBody(requestBody []*models.SnapshotPlanResumeParams) *ResumeSnapshotPlanParams {
+func (o *ResumeSnapshotPlanParams) WithRequestBody(requestBody *models.SnapshotPlanResumeParams) *ResumeSnapshotPlanParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the resume snapshot plan params
-func (o *ResumeSnapshotPlanParams) SetRequestBody(requestBody []*models.SnapshotPlanResumeParams) {
+func (o *ResumeSnapshotPlanParams) SetRequestBody(requestBody *models.SnapshotPlanResumeParams) {
 	o.RequestBody = requestBody
 }
 

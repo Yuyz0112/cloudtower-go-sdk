@@ -62,7 +62,7 @@ func NewDeleteVMVolumeFromVMParamsWithHTTPClient(client *http.Client) *DeleteVMV
 type DeleteVMVolumeFromVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMVolumeDeletionParams
+	RequestBody *models.VMVolumeDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteVMVolumeFromVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete Vm volume from Vm params
-func (o *DeleteVMVolumeFromVMParams) WithRequestBody(requestBody []*models.VMVolumeDeletionParams) *DeleteVMVolumeFromVMParams {
+func (o *DeleteVMVolumeFromVMParams) WithRequestBody(requestBody *models.VMVolumeDeletionParams) *DeleteVMVolumeFromVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete Vm volume from Vm params
-func (o *DeleteVMVolumeFromVMParams) SetRequestBody(requestBody []*models.VMVolumeDeletionParams) {
+func (o *DeleteVMVolumeFromVMParams) SetRequestBody(requestBody *models.VMVolumeDeletionParams) {
 	o.RequestBody = requestBody
 }
 

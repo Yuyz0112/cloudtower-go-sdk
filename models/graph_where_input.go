@@ -232,6 +232,15 @@ type GraphWhereInput struct {
 	// metric type not in
 	MetricTypeNotIn []MetricType `json:"metric_type_not_in,omitempty"`
 
+	// namespaces every
+	NamespacesEvery interface{} `json:"namespaces_every,omitempty"`
+
+	// namespaces none
+	NamespacesNone interface{} `json:"namespaces_none,omitempty"`
+
+	// namespaces some
+	NamespacesSome interface{} `json:"namespaces_some,omitempty"`
+
 	// network
 	Network interface{} `json:"network,omitempty"`
 

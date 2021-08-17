@@ -29,6 +29,12 @@ func (o *UpdateViewReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewUpdateViewBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *UpdateViewOK) GetPayload() []*models.WithTaskView {
 }
 
 func (o *UpdateViewOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateViewBadRequest creates a UpdateViewBadRequest with default headers values
+func NewUpdateViewBadRequest() *UpdateViewBadRequest {
+	return &UpdateViewBadRequest{}
+}
+
+/* UpdateViewBadRequest describes a response with status code 400, with default header values.
+
+UpdateViewBadRequest update view bad request
+*/
+type UpdateViewBadRequest struct {
+	Payload string
+}
+
+func (o *UpdateViewBadRequest) Error() string {
+	return fmt.Sprintf("[POST /update-view][%d] updateViewBadRequest  %+v", 400, o.Payload)
+}
+func (o *UpdateViewBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *UpdateViewBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

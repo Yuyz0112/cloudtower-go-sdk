@@ -19,27 +19,24 @@ import (
 // swagger:model DatacenterUpdationParams
 type DatacenterUpdationParams struct {
 
-	// cluster ids
-	ClusterIds []string `json:"clusterIds"`
-
-	// id
+	// data
 	// Required: true
-	ID *string `json:"id"`
+	Data *DatacenterUpdationParamsData `json:"data"`
 
-	// name
+	// where
 	// Required: true
-	Name *string `json:"name"`
+	Where *DatacenterWhereInput `json:"where"`
 }
 
 // Validate validates this datacenter updation params
 func (m *DatacenterUpdationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateName(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -49,26 +46,85 @@ func (m *DatacenterUpdationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DatacenterUpdationParams) validateID(formats strfmt.Registry) error {
+func (m *DatacenterUpdationParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *DatacenterUpdationParams) validateName(formats strfmt.Registry) error {
+func (m *DatacenterUpdationParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.Name); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this datacenter updation params based on context it is used
+// ContextValidate validate this datacenter updation params based on the context it is used
 func (m *DatacenterUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DatacenterUpdationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DatacenterUpdationParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -83,6 +139,46 @@ func (m *DatacenterUpdationParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *DatacenterUpdationParams) UnmarshalBinary(b []byte) error {
 	var res DatacenterUpdationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// DatacenterUpdationParamsData datacenter updation params data
+//
+// swagger:model DatacenterUpdationParamsData
+type DatacenterUpdationParamsData struct {
+
+	// cluster ids
+	ClusterIds []string `json:"cluster_ids"`
+
+	// name
+	Name string `json:"name,omitempty"`
+}
+
+// Validate validates this datacenter updation params data
+func (m *DatacenterUpdationParamsData) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this datacenter updation params data based on context it is used
+func (m *DatacenterUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *DatacenterUpdationParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *DatacenterUpdationParamsData) UnmarshalBinary(b []byte) error {
+	var res DatacenterUpdationParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -29,6 +29,12 @@ func (o *GetVMFoldersReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVMFoldersBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -44,17 +50,47 @@ func NewGetVMFoldersOK() *GetVMFoldersOK {
 Ok
 */
 type GetVMFoldersOK struct {
-	Payload []*models.VMFolder2
+	Payload []*models.VMFolder
 }
 
 func (o *GetVMFoldersOK) Error() string {
 	return fmt.Sprintf("[POST /get-vm-folders][%d] getVmFoldersOK  %+v", 200, o.Payload)
 }
-func (o *GetVMFoldersOK) GetPayload() []*models.VMFolder2 {
+func (o *GetVMFoldersOK) GetPayload() []*models.VMFolder {
 	return o.Payload
 }
 
 func (o *GetVMFoldersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVMFoldersBadRequest creates a GetVMFoldersBadRequest with default headers values
+func NewGetVMFoldersBadRequest() *GetVMFoldersBadRequest {
+	return &GetVMFoldersBadRequest{}
+}
+
+/* GetVMFoldersBadRequest describes a response with status code 400, with default header values.
+
+GetVMFoldersBadRequest get Vm folders bad request
+*/
+type GetVMFoldersBadRequest struct {
+	Payload string
+}
+
+func (o *GetVMFoldersBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vm-folders][%d] getVmFoldersBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVMFoldersBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVMFoldersBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

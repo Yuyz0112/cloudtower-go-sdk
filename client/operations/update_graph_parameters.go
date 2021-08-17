@@ -62,7 +62,7 @@ func NewUpdateGraphParamsWithHTTPClient(client *http.Client) *UpdateGraphParams 
 type UpdateGraphParams struct {
 
 	// RequestBody.
-	RequestBody []*models.GraphUpdationParams
+	RequestBody *models.GraphUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateGraphParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update graph params
-func (o *UpdateGraphParams) WithRequestBody(requestBody []*models.GraphUpdationParams) *UpdateGraphParams {
+func (o *UpdateGraphParams) WithRequestBody(requestBody *models.GraphUpdationParams) *UpdateGraphParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update graph params
-func (o *UpdateGraphParams) SetRequestBody(requestBody []*models.GraphUpdationParams) {
+func (o *UpdateGraphParams) SetRequestBody(requestBody *models.GraphUpdationParams) {
 	o.RequestBody = requestBody
 }
 

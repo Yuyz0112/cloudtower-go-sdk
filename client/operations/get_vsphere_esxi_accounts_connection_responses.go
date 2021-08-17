@@ -29,6 +29,12 @@ func (o *GetVsphereEsxiAccountsConnectionReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVsphereEsxiAccountsConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetVsphereEsxiAccountsConnectionOK) readResponse(response runtime.Clien
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVsphereEsxiAccountsConnectionBadRequest creates a GetVsphereEsxiAccountsConnectionBadRequest with default headers values
+func NewGetVsphereEsxiAccountsConnectionBadRequest() *GetVsphereEsxiAccountsConnectionBadRequest {
+	return &GetVsphereEsxiAccountsConnectionBadRequest{}
+}
+
+/* GetVsphereEsxiAccountsConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetVsphereEsxiAccountsConnectionBadRequest get vsphere esxi accounts connection bad request
+*/
+type GetVsphereEsxiAccountsConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetVsphereEsxiAccountsConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vsphere-esxi-accounts-connection][%d] getVsphereEsxiAccountsConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVsphereEsxiAccountsConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVsphereEsxiAccountsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -31,10 +31,12 @@ type NfsExportCreationParams struct {
 	Name *string `json:"name"`
 
 	// replica num
-	ReplicaNum float64 `json:"replica_num,omitempty"`
+	// Required: true
+	ReplicaNum *float64 `json:"replica_num"`
 
 	// thin provision
-	ThinProvision bool `json:"thin_provision,omitempty"`
+	// Required: true
+	ThinProvision *bool `json:"thin_provision"`
 }
 
 // Validate validates this nfs export creation params
@@ -46,6 +48,14 @@ func (m *NfsExportCreationParams) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReplicaNum(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateThinProvision(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -67,6 +77,24 @@ func (m *NfsExportCreationParams) validateClusterID(formats strfmt.Registry) err
 func (m *NfsExportCreationParams) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NfsExportCreationParams) validateReplicaNum(formats strfmt.Registry) error {
+
+	if err := validate.Required("replica_num", "body", m.ReplicaNum); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NfsExportCreationParams) validateThinProvision(formats strfmt.Registry) error {
+
+	if err := validate.Required("thin_provision", "body", m.ThinProvision); err != nil {
 		return err
 	}
 

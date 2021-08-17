@@ -29,6 +29,12 @@ func (o *RestartVMReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewRestartVMBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *RestartVMOK) GetPayload() []*models.WithTaskVM {
 }
 
 func (o *RestartVMOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRestartVMBadRequest creates a RestartVMBadRequest with default headers values
+func NewRestartVMBadRequest() *RestartVMBadRequest {
+	return &RestartVMBadRequest{}
+}
+
+/* RestartVMBadRequest describes a response with status code 400, with default header values.
+
+RestartVMBadRequest restart Vm bad request
+*/
+type RestartVMBadRequest struct {
+	Payload string
+}
+
+func (o *RestartVMBadRequest) Error() string {
+	return fmt.Sprintf("[POST /restart-vm][%d] restartVmBadRequest  %+v", 400, o.Payload)
+}
+func (o *RestartVMBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *RestartVMBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

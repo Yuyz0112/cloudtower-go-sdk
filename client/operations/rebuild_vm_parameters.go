@@ -62,7 +62,7 @@ func NewRebuildVMParamsWithHTTPClient(client *http.Client) *RebuildVMParams {
 type RebuildVMParams struct {
 
 	// RequestBody.
-	RequestBody []models.VMRebuildParams
+	RequestBody []*models.VMRebuildParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *RebuildVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the rebuild Vm params
-func (o *RebuildVMParams) WithRequestBody(requestBody []models.VMRebuildParams) *RebuildVMParams {
+func (o *RebuildVMParams) WithRequestBody(requestBody []*models.VMRebuildParams) *RebuildVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the rebuild Vm params
-func (o *RebuildVMParams) SetRequestBody(requestBody []models.VMRebuildParams) {
+func (o *RebuildVMParams) SetRequestBody(requestBody []*models.VMRebuildParams) {
 	o.RequestBody = requestBody
 }
 

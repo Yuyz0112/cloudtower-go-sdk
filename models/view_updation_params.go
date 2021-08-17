@@ -19,29 +19,23 @@ import (
 // swagger:model ViewUpdationParams
 type ViewUpdationParams struct {
 
-	// id
+	// data
+	Data *ViewUpdationParamsData `json:"data,omitempty"`
+
+	// where
 	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	Name string `json:"name,omitempty"`
-
-	// time span
-	TimeSpan float64 `json:"time_span,omitempty"`
-
-	// time unit
-	TimeUnit TimeUnit `json:"time_unit,omitempty"`
+	Where *ViewWhereInput `json:"where"`
 }
 
 // Validate validates this view updation params
 func (m *ViewUpdationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTimeUnit(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -51,25 +45,36 @@ func (m *ViewUpdationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ViewUpdationParams) validateID(formats strfmt.Registry) error {
+func (m *ViewUpdationParams) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
+		return nil
+	}
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *ViewUpdationParams) validateTimeUnit(formats strfmt.Registry) error {
-	if swag.IsZero(m.TimeUnit) { // not required
-		return nil
+func (m *ViewUpdationParams) validateWhere(formats strfmt.Registry) error {
+
+	if err := validate.Required("where", "body", m.Where); err != nil {
+		return err
 	}
 
-	if err := m.TimeUnit.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("time_unit")
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil
@@ -79,7 +84,11 @@ func (m *ViewUpdationParams) validateTimeUnit(formats strfmt.Registry) error {
 func (m *ViewUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateTimeUnit(ctx, formats); err != nil {
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -89,13 +98,29 @@ func (m *ViewUpdationParams) ContextValidate(ctx context.Context, formats strfmt
 	return nil
 }
 
-func (m *ViewUpdationParams) contextValidateTimeUnit(ctx context.Context, formats strfmt.Registry) error {
+func (m *ViewUpdationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.TimeUnit.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("time_unit")
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
 		}
-		return err
+	}
+
+	return nil
+}
+
+func (m *ViewUpdationParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -112,6 +137,94 @@ func (m *ViewUpdationParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ViewUpdationParams) UnmarshalBinary(b []byte) error {
 	var res ViewUpdationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// ViewUpdationParamsData view updation params data
+//
+// swagger:model ViewUpdationParamsData
+type ViewUpdationParamsData struct {
+
+	// name
+	Name string `json:"name,omitempty"`
+
+	// time span
+	TimeSpan float64 `json:"time_span,omitempty"`
+
+	// time unit
+	TimeUnit TimeUnit `json:"time_unit,omitempty"`
+}
+
+// Validate validates this view updation params data
+func (m *ViewUpdationParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateTimeUnit(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ViewUpdationParamsData) validateTimeUnit(formats strfmt.Registry) error {
+	if swag.IsZero(m.TimeUnit) { // not required
+		return nil
+	}
+
+	if err := m.TimeUnit.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "time_unit")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this view updation params data based on the context it is used
+func (m *ViewUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateTimeUnit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ViewUpdationParamsData) contextValidateTimeUnit(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.TimeUnit.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "time_unit")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *ViewUpdationParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *ViewUpdationParamsData) UnmarshalBinary(b []byte) error {
+	var res ViewUpdationParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -29,6 +29,12 @@ func (o *GetVMEntityFilterResultsConnectionReader) ReadResponse(response runtime
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVMEntityFilterResultsConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetVMEntityFilterResultsConnectionOK) readResponse(response runtime.Cli
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVMEntityFilterResultsConnectionBadRequest creates a GetVMEntityFilterResultsConnectionBadRequest with default headers values
+func NewGetVMEntityFilterResultsConnectionBadRequest() *GetVMEntityFilterResultsConnectionBadRequest {
+	return &GetVMEntityFilterResultsConnectionBadRequest{}
+}
+
+/* GetVMEntityFilterResultsConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetVMEntityFilterResultsConnectionBadRequest get Vm entity filter results connection bad request
+*/
+type GetVMEntityFilterResultsConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetVMEntityFilterResultsConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vm-entity-filter-results-connection][%d] getVmEntityFilterResultsConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVMEntityFilterResultsConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVMEntityFilterResultsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

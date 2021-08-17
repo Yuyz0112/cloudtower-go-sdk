@@ -62,7 +62,7 @@ func NewCreateVMFromTemplateParamsWithHTTPClient(client *http.Client) *CreateVMF
 type CreateVMFromTemplateParams struct {
 
 	// RequestBody.
-	RequestBody []models.VMCreateVMFromTemplateParams
+	RequestBody []*models.VMCreateVMFromTemplateParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *CreateVMFromTemplateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the create Vm from template params
-func (o *CreateVMFromTemplateParams) WithRequestBody(requestBody []models.VMCreateVMFromTemplateParams) *CreateVMFromTemplateParams {
+func (o *CreateVMFromTemplateParams) WithRequestBody(requestBody []*models.VMCreateVMFromTemplateParams) *CreateVMFromTemplateParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the create Vm from template params
-func (o *CreateVMFromTemplateParams) SetRequestBody(requestBody []models.VMCreateVMFromTemplateParams) {
+func (o *CreateVMFromTemplateParams) SetRequestBody(requestBody []*models.VMCreateVMFromTemplateParams) {
 	o.RequestBody = requestBody
 }
 

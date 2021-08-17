@@ -62,7 +62,7 @@ func NewUpdateClusterParamsWithHTTPClient(client *http.Client) *UpdateClusterPar
 type UpdateClusterParams struct {
 
 	// RequestBody.
-	RequestBody []*models.ClusterUpdateParams
+	RequestBody *models.ClusterUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateClusterParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update cluster params
-func (o *UpdateClusterParams) WithRequestBody(requestBody []*models.ClusterUpdateParams) *UpdateClusterParams {
+func (o *UpdateClusterParams) WithRequestBody(requestBody *models.ClusterUpdationParams) *UpdateClusterParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update cluster params
-func (o *UpdateClusterParams) SetRequestBody(requestBody []*models.ClusterUpdateParams) {
+func (o *UpdateClusterParams) SetRequestBody(requestBody *models.ClusterUpdationParams) {
 	o.RequestBody = requestBody
 }
 

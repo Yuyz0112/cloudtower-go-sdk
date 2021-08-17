@@ -29,6 +29,12 @@ func (o *CreateClusterReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewCreateClusterBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -48,13 +54,43 @@ type CreateClusterOK struct {
 }
 
 func (o *CreateClusterOK) Error() string {
-	return fmt.Sprintf("[POST /create-cluster][%d] createClusterOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /connect-cluster][%d] createClusterOK  %+v", 200, o.Payload)
 }
 func (o *CreateClusterOK) GetPayload() []*models.WithTaskCluster {
 	return o.Payload
 }
 
 func (o *CreateClusterOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateClusterBadRequest creates a CreateClusterBadRequest with default headers values
+func NewCreateClusterBadRequest() *CreateClusterBadRequest {
+	return &CreateClusterBadRequest{}
+}
+
+/* CreateClusterBadRequest describes a response with status code 400, with default header values.
+
+CreateClusterBadRequest create cluster bad request
+*/
+type CreateClusterBadRequest struct {
+	Payload string
+}
+
+func (o *CreateClusterBadRequest) Error() string {
+	return fmt.Sprintf("[POST /connect-cluster][%d] createClusterBadRequest  %+v", 400, o.Payload)
+}
+func (o *CreateClusterBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *CreateClusterBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

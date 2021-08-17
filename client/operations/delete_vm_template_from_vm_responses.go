@@ -29,6 +29,12 @@ func (o *DeleteVMTemplateFromVMReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteVMTemplateFromVMBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *DeleteVMTemplateFromVMOK) GetPayload() []*models.WithTaskDeleteVMTempla
 }
 
 func (o *DeleteVMTemplateFromVMOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteVMTemplateFromVMBadRequest creates a DeleteVMTemplateFromVMBadRequest with default headers values
+func NewDeleteVMTemplateFromVMBadRequest() *DeleteVMTemplateFromVMBadRequest {
+	return &DeleteVMTemplateFromVMBadRequest{}
+}
+
+/* DeleteVMTemplateFromVMBadRequest describes a response with status code 400, with default header values.
+
+DeleteVMTemplateFromVMBadRequest delete Vm template from Vm bad request
+*/
+type DeleteVMTemplateFromVMBadRequest struct {
+	Payload string
+}
+
+func (o *DeleteVMTemplateFromVMBadRequest) Error() string {
+	return fmt.Sprintf("[POST /delete-vm-template][%d] deleteVmTemplateFromVmBadRequest  %+v", 400, o.Payload)
+}
+func (o *DeleteVMTemplateFromVMBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *DeleteVMTemplateFromVMBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

@@ -20,32 +20,24 @@ import (
 // swagger:model ManagementVlanUpdationParams
 type ManagementVlanUpdationParams struct {
 
-	// extra ip
-	ExtraIP []*ManagementVlanUpdationParamsExtraIPItems0 `json:"extra_ip"`
-
-	// gateway ip
-	GatewayIP string `json:"gateway_ip,omitempty"`
-
-	// id
+	// data
 	// Required: true
-	ID *string `json:"id"`
+	Data *ManagementVlanUpdationParamsData `json:"data"`
 
-	// subnetmask
-	Subnetmask string `json:"subnetmask,omitempty"`
-
-	// vlan id
-	VlanID float64 `json:"vlan_id,omitempty"`
+	// where
+	// Required: true
+	Where *VlanWhereInput `json:"where"`
 }
 
 // Validate validates this management vlan updation params
 func (m *ManagementVlanUpdationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateExtraIP(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -55,34 +47,37 @@ func (m *ManagementVlanUpdationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ManagementVlanUpdationParams) validateExtraIP(formats strfmt.Registry) error {
-	if swag.IsZero(m.ExtraIP) { // not required
-		return nil
+func (m *ManagementVlanUpdationParams) validateData(formats strfmt.Registry) error {
+
+	if err := validate.Required("data", "body", m.Data); err != nil {
+		return err
 	}
 
-	for i := 0; i < len(m.ExtraIP); i++ {
-		if swag.IsZero(m.ExtraIP[i]) { // not required
-			continue
-		}
-
-		if m.ExtraIP[i] != nil {
-			if err := m.ExtraIP[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("extra_ip" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
 			}
+			return err
 		}
-
 	}
 
 	return nil
 }
 
-func (m *ManagementVlanUpdationParams) validateID(formats strfmt.Registry) error {
+func (m *ManagementVlanUpdationParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -92,7 +87,11 @@ func (m *ManagementVlanUpdationParams) validateID(formats strfmt.Registry) error
 func (m *ManagementVlanUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateExtraIP(ctx, formats); err != nil {
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -102,19 +101,29 @@ func (m *ManagementVlanUpdationParams) ContextValidate(ctx context.Context, form
 	return nil
 }
 
-func (m *ManagementVlanUpdationParams) contextValidateExtraIP(ctx context.Context, formats strfmt.Registry) error {
+func (m *ManagementVlanUpdationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.ExtraIP); i++ {
-
-		if m.ExtraIP[i] != nil {
-			if err := m.ExtraIP[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("extra_ip" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
 			}
+			return err
 		}
+	}
 
+	return nil
+}
+
+func (m *ManagementVlanUpdationParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -138,10 +147,116 @@ func (m *ManagementVlanUpdationParams) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-// ManagementVlanUpdationParamsExtraIPItems0 management vlan updation params extra IP items0
+// ManagementVlanUpdationParamsData management vlan updation params data
 //
-// swagger:model ManagementVlanUpdationParamsExtraIPItems0
-type ManagementVlanUpdationParamsExtraIPItems0 struct {
+// swagger:model ManagementVlanUpdationParamsData
+type ManagementVlanUpdationParamsData struct {
+
+	// extra ip
+	ExtraIP []*ManagementVlanUpdationParamsDataExtraIPItems0 `json:"extra_ip"`
+
+	// gateway ip
+	GatewayIP string `json:"gateway_ip,omitempty"`
+
+	// subnetmask
+	Subnetmask string `json:"subnetmask,omitempty"`
+
+	// vlan id
+	VlanID float64 `json:"vlan_id,omitempty"`
+}
+
+// Validate validates this management vlan updation params data
+func (m *ManagementVlanUpdationParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateExtraIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ManagementVlanUpdationParamsData) validateExtraIP(formats strfmt.Registry) error {
+	if swag.IsZero(m.ExtraIP) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ExtraIP); i++ {
+		if swag.IsZero(m.ExtraIP[i]) { // not required
+			continue
+		}
+
+		if m.ExtraIP[i] != nil {
+			if err := m.ExtraIP[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "extra_ip" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this management vlan updation params data based on the context it is used
+func (m *ManagementVlanUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateExtraIP(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ManagementVlanUpdationParamsData) contextValidateExtraIP(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ExtraIP); i++ {
+
+		if m.ExtraIP[i] != nil {
+			if err := m.ExtraIP[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "extra_ip" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *ManagementVlanUpdationParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *ManagementVlanUpdationParamsData) UnmarshalBinary(b []byte) error {
+	var res ManagementVlanUpdationParamsData
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// ManagementVlanUpdationParamsDataExtraIPItems0 management vlan updation params data extra IP items0
+//
+// swagger:model ManagementVlanUpdationParamsDataExtraIPItems0
+type ManagementVlanUpdationParamsDataExtraIPItems0 struct {
 
 	// host id
 	// Required: true
@@ -152,8 +267,8 @@ type ManagementVlanUpdationParamsExtraIPItems0 struct {
 	ManagementIP *string `json:"management_ip"`
 }
 
-// Validate validates this management vlan updation params extra IP items0
-func (m *ManagementVlanUpdationParamsExtraIPItems0) Validate(formats strfmt.Registry) error {
+// Validate validates this management vlan updation params data extra IP items0
+func (m *ManagementVlanUpdationParamsDataExtraIPItems0) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateHostID(formats); err != nil {
@@ -170,7 +285,7 @@ func (m *ManagementVlanUpdationParamsExtraIPItems0) Validate(formats strfmt.Regi
 	return nil
 }
 
-func (m *ManagementVlanUpdationParamsExtraIPItems0) validateHostID(formats strfmt.Registry) error {
+func (m *ManagementVlanUpdationParamsDataExtraIPItems0) validateHostID(formats strfmt.Registry) error {
 
 	if err := validate.Required("host_id", "body", m.HostID); err != nil {
 		return err
@@ -179,7 +294,7 @@ func (m *ManagementVlanUpdationParamsExtraIPItems0) validateHostID(formats strfm
 	return nil
 }
 
-func (m *ManagementVlanUpdationParamsExtraIPItems0) validateManagementIP(formats strfmt.Registry) error {
+func (m *ManagementVlanUpdationParamsDataExtraIPItems0) validateManagementIP(formats strfmt.Registry) error {
 
 	if err := validate.Required("management_ip", "body", m.ManagementIP); err != nil {
 		return err
@@ -188,13 +303,13 @@ func (m *ManagementVlanUpdationParamsExtraIPItems0) validateManagementIP(formats
 	return nil
 }
 
-// ContextValidate validates this management vlan updation params extra IP items0 based on context it is used
-func (m *ManagementVlanUpdationParamsExtraIPItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this management vlan updation params data extra IP items0 based on context it is used
+func (m *ManagementVlanUpdationParamsDataExtraIPItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *ManagementVlanUpdationParamsExtraIPItems0) MarshalBinary() ([]byte, error) {
+func (m *ManagementVlanUpdationParamsDataExtraIPItems0) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -202,8 +317,8 @@ func (m *ManagementVlanUpdationParamsExtraIPItems0) MarshalBinary() ([]byte, err
 }
 
 // UnmarshalBinary interface implementation
-func (m *ManagementVlanUpdationParamsExtraIPItems0) UnmarshalBinary(b []byte) error {
-	var res ManagementVlanUpdationParamsExtraIPItems0
+func (m *ManagementVlanUpdationParamsDataExtraIPItems0) UnmarshalBinary(b []byte) error {
+	var res ManagementVlanUpdationParamsDataExtraIPItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -150,6 +150,9 @@ type Cluster struct {
 	// Required: true
 	NtpServers []string `json:"ntp_servers"`
 
+	// nvmf enabled
+	NvmfEnabled *bool `json:"nvmf_enabled,omitempty"`
+
 	// pmem enabled
 	PmemEnabled *bool `json:"pmem_enabled,omitempty"`
 

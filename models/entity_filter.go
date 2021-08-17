@@ -20,6 +20,9 @@ import (
 // swagger:model EntityFilter
 type EntityFilter struct {
 
+	// apply to all clusters
+	ApplyToAllClusters *bool `json:"apply_to_all_clusters,omitempty"`
+
 	// clusters
 	Clusters []*EntityFilterClustersItems0 `json:"clusters,omitempty"`
 

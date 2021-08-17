@@ -19,16 +19,16 @@ import (
 // swagger:model NfsExportDeletionParams
 type NfsExportDeletionParams struct {
 
-	// id
+	// where
 	// Required: true
-	ID *string `json:"id"`
+	Where *NfsExportWhereInput `json:"where"`
 }
 
 // Validate validates this nfs export deletion params
 func (m *NfsExportDeletionParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -38,17 +38,49 @@ func (m *NfsExportDeletionParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *NfsExportDeletionParams) validateID(formats strfmt.Registry) error {
+func (m *NfsExportDeletionParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this nfs export deletion params based on context it is used
+// ContextValidate validate this nfs export deletion params based on the context it is used
 func (m *NfsExportDeletionParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NfsExportDeletionParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

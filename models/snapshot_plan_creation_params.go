@@ -30,20 +30,24 @@ type SnapshotPlanCreationParams struct {
 	Exechm string `json:"exec_h_m,omitempty"`
 
 	// execute intervals
+	// Required: true
 	ExecuteIntervals []float64 `json:"execute_intervals"`
 
 	// execute plan type
-	ExecutePlanType SnapshotPlanExecuteType `json:"execute_plan_type,omitempty"`
+	// Required: true
+	ExecutePlanType *SnapshotPlanExecuteType `json:"execute_plan_type"`
 
 	// name
 	// Required: true
 	Name *string `json:"name"`
 
 	// remain snapshot num
-	RemainSnapshotNum float64 `json:"remain_snapshot_num,omitempty"`
+	// Required: true
+	RemainSnapshotNum *float64 `json:"remain_snapshot_num"`
 
 	// start time
-	StartTime string `json:"start_time,omitempty"`
+	// Required: true
+	StartTime *string `json:"start_time"`
 
 	// vm ids
 	// Required: true
@@ -58,11 +62,23 @@ func (m *SnapshotPlanCreationParams) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateExecuteIntervals(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateExecutePlanType(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRemainSnapshotNum(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStartTime(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,16 +101,32 @@ func (m *SnapshotPlanCreationParams) validateClusterID(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *SnapshotPlanCreationParams) validateExecutePlanType(formats strfmt.Registry) error {
-	if swag.IsZero(m.ExecutePlanType) { // not required
-		return nil
+func (m *SnapshotPlanCreationParams) validateExecuteIntervals(formats strfmt.Registry) error {
+
+	if err := validate.Required("execute_intervals", "body", m.ExecuteIntervals); err != nil {
+		return err
 	}
 
-	if err := m.ExecutePlanType.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("execute_plan_type")
-		}
+	return nil
+}
+
+func (m *SnapshotPlanCreationParams) validateExecutePlanType(formats strfmt.Registry) error {
+
+	if err := validate.Required("execute_plan_type", "body", m.ExecutePlanType); err != nil {
 		return err
+	}
+
+	if err := validate.Required("execute_plan_type", "body", m.ExecutePlanType); err != nil {
+		return err
+	}
+
+	if m.ExecutePlanType != nil {
+		if err := m.ExecutePlanType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execute_plan_type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -103,6 +135,24 @@ func (m *SnapshotPlanCreationParams) validateExecutePlanType(formats strfmt.Regi
 func (m *SnapshotPlanCreationParams) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanCreationParams) validateRemainSnapshotNum(formats strfmt.Registry) error {
+
+	if err := validate.Required("remain_snapshot_num", "body", m.RemainSnapshotNum); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanCreationParams) validateStartTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("start_time", "body", m.StartTime); err != nil {
 		return err
 	}
 
@@ -134,11 +184,13 @@ func (m *SnapshotPlanCreationParams) ContextValidate(ctx context.Context, format
 
 func (m *SnapshotPlanCreationParams) contextValidateExecutePlanType(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.ExecutePlanType.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("execute_plan_type")
+	if m.ExecutePlanType != nil {
+		if err := m.ExecutePlanType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execute_plan_type")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil

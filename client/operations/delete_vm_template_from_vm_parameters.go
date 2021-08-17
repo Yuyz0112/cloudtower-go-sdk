@@ -62,7 +62,7 @@ func NewDeleteVMTemplateFromVMParamsWithHTTPClient(client *http.Client) *DeleteV
 type DeleteVMTemplateFromVMParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMTemplateDeletionParams
+	RequestBody *models.VMTemplateDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteVMTemplateFromVMParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete Vm template from Vm params
-func (o *DeleteVMTemplateFromVMParams) WithRequestBody(requestBody []*models.VMTemplateDeletionParams) *DeleteVMTemplateFromVMParams {
+func (o *DeleteVMTemplateFromVMParams) WithRequestBody(requestBody *models.VMTemplateDeletionParams) *DeleteVMTemplateFromVMParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete Vm template from Vm params
-func (o *DeleteVMTemplateFromVMParams) SetRequestBody(requestBody []*models.VMTemplateDeletionParams) {
+func (o *DeleteVMTemplateFromVMParams) SetRequestBody(requestBody *models.VMTemplateDeletionParams) {
 	o.RequestBody = requestBody
 }
 

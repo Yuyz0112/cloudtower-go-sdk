@@ -24,17 +24,20 @@ type VMVolumeCreationParams struct {
 	ClusterID *string `json:"cluster_id"`
 
 	// elf storage policy
-	ElfStoragePolicy VMVolumeElfStoragePolicyType `json:"elf_storage_policy,omitempty"`
+	// Required: true
+	ElfStoragePolicy *VMVolumeElfStoragePolicyType `json:"elf_storage_policy"`
 
 	// name
 	// Required: true
 	Name *string `json:"name"`
 
 	// sharing
-	Sharing bool `json:"sharing,omitempty"`
+	// Required: true
+	Sharing *bool `json:"sharing"`
 
 	// size
-	Size float64 `json:"size,omitempty"`
+	// Required: true
+	Size *float64 `json:"size"`
 }
 
 // Validate validates this Vm volume creation params
@@ -50,6 +53,14 @@ func (m *VMVolumeCreationParams) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSharing(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -69,15 +80,22 @@ func (m *VMVolumeCreationParams) validateClusterID(formats strfmt.Registry) erro
 }
 
 func (m *VMVolumeCreationParams) validateElfStoragePolicy(formats strfmt.Registry) error {
-	if swag.IsZero(m.ElfStoragePolicy) { // not required
-		return nil
+
+	if err := validate.Required("elf_storage_policy", "body", m.ElfStoragePolicy); err != nil {
+		return err
 	}
 
-	if err := m.ElfStoragePolicy.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("elf_storage_policy")
-		}
+	if err := validate.Required("elf_storage_policy", "body", m.ElfStoragePolicy); err != nil {
 		return err
+	}
+
+	if m.ElfStoragePolicy != nil {
+		if err := m.ElfStoragePolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_storage_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -86,6 +104,24 @@ func (m *VMVolumeCreationParams) validateElfStoragePolicy(formats strfmt.Registr
 func (m *VMVolumeCreationParams) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMVolumeCreationParams) validateSharing(formats strfmt.Registry) error {
+
+	if err := validate.Required("sharing", "body", m.Sharing); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMVolumeCreationParams) validateSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("size", "body", m.Size); err != nil {
 		return err
 	}
 
@@ -108,11 +144,13 @@ func (m *VMVolumeCreationParams) ContextValidate(ctx context.Context, formats st
 
 func (m *VMVolumeCreationParams) contextValidateElfStoragePolicy(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.ElfStoragePolicy.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("elf_storage_policy")
+	if m.ElfStoragePolicy != nil {
+		if err := m.ElfStoragePolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_storage_policy")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil

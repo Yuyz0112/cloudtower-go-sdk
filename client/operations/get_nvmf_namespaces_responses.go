@@ -29,6 +29,12 @@ func (o *GetNvmfNamespacesReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetNvmfNamespacesBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetNvmfNamespacesOK) GetPayload() []*models.NvmfNamespace {
 }
 
 func (o *GetNvmfNamespacesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetNvmfNamespacesBadRequest creates a GetNvmfNamespacesBadRequest with default headers values
+func NewGetNvmfNamespacesBadRequest() *GetNvmfNamespacesBadRequest {
+	return &GetNvmfNamespacesBadRequest{}
+}
+
+/* GetNvmfNamespacesBadRequest describes a response with status code 400, with default header values.
+
+GetNvmfNamespacesBadRequest get nvmf namespaces bad request
+*/
+type GetNvmfNamespacesBadRequest struct {
+	Payload string
+}
+
+func (o *GetNvmfNamespacesBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-nvmf-namespaces][%d] getNvmfNamespacesBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetNvmfNamespacesBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetNvmfNamespacesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

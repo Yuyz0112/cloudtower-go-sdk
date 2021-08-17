@@ -29,6 +29,12 @@ func (o *GetVmsConnectionReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVmsConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetVmsConnectionOK) readResponse(response runtime.ClientResponse, consu
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVmsConnectionBadRequest creates a GetVmsConnectionBadRequest with default headers values
+func NewGetVmsConnectionBadRequest() *GetVmsConnectionBadRequest {
+	return &GetVmsConnectionBadRequest{}
+}
+
+/* GetVmsConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetVmsConnectionBadRequest get vms connection bad request
+*/
+type GetVmsConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetVmsConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vms-connection][%d] getVmsConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVmsConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVmsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

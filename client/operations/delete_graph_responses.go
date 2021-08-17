@@ -29,6 +29,12 @@ func (o *DeleteGraphReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteGraphBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -48,13 +54,43 @@ type DeleteGraphOK struct {
 }
 
 func (o *DeleteGraphOK) Error() string {
-	return fmt.Sprintf("[POST /delete-Graph][%d] deleteGraphOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /delete-graph][%d] deleteGraphOK  %+v", 200, o.Payload)
 }
 func (o *DeleteGraphOK) GetPayload() []*models.WithTaskDeleteGraph {
 	return o.Payload
 }
 
 func (o *DeleteGraphOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteGraphBadRequest creates a DeleteGraphBadRequest with default headers values
+func NewDeleteGraphBadRequest() *DeleteGraphBadRequest {
+	return &DeleteGraphBadRequest{}
+}
+
+/* DeleteGraphBadRequest describes a response with status code 400, with default header values.
+
+DeleteGraphBadRequest delete graph bad request
+*/
+type DeleteGraphBadRequest struct {
+	Payload string
+}
+
+func (o *DeleteGraphBadRequest) Error() string {
+	return fmt.Sprintf("[POST /delete-graph][%d] deleteGraphBadRequest  %+v", 400, o.Payload)
+}
+func (o *DeleteGraphBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *DeleteGraphBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

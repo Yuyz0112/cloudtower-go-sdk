@@ -29,6 +29,12 @@ func (o *GetWitnessesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetWitnessesBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetWitnessesOK) GetPayload() []*models.Witness {
 }
 
 func (o *GetWitnessesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetWitnessesBadRequest creates a GetWitnessesBadRequest with default headers values
+func NewGetWitnessesBadRequest() *GetWitnessesBadRequest {
+	return &GetWitnessesBadRequest{}
+}
+
+/* GetWitnessesBadRequest describes a response with status code 400, with default header values.
+
+GetWitnessesBadRequest get witnesses bad request
+*/
+type GetWitnessesBadRequest struct {
+	Payload string
+}
+
+func (o *GetWitnessesBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-witnesses][%d] getWitnessesBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetWitnessesBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetWitnessesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

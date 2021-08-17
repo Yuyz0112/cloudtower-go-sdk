@@ -19,44 +19,23 @@ import (
 // swagger:model SnapshotPlanUpdationParams
 type SnapshotPlanUpdationParams struct {
 
-	// end time
-	EndTime string `json:"end_time,omitempty"`
+	// data
+	Data *SnapshotPlanUpdationParamsData `json:"data,omitempty"`
 
-	// exec h m
-	Exechm string `json:"exec_h_m,omitempty"`
-
-	// execute intervals
-	ExecuteIntervals []float64 `json:"execute_intervals"`
-
-	// execute plan type
-	ExecutePlanType SnapshotPlanExecuteType `json:"execute_plan_type,omitempty"`
-
-	// id
+	// where
 	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	Name string `json:"name,omitempty"`
-
-	// remain snapshot num
-	RemainSnapshotNum float64 `json:"remain_snapshot_num,omitempty"`
-
-	// start time
-	StartTime string `json:"start_time,omitempty"`
-
-	// vm ids
-	VMIds []string `json:"vm_ids"`
+	Where *SnapshotPlanWhereInput `json:"where"`
 }
 
 // Validate validates this snapshot plan updation params
 func (m *SnapshotPlanUpdationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateExecutePlanType(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -66,25 +45,36 @@ func (m *SnapshotPlanUpdationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SnapshotPlanUpdationParams) validateExecutePlanType(formats strfmt.Registry) error {
-	if swag.IsZero(m.ExecutePlanType) { // not required
+func (m *SnapshotPlanUpdationParams) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
 		return nil
 	}
 
-	if err := m.ExecutePlanType.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("execute_plan_type")
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil
 }
 
-func (m *SnapshotPlanUpdationParams) validateID(formats strfmt.Registry) error {
+func (m *SnapshotPlanUpdationParams) validateWhere(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("where", "body", m.Where); err != nil {
 		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -94,7 +84,11 @@ func (m *SnapshotPlanUpdationParams) validateID(formats strfmt.Registry) error {
 func (m *SnapshotPlanUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateExecutePlanType(ctx, formats); err != nil {
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -104,13 +98,29 @@ func (m *SnapshotPlanUpdationParams) ContextValidate(ctx context.Context, format
 	return nil
 }
 
-func (m *SnapshotPlanUpdationParams) contextValidateExecutePlanType(ctx context.Context, formats strfmt.Registry) error {
+func (m *SnapshotPlanUpdationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.ExecutePlanType.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("execute_plan_type")
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
 		}
-		return err
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanUpdationParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -127,6 +137,106 @@ func (m *SnapshotPlanUpdationParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SnapshotPlanUpdationParams) UnmarshalBinary(b []byte) error {
 	var res SnapshotPlanUpdationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// SnapshotPlanUpdationParamsData snapshot plan updation params data
+//
+// swagger:model SnapshotPlanUpdationParamsData
+type SnapshotPlanUpdationParamsData struct {
+
+	// end time
+	EndTime string `json:"end_time,omitempty"`
+
+	// exec h m
+	Exechm string `json:"exec_h_m,omitempty"`
+
+	// execute intervals
+	ExecuteIntervals []float64 `json:"execute_intervals"`
+
+	// execute plan type
+	ExecutePlanType SnapshotPlanExecuteType `json:"execute_plan_type,omitempty"`
+
+	// name
+	Name string `json:"name,omitempty"`
+
+	// remain snapshot num
+	RemainSnapshotNum float64 `json:"remain_snapshot_num,omitempty"`
+
+	// vm ids
+	VMIds []string `json:"vm_ids"`
+}
+
+// Validate validates this snapshot plan updation params data
+func (m *SnapshotPlanUpdationParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateExecutePlanType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SnapshotPlanUpdationParamsData) validateExecutePlanType(formats strfmt.Registry) error {
+	if swag.IsZero(m.ExecutePlanType) { // not required
+		return nil
+	}
+
+	if err := m.ExecutePlanType.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "execute_plan_type")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this snapshot plan updation params data based on the context it is used
+func (m *SnapshotPlanUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateExecutePlanType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SnapshotPlanUpdationParamsData) contextValidateExecutePlanType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ExecutePlanType.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("data" + "." + "execute_plan_type")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *SnapshotPlanUpdationParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *SnapshotPlanUpdationParamsData) UnmarshalBinary(b []byte) error {
+	var res SnapshotPlanUpdationParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

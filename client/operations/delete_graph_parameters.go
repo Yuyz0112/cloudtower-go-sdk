@@ -62,7 +62,7 @@ func NewDeleteGraphParamsWithHTTPClient(client *http.Client) *DeleteGraphParams 
 type DeleteGraphParams struct {
 
 	// RequestBody.
-	RequestBody []*models.GraphDeletionParams
+	RequestBody *models.GraphDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteGraphParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete graph params
-func (o *DeleteGraphParams) WithRequestBody(requestBody []*models.GraphDeletionParams) *DeleteGraphParams {
+func (o *DeleteGraphParams) WithRequestBody(requestBody *models.GraphDeletionParams) *DeleteGraphParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete graph params
-func (o *DeleteGraphParams) SetRequestBody(requestBody []*models.GraphDeletionParams) {
+func (o *DeleteGraphParams) SetRequestBody(requestBody *models.GraphDeletionParams) {
 	o.RequestBody = requestBody
 }
 

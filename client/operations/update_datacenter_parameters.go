@@ -62,7 +62,7 @@ func NewUpdateDatacenterParamsWithHTTPClient(client *http.Client) *UpdateDatacen
 type UpdateDatacenterParams struct {
 
 	// RequestBody.
-	RequestBody []*models.DatacenterUpdationParams
+	RequestBody *models.DatacenterUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateDatacenterParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update datacenter params
-func (o *UpdateDatacenterParams) WithRequestBody(requestBody []*models.DatacenterUpdationParams) *UpdateDatacenterParams {
+func (o *UpdateDatacenterParams) WithRequestBody(requestBody *models.DatacenterUpdationParams) *UpdateDatacenterParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update datacenter params
-func (o *UpdateDatacenterParams) SetRequestBody(requestBody []*models.DatacenterUpdationParams) {
+func (o *UpdateDatacenterParams) SetRequestBody(requestBody *models.DatacenterUpdationParams) {
 	o.RequestBody = requestBody
 }
 

@@ -19,9 +19,9 @@ import (
 // swagger:model IscsiLunRollbackParams
 type IscsiLunRollbackParams struct {
 
-	// id
+	// lun id
 	// Required: true
-	ID *string `json:"id"`
+	LunID *string `json:"lun_id"`
 
 	// snapshot id
 	// Required: true
@@ -32,7 +32,7 @@ type IscsiLunRollbackParams struct {
 func (m *IscsiLunRollbackParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateLunID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,9 +46,9 @@ func (m *IscsiLunRollbackParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *IscsiLunRollbackParams) validateID(formats strfmt.Registry) error {
+func (m *IscsiLunRollbackParams) validateLunID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("lun_id", "body", m.LunID); err != nil {
 		return err
 	}
 

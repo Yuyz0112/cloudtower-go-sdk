@@ -19,16 +19,24 @@ import (
 // swagger:model IscsiLunDeletionParams
 type IscsiLunDeletionParams struct {
 
-	// id
+	// data
 	// Required: true
-	ID *string `json:"id"`
+	Data *IscsiLunDeletionParamsData `json:"data"`
+
+	// where
+	// Required: true
+	Where *IscsiLunWhereInput `json:"where"`
 }
 
 // Validate validates this iscsi lun deletion params
 func (m *IscsiLunDeletionParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -38,17 +46,85 @@ func (m *IscsiLunDeletionParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *IscsiLunDeletionParams) validateID(formats strfmt.Registry) error {
+func (m *IscsiLunDeletionParams) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this iscsi lun deletion params based on context it is used
+func (m *IscsiLunDeletionParams) validateWhere(formats strfmt.Registry) error {
+
+	if err := validate.Required("where", "body", m.Where); err != nil {
+		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this iscsi lun deletion params based on the context it is used
 func (m *IscsiLunDeletionParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IscsiLunDeletionParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IscsiLunDeletionParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -63,6 +139,62 @@ func (m *IscsiLunDeletionParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *IscsiLunDeletionParams) UnmarshalBinary(b []byte) error {
 	var res IscsiLunDeletionParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// IscsiLunDeletionParamsData iscsi lun deletion params data
+//
+// swagger:model IscsiLunDeletionParamsData
+type IscsiLunDeletionParamsData struct {
+
+	// remove snapshot
+	// Required: true
+	RemoveSnapshot *bool `json:"remove_snapshot"`
+}
+
+// Validate validates this iscsi lun deletion params data
+func (m *IscsiLunDeletionParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateRemoveSnapshot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IscsiLunDeletionParamsData) validateRemoveSnapshot(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"remove_snapshot", "body", m.RemoveSnapshot); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this iscsi lun deletion params data based on context it is used
+func (m *IscsiLunDeletionParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *IscsiLunDeletionParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *IscsiLunDeletionParamsData) UnmarshalBinary(b []byte) error {
+	var res IscsiLunDeletionParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

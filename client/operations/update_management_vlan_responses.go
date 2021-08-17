@@ -29,6 +29,12 @@ func (o *UpdateManagementVlanReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewUpdateManagementVlanBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *UpdateManagementVlanOK) GetPayload() []*models.WithTaskVlan {
 }
 
 func (o *UpdateManagementVlanOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUpdateManagementVlanBadRequest creates a UpdateManagementVlanBadRequest with default headers values
+func NewUpdateManagementVlanBadRequest() *UpdateManagementVlanBadRequest {
+	return &UpdateManagementVlanBadRequest{}
+}
+
+/* UpdateManagementVlanBadRequest describes a response with status code 400, with default header values.
+
+UpdateManagementVlanBadRequest update management vlan bad request
+*/
+type UpdateManagementVlanBadRequest struct {
+	Payload string
+}
+
+func (o *UpdateManagementVlanBadRequest) Error() string {
+	return fmt.Sprintf("[POST /update-management-vlan][%d] updateManagementVlanBadRequest  %+v", 400, o.Payload)
+}
+func (o *UpdateManagementVlanBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *UpdateManagementVlanBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

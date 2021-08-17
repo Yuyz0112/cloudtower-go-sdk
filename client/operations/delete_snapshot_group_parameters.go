@@ -62,7 +62,7 @@ func NewDeleteSnapshotGroupParamsWithHTTPClient(client *http.Client) *DeleteSnap
 type DeleteSnapshotGroupParams struct {
 
 	// RequestBody.
-	RequestBody []*models.SnapshotGroupDeletionParams
+	RequestBody *models.SnapshotGroupDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteSnapshotGroupParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete snapshot group params
-func (o *DeleteSnapshotGroupParams) WithRequestBody(requestBody []*models.SnapshotGroupDeletionParams) *DeleteSnapshotGroupParams {
+func (o *DeleteSnapshotGroupParams) WithRequestBody(requestBody *models.SnapshotGroupDeletionParams) *DeleteSnapshotGroupParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete snapshot group params
-func (o *DeleteSnapshotGroupParams) SetRequestBody(requestBody []*models.SnapshotGroupDeletionParams) {
+func (o *DeleteSnapshotGroupParams) SetRequestBody(requestBody *models.SnapshotGroupDeletionParams) {
 	o.RequestBody = requestBody
 }
 

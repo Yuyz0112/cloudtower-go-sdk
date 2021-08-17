@@ -29,6 +29,12 @@ func (o *GetDeploysConnectionReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetDeploysConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetDeploysConnectionOK) readResponse(response runtime.ClientResponse, c
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetDeploysConnectionBadRequest creates a GetDeploysConnectionBadRequest with default headers values
+func NewGetDeploysConnectionBadRequest() *GetDeploysConnectionBadRequest {
+	return &GetDeploysConnectionBadRequest{}
+}
+
+/* GetDeploysConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetDeploysConnectionBadRequest get deploys connection bad request
+*/
+type GetDeploysConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetDeploysConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-deploys-connection][%d] getDeploysConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetDeploysConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetDeploysConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

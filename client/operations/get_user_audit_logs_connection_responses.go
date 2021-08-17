@@ -29,6 +29,12 @@ func (o *GetUserAuditLogsConnectionReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetUserAuditLogsConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetUserAuditLogsConnectionOK) readResponse(response runtime.ClientRespo
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetUserAuditLogsConnectionBadRequest creates a GetUserAuditLogsConnectionBadRequest with default headers values
+func NewGetUserAuditLogsConnectionBadRequest() *GetUserAuditLogsConnectionBadRequest {
+	return &GetUserAuditLogsConnectionBadRequest{}
+}
+
+/* GetUserAuditLogsConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetUserAuditLogsConnectionBadRequest get user audit logs connection bad request
+*/
+type GetUserAuditLogsConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetUserAuditLogsConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-user-audit-logs-connection][%d] getUserAuditLogsConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetUserAuditLogsConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetUserAuditLogsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

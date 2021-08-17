@@ -62,7 +62,7 @@ func NewUpdateSnapshotPlanParamsWithHTTPClient(client *http.Client) *UpdateSnaps
 type UpdateSnapshotPlanParams struct {
 
 	// RequestBody.
-	RequestBody []*models.SnapshotPlanUpdationParams
+	RequestBody *models.SnapshotPlanUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateSnapshotPlanParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update snapshot plan params
-func (o *UpdateSnapshotPlanParams) WithRequestBody(requestBody []*models.SnapshotPlanUpdationParams) *UpdateSnapshotPlanParams {
+func (o *UpdateSnapshotPlanParams) WithRequestBody(requestBody *models.SnapshotPlanUpdationParams) *UpdateSnapshotPlanParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update snapshot plan params
-func (o *UpdateSnapshotPlanParams) SetRequestBody(requestBody []*models.SnapshotPlanUpdationParams) {
+func (o *UpdateSnapshotPlanParams) SetRequestBody(requestBody *models.SnapshotPlanUpdationParams) {
 	o.RequestBody = requestBody
 }
 

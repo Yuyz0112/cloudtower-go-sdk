@@ -19,25 +19,23 @@ import (
 // swagger:model VmTemplateUpdationParams
 type VMTemplateUpdationParams struct {
 
-	// cloud init supported
-	CloudInitSupported bool `json:"cloud_init_supported,omitempty"`
+	// data
+	Data *VMTemplateUpdationParamsData `json:"data,omitempty"`
 
-	// description
-	Description string `json:"description,omitempty"`
-
-	// id
+	// where
 	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	Name string `json:"name,omitempty"`
+	Where *VMTemplateWhereInput `json:"where"`
 }
 
 // Validate validates this Vm template updation params
 func (m *VMTemplateUpdationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -47,17 +45,84 @@ func (m *VMTemplateUpdationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMTemplateUpdationParams) validateID(formats strfmt.Registry) error {
+func (m *VMTemplateUpdationParams) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
+		return nil
+	}
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this Vm template updation params based on context it is used
+func (m *VMTemplateUpdationParams) validateWhere(formats strfmt.Registry) error {
+
+	if err := validate.Required("where", "body", m.Where); err != nil {
+		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this Vm template updation params based on the context it is used
 func (m *VMTemplateUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMTemplateUpdationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMTemplateUpdationParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -72,6 +137,49 @@ func (m *VMTemplateUpdationParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMTemplateUpdationParams) UnmarshalBinary(b []byte) error {
 	var res VMTemplateUpdationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMTemplateUpdationParamsData VM template updation params data
+//
+// swagger:model VMTemplateUpdationParamsData
+type VMTemplateUpdationParamsData struct {
+
+	// cloud init supported
+	CloudInitSupported bool `json:"cloud_init_supported,omitempty"`
+
+	// description
+	Description string `json:"description,omitempty"`
+
+	// name
+	Name string `json:"name,omitempty"`
+}
+
+// Validate validates this VM template updation params data
+func (m *VMTemplateUpdationParamsData) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this VM template updation params data based on context it is used
+func (m *VMTemplateUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMTemplateUpdationParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMTemplateUpdationParamsData) UnmarshalBinary(b []byte) error {
+	var res VMTemplateUpdationParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

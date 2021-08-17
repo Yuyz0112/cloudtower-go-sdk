@@ -62,7 +62,7 @@ func NewSuspendSnapshotPlanParamsWithHTTPClient(client *http.Client) *SuspendSna
 type SuspendSnapshotPlanParams struct {
 
 	// RequestBody.
-	RequestBody []*models.SnapshotPlanSuspendedParams
+	RequestBody *models.SnapshotPlanSuspendedParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *SuspendSnapshotPlanParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the suspend snapshot plan params
-func (o *SuspendSnapshotPlanParams) WithRequestBody(requestBody []*models.SnapshotPlanSuspendedParams) *SuspendSnapshotPlanParams {
+func (o *SuspendSnapshotPlanParams) WithRequestBody(requestBody *models.SnapshotPlanSuspendedParams) *SuspendSnapshotPlanParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the suspend snapshot plan params
-func (o *SuspendSnapshotPlanParams) SetRequestBody(requestBody []*models.SnapshotPlanSuspendedParams) {
+func (o *SuspendSnapshotPlanParams) SetRequestBody(requestBody *models.SnapshotPlanSuspendedParams) {
 	o.RequestBody = requestBody
 }
 

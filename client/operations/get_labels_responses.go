@@ -29,6 +29,12 @@ func (o *GetLabelsReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetLabelsBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetLabelsOK) GetPayload() []*models.Label {
 }
 
 func (o *GetLabelsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetLabelsBadRequest creates a GetLabelsBadRequest with default headers values
+func NewGetLabelsBadRequest() *GetLabelsBadRequest {
+	return &GetLabelsBadRequest{}
+}
+
+/* GetLabelsBadRequest describes a response with status code 400, with default header values.
+
+GetLabelsBadRequest get labels bad request
+*/
+type GetLabelsBadRequest struct {
+	Payload string
+}
+
+func (o *GetLabelsBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-labels][%d] getLabelsBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetLabelsBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetLabelsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

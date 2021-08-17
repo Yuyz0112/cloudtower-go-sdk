@@ -19,22 +19,23 @@ import (
 // swagger:model NfsExportUpdationParams
 type NfsExportUpdationParams struct {
 
-	// id
+	// data
+	Data *NfsExportUpdationParamsData `json:"data,omitempty"`
+
+	// where
 	// Required: true
-	ID *string `json:"id"`
-
-	// ip whitelist
-	IPWhitelist string `json:"ip_whitelist,omitempty"`
-
-	// name
-	Name string `json:"name,omitempty"`
+	Where *NfsExportWhereInput `json:"where"`
 }
 
 // Validate validates this nfs export updation params
 func (m *NfsExportUpdationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -44,17 +45,84 @@ func (m *NfsExportUpdationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *NfsExportUpdationParams) validateID(formats strfmt.Registry) error {
+func (m *NfsExportUpdationParams) validateData(formats strfmt.Registry) error {
+	if swag.IsZero(m.Data) { // not required
+		return nil
+	}
 
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-// ContextValidate validates this nfs export updation params based on context it is used
+func (m *NfsExportUpdationParams) validateWhere(formats strfmt.Registry) error {
+
+	if err := validate.Required("where", "body", m.Where); err != nil {
+		return err
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this nfs export updation params based on the context it is used
 func (m *NfsExportUpdationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NfsExportUpdationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *NfsExportUpdationParams) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -69,6 +137,46 @@ func (m *NfsExportUpdationParams) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NfsExportUpdationParams) UnmarshalBinary(b []byte) error {
 	var res NfsExportUpdationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// NfsExportUpdationParamsData nfs export updation params data
+//
+// swagger:model NfsExportUpdationParamsData
+type NfsExportUpdationParamsData struct {
+
+	// ip whitelist
+	IPWhitelist string `json:"ip_whitelist,omitempty"`
+
+	// name
+	Name string `json:"name,omitempty"`
+}
+
+// Validate validates this nfs export updation params data
+func (m *NfsExportUpdationParamsData) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this nfs export updation params data based on context it is used
+func (m *NfsExportUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *NfsExportUpdationParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *NfsExportUpdationParamsData) UnmarshalBinary(b []byte) error {
+	var res NfsExportUpdationParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

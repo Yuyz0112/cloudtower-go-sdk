@@ -29,6 +29,12 @@ func (o *GetStoragePoliciesConnectorReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetStoragePoliciesConnectorBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetStoragePoliciesConnectorOK) GetPayload() []*models.StoragePolicyCone
 }
 
 func (o *GetStoragePoliciesConnectorOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetStoragePoliciesConnectorBadRequest creates a GetStoragePoliciesConnectorBadRequest with default headers values
+func NewGetStoragePoliciesConnectorBadRequest() *GetStoragePoliciesConnectorBadRequest {
+	return &GetStoragePoliciesConnectorBadRequest{}
+}
+
+/* GetStoragePoliciesConnectorBadRequest describes a response with status code 400, with default header values.
+
+GetStoragePoliciesConnectorBadRequest get storage policies connector bad request
+*/
+type GetStoragePoliciesConnectorBadRequest struct {
+	Payload string
+}
+
+func (o *GetStoragePoliciesConnectorBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-storage-policies-connector][%d] getStoragePoliciesConnectorBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetStoragePoliciesConnectorBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetStoragePoliciesConnectorBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

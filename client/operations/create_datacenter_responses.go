@@ -29,6 +29,12 @@ func (o *CreateDatacenterReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewCreateDatacenterBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *CreateDatacenterOK) GetPayload() []*models.WithTaskDatacenter {
 }
 
 func (o *CreateDatacenterOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateDatacenterBadRequest creates a CreateDatacenterBadRequest with default headers values
+func NewCreateDatacenterBadRequest() *CreateDatacenterBadRequest {
+	return &CreateDatacenterBadRequest{}
+}
+
+/* CreateDatacenterBadRequest describes a response with status code 400, with default header values.
+
+CreateDatacenterBadRequest create datacenter bad request
+*/
+type CreateDatacenterBadRequest struct {
+	Payload string
+}
+
+func (o *CreateDatacenterBadRequest) Error() string {
+	return fmt.Sprintf("[POST /create-datacenter][%d] createDatacenterBadRequest  %+v", 400, o.Payload)
+}
+func (o *CreateDatacenterBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *CreateDatacenterBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

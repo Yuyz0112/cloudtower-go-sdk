@@ -20,7 +20,8 @@ import (
 type VMTemplateCreationParams struct {
 
 	// cloud init supported
-	CloudInitSupported bool `json:"cloud_init_supported,omitempty"`
+	// Required: true
+	CloudInitSupported *bool `json:"cloud_init_supported"`
 
 	// cluster id
 	// Required: true
@@ -42,6 +43,10 @@ type VMTemplateCreationParams struct {
 func (m *VMTemplateCreationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCloudInitSupported(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateClusterID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -57,6 +62,15 @@ func (m *VMTemplateCreationParams) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *VMTemplateCreationParams) validateCloudInitSupported(formats strfmt.Registry) error {
+
+	if err := validate.Required("cloud_init_supported", "body", m.CloudInitSupported); err != nil {
+		return err
+	}
+
 	return nil
 }
 

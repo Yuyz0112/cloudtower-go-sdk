@@ -29,6 +29,12 @@ func (o *CreateGraphReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewCreateGraphBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *CreateGraphOK) GetPayload() []*models.WithTaskGraph {
 }
 
 func (o *CreateGraphOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateGraphBadRequest creates a CreateGraphBadRequest with default headers values
+func NewCreateGraphBadRequest() *CreateGraphBadRequest {
+	return &CreateGraphBadRequest{}
+}
+
+/* CreateGraphBadRequest describes a response with status code 400, with default header values.
+
+CreateGraphBadRequest create graph bad request
+*/
+type CreateGraphBadRequest struct {
+	Payload string
+}
+
+func (o *CreateGraphBadRequest) Error() string {
+	return fmt.Sprintf("[POST /create-graph][%d] createGraphBadRequest  %+v", 400, o.Payload)
+}
+func (o *CreateGraphBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *CreateGraphBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

@@ -94,18 +94,6 @@ type IscsiTargetCommonParams struct {
 
 	// iqn whitelist
 	IqnWhitelist string `json:"iqn_whitelist,omitempty"`
-
-	// replica num
-	ReplicaNum float64 `json:"replica_num,omitempty"`
-
-	// stripe num
-	StripeNum float64 `json:"stripe_num,omitempty"`
-
-	// stripe size
-	StripeSize float64 `json:"stripe_size,omitempty"`
-
-	// thin provision
-	ThinProvision bool `json:"thin_provision,omitempty"`
 }
 
 // Validate validates this iscsi target common params

@@ -29,6 +29,12 @@ func (o *GetUploadTasksReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetUploadTasksBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetUploadTasksOK) GetPayload() []*models.UploadTask {
 }
 
 func (o *GetUploadTasksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetUploadTasksBadRequest creates a GetUploadTasksBadRequest with default headers values
+func NewGetUploadTasksBadRequest() *GetUploadTasksBadRequest {
+	return &GetUploadTasksBadRequest{}
+}
+
+/* GetUploadTasksBadRequest describes a response with status code 400, with default header values.
+
+GetUploadTasksBadRequest get upload tasks bad request
+*/
+type GetUploadTasksBadRequest struct {
+	Payload string
+}
+
+func (o *GetUploadTasksBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-upload-tasks][%d] getUploadTasksBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetUploadTasksBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetUploadTasksBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

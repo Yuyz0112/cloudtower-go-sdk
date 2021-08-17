@@ -62,7 +62,7 @@ func NewDeleteClusterParamsWithHTTPClient(client *http.Client) *DeleteClusterPar
 type DeleteClusterParams struct {
 
 	// RequestBody.
-	RequestBody []*models.ClusterDeleteParams
+	RequestBody *models.ClusterDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteClusterParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete cluster params
-func (o *DeleteClusterParams) WithRequestBody(requestBody []*models.ClusterDeleteParams) *DeleteClusterParams {
+func (o *DeleteClusterParams) WithRequestBody(requestBody *models.ClusterDeletionParams) *DeleteClusterParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete cluster params
-func (o *DeleteClusterParams) SetRequestBody(requestBody []*models.ClusterDeleteParams) {
+func (o *DeleteClusterParams) SetRequestBody(requestBody *models.ClusterDeletionParams) {
 	o.RequestBody = requestBody
 }
 

@@ -29,6 +29,12 @@ func (o *GetVMFoldersConnectionReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetVMFoldersConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetVMFoldersConnectionOK) readResponse(response runtime.ClientResponse,
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetVMFoldersConnectionBadRequest creates a GetVMFoldersConnectionBadRequest with default headers values
+func NewGetVMFoldersConnectionBadRequest() *GetVMFoldersConnectionBadRequest {
+	return &GetVMFoldersConnectionBadRequest{}
+}
+
+/* GetVMFoldersConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetVMFoldersConnectionBadRequest get Vm folders connection bad request
+*/
+type GetVMFoldersConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetVMFoldersConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-vm-folders-connection][%d] getVmFoldersConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetVMFoldersConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetVMFoldersConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

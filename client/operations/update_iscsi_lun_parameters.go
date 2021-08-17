@@ -62,7 +62,7 @@ func NewUpdateIscsiLunParamsWithHTTPClient(client *http.Client) *UpdateIscsiLunP
 type UpdateIscsiLunParams struct {
 
 	// RequestBody.
-	RequestBody []models.IscsiLunUpdationParams
+	RequestBody *models.IscsiLunUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateIscsiLunParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update iscsi lun params
-func (o *UpdateIscsiLunParams) WithRequestBody(requestBody []models.IscsiLunUpdationParams) *UpdateIscsiLunParams {
+func (o *UpdateIscsiLunParams) WithRequestBody(requestBody *models.IscsiLunUpdationParams) *UpdateIscsiLunParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update iscsi lun params
-func (o *UpdateIscsiLunParams) SetRequestBody(requestBody []models.IscsiLunUpdationParams) {
+func (o *UpdateIscsiLunParams) SetRequestBody(requestBody *models.IscsiLunUpdationParams) {
 	o.RequestBody = requestBody
 }
 

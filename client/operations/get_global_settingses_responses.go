@@ -29,6 +29,12 @@ func (o *GetGlobalSettingsesReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetGlobalSettingsesBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetGlobalSettingsesOK) GetPayload() []*models.GlobalSettings {
 }
 
 func (o *GetGlobalSettingsesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetGlobalSettingsesBadRequest creates a GetGlobalSettingsesBadRequest with default headers values
+func NewGetGlobalSettingsesBadRequest() *GetGlobalSettingsesBadRequest {
+	return &GetGlobalSettingsesBadRequest{}
+}
+
+/* GetGlobalSettingsesBadRequest describes a response with status code 400, with default header values.
+
+GetGlobalSettingsesBadRequest get global settingses bad request
+*/
+type GetGlobalSettingsesBadRequest struct {
+	Payload string
+}
+
+func (o *GetGlobalSettingsesBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-global-settingses][%d] getGlobalSettingsesBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetGlobalSettingsesBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetGlobalSettingsesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

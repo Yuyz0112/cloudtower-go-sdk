@@ -29,6 +29,12 @@ func (o *RebuildVMReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewRebuildVMBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -48,13 +54,43 @@ type RebuildVMOK struct {
 }
 
 func (o *RebuildVMOK) Error() string {
-	return fmt.Sprintf("[POST /rebuild-vm][%d] rebuildVmOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /rebuild-vm-from-snapshot][%d] rebuildVmOK  %+v", 200, o.Payload)
 }
 func (o *RebuildVMOK) GetPayload() []*models.WithTaskVM {
 	return o.Payload
 }
 
 func (o *RebuildVMOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRebuildVMBadRequest creates a RebuildVMBadRequest with default headers values
+func NewRebuildVMBadRequest() *RebuildVMBadRequest {
+	return &RebuildVMBadRequest{}
+}
+
+/* RebuildVMBadRequest describes a response with status code 400, with default header values.
+
+RebuildVMBadRequest rebuild Vm bad request
+*/
+type RebuildVMBadRequest struct {
+	Payload string
+}
+
+func (o *RebuildVMBadRequest) Error() string {
+	return fmt.Sprintf("[POST /rebuild-vm-from-snapshot][%d] rebuildVmBadRequest  %+v", 400, o.Payload)
+}
+func (o *RebuildVMBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *RebuildVMBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

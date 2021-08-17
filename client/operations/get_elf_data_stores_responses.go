@@ -29,6 +29,12 @@ func (o *GetElfDataStoresReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetElfDataStoresBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetElfDataStoresOK) GetPayload() []*models.ElfDataStore {
 }
 
 func (o *GetElfDataStoresOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetElfDataStoresBadRequest creates a GetElfDataStoresBadRequest with default headers values
+func NewGetElfDataStoresBadRequest() *GetElfDataStoresBadRequest {
+	return &GetElfDataStoresBadRequest{}
+}
+
+/* GetElfDataStoresBadRequest describes a response with status code 400, with default header values.
+
+GetElfDataStoresBadRequest get elf data stores bad request
+*/
+type GetElfDataStoresBadRequest struct {
+	Payload string
+}
+
+func (o *GetElfDataStoresBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-elf-data-stores][%d] getElfDataStoresBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetElfDataStoresBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetElfDataStoresBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

@@ -151,16 +151,16 @@ func (m *VMRemoveNicParams) UnmarshalBinary(b []byte) error {
 // swagger:model VMRemoveNicParamsData
 type VMRemoveNicParamsData struct {
 
-	// nic ids
+	// nic index
 	// Required: true
-	NicIds []string `json:"nic_ids"`
+	NicIndex []float64 `json:"nic_index"`
 }
 
 // Validate validates this VM remove nic params data
 func (m *VMRemoveNicParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateNicIds(formats); err != nil {
+	if err := m.validateNicIndex(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -170,9 +170,9 @@ func (m *VMRemoveNicParamsData) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMRemoveNicParamsData) validateNicIds(formats strfmt.Registry) error {
+func (m *VMRemoveNicParamsData) validateNicIndex(formats strfmt.Registry) error {
 
-	if err := validate.Required("data"+"."+"nic_ids", "body", m.NicIds); err != nil {
+	if err := validate.Required("data"+"."+"nic_index", "body", m.NicIndex); err != nil {
 		return err
 	}
 

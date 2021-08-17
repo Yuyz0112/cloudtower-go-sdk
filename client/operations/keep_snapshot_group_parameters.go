@@ -62,7 +62,7 @@ func NewKeepSnapshotGroupParamsWithHTTPClient(client *http.Client) *KeepSnapshot
 type KeepSnapshotGroupParams struct {
 
 	// RequestBody.
-	RequestBody []*models.SnapshotGroupKeepParams
+	RequestBody *models.SnapshotGroupKeepParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *KeepSnapshotGroupParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the keep snapshot group params
-func (o *KeepSnapshotGroupParams) WithRequestBody(requestBody []*models.SnapshotGroupKeepParams) *KeepSnapshotGroupParams {
+func (o *KeepSnapshotGroupParams) WithRequestBody(requestBody *models.SnapshotGroupKeepParams) *KeepSnapshotGroupParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the keep snapshot group params
-func (o *KeepSnapshotGroupParams) SetRequestBody(requestBody []*models.SnapshotGroupKeepParams) {
+func (o *KeepSnapshotGroupParams) SetRequestBody(requestBody *models.SnapshotGroupKeepParams) {
 	o.RequestBody = requestBody
 }
 

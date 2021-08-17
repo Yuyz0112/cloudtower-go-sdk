@@ -29,6 +29,12 @@ func (o *GetSnmpTrapReceiversReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetSnmpTrapReceiversBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -55,6 +61,36 @@ func (o *GetSnmpTrapReceiversOK) GetPayload() []*models.SnmpTrapReceiver {
 }
 
 func (o *GetSnmpTrapReceiversOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetSnmpTrapReceiversBadRequest creates a GetSnmpTrapReceiversBadRequest with default headers values
+func NewGetSnmpTrapReceiversBadRequest() *GetSnmpTrapReceiversBadRequest {
+	return &GetSnmpTrapReceiversBadRequest{}
+}
+
+/* GetSnmpTrapReceiversBadRequest describes a response with status code 400, with default header values.
+
+GetSnmpTrapReceiversBadRequest get snmp trap receivers bad request
+*/
+type GetSnmpTrapReceiversBadRequest struct {
+	Payload string
+}
+
+func (o *GetSnmpTrapReceiversBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-snmp-trap-receivers][%d] getSnmpTrapReceiversBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetSnmpTrapReceiversBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetSnmpTrapReceiversBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

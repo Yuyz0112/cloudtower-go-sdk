@@ -29,6 +29,12 @@ func (o *GetEntityFiltersConnectionReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetEntityFiltersConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetEntityFiltersConnectionOK) readResponse(response runtime.ClientRespo
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetEntityFiltersConnectionBadRequest creates a GetEntityFiltersConnectionBadRequest with default headers values
+func NewGetEntityFiltersConnectionBadRequest() *GetEntityFiltersConnectionBadRequest {
+	return &GetEntityFiltersConnectionBadRequest{}
+}
+
+/* GetEntityFiltersConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetEntityFiltersConnectionBadRequest get entity filters connection bad request
+*/
+type GetEntityFiltersConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetEntityFiltersConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-entity-filters-connection][%d] getEntityFiltersConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetEntityFiltersConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetEntityFiltersConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

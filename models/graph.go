@@ -55,6 +55,9 @@ type Graph struct {
 	// Required: true
 	MetricType *MetricType `json:"metric_type"`
 
+	// namespaces
+	Namespaces []*GraphNamespacesItems0 `json:"namespaces,omitempty"`
+
 	// network
 	Network interface{} `json:"network,omitempty"`
 
@@ -134,6 +137,10 @@ func (m *Graph) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMetricType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespaces(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -325,6 +332,30 @@ func (m *Graph) validateMetricType(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Graph) validateNamespaces(formats strfmt.Registry) error {
+	if swag.IsZero(m.Namespaces) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Namespaces); i++ {
+		if swag.IsZero(m.Namespaces[i]) { // not required
+			continue
+		}
+
+		if m.Namespaces[i] != nil {
+			if err := m.Namespaces[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("namespaces" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -541,6 +572,10 @@ func (m *Graph) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNamespaces(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateNics(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -652,6 +687,24 @@ func (m *Graph) contextValidateMetricType(ctx context.Context, formats strfmt.Re
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Graph) contextValidateNamespaces(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Namespaces); i++ {
+
+		if m.Namespaces[i] != nil {
+			if err := m.Namespaces[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("namespaces" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -1078,6 +1131,79 @@ func (m *GraphLunsItems0) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GraphLunsItems0) UnmarshalBinary(b []byte) error {
 	var res GraphLunsItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GraphNamespacesItems0 graph namespaces items0
+//
+// swagger:model GraphNamespacesItems0
+type GraphNamespacesItems0 struct {
+
+	// id
+	// Required: true
+	ID *string `json:"id"`
+
+	// name
+	// Required: true
+	Name *string `json:"name"`
+}
+
+// Validate validates this graph namespaces items0
+func (m *GraphNamespacesItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GraphNamespacesItems0) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GraphNamespacesItems0) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this graph namespaces items0 based on context it is used
+func (m *GraphNamespacesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GraphNamespacesItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GraphNamespacesItems0) UnmarshalBinary(b []byte) error {
+	var res GraphNamespacesItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -62,7 +62,7 @@ func NewUpdateViewParamsWithHTTPClient(client *http.Client) *UpdateViewParams {
 type UpdateViewParams struct {
 
 	// RequestBody.
-	RequestBody []*models.ViewUpdationParams
+	RequestBody *models.ViewUpdationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *UpdateViewParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the update view params
-func (o *UpdateViewParams) WithRequestBody(requestBody []*models.ViewUpdationParams) *UpdateViewParams {
+func (o *UpdateViewParams) WithRequestBody(requestBody *models.ViewUpdationParams) *UpdateViewParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the update view params
-func (o *UpdateViewParams) SetRequestBody(requestBody []*models.ViewUpdationParams) {
+func (o *UpdateViewParams) SetRequestBody(requestBody *models.ViewUpdationParams) {
 	o.RequestBody = requestBody
 }
 

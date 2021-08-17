@@ -62,7 +62,7 @@ func NewDeleteViewParamsWithHTTPClient(client *http.Client) *DeleteViewParams {
 type DeleteViewParams struct {
 
 	// RequestBody.
-	RequestBody []*models.ViewDeletionParams
+	RequestBody *models.ViewDeletionParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *DeleteViewParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the delete view params
-func (o *DeleteViewParams) WithRequestBody(requestBody []*models.ViewDeletionParams) *DeleteViewParams {
+func (o *DeleteViewParams) WithRequestBody(requestBody *models.ViewDeletionParams) *DeleteViewParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the delete view params
-func (o *DeleteViewParams) SetRequestBody(requestBody []*models.ViewDeletionParams) {
+func (o *DeleteViewParams) SetRequestBody(requestBody *models.ViewDeletionParams) {
 	o.RequestBody = requestBody
 }
 

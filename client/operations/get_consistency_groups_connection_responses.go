@@ -29,6 +29,12 @@ func (o *GetConsistencyGroupsConnectionReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetConsistencyGroupsConnectionBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -60,6 +66,36 @@ func (o *GetConsistencyGroupsConnectionOK) readResponse(response runtime.ClientR
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetConsistencyGroupsConnectionBadRequest creates a GetConsistencyGroupsConnectionBadRequest with default headers values
+func NewGetConsistencyGroupsConnectionBadRequest() *GetConsistencyGroupsConnectionBadRequest {
+	return &GetConsistencyGroupsConnectionBadRequest{}
+}
+
+/* GetConsistencyGroupsConnectionBadRequest describes a response with status code 400, with default header values.
+
+GetConsistencyGroupsConnectionBadRequest get consistency groups connection bad request
+*/
+type GetConsistencyGroupsConnectionBadRequest struct {
+	Payload string
+}
+
+func (o *GetConsistencyGroupsConnectionBadRequest) Error() string {
+	return fmt.Sprintf("[POST /get-consistency-groups-connection][%d] getConsistencyGroupsConnectionBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetConsistencyGroupsConnectionBadRequest) GetPayload() string {
+	return o.Payload
+}
+
+func (o *GetConsistencyGroupsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
