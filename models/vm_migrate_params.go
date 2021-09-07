@@ -20,8 +20,7 @@ import (
 type VMMigrateParams struct {
 
 	// data
-	// Required: true
-	Data *VMMigrateParamsData `json:"data"`
+	Data *VMMigrateParamsData `json:"data,omitempty"`
 
 	// where
 	// Required: true
@@ -47,9 +46,8 @@ func (m *VMMigrateParams) Validate(formats strfmt.Registry) error {
 }
 
 func (m *VMMigrateParams) validateData(formats strfmt.Registry) error {
-
-	if err := validate.Required("data", "body", m.Data); err != nil {
-		return err
+	if swag.IsZero(m.Data) { // not required
+		return nil
 	}
 
 	if m.Data != nil {
@@ -151,16 +149,16 @@ func (m *VMMigrateParams) UnmarshalBinary(b []byte) error {
 // swagger:model VMMigrateParamsData
 type VMMigrateParamsData struct {
 
-	// node ip
+	// host id
 	// Required: true
-	NodeIP *string `json:"node_ip"`
+	HostID *string `json:"host_id"`
 }
 
 // Validate validates this VM migrate params data
 func (m *VMMigrateParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateNodeIP(formats); err != nil {
+	if err := m.validateHostID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -170,9 +168,9 @@ func (m *VMMigrateParamsData) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMMigrateParamsData) validateNodeIP(formats strfmt.Registry) error {
+func (m *VMMigrateParamsData) validateHostID(formats strfmt.Registry) error {
 
-	if err := validate.Required("data"+"."+"node_ip", "body", m.NodeIP); err != nil {
+	if err := validate.Required("data"+"."+"host_id", "body", m.HostID); err != nil {
 		return err
 	}
 

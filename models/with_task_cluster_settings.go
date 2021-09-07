@@ -21,7 +21,7 @@ type WithTaskClusterSettings struct {
 
 	// data
 	// Required: true
-	Data *ClusterSettings `json:"data"`
+	Data *ClusterSettings2 `json:"data"`
 
 	// task id
 	TaskID *string `json:"task_id,omitempty"`

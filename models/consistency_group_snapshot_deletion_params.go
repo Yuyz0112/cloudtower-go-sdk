@@ -19,6 +19,10 @@ import (
 // swagger:model ConsistencyGroupSnapshotDeletionParams
 type ConsistencyGroupSnapshotDeletionParams struct {
 
+	// data
+	// Required: true
+	Data *ConsistencyGroupSnapshotDeletionParamsData `json:"data"`
+
 	// where
 	// Required: true
 	Where *ConsistencyGroupSnapshotWhereInput `json:"where"`
@@ -28,6 +32,10 @@ type ConsistencyGroupSnapshotDeletionParams struct {
 func (m *ConsistencyGroupSnapshotDeletionParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateWhere(formats); err != nil {
 		res = append(res, err)
 	}
@@ -35,6 +43,24 @@ func (m *ConsistencyGroupSnapshotDeletionParams) Validate(formats strfmt.Registr
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotDeletionParams) validateData(formats strfmt.Registry) error {
+
+	if err := validate.Required("data", "body", m.Data); err != nil {
+		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -60,6 +86,10 @@ func (m *ConsistencyGroupSnapshotDeletionParams) validateWhere(formats strfmt.Re
 func (m *ConsistencyGroupSnapshotDeletionParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateWhere(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -67,6 +97,20 @@ func (m *ConsistencyGroupSnapshotDeletionParams) ContextValidate(ctx context.Con
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotDeletionParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -95,6 +139,62 @@ func (m *ConsistencyGroupSnapshotDeletionParams) MarshalBinary() ([]byte, error)
 // UnmarshalBinary interface implementation
 func (m *ConsistencyGroupSnapshotDeletionParams) UnmarshalBinary(b []byte) error {
 	var res ConsistencyGroupSnapshotDeletionParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// ConsistencyGroupSnapshotDeletionParamsData consistency group snapshot deletion params data
+//
+// swagger:model ConsistencyGroupSnapshotDeletionParamsData
+type ConsistencyGroupSnapshotDeletionParamsData struct {
+
+	// remain volume snapshot
+	// Required: true
+	RemainVolumeSnapshot *bool `json:"remain_volume_snapshot"`
+}
+
+// Validate validates this consistency group snapshot deletion params data
+func (m *ConsistencyGroupSnapshotDeletionParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateRemainVolumeSnapshot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotDeletionParamsData) validateRemainVolumeSnapshot(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"remain_volume_snapshot", "body", m.RemainVolumeSnapshot); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this consistency group snapshot deletion params data based on context it is used
+func (m *ConsistencyGroupSnapshotDeletionParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *ConsistencyGroupSnapshotDeletionParamsData) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *ConsistencyGroupSnapshotDeletionParamsData) UnmarshalBinary(b []byte) error {
+	var res ConsistencyGroupSnapshotDeletionParamsData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

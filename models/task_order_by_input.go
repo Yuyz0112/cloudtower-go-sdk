@@ -86,6 +86,30 @@ const (
 	// TaskOrderByInputProgressDESC captures enum value "progress_DESC"
 	TaskOrderByInputProgressDESC TaskOrderByInput = "progress_DESC"
 
+	// TaskOrderByInputResourceIDASC captures enum value "resource_id_ASC"
+	TaskOrderByInputResourceIDASC TaskOrderByInput = "resource_id_ASC"
+
+	// TaskOrderByInputResourceIDDESC captures enum value "resource_id_DESC"
+	TaskOrderByInputResourceIDDESC TaskOrderByInput = "resource_id_DESC"
+
+	// TaskOrderByInputResourceMutationASC captures enum value "resource_mutation_ASC"
+	TaskOrderByInputResourceMutationASC TaskOrderByInput = "resource_mutation_ASC"
+
+	// TaskOrderByInputResourceMutationDESC captures enum value "resource_mutation_DESC"
+	TaskOrderByInputResourceMutationDESC TaskOrderByInput = "resource_mutation_DESC"
+
+	// TaskOrderByInputResourceRollbackedASC captures enum value "resource_rollbacked_ASC"
+	TaskOrderByInputResourceRollbackedASC TaskOrderByInput = "resource_rollbacked_ASC"
+
+	// TaskOrderByInputResourceRollbackedDESC captures enum value "resource_rollbacked_DESC"
+	TaskOrderByInputResourceRollbackedDESC TaskOrderByInput = "resource_rollbacked_DESC"
+
+	// TaskOrderByInputResourceTypeASC captures enum value "resource_type_ASC"
+	TaskOrderByInputResourceTypeASC TaskOrderByInput = "resource_type_ASC"
+
+	// TaskOrderByInputResourceTypeDESC captures enum value "resource_type_DESC"
+	TaskOrderByInputResourceTypeDESC TaskOrderByInput = "resource_type_DESC"
+
 	// TaskOrderByInputSnapshotASC captures enum value "snapshot_ASC"
 	TaskOrderByInputSnapshotASC TaskOrderByInput = "snapshot_ASC"
 
@@ -122,7 +146,7 @@ var taskOrderByInputEnum []interface{}
 
 func init() {
 	var res []TaskOrderByInput
-	if err := json.Unmarshal([]byte(`["args_ASC","args_DESC","createdAt_ASC","createdAt_DESC","description_ASC","description_DESC","error_code_ASC","error_code_DESC","error_message_ASC","error_message_DESC","finished_at_ASC","finished_at_DESC","id_ASC","id_DESC","internal_ASC","internal_DESC","local_created_at_ASC","local_created_at_DESC","progress_ASC","progress_DESC","snapshot_ASC","snapshot_DESC","started_at_ASC","started_at_DESC","status_ASC","status_DESC","steps_ASC","steps_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["args_ASC","args_DESC","createdAt_ASC","createdAt_DESC","description_ASC","description_DESC","error_code_ASC","error_code_DESC","error_message_ASC","error_message_DESC","finished_at_ASC","finished_at_DESC","id_ASC","id_DESC","internal_ASC","internal_DESC","local_created_at_ASC","local_created_at_DESC","progress_ASC","progress_DESC","resource_id_ASC","resource_id_DESC","resource_mutation_ASC","resource_mutation_DESC","resource_rollbacked_ASC","resource_rollbacked_DESC","resource_type_ASC","resource_type_DESC","snapshot_ASC","snapshot_DESC","started_at_ASC","started_at_DESC","status_ASC","status_DESC","steps_ASC","steps_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

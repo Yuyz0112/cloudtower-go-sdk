@@ -76,7 +76,7 @@ type NodeTopoUpdationParamsItems0 struct {
 
 	// data
 	// Required: true
-	Data *NodeTopoUpdationParamsItems0Data `json:"data"`
+	Data interface{} `json:"data"`
 
 	// where
 	// Required: true
@@ -103,17 +103,8 @@ func (m *NodeTopoUpdationParamsItems0) Validate(formats strfmt.Registry) error {
 
 func (m *NodeTopoUpdationParamsItems0) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("data", "body", m.Data); err != nil {
-		return err
-	}
-
-	if m.Data != nil {
-		if err := m.Data.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data")
-			}
-			return err
-		}
+	if m.Data == nil {
+		return errors.Required("data", "body", nil)
 	}
 
 	return nil
@@ -141,10 +132,6 @@ func (m *NodeTopoUpdationParamsItems0) validateWhere(formats strfmt.Registry) er
 func (m *NodeTopoUpdationParamsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateData(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateWhere(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -152,20 +139,6 @@ func (m *NodeTopoUpdationParamsItems0) ContextValidate(ctx context.Context, form
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *NodeTopoUpdationParamsItems0) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Data != nil {
-		if err := m.Data.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -194,111 +167,6 @@ func (m *NodeTopoUpdationParamsItems0) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NodeTopoUpdationParamsItems0) UnmarshalBinary(b []byte) error {
 	var res NodeTopoUpdationParamsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NodeTopoUpdationParamsItems0Data node topo updation params items0 data
-//
-// swagger:model NodeTopoUpdationParamsItems0Data
-type NodeTopoUpdationParamsItems0Data struct {
-
-	// brick topo id
-	// Required: true
-	BrickTopoID *string `json:"brick_topo_id"`
-
-	// position
-	// Required: true
-	Position *Position `json:"position"`
-}
-
-// Validate validates this node topo updation params items0 data
-func (m *NodeTopoUpdationParamsItems0Data) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateBrickTopoID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePosition(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NodeTopoUpdationParamsItems0Data) validateBrickTopoID(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"brick_topo_id", "body", m.BrickTopoID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NodeTopoUpdationParamsItems0Data) validatePosition(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"position", "body", m.Position); err != nil {
-		return err
-	}
-
-	if m.Position != nil {
-		if err := m.Position.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data" + "." + "position")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this node topo updation params items0 data based on the context it is used
-func (m *NodeTopoUpdationParamsItems0Data) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidatePosition(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NodeTopoUpdationParamsItems0Data) contextValidatePosition(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Position != nil {
-		if err := m.Position.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data" + "." + "position")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NodeTopoUpdationParamsItems0Data) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NodeTopoUpdationParamsItems0Data) UnmarshalBinary(b []byte) error {
-	var res NodeTopoUpdationParamsItems0Data
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

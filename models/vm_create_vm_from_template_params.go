@@ -36,6 +36,9 @@ type VMCreateVMFromTemplateParams struct {
 	// description
 	Description string `json:"description,omitempty"`
 
+	// disk operate
+	DiskOperate *VMCreateVMFromTemplateParamsDiskOperate `json:"disk_operate,omitempty"`
+
 	// firmware
 	Firmware VMFirmware `json:"firmware,omitempty"`
 
@@ -86,9 +89,6 @@ type VMCreateVMFromTemplateParams struct {
 	// vcpu
 	Vcpu float64 `json:"vcpu,omitempty"`
 
-	// vm disks
-	VMDisks *VMDiskParams `json:"vm_disks,omitempty"`
-
 	// vm nics
 	VMNics VMNicParams `json:"vm_nics,omitempty"`
 }
@@ -102,6 +102,10 @@ func (m *VMCreateVMFromTemplateParams) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateClusterID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDiskOperate(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -137,10 +141,6 @@ func (m *VMCreateVMFromTemplateParams) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateVMDisks(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateVMNics(formats); err != nil {
 		res = append(res, err)
 	}
@@ -172,6 +172,23 @@ func (m *VMCreateVMFromTemplateParams) validateClusterID(formats strfmt.Registry
 
 	if err := validate.Required("cluster_id", "body", m.ClusterID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParams) validateDiskOperate(formats strfmt.Registry) error {
+	if swag.IsZero(m.DiskOperate) { // not required
+		return nil
+	}
+
+	if m.DiskOperate != nil {
+		if err := m.DiskOperate.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk_operate")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -285,23 +302,6 @@ func (m *VMCreateVMFromTemplateParams) validateTemplateID(formats strfmt.Registr
 	return nil
 }
 
-func (m *VMCreateVMFromTemplateParams) validateVMDisks(formats strfmt.Registry) error {
-	if swag.IsZero(m.VMDisks) { // not required
-		return nil
-	}
-
-	if m.VMDisks != nil {
-		if err := m.VMDisks.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vm_disks")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *VMCreateVMFromTemplateParams) validateVMNics(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMNics) { // not required
 		return nil
@@ -322,6 +322,10 @@ func (m *VMCreateVMFromTemplateParams) ContextValidate(ctx context.Context, form
 	var res []error
 
 	if err := m.contextValidateCloudInit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDiskOperate(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -349,10 +353,6 @@ func (m *VMCreateVMFromTemplateParams) ContextValidate(ctx context.Context, form
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateVMDisks(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateVMNics(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -369,6 +369,20 @@ func (m *VMCreateVMFromTemplateParams) contextValidateCloudInit(ctx context.Cont
 		if err := m.CloudInit.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cloud_init")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParams) contextValidateDiskOperate(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DiskOperate != nil {
+		if err := m.DiskOperate.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk_operate")
 			}
 			return err
 		}
@@ -444,20 +458,6 @@ func (m *VMCreateVMFromTemplateParams) contextValidateStatus(ctx context.Context
 			return ve.ValidateName("status")
 		}
 		return err
-	}
-
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParams) contextValidateVMDisks(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VMDisks != nil {
-		if err := m.VMDisks.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vm_disks")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -856,6 +856,345 @@ func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) Marsha
 // UnmarshalBinary interface implementation
 func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) UnmarshalBinary(b []byte) error {
 	var res VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMCreateVMFromTemplateParamsDiskOperate VM create VM from template params disk operate
+//
+// swagger:model VMCreateVMFromTemplateParamsDiskOperate
+type VMCreateVMFromTemplateParamsDiskOperate struct {
+
+	// modify disks
+	ModifyDisks []*VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0 `json:"modify_disks"`
+
+	// new disks
+	NewDisks *VMDiskParams `json:"new_disks,omitempty"`
+
+	// remove disks
+	RemoveDisks *VMCreateVMFromTemplateParamsDiskOperateRemoveDisks `json:"remove_disks,omitempty"`
+}
+
+// Validate validates this VM create VM from template params disk operate
+func (m *VMCreateVMFromTemplateParamsDiskOperate) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateModifyDisks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNewDisks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRemoveDisks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperate) validateModifyDisks(formats strfmt.Registry) error {
+	if swag.IsZero(m.ModifyDisks) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ModifyDisks); i++ {
+		if swag.IsZero(m.ModifyDisks[i]) { // not required
+			continue
+		}
+
+		if m.ModifyDisks[i] != nil {
+			if err := m.ModifyDisks[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("disk_operate" + "." + "modify_disks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperate) validateNewDisks(formats strfmt.Registry) error {
+	if swag.IsZero(m.NewDisks) { // not required
+		return nil
+	}
+
+	if m.NewDisks != nil {
+		if err := m.NewDisks.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk_operate" + "." + "new_disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperate) validateRemoveDisks(formats strfmt.Registry) error {
+	if swag.IsZero(m.RemoveDisks) { // not required
+		return nil
+	}
+
+	if m.RemoveDisks != nil {
+		if err := m.RemoveDisks.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk_operate" + "." + "remove_disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this VM create VM from template params disk operate based on the context it is used
+func (m *VMCreateVMFromTemplateParamsDiskOperate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateModifyDisks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNewDisks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRemoveDisks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperate) contextValidateModifyDisks(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ModifyDisks); i++ {
+
+		if m.ModifyDisks[i] != nil {
+			if err := m.ModifyDisks[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("disk_operate" + "." + "modify_disks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperate) contextValidateNewDisks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NewDisks != nil {
+		if err := m.NewDisks.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk_operate" + "." + "new_disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperate) contextValidateRemoveDisks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RemoveDisks != nil {
+		if err := m.RemoveDisks.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk_operate" + "." + "remove_disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMCreateVMFromTemplateParamsDiskOperate) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMCreateVMFromTemplateParamsDiskOperate) UnmarshalBinary(b []byte) error {
+	var res VMCreateVMFromTemplateParamsDiskOperate
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0 VM create VM from template params disk operate modify disks items0
+//
+// swagger:model VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0
+type VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0 struct {
+
+	// bus
+	Bus Bus `json:"bus,omitempty"`
+
+	// disk index
+	// Required: true
+	DiskIndex *float64 `json:"disk_index"`
+
+	// vm volume id
+	VMVolumeID string `json:"vm_volume_id,omitempty"`
+}
+
+// Validate validates this VM create VM from template params disk operate modify disks items0
+func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateBus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDiskIndex(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) validateBus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Bus) { // not required
+		return nil
+	}
+
+	if err := m.Bus.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("bus")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) validateDiskIndex(formats strfmt.Registry) error {
+
+	if err := validate.Required("disk_index", "body", m.DiskIndex); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this VM create VM from template params disk operate modify disks items0 based on the context it is used
+func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateBus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) contextValidateBus(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Bus.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("bus")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) UnmarshalBinary(b []byte) error {
+	var res VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMCreateVMFromTemplateParamsDiskOperateRemoveDisks VM create VM from template params disk operate remove disks
+//
+// swagger:model VMCreateVMFromTemplateParamsDiskOperateRemoveDisks
+type VMCreateVMFromTemplateParamsDiskOperateRemoveDisks struct {
+
+	// disk index
+	// Required: true
+	DiskIndex []float64 `json:"disk_index"`
+}
+
+// Validate validates this VM create VM from template params disk operate remove disks
+func (m *VMCreateVMFromTemplateParamsDiskOperateRemoveDisks) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDiskIndex(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParamsDiskOperateRemoveDisks) validateDiskIndex(formats strfmt.Registry) error {
+
+	if err := validate.Required("disk_operate"+"."+"remove_disks"+"."+"disk_index", "body", m.DiskIndex); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this VM create VM from template params disk operate remove disks based on context it is used
+func (m *VMCreateVMFromTemplateParamsDiskOperateRemoveDisks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMCreateVMFromTemplateParamsDiskOperateRemoveDisks) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMCreateVMFromTemplateParamsDiskOperateRemoveDisks) UnmarshalBinary(b []byte) error {
+	var res VMCreateVMFromTemplateParamsDiskOperateRemoveDisks
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

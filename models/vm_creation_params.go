@@ -49,8 +49,7 @@ type VMCreationParams struct {
 	Ha *bool `json:"ha"`
 
 	// host id
-	// Required: true
-	HostID *string `json:"host_id"`
+	HostID string `json:"host_id,omitempty"`
 
 	// io policy
 	IoPolicy VMDiskIoPolicy `json:"io_policy,omitempty"`
@@ -117,10 +116,6 @@ func (m *VMCreationParams) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateHa(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHostID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -233,15 +228,6 @@ func (m *VMCreationParams) validateGuestOsType(formats strfmt.Registry) error {
 func (m *VMCreationParams) validateHa(formats strfmt.Registry) error {
 
 	if err := validate.Required("ha", "body", m.Ha); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMCreationParams) validateHostID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host_id", "body", m.HostID); err != nil {
 		return err
 	}
 

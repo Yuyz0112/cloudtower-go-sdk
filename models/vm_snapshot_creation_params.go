@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -18,6 +19,105 @@ import (
 //
 // swagger:model VmSnapshotCreationParams
 type VMSnapshotCreationParams struct {
+
+	// data
+	// Required: true
+	Data []*VMSnapshotCreationParamsDataItems0 `json:"data"`
+}
+
+// Validate validates this Vm snapshot creation params
+func (m *VMSnapshotCreationParams) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMSnapshotCreationParams) validateData(formats strfmt.Registry) error {
+
+	if err := validate.Required("data", "body", m.Data); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Data); i++ {
+		if swag.IsZero(m.Data[i]) { // not required
+			continue
+		}
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this Vm snapshot creation params based on the context it is used
+func (m *VMSnapshotCreationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMSnapshotCreationParams) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VMSnapshotCreationParams) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VMSnapshotCreationParams) UnmarshalBinary(b []byte) error {
+	var res VMSnapshotCreationParams
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VMSnapshotCreationParamsDataItems0 VM snapshot creation params data items0
+//
+// swagger:model VMSnapshotCreationParamsDataItems0
+type VMSnapshotCreationParamsDataItems0 struct {
 
 	// consistent type
 	ConsistentType ConsistentType `json:"consistent_type,omitempty"`
@@ -31,8 +131,8 @@ type VMSnapshotCreationParams struct {
 	VMID *string `json:"vm_id"`
 }
 
-// Validate validates this Vm snapshot creation params
-func (m *VMSnapshotCreationParams) Validate(formats strfmt.Registry) error {
+// Validate validates this VM snapshot creation params data items0
+func (m *VMSnapshotCreationParamsDataItems0) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConsistentType(formats); err != nil {
@@ -53,7 +153,7 @@ func (m *VMSnapshotCreationParams) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMSnapshotCreationParams) validateConsistentType(formats strfmt.Registry) error {
+func (m *VMSnapshotCreationParamsDataItems0) validateConsistentType(formats strfmt.Registry) error {
 	if swag.IsZero(m.ConsistentType) { // not required
 		return nil
 	}
@@ -68,7 +168,7 @@ func (m *VMSnapshotCreationParams) validateConsistentType(formats strfmt.Registr
 	return nil
 }
 
-func (m *VMSnapshotCreationParams) validateName(formats strfmt.Registry) error {
+func (m *VMSnapshotCreationParamsDataItems0) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -77,7 +177,7 @@ func (m *VMSnapshotCreationParams) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMSnapshotCreationParams) validateVMID(formats strfmt.Registry) error {
+func (m *VMSnapshotCreationParamsDataItems0) validateVMID(formats strfmt.Registry) error {
 
 	if err := validate.Required("vm_id", "body", m.VMID); err != nil {
 		return err
@@ -86,8 +186,8 @@ func (m *VMSnapshotCreationParams) validateVMID(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this Vm snapshot creation params based on the context it is used
-func (m *VMSnapshotCreationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this VM snapshot creation params data items0 based on the context it is used
+func (m *VMSnapshotCreationParamsDataItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateConsistentType(ctx, formats); err != nil {
@@ -100,7 +200,7 @@ func (m *VMSnapshotCreationParams) ContextValidate(ctx context.Context, formats 
 	return nil
 }
 
-func (m *VMSnapshotCreationParams) contextValidateConsistentType(ctx context.Context, formats strfmt.Registry) error {
+func (m *VMSnapshotCreationParamsDataItems0) contextValidateConsistentType(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.ConsistentType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -113,7 +213,7 @@ func (m *VMSnapshotCreationParams) contextValidateConsistentType(ctx context.Con
 }
 
 // MarshalBinary interface implementation
-func (m *VMSnapshotCreationParams) MarshalBinary() ([]byte, error) {
+func (m *VMSnapshotCreationParamsDataItems0) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -121,8 +221,8 @@ func (m *VMSnapshotCreationParams) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *VMSnapshotCreationParams) UnmarshalBinary(b []byte) error {
-	var res VMSnapshotCreationParams
+func (m *VMSnapshotCreationParamsDataItems0) UnmarshalBinary(b []byte) error {
+	var res VMSnapshotCreationParamsDataItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

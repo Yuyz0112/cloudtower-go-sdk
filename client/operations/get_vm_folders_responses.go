@@ -50,13 +50,13 @@ func NewGetVMFoldersOK() *GetVMFoldersOK {
 Ok
 */
 type GetVMFoldersOK struct {
-	Payload []*models.VMFolder
+	Payload []*models.VMFolder2
 }
 
 func (o *GetVMFoldersOK) Error() string {
 	return fmt.Sprintf("[POST /get-vm-folders][%d] getVmFoldersOK  %+v", 200, o.Payload)
 }
-func (o *GetVMFoldersOK) GetPayload() []*models.VMFolder {
+func (o *GetVMFoldersOK) GetPayload() []*models.VMFolder2 {
 	return o.Payload
 }
 

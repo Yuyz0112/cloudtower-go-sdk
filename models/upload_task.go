@@ -38,10 +38,6 @@ type UploadTask struct {
 	// Required: true
 	ID *string `json:"id"`
 
-	// resource ids
-	// Required: true
-	ResourceIds []string `json:"resource_ids"`
-
 	// resource type
 	// Required: true
 	ResourceType *UploadResourceType `json:"resource_type"`
@@ -56,6 +52,10 @@ type UploadTask struct {
 	// status
 	// Required: true
 	Status *UploadTaskStatus `json:"status"`
+
+	// updated at
+	// Required: true
+	UpdatedAt *string `json:"updatedAt"`
 }
 
 // Validate validates this upload task
@@ -78,10 +78,6 @@ func (m *UploadTask) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateResourceIds(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateResourceType(formats); err != nil {
 		res = append(res, err)
 	}
@@ -91,6 +87,10 @@ func (m *UploadTask) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -130,15 +130,6 @@ func (m *UploadTask) validateCurrentChunk(formats strfmt.Registry) error {
 func (m *UploadTask) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UploadTask) validateResourceIds(formats strfmt.Registry) error {
-
-	if err := validate.Required("resource_ids", "body", m.ResourceIds); err != nil {
 		return err
 	}
 
@@ -193,6 +184,15 @@ func (m *UploadTask) validateStatus(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *UploadTask) validateUpdatedAt(formats strfmt.Registry) error {
+
+	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+		return err
 	}
 
 	return nil

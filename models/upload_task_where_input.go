@@ -213,6 +213,30 @@ type UploadTaskWhereInput struct {
 
 	// status not in
 	StatusNotIn []UploadTaskStatus `json:"status_not_in,omitempty"`
+
+	// updated at
+	UpdatedAt *string `json:"updatedAt,omitempty"`
+
+	// updated at gt
+	UpdatedAtGt *string `json:"updatedAt_gt,omitempty"`
+
+	// updated at gte
+	UpdatedAtGte *string `json:"updatedAt_gte,omitempty"`
+
+	// updated at in
+	UpdatedAtIn []string `json:"updatedAt_in,omitempty"`
+
+	// updated at lt
+	UpdatedAtLt *string `json:"updatedAt_lt,omitempty"`
+
+	// updated at lte
+	UpdatedAtLte *string `json:"updatedAt_lte,omitempty"`
+
+	// updated at not
+	UpdatedAtNot *string `json:"updatedAt_not,omitempty"`
+
+	// updated at not in
+	UpdatedAtNotIn []string `json:"updatedAt_not_in,omitempty"`
 }
 
 // Validate validates this upload task where input

@@ -430,6 +430,15 @@ type GraphWhereInput struct {
 	// vms some
 	VmsSome interface{} `json:"vms_some,omitempty"`
 
+	// witnesses every
+	WitnessesEvery interface{} `json:"witnesses_every,omitempty"`
+
+	// witnesses none
+	WitnessesNone interface{} `json:"witnesses_none,omitempty"`
+
+	// witnesses some
+	WitnessesSome interface{} `json:"witnesses_some,omitempty"`
+
 	// zones every
 	ZonesEvery interface{} `json:"zones_every,omitempty"`
 

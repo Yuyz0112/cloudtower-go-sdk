@@ -19,8 +19,8 @@ import (
 // swagger:model DatacenterCreationParams
 type DatacenterCreationParams struct {
 
-	// cluster ids
-	ClusterIds []string `json:"cluster_ids"`
+	// clusters
+	Clusters *ClusterWhereInput `json:"clusters,omitempty"`
 
 	// name
 	// Required: true
@@ -35,6 +35,10 @@ type DatacenterCreationParams struct {
 func (m *DatacenterCreationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateClusters(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -46,6 +50,23 @@ func (m *DatacenterCreationParams) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DatacenterCreationParams) validateClusters(formats strfmt.Registry) error {
+	if swag.IsZero(m.Clusters) { // not required
+		return nil
+	}
+
+	if m.Clusters != nil {
+		if err := m.Clusters.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -67,8 +88,31 @@ func (m *DatacenterCreationParams) validateOrganizationID(formats strfmt.Registr
 	return nil
 }
 
-// ContextValidate validates this datacenter creation params based on context it is used
+// ContextValidate validate this datacenter creation params based on the context it is used
 func (m *DatacenterCreationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClusters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DatacenterCreationParams) contextValidateClusters(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Clusters != nil {
+		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

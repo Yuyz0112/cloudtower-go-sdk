@@ -152,8 +152,7 @@ func (m *VMUpdateNicParams) UnmarshalBinary(b []byte) error {
 type VMUpdateNicParamsData struct {
 
 	// connect vlan id
-	// Required: true
-	ConnectVlanID *string `json:"connect_vlan_id"`
+	ConnectVlanID string `json:"connect_vlan_id,omitempty"`
 
 	// enabled
 	Enabled bool `json:"enabled,omitempty"`
@@ -188,10 +187,6 @@ type VMUpdateNicParamsData struct {
 func (m *VMUpdateNicParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateConnectVlanID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateModel(formats); err != nil {
 		res = append(res, err)
 	}
@@ -203,15 +198,6 @@ func (m *VMUpdateNicParamsData) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *VMUpdateNicParamsData) validateConnectVlanID(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"connect_vlan_id", "body", m.ConnectVlanID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

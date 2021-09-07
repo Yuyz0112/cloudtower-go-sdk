@@ -149,12 +149,31 @@ func (m *VMStartParams) UnmarshalBinary(b []byte) error {
 // swagger:model VMStartParamsData
 type VMStartParamsData struct {
 
-	// node ip
-	NodeIP string `json:"node_ip,omitempty"`
+	// host id
+	// Required: true
+	HostID *string `json:"host_id"`
 }
 
 // Validate validates this VM start params data
 func (m *VMStartParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateHostID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VMStartParamsData) validateHostID(formats strfmt.Registry) error {
+
+	if err := validate.Required("data"+"."+"host_id", "body", m.HostID); err != nil {
+		return err
+	}
+
 	return nil
 }
 

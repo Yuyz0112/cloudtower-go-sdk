@@ -83,8 +83,7 @@ type MountNewCreateDisksParamsItems0 struct {
 	Bus *Bus `json:"bus"`
 
 	// index
-	// Required: true
-	Index *float64 `json:"index"`
+	Index float64 `json:"index,omitempty"`
 
 	// key
 	Key float64 `json:"key,omitempty"`
@@ -115,10 +114,6 @@ func (m *MountNewCreateDisksParamsItems0) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateBus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateIndex(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -166,15 +161,6 @@ func (m *MountNewCreateDisksParamsItems0) validateBus(formats strfmt.Registry) e
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *MountNewCreateDisksParamsItems0) validateIndex(formats strfmt.Registry) error {
-
-	if err := validate.Required("index", "body", m.Index); err != nil {
-		return err
 	}
 
 	return nil

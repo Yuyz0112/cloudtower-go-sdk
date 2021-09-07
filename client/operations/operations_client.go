@@ -50,21 +50,19 @@ type ClientService interface {
 
 	CloneVMTemplateFromVM(params *CloneVMTemplateFromVMParams, opts ...ClientOption) (*CloneVMTemplateFromVMOK, error)
 
+	ConnectCluster(params *ConnectClusterParams, opts ...ClientOption) (*ConnectClusterOK, error)
+
 	ConvertVMTemplateFromVM(params *ConvertVMTemplateFromVMParams, opts ...ClientOption) (*ConvertVMTemplateFromVMOK, error)
 
 	ConvertVMTemplateToVM(params *ConvertVMTemplateToVMParams, opts ...ClientOption) (*ConvertVMTemplateToVMOK, error)
 
 	CreateBrickTopo(params *CreateBrickTopoParams, opts ...ClientOption) (*CreateBrickTopoOK, error)
 
-	CreateCluster(params *CreateClusterParams, opts ...ClientOption) (*CreateClusterOK, error)
-
 	CreateClusterRecycleBinSetting(params *CreateClusterRecycleBinSettingParams, opts ...ClientOption) (*CreateClusterRecycleBinSettingOK, error)
 
 	CreateConsistencyGroup(params *CreateConsistencyGroupParams, opts ...ClientOption) (*CreateConsistencyGroupOK, error)
 
 	CreateConsistencyGroupSnapshot(params *CreateConsistencyGroupSnapshotParams, opts ...ClientOption) (*CreateConsistencyGroupSnapshotOK, error)
-
-	CreateCustomizeAlertRule(params *CreateCustomizeAlertRuleParams, opts ...ClientOption) (*CreateCustomizeAlertRuleOK, error)
 
 	CreateDatacenter(params *CreateDatacenterParams, opts ...ClientOption) (*CreateDatacenterOK, error)
 
@@ -83,6 +81,8 @@ type ClientService interface {
 	CreateLabel(params *CreateLabelParams, opts ...ClientOption) (*CreateLabelOK, error)
 
 	CreateNamespaceGroup(params *CreateNamespaceGroupParams, opts ...ClientOption) (*CreateNamespaceGroupOK, error)
+
+	CreateNfsExport(params *CreateNfsExportParams, opts ...ClientOption) (*CreateNfsExportOK, error)
 
 	CreateNvmfNamespace(params *CreateNvmfNamespaceParams, opts ...ClientOption) (*CreateNvmfNamespaceOK, error)
 
@@ -110,8 +110,6 @@ type ClientService interface {
 
 	CreateView(params *CreateViewParams, opts ...ClientOption) (*CreateViewOK, error)
 
-	CreateVlan(params *CreateVlanParams, opts ...ClientOption) (*CreateVlanOK, error)
-
 	CreateVM(params *CreateVMParams, opts ...ClientOption) (*CreateVMOK, error)
 
 	CreateVMFolder(params *CreateVMFolderParams, opts ...ClientOption) (*CreateVMFolderOK, error)
@@ -135,8 +133,6 @@ type ClientService interface {
 	DeleteConsistencyGroup(params *DeleteConsistencyGroupParams, opts ...ClientOption) (*DeleteConsistencyGroupOK, error)
 
 	DeleteConsistencyGroupSnapshot(params *DeleteConsistencyGroupSnapshotParams, opts ...ClientOption) (*DeleteConsistencyGroupSnapshotOK, error)
-
-	DeleteCustomizeAlertRule(params *DeleteCustomizeAlertRuleParams, opts ...ClientOption) (*DeleteCustomizeAlertRuleOK, error)
 
 	DeleteDatacenter(params *DeleteDatacenterParams, opts ...ClientOption) (*DeleteDatacenterOK, error)
 
@@ -1042,6 +1038,44 @@ func (a *Client) CloneVMTemplateFromVM(params *CloneVMTemplateFromVMParams, opts
 }
 
 /*
+  ConnectCluster connect cluster API
+*/
+func (a *Client) ConnectCluster(params *ConnectClusterParams, opts ...ClientOption) (*ConnectClusterOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewConnectClusterParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "ConnectCluster",
+		Method:             "POST",
+		PathPattern:        "/connect-cluster",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ConnectClusterReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ConnectClusterOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for ConnectCluster: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   ConvertVMTemplateFromVM convert Vm template from Vm API
 */
 func (a *Client) ConvertVMTemplateFromVM(params *ConvertVMTemplateFromVMParams, opts ...ClientOption) (*ConvertVMTemplateFromVMOK, error) {
@@ -1156,44 +1190,6 @@ func (a *Client) CreateBrickTopo(params *CreateBrickTopoParams, opts ...ClientOp
 }
 
 /*
-  CreateCluster create cluster API
-*/
-func (a *Client) CreateCluster(params *CreateClusterParams, opts ...ClientOption) (*CreateClusterOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateClusterParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "CreateCluster",
-		Method:             "POST",
-		PathPattern:        "/connect-cluster",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &CreateClusterReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*CreateClusterOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CreateCluster: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
   CreateClusterRecycleBinSetting create cluster recycle bin setting API
 */
 func (a *Client) CreateClusterRecycleBinSetting(params *CreateClusterRecycleBinSettingParams, opts ...ClientOption) (*CreateClusterRecycleBinSettingOK, error) {
@@ -1304,44 +1300,6 @@ func (a *Client) CreateConsistencyGroupSnapshot(params *CreateConsistencyGroupSn
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for CreateConsistencyGroupSnapshot: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  CreateCustomizeAlertRule create customize alert rule API
-*/
-func (a *Client) CreateCustomizeAlertRule(params *CreateCustomizeAlertRuleParams, opts ...ClientOption) (*CreateCustomizeAlertRuleOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateCustomizeAlertRuleParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "CreateCustomizeAlertRule",
-		Method:             "POST",
-		PathPattern:        "/create-customize-alert-rule",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &CreateCustomizeAlertRuleReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*CreateCustomizeAlertRuleOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CreateCustomizeAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -1684,6 +1642,44 @@ func (a *Client) CreateNamespaceGroup(params *CreateNamespaceGroupParams, opts .
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for CreateNamespaceGroup: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateNfsExport create nfs export API
+*/
+func (a *Client) CreateNfsExport(params *CreateNfsExportParams, opts ...ClientOption) (*CreateNfsExportOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateNfsExportParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateNfsExport",
+		Method:             "POST",
+		PathPattern:        "/create-nfs-export",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &CreateNfsExportReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateNfsExportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateNfsExport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -2182,44 +2178,6 @@ func (a *Client) CreateView(params *CreateViewParams, opts ...ClientOption) (*Cr
 }
 
 /*
-  CreateVlan create vlan API
-*/
-func (a *Client) CreateVlan(params *CreateVlanParams, opts ...ClientOption) (*CreateVlanOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCreateVlanParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "CreateVlan",
-		Method:             "POST",
-		PathPattern:        "/create-nfs-export",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &CreateVlanReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*CreateVlanOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CreateVlan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
   CreateVM create Vm API
 */
 func (a *Client) CreateVM(params *CreateVMParams, opts ...ClientOption) (*CreateVMOK, error) {
@@ -2672,44 +2630,6 @@ func (a *Client) DeleteConsistencyGroupSnapshot(params *DeleteConsistencyGroupSn
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for DeleteConsistencyGroupSnapshot: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  DeleteCustomizeAlertRule delete customize alert rule API
-*/
-func (a *Client) DeleteCustomizeAlertRule(params *DeleteCustomizeAlertRuleParams, opts ...ClientOption) (*DeleteCustomizeAlertRuleOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteCustomizeAlertRuleParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "DeleteCustomizeAlertRule",
-		Method:             "POST",
-		PathPattern:        "/delete-customize-alert-rule",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &DeleteCustomizeAlertRuleReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*DeleteCustomizeAlertRuleOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for DeleteCustomizeAlertRule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

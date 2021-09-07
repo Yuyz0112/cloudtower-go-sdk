@@ -62,7 +62,7 @@ func NewCreateVMSnapshotParamsWithHTTPClient(client *http.Client) *CreateVMSnaps
 type CreateVMSnapshotParams struct {
 
 	// RequestBody.
-	RequestBody []*models.VMSnapshotCreationParams
+	RequestBody *models.VMSnapshotCreationParams
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,13 +118,13 @@ func (o *CreateVMSnapshotParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestBody adds the requestBody to the create Vm snapshot params
-func (o *CreateVMSnapshotParams) WithRequestBody(requestBody []*models.VMSnapshotCreationParams) *CreateVMSnapshotParams {
+func (o *CreateVMSnapshotParams) WithRequestBody(requestBody *models.VMSnapshotCreationParams) *CreateVMSnapshotParams {
 	o.SetRequestBody(requestBody)
 	return o
 }
 
 // SetRequestBody adds the requestBody to the create Vm snapshot params
-func (o *CreateVMSnapshotParams) SetRequestBody(requestBody []*models.VMSnapshotCreationParams) {
+func (o *CreateVMSnapshotParams) SetRequestBody(requestBody *models.VMSnapshotCreationParams) {
 	o.RequestBody = requestBody
 }
 

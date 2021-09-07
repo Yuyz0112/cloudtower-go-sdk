@@ -58,6 +58,9 @@ type Vlan struct {
 	// vlan id
 	// Required: true
 	VlanID *float64 `json:"vlan_id"`
+
+	// vm nics
+	VMNics []*VlanVMNicsItems0 `json:"vm_nics,omitempty"`
 }
 
 // Validate validates this vlan
@@ -89,6 +92,10 @@ func (m *Vlan) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateVlanID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMNics(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -198,6 +205,30 @@ func (m *Vlan) validateVlanID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Vlan) validateVMNics(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMNics) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.VMNics); i++ {
+		if swag.IsZero(m.VMNics[i]) { // not required
+			continue
+		}
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this vlan based on the context it is used
 func (m *Vlan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -211,6 +242,10 @@ func (m *Vlan) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateVds(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMNics(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -261,6 +296,24 @@ func (m *Vlan) contextValidateVds(ctx context.Context, formats strfmt.Registry) 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Vlan) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.VMNics); i++ {
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -333,6 +386,62 @@ func (m *VlanLabelsItems0) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VlanLabelsItems0) UnmarshalBinary(b []byte) error {
 	var res VlanLabelsItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// VlanVMNicsItems0 vlan VM nics items0
+//
+// swagger:model VlanVMNicsItems0
+type VlanVMNicsItems0 struct {
+
+	// id
+	// Required: true
+	ID *string `json:"id"`
+}
+
+// Validate validates this vlan VM nics items0
+func (m *VlanVMNicsItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VlanVMNicsItems0) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this vlan VM nics items0 based on context it is used
+func (m *VlanVMNicsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *VlanVMNicsItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *VlanVMNicsItems0) UnmarshalBinary(b []byte) error {
+	var res VlanVMNicsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -151,8 +151,8 @@ func (m *DatacenterUpdationParams) UnmarshalBinary(b []byte) error {
 // swagger:model DatacenterUpdationParamsData
 type DatacenterUpdationParamsData struct {
 
-	// cluster ids
-	ClusterIds []string `json:"cluster_ids"`
+	// clusters
+	Clusters *ClusterWhereInput `json:"clusters,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -160,11 +160,60 @@ type DatacenterUpdationParamsData struct {
 
 // Validate validates this datacenter updation params data
 func (m *DatacenterUpdationParamsData) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateClusters(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this datacenter updation params data based on context it is used
+func (m *DatacenterUpdationParamsData) validateClusters(formats strfmt.Registry) error {
+	if swag.IsZero(m.Clusters) { // not required
+		return nil
+	}
+
+	if m.Clusters != nil {
+		if err := m.Clusters.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "clusters")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this datacenter updation params data based on the context it is used
 func (m *DatacenterUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClusters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DatacenterUpdationParamsData) contextValidateClusters(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Clusters != nil {
+		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "clusters")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

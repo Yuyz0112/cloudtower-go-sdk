@@ -96,6 +96,9 @@ type Graph struct {
 	// vms
 	Vms []*GraphVmsItems0 `json:"vms,omitempty"`
 
+	// witnesses
+	Witnesses []*GraphWitnessesItems0 `json:"witnesses,omitempty"`
+
 	// zones
 	Zones []*GraphZonesItems0 `json:"zones,omitempty"`
 }
@@ -177,6 +180,10 @@ func (m *Graph) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateVms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWitnesses(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -524,6 +531,30 @@ func (m *Graph) validateVms(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Graph) validateWitnesses(formats strfmt.Registry) error {
+	if swag.IsZero(m.Witnesses) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Witnesses); i++ {
+		if swag.IsZero(m.Witnesses[i]) { // not required
+			continue
+		}
+
+		if m.Witnesses[i] != nil {
+			if err := m.Witnesses[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("witnesses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Graph) validateZones(formats strfmt.Registry) error {
 	if swag.IsZero(m.Zones) { // not required
 		return nil
@@ -597,6 +628,10 @@ func (m *Graph) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	}
 
 	if err := m.contextValidateVms(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWitnesses(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -800,6 +835,24 @@ func (m *Graph) contextValidateVms(ctx context.Context, formats strfmt.Registry)
 			if err := m.Vms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Graph) contextValidateWitnesses(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Witnesses); i++ {
+
+		if m.Witnesses[i] != nil {
+			if err := m.Witnesses[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("witnesses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1552,6 +1605,79 @@ func (m *GraphVmsItems0) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GraphVmsItems0) UnmarshalBinary(b []byte) error {
 	var res GraphVmsItems0
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// GraphWitnessesItems0 graph witnesses items0
+//
+// swagger:model GraphWitnessesItems0
+type GraphWitnessesItems0 struct {
+
+	// id
+	// Required: true
+	ID *string `json:"id"`
+
+	// name
+	// Required: true
+	Name *string `json:"name"`
+}
+
+// Validate validates this graph witnesses items0
+func (m *GraphWitnessesItems0) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GraphWitnessesItems0) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GraphWitnessesItems0) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this graph witnesses items0 based on context it is used
+func (m *GraphWitnessesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *GraphWitnessesItems0) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *GraphWitnessesItems0) UnmarshalBinary(b []byte) error {
+	var res GraphWitnessesItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

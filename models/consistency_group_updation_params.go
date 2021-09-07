@@ -162,6 +162,9 @@ type ConsistencyGroupUpdationParamsData struct {
 
 	// namespaces ids
 	NamespacesIds []string `json:"namespaces_ids"`
+
+	// remain volume snapshot
+	RemainVolumeSnapshot bool `json:"remain_volume_snapshot,omitempty"`
 }
 
 // Validate validates this consistency group updation params data

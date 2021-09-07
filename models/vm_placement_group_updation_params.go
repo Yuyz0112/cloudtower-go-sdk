@@ -151,48 +151,60 @@ func (m *VMPlacementGroupUpdationParams) UnmarshalBinary(b []byte) error {
 // swagger:model VMPlacementGroupUpdationParamsData
 type VMPlacementGroupUpdationParamsData struct {
 
-	// associated vm ids
-	AssociatedVMIds []string `json:"associated_vm_ids"`
-
 	// description
 	Description string `json:"description,omitempty"`
 
 	// enabled
 	Enabled bool `json:"enabled,omitempty"`
 
-	// is host must policy place
-	IsHostMustPolicyPlace bool `json:"is_host_must_policy_place,omitempty"`
-
-	// is host prefer policy place
-	IsHostPreferPolicyPlace bool `json:"is_host_prefer_policy_place,omitempty"`
-
-	// is select host must policy
-	IsSelectHostMustPolicy bool `json:"is_select_host_must_policy,omitempty"`
-
-	// is select host prefer policy
-	IsSelectHostPreferPolicy bool `json:"is_select_host_prefer_policy,omitempty"`
-
-	// is select vm policy
-	IsSelectVMPolicy bool `json:"is_select_vm_policy,omitempty"`
-
-	// must policy host ids
-	MustPolicyHostIds []string `json:"must_policy_host_ids"`
+	// must hosts
+	MustHosts *HostWhereInput `json:"must_hosts,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
 
-	// prefer policy host ids
-	PreferPolicyHostIds []string `json:"prefer_policy_host_ids"`
+	// prefer hosts
+	PreferHosts *HostWhereInput `json:"prefer_hosts,omitempty"`
 
-	// vm policy
-	VMPolicy VMVMPolicy `json:"vm_policy,omitempty"`
+	// vm host must enabled
+	VMHostMustEnabled bool `json:"vm_host_must_enabled,omitempty"`
+
+	// vm host must policy
+	VMHostMustPolicy bool `json:"vm_host_must_policy,omitempty"`
+
+	// vm host prefer enabled
+	VMHostPreferEnabled bool `json:"vm_host_prefer_enabled,omitempty"`
+
+	// vm host prefer policy
+	VMHostPreferPolicy bool `json:"vm_host_prefer_policy,omitempty"`
+
+	// vm vm policy
+	VMVMPolicy VMVMPolicy `json:"vm_vm_policy,omitempty"`
+
+	// vm vm policy enabled
+	VMVMPolicyEnabled bool `json:"vm_vm_policy_enabled,omitempty"`
+
+	// vms
+	Vms *VMWhereInput `json:"vms,omitempty"`
 }
 
 // Validate validates this VM placement group updation params data
 func (m *VMPlacementGroupUpdationParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateVMPolicy(formats); err != nil {
+	if err := m.validateMustHosts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreferHosts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMVMPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVms(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -202,16 +214,67 @@ func (m *VMPlacementGroupUpdationParamsData) Validate(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *VMPlacementGroupUpdationParamsData) validateVMPolicy(formats strfmt.Registry) error {
-	if swag.IsZero(m.VMPolicy) { // not required
+func (m *VMPlacementGroupUpdationParamsData) validateMustHosts(formats strfmt.Registry) error {
+	if swag.IsZero(m.MustHosts) { // not required
 		return nil
 	}
 
-	if err := m.VMPolicy.Validate(formats); err != nil {
+	if m.MustHosts != nil {
+		if err := m.MustHosts.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "must_hosts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMPlacementGroupUpdationParamsData) validatePreferHosts(formats strfmt.Registry) error {
+	if swag.IsZero(m.PreferHosts) { // not required
+		return nil
+	}
+
+	if m.PreferHosts != nil {
+		if err := m.PreferHosts.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "prefer_hosts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMPlacementGroupUpdationParamsData) validateVMVMPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMVMPolicy) { // not required
+		return nil
+	}
+
+	if err := m.VMVMPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_policy")
+			return ve.ValidateName("data" + "." + "vm_vm_policy")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *VMPlacementGroupUpdationParamsData) validateVms(formats strfmt.Registry) error {
+	if swag.IsZero(m.Vms) { // not required
+		return nil
+	}
+
+	if m.Vms != nil {
+		if err := m.Vms.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vms")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -221,7 +284,19 @@ func (m *VMPlacementGroupUpdationParamsData) validateVMPolicy(formats strfmt.Reg
 func (m *VMPlacementGroupUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateVMPolicy(ctx, formats); err != nil {
+	if err := m.contextValidateMustHosts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePreferHosts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMVMPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVms(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -231,13 +306,55 @@ func (m *VMPlacementGroupUpdationParamsData) ContextValidate(ctx context.Context
 	return nil
 }
 
-func (m *VMPlacementGroupUpdationParamsData) contextValidateVMPolicy(ctx context.Context, formats strfmt.Registry) error {
+func (m *VMPlacementGroupUpdationParamsData) contextValidateMustHosts(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.VMPolicy.ContextValidate(ctx, formats); err != nil {
+	if m.MustHosts != nil {
+		if err := m.MustHosts.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "must_hosts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMPlacementGroupUpdationParamsData) contextValidatePreferHosts(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PreferHosts != nil {
+		if err := m.PreferHosts.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "prefer_hosts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMPlacementGroupUpdationParamsData) contextValidateVMVMPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.VMVMPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_policy")
+			return ve.ValidateName("data" + "." + "vm_vm_policy")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *VMPlacementGroupUpdationParamsData) contextValidateVms(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Vms != nil {
+		if err := m.Vms.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vms")
+			}
+			return err
+		}
 	}
 
 	return nil

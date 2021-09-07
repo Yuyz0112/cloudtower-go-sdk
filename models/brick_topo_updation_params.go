@@ -155,9 +155,6 @@ type BrickTopoUpdationParamsData struct {
 	// capacity
 	Capacity *BrickTopoUpdationParamsDataCapacity `json:"capacity,omitempty"`
 
-	// cluster id
-	ClusterID string `json:"cluster_id,omitempty"`
-
 	// height
 	Height float64 `json:"height,omitempty"`
 

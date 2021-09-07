@@ -163,8 +163,8 @@ type UserUpdationParamsData struct {
 	// password
 	Password string `json:"password,omitempty"`
 
-	// role Id
-	RoleID string `json:"roleId,omitempty"`
+	// role id
+	RoleID string `json:"role_id,omitempty"`
 
 	// username
 	Username string `json:"username,omitempty"`

@@ -153,21 +153,15 @@ func (m *GlobalAlertRuleUpdationParams) UnmarshalBinary(b []byte) error {
 type GlobalAlertRuleUpdationParamsData struct {
 
 	// disabled
-	// Required: true
-	Disabled *bool `json:"disabled"`
+	Disabled bool `json:"disabled,omitempty"`
 
 	// thresholds
-	// Required: true
 	Thresholds []*AlertRuleThresholds `json:"thresholds"`
 }
 
 // Validate validates this global alert rule updation params data
 func (m *GlobalAlertRuleUpdationParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateDisabled(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateThresholds(formats); err != nil {
 		res = append(res, err)
@@ -179,19 +173,9 @@ func (m *GlobalAlertRuleUpdationParamsData) Validate(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *GlobalAlertRuleUpdationParamsData) validateDisabled(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"disabled", "body", m.Disabled); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *GlobalAlertRuleUpdationParamsData) validateThresholds(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"thresholds", "body", m.Thresholds); err != nil {
-		return err
+	if swag.IsZero(m.Thresholds) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.Thresholds); i++ {

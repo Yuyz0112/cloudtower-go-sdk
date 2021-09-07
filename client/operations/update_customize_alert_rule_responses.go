@@ -50,13 +50,13 @@ func NewUpdateCustomizeAlertRuleOK() *UpdateCustomizeAlertRuleOK {
 Ok
 */
 type UpdateCustomizeAlertRuleOK struct {
-	Payload []*models.WithTaskAlertRule
+	Payload []*models.WithTaskGlobalAlertRule
 }
 
 func (o *UpdateCustomizeAlertRuleOK) Error() string {
 	return fmt.Sprintf("[POST /update-customize-alert-rule][%d] updateCustomizeAlertRuleOK  %+v", 200, o.Payload)
 }
-func (o *UpdateCustomizeAlertRuleOK) GetPayload() []*models.WithTaskAlertRule {
+func (o *UpdateCustomizeAlertRuleOK) GetPayload() []*models.WithTaskGlobalAlertRule {
 	return o.Payload
 }
 

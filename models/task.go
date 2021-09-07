@@ -56,6 +56,18 @@ type Task struct {
 	// Required: true
 	Progress *float64 `json:"progress"`
 
+	// resource id
+	ResourceID *string `json:"resource_id,omitempty"`
+
+	// resource mutation
+	ResourceMutation *string `json:"resource_mutation,omitempty"`
+
+	// resource rollbacked
+	ResourceRollbacked *bool `json:"resource_rollbacked,omitempty"`
+
+	// resource type
+	ResourceType *string `json:"resource_type,omitempty"`
+
 	// snapshot
 	// Required: true
 	Snapshot *string `json:"snapshot"`

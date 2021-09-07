@@ -163,10 +163,6 @@ type VMUpdateParamsData struct {
 	// ha
 	Ha bool `json:"ha,omitempty"`
 
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
 	// memory
 	Memory float64 `json:"memory,omitempty"`
 
@@ -179,24 +175,6 @@ type VMUpdateParamsData struct {
 
 // Validate validates this VM update params data
 func (m *VMUpdateParamsData) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMUpdateParamsData) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
 	return nil
 }
 

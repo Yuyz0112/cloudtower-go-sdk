@@ -50,13 +50,13 @@ func NewGetClusterSettingsesOK() *GetClusterSettingsesOK {
 Ok
 */
 type GetClusterSettingsesOK struct {
-	Payload []*models.ClusterSettings
+	Payload []*models.ClusterSettings2
 }
 
 func (o *GetClusterSettingsesOK) Error() string {
 	return fmt.Sprintf("[POST /get-cluster-settingses][%d] getClusterSettingsesOK  %+v", 200, o.Payload)
 }
-func (o *GetClusterSettingsesOK) GetPayload() []*models.ClusterSettings {
+func (o *GetClusterSettingsesOK) GetPayload() []*models.ClusterSettings2 {
 	return o.Payload
 }
 

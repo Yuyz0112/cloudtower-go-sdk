@@ -26,7 +26,7 @@ type CustomizeAlertRuleUpdationParams struct {
 
 	// where
 	// Required: true
-	Where *AlertRuleWhereInput `json:"where"`
+	Where *GlobalAlertRuleWhereInput `json:"where"`
 }
 
 // Validate validates this customize alert rule updation params
@@ -152,12 +152,14 @@ func (m *CustomizeAlertRuleUpdationParams) UnmarshalBinary(b []byte) error {
 // swagger:model CustomizeAlertRuleUpdationParamsData
 type CustomizeAlertRuleUpdationParamsData struct {
 
-	// disabled
+	// clusters
 	// Required: true
-	Disabled *bool `json:"disabled"`
+	Clusters *ClusterWhereInput `json:"clusters"`
+
+	// disabled
+	Disabled bool `json:"disabled,omitempty"`
 
 	// thresholds
-	// Required: true
 	Thresholds []*AlertRuleThresholds `json:"thresholds"`
 }
 
@@ -165,7 +167,7 @@ type CustomizeAlertRuleUpdationParamsData struct {
 func (m *CustomizeAlertRuleUpdationParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDisabled(formats); err != nil {
+	if err := m.validateClusters(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -179,19 +181,27 @@ func (m *CustomizeAlertRuleUpdationParamsData) Validate(formats strfmt.Registry)
 	return nil
 }
 
-func (m *CustomizeAlertRuleUpdationParamsData) validateDisabled(formats strfmt.Registry) error {
+func (m *CustomizeAlertRuleUpdationParamsData) validateClusters(formats strfmt.Registry) error {
 
-	if err := validate.Required("data"+"."+"disabled", "body", m.Disabled); err != nil {
+	if err := validate.Required("data"+"."+"clusters", "body", m.Clusters); err != nil {
 		return err
+	}
+
+	if m.Clusters != nil {
+		if err := m.Clusters.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "clusters")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
 func (m *CustomizeAlertRuleUpdationParamsData) validateThresholds(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"thresholds", "body", m.Thresholds); err != nil {
-		return err
+	if swag.IsZero(m.Thresholds) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.Thresholds); i++ {
@@ -217,6 +227,10 @@ func (m *CustomizeAlertRuleUpdationParamsData) validateThresholds(formats strfmt
 func (m *CustomizeAlertRuleUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateClusters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateThresholds(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -224,6 +238,20 @@ func (m *CustomizeAlertRuleUpdationParamsData) ContextValidate(ctx context.Conte
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *CustomizeAlertRuleUpdationParamsData) contextValidateClusters(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Clusters != nil {
+		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "clusters")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

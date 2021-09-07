@@ -155,12 +155,10 @@ type ClusterUpdationParamsData struct {
 	DatacenterID string `json:"datacenter_id,omitempty"`
 
 	// ip
-	// Required: true
-	IP *string `json:"ip"`
+	IP string `json:"ip,omitempty"`
 
 	// password
-	// Required: true
-	Password *string `json:"password"`
+	Password string `json:"password,omitempty"`
 
 	// primary zone datacenter id
 	PrimaryZoneDatacenterID string `json:"primary_zone_datacenter_id,omitempty"`
@@ -175,56 +173,11 @@ type ClusterUpdationParamsData struct {
 	SecondaryZoneID string `json:"secondary_zone_id,omitempty"`
 
 	// username
-	// Required: true
-	Username *string `json:"username"`
+	Username string `json:"username,omitempty"`
 }
 
 // Validate validates this cluster updation params data
 func (m *ClusterUpdationParamsData) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateIP(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePassword(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUsername(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ClusterUpdationParamsData) validateIP(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"ip", "body", m.IP); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ClusterUpdationParamsData) validatePassword(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"password", "body", m.Password); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ClusterUpdationParamsData) validateUsername(formats strfmt.Registry) error {
-
-	if err := validate.Required("data"+"."+"username", "body", m.Username); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -339,6 +339,15 @@ type VlanWhereInput struct {
 
 	// vlan id not in
 	VlanIDNotIn []float64 `json:"vlan_id_not_in,omitempty"`
+
+	// vm nics every
+	VMNicsEvery interface{} `json:"vm_nics_every,omitempty"`
+
+	// vm nics none
+	VMNicsNone interface{} `json:"vm_nics_none,omitempty"`
+
+	// vm nics some
+	VMNicsSome interface{} `json:"vm_nics_some,omitempty"`
 }
 
 // Validate validates this vlan where input

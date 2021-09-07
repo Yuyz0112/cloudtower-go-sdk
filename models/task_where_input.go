@@ -277,6 +277,138 @@ type TaskWhereInput struct {
 	// progress not in
 	ProgressNotIn []float64 `json:"progress_not_in,omitempty"`
 
+	// resource id
+	ResourceID *string `json:"resource_id,omitempty"`
+
+	// resource id contains
+	ResourceIDContains *string `json:"resource_id_contains,omitempty"`
+
+	// resource id ends with
+	ResourceIDEndsWith *string `json:"resource_id_ends_with,omitempty"`
+
+	// resource id gt
+	ResourceIDGt *string `json:"resource_id_gt,omitempty"`
+
+	// resource id gte
+	ResourceIDGte *string `json:"resource_id_gte,omitempty"`
+
+	// resource id in
+	ResourceIDIn []string `json:"resource_id_in,omitempty"`
+
+	// resource id lt
+	ResourceIDLt *string `json:"resource_id_lt,omitempty"`
+
+	// resource id lte
+	ResourceIDLte *string `json:"resource_id_lte,omitempty"`
+
+	// resource id not
+	ResourceIDNot *string `json:"resource_id_not,omitempty"`
+
+	// resource id not contains
+	ResourceIDNotContains *string `json:"resource_id_not_contains,omitempty"`
+
+	// resource id not ends with
+	ResourceIDNotEndsWith *string `json:"resource_id_not_ends_with,omitempty"`
+
+	// resource id not in
+	ResourceIDNotIn []string `json:"resource_id_not_in,omitempty"`
+
+	// resource id not starts with
+	ResourceIDNotStartsWith *string `json:"resource_id_not_starts_with,omitempty"`
+
+	// resource id starts with
+	ResourceIDStartsWith *string `json:"resource_id_starts_with,omitempty"`
+
+	// resource mutation
+	ResourceMutation *string `json:"resource_mutation,omitempty"`
+
+	// resource mutation contains
+	ResourceMutationContains *string `json:"resource_mutation_contains,omitempty"`
+
+	// resource mutation ends with
+	ResourceMutationEndsWith *string `json:"resource_mutation_ends_with,omitempty"`
+
+	// resource mutation gt
+	ResourceMutationGt *string `json:"resource_mutation_gt,omitempty"`
+
+	// resource mutation gte
+	ResourceMutationGte *string `json:"resource_mutation_gte,omitempty"`
+
+	// resource mutation in
+	ResourceMutationIn []string `json:"resource_mutation_in,omitempty"`
+
+	// resource mutation lt
+	ResourceMutationLt *string `json:"resource_mutation_lt,omitempty"`
+
+	// resource mutation lte
+	ResourceMutationLte *string `json:"resource_mutation_lte,omitempty"`
+
+	// resource mutation not
+	ResourceMutationNot *string `json:"resource_mutation_not,omitempty"`
+
+	// resource mutation not contains
+	ResourceMutationNotContains *string `json:"resource_mutation_not_contains,omitempty"`
+
+	// resource mutation not ends with
+	ResourceMutationNotEndsWith *string `json:"resource_mutation_not_ends_with,omitempty"`
+
+	// resource mutation not in
+	ResourceMutationNotIn []string `json:"resource_mutation_not_in,omitempty"`
+
+	// resource mutation not starts with
+	ResourceMutationNotStartsWith *string `json:"resource_mutation_not_starts_with,omitempty"`
+
+	// resource mutation starts with
+	ResourceMutationStartsWith *string `json:"resource_mutation_starts_with,omitempty"`
+
+	// resource rollbacked
+	ResourceRollbacked *bool `json:"resource_rollbacked,omitempty"`
+
+	// resource rollbacked not
+	ResourceRollbackedNot *bool `json:"resource_rollbacked_not,omitempty"`
+
+	// resource type
+	ResourceType *string `json:"resource_type,omitempty"`
+
+	// resource type contains
+	ResourceTypeContains *string `json:"resource_type_contains,omitempty"`
+
+	// resource type ends with
+	ResourceTypeEndsWith *string `json:"resource_type_ends_with,omitempty"`
+
+	// resource type gt
+	ResourceTypeGt *string `json:"resource_type_gt,omitempty"`
+
+	// resource type gte
+	ResourceTypeGte *string `json:"resource_type_gte,omitempty"`
+
+	// resource type in
+	ResourceTypeIn []string `json:"resource_type_in,omitempty"`
+
+	// resource type lt
+	ResourceTypeLt *string `json:"resource_type_lt,omitempty"`
+
+	// resource type lte
+	ResourceTypeLte *string `json:"resource_type_lte,omitempty"`
+
+	// resource type not
+	ResourceTypeNot *string `json:"resource_type_not,omitempty"`
+
+	// resource type not contains
+	ResourceTypeNotContains *string `json:"resource_type_not_contains,omitempty"`
+
+	// resource type not ends with
+	ResourceTypeNotEndsWith *string `json:"resource_type_not_ends_with,omitempty"`
+
+	// resource type not in
+	ResourceTypeNotIn []string `json:"resource_type_not_in,omitempty"`
+
+	// resource type not starts with
+	ResourceTypeNotStartsWith *string `json:"resource_type_not_starts_with,omitempty"`
+
+	// resource type starts with
+	ResourceTypeStartsWith *string `json:"resource_type_starts_with,omitempty"`
+
 	// snapshot
 	Snapshot *string `json:"snapshot,omitempty"`
 
