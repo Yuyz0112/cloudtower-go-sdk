@@ -20,8 +20,12 @@ import (
 type SnapshotPlanExecuteType string
 
 func NewSnapshotPlanExecuteType(value SnapshotPlanExecuteType) *SnapshotPlanExecuteType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnapshotPlanExecuteType.
+func (m SnapshotPlanExecuteType) Pointer() *SnapshotPlanExecuteType {
+	return &m
 }
 
 const (

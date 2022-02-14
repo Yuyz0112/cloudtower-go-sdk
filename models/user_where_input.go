@@ -15,7 +15,7 @@ import (
 )
 
 // UserWhereInput user where input
-// Example: {"AND":"UserWhereInput[]","NOT":"UserWhereInput[]","OR":"UserWhereInput[]","email_address":"string","email_address_contains":"string","email_address_ends_with":"string","email_address_gt":"string","email_address_gte":"string","email_address_in":["string"],"email_address_lt":"string","email_address_lte":"string","email_address_not":"string","email_address_not_contains":"string","email_address_not_ends_with":"string","email_address_not_in":["string"],"email_address_not_starts_with":"string","email_address_starts_with":"string","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","internal":false,"internal_not":false,"ldap_dn":"string","ldap_dn_contains":"string","ldap_dn_ends_with":"string","ldap_dn_gt":"string","ldap_dn_gte":"string","ldap_dn_in":["string"],"ldap_dn_lt":"string","ldap_dn_lte":"string","ldap_dn_not":"string","ldap_dn_not_contains":"string","ldap_dn_not_ends_with":"string","ldap_dn_not_in":["string"],"ldap_dn_not_starts_with":"string","ldap_dn_starts_with":"string","mobile_phone":"string","mobile_phone_contains":"string","mobile_phone_ends_with":"string","mobile_phone_gt":"string","mobile_phone_gte":"string","mobile_phone_in":["string"],"mobile_phone_lt":"string","mobile_phone_lte":"string","mobile_phone_not":"string","mobile_phone_not_contains":"string","mobile_phone_not_ends_with":"string","mobile_phone_not_in":["string"],"mobile_phone_not_starts_with":"string","mobile_phone_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","password":"string","password_contains":"string","password_ends_with":"string","password_gt":"string","password_gte":"string","password_in":["string"],"password_lt":"string","password_lte":"string","password_not":"string","password_not_contains":"string","password_not_ends_with":"string","password_not_in":["string"],"password_not_starts_with":"string","password_starts_with":"string","role":"ADMIN","role_in":["ADMIN"],"role_not":"ADMIN","role_not_in":["ADMIN"],"roles_every":"UserRoleNextWhereInput","roles_none":"UserRoleNextWhereInput","roles_some":"UserRoleNextWhereInput","source":"LDAP","source_in":["LDAP"],"source_not":"LDAP","source_not_in":["LDAP"],"username":"string","username_contains":"string","username_ends_with":"string","username_gt":"string","username_gte":"string","username_in":["string"],"username_lt":"string","username_lte":"string","username_not":"string","username_not_contains":"string","username_not_ends_with":"string","username_not_in":["string"],"username_not_starts_with":"string","username_starts_with":"string"}
+// Example: {"AND":"UserWhereInput[]","NOT":"UserWhereInput[]","OR":"UserWhereInput[]","email_address":"string","email_address_contains":"string","email_address_ends_with":"string","email_address_gt":"string","email_address_gte":"string","email_address_in":["string"],"email_address_lt":"string","email_address_lte":"string","email_address_not":"string","email_address_not_contains":"string","email_address_not_ends_with":"string","email_address_not_in":["string"],"email_address_not_starts_with":"string","email_address_starts_with":"string","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","internal":false,"internal_not":false,"ldap_dn":"string","ldap_dn_contains":"string","ldap_dn_ends_with":"string","ldap_dn_gt":"string","ldap_dn_gte":"string","ldap_dn_in":["string"],"ldap_dn_lt":"string","ldap_dn_lte":"string","ldap_dn_not":"string","ldap_dn_not_contains":"string","ldap_dn_not_ends_with":"string","ldap_dn_not_in":["string"],"ldap_dn_not_starts_with":"string","ldap_dn_starts_with":"string","login_info":"UserLoginInfoWhereInput","mobile_phone":"string","mobile_phone_contains":"string","mobile_phone_ends_with":"string","mobile_phone_gt":"string","mobile_phone_gte":"string","mobile_phone_in":["string"],"mobile_phone_lt":"string","mobile_phone_lte":"string","mobile_phone_not":"string","mobile_phone_not_contains":"string","mobile_phone_not_ends_with":"string","mobile_phone_not_in":["string"],"mobile_phone_not_starts_with":"string","mobile_phone_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","password":"string","password_contains":"string","password_ends_with":"string","password_expired":false,"password_expired_not":false,"password_gt":"string","password_gte":"string","password_in":["string"],"password_lt":"string","password_lte":"string","password_not":"string","password_not_contains":"string","password_not_ends_with":"string","password_not_in":["string"],"password_not_starts_with":"string","password_starts_with":"string","password_updated_at":"string","password_updated_at_gt":"string","password_updated_at_gte":"string","password_updated_at_in":["string"],"password_updated_at_lt":"string","password_updated_at_lte":"string","password_updated_at_not":"string","password_updated_at_not_in":["string"],"role":"ADMIN","role_in":["ADMIN"],"role_not":"ADMIN","role_not_in":["ADMIN"],"roles_every":"UserRoleNextWhereInput","roles_none":"UserRoleNextWhereInput","roles_some":"UserRoleNextWhereInput","source":"LDAP","source_in":["LDAP"],"source_not":"LDAP","source_not_in":["LDAP"],"username":"string","username_contains":"string","username_ends_with":"string","username_gt":"string","username_gte":"string","username_in":["string"],"username_lt":"string","username_lte":"string","username_not":"string","username_not_contains":"string","username_not_ends_with":"string","username_not_in":["string"],"username_not_starts_with":"string","username_starts_with":"string"}
 //
 // swagger:model UserWhereInput
 type UserWhereInput struct {
@@ -161,6 +161,11 @@ type UserWhereInput struct {
 	// ldap dn starts with
 	LdapDnStartsWith *string `json:"ldap_dn_starts_with,omitempty"`
 
+	// login info
+	LoginInfo struct {
+		UserLoginInfoWhereInput
+	} `json:"login_info,omitempty"`
+
 	// mobile phone
 	MobilePhone *string `json:"mobile_phone,omitempty"`
 
@@ -254,6 +259,12 @@ type UserWhereInput struct {
 	// password ends with
 	PasswordEndsWith *string `json:"password_ends_with,omitempty"`
 
+	// password expired
+	PasswordExpired *bool `json:"password_expired,omitempty"`
+
+	// password expired not
+	PasswordExpiredNot *bool `json:"password_expired_not,omitempty"`
+
 	// password gt
 	PasswordGt *string `json:"password_gt,omitempty"`
 
@@ -287,35 +298,73 @@ type UserWhereInput struct {
 	// password starts with
 	PasswordStartsWith *string `json:"password_starts_with,omitempty"`
 
+	// password updated at
+	PasswordUpdatedAt *string `json:"password_updated_at,omitempty"`
+
+	// password updated at gt
+	PasswordUpdatedAtGt *string `json:"password_updated_at_gt,omitempty"`
+
+	// password updated at gte
+	PasswordUpdatedAtGte *string `json:"password_updated_at_gte,omitempty"`
+
+	// password updated at in
+	PasswordUpdatedAtIn []string `json:"password_updated_at_in,omitempty"`
+
+	// password updated at lt
+	PasswordUpdatedAtLt *string `json:"password_updated_at_lt,omitempty"`
+
+	// password updated at lte
+	PasswordUpdatedAtLte *string `json:"password_updated_at_lte,omitempty"`
+
+	// password updated at not
+	PasswordUpdatedAtNot *string `json:"password_updated_at_not,omitempty"`
+
+	// password updated at not in
+	PasswordUpdatedAtNotIn []string `json:"password_updated_at_not_in,omitempty"`
+
 	// role
-	Role interface{} `json:"role,omitempty"`
+	Role struct {
+		UserRole
+	} `json:"role,omitempty"`
 
 	// role in
 	RoleIn []UserRole `json:"role_in,omitempty"`
 
 	// role not
-	RoleNot interface{} `json:"role_not,omitempty"`
+	RoleNot struct {
+		UserRole
+	} `json:"role_not,omitempty"`
 
 	// role not in
 	RoleNotIn []UserRole `json:"role_not_in,omitempty"`
 
 	// roles every
-	RolesEvery interface{} `json:"roles_every,omitempty"`
+	RolesEvery struct {
+		UserRoleNextWhereInput
+	} `json:"roles_every,omitempty"`
 
 	// roles none
-	RolesNone interface{} `json:"roles_none,omitempty"`
+	RolesNone struct {
+		UserRoleNextWhereInput
+	} `json:"roles_none,omitempty"`
 
 	// roles some
-	RolesSome interface{} `json:"roles_some,omitempty"`
+	RolesSome struct {
+		UserRoleNextWhereInput
+	} `json:"roles_some,omitempty"`
 
 	// source
-	Source interface{} `json:"source,omitempty"`
+	Source struct {
+		UserSource
+	} `json:"source,omitempty"`
 
 	// source in
 	SourceIn []UserSource `json:"source_in,omitempty"`
 
 	// source not
-	SourceNot interface{} `json:"source_not,omitempty"`
+	SourceNot struct {
+		UserSource
+	} `json:"source_not,omitempty"`
 
 	// source not in
 	SourceNotIn []UserSource `json:"source_not_in,omitempty"`
@@ -379,7 +428,19 @@ func (m *UserWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLoginInfo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRole(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRoleIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRoleNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -387,7 +448,27 @@ func (m *UserWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRolesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRolesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRolesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSource(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSourceIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSourceNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -415,6 +496,8 @@ func (m *UserWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -439,6 +522,8 @@ func (m *UserWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -463,11 +548,29 @@ func (m *UserWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserWhereInput) validateLoginInfo(formats strfmt.Registry) error {
+	if swag.IsZero(m.LoginInfo) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *UserWhereInput) validateRole(formats strfmt.Registry) error {
+	if swag.IsZero(m.Role) { // not required
+		return nil
 	}
 
 	return nil
@@ -483,10 +586,20 @@ func (m *UserWhereInput) validateRoleIn(formats strfmt.Registry) error {
 		if err := m.RoleIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("role_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserWhereInput) validateRoleNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.RoleNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -502,10 +615,44 @@ func (m *UserWhereInput) validateRoleNotIn(formats strfmt.Registry) error {
 		if err := m.RoleNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("role_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserWhereInput) validateRolesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.RolesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *UserWhereInput) validateRolesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.RolesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *UserWhereInput) validateRolesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.RolesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *UserWhereInput) validateSource(formats strfmt.Registry) error {
+	if swag.IsZero(m.Source) { // not required
+		return nil
 	}
 
 	return nil
@@ -521,10 +668,20 @@ func (m *UserWhereInput) validateSourceIn(formats strfmt.Registry) error {
 		if err := m.SourceIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("source_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserWhereInput) validateSourceNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.SourceNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -540,6 +697,8 @@ func (m *UserWhereInput) validateSourceNotIn(formats strfmt.Registry) error {
 		if err := m.SourceNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("source_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -565,7 +724,19 @@ func (m *UserWhereInput) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLoginInfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRole(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateRoleIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRoleNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -573,7 +744,27 @@ func (m *UserWhereInput) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRolesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRolesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRolesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSourceIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSourceNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -595,6 +786,8 @@ func (m *UserWhereInput) contextValidateAND(ctx context.Context, formats strfmt.
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -613,6 +806,8 @@ func (m *UserWhereInput) contextValidateNOT(ctx context.Context, formats strfmt.
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -631,12 +826,24 @@ func (m *UserWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserWhereInput) contextValidateLoginInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserWhereInput) contextValidateRole(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -648,11 +855,18 @@ func (m *UserWhereInput) contextValidateRoleIn(ctx context.Context, formats strf
 		if err := m.RoleIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("role_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserWhereInput) contextValidateRoleNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -664,11 +878,33 @@ func (m *UserWhereInput) contextValidateRoleNotIn(ctx context.Context, formats s
 		if err := m.RoleNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("role_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserWhereInput) contextValidateRolesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserWhereInput) contextValidateRolesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserWhereInput) contextValidateRolesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserWhereInput) contextValidateSource(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -680,11 +916,18 @@ func (m *UserWhereInput) contextValidateSourceIn(ctx context.Context, formats st
 		if err := m.SourceIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("source_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserWhereInput) contextValidateSourceNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -696,6 +939,8 @@ func (m *UserWhereInput) contextValidateSourceNotIn(ctx context.Context, formats
 		if err := m.SourceNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("source_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

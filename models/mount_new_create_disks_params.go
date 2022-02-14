@@ -103,6 +103,8 @@ func (m *MountNewCreateDisksParams) validateBus(formats strfmt.Registry) error {
 		if err := m.Bus.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus")
 			}
 			return err
 		}
@@ -119,6 +121,8 @@ func (m *MountNewCreateDisksParams) validateMaxBandwidthPolicy(formats strfmt.Re
 	if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_bandwidth_policy")
 		}
 		return err
 	}
@@ -134,6 +138,8 @@ func (m *MountNewCreateDisksParams) validateMaxIopsPolicy(formats strfmt.Registr
 	if err := m.MaxIopsPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_iops_policy")
 		}
 		return err
 	}
@@ -151,6 +157,8 @@ func (m *MountNewCreateDisksParams) validateVMVolume(formats strfmt.Registry) er
 		if err := m.VMVolume.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_volume")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volume")
 			}
 			return err
 		}
@@ -191,6 +199,8 @@ func (m *MountNewCreateDisksParams) contextValidateBus(ctx context.Context, form
 		if err := m.Bus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus")
 			}
 			return err
 		}
@@ -204,6 +214,8 @@ func (m *MountNewCreateDisksParams) contextValidateMaxBandwidthPolicy(ctx contex
 	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_bandwidth_policy")
 		}
 		return err
 	}
@@ -216,6 +228,8 @@ func (m *MountNewCreateDisksParams) contextValidateMaxIopsPolicy(ctx context.Con
 	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_iops_policy")
 		}
 		return err
 	}
@@ -229,6 +243,8 @@ func (m *MountNewCreateDisksParams) contextValidateVMVolume(ctx context.Context,
 		if err := m.VMVolume.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_volume")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volume")
 			}
 			return err
 		}
@@ -312,6 +328,8 @@ func (m *MountNewCreateDisksParamsVMVolume) validateElfStoragePolicy(formats str
 		if err := m.ElfStoragePolicy.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_volume" + "." + "elf_storage_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volume" + "." + "elf_storage_policy")
 			}
 			return err
 		}
@@ -358,6 +376,8 @@ func (m *MountNewCreateDisksParamsVMVolume) contextValidateElfStoragePolicy(ctx 
 		if err := m.ElfStoragePolicy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_volume" + "." + "elf_storage_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volume" + "." + "elf_storage_policy")
 			}
 			return err
 		}

@@ -56,6 +56,8 @@ func (m *DatacenterUpdationParams) validateData(formats strfmt.Registry) error {
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -74,6 +76,8 @@ func (m *DatacenterUpdationParams) validateWhere(formats strfmt.Registry) error 
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -106,6 +110,8 @@ func (m *DatacenterUpdationParams) contextValidateData(ctx context.Context, form
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -120,6 +126,8 @@ func (m *DatacenterUpdationParams) contextValidateWhere(ctx context.Context, for
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -181,6 +189,8 @@ func (m *DatacenterUpdationParamsData) validateClusters(formats strfmt.Registry)
 		if err := m.Clusters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "clusters")
 			}
 			return err
 		}
@@ -209,6 +219,8 @@ func (m *DatacenterUpdationParamsData) contextValidateClusters(ctx context.Conte
 		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "clusters")
 			}
 			return err
 		}

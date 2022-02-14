@@ -20,8 +20,12 @@ import (
 type VMEntityFilterResultOrderByInput string
 
 func NewVMEntityFilterResultOrderByInput(value VMEntityFilterResultOrderByInput) *VMEntityFilterResultOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMEntityFilterResultOrderByInput.
+func (m VMEntityFilterResultOrderByInput) Pointer() *VMEntityFilterResultOrderByInput {
+	return &m
 }
 
 const (

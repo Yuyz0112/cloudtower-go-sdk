@@ -73,6 +73,8 @@ func (m *EntityFilterCreationParams) validateClusters(formats strfmt.Registry) e
 		if err := m.Clusters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters")
 			}
 			return err
 		}
@@ -90,6 +92,8 @@ func (m *EntityFilterCreationParams) validateExcludeVms(formats strfmt.Registry)
 		if err := m.ExcludeVms.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("exclude_vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("exclude_vms")
 			}
 			return err
 		}
@@ -122,6 +126,8 @@ func (m *EntityFilterCreationParams) validateRules(formats strfmt.Registry) erro
 			if err := m.Rules[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -160,6 +166,8 @@ func (m *EntityFilterCreationParams) contextValidateClusters(ctx context.Context
 		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters")
 			}
 			return err
 		}
@@ -174,6 +182,8 @@ func (m *EntityFilterCreationParams) contextValidateExcludeVms(ctx context.Conte
 		if err := m.ExcludeVms.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("exclude_vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("exclude_vms")
 			}
 			return err
 		}
@@ -190,6 +200,8 @@ func (m *EntityFilterCreationParams) contextValidateRules(ctx context.Context, f
 			if err := m.Rules[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

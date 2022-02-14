@@ -15,7 +15,7 @@ import (
 )
 
 // BackupPlanWhereInput backup plan where input
-// Example: {"AND":"BackupPlanWhereInput[]","NOT":"BackupPlanWhereInput[]","OR":"BackupPlanWhereInput[]","backup_delay_option":"KEEP_GO_ON","backup_delay_option_in":["KEEP_GO_ON"],"backup_delay_option_not":"KEEP_GO_ON","backup_delay_option_not_in":["KEEP_GO_ON"],"backup_plan_executions_every":"BackupPlanExecutionWhereInput","backup_plan_executions_none":"BackupPlanExecutionWhereInput","backup_plan_executions_some":"BackupPlanExecutionWhereInput","backup_restore_point_count":0,"backup_restore_point_count_gt":0,"backup_restore_point_count_gte":0,"backup_restore_point_count_in":[0],"backup_restore_point_count_lt":0,"backup_restore_point_count_lte":0,"backup_restore_point_count_not":0,"backup_restore_point_count_not_in":[0],"backup_restore_points_every":"BackupRestorePointWhereInput","backup_restore_points_none":"BackupRestorePointWhereInput","backup_restore_points_some":"BackupRestorePointWhereInput","backup_service":"BackupServiceWhereInput","backup_store_repository":"BackupStoreRepositoryWhereInput","backup_total_size":0,"backup_total_size_gt":0,"backup_total_size_gte":0,"backup_total_size_in":[0],"backup_total_size_lt":0,"backup_total_size_lte":0,"backup_total_size_not":0,"backup_total_size_not_in":[0],"compression":false,"compression_not":false,"delete_strategy":"DELETE_RESTORE_POINT","delete_strategy_in":["DELETE_RESTORE_POINT"],"delete_strategy_not":"DELETE_RESTORE_POINT","delete_strategy_not_in":["DELETE_RESTORE_POINT"],"description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","enable_window":false,"enable_window_not":false,"entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"full_interval":0,"full_interval_gt":0,"full_interval_gte":0,"full_interval_in":[0],"full_interval_lt":0,"full_interval_lte":0,"full_interval_not":0,"full_interval_not_in":[0],"full_period":"DAILY","full_period_in":["DAILY"],"full_period_not":"DAILY","full_period_not_in":["DAILY"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","incremental_period":"DAILY","incremental_period_in":["DAILY"],"incremental_period_not":"DAILY","incremental_period_not_in":["DAILY"],"keep_policy":"COUNT","keep_policy_in":["COUNT"],"keep_policy_not":"COUNT","keep_policy_not_in":["COUNT"],"keep_policy_value":0,"keep_policy_value_gt":0,"keep_policy_value_gte":0,"keep_policy_value_in":[0],"keep_policy_value_lt":0,"keep_policy_value_lte":0,"keep_policy_value_not":0,"keep_policy_value_not_in":[0],"last_execute_status":"FAILED","last_execute_status_in":["FAILED"],"last_execute_status_message":"string","last_execute_status_message_contains":"string","last_execute_status_message_ends_with":"string","last_execute_status_message_gt":"string","last_execute_status_message_gte":"string","last_execute_status_message_in":["string"],"last_execute_status_message_lt":"string","last_execute_status_message_lte":"string","last_execute_status_message_not":"string","last_execute_status_message_not_contains":"string","last_execute_status_message_not_ends_with":"string","last_execute_status_message_not_in":["string"],"last_execute_status_message_not_starts_with":"string","last_execute_status_message_starts_with":"string","last_execute_status_not":"FAILED","last_execute_status_not_in":["FAILED"],"last_execute_success_job_count":0,"last_execute_success_job_count_gt":0,"last_execute_success_job_count_gte":0,"last_execute_success_job_count_in":[0],"last_execute_success_job_count_lt":0,"last_execute_success_job_count_lte":0,"last_execute_success_job_count_not":0,"last_execute_success_job_count_not_in":[0],"last_execute_total_job_count":0,"last_execute_total_job_count_gt":0,"last_execute_total_job_count_gte":0,"last_execute_total_job_count_in":[0],"last_execute_total_job_count_lt":0,"last_execute_total_job_count_lte":0,"last_execute_total_job_count_not":0,"last_execute_total_job_count_not_in":[0],"last_executed_at":"string","last_executed_at_gt":"string","last_executed_at_gte":"string","last_executed_at_in":["string"],"last_executed_at_lt":"string","last_executed_at_lte":"string","last_executed_at_not":"string","last_executed_at_not_in":["string"],"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","namespace":"string","namespace_contains":"string","namespace_ends_with":"string","namespace_gt":"string","namespace_gte":"string","namespace_in":["string"],"namespace_lt":"string","namespace_lte":"string","namespace_not":"string","namespace_not_contains":"string","namespace_not_ends_with":"string","namespace_not_in":["string"],"namespace_not_starts_with":"string","namespace_starts_with":"string","next_execute_time":"string","next_execute_time_gt":"string","next_execute_time_gte":"string","next_execute_time_in":["string"],"next_execute_time_lt":"string","next_execute_time_lte":"string","next_execute_time_not":"string","next_execute_time_not_in":["string"],"resource_version_gt":0,"resource_version_gte":0,"resource_version_in":[0],"resource_version_lt":0,"resource_version_lte":0,"resource_version_not":0,"resource_version_not_in":[0],"status":"PAUSED","status_in":["PAUSED"],"status_not":"PAUSED","status_not_in":["PAUSED"],"vms_every":"VmWhereInput","vms_none":"VmWhereInput","vms_some":"VmWhereInput","window_end":"string","window_end_contains":"string","window_end_ends_with":"string","window_end_gt":"string","window_end_gte":"string","window_end_in":["string"],"window_end_lt":"string","window_end_lte":"string","window_end_not":"string","window_end_not_contains":"string","window_end_not_ends_with":"string","window_end_not_in":["string"],"window_end_not_starts_with":"string","window_end_starts_with":"string","window_start":"string","window_start_contains":"string","window_start_ends_with":"string","window_start_gt":"string","window_start_gte":"string","window_start_in":["string"],"window_start_lt":"string","window_start_lte":"string","window_start_not":"string","window_start_not_contains":"string","window_start_not_ends_with":"string","window_start_not_in":["string"],"window_start_not_starts_with":"string","window_start_starts_with":"string"}
+// Example: {"AND":"BackupPlanWhereInput[]","NOT":"BackupPlanWhereInput[]","OR":"BackupPlanWhereInput[]","backup_delay_option":"KEEP_GO_ON","backup_delay_option_in":["KEEP_GO_ON"],"backup_delay_option_not":"KEEP_GO_ON","backup_delay_option_not_in":["KEEP_GO_ON"],"backup_plan_executions_every":"BackupPlanExecutionWhereInput","backup_plan_executions_none":"BackupPlanExecutionWhereInput","backup_plan_executions_some":"BackupPlanExecutionWhereInput","backup_restore_point_count":0,"backup_restore_point_count_gt":0,"backup_restore_point_count_gte":0,"backup_restore_point_count_in":[0],"backup_restore_point_count_lt":0,"backup_restore_point_count_lte":0,"backup_restore_point_count_not":0,"backup_restore_point_count_not_in":[0],"backup_restore_points_every":"BackupRestorePointWhereInput","backup_restore_points_none":"BackupRestorePointWhereInput","backup_restore_points_some":"BackupRestorePointWhereInput","backup_service":"BackupServiceWhereInput","backup_store_repository":"BackupStoreRepositoryWhereInput","backup_total_size":0,"backup_total_size_gt":0,"backup_total_size_gte":0,"backup_total_size_in":[0],"backup_total_size_lt":0,"backup_total_size_lte":0,"backup_total_size_not":0,"backup_total_size_not_in":[0],"compression":false,"compression_not":false,"delete_strategy":"DELETE_RESTORE_POINT","delete_strategy_in":["DELETE_RESTORE_POINT"],"delete_strategy_not":"DELETE_RESTORE_POINT","delete_strategy_not_in":["DELETE_RESTORE_POINT"],"description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","enable_window":false,"enable_window_not":false,"entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"full_interval":0,"full_interval_gt":0,"full_interval_gte":0,"full_interval_in":[0],"full_interval_lt":0,"full_interval_lte":0,"full_interval_not":0,"full_interval_not_in":[0],"full_period":"DAILY","full_period_in":["DAILY"],"full_period_not":"DAILY","full_period_not_in":["DAILY"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","incremental_period":"DAILY","incremental_period_in":["DAILY"],"incremental_period_not":"DAILY","incremental_period_not_in":["DAILY"],"keep_policy":"COUNT","keep_policy_in":["COUNT"],"keep_policy_not":"COUNT","keep_policy_not_in":["COUNT"],"keep_policy_value":0,"keep_policy_value_gt":0,"keep_policy_value_gte":0,"keep_policy_value_in":[0],"keep_policy_value_lt":0,"keep_policy_value_lte":0,"keep_policy_value_not":0,"keep_policy_value_not_in":[0],"last_execute_status":"FAILED","last_execute_status_in":["FAILED"],"last_execute_status_message":"string","last_execute_status_message_contains":"string","last_execute_status_message_ends_with":"string","last_execute_status_message_gt":"string","last_execute_status_message_gte":"string","last_execute_status_message_in":["string"],"last_execute_status_message_lt":"string","last_execute_status_message_lte":"string","last_execute_status_message_not":"string","last_execute_status_message_not_contains":"string","last_execute_status_message_not_ends_with":"string","last_execute_status_message_not_in":["string"],"last_execute_status_message_not_starts_with":"string","last_execute_status_message_starts_with":"string","last_execute_status_not":"FAILED","last_execute_status_not_in":["FAILED"],"last_execute_success_job_count":0,"last_execute_success_job_count_gt":0,"last_execute_success_job_count_gte":0,"last_execute_success_job_count_in":[0],"last_execute_success_job_count_lt":0,"last_execute_success_job_count_lte":0,"last_execute_success_job_count_not":0,"last_execute_success_job_count_not_in":[0],"last_execute_total_job_count":0,"last_execute_total_job_count_gt":0,"last_execute_total_job_count_gte":0,"last_execute_total_job_count_in":[0],"last_execute_total_job_count_lt":0,"last_execute_total_job_count_lte":0,"last_execute_total_job_count_not":0,"last_execute_total_job_count_not_in":[0],"last_executed_at":"string","last_executed_at_gt":"string","last_executed_at_gte":"string","last_executed_at_in":["string"],"last_executed_at_lt":"string","last_executed_at_lte":"string","last_executed_at_not":"string","last_executed_at_not_in":["string"],"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","namespace":"string","namespace_contains":"string","namespace_ends_with":"string","namespace_gt":"string","namespace_gte":"string","namespace_in":["string"],"namespace_lt":"string","namespace_lte":"string","namespace_not":"string","namespace_not_contains":"string","namespace_not_ends_with":"string","namespace_not_in":["string"],"namespace_not_starts_with":"string","namespace_starts_with":"string","next_execute_time":"string","next_execute_time_gt":"string","next_execute_time_gte":"string","next_execute_time_in":["string"],"next_execute_time_lt":"string","next_execute_time_lte":"string","next_execute_time_not":"string","next_execute_time_not_in":["string"],"phase":"INVALID","phase_in":["INVALID"],"phase_not":"INVALID","phase_not_in":["INVALID"],"resource_version_gt":0,"resource_version_gte":0,"resource_version_in":[0],"resource_version_lt":0,"resource_version_lte":0,"resource_version_not":0,"resource_version_not_in":[0],"status":"PAUSED","status_in":["PAUSED"],"status_not":"PAUSED","status_not_in":["PAUSED"],"vms_every":"VmWhereInput","vms_none":"VmWhereInput","vms_some":"VmWhereInput","window_end":"string","window_end_contains":"string","window_end_ends_with":"string","window_end_gt":"string","window_end_gte":"string","window_end_in":["string"],"window_end_lt":"string","window_end_lte":"string","window_end_not":"string","window_end_not_contains":"string","window_end_not_ends_with":"string","window_end_not_in":["string"],"window_end_not_starts_with":"string","window_end_starts_with":"string","window_start":"string","window_start_contains":"string","window_start_ends_with":"string","window_start_gt":"string","window_start_gte":"string","window_start_in":["string"],"window_start_lt":"string","window_start_lte":"string","window_start_not":"string","window_start_not_contains":"string","window_start_not_ends_with":"string","window_start_not_in":["string"],"window_start_not_starts_with":"string","window_start_starts_with":"string"}
 //
 // swagger:model BackupPlanWhereInput
 type BackupPlanWhereInput struct {
@@ -30,25 +30,35 @@ type BackupPlanWhereInput struct {
 	OR []*BackupPlanWhereInput `json:"OR,omitempty"`
 
 	// backup delay option
-	BackupDelayOption interface{} `json:"backup_delay_option,omitempty"`
+	BackupDelayOption struct {
+		BackupPlanDelayOption
+	} `json:"backup_delay_option,omitempty"`
 
 	// backup delay option in
 	BackupDelayOptionIn []BackupPlanDelayOption `json:"backup_delay_option_in,omitempty"`
 
 	// backup delay option not
-	BackupDelayOptionNot interface{} `json:"backup_delay_option_not,omitempty"`
+	BackupDelayOptionNot struct {
+		BackupPlanDelayOption
+	} `json:"backup_delay_option_not,omitempty"`
 
 	// backup delay option not in
 	BackupDelayOptionNotIn []BackupPlanDelayOption `json:"backup_delay_option_not_in,omitempty"`
 
 	// backup plan executions every
-	BackupPlanExecutionsEvery interface{} `json:"backup_plan_executions_every,omitempty"`
+	BackupPlanExecutionsEvery struct {
+		BackupPlanExecutionWhereInput
+	} `json:"backup_plan_executions_every,omitempty"`
 
 	// backup plan executions none
-	BackupPlanExecutionsNone interface{} `json:"backup_plan_executions_none,omitempty"`
+	BackupPlanExecutionsNone struct {
+		BackupPlanExecutionWhereInput
+	} `json:"backup_plan_executions_none,omitempty"`
 
 	// backup plan executions some
-	BackupPlanExecutionsSome interface{} `json:"backup_plan_executions_some,omitempty"`
+	BackupPlanExecutionsSome struct {
+		BackupPlanExecutionWhereInput
+	} `json:"backup_plan_executions_some,omitempty"`
 
 	// backup restore point count
 	BackupRestorePointCount *int32 `json:"backup_restore_point_count,omitempty"`
@@ -75,19 +85,29 @@ type BackupPlanWhereInput struct {
 	BackupRestorePointCountNotIn []int32 `json:"backup_restore_point_count_not_in,omitempty"`
 
 	// backup restore points every
-	BackupRestorePointsEvery interface{} `json:"backup_restore_points_every,omitempty"`
+	BackupRestorePointsEvery struct {
+		BackupRestorePointWhereInput
+	} `json:"backup_restore_points_every,omitempty"`
 
 	// backup restore points none
-	BackupRestorePointsNone interface{} `json:"backup_restore_points_none,omitempty"`
+	BackupRestorePointsNone struct {
+		BackupRestorePointWhereInput
+	} `json:"backup_restore_points_none,omitempty"`
 
 	// backup restore points some
-	BackupRestorePointsSome interface{} `json:"backup_restore_points_some,omitempty"`
+	BackupRestorePointsSome struct {
+		BackupRestorePointWhereInput
+	} `json:"backup_restore_points_some,omitempty"`
 
 	// backup service
-	BackupService interface{} `json:"backup_service,omitempty"`
+	BackupService struct {
+		BackupServiceWhereInput
+	} `json:"backup_service,omitempty"`
 
 	// backup store repository
-	BackupStoreRepository interface{} `json:"backup_store_repository,omitempty"`
+	BackupStoreRepository struct {
+		BackupStoreRepositoryWhereInput
+	} `json:"backup_store_repository,omitempty"`
 
 	// backup total size
 	BackupTotalSize *float64 `json:"backup_total_size,omitempty"`
@@ -120,13 +140,17 @@ type BackupPlanWhereInput struct {
 	CompressionNot *bool `json:"compression_not,omitempty"`
 
 	// delete strategy
-	DeleteStrategy interface{} `json:"delete_strategy,omitempty"`
+	DeleteStrategy struct {
+		BackupPlanDeleteStrategy
+	} `json:"delete_strategy,omitempty"`
 
 	// delete strategy in
 	DeleteStrategyIn []BackupPlanDeleteStrategy `json:"delete_strategy_in,omitempty"`
 
 	// delete strategy not
-	DeleteStrategyNot interface{} `json:"delete_strategy_not,omitempty"`
+	DeleteStrategyNot struct {
+		BackupPlanDeleteStrategy
+	} `json:"delete_strategy_not,omitempty"`
 
 	// delete strategy not in
 	DeleteStrategyNotIn []BackupPlanDeleteStrategy `json:"delete_strategy_not_in,omitempty"`
@@ -180,13 +204,17 @@ type BackupPlanWhereInput struct {
 	EnableWindowNot *bool `json:"enable_window_not,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -216,13 +244,17 @@ type BackupPlanWhereInput struct {
 	FullIntervalNotIn []int32 `json:"full_interval_not_in,omitempty"`
 
 	// full period
-	FullPeriod interface{} `json:"full_period,omitempty"`
+	FullPeriod struct {
+		BackupPlanPeriod
+	} `json:"full_period,omitempty"`
 
 	// full period in
 	FullPeriodIn []BackupPlanPeriod `json:"full_period_in,omitempty"`
 
 	// full period not
-	FullPeriodNot interface{} `json:"full_period_not,omitempty"`
+	FullPeriodNot struct {
+		BackupPlanPeriod
+	} `json:"full_period_not,omitempty"`
 
 	// full period not in
 	FullPeriodNotIn []BackupPlanPeriod `json:"full_period_not_in,omitempty"`
@@ -270,25 +302,33 @@ type BackupPlanWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// incremental period
-	IncrementalPeriod interface{} `json:"incremental_period,omitempty"`
+	IncrementalPeriod struct {
+		BackupPlanPeriod
+	} `json:"incremental_period,omitempty"`
 
 	// incremental period in
 	IncrementalPeriodIn []BackupPlanPeriod `json:"incremental_period_in,omitempty"`
 
 	// incremental period not
-	IncrementalPeriodNot interface{} `json:"incremental_period_not,omitempty"`
+	IncrementalPeriodNot struct {
+		BackupPlanPeriod
+	} `json:"incremental_period_not,omitempty"`
 
 	// incremental period not in
 	IncrementalPeriodNotIn []BackupPlanPeriod `json:"incremental_period_not_in,omitempty"`
 
 	// keep policy
-	KeepPolicy interface{} `json:"keep_policy,omitempty"`
+	KeepPolicy struct {
+		BackupPlanKeepPolicy
+	} `json:"keep_policy,omitempty"`
 
 	// keep policy in
 	KeepPolicyIn []BackupPlanKeepPolicy `json:"keep_policy_in,omitempty"`
 
 	// keep policy not
-	KeepPolicyNot interface{} `json:"keep_policy_not,omitempty"`
+	KeepPolicyNot struct {
+		BackupPlanKeepPolicy
+	} `json:"keep_policy_not,omitempty"`
 
 	// keep policy not in
 	KeepPolicyNotIn []BackupPlanKeepPolicy `json:"keep_policy_not_in,omitempty"`
@@ -318,7 +358,9 @@ type BackupPlanWhereInput struct {
 	KeepPolicyValueNotIn []int32 `json:"keep_policy_value_not_in,omitempty"`
 
 	// last execute status
-	LastExecuteStatus interface{} `json:"last_execute_status,omitempty"`
+	LastExecuteStatus struct {
+		BackupPlanExecutionStatus
+	} `json:"last_execute_status,omitempty"`
 
 	// last execute status in
 	LastExecuteStatusIn []BackupPlanExecutionStatus `json:"last_execute_status_in,omitempty"`
@@ -366,7 +408,9 @@ type BackupPlanWhereInput struct {
 	LastExecuteStatusMessageStartsWith *string `json:"last_execute_status_message_starts_with,omitempty"`
 
 	// last execute status not
-	LastExecuteStatusNot interface{} `json:"last_execute_status_not,omitempty"`
+	LastExecuteStatusNot struct {
+		BackupPlanExecutionStatus
+	} `json:"last_execute_status_not,omitempty"`
 
 	// last execute status not in
 	LastExecuteStatusNotIn []BackupPlanExecutionStatus `json:"last_execute_status_not_in,omitempty"`
@@ -551,6 +595,22 @@ type BackupPlanWhereInput struct {
 	// next execute time not in
 	NextExecuteTimeNotIn []string `json:"next_execute_time_not_in,omitempty"`
 
+	// phase
+	Phase struct {
+		BackupPlanPhase
+	} `json:"phase,omitempty"`
+
+	// phase in
+	PhaseIn []BackupPlanPhase `json:"phase_in,omitempty"`
+
+	// phase not
+	PhaseNot struct {
+		BackupPlanPhase
+	} `json:"phase_not,omitempty"`
+
+	// phase not in
+	PhaseNotIn []BackupPlanPhase `json:"phase_not_in,omitempty"`
+
 	// resource version gt
 	ResourceVersionGt *int32 `json:"resource_version_gt,omitempty"`
 
@@ -573,25 +633,35 @@ type BackupPlanWhereInput struct {
 	ResourceVersionNotIn []int32 `json:"resource_version_not_in,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		BackupPlanStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []BackupPlanStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		BackupPlanStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []BackupPlanStatus `json:"status_not_in,omitempty"`
 
 	// vms every
-	VmsEvery interface{} `json:"vms_every,omitempty"`
+	VmsEvery struct {
+		VMWhereInput
+	} `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone interface{} `json:"vms_none,omitempty"`
+	VmsNone struct {
+		VMWhereInput
+	} `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome interface{} `json:"vms_some,omitempty"`
+	VmsSome struct {
+		VMWhereInput
+	} `json:"vms_some,omitempty"`
 
 	// window end
 	WindowEnd *string `json:"window_end,omitempty"`
@@ -694,7 +764,15 @@ func (m *BackupPlanWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBackupDelayOption(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateBackupDelayOptionIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupDelayOptionNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -702,7 +780,47 @@ func (m *BackupPlanWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBackupPlanExecutionsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPlanExecutionsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPlanExecutionsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupRestorePointsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupRestorePointsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupRestorePointsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupService(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupStoreRepository(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDeleteStrategy(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDeleteStrategyIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDeleteStrategyNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -710,7 +828,15 @@ func (m *BackupPlanWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -718,7 +844,15 @@ func (m *BackupPlanWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateFullPeriod(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFullPeriodIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFullPeriodNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -726,7 +860,15 @@ func (m *BackupPlanWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIncrementalPeriod(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIncrementalPeriodIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIncrementalPeriodNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -734,7 +876,15 @@ func (m *BackupPlanWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateKeepPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateKeepPolicyIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateKeepPolicyNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -742,7 +892,15 @@ func (m *BackupPlanWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLastExecuteStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLastExecuteStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLastExecuteStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -750,11 +908,47 @@ func (m *BackupPlanWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePhase(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhaseIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhaseNot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhaseNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatusNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -778,6 +972,8 @@ func (m *BackupPlanWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -802,6 +998,8 @@ func (m *BackupPlanWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -826,11 +1024,21 @@ func (m *BackupPlanWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupDelayOption(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupDelayOption) { // not required
+		return nil
 	}
 
 	return nil
@@ -846,10 +1054,20 @@ func (m *BackupPlanWhereInput) validateBackupDelayOptionIn(formats strfmt.Regist
 		if err := m.BackupDelayOptionIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("backup_delay_option_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupDelayOptionNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupDelayOptionNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -865,10 +1083,84 @@ func (m *BackupPlanWhereInput) validateBackupDelayOptionNotIn(formats strfmt.Reg
 		if err := m.BackupDelayOptionNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("backup_delay_option_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupPlanExecutionsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlanExecutionsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupPlanExecutionsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlanExecutionsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupPlanExecutionsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlanExecutionsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupRestorePointsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePointsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupRestorePointsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePointsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupRestorePointsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePointsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupService(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupService) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateBackupStoreRepository(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupStoreRepository) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateDeleteStrategy(formats strfmt.Registry) error {
+	if swag.IsZero(m.DeleteStrategy) { // not required
+		return nil
 	}
 
 	return nil
@@ -884,10 +1176,20 @@ func (m *BackupPlanWhereInput) validateDeleteStrategyIn(formats strfmt.Registry)
 		if err := m.DeleteStrategyIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("delete_strategy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateDeleteStrategyNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.DeleteStrategyNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -903,10 +1205,20 @@ func (m *BackupPlanWhereInput) validateDeleteStrategyNotIn(formats strfmt.Regist
 		if err := m.DeleteStrategyNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("delete_strategy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -922,10 +1234,20 @@ func (m *BackupPlanWhereInput) validateEntityAsyncStatusIn(formats strfmt.Regist
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -941,10 +1263,20 @@ func (m *BackupPlanWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.Reg
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateFullPeriod(formats strfmt.Registry) error {
+	if swag.IsZero(m.FullPeriod) { // not required
+		return nil
 	}
 
 	return nil
@@ -960,10 +1292,20 @@ func (m *BackupPlanWhereInput) validateFullPeriodIn(formats strfmt.Registry) err
 		if err := m.FullPeriodIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("full_period_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("full_period_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateFullPeriodNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.FullPeriodNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -979,10 +1321,20 @@ func (m *BackupPlanWhereInput) validateFullPeriodNotIn(formats strfmt.Registry) 
 		if err := m.FullPeriodNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("full_period_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("full_period_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateIncrementalPeriod(formats strfmt.Registry) error {
+	if swag.IsZero(m.IncrementalPeriod) { // not required
+		return nil
 	}
 
 	return nil
@@ -998,10 +1350,20 @@ func (m *BackupPlanWhereInput) validateIncrementalPeriodIn(formats strfmt.Regist
 		if err := m.IncrementalPeriodIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("incremental_period_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("incremental_period_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateIncrementalPeriodNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.IncrementalPeriodNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1017,10 +1379,20 @@ func (m *BackupPlanWhereInput) validateIncrementalPeriodNotIn(formats strfmt.Reg
 		if err := m.IncrementalPeriodNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("incremental_period_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("incremental_period_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateKeepPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.KeepPolicy) { // not required
+		return nil
 	}
 
 	return nil
@@ -1036,10 +1408,20 @@ func (m *BackupPlanWhereInput) validateKeepPolicyIn(formats strfmt.Registry) err
 		if err := m.KeepPolicyIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("keep_policy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateKeepPolicyNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.KeepPolicyNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1055,10 +1437,20 @@ func (m *BackupPlanWhereInput) validateKeepPolicyNotIn(formats strfmt.Registry) 
 		if err := m.KeepPolicyNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("keep_policy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateLastExecuteStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.LastExecuteStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -1074,10 +1466,20 @@ func (m *BackupPlanWhereInput) validateLastExecuteStatusIn(formats strfmt.Regist
 		if err := m.LastExecuteStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("last_execute_status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateLastExecuteStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.LastExecuteStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1093,10 +1495,78 @@ func (m *BackupPlanWhereInput) validateLastExecuteStatusNotIn(formats strfmt.Reg
 		if err := m.LastExecuteStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("last_execute_status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validatePhase(formats strfmt.Registry) error {
+	if swag.IsZero(m.Phase) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validatePhaseIn(formats strfmt.Registry) error {
+	if swag.IsZero(m.PhaseIn) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PhaseIn); i++ {
+
+		if err := m.PhaseIn[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validatePhaseNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.PhaseNot) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validatePhaseNotIn(formats strfmt.Registry) error {
+	if swag.IsZero(m.PhaseNotIn) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PhaseNotIn); i++ {
+
+		if err := m.PhaseNotIn[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase_not_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -1112,10 +1582,20 @@ func (m *BackupPlanWhereInput) validateStatusIn(formats strfmt.Registry) error {
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1131,10 +1611,36 @@ func (m *BackupPlanWhereInput) validateStatusNotIn(formats strfmt.Registry) erro
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateVmsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateVmsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) validateVmsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -1156,7 +1662,15 @@ func (m *BackupPlanWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBackupDelayOption(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateBackupDelayOptionIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupDelayOptionNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1164,7 +1678,47 @@ func (m *BackupPlanWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBackupPlanExecutionsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupPlanExecutionsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupPlanExecutionsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupRestorePointsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupRestorePointsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupRestorePointsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupStoreRepository(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeleteStrategy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDeleteStrategyIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeleteStrategyNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1172,7 +1726,15 @@ func (m *BackupPlanWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1180,7 +1742,15 @@ func (m *BackupPlanWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateFullPeriod(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFullPeriodIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFullPeriodNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1188,7 +1758,15 @@ func (m *BackupPlanWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIncrementalPeriod(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIncrementalPeriodIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIncrementalPeriodNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1196,7 +1774,15 @@ func (m *BackupPlanWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateKeepPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateKeepPolicyIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateKeepPolicyNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1204,7 +1790,15 @@ func (m *BackupPlanWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLastExecuteStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLastExecuteStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastExecuteStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1212,11 +1806,47 @@ func (m *BackupPlanWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePhase(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhaseIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhaseNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhaseNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1234,6 +1864,8 @@ func (m *BackupPlanWhereInput) contextValidateAND(ctx context.Context, formats s
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1252,6 +1884,8 @@ func (m *BackupPlanWhereInput) contextValidateNOT(ctx context.Context, formats s
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1270,12 +1904,19 @@ func (m *BackupPlanWhereInput) contextValidateOR(ctx context.Context, formats st
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupDelayOption(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1287,11 +1928,18 @@ func (m *BackupPlanWhereInput) contextValidateBackupDelayOptionIn(ctx context.Co
 		if err := m.BackupDelayOptionIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("backup_delay_option_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupDelayOptionNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1303,11 +1951,58 @@ func (m *BackupPlanWhereInput) contextValidateBackupDelayOptionNotIn(ctx context
 		if err := m.BackupDelayOptionNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("backup_delay_option_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupPlanExecutionsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupPlanExecutionsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupPlanExecutionsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupRestorePointsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupRestorePointsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupRestorePointsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupService(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateBackupStoreRepository(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateDeleteStrategy(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1319,11 +2014,18 @@ func (m *BackupPlanWhereInput) contextValidateDeleteStrategyIn(ctx context.Conte
 		if err := m.DeleteStrategyIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("delete_strategy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateDeleteStrategyNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1335,11 +2037,18 @@ func (m *BackupPlanWhereInput) contextValidateDeleteStrategyNotIn(ctx context.Co
 		if err := m.DeleteStrategyNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("delete_strategy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1351,11 +2060,18 @@ func (m *BackupPlanWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Co
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1367,11 +2083,18 @@ func (m *BackupPlanWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateFullPeriod(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1383,11 +2106,18 @@ func (m *BackupPlanWhereInput) contextValidateFullPeriodIn(ctx context.Context, 
 		if err := m.FullPeriodIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("full_period_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("full_period_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateFullPeriodNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1399,11 +2129,18 @@ func (m *BackupPlanWhereInput) contextValidateFullPeriodNotIn(ctx context.Contex
 		if err := m.FullPeriodNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("full_period_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("full_period_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateIncrementalPeriod(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1415,11 +2152,18 @@ func (m *BackupPlanWhereInput) contextValidateIncrementalPeriodIn(ctx context.Co
 		if err := m.IncrementalPeriodIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("incremental_period_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("incremental_period_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateIncrementalPeriodNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1431,11 +2175,18 @@ func (m *BackupPlanWhereInput) contextValidateIncrementalPeriodNotIn(ctx context
 		if err := m.IncrementalPeriodNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("incremental_period_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("incremental_period_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateKeepPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1447,11 +2198,18 @@ func (m *BackupPlanWhereInput) contextValidateKeepPolicyIn(ctx context.Context, 
 		if err := m.KeepPolicyIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("keep_policy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateKeepPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1463,11 +2221,18 @@ func (m *BackupPlanWhereInput) contextValidateKeepPolicyNotIn(ctx context.Contex
 		if err := m.KeepPolicyNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("keep_policy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateLastExecuteStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1479,11 +2244,18 @@ func (m *BackupPlanWhereInput) contextValidateLastExecuteStatusIn(ctx context.Co
 		if err := m.LastExecuteStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("last_execute_status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateLastExecuteStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1495,11 +2267,64 @@ func (m *BackupPlanWhereInput) contextValidateLastExecuteStatusNotIn(ctx context
 		if err := m.LastExecuteStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("last_execute_status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidatePhaseIn(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PhaseIn); i++ {
+
+		if err := m.PhaseIn[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidatePhaseNot(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidatePhaseNotIn(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PhaseNotIn); i++ {
+
+		if err := m.PhaseNotIn[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase_not_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1511,11 +2336,18 @@ func (m *BackupPlanWhereInput) contextValidateStatusIn(ctx context.Context, form
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1527,11 +2359,28 @@ func (m *BackupPlanWhereInput) contextValidateStatusNotIn(ctx context.Context, f
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

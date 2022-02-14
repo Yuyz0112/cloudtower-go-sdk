@@ -20,8 +20,12 @@ import (
 type BackupLicenseOrderByInput string
 
 func NewBackupLicenseOrderByInput(value BackupLicenseOrderByInput) *BackupLicenseOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupLicenseOrderByInput.
+func (m BackupLicenseOrderByInput) Pointer() *BackupLicenseOrderByInput {
+	return &m
 }
 
 const (

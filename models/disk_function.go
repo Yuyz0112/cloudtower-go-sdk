@@ -20,8 +20,12 @@ import (
 type DiskFunction string
 
 func NewDiskFunction(value DiskFunction) *DiskFunction {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated DiskFunction.
+func (m DiskFunction) Pointer() *DiskFunction {
+	return &m
 }
 
 const (

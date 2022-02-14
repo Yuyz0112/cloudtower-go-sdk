@@ -92,6 +92,8 @@ func (m *LogCollectionCreationParams) validateHosts(formats strfmt.Registry) err
 		if err := m.Hosts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts")
 			}
 			return err
 		}
@@ -146,6 +148,8 @@ func (m *LogCollectionCreationParams) contextValidateHosts(ctx context.Context, 
 		if err := m.Hosts.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts")
 			}
 			return err
 		}

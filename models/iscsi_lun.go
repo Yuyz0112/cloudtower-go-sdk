@@ -65,10 +65,14 @@ type IscsiLun struct {
 	BpsWrMaxLength *float64 `json:"bps_wr_max_length"`
 
 	// consistency group
-	ConsistencyGroup interface{} `json:"consistency_group,omitempty"`
+	ConsistencyGroup struct {
+		NestedConsistencyGroup
+	} `json:"consistency_group,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -215,6 +219,14 @@ func (m *IscsiLun) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateBpsWrMaxLength(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -423,6 +435,22 @@ func (m *IscsiLun) validateBpsWrMaxLength(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IscsiLun) validateConsistencyGroup(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroup) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IscsiLun) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *IscsiLun) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
@@ -532,6 +560,8 @@ func (m *IscsiLun) validateIscsiTarget(formats strfmt.Registry) error {
 		if err := m.IscsiTarget.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
 			}
 			return err
 		}
@@ -554,6 +584,8 @@ func (m *IscsiLun) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -676,6 +708,14 @@ func (m *IscsiLun) validateZbsVolumeID(formats strfmt.Registry) error {
 func (m *IscsiLun) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateConsistencyGroup(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIscsiTarget(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -690,12 +730,24 @@ func (m *IscsiLun) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
+func (m *IscsiLun) contextValidateConsistencyGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IscsiLun) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *IscsiLun) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IscsiTarget != nil {
 		if err := m.IscsiTarget.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
 			}
 			return err
 		}
@@ -712,6 +764,8 @@ func (m *IscsiLun) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

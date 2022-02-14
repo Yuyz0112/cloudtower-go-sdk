@@ -100,6 +100,8 @@ func (m *RackTopo) validateBrickTopoes(formats strfmt.Registry) error {
 			if err := m.BrickTopoes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("brick_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("brick_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -120,6 +122,8 @@ func (m *RackTopo) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -174,6 +178,8 @@ func (m *RackTopo) validateZoneTopo(formats strfmt.Registry) error {
 		if err := m.ZoneTopo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("zone_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zone_topo")
 			}
 			return err
 		}
@@ -212,6 +218,8 @@ func (m *RackTopo) contextValidateBrickTopoes(ctx context.Context, formats strfm
 			if err := m.BrickTopoes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("brick_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("brick_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -228,6 +236,8 @@ func (m *RackTopo) contextValidateCluster(ctx context.Context, formats strfmt.Re
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -242,6 +252,8 @@ func (m *RackTopo) contextValidateZoneTopo(ctx context.Context, formats strfmt.R
 		if err := m.ZoneTopo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("zone_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zone_topo")
 			}
 			return err
 		}

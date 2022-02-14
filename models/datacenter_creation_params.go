@@ -62,6 +62,8 @@ func (m *DatacenterCreationParams) validateClusters(formats strfmt.Registry) err
 		if err := m.Clusters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters")
 			}
 			return err
 		}
@@ -108,6 +110,8 @@ func (m *DatacenterCreationParams) contextValidateClusters(ctx context.Context, 
 		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters")
 			}
 			return err
 		}

@@ -96,6 +96,8 @@ func (m *BrickTopoCreationParams) validateCapacity(formats strfmt.Registry) erro
 		if err := m.Capacity.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("capacity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("capacity")
 			}
 			return err
 		}
@@ -140,6 +142,8 @@ func (m *BrickTopoCreationParams) validateNodeTopoes(formats strfmt.Registry) er
 		if err := m.NodeTopoes.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("node_topoes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("node_topoes")
 			}
 			return err
 		}
@@ -171,6 +175,8 @@ func (m *BrickTopoCreationParams) validateTagPositionInBrick(formats strfmt.Regi
 			if err := m.TagPositionInBrick[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tag_position_in_brick" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tag_position_in_brick" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -209,6 +215,8 @@ func (m *BrickTopoCreationParams) contextValidateCapacity(ctx context.Context, f
 		if err := m.Capacity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("capacity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("capacity")
 			}
 			return err
 		}
@@ -223,6 +231,8 @@ func (m *BrickTopoCreationParams) contextValidateNodeTopoes(ctx context.Context,
 		if err := m.NodeTopoes.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("node_topoes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("node_topoes")
 			}
 			return err
 		}
@@ -239,6 +249,8 @@ func (m *BrickTopoCreationParams) contextValidateTagPositionInBrick(ctx context.
 			if err := m.TagPositionInBrick[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tag_position_in_brick" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tag_position_in_brick" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

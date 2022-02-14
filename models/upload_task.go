@@ -150,6 +150,8 @@ func (m *UploadTask) validateResourceType(formats strfmt.Registry) error {
 		if err := m.ResourceType.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type")
 			}
 			return err
 		}
@@ -181,6 +183,8 @@ func (m *UploadTask) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -222,6 +226,8 @@ func (m *UploadTask) contextValidateResourceType(ctx context.Context, formats st
 		if err := m.ResourceType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type")
 			}
 			return err
 		}
@@ -236,6 +242,8 @@ func (m *UploadTask) contextValidateStatus(ctx context.Context, formats strfmt.R
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}

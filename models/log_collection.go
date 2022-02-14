@@ -59,6 +59,9 @@ type LogCollection struct {
 	// Required: true
 	Progress *float64 `json:"progress"`
 
+	// service groups
+	ServiceGroups interface{} `json:"service_groups,omitempty"`
+
 	// services
 	// Required: true
 	Services []string `json:"services"`
@@ -76,7 +79,9 @@ type LogCollection struct {
 	Status *LogCollectionStatus `json:"status"`
 
 	// witness
-	Witness interface{} `json:"witness,omitempty"`
+	Witness struct {
+		NestedWitness
+	} `json:"witness,omitempty"`
 }
 
 // Validate validates this log collection
@@ -139,6 +144,10 @@ func (m *LogCollection) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateWitness(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -155,6 +164,8 @@ func (m *LogCollection) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -186,6 +197,8 @@ func (m *LogCollection) validateHosts(formats strfmt.Registry) error {
 			if err := m.Hosts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("hosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -300,9 +313,19 @@ func (m *LogCollection) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *LogCollection) validateWitness(formats strfmt.Registry) error {
+	if swag.IsZero(m.Witness) { // not required
+		return nil
 	}
 
 	return nil
@@ -324,6 +347,10 @@ func (m *LogCollection) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateWitness(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -336,6 +363,8 @@ func (m *LogCollection) contextValidateCluster(ctx context.Context, formats strf
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -352,6 +381,8 @@ func (m *LogCollection) contextValidateHosts(ctx context.Context, formats strfmt
 			if err := m.Hosts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("hosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -368,10 +399,17 @@ func (m *LogCollection) contextValidateStatus(ctx context.Context, formats strfm
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *LogCollection) contextValidateWitness(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

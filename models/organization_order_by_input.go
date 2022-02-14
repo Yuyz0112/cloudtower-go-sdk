@@ -20,8 +20,12 @@ import (
 type OrganizationOrderByInput string
 
 func NewOrganizationOrderByInput(value OrganizationOrderByInput) *OrganizationOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OrganizationOrderByInput.
+func (m OrganizationOrderByInput) Pointer() *OrganizationOrderByInput {
+	return &m
 }
 
 const (

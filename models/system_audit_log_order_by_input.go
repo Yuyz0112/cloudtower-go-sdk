@@ -20,8 +20,12 @@ import (
 type SystemAuditLogOrderByInput string
 
 func NewSystemAuditLogOrderByInput(value SystemAuditLogOrderByInput) *SystemAuditLogOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SystemAuditLogOrderByInput.
+func (m SystemAuditLogOrderByInput) Pointer() *SystemAuditLogOrderByInput {
+	return &m
 }
 
 const (

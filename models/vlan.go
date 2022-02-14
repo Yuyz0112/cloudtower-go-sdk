@@ -21,7 +21,9 @@ import (
 type Vlan struct {
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// gateway ip
 	GatewayIP *string `json:"gateway_ip,omitempty"`
@@ -67,6 +69,10 @@ type Vlan struct {
 func (m *Vlan) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -105,6 +111,14 @@ func (m *Vlan) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Vlan) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Vlan) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
@@ -128,6 +142,8 @@ func (m *Vlan) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -170,6 +186,8 @@ func (m *Vlan) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -188,6 +206,8 @@ func (m *Vlan) validateVds(formats strfmt.Registry) error {
 		if err := m.Vds.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vds")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vds")
 			}
 			return err
 		}
@@ -219,6 +239,8 @@ func (m *Vlan) validateVMNics(formats strfmt.Registry) error {
 			if err := m.VMNics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -232,6 +254,10 @@ func (m *Vlan) validateVMNics(formats strfmt.Registry) error {
 // ContextValidate validate this vlan based on the context it is used
 func (m *Vlan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
 		res = append(res, err)
@@ -255,6 +281,11 @@ func (m *Vlan) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	return nil
 }
 
+func (m *Vlan) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *Vlan) contextValidateLabels(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Labels); i++ {
@@ -263,6 +294,8 @@ func (m *Vlan) contextValidateLabels(ctx context.Context, formats strfmt.Registr
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -279,6 +312,8 @@ func (m *Vlan) contextValidateType(ctx context.Context, formats strfmt.Registry)
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -293,6 +328,8 @@ func (m *Vlan) contextValidateVds(ctx context.Context, formats strfmt.Registry) 
 		if err := m.Vds.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vds")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vds")
 			}
 			return err
 		}
@@ -309,6 +346,8 @@ func (m *Vlan) contextValidateVMNics(ctx context.Context, formats strfmt.Registr
 			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

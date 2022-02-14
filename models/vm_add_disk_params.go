@@ -57,6 +57,8 @@ func (m *VMAddDiskParams) validateData(formats strfmt.Registry) error {
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -75,6 +77,8 @@ func (m *VMAddDiskParams) validateWhere(formats strfmt.Registry) error {
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -107,6 +111,8 @@ func (m *VMAddDiskParams) contextValidateData(ctx context.Context, formats strfm
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -121,6 +127,8 @@ func (m *VMAddDiskParams) contextValidateWhere(ctx context.Context, formats strf
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -206,6 +214,8 @@ func (m *VMAddDiskParamsData) validateIoPolicy(formats strfmt.Registry) error {
 	if err := m.IoPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "io_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "io_policy")
 		}
 		return err
 	}
@@ -221,6 +231,8 @@ func (m *VMAddDiskParamsData) validateMaxBandwidthPolicy(formats strfmt.Registry
 	if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "max_bandwidth_policy")
 		}
 		return err
 	}
@@ -236,6 +248,8 @@ func (m *VMAddDiskParamsData) validateMaxIopsPolicy(formats strfmt.Registry) err
 	if err := m.MaxIopsPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "max_iops_policy")
 		}
 		return err
 	}
@@ -253,6 +267,8 @@ func (m *VMAddDiskParamsData) validateVMDisks(formats strfmt.Registry) error {
 		if err := m.VMDisks.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vm_disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vm_disks")
 			}
 			return err
 		}
@@ -292,6 +308,8 @@ func (m *VMAddDiskParamsData) contextValidateIoPolicy(ctx context.Context, forma
 	if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "io_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "io_policy")
 		}
 		return err
 	}
@@ -304,6 +322,8 @@ func (m *VMAddDiskParamsData) contextValidateMaxBandwidthPolicy(ctx context.Cont
 	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "max_bandwidth_policy")
 		}
 		return err
 	}
@@ -316,6 +336,8 @@ func (m *VMAddDiskParamsData) contextValidateMaxIopsPolicy(ctx context.Context, 
 	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "max_iops_policy")
 		}
 		return err
 	}
@@ -329,6 +351,8 @@ func (m *VMAddDiskParamsData) contextValidateVMDisks(ctx context.Context, format
 		if err := m.VMDisks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vm_disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vm_disks")
 			}
 			return err
 		}
@@ -399,6 +423,8 @@ func (m *VMAddDiskParamsDataVMDisks) validateMountDisks(formats strfmt.Registry)
 			if err := m.MountDisks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -423,6 +449,8 @@ func (m *VMAddDiskParamsDataVMDisks) validateMountNewCreateDisks(formats strfmt.
 			if err := m.MountNewCreateDisks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -459,6 +487,8 @@ func (m *VMAddDiskParamsDataVMDisks) contextValidateMountDisks(ctx context.Conte
 			if err := m.MountDisks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -477,6 +507,8 @@ func (m *VMAddDiskParamsDataVMDisks) contextValidateMountNewCreateDisks(ctx cont
 			if err := m.MountNewCreateDisks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

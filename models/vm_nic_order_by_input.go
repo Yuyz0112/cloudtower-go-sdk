@@ -20,8 +20,12 @@ import (
 type VMNicOrderByInput string
 
 func NewVMNicOrderByInput(value VMNicOrderByInput) *VMNicOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMNicOrderByInput.
+func (m VMNicOrderByInput) Pointer() *VMNicOrderByInput {
+	return &m
 }
 
 const (

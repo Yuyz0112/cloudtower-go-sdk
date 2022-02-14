@@ -170,6 +170,8 @@ func (m *EverouteLicense) validateSoftwareEdition(formats strfmt.Registry) error
 		if err := m.SoftwareEdition.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
 			}
 			return err
 		}
@@ -192,6 +194,8 @@ func (m *EverouteLicense) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -233,6 +237,8 @@ func (m *EverouteLicense) contextValidateSoftwareEdition(ctx context.Context, fo
 		if err := m.SoftwareEdition.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
 			}
 			return err
 		}
@@ -247,6 +253,8 @@ func (m *EverouteLicense) contextValidateType(ctx context.Context, formats strfm
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

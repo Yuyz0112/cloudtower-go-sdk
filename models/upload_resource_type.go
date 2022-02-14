@@ -20,8 +20,12 @@ import (
 type UploadResourceType string
 
 func NewUploadResourceType(value UploadResourceType) *UploadResourceType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UploadResourceType.
+func (m UploadResourceType) Pointer() *UploadResourceType {
+	return &m
 }
 
 const (

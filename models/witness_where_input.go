@@ -30,7 +30,9 @@ type WitnessWhereInput struct {
 	OR []*WitnessWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// cpu hz per core
 	CPUHzPerCore *float64 `json:"cpu_hz_per_core,omitempty"`
@@ -361,6 +363,10 @@ func (m *WitnessWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -381,6 +387,8 @@ func (m *WitnessWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -405,6 +413,8 @@ func (m *WitnessWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -429,11 +439,21 @@ func (m *WitnessWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *WitnessWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
 	}
 
 	return nil
@@ -455,6 +475,10 @@ func (m *WitnessWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -469,6 +493,8 @@ func (m *WitnessWhereInput) contextValidateAND(ctx context.Context, formats strf
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -487,6 +513,8 @@ func (m *WitnessWhereInput) contextValidateNOT(ctx context.Context, formats strf
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -505,12 +533,19 @@ func (m *WitnessWhereInput) contextValidateOR(ctx context.Context, formats strfm
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *WitnessWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -21,17 +21,23 @@ import (
 type IscsiLunSnapshot struct {
 
 	// consistency group snapshot
-	ConsistencyGroupSnapshot interface{} `json:"consistency_group_snapshot,omitempty"`
+	ConsistencyGroupSnapshot struct {
+		NestedConsistencyGroupSnapshot
+	} `json:"consistency_group_snapshot,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
 	ID *string `json:"id"`
 
 	// iscsi lun
-	IscsiLun interface{} `json:"iscsi_lun,omitempty"`
+	IscsiLun struct {
+		NestedIscsiLun
+	} `json:"iscsi_lun,omitempty"`
 
 	// iscsi target
 	// Required: true
@@ -61,7 +67,19 @@ type IscsiLunSnapshot struct {
 func (m *IscsiLunSnapshot) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateConsistencyGroupSnapshot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLun(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -95,10 +113,34 @@ func (m *IscsiLunSnapshot) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IscsiLunSnapshot) validateConsistencyGroupSnapshot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupSnapshot) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IscsiLunSnapshot) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *IscsiLunSnapshot) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *IscsiLunSnapshot) validateIscsiLun(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLun) { // not required
+		return nil
 	}
 
 	return nil
@@ -114,6 +156,8 @@ func (m *IscsiLunSnapshot) validateIscsiTarget(formats strfmt.Registry) error {
 		if err := m.IscsiTarget.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
 			}
 			return err
 		}
@@ -136,6 +180,8 @@ func (m *IscsiLunSnapshot) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -186,6 +232,18 @@ func (m *IscsiLunSnapshot) validateUniqueSize(formats strfmt.Registry) error {
 func (m *IscsiLunSnapshot) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateConsistencyGroupSnapshot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLun(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIscsiTarget(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -200,12 +258,29 @@ func (m *IscsiLunSnapshot) ContextValidate(ctx context.Context, formats strfmt.R
 	return nil
 }
 
+func (m *IscsiLunSnapshot) contextValidateConsistencyGroupSnapshot(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IscsiLunSnapshot) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IscsiLunSnapshot) contextValidateIscsiLun(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *IscsiLunSnapshot) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IscsiTarget != nil {
 		if err := m.IscsiTarget.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
 			}
 			return err
 		}
@@ -222,6 +297,8 @@ func (m *IscsiLunSnapshot) contextValidateLabels(ctx context.Context, formats st
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

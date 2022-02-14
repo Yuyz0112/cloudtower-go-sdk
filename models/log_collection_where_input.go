@@ -30,16 +30,24 @@ type LogCollectionWhereInput struct {
 	OR []*LogCollectionWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// hosts every
-	HostsEvery interface{} `json:"hosts_every,omitempty"`
+	HostsEvery struct {
+		HostWhereInput
+	} `json:"hosts_every,omitempty"`
 
 	// hosts none
-	HostsNone interface{} `json:"hosts_none,omitempty"`
+	HostsNone struct {
+		HostWhereInput
+	} `json:"hosts_none,omitempty"`
 
 	// hosts some
-	HostsSome interface{} `json:"hosts_some,omitempty"`
+	HostsSome struct {
+		HostWhereInput
+	} `json:"hosts_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -330,19 +338,25 @@ type LogCollectionWhereInput struct {
 	StartedAtNotIn []string `json:"started_at_not_in,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		LogCollectionStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []LogCollectionStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		LogCollectionStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []LogCollectionStatus `json:"status_not_in,omitempty"`
 
 	// witness
-	Witness interface{} `json:"witness,omitempty"`
+	Witness struct {
+		WitnessWhereInput
+	} `json:"witness,omitempty"`
 }
 
 // Validate validates this log collection where input
@@ -361,11 +375,39 @@ func (m *LogCollectionWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatusNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWitness(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -389,6 +431,8 @@ func (m *LogCollectionWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -413,6 +457,8 @@ func (m *LogCollectionWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -437,11 +483,53 @@ func (m *LogCollectionWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) validateHostsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) validateHostsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) validateHostsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -457,10 +545,20 @@ func (m *LogCollectionWhereInput) validateStatusIn(formats strfmt.Registry) erro
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -476,10 +574,20 @@ func (m *LogCollectionWhereInput) validateStatusNotIn(formats strfmt.Registry) e
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) validateWitness(formats strfmt.Registry) error {
+	if swag.IsZero(m.Witness) { // not required
+		return nil
 	}
 
 	return nil
@@ -501,11 +609,39 @@ func (m *LogCollectionWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWitness(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -523,6 +659,8 @@ func (m *LogCollectionWhereInput) contextValidateAND(ctx context.Context, format
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -541,6 +679,8 @@ func (m *LogCollectionWhereInput) contextValidateNOT(ctx context.Context, format
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -559,12 +699,39 @@ func (m *LogCollectionWhereInput) contextValidateOR(ctx context.Context, formats
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) contextValidateHostsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) contextValidateHostsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) contextValidateHostsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -576,11 +743,18 @@ func (m *LogCollectionWhereInput) contextValidateStatusIn(ctx context.Context, f
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -592,11 +766,18 @@ func (m *LogCollectionWhereInput) contextValidateStatusNotIn(ctx context.Context
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *LogCollectionWhereInput) contextValidateWitness(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

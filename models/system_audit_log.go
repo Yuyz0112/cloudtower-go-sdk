@@ -24,7 +24,9 @@ type SystemAuditLog struct {
 	Action *string `json:"action"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		NestedCluster
+	} `json:"cluster,omitempty"`
 
 	// finished at
 	FinishedAt *string `json:"finished_at,omitempty"`
@@ -48,7 +50,9 @@ type SystemAuditLog struct {
 	ResourceID *string `json:"resource_id,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		UserAuditLogStatus
+	} `json:"status,omitempty"`
 }
 
 // Validate validates this system audit log
@@ -56,6 +60,10 @@ func (m *SystemAuditLog) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAction(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCluster(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -71,6 +79,10 @@ func (m *SystemAuditLog) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -81,6 +93,14 @@ func (m *SystemAuditLog) validateAction(formats strfmt.Registry) error {
 
 	if err := validate.Required("action", "body", m.Action); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *SystemAuditLog) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
 	}
 
 	return nil
@@ -113,8 +133,39 @@ func (m *SystemAuditLog) validateMessage(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this system audit log based on context it is used
+func (m *SystemAuditLog) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this system audit log based on the context it is used
 func (m *SystemAuditLog) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SystemAuditLog) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SystemAuditLog) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

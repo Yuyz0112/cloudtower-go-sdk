@@ -20,8 +20,12 @@ import (
 type AlertNotifierOrderByInput string
 
 func NewAlertNotifierOrderByInput(value AlertNotifierOrderByInput) *AlertNotifierOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated AlertNotifierOrderByInput.
+func (m AlertNotifierOrderByInput) Pointer() *AlertNotifierOrderByInput {
+	return &m
 }
 
 const (

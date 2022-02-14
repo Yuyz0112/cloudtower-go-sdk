@@ -20,8 +20,12 @@ import (
 type BackupRestoreExecutionMode string
 
 func NewBackupRestoreExecutionMode(value BackupRestoreExecutionMode) *BackupRestoreExecutionMode {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupRestoreExecutionMode.
+func (m BackupRestoreExecutionMode) Pointer() *BackupRestoreExecutionMode {
+	return &m
 }
 
 const (

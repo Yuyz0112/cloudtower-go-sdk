@@ -114,37 +114,51 @@ type UserRoleNextWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// platform
-	Platform interface{} `json:"platform,omitempty"`
+	Platform struct {
+		UserRolePlatform
+	} `json:"platform,omitempty"`
 
 	// platform in
 	PlatformIn []UserRolePlatform `json:"platform_in,omitempty"`
 
 	// platform not
-	PlatformNot interface{} `json:"platform_not,omitempty"`
+	PlatformNot struct {
+		UserRolePlatform
+	} `json:"platform_not,omitempty"`
 
 	// platform not in
 	PlatformNotIn []UserRolePlatform `json:"platform_not_in,omitempty"`
 
 	// preset
-	Preset interface{} `json:"preset,omitempty"`
+	Preset struct {
+		UserRolePreset
+	} `json:"preset,omitempty"`
 
 	// preset in
 	PresetIn []UserRolePreset `json:"preset_in,omitempty"`
 
 	// preset not
-	PresetNot interface{} `json:"preset_not,omitempty"`
+	PresetNot struct {
+		UserRolePreset
+	} `json:"preset_not,omitempty"`
 
 	// preset not in
 	PresetNotIn []UserRolePreset `json:"preset_not_in,omitempty"`
 
 	// users every
-	UsersEvery interface{} `json:"users_every,omitempty"`
+	UsersEvery struct {
+		UserWhereInput
+	} `json:"users_every,omitempty"`
 
 	// users none
-	UsersNone interface{} `json:"users_none,omitempty"`
+	UsersNone struct {
+		UserWhereInput
+	} `json:"users_none,omitempty"`
 
 	// users some
-	UsersSome interface{} `json:"users_some,omitempty"`
+	UsersSome struct {
+		UserWhereInput
+	} `json:"users_some,omitempty"`
 }
 
 // Validate validates this user role next where input
@@ -163,7 +177,15 @@ func (m *UserRoleNextWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePlatform(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePlatformIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePlatformNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -171,11 +193,31 @@ func (m *UserRoleNextWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePreset(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePresetIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validatePresetNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePresetNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUsersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUsersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUsersSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -199,6 +241,8 @@ func (m *UserRoleNextWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -223,6 +267,8 @@ func (m *UserRoleNextWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -247,11 +293,21 @@ func (m *UserRoleNextWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) validatePlatform(formats strfmt.Registry) error {
+	if swag.IsZero(m.Platform) { // not required
+		return nil
 	}
 
 	return nil
@@ -267,10 +323,20 @@ func (m *UserRoleNextWhereInput) validatePlatformIn(formats strfmt.Registry) err
 		if err := m.PlatformIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("platform_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) validatePlatformNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.PlatformNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -286,10 +352,20 @@ func (m *UserRoleNextWhereInput) validatePlatformNotIn(formats strfmt.Registry) 
 		if err := m.PlatformNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("platform_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) validatePreset(formats strfmt.Registry) error {
+	if swag.IsZero(m.Preset) { // not required
+		return nil
 	}
 
 	return nil
@@ -305,10 +381,20 @@ func (m *UserRoleNextWhereInput) validatePresetIn(formats strfmt.Registry) error
 		if err := m.PresetIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("preset_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) validatePresetNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.PresetNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -324,10 +410,36 @@ func (m *UserRoleNextWhereInput) validatePresetNotIn(formats strfmt.Registry) er
 		if err := m.PresetNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("preset_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) validateUsersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) validateUsersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) validateUsersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsersSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -349,7 +461,15 @@ func (m *UserRoleNextWhereInput) ContextValidate(ctx context.Context, formats st
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePlatform(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePlatformIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePlatformNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -357,11 +477,31 @@ func (m *UserRoleNextWhereInput) ContextValidate(ctx context.Context, formats st
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePreset(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePresetIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePresetNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePresetNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsersSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -379,6 +519,8 @@ func (m *UserRoleNextWhereInput) contextValidateAND(ctx context.Context, formats
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -397,6 +539,8 @@ func (m *UserRoleNextWhereInput) contextValidateNOT(ctx context.Context, formats
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -415,12 +559,19 @@ func (m *UserRoleNextWhereInput) contextValidateOR(ctx context.Context, formats 
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) contextValidatePlatform(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -432,11 +583,18 @@ func (m *UserRoleNextWhereInput) contextValidatePlatformIn(ctx context.Context, 
 		if err := m.PlatformIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("platform_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) contextValidatePlatformNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -448,11 +606,18 @@ func (m *UserRoleNextWhereInput) contextValidatePlatformNotIn(ctx context.Contex
 		if err := m.PlatformNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("platform_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) contextValidatePreset(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -464,11 +629,18 @@ func (m *UserRoleNextWhereInput) contextValidatePresetIn(ctx context.Context, fo
 		if err := m.PresetIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("preset_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) contextValidatePresetNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -480,11 +652,28 @@ func (m *UserRoleNextWhereInput) contextValidatePresetNotIn(ctx context.Context,
 		if err := m.PresetNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("preset_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) contextValidateUsersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) contextValidateUsersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserRoleNextWhereInput) contextValidateUsersSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

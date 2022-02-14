@@ -39,7 +39,9 @@ type ContentLibraryImage struct {
 	ElfImages []*NestedElfImage `json:"elf_images,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -91,6 +93,10 @@ func (m *ContentLibraryImage) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateElfImages(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -146,6 +152,8 @@ func (m *ContentLibraryImage) validateClusters(formats strfmt.Registry) error {
 			if err := m.Clusters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clusters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("clusters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -197,11 +205,21 @@ func (m *ContentLibraryImage) validateElfImages(formats strfmt.Registry) error {
 			if err := m.ElfImages[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("elf_images" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("elf_images" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryImage) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -230,6 +248,8 @@ func (m *ContentLibraryImage) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -281,6 +301,8 @@ func (m *ContentLibraryImage) validateVMDisks(formats strfmt.Registry) error {
 			if err := m.VMDisks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -305,6 +327,8 @@ func (m *ContentLibraryImage) validateVMSnapshots(formats strfmt.Registry) error
 			if err := m.VMSnapshots[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -329,6 +353,8 @@ func (m *ContentLibraryImage) validateVMTemplates(formats strfmt.Registry) error
 			if err := m.VMTemplates[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -348,6 +374,10 @@ func (m *ContentLibraryImage) ContextValidate(ctx context.Context, formats strfm
 	}
 
 	if err := m.contextValidateElfImages(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -381,6 +411,8 @@ func (m *ContentLibraryImage) contextValidateClusters(ctx context.Context, forma
 			if err := m.Clusters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clusters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("clusters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -399,12 +431,19 @@ func (m *ContentLibraryImage) contextValidateElfImages(ctx context.Context, form
 			if err := m.ElfImages[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("elf_images" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("elf_images" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ContentLibraryImage) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -417,6 +456,8 @@ func (m *ContentLibraryImage) contextValidateLabels(ctx context.Context, formats
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -435,6 +476,8 @@ func (m *ContentLibraryImage) contextValidateVMDisks(ctx context.Context, format
 			if err := m.VMDisks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -453,6 +496,8 @@ func (m *ContentLibraryImage) contextValidateVMSnapshots(ctx context.Context, fo
 			if err := m.VMSnapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -471,6 +516,8 @@ func (m *ContentLibraryImage) contextValidateVMTemplates(ctx context.Context, fo
 			if err := m.VMTemplates[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -20,8 +20,12 @@ import (
 type VMDiskIoRestrictType string
 
 func NewVMDiskIoRestrictType(value VMDiskIoRestrictType) *VMDiskIoRestrictType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMDiskIoRestrictType.
+func (m VMDiskIoRestrictType) Pointer() *VMDiskIoRestrictType {
+	return &m
 }
 
 const (

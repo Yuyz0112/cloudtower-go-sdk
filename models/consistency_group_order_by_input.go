@@ -20,8 +20,12 @@ import (
 type ConsistencyGroupOrderByInput string
 
 func NewConsistencyGroupOrderByInput(value ConsistencyGroupOrderByInput) *ConsistencyGroupOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ConsistencyGroupOrderByInput.
+func (m ConsistencyGroupOrderByInput) Pointer() *ConsistencyGroupOrderByInput {
+	return &m
 }
 
 const (

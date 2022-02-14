@@ -20,8 +20,12 @@ import (
 type ClusterSettingsOrderByInput string
 
 func NewClusterSettingsOrderByInput(value ClusterSettingsOrderByInput) *ClusterSettingsOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ClusterSettingsOrderByInput.
+func (m ClusterSettingsOrderByInput) Pointer() *ClusterSettingsOrderByInput {
+	return &m
 }
 
 const (

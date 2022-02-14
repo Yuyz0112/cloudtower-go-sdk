@@ -20,8 +20,12 @@ import (
 type BackupPlanKeepPolicy string
 
 func NewBackupPlanKeepPolicy(value BackupPlanKeepPolicy) *BackupPlanKeepPolicy {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupPlanKeepPolicy.
+func (m BackupPlanKeepPolicy) Pointer() *BackupPlanKeepPolicy {
+	return &m
 }
 
 const (

@@ -57,6 +57,8 @@ func (m *CustomizeAlertRuleUpdationParams) validateData(formats strfmt.Registry)
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -75,6 +77,8 @@ func (m *CustomizeAlertRuleUpdationParams) validateWhere(formats strfmt.Registry
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -107,6 +111,8 @@ func (m *CustomizeAlertRuleUpdationParams) contextValidateData(ctx context.Conte
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -121,6 +127,8 @@ func (m *CustomizeAlertRuleUpdationParams) contextValidateWhere(ctx context.Cont
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -191,6 +199,8 @@ func (m *CustomizeAlertRuleUpdationParamsData) validateClusters(formats strfmt.R
 		if err := m.Clusters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "clusters")
 			}
 			return err
 		}
@@ -213,6 +223,8 @@ func (m *CustomizeAlertRuleUpdationParamsData) validateThresholds(formats strfmt
 			if err := m.Thresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "thresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "thresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -247,6 +259,8 @@ func (m *CustomizeAlertRuleUpdationParamsData) contextValidateClusters(ctx conte
 		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "clusters")
 			}
 			return err
 		}
@@ -263,6 +277,8 @@ func (m *CustomizeAlertRuleUpdationParamsData) contextValidateThresholds(ctx con
 			if err := m.Thresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "thresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "thresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

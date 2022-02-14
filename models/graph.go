@@ -21,13 +21,17 @@ import (
 type Graph struct {
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		NestedCluster
+	} `json:"cluster,omitempty"`
 
 	// disks
 	Disks []*NestedDisk `json:"disks,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// hosts
 	Hosts []*NestedHost `json:"hosts,omitempty"`
@@ -63,7 +67,9 @@ type Graph struct {
 	Namespaces []*NestedNvmfNamespace `json:"namespaces,omitempty"`
 
 	// network
-	Network interface{} `json:"network,omitempty"`
+	Network struct {
+		NetworkType
+	} `json:"network,omitempty"`
 
 	// nics
 	Nics []*NestedNic `json:"nics,omitempty"`
@@ -111,7 +117,15 @@ type Graph struct {
 func (m *Graph) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDisks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -148,6 +162,10 @@ func (m *Graph) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNamespaces(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNetwork(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -201,6 +219,14 @@ func (m *Graph) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Graph) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Graph) validateDisks(formats strfmt.Registry) error {
 	if swag.IsZero(m.Disks) { // not required
 		return nil
@@ -215,11 +241,21 @@ func (m *Graph) validateDisks(formats strfmt.Registry) error {
 			if err := m.Disks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Graph) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -239,6 +275,8 @@ func (m *Graph) validateHosts(formats strfmt.Registry) error {
 			if err := m.Hosts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("hosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -290,6 +328,8 @@ func (m *Graph) validateLuns(formats strfmt.Registry) error {
 			if err := m.Luns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("luns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("luns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -332,6 +372,8 @@ func (m *Graph) validateMetricType(formats strfmt.Registry) error {
 		if err := m.MetricType.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metric_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_type")
 			}
 			return err
 		}
@@ -354,11 +396,21 @@ func (m *Graph) validateNamespaces(formats strfmt.Registry) error {
 			if err := m.Namespaces[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("namespaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("namespaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Graph) validateNetwork(formats strfmt.Registry) error {
+	if swag.IsZero(m.Network) { // not required
+		return nil
 	}
 
 	return nil
@@ -378,6 +430,8 @@ func (m *Graph) validateNics(formats strfmt.Registry) error {
 			if err := m.Nics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -429,6 +483,8 @@ func (m *Graph) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -447,6 +503,8 @@ func (m *Graph) validateView(formats strfmt.Registry) error {
 		if err := m.View.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("view")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("view")
 			}
 			return err
 		}
@@ -469,6 +527,8 @@ func (m *Graph) validateVMNics(formats strfmt.Registry) error {
 			if err := m.VMNics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vmNics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vmNics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -493,6 +553,8 @@ func (m *Graph) validateVMVolumes(formats strfmt.Registry) error {
 			if err := m.VMVolumes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vmVolumes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vmVolumes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -517,6 +579,8 @@ func (m *Graph) validateVms(formats strfmt.Registry) error {
 			if err := m.Vms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -541,6 +605,8 @@ func (m *Graph) validateWitnesses(formats strfmt.Registry) error {
 			if err := m.Witnesses[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("witnesses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("witnesses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -565,6 +631,8 @@ func (m *Graph) validateZones(formats strfmt.Registry) error {
 			if err := m.Zones[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("zones" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("zones" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -579,7 +647,15 @@ func (m *Graph) validateZones(formats strfmt.Registry) error {
 func (m *Graph) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDisks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -596,6 +672,10 @@ func (m *Graph) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	}
 
 	if err := m.contextValidateNamespaces(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNetwork(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -637,6 +717,11 @@ func (m *Graph) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	return nil
 }
 
+func (m *Graph) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *Graph) contextValidateDisks(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Disks); i++ {
@@ -645,12 +730,19 @@ func (m *Graph) contextValidateDisks(ctx context.Context, formats strfmt.Registr
 			if err := m.Disks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *Graph) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -663,6 +755,8 @@ func (m *Graph) contextValidateHosts(ctx context.Context, formats strfmt.Registr
 			if err := m.Hosts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("hosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -681,6 +775,8 @@ func (m *Graph) contextValidateLuns(ctx context.Context, formats strfmt.Registry
 			if err := m.Luns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("luns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("luns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -697,6 +793,8 @@ func (m *Graph) contextValidateMetricType(ctx context.Context, formats strfmt.Re
 		if err := m.MetricType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metric_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_type")
 			}
 			return err
 		}
@@ -713,12 +811,19 @@ func (m *Graph) contextValidateNamespaces(ctx context.Context, formats strfmt.Re
 			if err := m.Namespaces[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("namespaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("namespaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *Graph) contextValidateNetwork(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -731,6 +836,8 @@ func (m *Graph) contextValidateNics(ctx context.Context, formats strfmt.Registry
 			if err := m.Nics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -747,6 +854,8 @@ func (m *Graph) contextValidateType(ctx context.Context, formats strfmt.Registry
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -761,6 +870,8 @@ func (m *Graph) contextValidateView(ctx context.Context, formats strfmt.Registry
 		if err := m.View.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("view")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("view")
 			}
 			return err
 		}
@@ -777,6 +888,8 @@ func (m *Graph) contextValidateVMNics(ctx context.Context, formats strfmt.Regist
 			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vmNics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vmNics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -795,6 +908,8 @@ func (m *Graph) contextValidateVMVolumes(ctx context.Context, formats strfmt.Reg
 			if err := m.VMVolumes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vmVolumes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vmVolumes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -813,6 +928,8 @@ func (m *Graph) contextValidateVms(ctx context.Context, formats strfmt.Registry)
 			if err := m.Vms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -831,6 +948,8 @@ func (m *Graph) contextValidateWitnesses(ctx context.Context, formats strfmt.Reg
 			if err := m.Witnesses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("witnesses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("witnesses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -849,6 +968,8 @@ func (m *Graph) contextValidateZones(ctx context.Context, formats strfmt.Registr
 			if err := m.Zones[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("zones" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("zones" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

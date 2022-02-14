@@ -20,8 +20,12 @@ import (
 type IpmiOrderByInput string
 
 func NewIpmiOrderByInput(value IpmiOrderByInput) *IpmiOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated IpmiOrderByInput.
+func (m IpmiOrderByInput) Pointer() *IpmiOrderByInput {
+	return &m
 }
 
 const (

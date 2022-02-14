@@ -30,7 +30,9 @@ type SnapshotPlanTaskWhereInput struct {
 	OR []*SnapshotPlanTaskWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// end time
 	EndTime *string `json:"end_time,omitempty"`
@@ -57,13 +59,17 @@ type SnapshotPlanTaskWhereInput struct {
 	EndTimeNotIn []string `json:"end_time_not_in,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -159,10 +165,14 @@ type SnapshotPlanTaskWhereInput struct {
 	LocalIDStartsWith *string `json:"local_id_starts_with,omitempty"`
 
 	// snapshot group
-	SnapshotGroup interface{} `json:"snapshotGroup,omitempty"`
+	SnapshotGroup struct {
+		SnapshotGroupWhereInput
+	} `json:"snapshotGroup,omitempty"`
 
 	// snapshot plan
-	SnapshotPlan interface{} `json:"snapshotPlan,omitempty"`
+	SnapshotPlan struct {
+		SnapshotPlanWhereInput
+	} `json:"snapshotPlan,omitempty"`
 
 	// start time
 	StartTime *string `json:"start_time,omitempty"`
@@ -189,25 +199,33 @@ type SnapshotPlanTaskWhereInput struct {
 	StartTimeNotIn []string `json:"start_time_not_in,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		SnapshotPlanExecuteStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []SnapshotPlanExecuteStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		SnapshotPlanExecuteStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []SnapshotPlanExecuteStatus `json:"status_not_in,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		SnapshotPlanTaskType
+	} `json:"type,omitempty"`
 
 	// type in
 	TypeIn []SnapshotPlanTaskType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot interface{} `json:"type_not,omitempty"`
+	TypeNot struct {
+		SnapshotPlanTaskType
+	} `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []SnapshotPlanTaskType `json:"type_not_in,omitempty"`
@@ -229,7 +247,19 @@ func (m *SnapshotPlanTaskWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -237,7 +267,23 @@ func (m *SnapshotPlanTaskWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSnapshotGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSnapshotPlan(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -245,7 +291,15 @@ func (m *SnapshotPlanTaskWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -273,6 +327,8 @@ func (m *SnapshotPlanTaskWhereInput) validateAND(formats strfmt.Registry) error 
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -297,6 +353,8 @@ func (m *SnapshotPlanTaskWhereInput) validateNOT(formats strfmt.Registry) error 
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -321,11 +379,29 @@ func (m *SnapshotPlanTaskWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -341,10 +417,20 @@ func (m *SnapshotPlanTaskWhereInput) validateEntityAsyncStatusIn(formats strfmt.
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -360,10 +446,36 @@ func (m *SnapshotPlanTaskWhereInput) validateEntityAsyncStatusNotIn(formats strf
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateSnapshotGroup(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotGroup) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateSnapshotPlan(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotPlan) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -379,10 +491,20 @@ func (m *SnapshotPlanTaskWhereInput) validateStatusIn(formats strfmt.Registry) e
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -398,10 +520,20 @@ func (m *SnapshotPlanTaskWhereInput) validateStatusNotIn(formats strfmt.Registry
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	return nil
@@ -417,10 +549,20 @@ func (m *SnapshotPlanTaskWhereInput) validateTypeIn(formats strfmt.Registry) err
 		if err := m.TypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) validateTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -436,6 +578,8 @@ func (m *SnapshotPlanTaskWhereInput) validateTypeNotIn(formats strfmt.Registry) 
 		if err := m.TypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -461,7 +605,19 @@ func (m *SnapshotPlanTaskWhereInput) ContextValidate(ctx context.Context, format
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -469,7 +625,23 @@ func (m *SnapshotPlanTaskWhereInput) ContextValidate(ctx context.Context, format
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSnapshotGroup(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSnapshotPlan(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -477,7 +649,15 @@ func (m *SnapshotPlanTaskWhereInput) ContextValidate(ctx context.Context, format
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -499,6 +679,8 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateAND(ctx context.Context, for
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -517,6 +699,8 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateNOT(ctx context.Context, for
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -535,12 +719,24 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateOR(ctx context.Context, form
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -552,11 +748,18 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateEntityAsyncStatusIn(ctx cont
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -568,11 +771,28 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateEntityAsyncStatusNotIn(ctx c
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateSnapshotGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateSnapshotPlan(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -584,11 +804,18 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateStatusIn(ctx context.Context
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -600,11 +827,18 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateStatusNotIn(ctx context.Cont
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -616,11 +850,18 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateTypeIn(ctx context.Context, 
 		if err := m.TypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTaskWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -632,6 +873,8 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateTypeNotIn(ctx context.Contex
 		if err := m.TypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

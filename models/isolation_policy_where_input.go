@@ -30,7 +30,9 @@ type IsolationPolicyWhereInput struct {
 	OR []*IsolationPolicyWhereInput `json:"OR,omitempty"`
 
 	// everoute cluster
-	EverouteCluster interface{} `json:"everoute_cluster,omitempty"`
+	EverouteCluster struct {
+		EverouteClusterWhereInput
+	} `json:"everoute_cluster,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -75,28 +77,40 @@ type IsolationPolicyWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery interface{} `json:"labels_every,omitempty"`
+	LabelsEvery struct {
+		LabelWhereInput
+	} `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone interface{} `json:"labels_none,omitempty"`
+	LabelsNone struct {
+		LabelWhereInput
+	} `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome interface{} `json:"labels_some,omitempty"`
+	LabelsSome struct {
+		LabelWhereInput
+	} `json:"labels_some,omitempty"`
 
 	// mode
-	Mode interface{} `json:"mode,omitempty"`
+	Mode struct {
+		IsolationMode
+	} `json:"mode,omitempty"`
 
 	// mode in
 	ModeIn []IsolationMode `json:"mode_in,omitempty"`
 
 	// mode not
-	ModeNot interface{} `json:"mode_not,omitempty"`
+	ModeNot struct {
+		IsolationMode
+	} `json:"mode_not,omitempty"`
 
 	// mode not in
 	ModeNotIn []IsolationMode `json:"mode_not_in,omitempty"`
 
 	// vm
-	VM interface{} `json:"vm,omitempty"`
+	VM struct {
+		VMWhereInput
+	} `json:"vm,omitempty"`
 }
 
 // Validate validates this isolation policy where input
@@ -115,11 +129,39 @@ func (m *IsolationPolicyWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEverouteCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMode(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateModeIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateModeNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateModeNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVM(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -143,6 +185,8 @@ func (m *IsolationPolicyWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -167,6 +211,8 @@ func (m *IsolationPolicyWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -191,11 +237,53 @@ func (m *IsolationPolicyWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) validateEverouteCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.EverouteCluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) validateLabelsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) validateLabelsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) validateMode(formats strfmt.Registry) error {
+	if swag.IsZero(m.Mode) { // not required
+		return nil
 	}
 
 	return nil
@@ -211,10 +299,20 @@ func (m *IsolationPolicyWhereInput) validateModeIn(formats strfmt.Registry) erro
 		if err := m.ModeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) validateModeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ModeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -230,10 +328,20 @@ func (m *IsolationPolicyWhereInput) validateModeNotIn(formats strfmt.Registry) e
 		if err := m.ModeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) validateVM(formats strfmt.Registry) error {
+	if swag.IsZero(m.VM) { // not required
+		return nil
 	}
 
 	return nil
@@ -255,11 +363,39 @@ func (m *IsolationPolicyWhereInput) ContextValidate(ctx context.Context, formats
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEverouteCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMode(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateModeIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateModeNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateModeNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVM(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -277,6 +413,8 @@ func (m *IsolationPolicyWhereInput) contextValidateAND(ctx context.Context, form
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -295,6 +433,8 @@ func (m *IsolationPolicyWhereInput) contextValidateNOT(ctx context.Context, form
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -313,12 +453,39 @@ func (m *IsolationPolicyWhereInput) contextValidateOR(ctx context.Context, forma
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) contextValidateEverouteCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) contextValidateMode(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -330,11 +497,18 @@ func (m *IsolationPolicyWhereInput) contextValidateModeIn(ctx context.Context, f
 		if err := m.ModeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) contextValidateModeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -346,11 +520,18 @@ func (m *IsolationPolicyWhereInput) contextValidateModeNotIn(ctx context.Context
 		if err := m.ModeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *IsolationPolicyWhereInput) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

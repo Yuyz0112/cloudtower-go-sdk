@@ -30,7 +30,9 @@ type VsphereEsxiAccountWhereInput struct {
 	OR []*VsphereEsxiAccountWhereInput `json:"OR,omitempty"`
 
 	// host
-	Host interface{} `json:"host,omitempty"`
+	Host struct {
+		HostWhereInput
+	} `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -289,6 +291,10 @@ func (m *VsphereEsxiAccountWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateHost(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -309,6 +315,8 @@ func (m *VsphereEsxiAccountWhereInput) validateAND(formats strfmt.Registry) erro
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -333,6 +341,8 @@ func (m *VsphereEsxiAccountWhereInput) validateNOT(formats strfmt.Registry) erro
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -357,11 +367,21 @@ func (m *VsphereEsxiAccountWhereInput) validateOR(formats strfmt.Registry) error
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VsphereEsxiAccountWhereInput) validateHost(formats strfmt.Registry) error {
+	if swag.IsZero(m.Host) { // not required
+		return nil
 	}
 
 	return nil
@@ -383,6 +403,10 @@ func (m *VsphereEsxiAccountWhereInput) ContextValidate(ctx context.Context, form
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateHost(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -397,6 +421,8 @@ func (m *VsphereEsxiAccountWhereInput) contextValidateAND(ctx context.Context, f
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -415,6 +441,8 @@ func (m *VsphereEsxiAccountWhereInput) contextValidateNOT(ctx context.Context, f
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -433,12 +461,19 @@ func (m *VsphereEsxiAccountWhereInput) contextValidateOR(ctx context.Context, fo
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VsphereEsxiAccountWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -20,8 +20,12 @@ import (
 type VMPlacementGroupOrderByInput string
 
 func NewVMPlacementGroupOrderByInput(value VMPlacementGroupOrderByInput) *VMPlacementGroupOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMPlacementGroupOrderByInput.
+func (m VMPlacementGroupOrderByInput) Pointer() *VMPlacementGroupOrderByInput {
+	return &m
 }
 
 const (

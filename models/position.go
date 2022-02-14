@@ -101,6 +101,8 @@ func (m *Position) validateColumn(formats strfmt.Registry) error {
 		if err := m.Column.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("column")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("column")
 			}
 			return err
 		}
@@ -118,6 +120,8 @@ func (m *Position) validateRow(formats strfmt.Registry) error {
 		if err := m.Row.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("row")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("row")
 			}
 			return err
 		}
@@ -150,6 +154,8 @@ func (m *Position) contextValidateColumn(ctx context.Context, formats strfmt.Reg
 		if err := m.Column.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("column")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("column")
 			}
 			return err
 		}
@@ -164,6 +170,8 @@ func (m *Position) contextValidateRow(ctx context.Context, formats strfmt.Regist
 		if err := m.Row.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("row")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("row")
 			}
 			return err
 		}

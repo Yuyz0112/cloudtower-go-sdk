@@ -76,6 +76,8 @@ func (m *HostBatchCreateIfaceInput) validateFunction(formats strfmt.Registry) er
 		if err := m.Function.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("function")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("function")
 			}
 			return err
 		}
@@ -131,6 +133,8 @@ func (m *HostBatchCreateIfaceInput) contextValidateFunction(ctx context.Context,
 		if err := m.Function.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("function")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("function")
 			}
 			return err
 		}

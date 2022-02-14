@@ -20,8 +20,12 @@ import (
 type IscsiLunSnapshotOrderByInput string
 
 func NewIscsiLunSnapshotOrderByInput(value IscsiLunSnapshotOrderByInput) *IscsiLunSnapshotOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated IscsiLunSnapshotOrderByInput.
+func (m IscsiLunSnapshotOrderByInput) Pointer() *IscsiLunSnapshotOrderByInput {
+	return &m
 }
 
 const (

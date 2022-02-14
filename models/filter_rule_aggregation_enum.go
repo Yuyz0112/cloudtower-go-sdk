@@ -20,8 +20,12 @@ import (
 type FilterRuleAggregationEnum string
 
 func NewFilterRuleAggregationEnum(value FilterRuleAggregationEnum) *FilterRuleAggregationEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated FilterRuleAggregationEnum.
+func (m FilterRuleAggregationEnum) Pointer() *FilterRuleAggregationEnum {
+	return &m
 }
 
 const (

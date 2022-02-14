@@ -20,8 +20,12 @@ import (
 type DiskOrderByInput string
 
 func NewDiskOrderByInput(value DiskOrderByInput) *DiskOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated DiskOrderByInput.
+func (m DiskOrderByInput) Pointer() *DiskOrderByInput {
+	return &m
 }
 
 const (

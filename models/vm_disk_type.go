@@ -20,8 +20,12 @@ import (
 type VMDiskType string
 
 func NewVMDiskType(value VMDiskType) *VMDiskType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMDiskType.
+func (m VMDiskType) Pointer() *VMDiskType {
+	return &m
 }
 
 const (

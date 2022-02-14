@@ -20,8 +20,12 @@ import (
 type VMToolsStatus string
 
 func NewVMToolsStatus(value VMToolsStatus) *VMToolsStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMToolsStatus.
+func (m VMToolsStatus) Pointer() *VMToolsStatus {
+	return &m
 }
 
 const (

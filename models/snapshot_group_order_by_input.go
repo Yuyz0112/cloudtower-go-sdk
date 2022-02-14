@@ -20,8 +20,12 @@ import (
 type SnapshotGroupOrderByInput string
 
 func NewSnapshotGroupOrderByInput(value SnapshotGroupOrderByInput) *SnapshotGroupOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnapshotGroupOrderByInput.
+func (m SnapshotGroupOrderByInput) Pointer() *SnapshotGroupOrderByInput {
+	return &m
 }
 
 const (

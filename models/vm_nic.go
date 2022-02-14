@@ -46,10 +46,14 @@ type VMNic struct {
 	Mirror *bool `json:"mirror,omitempty"`
 
 	// model
-	Model interface{} `json:"model,omitempty"`
+	Model struct {
+		VMNicModel
+	} `json:"model,omitempty"`
 
 	// nic
-	Nic interface{} `json:"nic,omitempty"`
+	Nic struct {
+		NestedNic
+	} `json:"nic,omitempty"`
 
 	// order
 	Order *int32 `json:"order,omitempty"`
@@ -58,7 +62,9 @@ type VMNic struct {
 	SubnetMask *string `json:"subnet_mask,omitempty"`
 
 	// vlan
-	Vlan interface{} `json:"vlan,omitempty"`
+	Vlan struct {
+		NestedVlan
+	} `json:"vlan,omitempty"`
 
 	// vm
 	// Required: true
@@ -74,6 +80,18 @@ func (m *VMNic) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLocalID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateModel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNic(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVlan(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -105,6 +123,30 @@ func (m *VMNic) validateLocalID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *VMNic) validateModel(formats strfmt.Registry) error {
+	if swag.IsZero(m.Model) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMNic) validateNic(formats strfmt.Registry) error {
+	if swag.IsZero(m.Nic) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMNic) validateVlan(formats strfmt.Registry) error {
+	if swag.IsZero(m.Vlan) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *VMNic) validateVM(formats strfmt.Registry) error {
 
 	if err := validate.Required("vm", "body", m.VM); err != nil {
@@ -115,6 +157,8 @@ func (m *VMNic) validateVM(formats strfmt.Registry) error {
 		if err := m.VM.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
 			}
 			return err
 		}
@@ -127,6 +171,18 @@ func (m *VMNic) validateVM(formats strfmt.Registry) error {
 func (m *VMNic) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateModel(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNic(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVlan(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVM(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -137,12 +193,29 @@ func (m *VMNic) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	return nil
 }
 
+func (m *VMNic) contextValidateModel(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMNic) contextValidateNic(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMNic) contextValidateVlan(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *VMNic) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.VM != nil {
 		if err := m.VM.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
 			}
 			return err
 		}

@@ -20,8 +20,12 @@ import (
 type ProtectSnapshotStatus string
 
 func NewProtectSnapshotStatus(value ProtectSnapshotStatus) *ProtectSnapshotStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ProtectSnapshotStatus.
+func (m ProtectSnapshotStatus) Pointer() *ProtectSnapshotStatus {
+	return &m
 }
 
 const (

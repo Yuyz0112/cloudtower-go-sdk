@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -21,7 +22,9 @@ type NestedThresholds struct {
 	Quantile *int32 `json:"quantile,omitempty"`
 
 	// severity
-	Severity interface{} `json:"severity,omitempty"`
+	Severity struct {
+		SeverityEnum
+	} `json:"severity,omitempty"`
 
 	// value
 	Value *float64 `json:"value,omitempty"`
@@ -29,11 +32,42 @@ type NestedThresholds struct {
 
 // Validate validates this nested thresholds
 func (m *NestedThresholds) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateSeverity(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this nested thresholds based on context it is used
+func (m *NestedThresholds) validateSeverity(formats strfmt.Registry) error {
+	if swag.IsZero(m.Severity) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this nested thresholds based on the context it is used
 func (m *NestedThresholds) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSeverity(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NestedThresholds) contextValidateSeverity(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

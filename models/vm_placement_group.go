@@ -33,7 +33,9 @@ type VMPlacementGroup struct {
 	Enabled *bool `json:"enabled"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -102,6 +104,10 @@ func (m *VMPlacementGroup) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateEnabled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -177,6 +183,8 @@ func (m *VMPlacementGroup) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -198,6 +206,14 @@ func (m *VMPlacementGroup) validateEnabled(formats strfmt.Registry) error {
 
 	if err := validate.Required("enabled", "body", m.Enabled); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *VMPlacementGroup) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -271,6 +287,8 @@ func (m *VMPlacementGroup) validateVMHostMustHostUuids(formats strfmt.Registry) 
 			if err := m.VMHostMustHostUuids[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_host_must_host_uuids" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_host_must_host_uuids" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -313,6 +331,8 @@ func (m *VMPlacementGroup) validateVMHostPreferHostUuids(formats strfmt.Registry
 			if err := m.VMHostPreferHostUuids[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_host_prefer_host_uuids" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_host_prefer_host_uuids" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -346,6 +366,8 @@ func (m *VMPlacementGroup) validateVMVMPolicy(formats strfmt.Registry) error {
 		if err := m.VMVMPolicy.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_vm_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_vm_policy")
 			}
 			return err
 		}
@@ -377,6 +399,8 @@ func (m *VMPlacementGroup) validateVms(formats strfmt.Registry) error {
 			if err := m.Vms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -392,6 +416,10 @@ func (m *VMPlacementGroup) ContextValidate(ctx context.Context, formats strfmt.R
 	var res []error
 
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -423,10 +451,17 @@ func (m *VMPlacementGroup) contextValidateCluster(ctx context.Context, formats s
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *VMPlacementGroup) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -439,6 +474,8 @@ func (m *VMPlacementGroup) contextValidateVMHostMustHostUuids(ctx context.Contex
 			if err := m.VMHostMustHostUuids[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_host_must_host_uuids" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_host_must_host_uuids" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -457,6 +494,8 @@ func (m *VMPlacementGroup) contextValidateVMHostPreferHostUuids(ctx context.Cont
 			if err := m.VMHostPreferHostUuids[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_host_prefer_host_uuids" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_host_prefer_host_uuids" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -473,6 +512,8 @@ func (m *VMPlacementGroup) contextValidateVMVMPolicy(ctx context.Context, format
 		if err := m.VMVMPolicy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_vm_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_vm_policy")
 			}
 			return err
 		}
@@ -489,6 +530,8 @@ func (m *VMPlacementGroup) contextValidateVms(ctx context.Context, formats strfm
 			if err := m.Vms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

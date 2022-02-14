@@ -20,8 +20,12 @@ import (
 type TimeUnit string
 
 func NewTimeUnit(value TimeUnit) *TimeUnit {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated TimeUnit.
+func (m TimeUnit) Pointer() *TimeUnit {
+	return &m
 }
 
 const (

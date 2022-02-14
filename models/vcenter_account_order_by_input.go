@@ -20,8 +20,12 @@ import (
 type VcenterAccountOrderByInput string
 
 func NewVcenterAccountOrderByInput(value VcenterAccountOrderByInput) *VcenterAccountOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VcenterAccountOrderByInput.
+func (m VcenterAccountOrderByInput) Pointer() *VcenterAccountOrderByInput {
+	return &m
 }
 
 const (

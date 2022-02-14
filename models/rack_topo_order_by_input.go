@@ -20,8 +20,12 @@ import (
 type RackTopoOrderByInput string
 
 func NewRackTopoOrderByInput(value RackTopoOrderByInput) *RackTopoOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated RackTopoOrderByInput.
+func (m RackTopoOrderByInput) Pointer() *RackTopoOrderByInput {
+	return &m
 }
 
 const (

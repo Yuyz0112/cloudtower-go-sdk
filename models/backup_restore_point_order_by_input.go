@@ -20,8 +20,12 @@ import (
 type BackupRestorePointOrderByInput string
 
 func NewBackupRestorePointOrderByInput(value BackupRestorePointOrderByInput) *BackupRestorePointOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupRestorePointOrderByInput.
+func (m BackupRestorePointOrderByInput) Pointer() *BackupRestorePointOrderByInput {
+	return &m
 }
 
 const (

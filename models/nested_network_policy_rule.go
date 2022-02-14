@@ -73,6 +73,8 @@ func (m *NestedNetworkPolicyRule) validatePorts(formats strfmt.Registry) error {
 			if err := m.Ports[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ports" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ports" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -97,6 +99,8 @@ func (m *NestedNetworkPolicyRule) validateSelector(formats strfmt.Registry) erro
 			if err := m.Selector[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("selector" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("selector" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -121,6 +125,8 @@ func (m *NestedNetworkPolicyRule) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -159,6 +165,8 @@ func (m *NestedNetworkPolicyRule) contextValidatePorts(ctx context.Context, form
 			if err := m.Ports[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ports" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ports" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -177,6 +185,8 @@ func (m *NestedNetworkPolicyRule) contextValidateSelector(ctx context.Context, f
 			if err := m.Selector[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("selector" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("selector" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -193,6 +203,8 @@ func (m *NestedNetworkPolicyRule) contextValidateType(ctx context.Context, forma
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

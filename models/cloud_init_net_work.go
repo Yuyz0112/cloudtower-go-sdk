@@ -83,6 +83,8 @@ func (m *CloudInitNetWork) validateRoutes(formats strfmt.Registry) error {
 			if err := m.Routes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("routes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("routes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -107,6 +109,8 @@ func (m *CloudInitNetWork) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -141,6 +145,8 @@ func (m *CloudInitNetWork) contextValidateRoutes(ctx context.Context, formats st
 			if err := m.Routes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("routes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("routes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -157,6 +163,8 @@ func (m *CloudInitNetWork) contextValidateType(ctx context.Context, formats strf
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

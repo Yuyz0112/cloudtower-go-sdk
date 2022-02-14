@@ -127,6 +127,8 @@ func (m *VMPlacementGroupCreationParams) validateMustHosts(formats strfmt.Regist
 		if err := m.MustHosts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("must_hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("must_hosts")
 			}
 			return err
 		}
@@ -153,6 +155,8 @@ func (m *VMPlacementGroupCreationParams) validatePreferHosts(formats strfmt.Regi
 		if err := m.PreferHosts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prefer_hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("prefer_hosts")
 			}
 			return err
 		}
@@ -169,6 +173,8 @@ func (m *VMPlacementGroupCreationParams) validateVMVMPolicy(formats strfmt.Regis
 	if err := m.VMVMPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("vm_vm_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("vm_vm_policy")
 		}
 		return err
 	}
@@ -185,6 +191,8 @@ func (m *VMPlacementGroupCreationParams) validateVms(formats strfmt.Registry) er
 		if err := m.Vms.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms")
 			}
 			return err
 		}
@@ -225,6 +233,8 @@ func (m *VMPlacementGroupCreationParams) contextValidateMustHosts(ctx context.Co
 		if err := m.MustHosts.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("must_hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("must_hosts")
 			}
 			return err
 		}
@@ -239,6 +249,8 @@ func (m *VMPlacementGroupCreationParams) contextValidatePreferHosts(ctx context.
 		if err := m.PreferHosts.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prefer_hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("prefer_hosts")
 			}
 			return err
 		}
@@ -252,6 +264,8 @@ func (m *VMPlacementGroupCreationParams) contextValidateVMVMPolicy(ctx context.C
 	if err := m.VMVMPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("vm_vm_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("vm_vm_policy")
 		}
 		return err
 	}
@@ -265,6 +279,8 @@ func (m *VMPlacementGroupCreationParams) contextValidateVms(ctx context.Context,
 		if err := m.Vms.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms")
 			}
 			return err
 		}

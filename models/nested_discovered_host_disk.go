@@ -27,7 +27,9 @@ type NestedDiscoveredHostDisk struct {
 	Drive *string `json:"drive"`
 
 	// function
-	Function interface{} `json:"function,omitempty"`
+	Function struct {
+		DiskFunction
+	} `json:"function,omitempty"`
 
 	// model
 	// Required: true
@@ -60,6 +62,10 @@ func (m *NestedDiscoveredHostDisk) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateFunction(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateModel(formats); err != nil {
 		res = append(res, err)
 	}
@@ -86,6 +92,14 @@ func (m *NestedDiscoveredHostDisk) validateDrive(formats strfmt.Registry) error 
 
 	if err := validate.Required("drive", "body", m.Drive); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *NestedDiscoveredHostDisk) validateFunction(formats strfmt.Registry) error {
+	if swag.IsZero(m.Function) { // not required
+		return nil
 	}
 
 	return nil
@@ -132,6 +146,8 @@ func (m *NestedDiscoveredHostDisk) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -144,6 +160,10 @@ func (m *NestedDiscoveredHostDisk) validateType(formats strfmt.Registry) error {
 func (m *NestedDiscoveredHostDisk) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateFunction(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -154,12 +174,19 @@ func (m *NestedDiscoveredHostDisk) ContextValidate(ctx context.Context, formats 
 	return nil
 }
 
+func (m *NestedDiscoveredHostDisk) contextValidateFunction(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *NestedDiscoveredHostDisk) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

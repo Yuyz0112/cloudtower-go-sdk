@@ -62,6 +62,8 @@ func (m *SnapshotGroupCloneParams) validateClone(formats strfmt.Registry) error 
 			if err := m.Clone[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clone" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("clone" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -103,6 +105,8 @@ func (m *SnapshotGroupCloneParams) contextValidateClone(ctx context.Context, for
 			if err := m.Clone[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clone" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("clone" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

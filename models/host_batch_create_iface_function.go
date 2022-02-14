@@ -20,8 +20,12 @@ import (
 type HostBatchCreateIfaceFunction string
 
 func NewHostBatchCreateIfaceFunction(value HostBatchCreateIfaceFunction) *HostBatchCreateIfaceFunction {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated HostBatchCreateIfaceFunction.
+func (m HostBatchCreateIfaceFunction) Pointer() *HostBatchCreateIfaceFunction {
+	return &m
 }
 
 const (

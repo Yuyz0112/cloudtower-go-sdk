@@ -54,13 +54,19 @@ type LabelWhereInput struct {
 	ClusterNumNotIn []int32 `json:"cluster_num_not_in,omitempty"`
 
 	// clusters every
-	ClustersEvery interface{} `json:"clusters_every,omitempty"`
+	ClustersEvery struct {
+		ClusterWhereInput
+	} `json:"clusters_every,omitempty"`
 
 	// clusters none
-	ClustersNone interface{} `json:"clusters_none,omitempty"`
+	ClustersNone struct {
+		ClusterWhereInput
+	} `json:"clusters_none,omitempty"`
 
 	// clusters some
-	ClustersSome interface{} `json:"clusters_some,omitempty"`
+	ClustersSome struct {
+		ClusterWhereInput
+	} `json:"clusters_some,omitempty"`
 
 	// consistency group num
 	ConsistencyGroupNum *int32 `json:"consistency_group_num,omitempty"`
@@ -111,22 +117,34 @@ type LabelWhereInput struct {
 	ConsistencyGroupSnapshotNumNotIn []int32 `json:"consistency_group_snapshot_num_not_in,omitempty"`
 
 	// consistency group snapshots every
-	ConsistencyGroupSnapshotsEvery interface{} `json:"consistency_group_snapshots_every,omitempty"`
+	ConsistencyGroupSnapshotsEvery struct {
+		ConsistencyGroupSnapshotWhereInput
+	} `json:"consistency_group_snapshots_every,omitempty"`
 
 	// consistency group snapshots none
-	ConsistencyGroupSnapshotsNone interface{} `json:"consistency_group_snapshots_none,omitempty"`
+	ConsistencyGroupSnapshotsNone struct {
+		ConsistencyGroupSnapshotWhereInput
+	} `json:"consistency_group_snapshots_none,omitempty"`
 
 	// consistency group snapshots some
-	ConsistencyGroupSnapshotsSome interface{} `json:"consistency_group_snapshots_some,omitempty"`
+	ConsistencyGroupSnapshotsSome struct {
+		ConsistencyGroupSnapshotWhereInput
+	} `json:"consistency_group_snapshots_some,omitempty"`
 
 	// consistency groups every
-	ConsistencyGroupsEvery interface{} `json:"consistency_groups_every,omitempty"`
+	ConsistencyGroupsEvery struct {
+		ConsistencyGroupWhereInput
+	} `json:"consistency_groups_every,omitempty"`
 
 	// consistency groups none
-	ConsistencyGroupsNone interface{} `json:"consistency_groups_none,omitempty"`
+	ConsistencyGroupsNone struct {
+		ConsistencyGroupWhereInput
+	} `json:"consistency_groups_none,omitempty"`
 
 	// consistency groups some
-	ConsistencyGroupsSome interface{} `json:"consistency_groups_some,omitempty"`
+	ConsistencyGroupsSome struct {
+		ConsistencyGroupWhereInput
+	} `json:"consistency_groups_some,omitempty"`
 
 	// content library image num
 	ContentLibraryImageNum *int32 `json:"content_library_image_num,omitempty"`
@@ -153,13 +171,19 @@ type LabelWhereInput struct {
 	ContentLibraryImageNumNotIn []int32 `json:"content_library_image_num_not_in,omitempty"`
 
 	// content library images every
-	ContentLibraryImagesEvery interface{} `json:"content_library_images_every,omitempty"`
+	ContentLibraryImagesEvery struct {
+		ContentLibraryImageWhereInput
+	} `json:"content_library_images_every,omitempty"`
 
 	// content library images none
-	ContentLibraryImagesNone interface{} `json:"content_library_images_none,omitempty"`
+	ContentLibraryImagesNone struct {
+		ContentLibraryImageWhereInput
+	} `json:"content_library_images_none,omitempty"`
 
 	// content library images some
-	ContentLibraryImagesSome interface{} `json:"content_library_images_some,omitempty"`
+	ContentLibraryImagesSome struct {
+		ContentLibraryImageWhereInput
+	} `json:"content_library_images_some,omitempty"`
 
 	// content library vm template num
 	ContentLibraryVMTemplateNum *int32 `json:"content_library_vm_template_num,omitempty"`
@@ -186,13 +210,19 @@ type LabelWhereInput struct {
 	ContentLibraryVMTemplateNumNotIn []int32 `json:"content_library_vm_template_num_not_in,omitempty"`
 
 	// content library vm templates every
-	ContentLibraryVMTemplatesEvery interface{} `json:"content_library_vm_templates_every,omitempty"`
+	ContentLibraryVMTemplatesEvery struct {
+		ContentLibraryVMTemplateWhereInput
+	} `json:"content_library_vm_templates_every,omitempty"`
 
 	// content library vm templates none
-	ContentLibraryVMTemplatesNone interface{} `json:"content_library_vm_templates_none,omitempty"`
+	ContentLibraryVMTemplatesNone struct {
+		ContentLibraryVMTemplateWhereInput
+	} `json:"content_library_vm_templates_none,omitempty"`
 
 	// content library vm templates some
-	ContentLibraryVMTemplatesSome interface{} `json:"content_library_vm_templates_some,omitempty"`
+	ContentLibraryVMTemplatesSome struct {
+		ContentLibraryVMTemplateWhereInput
+	} `json:"content_library_vm_templates_some,omitempty"`
 
 	// created at
 	CreatedAt *string `json:"createdAt,omitempty"`
@@ -243,13 +273,19 @@ type LabelWhereInput struct {
 	DatacenterNumNotIn []int32 `json:"datacenter_num_not_in,omitempty"`
 
 	// datacenters every
-	DatacentersEvery interface{} `json:"datacenters_every,omitempty"`
+	DatacentersEvery struct {
+		DatacenterWhereInput
+	} `json:"datacenters_every,omitempty"`
 
 	// datacenters none
-	DatacentersNone interface{} `json:"datacenters_none,omitempty"`
+	DatacentersNone struct {
+		DatacenterWhereInput
+	} `json:"datacenters_none,omitempty"`
 
 	// datacenters some
-	DatacentersSome interface{} `json:"datacenters_some,omitempty"`
+	DatacentersSome struct {
+		DatacenterWhereInput
+	} `json:"datacenters_some,omitempty"`
 
 	// disk num
 	DiskNum *int32 `json:"disk_num,omitempty"`
@@ -276,13 +312,19 @@ type LabelWhereInput struct {
 	DiskNumNotIn []int32 `json:"disk_num_not_in,omitempty"`
 
 	// disks every
-	DisksEvery interface{} `json:"disks_every,omitempty"`
+	DisksEvery struct {
+		DiskWhereInput
+	} `json:"disks_every,omitempty"`
 
 	// disks none
-	DisksNone interface{} `json:"disks_none,omitempty"`
+	DisksNone struct {
+		DiskWhereInput
+	} `json:"disks_none,omitempty"`
 
 	// disks some
-	DisksSome interface{} `json:"disks_some,omitempty"`
+	DisksSome struct {
+		DiskWhereInput
+	} `json:"disks_some,omitempty"`
 
 	// elf image num
 	ElfImageNum *int32 `json:"elf_image_num,omitempty"`
@@ -309,13 +351,19 @@ type LabelWhereInput struct {
 	ElfImageNumNotIn []int32 `json:"elf_image_num_not_in,omitempty"`
 
 	// elf images every
-	ElfImagesEvery interface{} `json:"elf_images_every,omitempty"`
+	ElfImagesEvery struct {
+		ElfImageWhereInput
+	} `json:"elf_images_every,omitempty"`
 
 	// elf images none
-	ElfImagesNone interface{} `json:"elf_images_none,omitempty"`
+	ElfImagesNone struct {
+		ElfImageWhereInput
+	} `json:"elf_images_none,omitempty"`
 
 	// elf images some
-	ElfImagesSome interface{} `json:"elf_images_some,omitempty"`
+	ElfImagesSome struct {
+		ElfImageWhereInput
+	} `json:"elf_images_some,omitempty"`
 
 	// host num
 	HostNum *int32 `json:"host_num,omitempty"`
@@ -342,13 +390,19 @@ type LabelWhereInput struct {
 	HostNumNotIn []int32 `json:"host_num_not_in,omitempty"`
 
 	// hosts every
-	HostsEvery interface{} `json:"hosts_every,omitempty"`
+	HostsEvery struct {
+		HostWhereInput
+	} `json:"hosts_every,omitempty"`
 
 	// hosts none
-	HostsNone interface{} `json:"hosts_none,omitempty"`
+	HostsNone struct {
+		HostWhereInput
+	} `json:"hosts_none,omitempty"`
 
 	// hosts some
-	HostsSome interface{} `json:"hosts_some,omitempty"`
+	HostsSome struct {
+		HostWhereInput
+	} `json:"hosts_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -441,22 +495,34 @@ type LabelWhereInput struct {
 	IscsiLunSnapshotNumNotIn []int32 `json:"iscsi_lun_snapshot_num_not_in,omitempty"`
 
 	// iscsi lun snapshots every
-	IscsiLunSnapshotsEvery interface{} `json:"iscsi_lun_snapshots_every,omitempty"`
+	IscsiLunSnapshotsEvery struct {
+		IscsiLunSnapshotWhereInput
+	} `json:"iscsi_lun_snapshots_every,omitempty"`
 
 	// iscsi lun snapshots none
-	IscsiLunSnapshotsNone interface{} `json:"iscsi_lun_snapshots_none,omitempty"`
+	IscsiLunSnapshotsNone struct {
+		IscsiLunSnapshotWhereInput
+	} `json:"iscsi_lun_snapshots_none,omitempty"`
 
 	// iscsi lun snapshots some
-	IscsiLunSnapshotsSome interface{} `json:"iscsi_lun_snapshots_some,omitempty"`
+	IscsiLunSnapshotsSome struct {
+		IscsiLunSnapshotWhereInput
+	} `json:"iscsi_lun_snapshots_some,omitempty"`
 
 	// iscsi luns every
-	IscsiLunsEvery interface{} `json:"iscsi_luns_every,omitempty"`
+	IscsiLunsEvery struct {
+		IscsiLunWhereInput
+	} `json:"iscsi_luns_every,omitempty"`
 
 	// iscsi luns none
-	IscsiLunsNone interface{} `json:"iscsi_luns_none,omitempty"`
+	IscsiLunsNone struct {
+		IscsiLunWhereInput
+	} `json:"iscsi_luns_none,omitempty"`
 
 	// iscsi luns some
-	IscsiLunsSome interface{} `json:"iscsi_luns_some,omitempty"`
+	IscsiLunsSome struct {
+		IscsiLunWhereInput
+	} `json:"iscsi_luns_some,omitempty"`
 
 	// iscsi target num
 	IscsiTargetNum *int32 `json:"iscsi_target_num,omitempty"`
@@ -483,22 +549,34 @@ type LabelWhereInput struct {
 	IscsiTargetNumNotIn []int32 `json:"iscsi_target_num_not_in,omitempty"`
 
 	// iscsi targets every
-	IscsiTargetsEvery interface{} `json:"iscsi_targets_every,omitempty"`
+	IscsiTargetsEvery struct {
+		IscsiTargetWhereInput
+	} `json:"iscsi_targets_every,omitempty"`
 
 	// iscsi targets none
-	IscsiTargetsNone interface{} `json:"iscsi_targets_none,omitempty"`
+	IscsiTargetsNone struct {
+		IscsiTargetWhereInput
+	} `json:"iscsi_targets_none,omitempty"`
 
 	// iscsi targets some
-	IscsiTargetsSome interface{} `json:"iscsi_targets_some,omitempty"`
+	IscsiTargetsSome struct {
+		IscsiTargetWhereInput
+	} `json:"iscsi_targets_some,omitempty"`
 
 	// isolation policies every
-	IsolationPoliciesEvery interface{} `json:"isolation_policies_every,omitempty"`
+	IsolationPoliciesEvery struct {
+		IsolationPolicyWhereInput
+	} `json:"isolation_policies_every,omitempty"`
 
 	// isolation policies none
-	IsolationPoliciesNone interface{} `json:"isolation_policies_none,omitempty"`
+	IsolationPoliciesNone struct {
+		IsolationPolicyWhereInput
+	} `json:"isolation_policies_none,omitempty"`
 
 	// isolation policies some
-	IsolationPoliciesSome interface{} `json:"isolation_policies_some,omitempty"`
+	IsolationPoliciesSome struct {
+		IsolationPolicyWhereInput
+	} `json:"isolation_policies_some,omitempty"`
 
 	// isolation policy num
 	IsolationPolicyNum *int32 `json:"isolation_policy_num,omitempty"`
@@ -591,13 +669,19 @@ type LabelWhereInput struct {
 	NamespaceGroupNumNotIn []int32 `json:"namespace_group_num_not_in,omitempty"`
 
 	// namespace groups every
-	NamespaceGroupsEvery interface{} `json:"namespace_groups_every,omitempty"`
+	NamespaceGroupsEvery struct {
+		NamespaceGroupWhereInput
+	} `json:"namespace_groups_every,omitempty"`
 
 	// namespace groups none
-	NamespaceGroupsNone interface{} `json:"namespace_groups_none,omitempty"`
+	NamespaceGroupsNone struct {
+		NamespaceGroupWhereInput
+	} `json:"namespace_groups_none,omitempty"`
 
 	// namespace groups some
-	NamespaceGroupsSome interface{} `json:"namespace_groups_some,omitempty"`
+	NamespaceGroupsSome struct {
+		NamespaceGroupWhereInput
+	} `json:"namespace_groups_some,omitempty"`
 
 	// nfs export num
 	NfsExportNum *int32 `json:"nfs_export_num,omitempty"`
@@ -624,13 +708,19 @@ type LabelWhereInput struct {
 	NfsExportNumNotIn []int32 `json:"nfs_export_num_not_in,omitempty"`
 
 	// nfs exports every
-	NfsExportsEvery interface{} `json:"nfs_exports_every,omitempty"`
+	NfsExportsEvery struct {
+		NfsExportWhereInput
+	} `json:"nfs_exports_every,omitempty"`
 
 	// nfs exports none
-	NfsExportsNone interface{} `json:"nfs_exports_none,omitempty"`
+	NfsExportsNone struct {
+		NfsExportWhereInput
+	} `json:"nfs_exports_none,omitempty"`
 
 	// nfs exports some
-	NfsExportsSome interface{} `json:"nfs_exports_some,omitempty"`
+	NfsExportsSome struct {
+		NfsExportWhereInput
+	} `json:"nfs_exports_some,omitempty"`
 
 	// nfs inode num
 	NfsInodeNum *int32 `json:"nfs_inode_num,omitempty"`
@@ -657,13 +747,19 @@ type LabelWhereInput struct {
 	NfsInodeNumNotIn []int32 `json:"nfs_inode_num_not_in,omitempty"`
 
 	// nfs inodes every
-	NfsInodesEvery interface{} `json:"nfs_inodes_every,omitempty"`
+	NfsInodesEvery struct {
+		NfsInodeWhereInput
+	} `json:"nfs_inodes_every,omitempty"`
 
 	// nfs inodes none
-	NfsInodesNone interface{} `json:"nfs_inodes_none,omitempty"`
+	NfsInodesNone struct {
+		NfsInodeWhereInput
+	} `json:"nfs_inodes_none,omitempty"`
 
 	// nfs inodes some
-	NfsInodesSome interface{} `json:"nfs_inodes_some,omitempty"`
+	NfsInodesSome struct {
+		NfsInodeWhereInput
+	} `json:"nfs_inodes_some,omitempty"`
 
 	// nic num
 	NicNum *int32 `json:"nic_num,omitempty"`
@@ -690,13 +786,19 @@ type LabelWhereInput struct {
 	NicNumNotIn []int32 `json:"nic_num_not_in,omitempty"`
 
 	// nics every
-	NicsEvery interface{} `json:"nics_every,omitempty"`
+	NicsEvery struct {
+		NicWhereInput
+	} `json:"nics_every,omitempty"`
 
 	// nics none
-	NicsNone interface{} `json:"nics_none,omitempty"`
+	NicsNone struct {
+		NicWhereInput
+	} `json:"nics_none,omitempty"`
 
 	// nics some
-	NicsSome interface{} `json:"nics_some,omitempty"`
+	NicsSome struct {
+		NicWhereInput
+	} `json:"nics_some,omitempty"`
 
 	// nvmf namespace num
 	NvmfNamespaceNum *int32 `json:"nvmf_namespace_num,omitempty"`
@@ -747,22 +849,34 @@ type LabelWhereInput struct {
 	NvmfNamespaceSnapshotNumNotIn []int32 `json:"nvmf_namespace_snapshot_num_not_in,omitempty"`
 
 	// nvmf namespace snapshots every
-	NvmfNamespaceSnapshotsEvery interface{} `json:"nvmf_namespace_snapshots_every,omitempty"`
+	NvmfNamespaceSnapshotsEvery struct {
+		NvmfNamespaceSnapshotWhereInput
+	} `json:"nvmf_namespace_snapshots_every,omitempty"`
 
 	// nvmf namespace snapshots none
-	NvmfNamespaceSnapshotsNone interface{} `json:"nvmf_namespace_snapshots_none,omitempty"`
+	NvmfNamespaceSnapshotsNone struct {
+		NvmfNamespaceSnapshotWhereInput
+	} `json:"nvmf_namespace_snapshots_none,omitempty"`
 
 	// nvmf namespace snapshots some
-	NvmfNamespaceSnapshotsSome interface{} `json:"nvmf_namespace_snapshots_some,omitempty"`
+	NvmfNamespaceSnapshotsSome struct {
+		NvmfNamespaceSnapshotWhereInput
+	} `json:"nvmf_namespace_snapshots_some,omitempty"`
 
 	// nvmf namespaces every
-	NvmfNamespacesEvery interface{} `json:"nvmf_namespaces_every,omitempty"`
+	NvmfNamespacesEvery struct {
+		NvmfNamespaceWhereInput
+	} `json:"nvmf_namespaces_every,omitempty"`
 
 	// nvmf namespaces none
-	NvmfNamespacesNone interface{} `json:"nvmf_namespaces_none,omitempty"`
+	NvmfNamespacesNone struct {
+		NvmfNamespaceWhereInput
+	} `json:"nvmf_namespaces_none,omitempty"`
 
 	// nvmf namespaces some
-	NvmfNamespacesSome interface{} `json:"nvmf_namespaces_some,omitempty"`
+	NvmfNamespacesSome struct {
+		NvmfNamespaceWhereInput
+	} `json:"nvmf_namespaces_some,omitempty"`
 
 	// nvmf subsystem num
 	NvmfSubsystemNum *int32 `json:"nvmf_subsystem_num,omitempty"`
@@ -789,22 +903,34 @@ type LabelWhereInput struct {
 	NvmfSubsystemNumNotIn []int32 `json:"nvmf_subsystem_num_not_in,omitempty"`
 
 	// nvmf subsystems every
-	NvmfSubsystemsEvery interface{} `json:"nvmf_subsystems_every,omitempty"`
+	NvmfSubsystemsEvery struct {
+		NvmfSubsystemWhereInput
+	} `json:"nvmf_subsystems_every,omitempty"`
 
 	// nvmf subsystems none
-	NvmfSubsystemsNone interface{} `json:"nvmf_subsystems_none,omitempty"`
+	NvmfSubsystemsNone struct {
+		NvmfSubsystemWhereInput
+	} `json:"nvmf_subsystems_none,omitempty"`
 
 	// nvmf subsystems some
-	NvmfSubsystemsSome interface{} `json:"nvmf_subsystems_some,omitempty"`
+	NvmfSubsystemsSome struct {
+		NvmfSubsystemWhereInput
+	} `json:"nvmf_subsystems_some,omitempty"`
 
 	// security policies every
-	SecurityPoliciesEvery interface{} `json:"security_policies_every,omitempty"`
+	SecurityPoliciesEvery struct {
+		SecurityPolicyWhereInput
+	} `json:"security_policies_every,omitempty"`
 
 	// security policies none
-	SecurityPoliciesNone interface{} `json:"security_policies_none,omitempty"`
+	SecurityPoliciesNone struct {
+		SecurityPolicyWhereInput
+	} `json:"security_policies_none,omitempty"`
 
 	// security policies some
-	SecurityPoliciesSome interface{} `json:"security_policies_some,omitempty"`
+	SecurityPoliciesSome struct {
+		SecurityPolicyWhereInput
+	} `json:"security_policies_some,omitempty"`
 
 	// security policy num
 	SecurityPolicyNum *int32 `json:"security_policy_num,omitempty"`
@@ -945,22 +1071,34 @@ type LabelWhereInput struct {
 	VdsNumNotIn []int32 `json:"vds_num_not_in,omitempty"`
 
 	// vdses every
-	VdsesEvery interface{} `json:"vdses_every,omitempty"`
+	VdsesEvery struct {
+		VdsWhereInput
+	} `json:"vdses_every,omitempty"`
 
 	// vdses none
-	VdsesNone interface{} `json:"vdses_none,omitempty"`
+	VdsesNone struct {
+		VdsWhereInput
+	} `json:"vdses_none,omitempty"`
 
 	// vdses some
-	VdsesSome interface{} `json:"vdses_some,omitempty"`
+	VdsesSome struct {
+		VdsWhereInput
+	} `json:"vdses_some,omitempty"`
 
 	// vlans every
-	VlansEvery interface{} `json:"vlans_every,omitempty"`
+	VlansEvery struct {
+		VlanWhereInput
+	} `json:"vlans_every,omitempty"`
 
 	// vlans none
-	VlansNone interface{} `json:"vlans_none,omitempty"`
+	VlansNone struct {
+		VlanWhereInput
+	} `json:"vlans_none,omitempty"`
 
 	// vlans some
-	VlansSome interface{} `json:"vlans_some,omitempty"`
+	VlansSome struct {
+		VlanWhereInput
+	} `json:"vlans_some,omitempty"`
 
 	// vm num
 	VMNum *int32 `json:"vm_num,omitempty"`
@@ -1011,13 +1149,19 @@ type LabelWhereInput struct {
 	VMSnapshotNumNotIn []int32 `json:"vm_snapshot_num_not_in,omitempty"`
 
 	// vm snapshots every
-	VMSnapshotsEvery interface{} `json:"vm_snapshots_every,omitempty"`
+	VMSnapshotsEvery struct {
+		VMSnapshotWhereInput
+	} `json:"vm_snapshots_every,omitempty"`
 
 	// vm snapshots none
-	VMSnapshotsNone interface{} `json:"vm_snapshots_none,omitempty"`
+	VMSnapshotsNone struct {
+		VMSnapshotWhereInput
+	} `json:"vm_snapshots_none,omitempty"`
 
 	// vm snapshots some
-	VMSnapshotsSome interface{} `json:"vm_snapshots_some,omitempty"`
+	VMSnapshotsSome struct {
+		VMSnapshotWhereInput
+	} `json:"vm_snapshots_some,omitempty"`
 
 	// vm template num
 	VMTemplateNum *int32 `json:"vm_template_num,omitempty"`
@@ -1044,13 +1188,19 @@ type LabelWhereInput struct {
 	VMTemplateNumNotIn []int32 `json:"vm_template_num_not_in,omitempty"`
 
 	// vm templates every
-	VMTemplatesEvery interface{} `json:"vm_templates_every,omitempty"`
+	VMTemplatesEvery struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_every,omitempty"`
 
 	// vm templates none
-	VMTemplatesNone interface{} `json:"vm_templates_none,omitempty"`
+	VMTemplatesNone struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_none,omitempty"`
 
 	// vm templates some
-	VMTemplatesSome interface{} `json:"vm_templates_some,omitempty"`
+	VMTemplatesSome struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_some,omitempty"`
 
 	// vm vlan num
 	VMVlanNum *int32 `json:"vm_vlan_num,omitempty"`
@@ -1101,22 +1251,34 @@ type LabelWhereInput struct {
 	VMVolumeNumNotIn []int32 `json:"vm_volume_num_not_in,omitempty"`
 
 	// vm volumes every
-	VMVolumesEvery interface{} `json:"vm_volumes_every,omitempty"`
+	VMVolumesEvery struct {
+		VMVolumeWhereInput
+	} `json:"vm_volumes_every,omitempty"`
 
 	// vm volumes none
-	VMVolumesNone interface{} `json:"vm_volumes_none,omitempty"`
+	VMVolumesNone struct {
+		VMVolumeWhereInput
+	} `json:"vm_volumes_none,omitempty"`
 
 	// vm volumes some
-	VMVolumesSome interface{} `json:"vm_volumes_some,omitempty"`
+	VMVolumesSome struct {
+		VMVolumeWhereInput
+	} `json:"vm_volumes_some,omitempty"`
 
 	// vms every
-	VmsEvery interface{} `json:"vms_every,omitempty"`
+	VmsEvery struct {
+		VMWhereInput
+	} `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone interface{} `json:"vms_none,omitempty"`
+	VmsNone struct {
+		VMWhereInput
+	} `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome interface{} `json:"vms_some,omitempty"`
+	VmsSome struct {
+		VMWhereInput
+	} `json:"vms_some,omitempty"`
 }
 
 // Validate validates this label where input
@@ -1132,6 +1294,330 @@ func (m *LabelWhereInput) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOR(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroupSnapshotsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroupSnapshotsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroupSnapshotsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroupsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroupsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroupsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryImagesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryImagesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryImagesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryVMTemplatesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryVMTemplatesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryVMTemplatesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacentersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacentersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacentersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisksEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisksNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisksSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateElfImagesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateElfImagesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateElfImagesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLunSnapshotsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLunSnapshotsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLunSnapshotsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLunsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLunsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLunsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiTargetsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiTargetsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiTargetsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsolationPoliciesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsolationPoliciesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsolationPoliciesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespaceGroupsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespaceGroupsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNamespaceGroupsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNfsExportsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNfsExportsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNfsExportsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNfsInodesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNfsInodesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNfsInodesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNicsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNicsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNicsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespaceSnapshotsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespaceSnapshotsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespaceSnapshotsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespacesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespacesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespacesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfSubsystemsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfSubsystemsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfSubsystemsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSecurityPoliciesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSecurityPoliciesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSecurityPoliciesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVdsesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVdsesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVdsesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVlansEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVlansNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVlansSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMSnapshotsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMSnapshotsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMSnapshotsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMVolumesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMVolumesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMVolumesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1155,6 +1641,8 @@ func (m *LabelWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1179,6 +1667,8 @@ func (m *LabelWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1203,11 +1693,661 @@ func (m *LabelWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateClustersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateClustersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateClustersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateConsistencyGroupSnapshotsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupSnapshotsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateConsistencyGroupSnapshotsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupSnapshotsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateConsistencyGroupSnapshotsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupSnapshotsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateConsistencyGroupsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateConsistencyGroupsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateConsistencyGroupsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateContentLibraryImagesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryImagesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateContentLibraryImagesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryImagesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateContentLibraryImagesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryImagesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateContentLibraryVMTemplatesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryVMTemplatesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateContentLibraryVMTemplatesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryVMTemplatesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateContentLibraryVMTemplatesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryVMTemplatesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateDatacentersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateDatacentersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateDatacentersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateDisksEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisksEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateDisksNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisksNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateDisksSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisksSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateElfImagesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ElfImagesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateElfImagesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ElfImagesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateElfImagesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ElfImagesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateHostsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateHostsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateHostsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiLunSnapshotsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunSnapshotsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiLunSnapshotsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunSnapshotsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiLunSnapshotsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunSnapshotsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiLunsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiLunsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiLunsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiTargetsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiTargetsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiTargetsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiTargetsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIscsiTargetsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiTargetsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIsolationPoliciesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.IsolationPoliciesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIsolationPoliciesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.IsolationPoliciesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateIsolationPoliciesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.IsolationPoliciesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNamespaceGroupsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NamespaceGroupsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNamespaceGroupsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NamespaceGroupsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNamespaceGroupsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NamespaceGroupsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNfsExportsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NfsExportsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNfsExportsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NfsExportsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNfsExportsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NfsExportsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNfsInodesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NfsInodesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNfsInodesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NfsInodesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNfsInodesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NfsInodesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNicsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NicsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNicsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NicsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNicsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NicsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfNamespaceSnapshotsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespaceSnapshotsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfNamespaceSnapshotsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespaceSnapshotsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfNamespaceSnapshotsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespaceSnapshotsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfNamespacesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespacesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfNamespacesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespacesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfNamespacesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespacesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfSubsystemsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfSubsystemsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfSubsystemsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfSubsystemsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateNvmfSubsystemsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfSubsystemsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateSecurityPoliciesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.SecurityPoliciesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateSecurityPoliciesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.SecurityPoliciesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateSecurityPoliciesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.SecurityPoliciesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVdsesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VdsesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVdsesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VdsesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVdsesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VdsesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVlansEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VlansEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVlansNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VlansNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVlansSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VlansSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMSnapshotsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMSnapshotsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMSnapshotsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMSnapshotsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMSnapshotsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMSnapshotsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMTemplatesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMTemplatesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMTemplatesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMVolumesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMVolumesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMVolumesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMVolumesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVMVolumesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMVolumesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVmsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVmsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) validateVmsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -1229,6 +2369,330 @@ func (m *LabelWhereInput) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateClustersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClustersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClustersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsistencyGroupSnapshotsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsistencyGroupSnapshotsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsistencyGroupSnapshotsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsistencyGroupsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsistencyGroupsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsistencyGroupsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContentLibraryImagesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContentLibraryImagesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContentLibraryImagesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContentLibraryVMTemplatesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContentLibraryVMTemplatesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContentLibraryVMTemplatesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacentersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacentersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacentersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisksEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisksNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisksSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateElfImagesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateElfImagesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateElfImagesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLunSnapshotsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLunSnapshotsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLunSnapshotsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLunsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLunsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLunsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiTargetsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiTargetsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiTargetsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsolationPoliciesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsolationPoliciesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsolationPoliciesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNamespaceGroupsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNamespaceGroupsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNamespaceGroupsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNfsExportsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNfsExportsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNfsExportsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNfsInodesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNfsInodesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNfsInodesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNicsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNicsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNicsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespaceSnapshotsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespaceSnapshotsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespaceSnapshotsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespacesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespacesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespacesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfSubsystemsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfSubsystemsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfSubsystemsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSecurityPoliciesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSecurityPoliciesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSecurityPoliciesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVdsesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVdsesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVdsesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVlansEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVlansNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVlansSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMSnapshotsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMSnapshotsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMSnapshotsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMVolumesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMVolumesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMVolumesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -1243,6 +2707,8 @@ func (m *LabelWhereInput) contextValidateAND(ctx context.Context, formats strfmt
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1261,6 +2727,8 @@ func (m *LabelWhereInput) contextValidateNOT(ctx context.Context, formats strfmt
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1279,12 +2747,419 @@ func (m *LabelWhereInput) contextValidateOR(ctx context.Context, formats strfmt.
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateClustersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateClustersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateConsistencyGroupSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateConsistencyGroupSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateConsistencyGroupSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateConsistencyGroupsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateConsistencyGroupsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateConsistencyGroupsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateContentLibraryImagesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateContentLibraryImagesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateContentLibraryImagesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateContentLibraryVMTemplatesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateContentLibraryVMTemplatesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateContentLibraryVMTemplatesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateDatacentersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateDatacentersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateDatacentersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateDisksEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateDisksNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateDisksSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateElfImagesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateElfImagesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateElfImagesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateHostsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateHostsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateHostsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiLunSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiLunSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiLunSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiLunsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiLunsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiLunsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiTargetsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiTargetsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIscsiTargetsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIsolationPoliciesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIsolationPoliciesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateIsolationPoliciesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNamespaceGroupsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNamespaceGroupsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNamespaceGroupsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNfsExportsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNfsExportsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNfsExportsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNfsInodesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNfsInodesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNfsInodesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNicsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNicsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNicsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfNamespaceSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfNamespaceSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfNamespaceSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfNamespacesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfNamespacesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfNamespacesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfSubsystemsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfSubsystemsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateNvmfSubsystemsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateSecurityPoliciesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateSecurityPoliciesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateSecurityPoliciesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVdsesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVdsesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVdsesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVlansEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVlansNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVlansSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMTemplatesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMTemplatesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMTemplatesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMVolumesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMVolumesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVMVolumesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *LabelWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

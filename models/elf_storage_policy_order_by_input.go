@@ -20,8 +20,12 @@ import (
 type ElfStoragePolicyOrderByInput string
 
 func NewElfStoragePolicyOrderByInput(value ElfStoragePolicyOrderByInput) *ElfStoragePolicyOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ElfStoragePolicyOrderByInput.
+func (m ElfStoragePolicyOrderByInput) Pointer() *ElfStoragePolicyOrderByInput {
+	return &m
 }
 
 const (

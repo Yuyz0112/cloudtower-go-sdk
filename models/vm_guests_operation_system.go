@@ -20,8 +20,12 @@ import (
 type VMGuestsOperationSystem string
 
 func NewVMGuestsOperationSystem(value VMGuestsOperationSystem) *VMGuestsOperationSystem {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMGuestsOperationSystem.
+func (m VMGuestsOperationSystem) Pointer() *VMGuestsOperationSystem {
+	return &m
 }
 
 const (

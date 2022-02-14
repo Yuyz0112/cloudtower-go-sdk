@@ -20,8 +20,12 @@ import (
 type BackupServiceStatus string
 
 func NewBackupServiceStatus(value BackupServiceStatus) *BackupServiceStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupServiceStatus.
+func (m BackupServiceStatus) Pointer() *BackupServiceStatus {
+	return &m
 }
 
 const (

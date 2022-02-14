@@ -20,8 +20,12 @@ import (
 type LicenseType string
 
 func NewLicenseType(value LicenseType) *LicenseType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated LicenseType.
+func (m LicenseType) Pointer() *LicenseType {
+	return &m
 }
 
 const (

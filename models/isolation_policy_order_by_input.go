@@ -20,8 +20,12 @@ import (
 type IsolationPolicyOrderByInput string
 
 func NewIsolationPolicyOrderByInput(value IsolationPolicyOrderByInput) *IsolationPolicyOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated IsolationPolicyOrderByInput.
+func (m IsolationPolicyOrderByInput) Pointer() *IsolationPolicyOrderByInput {
+	return &m
 }
 
 const (

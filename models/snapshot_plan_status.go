@@ -20,8 +20,12 @@ import (
 type SnapshotPlanStatus string
 
 func NewSnapshotPlanStatus(value SnapshotPlanStatus) *SnapshotPlanStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnapshotPlanStatus.
+func (m SnapshotPlanStatus) Pointer() *SnapshotPlanStatus {
+	return &m
 }
 
 const (

@@ -160,6 +160,8 @@ func (m *VMCreateVMFromTemplateParams) validateCloudInit(formats strfmt.Registry
 		if err := m.CloudInit.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cloud_init")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cloud_init")
 			}
 			return err
 		}
@@ -177,6 +179,8 @@ func (m *VMCreateVMFromTemplateParams) validateDiskOperate(formats strfmt.Regist
 		if err := m.DiskOperate.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disk_operate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk_operate")
 			}
 			return err
 		}
@@ -193,6 +197,8 @@ func (m *VMCreateVMFromTemplateParams) validateFirmware(formats strfmt.Registry)
 	if err := m.Firmware.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("firmware")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("firmware")
 		}
 		return err
 	}
@@ -208,6 +214,8 @@ func (m *VMCreateVMFromTemplateParams) validateGuestOsType(formats strfmt.Regist
 	if err := m.GuestOsType.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("guest_os_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("guest_os_type")
 		}
 		return err
 	}
@@ -223,6 +231,8 @@ func (m *VMCreateVMFromTemplateParams) validateIoPolicy(formats strfmt.Registry)
 	if err := m.IoPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("io_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("io_policy")
 		}
 		return err
 	}
@@ -247,6 +257,8 @@ func (m *VMCreateVMFromTemplateParams) validateMaxBandwidthPolicy(formats strfmt
 	if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_bandwidth_policy")
 		}
 		return err
 	}
@@ -262,6 +274,8 @@ func (m *VMCreateVMFromTemplateParams) validateMaxIopsPolicy(formats strfmt.Regi
 	if err := m.MaxIopsPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_iops_policy")
 		}
 		return err
 	}
@@ -286,6 +300,8 @@ func (m *VMCreateVMFromTemplateParams) validateStatus(formats strfmt.Registry) e
 	if err := m.Status.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("status")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("status")
 		}
 		return err
 	}
@@ -316,6 +332,8 @@ func (m *VMCreateVMFromTemplateParams) validateVMNics(formats strfmt.Registry) e
 			if err := m.VMNics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -378,6 +396,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateCloudInit(ctx context.Cont
 		if err := m.CloudInit.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cloud_init")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cloud_init")
 			}
 			return err
 		}
@@ -392,6 +412,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateDiskOperate(ctx context.Co
 		if err := m.DiskOperate.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disk_operate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk_operate")
 			}
 			return err
 		}
@@ -405,6 +427,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateFirmware(ctx context.Conte
 	if err := m.Firmware.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("firmware")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("firmware")
 		}
 		return err
 	}
@@ -417,6 +441,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateGuestOsType(ctx context.Co
 	if err := m.GuestOsType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("guest_os_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("guest_os_type")
 		}
 		return err
 	}
@@ -429,6 +455,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateIoPolicy(ctx context.Conte
 	if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("io_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("io_policy")
 		}
 		return err
 	}
@@ -441,6 +469,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateMaxBandwidthPolicy(ctx con
 	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_bandwidth_policy")
 		}
 		return err
 	}
@@ -453,6 +483,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateMaxIopsPolicy(ctx context.
 	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_iops_policy")
 		}
 		return err
 	}
@@ -465,6 +497,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateStatus(ctx context.Context
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("status")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("status")
 		}
 		return err
 	}
@@ -480,6 +514,8 @@ func (m *VMCreateVMFromTemplateParams) contextValidateVMNics(ctx context.Context
 			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -560,6 +596,8 @@ func (m *VMCreateVMFromTemplateParamsCloudInit) validateNetworks(formats strfmt.
 			if err := m.Networks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("cloud_init" + "." + "networks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("cloud_init" + "." + "networks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -592,6 +630,8 @@ func (m *VMCreateVMFromTemplateParamsCloudInit) contextValidateNetworks(ctx cont
 			if err := m.Networks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("cloud_init" + "." + "networks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("cloud_init" + "." + "networks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -671,6 +711,8 @@ func (m *VMCreateVMFromTemplateParamsDiskOperate) validateModifyDisks(formats st
 			if err := m.ModifyDisks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disk_operate" + "." + "modify_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disk_operate" + "." + "modify_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -690,6 +732,8 @@ func (m *VMCreateVMFromTemplateParamsDiskOperate) validateNewDisks(formats strfm
 		if err := m.NewDisks.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disk_operate" + "." + "new_disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk_operate" + "." + "new_disks")
 			}
 			return err
 		}
@@ -707,6 +751,8 @@ func (m *VMCreateVMFromTemplateParamsDiskOperate) validateRemoveDisks(formats st
 		if err := m.RemoveDisks.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disk_operate" + "." + "remove_disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk_operate" + "." + "remove_disks")
 			}
 			return err
 		}
@@ -745,6 +791,8 @@ func (m *VMCreateVMFromTemplateParamsDiskOperate) contextValidateModifyDisks(ctx
 			if err := m.ModifyDisks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disk_operate" + "." + "modify_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disk_operate" + "." + "modify_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -761,6 +809,8 @@ func (m *VMCreateVMFromTemplateParamsDiskOperate) contextValidateNewDisks(ctx co
 		if err := m.NewDisks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disk_operate" + "." + "new_disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk_operate" + "." + "new_disks")
 			}
 			return err
 		}
@@ -775,6 +825,8 @@ func (m *VMCreateVMFromTemplateParamsDiskOperate) contextValidateRemoveDisks(ctx
 		if err := m.RemoveDisks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disk_operate" + "." + "remove_disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk_operate" + "." + "remove_disks")
 			}
 			return err
 		}

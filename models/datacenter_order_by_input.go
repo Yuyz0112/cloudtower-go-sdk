@@ -20,8 +20,12 @@ import (
 type DatacenterOrderByInput string
 
 func NewDatacenterOrderByInput(value DatacenterOrderByInput) *DatacenterOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated DatacenterOrderByInput.
+func (m DatacenterOrderByInput) Pointer() *DatacenterOrderByInput {
+	return &m
 }
 
 const (

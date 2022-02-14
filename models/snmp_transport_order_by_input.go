@@ -20,8 +20,12 @@ import (
 type SnmpTransportOrderByInput string
 
 func NewSnmpTransportOrderByInput(value SnmpTransportOrderByInput) *SnmpTransportOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnmpTransportOrderByInput.
+func (m SnmpTransportOrderByInput) Pointer() *SnmpTransportOrderByInput {
+	return &m
 }
 
 const (

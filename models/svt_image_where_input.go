@@ -30,16 +30,22 @@ type SvtImageWhereInput struct {
 	OR []*SvtImageWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -285,13 +291,19 @@ type SvtImageWhereInput struct {
 	VersionNotIn []int32 `json:"version_not_in,omitempty"`
 
 	// vm disks every
-	VMDisksEvery interface{} `json:"vm_disks_every,omitempty"`
+	VMDisksEvery struct {
+		VMDiskWhereInput
+	} `json:"vm_disks_every,omitempty"`
 
 	// vm disks none
-	VMDisksNone interface{} `json:"vm_disks_none,omitempty"`
+	VMDisksNone struct {
+		VMDiskWhereInput
+	} `json:"vm_disks_none,omitempty"`
 
 	// vm disks some
-	VMDisksSome interface{} `json:"vm_disks_some,omitempty"`
+	VMDisksSome struct {
+		VMDiskWhereInput
+	} `json:"vm_disks_some,omitempty"`
 }
 
 // Validate validates this svt image where input
@@ -310,11 +322,35 @@ func (m *SvtImageWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMDisksEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMDisksNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMDisksSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -338,6 +374,8 @@ func (m *SvtImageWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -362,6 +400,8 @@ func (m *SvtImageWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -386,11 +426,29 @@ func (m *SvtImageWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -406,10 +464,20 @@ func (m *SvtImageWhereInput) validateEntityAsyncStatusIn(formats strfmt.Registry
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -425,10 +493,36 @@ func (m *SvtImageWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.Regis
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) validateVMDisksEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMDisksEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) validateVMDisksNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMDisksNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) validateVMDisksSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMDisksSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -450,11 +544,35 @@ func (m *SvtImageWhereInput) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMDisksEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMDisksNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMDisksSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -472,6 +590,8 @@ func (m *SvtImageWhereInput) contextValidateAND(ctx context.Context, formats str
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -490,6 +610,8 @@ func (m *SvtImageWhereInput) contextValidateNOT(ctx context.Context, formats str
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -508,12 +630,24 @@ func (m *SvtImageWhereInput) contextValidateOR(ctx context.Context, formats strf
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -525,11 +659,18 @@ func (m *SvtImageWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Cont
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -541,11 +682,28 @@ func (m *SvtImageWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.C
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) contextValidateVMDisksEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) contextValidateVMDisksNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SvtImageWhereInput) contextValidateVMDisksSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

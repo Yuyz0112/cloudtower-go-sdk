@@ -51,6 +51,8 @@ func (m *NodeTopoUpdationParamsData) validatePosition(formats strfmt.Registry) e
 		if err := m.Position.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("position")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("position")
 			}
 			return err
 		}
@@ -79,6 +81,8 @@ func (m *NodeTopoUpdationParamsData) contextValidatePosition(ctx context.Context
 		if err := m.Position.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("position")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("position")
 			}
 			return err
 		}

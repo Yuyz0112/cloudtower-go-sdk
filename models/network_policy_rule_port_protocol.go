@@ -20,8 +20,12 @@ import (
 type NetworkPolicyRulePortProtocol string
 
 func NewNetworkPolicyRulePortProtocol(value NetworkPolicyRulePortProtocol) *NetworkPolicyRulePortProtocol {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NetworkPolicyRulePortProtocol.
+func (m NetworkPolicyRulePortProtocol) Pointer() *NetworkPolicyRulePortProtocol {
+	return &m
 }
 
 const (

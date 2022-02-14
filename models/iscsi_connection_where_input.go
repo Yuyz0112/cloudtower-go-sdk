@@ -54,10 +54,14 @@ type IscsiConnectionWhereInput struct {
 	ClientPortNotIn []int32 `json:"client_port_not_in,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// host
-	Host interface{} `json:"host,omitempty"`
+	Host struct {
+		HostWhereInput
+	} `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -144,19 +148,27 @@ type IscsiConnectionWhereInput struct {
 	InitiatorIPStartsWith *string `json:"initiator_ip_starts_with,omitempty"`
 
 	// iscsi target
-	IscsiTarget interface{} `json:"iscsi_target,omitempty"`
+	IscsiTarget struct {
+		IscsiTargetWhereInput
+	} `json:"iscsi_target,omitempty"`
 
 	// nvmf subsystem
-	NvmfSubsystem interface{} `json:"nvmf_subsystem,omitempty"`
+	NvmfSubsystem struct {
+		NvmfSubsystemWhereInput
+	} `json:"nvmf_subsystem,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		StoreConnectionType
+	} `json:"type,omitempty"`
 
 	// type in
 	TypeIn []StoreConnectionType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot interface{} `json:"type_not,omitempty"`
+	TypeNot struct {
+		StoreConnectionType
+	} `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []StoreConnectionType `json:"type_not_in,omitempty"`
@@ -178,7 +190,31 @@ func (m *IscsiConnectionWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiTarget(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfSubsystem(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -206,6 +242,8 @@ func (m *IscsiConnectionWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -230,6 +268,8 @@ func (m *IscsiConnectionWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -254,11 +294,53 @@ func (m *IscsiConnectionWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) validateHost(formats strfmt.Registry) error {
+	if swag.IsZero(m.Host) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) validateIscsiTarget(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiTarget) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) validateNvmfSubsystem(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfSubsystem) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	return nil
@@ -274,10 +356,20 @@ func (m *IscsiConnectionWhereInput) validateTypeIn(formats strfmt.Registry) erro
 		if err := m.TypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) validateTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -293,6 +385,8 @@ func (m *IscsiConnectionWhereInput) validateTypeNotIn(formats strfmt.Registry) e
 		if err := m.TypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -318,7 +412,31 @@ func (m *IscsiConnectionWhereInput) ContextValidate(ctx context.Context, formats
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHost(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiTarget(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfSubsystem(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -340,6 +458,8 @@ func (m *IscsiConnectionWhereInput) contextValidateAND(ctx context.Context, form
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -358,6 +478,8 @@ func (m *IscsiConnectionWhereInput) contextValidateNOT(ctx context.Context, form
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -376,12 +498,39 @@ func (m *IscsiConnectionWhereInput) contextValidateOR(ctx context.Context, forma
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) contextValidateNvmfSubsystem(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -393,11 +542,18 @@ func (m *IscsiConnectionWhereInput) contextValidateTypeIn(ctx context.Context, f
 		if err := m.TypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *IscsiConnectionWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -409,6 +565,8 @@ func (m *IscsiConnectionWhereInput) contextValidateTypeNotIn(ctx context.Context
 		if err := m.TypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

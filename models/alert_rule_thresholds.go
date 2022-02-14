@@ -60,6 +60,8 @@ func (m *AlertRuleThresholds) validateSeverity(formats strfmt.Registry) error {
 		if err := m.Severity.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("severity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("severity")
 			}
 			return err
 		}
@@ -97,6 +99,8 @@ func (m *AlertRuleThresholds) contextValidateSeverity(ctx context.Context, forma
 		if err := m.Severity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("severity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("severity")
 			}
 			return err
 		}

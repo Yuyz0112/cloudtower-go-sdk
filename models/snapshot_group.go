@@ -29,7 +29,9 @@ type SnapshotGroup struct {
 	Deleted *bool `json:"deleted"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// estimated recycling time
 	EstimatedRecyclingTime *string `json:"estimated_recycling_time,omitempty"`
@@ -89,6 +91,10 @@ func (m *SnapshotGroup) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -145,6 +151,8 @@ func (m *SnapshotGroup) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -157,6 +165,14 @@ func (m *SnapshotGroup) validateDeleted(formats strfmt.Registry) error {
 
 	if err := validate.Required("deleted", "body", m.Deleted); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *SnapshotGroup) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -235,6 +251,8 @@ func (m *SnapshotGroup) validateSnapshotPlanTask(formats strfmt.Registry) error 
 		if err := m.SnapshotPlanTask.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("snapshotPlanTask")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotPlanTask")
 			}
 			return err
 		}
@@ -258,6 +276,8 @@ func (m *SnapshotGroup) validateVMInfo(formats strfmt.Registry) error {
 			if err := m.VMInfo[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_info" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_info" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -282,6 +302,8 @@ func (m *SnapshotGroup) validateVMSnapshots(formats strfmt.Registry) error {
 			if err := m.VMSnapshots[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -297,6 +319,10 @@ func (m *SnapshotGroup) ContextValidate(ctx context.Context, formats strfmt.Regi
 	var res []error
 
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -324,10 +350,17 @@ func (m *SnapshotGroup) contextValidateCluster(ctx context.Context, formats strf
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *SnapshotGroup) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -338,6 +371,8 @@ func (m *SnapshotGroup) contextValidateSnapshotPlanTask(ctx context.Context, for
 		if err := m.SnapshotPlanTask.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("snapshotPlanTask")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotPlanTask")
 			}
 			return err
 		}
@@ -354,6 +389,8 @@ func (m *SnapshotGroup) contextValidateVMInfo(ctx context.Context, formats strfm
 			if err := m.VMInfo[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_info" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_info" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -372,6 +409,8 @@ func (m *SnapshotGroup) contextValidateVMSnapshots(ctx context.Context, formats 
 			if err := m.VMSnapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

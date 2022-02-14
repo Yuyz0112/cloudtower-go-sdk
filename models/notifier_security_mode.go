@@ -20,8 +20,12 @@ import (
 type NotifierSecurityMode string
 
 func NewNotifierSecurityMode(value NotifierSecurityMode) *NotifierSecurityMode {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NotifierSecurityMode.
+func (m NotifierSecurityMode) Pointer() *NotifierSecurityMode {
+	return &m
 }
 
 const (

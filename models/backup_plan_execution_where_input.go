@@ -15,7 +15,7 @@ import (
 )
 
 // BackupPlanExecutionWhereInput backup plan execution where input
-// Example: {"AND":"BackupPlanExecutionWhereInput[]","NOT":"BackupPlanExecutionWhereInput[]","OR":"BackupPlanExecutionWhereInput[]","backup_plan":"BackupPlanWhereInput","backup_restore_points_every":"BackupRestorePointWhereInput","backup_restore_points_none":"BackupRestorePointWhereInput","backup_restore_points_some":"BackupRestorePointWhereInput","backup_target_executions_every":"BackupTargetExecutionWhereInput","backup_target_executions_none":"BackupTargetExecutionWhereInput","backup_target_executions_some":"BackupTargetExecutionWhereInput","duration":0,"duration_gt":0,"duration_gte":0,"duration_in":[0],"duration_lt":0,"duration_lte":0,"duration_not":0,"duration_not_in":[0],"entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"executed_at":"string","executed_at_gt":"string","executed_at_gte":"string","executed_at_in":["string"],"executed_at_lt":"string","executed_at_lte":"string","executed_at_not":"string","executed_at_not_in":["string"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_created_at":"string","local_created_at_gt":"string","local_created_at_gte":"string","local_created_at_in":["string"],"local_created_at_lt":"string","local_created_at_lte":"string","local_created_at_not":"string","local_created_at_not_in":["string"],"local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","method":"AUTO","method_in":["AUTO"],"method_not":"AUTO","method_not_in":["AUTO"],"resource_version_gt":0,"resource_version_gte":0,"resource_version_in":[0],"resource_version_lt":0,"resource_version_lte":0,"resource_version_not":0,"resource_version_not_in":[0],"status":"FAILED","status_in":["FAILED"],"status_not":"FAILED","status_not_in":["FAILED"],"success_job_count":0,"success_job_count_gt":0,"success_job_count_gte":0,"success_job_count_in":[0],"success_job_count_lt":0,"success_job_count_lte":0,"success_job_count_not":0,"success_job_count_not_in":[0],"total_job_count":0,"total_job_count_gt":0,"total_job_count_gte":0,"total_job_count_in":[0],"total_job_count_lt":0,"total_job_count_lte":0,"total_job_count_not":0,"total_job_count_not_in":[0],"type":"FULL","type_in":["FULL"],"type_not":"FULL","type_not_in":["FULL"]}
+// Example: {"AND":"BackupPlanExecutionWhereInput[]","NOT":"BackupPlanExecutionWhereInput[]","OR":"BackupPlanExecutionWhereInput[]","backup_plan":"BackupPlanWhereInput","backup_restore_points_every":"BackupRestorePointWhereInput","backup_restore_points_none":"BackupRestorePointWhereInput","backup_restore_points_some":"BackupRestorePointWhereInput","backup_target_executions_every":"BackupTargetExecutionWhereInput","backup_target_executions_none":"BackupTargetExecutionWhereInput","backup_target_executions_some":"BackupTargetExecutionWhereInput","duration":0,"duration_gt":0,"duration_gte":0,"duration_in":[0],"duration_lt":0,"duration_lte":0,"duration_not":0,"duration_not_in":[0],"entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"executed_at":"string","executed_at_gt":"string","executed_at_gte":"string","executed_at_in":["string"],"executed_at_lt":"string","executed_at_lte":"string","executed_at_not":"string","executed_at_not_in":["string"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_created_at":"string","local_created_at_gt":"string","local_created_at_gte":"string","local_created_at_in":["string"],"local_created_at_lt":"string","local_created_at_lte":"string","local_created_at_not":"string","local_created_at_not_in":["string"],"local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","method":"AUTO","method_in":["AUTO"],"method_not":"AUTO","method_not_in":["AUTO"],"resource_version_gt":0,"resource_version_gte":0,"resource_version_in":[0],"resource_version_lt":0,"resource_version_lte":0,"resource_version_not":0,"resource_version_not_in":[0],"state":"FAILED","state_in":["FAILED"],"state_not":"FAILED","state_not_in":["FAILED"],"status":"FAILED","status_in":["FAILED"],"status_not":"FAILED","status_not_in":["FAILED"],"success_job_count":0,"success_job_count_gt":0,"success_job_count_gte":0,"success_job_count_in":[0],"success_job_count_lt":0,"success_job_count_lte":0,"success_job_count_not":0,"success_job_count_not_in":[0],"total_job_count":0,"total_job_count_gt":0,"total_job_count_gte":0,"total_job_count_in":[0],"total_job_count_lt":0,"total_job_count_lte":0,"total_job_count_not":0,"total_job_count_not_in":[0],"type":"FULL","type_in":["FULL"],"type_not":"FULL","type_not_in":["FULL"]}
 //
 // swagger:model BackupPlanExecutionWhereInput
 type BackupPlanExecutionWhereInput struct {
@@ -30,25 +30,39 @@ type BackupPlanExecutionWhereInput struct {
 	OR []*BackupPlanExecutionWhereInput `json:"OR,omitempty"`
 
 	// backup plan
-	BackupPlan interface{} `json:"backup_plan,omitempty"`
+	BackupPlan struct {
+		BackupPlanWhereInput
+	} `json:"backup_plan,omitempty"`
 
 	// backup restore points every
-	BackupRestorePointsEvery interface{} `json:"backup_restore_points_every,omitempty"`
+	BackupRestorePointsEvery struct {
+		BackupRestorePointWhereInput
+	} `json:"backup_restore_points_every,omitempty"`
 
 	// backup restore points none
-	BackupRestorePointsNone interface{} `json:"backup_restore_points_none,omitempty"`
+	BackupRestorePointsNone struct {
+		BackupRestorePointWhereInput
+	} `json:"backup_restore_points_none,omitempty"`
 
 	// backup restore points some
-	BackupRestorePointsSome interface{} `json:"backup_restore_points_some,omitempty"`
+	BackupRestorePointsSome struct {
+		BackupRestorePointWhereInput
+	} `json:"backup_restore_points_some,omitempty"`
 
 	// backup target executions every
-	BackupTargetExecutionsEvery interface{} `json:"backup_target_executions_every,omitempty"`
+	BackupTargetExecutionsEvery struct {
+		BackupTargetExecutionWhereInput
+	} `json:"backup_target_executions_every,omitempty"`
 
 	// backup target executions none
-	BackupTargetExecutionsNone interface{} `json:"backup_target_executions_none,omitempty"`
+	BackupTargetExecutionsNone struct {
+		BackupTargetExecutionWhereInput
+	} `json:"backup_target_executions_none,omitempty"`
 
 	// backup target executions some
-	BackupTargetExecutionsSome interface{} `json:"backup_target_executions_some,omitempty"`
+	BackupTargetExecutionsSome struct {
+		BackupTargetExecutionWhereInput
+	} `json:"backup_target_executions_some,omitempty"`
 
 	// duration
 	Duration *int32 `json:"duration,omitempty"`
@@ -75,13 +89,17 @@ type BackupPlanExecutionWhereInput struct {
 	DurationNotIn []int32 `json:"duration_not_in,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -219,13 +237,17 @@ type BackupPlanExecutionWhereInput struct {
 	LocalIDStartsWith *string `json:"local_id_starts_with,omitempty"`
 
 	// method
-	Method interface{} `json:"method,omitempty"`
+	Method struct {
+		BackupExecutionMethod
+	} `json:"method,omitempty"`
 
 	// method in
 	MethodIn []BackupExecutionMethod `json:"method_in,omitempty"`
 
 	// method not
-	MethodNot interface{} `json:"method_not,omitempty"`
+	MethodNot struct {
+		BackupExecutionMethod
+	} `json:"method_not,omitempty"`
 
 	// method not in
 	MethodNotIn []BackupExecutionMethod `json:"method_not_in,omitempty"`
@@ -251,14 +273,34 @@ type BackupPlanExecutionWhereInput struct {
 	// resource version not in
 	ResourceVersionNotIn []int32 `json:"resource_version_not_in,omitempty"`
 
+	// state
+	State struct {
+		BackupPlanExecutionState
+	} `json:"state,omitempty"`
+
+	// state in
+	StateIn []BackupPlanExecutionState `json:"state_in,omitempty"`
+
+	// state not
+	StateNot struct {
+		BackupPlanExecutionState
+	} `json:"state_not,omitempty"`
+
+	// state not in
+	StateNotIn []BackupPlanExecutionState `json:"state_not_in,omitempty"`
+
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		BackupPlanExecutionStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []BackupPlanExecutionStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		BackupPlanExecutionStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []BackupPlanExecutionStatus `json:"status_not_in,omitempty"`
@@ -312,13 +354,17 @@ type BackupPlanExecutionWhereInput struct {
 	TotalJobCountNotIn []int32 `json:"total_job_count_not_in,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		BackupExecutionType
+	} `json:"type,omitempty"`
 
 	// type in
 	TypeIn []BackupExecutionType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot interface{} `json:"type_not,omitempty"`
+	TypeNot struct {
+		BackupExecutionType
+	} `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []BackupExecutionType `json:"type_not_in,omitempty"`
@@ -340,7 +386,43 @@ func (m *BackupPlanExecutionWhereInput) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validateBackupPlan(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupRestorePointsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupRestorePointsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupRestorePointsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupTargetExecutionsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupTargetExecutionsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupTargetExecutionsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -348,7 +430,15 @@ func (m *BackupPlanExecutionWhereInput) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validateMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMethodIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMethodNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -356,7 +446,31 @@ func (m *BackupPlanExecutionWhereInput) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validateState(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStateIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStateNot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStateNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -364,7 +478,15 @@ func (m *BackupPlanExecutionWhereInput) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -392,6 +514,8 @@ func (m *BackupPlanExecutionWhereInput) validateAND(formats strfmt.Registry) err
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -416,6 +540,8 @@ func (m *BackupPlanExecutionWhereInput) validateNOT(formats strfmt.Registry) err
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -440,11 +566,77 @@ func (m *BackupPlanExecutionWhereInput) validateOR(formats strfmt.Registry) erro
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateBackupPlan(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlan) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateBackupRestorePointsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePointsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateBackupRestorePointsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePointsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateBackupRestorePointsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePointsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateBackupTargetExecutionsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupTargetExecutionsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateBackupTargetExecutionsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupTargetExecutionsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateBackupTargetExecutionsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupTargetExecutionsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -460,10 +652,20 @@ func (m *BackupPlanExecutionWhereInput) validateEntityAsyncStatusIn(formats strf
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -479,10 +681,20 @@ func (m *BackupPlanExecutionWhereInput) validateEntityAsyncStatusNotIn(formats s
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.Method) { // not required
+		return nil
 	}
 
 	return nil
@@ -498,10 +710,20 @@ func (m *BackupPlanExecutionWhereInput) validateMethodIn(formats strfmt.Registry
 		if err := m.MethodIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("method_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("method_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateMethodNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.MethodNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -517,10 +739,78 @@ func (m *BackupPlanExecutionWhereInput) validateMethodNotIn(formats strfmt.Regis
 		if err := m.MethodNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("method_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("method_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateState(formats strfmt.Registry) error {
+	if swag.IsZero(m.State) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateStateIn(formats strfmt.Registry) error {
+	if swag.IsZero(m.StateIn) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.StateIn); i++ {
+
+		if err := m.StateIn[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateStateNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StateNot) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateStateNotIn(formats strfmt.Registry) error {
+	if swag.IsZero(m.StateNotIn) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.StateNotIn); i++ {
+
+		if err := m.StateNotIn[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_not_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -536,10 +826,20 @@ func (m *BackupPlanExecutionWhereInput) validateStatusIn(formats strfmt.Registry
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -555,10 +855,20 @@ func (m *BackupPlanExecutionWhereInput) validateStatusNotIn(formats strfmt.Regis
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	return nil
@@ -574,10 +884,20 @@ func (m *BackupPlanExecutionWhereInput) validateTypeIn(formats strfmt.Registry) 
 		if err := m.TypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) validateTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -593,6 +913,8 @@ func (m *BackupPlanExecutionWhereInput) validateTypeNotIn(formats strfmt.Registr
 		if err := m.TypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -618,7 +940,43 @@ func (m *BackupPlanExecutionWhereInput) ContextValidate(ctx context.Context, for
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBackupPlan(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupRestorePointsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupRestorePointsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupRestorePointsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupTargetExecutionsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupTargetExecutionsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupTargetExecutionsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -626,7 +984,15 @@ func (m *BackupPlanExecutionWhereInput) ContextValidate(ctx context.Context, for
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMethod(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMethodIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMethodNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -634,7 +1000,31 @@ func (m *BackupPlanExecutionWhereInput) ContextValidate(ctx context.Context, for
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateState(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStateIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStateNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStateNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -642,7 +1032,15 @@ func (m *BackupPlanExecutionWhereInput) ContextValidate(ctx context.Context, for
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -664,6 +1062,8 @@ func (m *BackupPlanExecutionWhereInput) contextValidateAND(ctx context.Context, 
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -682,6 +1082,8 @@ func (m *BackupPlanExecutionWhereInput) contextValidateNOT(ctx context.Context, 
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -700,12 +1102,54 @@ func (m *BackupPlanExecutionWhereInput) contextValidateOR(ctx context.Context, f
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateBackupPlan(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateBackupRestorePointsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateBackupRestorePointsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateBackupRestorePointsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateBackupTargetExecutionsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateBackupTargetExecutionsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateBackupTargetExecutionsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -717,11 +1161,18 @@ func (m *BackupPlanExecutionWhereInput) contextValidateEntityAsyncStatusIn(ctx c
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -733,11 +1184,18 @@ func (m *BackupPlanExecutionWhereInput) contextValidateEntityAsyncStatusNotIn(ct
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateMethod(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -749,11 +1207,18 @@ func (m *BackupPlanExecutionWhereInput) contextValidateMethodIn(ctx context.Cont
 		if err := m.MethodIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("method_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("method_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateMethodNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -765,11 +1230,64 @@ func (m *BackupPlanExecutionWhereInput) contextValidateMethodNotIn(ctx context.C
 		if err := m.MethodNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("method_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("method_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateState(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateStateIn(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.StateIn); i++ {
+
+		if err := m.StateIn[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateStateNot(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateStateNotIn(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.StateNotIn); i++ {
+
+		if err := m.StateNotIn[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_not_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -781,11 +1299,18 @@ func (m *BackupPlanExecutionWhereInput) contextValidateStatusIn(ctx context.Cont
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -797,11 +1322,18 @@ func (m *BackupPlanExecutionWhereInput) contextValidateStatusNotIn(ctx context.C
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -813,11 +1345,18 @@ func (m *BackupPlanExecutionWhereInput) contextValidateTypeIn(ctx context.Contex
 		if err := m.TypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupPlanExecutionWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -829,6 +1368,8 @@ func (m *BackupPlanExecutionWhereInput) contextValidateTypeNotIn(ctx context.Con
 		if err := m.TypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

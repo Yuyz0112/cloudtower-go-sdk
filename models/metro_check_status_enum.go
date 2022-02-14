@@ -20,8 +20,12 @@ import (
 type MetroCheckStatusEnum string
 
 func NewMetroCheckStatusEnum(value MetroCheckStatusEnum) *MetroCheckStatusEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated MetroCheckStatusEnum.
+func (m MetroCheckStatusEnum) Pointer() *MetroCheckStatusEnum {
+	return &m
 }
 
 const (

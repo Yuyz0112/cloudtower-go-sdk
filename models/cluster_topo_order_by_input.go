@@ -20,8 +20,12 @@ import (
 type ClusterTopoOrderByInput string
 
 func NewClusterTopoOrderByInput(value ClusterTopoOrderByInput) *ClusterTopoOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ClusterTopoOrderByInput.
+func (m ClusterTopoOrderByInput) Pointer() *ClusterTopoOrderByInput {
+	return &m
 }
 
 const (

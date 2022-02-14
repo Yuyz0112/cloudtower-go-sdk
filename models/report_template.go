@@ -130,6 +130,8 @@ func (m *ReportTemplate) validateExecutePlan(formats strfmt.Registry) error {
 			if err := m.ExecutePlan[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("execute_plan" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("execute_plan" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -173,6 +175,8 @@ func (m *ReportTemplate) validateResourceMeta(formats strfmt.Registry) error {
 			if err := m.ResourceMeta[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resource_meta" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resource_meta" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -206,6 +210,8 @@ func (m *ReportTemplate) validateTasks(formats strfmt.Registry) error {
 			if err := m.Tasks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tasks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tasks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -246,6 +252,8 @@ func (m *ReportTemplate) contextValidateExecutePlan(ctx context.Context, formats
 			if err := m.ExecutePlan[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("execute_plan" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("execute_plan" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -264,6 +272,8 @@ func (m *ReportTemplate) contextValidateResourceMeta(ctx context.Context, format
 			if err := m.ResourceMeta[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resource_meta" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resource_meta" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -282,6 +292,8 @@ func (m *ReportTemplate) contextValidateTasks(ctx context.Context, formats strfm
 			if err := m.Tasks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tasks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tasks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

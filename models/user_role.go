@@ -20,8 +20,12 @@ import (
 type UserRole string
 
 func NewUserRole(value UserRole) *UserRole {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UserRole.
+func (m UserRole) Pointer() *UserRole {
+	return &m
 }
 
 const (

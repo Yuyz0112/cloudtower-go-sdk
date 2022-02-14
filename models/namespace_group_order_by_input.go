@@ -20,8 +20,12 @@ import (
 type NamespaceGroupOrderByInput string
 
 func NewNamespaceGroupOrderByInput(value NamespaceGroupOrderByInput) *NamespaceGroupOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NamespaceGroupOrderByInput.
+func (m NamespaceGroupOrderByInput) Pointer() *NamespaceGroupOrderByInput {
+	return &m
 }
 
 const (

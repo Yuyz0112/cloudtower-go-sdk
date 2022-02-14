@@ -20,8 +20,12 @@ import (
 type EntityType string
 
 func NewEntityType(value EntityType) *EntityType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EntityType.
+func (m EntityType) Pointer() *EntityType {
+	return &m
 }
 
 const (

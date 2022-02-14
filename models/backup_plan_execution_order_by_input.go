@@ -20,8 +20,12 @@ import (
 type BackupPlanExecutionOrderByInput string
 
 func NewBackupPlanExecutionOrderByInput(value BackupPlanExecutionOrderByInput) *BackupPlanExecutionOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupPlanExecutionOrderByInput.
+func (m BackupPlanExecutionOrderByInput) Pointer() *BackupPlanExecutionOrderByInput {
+	return &m
 }
 
 const (
@@ -80,6 +84,12 @@ const (
 	// BackupPlanExecutionOrderByInputResourceVersionDESC captures enum value "resource_version_DESC"
 	BackupPlanExecutionOrderByInputResourceVersionDESC BackupPlanExecutionOrderByInput = "resource_version_DESC"
 
+	// BackupPlanExecutionOrderByInputStateASC captures enum value "state_ASC"
+	BackupPlanExecutionOrderByInputStateASC BackupPlanExecutionOrderByInput = "state_ASC"
+
+	// BackupPlanExecutionOrderByInputStateDESC captures enum value "state_DESC"
+	BackupPlanExecutionOrderByInputStateDESC BackupPlanExecutionOrderByInput = "state_DESC"
+
 	// BackupPlanExecutionOrderByInputStatusASC captures enum value "status_ASC"
 	BackupPlanExecutionOrderByInputStatusASC BackupPlanExecutionOrderByInput = "status_ASC"
 
@@ -116,7 +126,7 @@ var backupPlanExecutionOrderByInputEnum []interface{}
 
 func init() {
 	var res []BackupPlanExecutionOrderByInput
-	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","duration_ASC","duration_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","executed_at_ASC","executed_at_DESC","id_ASC","id_DESC","local_created_at_ASC","local_created_at_DESC","local_id_ASC","local_id_DESC","method_ASC","method_DESC","resource_version_ASC","resource_version_DESC","status_ASC","status_DESC","success_job_count_ASC","success_job_count_DESC","total_job_count_ASC","total_job_count_DESC","type_ASC","type_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","duration_ASC","duration_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","executed_at_ASC","executed_at_DESC","id_ASC","id_DESC","local_created_at_ASC","local_created_at_DESC","local_id_ASC","local_id_DESC","method_ASC","method_DESC","resource_version_ASC","resource_version_DESC","state_ASC","state_DESC","status_ASC","status_DESC","success_job_count_ASC","success_job_count_DESC","total_job_count_ASC","total_job_count_DESC","type_ASC","type_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

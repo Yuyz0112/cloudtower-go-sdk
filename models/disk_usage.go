@@ -20,8 +20,12 @@ import (
 type DiskUsage string
 
 func NewDiskUsage(value DiskUsage) *DiskUsage {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated DiskUsage.
+func (m DiskUsage) Pointer() *DiskUsage {
+	return &m
 }
 
 const (

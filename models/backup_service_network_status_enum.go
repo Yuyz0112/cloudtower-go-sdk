@@ -20,8 +20,12 @@ import (
 type BackupServiceNetworkStatusEnum string
 
 func NewBackupServiceNetworkStatusEnum(value BackupServiceNetworkStatusEnum) *BackupServiceNetworkStatusEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupServiceNetworkStatusEnum.
+func (m BackupServiceNetworkStatusEnum) Pointer() *BackupServiceNetworkStatusEnum {
+	return &m
 }
 
 const (

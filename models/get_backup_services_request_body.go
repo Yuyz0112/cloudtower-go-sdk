@@ -8,12 +8,13 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // GetBackupServicesRequestBody get backup services request body
-// Example: {"after":"backupServices-id-string","before":"backupServices-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"BackupServiceWhereInput[]","NOT":"BackupServiceWhereInput[]","OR":"BackupServiceWhereInput[]","backup_clusters_every":"ClusterWhereInput","backup_clusters_none":"ClusterWhereInput","backup_clusters_some":"ClusterWhereInput","backup_package":"BackupPackageWhereInput","backup_plans_every":"BackupPlanWhereInput","backup_plans_none":"BackupPlanWhereInput","backup_plans_some":"BackupPlanWhereInput","backup_store_repositories_every":"BackupStoreRepositoryWhereInput","backup_store_repositories_none":"BackupStoreRepositoryWhereInput","backup_store_repositories_some":"BackupStoreRepositoryWhereInput","description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"gateway":"string","gateway_contains":"string","gateway_ends_with":"string","gateway_gt":"string","gateway_gte":"string","gateway_in":["string"],"gateway_lt":"string","gateway_lte":"string","gateway_not":"string","gateway_not_contains":"string","gateway_not_ends_with":"string","gateway_not_in":["string"],"gateway_not_starts_with":"string","gateway_starts_with":"string","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","iops_limit":0,"iops_limit_gt":0,"iops_limit_gte":0,"iops_limit_in":[0],"iops_limit_lt":0,"iops_limit_lte":0,"iops_limit_not":0,"iops_limit_not_in":[0],"ip":"string","ip_contains":"string","ip_ends_with":"string","ip_gt":"string","ip_gte":"string","ip_in":["string"],"ip_lt":"string","ip_lte":"string","ip_not":"string","ip_not_contains":"string","ip_not_ends_with":"string","ip_not_in":["string"],"ip_not_starts_with":"string","ip_starts_with":"string","kube_config":"string","kube_config_contains":"string","kube_config_ends_with":"string","kube_config_gt":"string","kube_config_gte":"string","kube_config_in":["string"],"kube_config_lt":"string","kube_config_lte":"string","kube_config_not":"string","kube_config_not_contains":"string","kube_config_not_ends_with":"string","kube_config_not_in":["string"],"kube_config_not_starts_with":"string","kube_config_starts_with":"string","max_job_retry_times":0,"max_job_retry_times_gt":0,"max_job_retry_times_gte":0,"max_job_retry_times_in":[0],"max_job_retry_times_lt":0,"max_job_retry_times_lte":0,"max_job_retry_times_not":0,"max_job_retry_times_not_in":[0],"max_parallel_backup_jobs":0,"max_parallel_backup_jobs_gt":0,"max_parallel_backup_jobs_gte":0,"max_parallel_backup_jobs_in":[0],"max_parallel_backup_jobs_lt":0,"max_parallel_backup_jobs_lte":0,"max_parallel_backup_jobs_not":0,"max_parallel_backup_jobs_not_in":[0],"max_parallel_restore_jobs":0,"max_parallel_restore_jobs_gt":0,"max_parallel_restore_jobs_gte":0,"max_parallel_restore_jobs_in":[0],"max_parallel_restore_jobs_lt":0,"max_parallel_restore_jobs_lte":0,"max_parallel_restore_jobs_not":0,"max_parallel_restore_jobs_not_in":[0],"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","resource_version_gt":0,"resource_version_gte":0,"resource_version_in":[0],"resource_version_lt":0,"resource_version_lte":0,"resource_version_not":0,"resource_version_not_in":[0],"retry_interval":0,"retry_interval_gt":0,"retry_interval_gte":0,"retry_interval_in":[0],"retry_interval_lt":0,"retry_interval_lte":0,"retry_interval_not":0,"retry_interval_not_in":[0],"running_vm":"VmWhereInput","status":"INSTALLING","status_in":["INSTALLING"],"status_not":"INSTALLING","status_not_in":["INSTALLING"],"subnet_mask":"string","subnet_mask_contains":"string","subnet_mask_ends_with":"string","subnet_mask_gt":"string","subnet_mask_gte":"string","subnet_mask_in":["string"],"subnet_mask_lt":"string","subnet_mask_lte":"string","subnet_mask_not":"string","subnet_mask_not_contains":"string","subnet_mask_not_ends_with":"string","subnet_mask_not_in":["string"],"subnet_mask_not_starts_with":"string","subnet_mask_starts_with":"string"}}
+// Example: {"after":"backupServices-id-string","before":"backupServices-id-string","first":0,"last":0,"orderBy":"backup_network_gateway_ASC","skip":0,"where":{"AND":"BackupServiceWhereInput[]","NOT":"BackupServiceWhereInput[]","OR":"BackupServiceWhereInput[]","backup_clusters_every":"ClusterWhereInput","backup_clusters_none":"ClusterWhereInput","backup_clusters_some":"ClusterWhereInput","backup_network_gateway":"string","backup_network_gateway_contains":"string","backup_network_gateway_ends_with":"string","backup_network_gateway_gt":"string","backup_network_gateway_gte":"string","backup_network_gateway_in":["string"],"backup_network_gateway_lt":"string","backup_network_gateway_lte":"string","backup_network_gateway_not":"string","backup_network_gateway_not_contains":"string","backup_network_gateway_not_ends_with":"string","backup_network_gateway_not_in":["string"],"backup_network_gateway_not_starts_with":"string","backup_network_gateway_starts_with":"string","backup_network_ip":"string","backup_network_ip_contains":"string","backup_network_ip_ends_with":"string","backup_network_ip_gt":"string","backup_network_ip_gte":"string","backup_network_ip_in":["string"],"backup_network_ip_lt":"string","backup_network_ip_lte":"string","backup_network_ip_not":"string","backup_network_ip_not_contains":"string","backup_network_ip_not_ends_with":"string","backup_network_ip_not_in":["string"],"backup_network_ip_not_starts_with":"string","backup_network_ip_starts_with":"string","backup_network_subnet_mask":"string","backup_network_subnet_mask_contains":"string","backup_network_subnet_mask_ends_with":"string","backup_network_subnet_mask_gt":"string","backup_network_subnet_mask_gte":"string","backup_network_subnet_mask_in":["string"],"backup_network_subnet_mask_lt":"string","backup_network_subnet_mask_lte":"string","backup_network_subnet_mask_not":"string","backup_network_subnet_mask_not_contains":"string","backup_network_subnet_mask_not_ends_with":"string","backup_network_subnet_mask_not_in":["string"],"backup_network_subnet_mask_not_starts_with":"string","backup_network_subnet_mask_starts_with":"string","backup_network_type":"MANAGEMENT","backup_network_type_in":["MANAGEMENT"],"backup_network_type_not":"MANAGEMENT","backup_network_type_not_in":["MANAGEMENT"],"backup_network_vlan":"string","backup_network_vlan_contains":"string","backup_network_vlan_ends_with":"string","backup_network_vlan_gt":"string","backup_network_vlan_gte":"string","backup_network_vlan_in":["string"],"backup_network_vlan_lt":"string","backup_network_vlan_lte":"string","backup_network_vlan_not":"string","backup_network_vlan_not_contains":"string","backup_network_vlan_not_ends_with":"string","backup_network_vlan_not_in":["string"],"backup_network_vlan_not_starts_with":"string","backup_network_vlan_starts_with":"string","backup_package":"BackupPackageWhereInput","backup_plans_every":"BackupPlanWhereInput","backup_plans_none":"BackupPlanWhereInput","backup_plans_some":"BackupPlanWhereInput","backup_rd_iops_max":0,"backup_rd_iops_max_gt":0,"backup_rd_iops_max_gte":0,"backup_rd_iops_max_in":[0],"backup_rd_iops_max_lt":0,"backup_rd_iops_max_lte":0,"backup_rd_iops_max_not":0,"backup_rd_iops_max_not_in":[0],"backup_store_repositories_every":"BackupStoreRepositoryWhereInput","backup_store_repositories_none":"BackupStoreRepositoryWhereInput","backup_store_repositories_some":"BackupStoreRepositoryWhereInput","backup_wr_iops_max":0,"backup_wr_iops_max_gt":0,"backup_wr_iops_max_gte":0,"backup_wr_iops_max_in":[0],"backup_wr_iops_max_lt":0,"backup_wr_iops_max_lte":0,"backup_wr_iops_max_not":0,"backup_wr_iops_max_not_in":[0],"description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","kube_config":"string","kube_config_contains":"string","kube_config_ends_with":"string","kube_config_gt":"string","kube_config_gte":"string","kube_config_in":["string"],"kube_config_lt":"string","kube_config_lte":"string","kube_config_not":"string","kube_config_not_contains":"string","kube_config_not_ends_with":"string","kube_config_not_in":["string"],"kube_config_not_starts_with":"string","kube_config_starts_with":"string","management_network_gateway":"string","management_network_gateway_contains":"string","management_network_gateway_ends_with":"string","management_network_gateway_gt":"string","management_network_gateway_gte":"string","management_network_gateway_in":["string"],"management_network_gateway_lt":"string","management_network_gateway_lte":"string","management_network_gateway_not":"string","management_network_gateway_not_contains":"string","management_network_gateway_not_ends_with":"string","management_network_gateway_not_in":["string"],"management_network_gateway_not_starts_with":"string","management_network_gateway_starts_with":"string","management_network_ip":"string","management_network_ip_contains":"string","management_network_ip_ends_with":"string","management_network_ip_gt":"string","management_network_ip_gte":"string","management_network_ip_in":["string"],"management_network_ip_lt":"string","management_network_ip_lte":"string","management_network_ip_not":"string","management_network_ip_not_contains":"string","management_network_ip_not_ends_with":"string","management_network_ip_not_in":["string"],"management_network_ip_not_starts_with":"string","management_network_ip_starts_with":"string","management_network_subnet_mask":"string","management_network_subnet_mask_contains":"string","management_network_subnet_mask_ends_with":"string","management_network_subnet_mask_gt":"string","management_network_subnet_mask_gte":"string","management_network_subnet_mask_in":["string"],"management_network_subnet_mask_lt":"string","management_network_subnet_mask_lte":"string","management_network_subnet_mask_not":"string","management_network_subnet_mask_not_contains":"string","management_network_subnet_mask_not_ends_with":"string","management_network_subnet_mask_not_in":["string"],"management_network_subnet_mask_not_starts_with":"string","management_network_subnet_mask_starts_with":"string","management_network_vlan":"string","management_network_vlan_contains":"string","management_network_vlan_ends_with":"string","management_network_vlan_gt":"string","management_network_vlan_gte":"string","management_network_vlan_in":["string"],"management_network_vlan_lt":"string","management_network_vlan_lte":"string","management_network_vlan_not":"string","management_network_vlan_not_contains":"string","management_network_vlan_not_ends_with":"string","management_network_vlan_not_in":["string"],"management_network_vlan_not_starts_with":"string","management_network_vlan_starts_with":"string","max_job_retry_times":0,"max_job_retry_times_gt":0,"max_job_retry_times_gte":0,"max_job_retry_times_in":[0],"max_job_retry_times_lt":0,"max_job_retry_times_lte":0,"max_job_retry_times_not":0,"max_job_retry_times_not_in":[0],"max_parallel_backup_jobs":0,"max_parallel_backup_jobs_gt":0,"max_parallel_backup_jobs_gte":0,"max_parallel_backup_jobs_in":[0],"max_parallel_backup_jobs_lt":0,"max_parallel_backup_jobs_lte":0,"max_parallel_backup_jobs_not":0,"max_parallel_backup_jobs_not_in":[0],"max_parallel_restore_jobs":0,"max_parallel_restore_jobs_gt":0,"max_parallel_restore_jobs_gte":0,"max_parallel_restore_jobs_in":[0],"max_parallel_restore_jobs_lt":0,"max_parallel_restore_jobs_lte":0,"max_parallel_restore_jobs_not":0,"max_parallel_restore_jobs_not_in":[0],"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","resource_version_gt":0,"resource_version_gte":0,"resource_version_in":[0],"resource_version_lt":0,"resource_version_lte":0,"resource_version_not":0,"resource_version_not_in":[0],"restore_rd_iops_max":0,"restore_rd_iops_max_gt":0,"restore_rd_iops_max_gte":0,"restore_rd_iops_max_in":[0],"restore_rd_iops_max_lt":0,"restore_rd_iops_max_lte":0,"restore_rd_iops_max_not":0,"restore_rd_iops_max_not_in":[0],"restore_wr_iops_max":0,"restore_wr_iops_max_gt":0,"restore_wr_iops_max_gte":0,"restore_wr_iops_max_in":[0],"restore_wr_iops_max_lt":0,"restore_wr_iops_max_lte":0,"restore_wr_iops_max_not":0,"restore_wr_iops_max_not_in":[0],"retry_interval":0,"retry_interval_gt":0,"retry_interval_gte":0,"retry_interval_in":[0],"retry_interval_lt":0,"retry_interval_lte":0,"retry_interval_not":0,"retry_interval_not_in":[0],"running_vm":"VmWhereInput","status":"INSTALLING","status_in":["INSTALLING"],"status_not":"INSTALLING","status_not_in":["INSTALLING"],"storage_network_gateway":"string","storage_network_gateway_contains":"string","storage_network_gateway_ends_with":"string","storage_network_gateway_gt":"string","storage_network_gateway_gte":"string","storage_network_gateway_in":["string"],"storage_network_gateway_lt":"string","storage_network_gateway_lte":"string","storage_network_gateway_not":"string","storage_network_gateway_not_contains":"string","storage_network_gateway_not_ends_with":"string","storage_network_gateway_not_in":["string"],"storage_network_gateway_not_starts_with":"string","storage_network_gateway_starts_with":"string","storage_network_ip":"string","storage_network_ip_contains":"string","storage_network_ip_ends_with":"string","storage_network_ip_gt":"string","storage_network_ip_gte":"string","storage_network_ip_in":["string"],"storage_network_ip_lt":"string","storage_network_ip_lte":"string","storage_network_ip_not":"string","storage_network_ip_not_contains":"string","storage_network_ip_not_ends_with":"string","storage_network_ip_not_in":["string"],"storage_network_ip_not_starts_with":"string","storage_network_ip_starts_with":"string","storage_network_subnet_mask":"string","storage_network_subnet_mask_contains":"string","storage_network_subnet_mask_ends_with":"string","storage_network_subnet_mask_gt":"string","storage_network_subnet_mask_gte":"string","storage_network_subnet_mask_in":["string"],"storage_network_subnet_mask_lt":"string","storage_network_subnet_mask_lte":"string","storage_network_subnet_mask_not":"string","storage_network_subnet_mask_not_contains":"string","storage_network_subnet_mask_not_ends_with":"string","storage_network_subnet_mask_not_in":["string"],"storage_network_subnet_mask_not_starts_with":"string","storage_network_subnet_mask_starts_with":"string","storage_network_type":"MANAGEMENT","storage_network_type_in":["MANAGEMENT"],"storage_network_type_not":"MANAGEMENT","storage_network_type_not_in":["MANAGEMENT"],"storage_network_vlan":"string","storage_network_vlan_contains":"string","storage_network_vlan_ends_with":"string","storage_network_vlan_gt":"string","storage_network_vlan_gte":"string","storage_network_vlan_in":["string"],"storage_network_vlan_lt":"string","storage_network_vlan_lte":"string","storage_network_vlan_not":"string","storage_network_vlan_not_contains":"string","storage_network_vlan_not_ends_with":"string","storage_network_vlan_not_in":["string"],"storage_network_vlan_not_starts_with":"string","storage_network_vlan_starts_with":"string"}}
 //
 // swagger:model GetBackupServicesRequestBody
 type GetBackupServicesRequestBody struct {
@@ -31,22 +32,78 @@ type GetBackupServicesRequestBody struct {
 	Last *int32 `json:"last,omitempty"`
 
 	// order by
-	OrderBy interface{} `json:"orderBy,omitempty"`
+	OrderBy struct {
+		BackupServiceOrderByInput
+	} `json:"orderBy,omitempty"`
 
 	// skip
 	Skip *int32 `json:"skip,omitempty"`
 
 	// where
-	Where interface{} `json:"where,omitempty"`
+	Where struct {
+		BackupServiceWhereInput
+	} `json:"where,omitempty"`
 }
 
 // Validate validates this get backup services request body
 func (m *GetBackupServicesRequestBody) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateOrderBy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this get backup services request body based on context it is used
+func (m *GetBackupServicesRequestBody) validateOrderBy(formats strfmt.Registry) error {
+	if swag.IsZero(m.OrderBy) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *GetBackupServicesRequestBody) validateWhere(formats strfmt.Registry) error {
+	if swag.IsZero(m.Where) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this get backup services request body based on the context it is used
 func (m *GetBackupServicesRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateOrderBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetBackupServicesRequestBody) contextValidateOrderBy(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GetBackupServicesRequestBody) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

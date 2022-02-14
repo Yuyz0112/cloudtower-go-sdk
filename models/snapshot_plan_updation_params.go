@@ -54,6 +54,8 @@ func (m *SnapshotPlanUpdationParams) validateData(formats strfmt.Registry) error
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -72,6 +74,8 @@ func (m *SnapshotPlanUpdationParams) validateWhere(formats strfmt.Registry) erro
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -104,6 +108,8 @@ func (m *SnapshotPlanUpdationParams) contextValidateData(ctx context.Context, fo
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -118,6 +124,8 @@ func (m *SnapshotPlanUpdationParams) contextValidateWhere(ctx context.Context, f
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -193,6 +201,8 @@ func (m *SnapshotPlanUpdationParamsData) validateExecutePlanType(formats strfmt.
 	if err := m.ExecutePlanType.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "execute_plan_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "execute_plan_type")
 		}
 		return err
 	}
@@ -219,6 +229,8 @@ func (m *SnapshotPlanUpdationParamsData) contextValidateExecutePlanType(ctx cont
 	if err := m.ExecutePlanType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "execute_plan_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "execute_plan_type")
 		}
 		return err
 	}

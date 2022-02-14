@@ -20,8 +20,12 @@ import (
 type SoftwareEdition string
 
 func NewSoftwareEdition(value SoftwareEdition) *SoftwareEdition {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SoftwareEdition.
+func (m SoftwareEdition) Pointer() *SoftwareEdition {
+	return &m
 }
 
 const (

@@ -69,6 +69,8 @@ func (m *NestedSnapshotGroupVMDiskInfo) validateDiskSnapshotStatus(formats strfm
 		if err := m.DiskSnapshotStatus.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disk_snapshot_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk_snapshot_status")
 			}
 			return err
 		}
@@ -97,6 +99,8 @@ func (m *NestedSnapshotGroupVMDiskInfo) contextValidateDiskSnapshotStatus(ctx co
 		if err := m.DiskSnapshotStatus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disk_snapshot_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk_snapshot_status")
 			}
 			return err
 		}

@@ -72,19 +72,25 @@ type SnmpTransportWhereInput struct {
 	AuthPassPhraseStartsWith *string `json:"auth_pass_phrase_starts_with,omitempty"`
 
 	// auth protocol
-	AuthProtocol interface{} `json:"auth_protocol,omitempty"`
+	AuthProtocol struct {
+		SnmpAuthProtocol
+	} `json:"auth_protocol,omitempty"`
 
 	// auth protocol in
 	AuthProtocolIn []SnmpAuthProtocol `json:"auth_protocol_in,omitempty"`
 
 	// auth protocol not
-	AuthProtocolNot interface{} `json:"auth_protocol_not,omitempty"`
+	AuthProtocolNot struct {
+		SnmpAuthProtocol
+	} `json:"auth_protocol_not,omitempty"`
 
 	// auth protocol not in
 	AuthProtocolNotIn []SnmpAuthProtocol `json:"auth_protocol_not_in,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// community
 	Community *string `json:"community,omitempty"`
@@ -135,13 +141,17 @@ type SnmpTransportWhereInput struct {
 	DisabledNot *bool `json:"disabled_not,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -339,25 +349,33 @@ type SnmpTransportWhereInput struct {
 	PrivacyPassPhraseStartsWith *string `json:"privacy_pass_phrase_starts_with,omitempty"`
 
 	// privacy protocol
-	PrivacyProtocol interface{} `json:"privacy_protocol,omitempty"`
+	PrivacyProtocol struct {
+		SnmpPrivacyProtocol
+	} `json:"privacy_protocol,omitempty"`
 
 	// privacy protocol in
 	PrivacyProtocolIn []SnmpPrivacyProtocol `json:"privacy_protocol_in,omitempty"`
 
 	// privacy protocol not
-	PrivacyProtocolNot interface{} `json:"privacy_protocol_not,omitempty"`
+	PrivacyProtocolNot struct {
+		SnmpPrivacyProtocol
+	} `json:"privacy_protocol_not,omitempty"`
 
 	// privacy protocol not in
 	PrivacyProtocolNotIn []SnmpPrivacyProtocol `json:"privacy_protocol_not_in,omitempty"`
 
 	// protocol
-	Protocol interface{} `json:"protocol,omitempty"`
+	Protocol struct {
+		SnmpProtocol
+	} `json:"protocol,omitempty"`
 
 	// protocol in
 	ProtocolIn []SnmpProtocol `json:"protocol_in,omitempty"`
 
 	// protocol not
-	ProtocolNot interface{} `json:"protocol_not,omitempty"`
+	ProtocolNot struct {
+		SnmpProtocol
+	} `json:"protocol_not,omitempty"`
 
 	// protocol not in
 	ProtocolNotIn []SnmpProtocol `json:"protocol_not_in,omitempty"`
@@ -405,13 +423,17 @@ type SnmpTransportWhereInput struct {
 	UsernameStartsWith *string `json:"username_starts_with,omitempty"`
 
 	// version
-	Version interface{} `json:"version,omitempty"`
+	Version struct {
+		SnmpVersion
+	} `json:"version,omitempty"`
 
 	// version in
 	VersionIn []SnmpVersion `json:"version_in,omitempty"`
 
 	// version not
-	VersionNot interface{} `json:"version_not,omitempty"`
+	VersionNot struct {
+		SnmpVersion
+	} `json:"version_not,omitempty"`
 
 	// version not in
 	VersionNotIn []SnmpVersion `json:"version_not_in,omitempty"`
@@ -433,7 +455,15 @@ func (m *SnmpTransportWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAuthProtocol(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAuthProtocolIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthProtocolNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -441,7 +471,19 @@ func (m *SnmpTransportWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -449,7 +491,15 @@ func (m *SnmpTransportWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePrivacyProtocol(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePrivacyProtocolIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePrivacyProtocolNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -457,7 +507,15 @@ func (m *SnmpTransportWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateProtocol(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateProtocolIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProtocolNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -465,7 +523,15 @@ func (m *SnmpTransportWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateVersionIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVersionNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -493,6 +559,8 @@ func (m *SnmpTransportWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -517,6 +585,8 @@ func (m *SnmpTransportWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -541,11 +611,21 @@ func (m *SnmpTransportWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateAuthProtocol(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthProtocol) { // not required
+		return nil
 	}
 
 	return nil
@@ -561,10 +641,20 @@ func (m *SnmpTransportWhereInput) validateAuthProtocolIn(formats strfmt.Registry
 		if err := m.AuthProtocolIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth_protocol_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateAuthProtocolNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthProtocolNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -580,10 +670,28 @@ func (m *SnmpTransportWhereInput) validateAuthProtocolNotIn(formats strfmt.Regis
 		if err := m.AuthProtocolNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth_protocol_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -599,10 +707,20 @@ func (m *SnmpTransportWhereInput) validateEntityAsyncStatusIn(formats strfmt.Reg
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -618,10 +736,20 @@ func (m *SnmpTransportWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validatePrivacyProtocol(formats strfmt.Registry) error {
+	if swag.IsZero(m.PrivacyProtocol) { // not required
+		return nil
 	}
 
 	return nil
@@ -637,10 +765,20 @@ func (m *SnmpTransportWhereInput) validatePrivacyProtocolIn(formats strfmt.Regis
 		if err := m.PrivacyProtocolIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy_protocol_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validatePrivacyProtocolNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.PrivacyProtocolNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -656,10 +794,20 @@ func (m *SnmpTransportWhereInput) validatePrivacyProtocolNotIn(formats strfmt.Re
 		if err := m.PrivacyProtocolNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy_protocol_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateProtocol(formats strfmt.Registry) error {
+	if swag.IsZero(m.Protocol) { // not required
+		return nil
 	}
 
 	return nil
@@ -675,10 +823,20 @@ func (m *SnmpTransportWhereInput) validateProtocolIn(formats strfmt.Registry) er
 		if err := m.ProtocolIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateProtocolNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ProtocolNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -694,10 +852,20 @@ func (m *SnmpTransportWhereInput) validateProtocolNotIn(formats strfmt.Registry)
 		if err := m.ProtocolNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateVersion(formats strfmt.Registry) error {
+	if swag.IsZero(m.Version) { // not required
+		return nil
 	}
 
 	return nil
@@ -713,10 +881,20 @@ func (m *SnmpTransportWhereInput) validateVersionIn(formats strfmt.Registry) err
 		if err := m.VersionIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("version_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) validateVersionNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.VersionNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -732,6 +910,8 @@ func (m *SnmpTransportWhereInput) validateVersionNotIn(formats strfmt.Registry) 
 		if err := m.VersionNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("version_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -757,7 +937,15 @@ func (m *SnmpTransportWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuthProtocol(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAuthProtocolIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAuthProtocolNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -765,7 +953,19 @@ func (m *SnmpTransportWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -773,7 +973,15 @@ func (m *SnmpTransportWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePrivacyProtocol(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePrivacyProtocolIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrivacyProtocolNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -781,7 +989,15 @@ func (m *SnmpTransportWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateProtocol(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateProtocolIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProtocolNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -789,7 +1005,15 @@ func (m *SnmpTransportWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVersionIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersionNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -811,6 +1035,8 @@ func (m *SnmpTransportWhereInput) contextValidateAND(ctx context.Context, format
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -829,6 +1055,8 @@ func (m *SnmpTransportWhereInput) contextValidateNOT(ctx context.Context, format
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -847,12 +1075,19 @@ func (m *SnmpTransportWhereInput) contextValidateOR(ctx context.Context, formats
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateAuthProtocol(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -864,11 +1099,18 @@ func (m *SnmpTransportWhereInput) contextValidateAuthProtocolIn(ctx context.Cont
 		if err := m.AuthProtocolIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth_protocol_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateAuthProtocolNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -880,11 +1122,23 @@ func (m *SnmpTransportWhereInput) contextValidateAuthProtocolNotIn(ctx context.C
 		if err := m.AuthProtocolNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth_protocol_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -896,11 +1150,18 @@ func (m *SnmpTransportWhereInput) contextValidateEntityAsyncStatusIn(ctx context
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -912,11 +1173,18 @@ func (m *SnmpTransportWhereInput) contextValidateEntityAsyncStatusNotIn(ctx cont
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidatePrivacyProtocol(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -928,11 +1196,18 @@ func (m *SnmpTransportWhereInput) contextValidatePrivacyProtocolIn(ctx context.C
 		if err := m.PrivacyProtocolIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy_protocol_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidatePrivacyProtocolNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -944,11 +1219,18 @@ func (m *SnmpTransportWhereInput) contextValidatePrivacyProtocolNotIn(ctx contex
 		if err := m.PrivacyProtocolNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy_protocol_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateProtocol(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -960,11 +1242,18 @@ func (m *SnmpTransportWhereInput) contextValidateProtocolIn(ctx context.Context,
 		if err := m.ProtocolIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateProtocolNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -976,11 +1265,18 @@ func (m *SnmpTransportWhereInput) contextValidateProtocolNotIn(ctx context.Conte
 		if err := m.ProtocolNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -992,11 +1288,18 @@ func (m *SnmpTransportWhereInput) contextValidateVersionIn(ctx context.Context, 
 		if err := m.VersionIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("version_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnmpTransportWhereInput) contextValidateVersionNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1008,6 +1311,8 @@ func (m *SnmpTransportWhereInput) contextValidateVersionNotIn(ctx context.Contex
 		if err := m.VersionNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("version_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

@@ -20,8 +20,12 @@ import (
 type BrickPhaseEnum string
 
 func NewBrickPhaseEnum(value BrickPhaseEnum) *BrickPhaseEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BrickPhaseEnum.
+func (m BrickPhaseEnum) Pointer() *BrickPhaseEnum {
+	return &m
 }
 
 const (

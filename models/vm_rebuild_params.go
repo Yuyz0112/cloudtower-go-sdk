@@ -144,6 +144,8 @@ func (m *VMRebuildParams) validateFirmware(formats strfmt.Registry) error {
 	if err := m.Firmware.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("firmware")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("firmware")
 		}
 		return err
 	}
@@ -159,6 +161,8 @@ func (m *VMRebuildParams) validateGuestOsType(formats strfmt.Registry) error {
 	if err := m.GuestOsType.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("guest_os_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("guest_os_type")
 		}
 		return err
 	}
@@ -174,6 +178,8 @@ func (m *VMRebuildParams) validateIoPolicy(formats strfmt.Registry) error {
 	if err := m.IoPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("io_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("io_policy")
 		}
 		return err
 	}
@@ -189,6 +195,8 @@ func (m *VMRebuildParams) validateMaxBandwidthPolicy(formats strfmt.Registry) er
 	if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_bandwidth_policy")
 		}
 		return err
 	}
@@ -204,6 +212,8 @@ func (m *VMRebuildParams) validateMaxIopsPolicy(formats strfmt.Registry) error {
 	if err := m.MaxIopsPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_iops_policy")
 		}
 		return err
 	}
@@ -237,6 +247,8 @@ func (m *VMRebuildParams) validateStatus(formats strfmt.Registry) error {
 	if err := m.Status.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("status")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("status")
 		}
 		return err
 	}
@@ -253,6 +265,8 @@ func (m *VMRebuildParams) validateVMDisks(formats strfmt.Registry) error {
 		if err := m.VMDisks.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_disks")
 			}
 			return err
 		}
@@ -275,6 +289,8 @@ func (m *VMRebuildParams) validateVMNics(formats strfmt.Registry) error {
 			if err := m.VMNics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -332,6 +348,8 @@ func (m *VMRebuildParams) contextValidateFirmware(ctx context.Context, formats s
 	if err := m.Firmware.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("firmware")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("firmware")
 		}
 		return err
 	}
@@ -344,6 +362,8 @@ func (m *VMRebuildParams) contextValidateGuestOsType(ctx context.Context, format
 	if err := m.GuestOsType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("guest_os_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("guest_os_type")
 		}
 		return err
 	}
@@ -356,6 +376,8 @@ func (m *VMRebuildParams) contextValidateIoPolicy(ctx context.Context, formats s
 	if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("io_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("io_policy")
 		}
 		return err
 	}
@@ -368,6 +390,8 @@ func (m *VMRebuildParams) contextValidateMaxBandwidthPolicy(ctx context.Context,
 	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_bandwidth_policy")
 		}
 		return err
 	}
@@ -380,6 +404,8 @@ func (m *VMRebuildParams) contextValidateMaxIopsPolicy(ctx context.Context, form
 	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_iops_policy")
 		}
 		return err
 	}
@@ -392,6 +418,8 @@ func (m *VMRebuildParams) contextValidateStatus(ctx context.Context, formats str
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("status")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("status")
 		}
 		return err
 	}
@@ -405,6 +433,8 @@ func (m *VMRebuildParams) contextValidateVMDisks(ctx context.Context, formats st
 		if err := m.VMDisks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_disks")
 			}
 			return err
 		}
@@ -421,6 +451,8 @@ func (m *VMRebuildParams) contextValidateVMNics(ctx context.Context, formats str
 			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

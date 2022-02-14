@@ -54,6 +54,8 @@ func (m *GraphUpdationParams) validateData(formats strfmt.Registry) error {
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -72,6 +74,8 @@ func (m *GraphUpdationParams) validateWhere(formats strfmt.Registry) error {
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -104,6 +108,8 @@ func (m *GraphUpdationParams) contextValidateData(ctx context.Context, formats s
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -118,6 +124,8 @@ func (m *GraphUpdationParams) contextValidateWhere(ctx context.Context, formats 
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -267,6 +275,8 @@ func (m *GraphUpdationParamsData) validateCluster(formats strfmt.Registry) error
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "cluster")
 			}
 			return err
 		}
@@ -284,6 +294,8 @@ func (m *GraphUpdationParamsData) validateDisks(formats strfmt.Registry) error {
 		if err := m.Disks.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "disks")
 			}
 			return err
 		}
@@ -301,6 +313,8 @@ func (m *GraphUpdationParamsData) validateHosts(formats strfmt.Registry) error {
 		if err := m.Hosts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "hosts")
 			}
 			return err
 		}
@@ -318,6 +332,8 @@ func (m *GraphUpdationParamsData) validateLuns(formats strfmt.Registry) error {
 		if err := m.Luns.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "luns")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "luns")
 			}
 			return err
 		}
@@ -334,6 +350,8 @@ func (m *GraphUpdationParamsData) validateMetricType(formats strfmt.Registry) er
 	if err := m.MetricType.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "metric_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "metric_type")
 		}
 		return err
 	}
@@ -349,6 +367,8 @@ func (m *GraphUpdationParamsData) validateNetwork(formats strfmt.Registry) error
 	if err := m.Network.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "network")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "network")
 		}
 		return err
 	}
@@ -365,6 +385,8 @@ func (m *GraphUpdationParamsData) validateNics(formats strfmt.Registry) error {
 		if err := m.Nics.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nics")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nics")
 			}
 			return err
 		}
@@ -381,6 +403,8 @@ func (m *GraphUpdationParamsData) validateType(formats strfmt.Registry) error {
 	if err := m.Type.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "type")
 		}
 		return err
 	}
@@ -397,6 +421,8 @@ func (m *GraphUpdationParamsData) validateVMNics(formats strfmt.Registry) error 
 		if err := m.VMNics.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vmNics")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vmNics")
 			}
 			return err
 		}
@@ -414,6 +440,8 @@ func (m *GraphUpdationParamsData) validateVMVolumes(formats strfmt.Registry) err
 		if err := m.VMVolumes.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vmVolumes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vmVolumes")
 			}
 			return err
 		}
@@ -431,6 +459,8 @@ func (m *GraphUpdationParamsData) validateVms(formats strfmt.Registry) error {
 		if err := m.Vms.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vms")
 			}
 			return err
 		}
@@ -499,6 +529,8 @@ func (m *GraphUpdationParamsData) contextValidateCluster(ctx context.Context, fo
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "cluster")
 			}
 			return err
 		}
@@ -513,6 +545,8 @@ func (m *GraphUpdationParamsData) contextValidateDisks(ctx context.Context, form
 		if err := m.Disks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "disks")
 			}
 			return err
 		}
@@ -527,6 +561,8 @@ func (m *GraphUpdationParamsData) contextValidateHosts(ctx context.Context, form
 		if err := m.Hosts.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "hosts")
 			}
 			return err
 		}
@@ -541,6 +577,8 @@ func (m *GraphUpdationParamsData) contextValidateLuns(ctx context.Context, forma
 		if err := m.Luns.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "luns")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "luns")
 			}
 			return err
 		}
@@ -554,6 +592,8 @@ func (m *GraphUpdationParamsData) contextValidateMetricType(ctx context.Context,
 	if err := m.MetricType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "metric_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "metric_type")
 		}
 		return err
 	}
@@ -566,6 +606,8 @@ func (m *GraphUpdationParamsData) contextValidateNetwork(ctx context.Context, fo
 	if err := m.Network.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "network")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "network")
 		}
 		return err
 	}
@@ -579,6 +621,8 @@ func (m *GraphUpdationParamsData) contextValidateNics(ctx context.Context, forma
 		if err := m.Nics.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nics")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nics")
 			}
 			return err
 		}
@@ -592,6 +636,8 @@ func (m *GraphUpdationParamsData) contextValidateType(ctx context.Context, forma
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "type")
 		}
 		return err
 	}
@@ -605,6 +651,8 @@ func (m *GraphUpdationParamsData) contextValidateVMNics(ctx context.Context, for
 		if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vmNics")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vmNics")
 			}
 			return err
 		}
@@ -619,6 +667,8 @@ func (m *GraphUpdationParamsData) contextValidateVMVolumes(ctx context.Context, 
 		if err := m.VMVolumes.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vmVolumes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vmVolumes")
 			}
 			return err
 		}
@@ -633,6 +683,8 @@ func (m *GraphUpdationParamsData) contextValidateVms(ctx context.Context, format
 		if err := m.Vms.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vms")
 			}
 			return err
 		}

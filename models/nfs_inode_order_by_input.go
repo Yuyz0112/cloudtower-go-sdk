@@ -20,8 +20,12 @@ import (
 type NfsInodeOrderByInput string
 
 func NewNfsInodeOrderByInput(value NfsInodeOrderByInput) *NfsInodeOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NfsInodeOrderByInput.
+func (m NfsInodeOrderByInput) Pointer() *NfsInodeOrderByInput {
+	return &m
 }
 
 const (

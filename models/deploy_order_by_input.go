@@ -20,8 +20,12 @@ import (
 type DeployOrderByInput string
 
 func NewDeployOrderByInput(value DeployOrderByInput) *DeployOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated DeployOrderByInput.
+func (m DeployOrderByInput) Pointer() *DeployOrderByInput {
+	return &m
 }
 
 const (

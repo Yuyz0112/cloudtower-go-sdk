@@ -54,13 +54,19 @@ type DatacenterWhereInput struct {
 	ClusterNumNotIn []int32 `json:"cluster_num_not_in,omitempty"`
 
 	// clusters every
-	ClustersEvery interface{} `json:"clusters_every,omitempty"`
+	ClustersEvery struct {
+		ClusterWhereInput
+	} `json:"clusters_every,omitempty"`
 
 	// clusters none
-	ClustersNone interface{} `json:"clusters_none,omitempty"`
+	ClustersNone struct {
+		ClusterWhereInput
+	} `json:"clusters_none,omitempty"`
 
 	// clusters some
-	ClustersSome interface{} `json:"clusters_some,omitempty"`
+	ClustersSome struct {
+		ClusterWhereInput
+	} `json:"clusters_some,omitempty"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
@@ -153,13 +159,19 @@ type DatacenterWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery interface{} `json:"labels_every,omitempty"`
+	LabelsEvery struct {
+		LabelWhereInput
+	} `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone interface{} `json:"labels_none,omitempty"`
+	LabelsNone struct {
+		LabelWhereInput
+	} `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome interface{} `json:"labels_some,omitempty"`
+	LabelsSome struct {
+		LabelWhereInput
+	} `json:"labels_some,omitempty"`
 
 	// name
 	Name *string `json:"name,omitempty"`
@@ -204,7 +216,9 @@ type DatacenterWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// organization
-	Organization interface{} `json:"organization,omitempty"`
+	Organization struct {
+		OrganizationWhereInput
+	} `json:"organization,omitempty"`
 
 	// total cpu hz
 	TotalCPUHz *float64 `json:"total_cpu_hz,omitempty"`
@@ -391,6 +405,34 @@ func (m *DatacenterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateClustersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOrganization(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -411,6 +453,8 @@ func (m *DatacenterWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -435,6 +479,8 @@ func (m *DatacenterWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -459,11 +505,69 @@ func (m *DatacenterWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) validateClustersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) validateClustersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) validateClustersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) validateLabelsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) validateLabelsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) validateOrganization(formats strfmt.Registry) error {
+	if swag.IsZero(m.Organization) { // not required
+		return nil
 	}
 
 	return nil
@@ -485,6 +589,34 @@ func (m *DatacenterWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateClustersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClustersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClustersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOrganization(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -499,6 +631,8 @@ func (m *DatacenterWhereInput) contextValidateAND(ctx context.Context, formats s
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -517,6 +651,8 @@ func (m *DatacenterWhereInput) contextValidateNOT(ctx context.Context, formats s
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -535,12 +671,49 @@ func (m *DatacenterWhereInput) contextValidateOR(ctx context.Context, formats st
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) contextValidateClustersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) contextValidateClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) contextValidateClustersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *DatacenterWhereInput) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

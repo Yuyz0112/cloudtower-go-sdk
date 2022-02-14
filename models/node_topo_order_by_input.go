@@ -20,8 +20,12 @@ import (
 type NodeTopoOrderByInput string
 
 func NewNodeTopoOrderByInput(value NodeTopoOrderByInput) *NodeTopoOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NodeTopoOrderByInput.
+func (m NodeTopoOrderByInput) Pointer() *NodeTopoOrderByInput {
+	return &m
 }
 
 const (

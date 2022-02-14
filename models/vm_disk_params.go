@@ -65,6 +65,8 @@ func (m *VMDiskParams) validateMountCdRoms(formats strfmt.Registry) error {
 			if err := m.MountCdRoms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mount_cd_roms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mount_cd_roms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -89,6 +91,8 @@ func (m *VMDiskParams) validateMountDisks(formats strfmt.Registry) error {
 			if err := m.MountDisks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mount_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mount_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -113,6 +117,8 @@ func (m *VMDiskParams) validateMountNewCreateDisks(formats strfmt.Registry) erro
 			if err := m.MountNewCreateDisks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mount_new_create_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mount_new_create_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -153,6 +159,8 @@ func (m *VMDiskParams) contextValidateMountCdRoms(ctx context.Context, formats s
 			if err := m.MountCdRoms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mount_cd_roms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mount_cd_roms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -171,6 +179,8 @@ func (m *VMDiskParams) contextValidateMountDisks(ctx context.Context, formats st
 			if err := m.MountDisks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mount_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mount_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -189,6 +199,8 @@ func (m *VMDiskParams) contextValidateMountNewCreateDisks(ctx context.Context, f
 			if err := m.MountNewCreateDisks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mount_new_create_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mount_new_create_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

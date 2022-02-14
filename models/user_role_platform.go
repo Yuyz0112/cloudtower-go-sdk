@@ -20,8 +20,12 @@ import (
 type UserRolePlatform string
 
 func NewUserRolePlatform(value UserRolePlatform) *UserRolePlatform {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UserRolePlatform.
+func (m UserRolePlatform) Pointer() *UserRolePlatform {
+	return &m
 }
 
 const (

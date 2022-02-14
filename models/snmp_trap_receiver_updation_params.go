@@ -56,6 +56,8 @@ func (m *SnmpTrapReceiverUpdationParams) validateData(formats strfmt.Registry) e
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -74,6 +76,8 @@ func (m *SnmpTrapReceiverUpdationParams) validateWhere(formats strfmt.Registry) 
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -106,6 +110,8 @@ func (m *SnmpTrapReceiverUpdationParams) contextValidateData(ctx context.Context
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -120,6 +126,8 @@ func (m *SnmpTrapReceiverUpdationParams) contextValidateWhere(ctx context.Contex
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -235,6 +243,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) validateAuthProtocol(formats strfmt
 	if err := m.AuthProtocol.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "auth_protocol")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "auth_protocol")
 		}
 		return err
 	}
@@ -250,6 +260,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) validateLanguageCode(formats strfmt
 	if err := m.LanguageCode.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "language_code")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "language_code")
 		}
 		return err
 	}
@@ -265,6 +277,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) validatePrivacyProtocol(formats str
 	if err := m.PrivacyProtocol.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "privacy_protocol")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "privacy_protocol")
 		}
 		return err
 	}
@@ -280,6 +294,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) validateProtocol(formats strfmt.Reg
 	if err := m.Protocol.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "protocol")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "protocol")
 		}
 		return err
 	}
@@ -295,6 +311,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) validateVersion(formats strfmt.Regi
 	if err := m.Version.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "version")
 		}
 		return err
 	}
@@ -337,6 +355,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) contextValidateAuthProtocol(ctx con
 	if err := m.AuthProtocol.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "auth_protocol")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "auth_protocol")
 		}
 		return err
 	}
@@ -349,6 +369,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) contextValidateLanguageCode(ctx con
 	if err := m.LanguageCode.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "language_code")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "language_code")
 		}
 		return err
 	}
@@ -361,6 +383,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) contextValidatePrivacyProtocol(ctx 
 	if err := m.PrivacyProtocol.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "privacy_protocol")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "privacy_protocol")
 		}
 		return err
 	}
@@ -373,6 +397,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) contextValidateProtocol(ctx context
 	if err := m.Protocol.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "protocol")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "protocol")
 		}
 		return err
 	}
@@ -385,6 +411,8 @@ func (m *SnmpTrapReceiverUpdationParamsData) contextValidateVersion(ctx context.
 	if err := m.Version.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "version")
 		}
 		return err
 	}

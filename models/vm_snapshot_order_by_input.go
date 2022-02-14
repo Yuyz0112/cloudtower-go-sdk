@@ -20,8 +20,12 @@ import (
 type VMSnapshotOrderByInput string
 
 func NewVMSnapshotOrderByInput(value VMSnapshotOrderByInput) *VMSnapshotOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMSnapshotOrderByInput.
+func (m VMSnapshotOrderByInput) Pointer() *VMSnapshotOrderByInput {
+	return &m
 }
 
 const (

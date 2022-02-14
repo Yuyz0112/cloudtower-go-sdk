@@ -258,25 +258,33 @@ type LicenseWhereInput struct {
 	SignDateNotIn []string `json:"sign_date_not_in,omitempty"`
 
 	// software edition
-	SoftwareEdition interface{} `json:"software_edition,omitempty"`
+	SoftwareEdition struct {
+		SoftwareEdition
+	} `json:"software_edition,omitempty"`
 
 	// software edition in
 	SoftwareEditionIn []SoftwareEdition `json:"software_edition_in,omitempty"`
 
 	// software edition not
-	SoftwareEditionNot interface{} `json:"software_edition_not,omitempty"`
+	SoftwareEditionNot struct {
+		SoftwareEdition
+	} `json:"software_edition_not,omitempty"`
 
 	// software edition not in
 	SoftwareEditionNotIn []SoftwareEdition `json:"software_edition_not_in,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		LicenseType
+	} `json:"type,omitempty"`
 
 	// type in
 	TypeIn []LicenseType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot interface{} `json:"type_not,omitempty"`
+	TypeNot struct {
+		LicenseType
+	} `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []LicenseType `json:"type_not_in,omitempty"`
@@ -298,7 +306,15 @@ func (m *LicenseWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSoftwareEdition(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSoftwareEditionIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSoftwareEditionNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -306,7 +322,15 @@ func (m *LicenseWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -334,6 +358,8 @@ func (m *LicenseWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -358,6 +384,8 @@ func (m *LicenseWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -382,11 +410,21 @@ func (m *LicenseWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LicenseWhereInput) validateSoftwareEdition(formats strfmt.Registry) error {
+	if swag.IsZero(m.SoftwareEdition) { // not required
+		return nil
 	}
 
 	return nil
@@ -402,10 +440,20 @@ func (m *LicenseWhereInput) validateSoftwareEditionIn(formats strfmt.Registry) e
 		if err := m.SoftwareEditionIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LicenseWhereInput) validateSoftwareEditionNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.SoftwareEditionNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -421,10 +469,20 @@ func (m *LicenseWhereInput) validateSoftwareEditionNotIn(formats strfmt.Registry
 		if err := m.SoftwareEditionNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LicenseWhereInput) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	return nil
@@ -440,10 +498,20 @@ func (m *LicenseWhereInput) validateTypeIn(formats strfmt.Registry) error {
 		if err := m.TypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LicenseWhereInput) validateTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -459,6 +527,8 @@ func (m *LicenseWhereInput) validateTypeNotIn(formats strfmt.Registry) error {
 		if err := m.TypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -484,7 +554,15 @@ func (m *LicenseWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSoftwareEdition(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSoftwareEditionIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSoftwareEditionNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -492,7 +570,15 @@ func (m *LicenseWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -514,6 +600,8 @@ func (m *LicenseWhereInput) contextValidateAND(ctx context.Context, formats strf
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -532,6 +620,8 @@ func (m *LicenseWhereInput) contextValidateNOT(ctx context.Context, formats strf
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -550,12 +640,19 @@ func (m *LicenseWhereInput) contextValidateOR(ctx context.Context, formats strfm
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *LicenseWhereInput) contextValidateSoftwareEdition(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -567,11 +664,18 @@ func (m *LicenseWhereInput) contextValidateSoftwareEditionIn(ctx context.Context
 		if err := m.SoftwareEditionIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *LicenseWhereInput) contextValidateSoftwareEditionNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -583,11 +687,18 @@ func (m *LicenseWhereInput) contextValidateSoftwareEditionNotIn(ctx context.Cont
 		if err := m.SoftwareEditionNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *LicenseWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -599,11 +710,18 @@ func (m *LicenseWhereInput) contextValidateTypeIn(ctx context.Context, formats s
 		if err := m.TypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *LicenseWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -615,6 +733,8 @@ func (m *LicenseWhereInput) contextValidateTypeNotIn(ctx context.Context, format
 		if err := m.TypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

@@ -27,7 +27,9 @@ type SnapshotPlanTask struct {
 	EndTime *string `json:"end_time,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -41,7 +43,9 @@ type SnapshotPlanTask struct {
 	LocalID *string `json:"local_id"`
 
 	// snapshot group
-	SnapshotGroup interface{} `json:"snapshotGroup,omitempty"`
+	SnapshotGroup struct {
+		NestedSnapshotGroup
+	} `json:"snapshotGroup,omitempty"`
 
 	// snapshot plan
 	// Required: true
@@ -68,11 +72,19 @@ func (m *SnapshotPlanTask) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateLocalID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSnapshotGroup(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -108,9 +120,19 @@ func (m *SnapshotPlanTask) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTask) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -134,6 +156,14 @@ func (m *SnapshotPlanTask) validateLocalID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *SnapshotPlanTask) validateSnapshotGroup(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotGroup) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *SnapshotPlanTask) validateSnapshotPlan(formats strfmt.Registry) error {
 
 	if err := validate.Required("snapshotPlan", "body", m.SnapshotPlan); err != nil {
@@ -144,6 +174,8 @@ func (m *SnapshotPlanTask) validateSnapshotPlan(formats strfmt.Registry) error {
 		if err := m.SnapshotPlan.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("snapshotPlan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotPlan")
 			}
 			return err
 		}
@@ -175,6 +207,8 @@ func (m *SnapshotPlanTask) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -197,6 +231,8 @@ func (m *SnapshotPlanTask) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -210,6 +246,14 @@ func (m *SnapshotPlanTask) ContextValidate(ctx context.Context, formats strfmt.R
 	var res []error
 
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSnapshotGroup(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -237,10 +281,22 @@ func (m *SnapshotPlanTask) contextValidateCluster(ctx context.Context, formats s
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *SnapshotPlanTask) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnapshotPlanTask) contextValidateSnapshotGroup(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -251,6 +307,8 @@ func (m *SnapshotPlanTask) contextValidateSnapshotPlan(ctx context.Context, form
 		if err := m.SnapshotPlan.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("snapshotPlan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotPlan")
 			}
 			return err
 		}
@@ -265,6 +323,8 @@ func (m *SnapshotPlanTask) contextValidateStatus(ctx context.Context, formats st
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -279,6 +339,8 @@ func (m *SnapshotPlanTask) contextValidateType(ctx context.Context, formats strf
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

@@ -49,6 +49,8 @@ func (m *GetLogServiceConfigsRequestBody) validateInput(formats strfmt.Registry)
 		if err := m.Input.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("input")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("input")
 			}
 			return err
 		}
@@ -77,6 +79,8 @@ func (m *GetLogServiceConfigsRequestBody) contextValidateInput(ctx context.Conte
 		if err := m.Input.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("input")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("input")
 			}
 			return err
 		}

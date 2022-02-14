@@ -20,8 +20,12 @@ import (
 type SnmpLanguageCode string
 
 func NewSnmpLanguageCode(value SnmpLanguageCode) *SnmpLanguageCode {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnmpLanguageCode.
+func (m SnmpLanguageCode) Pointer() *SnmpLanguageCode {
+	return &m
 }
 
 const (

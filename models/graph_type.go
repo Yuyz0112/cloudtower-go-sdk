@@ -20,8 +20,12 @@ import (
 type GraphType string
 
 func NewGraphType(value GraphType) *GraphType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated GraphType.
+func (m GraphType) Pointer() *GraphType {
+	return &m
 }
 
 const (

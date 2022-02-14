@@ -57,6 +57,8 @@ func (m *ReportTemplateUpdationParams) validateData(formats strfmt.Registry) err
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -75,6 +77,8 @@ func (m *ReportTemplateUpdationParams) validateWhere(formats strfmt.Registry) er
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -107,6 +111,8 @@ func (m *ReportTemplateUpdationParams) contextValidateData(ctx context.Context, 
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -121,6 +127,8 @@ func (m *ReportTemplateUpdationParams) contextValidateWhere(ctx context.Context,
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -197,6 +205,8 @@ func (m *ReportTemplateUpdationParamsData) validateExecutePlan(formats strfmt.Re
 			if err := m.ExecutePlan[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "execute_plan" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "execute_plan" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -221,6 +231,8 @@ func (m *ReportTemplateUpdationParamsData) validateResourceMeta(formats strfmt.R
 			if err := m.ResourceMeta[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "resource_meta" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "resource_meta" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -257,6 +269,8 @@ func (m *ReportTemplateUpdationParamsData) contextValidateExecutePlan(ctx contex
 			if err := m.ExecutePlan[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "execute_plan" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "execute_plan" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -275,6 +289,8 @@ func (m *ReportTemplateUpdationParamsData) contextValidateResourceMeta(ctx conte
 			if err := m.ResourceMeta[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "resource_meta" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "resource_meta" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

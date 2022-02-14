@@ -37,7 +37,9 @@ type UserRoleNext struct {
 	Platform *UserRolePlatform `json:"platform"`
 
 	// preset
-	Preset interface{} `json:"preset,omitempty"`
+	Preset struct {
+		UserRolePreset
+	} `json:"preset,omitempty"`
 
 	// users
 	Users []*NestedUser `json:"users,omitempty"`
@@ -60,6 +62,10 @@ func (m *UserRoleNext) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePlatform(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreset(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -114,9 +120,19 @@ func (m *UserRoleNext) validatePlatform(formats strfmt.Registry) error {
 		if err := m.Platform.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("platform")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *UserRoleNext) validatePreset(formats strfmt.Registry) error {
+	if swag.IsZero(m.Preset) { // not required
+		return nil
 	}
 
 	return nil
@@ -136,6 +152,8 @@ func (m *UserRoleNext) validateUsers(formats strfmt.Registry) error {
 			if err := m.Users[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("users" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("users" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -151,6 +169,10 @@ func (m *UserRoleNext) ContextValidate(ctx context.Context, formats strfmt.Regis
 	var res []error
 
 	if err := m.contextValidatePlatform(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePreset(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -170,10 +192,17 @@ func (m *UserRoleNext) contextValidatePlatform(ctx context.Context, formats strf
 		if err := m.Platform.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("platform")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *UserRoleNext) contextValidatePreset(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -186,6 +215,8 @@ func (m *UserRoleNext) contextValidateUsers(ctx context.Context, formats strfmt.
 			if err := m.Users[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("users" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("users" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

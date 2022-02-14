@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -31,22 +32,78 @@ type GetLogCollectionsRequestBody struct {
 	Last *int32 `json:"last,omitempty"`
 
 	// order by
-	OrderBy interface{} `json:"orderBy,omitempty"`
+	OrderBy struct {
+		LogCollectionOrderByInput
+	} `json:"orderBy,omitempty"`
 
 	// skip
 	Skip *int32 `json:"skip,omitempty"`
 
 	// where
-	Where interface{} `json:"where,omitempty"`
+	Where struct {
+		LogCollectionWhereInput
+	} `json:"where,omitempty"`
 }
 
 // Validate validates this get log collections request body
 func (m *GetLogCollectionsRequestBody) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateOrderBy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this get log collections request body based on context it is used
+func (m *GetLogCollectionsRequestBody) validateOrderBy(formats strfmt.Registry) error {
+	if swag.IsZero(m.OrderBy) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *GetLogCollectionsRequestBody) validateWhere(formats strfmt.Registry) error {
+	if swag.IsZero(m.Where) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this get log collections request body based on the context it is used
 func (m *GetLogCollectionsRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateOrderBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetLogCollectionsRequestBody) contextValidateOrderBy(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GetLogCollectionsRequestBody) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

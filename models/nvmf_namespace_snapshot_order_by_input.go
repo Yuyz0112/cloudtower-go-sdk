@@ -20,8 +20,12 @@ import (
 type NvmfNamespaceSnapshotOrderByInput string
 
 func NewNvmfNamespaceSnapshotOrderByInput(value NvmfNamespaceSnapshotOrderByInput) *NvmfNamespaceSnapshotOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NvmfNamespaceSnapshotOrderByInput.
+func (m NvmfNamespaceSnapshotOrderByInput) Pointer() *NvmfNamespaceSnapshotOrderByInput {
+	return &m
 }
 
 const (

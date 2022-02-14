@@ -97,6 +97,8 @@ func (m *AlertRule) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -133,6 +135,8 @@ func (m *AlertRule) validateGlobalAlertRule(formats strfmt.Registry) error {
 		if err := m.GlobalAlertRule.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("global_alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_alert_rule")
 			}
 			return err
 		}
@@ -174,6 +178,8 @@ func (m *AlertRule) validateThresholds(formats strfmt.Registry) error {
 			if err := m.Thresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("thresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("thresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -212,6 +218,8 @@ func (m *AlertRule) contextValidateCluster(ctx context.Context, formats strfmt.R
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -226,6 +234,8 @@ func (m *AlertRule) contextValidateGlobalAlertRule(ctx context.Context, formats 
 		if err := m.GlobalAlertRule.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("global_alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_alert_rule")
 			}
 			return err
 		}
@@ -242,6 +252,8 @@ func (m *AlertRule) contextValidateThresholds(ctx context.Context, formats strfm
 			if err := m.Thresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("thresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("thresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

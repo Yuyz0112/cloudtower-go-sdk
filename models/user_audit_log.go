@@ -24,7 +24,9 @@ type UserAuditLog struct {
 	Action *string `json:"action"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		NestedCluster
+	} `json:"cluster,omitempty"`
 
 	// created at
 	// Required: true
@@ -52,10 +54,14 @@ type UserAuditLog struct {
 	ResourceType *string `json:"resource_type,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		UserAuditLogStatus
+	} `json:"status,omitempty"`
 
 	// user
-	User interface{} `json:"user,omitempty"`
+	User struct {
+		NestedUser
+	} `json:"user,omitempty"`
 }
 
 // Validate validates this user audit log
@@ -63,6 +69,10 @@ func (m *UserAuditLog) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAction(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCluster(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -82,6 +92,14 @@ func (m *UserAuditLog) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUser(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -92,6 +110,14 @@ func (m *UserAuditLog) validateAction(formats strfmt.Registry) error {
 
 	if err := validate.Required("action", "body", m.Action); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *UserAuditLog) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
 	}
 
 	return nil
@@ -133,8 +159,56 @@ func (m *UserAuditLog) validateMessage(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this user audit log based on context it is used
+func (m *UserAuditLog) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *UserAuditLog) validateUser(formats strfmt.Registry) error {
+	if swag.IsZero(m.User) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this user audit log based on the context it is used
 func (m *UserAuditLog) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUser(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UserAuditLog) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserAuditLog) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *UserAuditLog) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

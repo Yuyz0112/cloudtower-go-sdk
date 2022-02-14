@@ -20,8 +20,12 @@ import (
 type PartitionUsage string
 
 func NewPartitionUsage(value PartitionUsage) *PartitionUsage {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated PartitionUsage.
+func (m PartitionUsage) Pointer() *PartitionUsage {
+	return &m
 }
 
 const (

@@ -168,6 +168,8 @@ func (m *License) validateSoftwareEdition(formats strfmt.Registry) error {
 		if err := m.SoftwareEdition.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
 			}
 			return err
 		}
@@ -190,6 +192,8 @@ func (m *License) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -222,6 +226,8 @@ func (m *License) contextValidateSoftwareEdition(ctx context.Context, formats st
 		if err := m.SoftwareEdition.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
 			}
 			return err
 		}
@@ -236,6 +242,8 @@ func (m *License) contextValidateType(ctx context.Context, formats strfmt.Regist
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

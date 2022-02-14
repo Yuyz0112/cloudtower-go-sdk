@@ -20,8 +20,12 @@ import (
 type BackupPlanPeriod string
 
 func NewBackupPlanPeriod(value BackupPlanPeriod) *BackupPlanPeriod {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupPlanPeriod.
+func (m BackupPlanPeriod) Pointer() *BackupPlanPeriod {
+	return &m
 }
 
 const (

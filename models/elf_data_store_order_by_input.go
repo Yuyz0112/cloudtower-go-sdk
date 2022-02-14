@@ -20,8 +20,12 @@ import (
 type ElfDataStoreOrderByInput string
 
 func NewElfDataStoreOrderByInput(value ElfDataStoreOrderByInput) *ElfDataStoreOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ElfDataStoreOrderByInput.
+func (m ElfDataStoreOrderByInput) Pointer() *ElfDataStoreOrderByInput {
+	return &m
 }
 
 const (

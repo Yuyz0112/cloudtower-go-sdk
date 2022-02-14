@@ -20,8 +20,12 @@ import (
 type VsphereEsxiAccountOrderByInput string
 
 func NewVsphereEsxiAccountOrderByInput(value VsphereEsxiAccountOrderByInput) *VsphereEsxiAccountOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VsphereEsxiAccountOrderByInput.
+func (m VsphereEsxiAccountOrderByInput) Pointer() *VsphereEsxiAccountOrderByInput {
+	return &m
 }
 
 const (

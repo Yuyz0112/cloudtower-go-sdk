@@ -51,13 +51,17 @@ type NestedFrozenDisks struct {
 	MaxBandwidth *float64 `json:"max_bandwidth,omitempty"`
 
 	// max bandwidth policy
-	MaxBandwidthPolicy interface{} `json:"max_bandwidth_policy,omitempty"`
+	MaxBandwidthPolicy struct {
+		VMDiskIoRestrictType
+	} `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
 	MaxIops *int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
-	MaxIopsPolicy interface{} `json:"max_iops_policy,omitempty"`
+	MaxIopsPolicy struct {
+		VMDiskIoRestrictType
+	} `json:"max_iops_policy,omitempty"`
 
 	// path
 	// Required: true
@@ -104,6 +108,14 @@ func (m *NestedFrozenDisks) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIndex(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxBandwidthPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxIopsPolicy(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -160,6 +172,8 @@ func (m *NestedFrozenDisks) validateBus(formats strfmt.Registry) error {
 		if err := m.Bus.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus")
 			}
 			return err
 		}
@@ -181,6 +195,22 @@ func (m *NestedFrozenDisks) validateIndex(formats strfmt.Registry) error {
 
 	if err := validate.Required("index", "body", m.Index); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *NestedFrozenDisks) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *NestedFrozenDisks) validateMaxIopsPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxIopsPolicy) { // not required
+		return nil
 	}
 
 	return nil
@@ -236,6 +266,8 @@ func (m *NestedFrozenDisks) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -261,6 +293,14 @@ func (m *NestedFrozenDisks) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMaxBandwidthPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxIopsPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -277,10 +317,22 @@ func (m *NestedFrozenDisks) contextValidateBus(ctx context.Context, formats strf
 		if err := m.Bus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *NestedFrozenDisks) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NestedFrozenDisks) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -291,6 +343,8 @@ func (m *NestedFrozenDisks) contextValidateType(ctx context.Context, formats str
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

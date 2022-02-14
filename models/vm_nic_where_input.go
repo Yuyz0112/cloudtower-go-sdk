@@ -294,19 +294,25 @@ type VMNicWhereInput struct {
 	MirrorNot *bool `json:"mirror_not,omitempty"`
 
 	// model
-	Model interface{} `json:"model,omitempty"`
+	Model struct {
+		VMNicModel
+	} `json:"model,omitempty"`
 
 	// model in
 	ModelIn []VMNicModel `json:"model_in,omitempty"`
 
 	// model not
-	ModelNot interface{} `json:"model_not,omitempty"`
+	ModelNot struct {
+		VMNicModel
+	} `json:"model_not,omitempty"`
 
 	// model not in
 	ModelNotIn []VMNicModel `json:"model_not_in,omitempty"`
 
 	// nic
-	Nic interface{} `json:"nic,omitempty"`
+	Nic struct {
+		NicWhereInput
+	} `json:"nic,omitempty"`
 
 	// order
 	Order *int32 `json:"order,omitempty"`
@@ -375,10 +381,14 @@ type VMNicWhereInput struct {
 	SubnetMaskStartsWith *string `json:"subnet_mask_starts_with,omitempty"`
 
 	// vlan
-	Vlan interface{} `json:"vlan,omitempty"`
+	Vlan struct {
+		VlanWhereInput
+	} `json:"vlan,omitempty"`
 
 	// vm
-	VM interface{} `json:"vm,omitempty"`
+	VM struct {
+		VMWhereInput
+	} `json:"vm,omitempty"`
 }
 
 // Validate validates this Vm nic where input
@@ -397,11 +407,31 @@ func (m *VMNicWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateModel(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateModelIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateModelNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateModelNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNic(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVlan(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVM(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -425,6 +455,8 @@ func (m *VMNicWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -449,6 +481,8 @@ func (m *VMNicWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -473,11 +507,21 @@ func (m *VMNicWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMNicWhereInput) validateModel(formats strfmt.Registry) error {
+	if swag.IsZero(m.Model) { // not required
+		return nil
 	}
 
 	return nil
@@ -493,10 +537,20 @@ func (m *VMNicWhereInput) validateModelIn(formats strfmt.Registry) error {
 		if err := m.ModelIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("model_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("model_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMNicWhereInput) validateModelNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ModelNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -512,10 +566,36 @@ func (m *VMNicWhereInput) validateModelNotIn(formats strfmt.Registry) error {
 		if err := m.ModelNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("model_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("model_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMNicWhereInput) validateNic(formats strfmt.Registry) error {
+	if swag.IsZero(m.Nic) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMNicWhereInput) validateVlan(formats strfmt.Registry) error {
+	if swag.IsZero(m.Vlan) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMNicWhereInput) validateVM(formats strfmt.Registry) error {
+	if swag.IsZero(m.VM) { // not required
+		return nil
 	}
 
 	return nil
@@ -537,11 +617,31 @@ func (m *VMNicWhereInput) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateModel(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateModelIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateModelNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateModelNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNic(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVlan(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVM(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -559,6 +659,8 @@ func (m *VMNicWhereInput) contextValidateAND(ctx context.Context, formats strfmt
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -577,6 +679,8 @@ func (m *VMNicWhereInput) contextValidateNOT(ctx context.Context, formats strfmt
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -595,12 +699,19 @@ func (m *VMNicWhereInput) contextValidateOR(ctx context.Context, formats strfmt.
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMNicWhereInput) contextValidateModel(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -612,11 +723,18 @@ func (m *VMNicWhereInput) contextValidateModelIn(ctx context.Context, formats st
 		if err := m.ModelIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("model_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("model_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMNicWhereInput) contextValidateModelNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -628,11 +746,28 @@ func (m *VMNicWhereInput) contextValidateModelNotIn(ctx context.Context, formats
 		if err := m.ModelNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("model_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("model_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMNicWhereInput) contextValidateNic(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMNicWhereInput) contextValidateVlan(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMNicWhereInput) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -20,8 +20,12 @@ import (
 type NetworkPolicyRuleType string
 
 func NewNetworkPolicyRuleType(value NetworkPolicyRuleType) *NetworkPolicyRuleType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NetworkPolicyRuleType.
+func (m NetworkPolicyRuleType) Pointer() *NetworkPolicyRuleType {
+	return &m
 }
 
 const (

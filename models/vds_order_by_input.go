@@ -20,8 +20,12 @@ import (
 type VdsOrderByInput string
 
 func NewVdsOrderByInput(value VdsOrderByInput) *VdsOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VdsOrderByInput.
+func (m VdsOrderByInput) Pointer() *VdsOrderByInput {
+	return &m
 }
 
 const (

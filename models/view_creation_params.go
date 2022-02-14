@@ -103,6 +103,8 @@ func (m *ViewCreationParams) validateTimeUnit(formats strfmt.Registry) error {
 		if err := m.TimeUnit.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("time_unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("time_unit")
 			}
 			return err
 		}
@@ -131,6 +133,8 @@ func (m *ViewCreationParams) contextValidateTimeUnit(ctx context.Context, format
 		if err := m.TimeUnit.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("time_unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("time_unit")
 			}
 			return err
 		}

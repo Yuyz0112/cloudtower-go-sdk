@@ -20,8 +20,12 @@ import (
 type FilterStatus string
 
 func NewFilterStatus(value FilterStatus) *FilterStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated FilterStatus.
+func (m FilterStatus) Pointer() *FilterStatus {
+	return &m
 }
 
 const (

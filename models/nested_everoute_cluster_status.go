@@ -21,20 +21,26 @@ import (
 type NestedEverouteClusterStatus struct {
 
 	// agents
-	Agents interface{} `json:"agents,omitempty"`
+	Agents struct {
+		NestedEverouteClusterAgentStatus
+	} `json:"agents,omitempty"`
 
 	// conditions
 	Conditions []*NestedEverouteClusterCondition `json:"conditions,omitempty"`
 
 	// controllers
-	Controllers interface{} `json:"controllers,omitempty"`
+	Controllers struct {
+		NestedEverouteClusterControllerStatus
+	} `json:"controllers,omitempty"`
 
 	// message
 	// Required: true
 	Message *string `json:"message"`
 
 	// phase
-	Phase interface{} `json:"phase,omitempty"`
+	Phase struct {
+		EverouteClusterPhase
+	} `json:"phase,omitempty"`
 
 	// reason
 	// Required: true
@@ -53,11 +59,23 @@ type NestedEverouteClusterStatus struct {
 func (m *NestedEverouteClusterStatus) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAgents(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConditions(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateControllers(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMessage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,6 +97,14 @@ func (m *NestedEverouteClusterStatus) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *NestedEverouteClusterStatus) validateAgents(formats strfmt.Registry) error {
+	if swag.IsZero(m.Agents) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NestedEverouteClusterStatus) validateConditions(formats strfmt.Registry) error {
 	if swag.IsZero(m.Conditions) { // not required
 		return nil
@@ -93,6 +119,8 @@ func (m *NestedEverouteClusterStatus) validateConditions(formats strfmt.Registry
 			if err := m.Conditions[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("conditions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("conditions" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -103,10 +131,26 @@ func (m *NestedEverouteClusterStatus) validateConditions(formats strfmt.Registry
 	return nil
 }
 
+func (m *NestedEverouteClusterStatus) validateControllers(formats strfmt.Registry) error {
+	if swag.IsZero(m.Controllers) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NestedEverouteClusterStatus) validateMessage(formats strfmt.Registry) error {
 
 	if err := validate.Required("message", "body", m.Message); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *NestedEverouteClusterStatus) validatePhase(formats strfmt.Registry) error {
+	if swag.IsZero(m.Phase) { // not required
+		return nil
 	}
 
 	return nil
@@ -143,13 +187,30 @@ func (m *NestedEverouteClusterStatus) validateVersion(formats strfmt.Registry) e
 func (m *NestedEverouteClusterStatus) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAgents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateConditions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateControllers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhase(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *NestedEverouteClusterStatus) contextValidateAgents(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 
@@ -161,12 +222,24 @@ func (m *NestedEverouteClusterStatus) contextValidateConditions(ctx context.Cont
 			if err := m.Conditions[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("conditions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("conditions" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *NestedEverouteClusterStatus) contextValidateControllers(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NestedEverouteClusterStatus) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

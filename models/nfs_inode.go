@@ -25,7 +25,9 @@ type NfsInode struct {
 	AssignedSize *float64 `json:"assigned_size"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// file
 	// Required: true
@@ -76,6 +78,10 @@ func (m *NfsInode) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAssignedSize(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -138,6 +144,14 @@ func (m *NfsInode) validateAssignedSize(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *NfsInode) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NfsInode) validateFile(formats strfmt.Registry) error {
 
 	if err := validate.Required("file", "body", m.File); err != nil {
@@ -170,6 +184,8 @@ func (m *NfsInode) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -217,6 +233,8 @@ func (m *NfsInode) validateNfsExport(formats strfmt.Registry) error {
 		if err := m.NfsExport.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nfs_export")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_export")
 			}
 			return err
 		}
@@ -265,6 +283,10 @@ func (m *NfsInode) validateUniqueSize(formats strfmt.Registry) error {
 func (m *NfsInode) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -279,6 +301,11 @@ func (m *NfsInode) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
+func (m *NfsInode) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *NfsInode) contextValidateLabels(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Labels); i++ {
@@ -287,6 +314,8 @@ func (m *NfsInode) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -303,6 +332,8 @@ func (m *NfsInode) contextValidateNfsExport(ctx context.Context, formats strfmt.
 		if err := m.NfsExport.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nfs_export")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_export")
 			}
 			return err
 		}

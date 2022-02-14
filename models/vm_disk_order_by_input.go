@@ -20,8 +20,12 @@ import (
 type VMDiskOrderByInput string
 
 func NewVMDiskOrderByInput(value VMDiskOrderByInput) *VMDiskOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMDiskOrderByInput.
+func (m VMDiskOrderByInput) Pointer() *VMDiskOrderByInput {
+	return &m
 }
 
 const (

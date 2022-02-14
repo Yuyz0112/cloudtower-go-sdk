@@ -20,8 +20,12 @@ import (
 type FilterRuleMetricEnum string
 
 func NewFilterRuleMetricEnum(value FilterRuleMetricEnum) *FilterRuleMetricEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated FilterRuleMetricEnum.
+func (m FilterRuleMetricEnum) Pointer() *FilterRuleMetricEnum {
+	return &m
 }
 
 const (

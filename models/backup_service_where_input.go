@@ -15,7 +15,7 @@ import (
 )
 
 // BackupServiceWhereInput backup service where input
-// Example: {"AND":"BackupServiceWhereInput[]","NOT":"BackupServiceWhereInput[]","OR":"BackupServiceWhereInput[]","backup_clusters_every":"ClusterWhereInput","backup_clusters_none":"ClusterWhereInput","backup_clusters_some":"ClusterWhereInput","backup_package":"BackupPackageWhereInput","backup_plans_every":"BackupPlanWhereInput","backup_plans_none":"BackupPlanWhereInput","backup_plans_some":"BackupPlanWhereInput","backup_store_repositories_every":"BackupStoreRepositoryWhereInput","backup_store_repositories_none":"BackupStoreRepositoryWhereInput","backup_store_repositories_some":"BackupStoreRepositoryWhereInput","description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"gateway":"string","gateway_contains":"string","gateway_ends_with":"string","gateway_gt":"string","gateway_gte":"string","gateway_in":["string"],"gateway_lt":"string","gateway_lte":"string","gateway_not":"string","gateway_not_contains":"string","gateway_not_ends_with":"string","gateway_not_in":["string"],"gateway_not_starts_with":"string","gateway_starts_with":"string","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","iops_limit":0,"iops_limit_gt":0,"iops_limit_gte":0,"iops_limit_in":[0],"iops_limit_lt":0,"iops_limit_lte":0,"iops_limit_not":0,"iops_limit_not_in":[0],"ip":"string","ip_contains":"string","ip_ends_with":"string","ip_gt":"string","ip_gte":"string","ip_in":["string"],"ip_lt":"string","ip_lte":"string","ip_not":"string","ip_not_contains":"string","ip_not_ends_with":"string","ip_not_in":["string"],"ip_not_starts_with":"string","ip_starts_with":"string","kube_config":"string","kube_config_contains":"string","kube_config_ends_with":"string","kube_config_gt":"string","kube_config_gte":"string","kube_config_in":["string"],"kube_config_lt":"string","kube_config_lte":"string","kube_config_not":"string","kube_config_not_contains":"string","kube_config_not_ends_with":"string","kube_config_not_in":["string"],"kube_config_not_starts_with":"string","kube_config_starts_with":"string","max_job_retry_times":0,"max_job_retry_times_gt":0,"max_job_retry_times_gte":0,"max_job_retry_times_in":[0],"max_job_retry_times_lt":0,"max_job_retry_times_lte":0,"max_job_retry_times_not":0,"max_job_retry_times_not_in":[0],"max_parallel_backup_jobs":0,"max_parallel_backup_jobs_gt":0,"max_parallel_backup_jobs_gte":0,"max_parallel_backup_jobs_in":[0],"max_parallel_backup_jobs_lt":0,"max_parallel_backup_jobs_lte":0,"max_parallel_backup_jobs_not":0,"max_parallel_backup_jobs_not_in":[0],"max_parallel_restore_jobs":0,"max_parallel_restore_jobs_gt":0,"max_parallel_restore_jobs_gte":0,"max_parallel_restore_jobs_in":[0],"max_parallel_restore_jobs_lt":0,"max_parallel_restore_jobs_lte":0,"max_parallel_restore_jobs_not":0,"max_parallel_restore_jobs_not_in":[0],"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","resource_version_gt":0,"resource_version_gte":0,"resource_version_in":[0],"resource_version_lt":0,"resource_version_lte":0,"resource_version_not":0,"resource_version_not_in":[0],"retry_interval":0,"retry_interval_gt":0,"retry_interval_gte":0,"retry_interval_in":[0],"retry_interval_lt":0,"retry_interval_lte":0,"retry_interval_not":0,"retry_interval_not_in":[0],"running_vm":"VmWhereInput","status":"INSTALLING","status_in":["INSTALLING"],"status_not":"INSTALLING","status_not_in":["INSTALLING"],"subnet_mask":"string","subnet_mask_contains":"string","subnet_mask_ends_with":"string","subnet_mask_gt":"string","subnet_mask_gte":"string","subnet_mask_in":["string"],"subnet_mask_lt":"string","subnet_mask_lte":"string","subnet_mask_not":"string","subnet_mask_not_contains":"string","subnet_mask_not_ends_with":"string","subnet_mask_not_in":["string"],"subnet_mask_not_starts_with":"string","subnet_mask_starts_with":"string"}
+// Example: {"AND":"BackupServiceWhereInput[]","NOT":"BackupServiceWhereInput[]","OR":"BackupServiceWhereInput[]","backup_clusters_every":"ClusterWhereInput","backup_clusters_none":"ClusterWhereInput","backup_clusters_some":"ClusterWhereInput","backup_network_gateway":"string","backup_network_gateway_contains":"string","backup_network_gateway_ends_with":"string","backup_network_gateway_gt":"string","backup_network_gateway_gte":"string","backup_network_gateway_in":["string"],"backup_network_gateway_lt":"string","backup_network_gateway_lte":"string","backup_network_gateway_not":"string","backup_network_gateway_not_contains":"string","backup_network_gateway_not_ends_with":"string","backup_network_gateway_not_in":["string"],"backup_network_gateway_not_starts_with":"string","backup_network_gateway_starts_with":"string","backup_network_ip":"string","backup_network_ip_contains":"string","backup_network_ip_ends_with":"string","backup_network_ip_gt":"string","backup_network_ip_gte":"string","backup_network_ip_in":["string"],"backup_network_ip_lt":"string","backup_network_ip_lte":"string","backup_network_ip_not":"string","backup_network_ip_not_contains":"string","backup_network_ip_not_ends_with":"string","backup_network_ip_not_in":["string"],"backup_network_ip_not_starts_with":"string","backup_network_ip_starts_with":"string","backup_network_subnet_mask":"string","backup_network_subnet_mask_contains":"string","backup_network_subnet_mask_ends_with":"string","backup_network_subnet_mask_gt":"string","backup_network_subnet_mask_gte":"string","backup_network_subnet_mask_in":["string"],"backup_network_subnet_mask_lt":"string","backup_network_subnet_mask_lte":"string","backup_network_subnet_mask_not":"string","backup_network_subnet_mask_not_contains":"string","backup_network_subnet_mask_not_ends_with":"string","backup_network_subnet_mask_not_in":["string"],"backup_network_subnet_mask_not_starts_with":"string","backup_network_subnet_mask_starts_with":"string","backup_network_type":"MANAGEMENT","backup_network_type_in":["MANAGEMENT"],"backup_network_type_not":"MANAGEMENT","backup_network_type_not_in":["MANAGEMENT"],"backup_network_vlan":"string","backup_network_vlan_contains":"string","backup_network_vlan_ends_with":"string","backup_network_vlan_gt":"string","backup_network_vlan_gte":"string","backup_network_vlan_in":["string"],"backup_network_vlan_lt":"string","backup_network_vlan_lte":"string","backup_network_vlan_not":"string","backup_network_vlan_not_contains":"string","backup_network_vlan_not_ends_with":"string","backup_network_vlan_not_in":["string"],"backup_network_vlan_not_starts_with":"string","backup_network_vlan_starts_with":"string","backup_package":"BackupPackageWhereInput","backup_plans_every":"BackupPlanWhereInput","backup_plans_none":"BackupPlanWhereInput","backup_plans_some":"BackupPlanWhereInput","backup_rd_iops_max":0,"backup_rd_iops_max_gt":0,"backup_rd_iops_max_gte":0,"backup_rd_iops_max_in":[0],"backup_rd_iops_max_lt":0,"backup_rd_iops_max_lte":0,"backup_rd_iops_max_not":0,"backup_rd_iops_max_not_in":[0],"backup_store_repositories_every":"BackupStoreRepositoryWhereInput","backup_store_repositories_none":"BackupStoreRepositoryWhereInput","backup_store_repositories_some":"BackupStoreRepositoryWhereInput","backup_wr_iops_max":0,"backup_wr_iops_max_gt":0,"backup_wr_iops_max_gte":0,"backup_wr_iops_max_in":[0],"backup_wr_iops_max_lt":0,"backup_wr_iops_max_lte":0,"backup_wr_iops_max_not":0,"backup_wr_iops_max_not_in":[0],"description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","kube_config":"string","kube_config_contains":"string","kube_config_ends_with":"string","kube_config_gt":"string","kube_config_gte":"string","kube_config_in":["string"],"kube_config_lt":"string","kube_config_lte":"string","kube_config_not":"string","kube_config_not_contains":"string","kube_config_not_ends_with":"string","kube_config_not_in":["string"],"kube_config_not_starts_with":"string","kube_config_starts_with":"string","management_network_gateway":"string","management_network_gateway_contains":"string","management_network_gateway_ends_with":"string","management_network_gateway_gt":"string","management_network_gateway_gte":"string","management_network_gateway_in":["string"],"management_network_gateway_lt":"string","management_network_gateway_lte":"string","management_network_gateway_not":"string","management_network_gateway_not_contains":"string","management_network_gateway_not_ends_with":"string","management_network_gateway_not_in":["string"],"management_network_gateway_not_starts_with":"string","management_network_gateway_starts_with":"string","management_network_ip":"string","management_network_ip_contains":"string","management_network_ip_ends_with":"string","management_network_ip_gt":"string","management_network_ip_gte":"string","management_network_ip_in":["string"],"management_network_ip_lt":"string","management_network_ip_lte":"string","management_network_ip_not":"string","management_network_ip_not_contains":"string","management_network_ip_not_ends_with":"string","management_network_ip_not_in":["string"],"management_network_ip_not_starts_with":"string","management_network_ip_starts_with":"string","management_network_subnet_mask":"string","management_network_subnet_mask_contains":"string","management_network_subnet_mask_ends_with":"string","management_network_subnet_mask_gt":"string","management_network_subnet_mask_gte":"string","management_network_subnet_mask_in":["string"],"management_network_subnet_mask_lt":"string","management_network_subnet_mask_lte":"string","management_network_subnet_mask_not":"string","management_network_subnet_mask_not_contains":"string","management_network_subnet_mask_not_ends_with":"string","management_network_subnet_mask_not_in":["string"],"management_network_subnet_mask_not_starts_with":"string","management_network_subnet_mask_starts_with":"string","management_network_vlan":"string","management_network_vlan_contains":"string","management_network_vlan_ends_with":"string","management_network_vlan_gt":"string","management_network_vlan_gte":"string","management_network_vlan_in":["string"],"management_network_vlan_lt":"string","management_network_vlan_lte":"string","management_network_vlan_not":"string","management_network_vlan_not_contains":"string","management_network_vlan_not_ends_with":"string","management_network_vlan_not_in":["string"],"management_network_vlan_not_starts_with":"string","management_network_vlan_starts_with":"string","max_job_retry_times":0,"max_job_retry_times_gt":0,"max_job_retry_times_gte":0,"max_job_retry_times_in":[0],"max_job_retry_times_lt":0,"max_job_retry_times_lte":0,"max_job_retry_times_not":0,"max_job_retry_times_not_in":[0],"max_parallel_backup_jobs":0,"max_parallel_backup_jobs_gt":0,"max_parallel_backup_jobs_gte":0,"max_parallel_backup_jobs_in":[0],"max_parallel_backup_jobs_lt":0,"max_parallel_backup_jobs_lte":0,"max_parallel_backup_jobs_not":0,"max_parallel_backup_jobs_not_in":[0],"max_parallel_restore_jobs":0,"max_parallel_restore_jobs_gt":0,"max_parallel_restore_jobs_gte":0,"max_parallel_restore_jobs_in":[0],"max_parallel_restore_jobs_lt":0,"max_parallel_restore_jobs_lte":0,"max_parallel_restore_jobs_not":0,"max_parallel_restore_jobs_not_in":[0],"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","resource_version_gt":0,"resource_version_gte":0,"resource_version_in":[0],"resource_version_lt":0,"resource_version_lte":0,"resource_version_not":0,"resource_version_not_in":[0],"restore_rd_iops_max":0,"restore_rd_iops_max_gt":0,"restore_rd_iops_max_gte":0,"restore_rd_iops_max_in":[0],"restore_rd_iops_max_lt":0,"restore_rd_iops_max_lte":0,"restore_rd_iops_max_not":0,"restore_rd_iops_max_not_in":[0],"restore_wr_iops_max":0,"restore_wr_iops_max_gt":0,"restore_wr_iops_max_gte":0,"restore_wr_iops_max_in":[0],"restore_wr_iops_max_lt":0,"restore_wr_iops_max_lte":0,"restore_wr_iops_max_not":0,"restore_wr_iops_max_not_in":[0],"retry_interval":0,"retry_interval_gt":0,"retry_interval_gte":0,"retry_interval_in":[0],"retry_interval_lt":0,"retry_interval_lte":0,"retry_interval_not":0,"retry_interval_not_in":[0],"running_vm":"VmWhereInput","status":"INSTALLING","status_in":["INSTALLING"],"status_not":"INSTALLING","status_not_in":["INSTALLING"],"storage_network_gateway":"string","storage_network_gateway_contains":"string","storage_network_gateway_ends_with":"string","storage_network_gateway_gt":"string","storage_network_gateway_gte":"string","storage_network_gateway_in":["string"],"storage_network_gateway_lt":"string","storage_network_gateway_lte":"string","storage_network_gateway_not":"string","storage_network_gateway_not_contains":"string","storage_network_gateway_not_ends_with":"string","storage_network_gateway_not_in":["string"],"storage_network_gateway_not_starts_with":"string","storage_network_gateway_starts_with":"string","storage_network_ip":"string","storage_network_ip_contains":"string","storage_network_ip_ends_with":"string","storage_network_ip_gt":"string","storage_network_ip_gte":"string","storage_network_ip_in":["string"],"storage_network_ip_lt":"string","storage_network_ip_lte":"string","storage_network_ip_not":"string","storage_network_ip_not_contains":"string","storage_network_ip_not_ends_with":"string","storage_network_ip_not_in":["string"],"storage_network_ip_not_starts_with":"string","storage_network_ip_starts_with":"string","storage_network_subnet_mask":"string","storage_network_subnet_mask_contains":"string","storage_network_subnet_mask_ends_with":"string","storage_network_subnet_mask_gt":"string","storage_network_subnet_mask_gte":"string","storage_network_subnet_mask_in":["string"],"storage_network_subnet_mask_lt":"string","storage_network_subnet_mask_lte":"string","storage_network_subnet_mask_not":"string","storage_network_subnet_mask_not_contains":"string","storage_network_subnet_mask_not_ends_with":"string","storage_network_subnet_mask_not_in":["string"],"storage_network_subnet_mask_not_starts_with":"string","storage_network_subnet_mask_starts_with":"string","storage_network_type":"MANAGEMENT","storage_network_type_in":["MANAGEMENT"],"storage_network_type_not":"MANAGEMENT","storage_network_type_not_in":["MANAGEMENT"],"storage_network_vlan":"string","storage_network_vlan_contains":"string","storage_network_vlan_ends_with":"string","storage_network_vlan_gt":"string","storage_network_vlan_gte":"string","storage_network_vlan_in":["string"],"storage_network_vlan_lt":"string","storage_network_vlan_lte":"string","storage_network_vlan_not":"string","storage_network_vlan_not_contains":"string","storage_network_vlan_not_ends_with":"string","storage_network_vlan_not_in":["string"],"storage_network_vlan_not_starts_with":"string","storage_network_vlan_starts_with":"string"}
 //
 // swagger:model BackupServiceWhereInput
 type BackupServiceWhereInput struct {
@@ -30,34 +30,286 @@ type BackupServiceWhereInput struct {
 	OR []*BackupServiceWhereInput `json:"OR,omitempty"`
 
 	// backup clusters every
-	BackupClustersEvery interface{} `json:"backup_clusters_every,omitempty"`
+	BackupClustersEvery struct {
+		ClusterWhereInput
+	} `json:"backup_clusters_every,omitempty"`
 
 	// backup clusters none
-	BackupClustersNone interface{} `json:"backup_clusters_none,omitempty"`
+	BackupClustersNone struct {
+		ClusterWhereInput
+	} `json:"backup_clusters_none,omitempty"`
 
 	// backup clusters some
-	BackupClustersSome interface{} `json:"backup_clusters_some,omitempty"`
+	BackupClustersSome struct {
+		ClusterWhereInput
+	} `json:"backup_clusters_some,omitempty"`
+
+	// backup network gateway
+	BackupNetworkGateway *string `json:"backup_network_gateway,omitempty"`
+
+	// backup network gateway contains
+	BackupNetworkGatewayContains *string `json:"backup_network_gateway_contains,omitempty"`
+
+	// backup network gateway ends with
+	BackupNetworkGatewayEndsWith *string `json:"backup_network_gateway_ends_with,omitempty"`
+
+	// backup network gateway gt
+	BackupNetworkGatewayGt *string `json:"backup_network_gateway_gt,omitempty"`
+
+	// backup network gateway gte
+	BackupNetworkGatewayGte *string `json:"backup_network_gateway_gte,omitempty"`
+
+	// backup network gateway in
+	BackupNetworkGatewayIn []string `json:"backup_network_gateway_in,omitempty"`
+
+	// backup network gateway lt
+	BackupNetworkGatewayLt *string `json:"backup_network_gateway_lt,omitempty"`
+
+	// backup network gateway lte
+	BackupNetworkGatewayLte *string `json:"backup_network_gateway_lte,omitempty"`
+
+	// backup network gateway not
+	BackupNetworkGatewayNot *string `json:"backup_network_gateway_not,omitempty"`
+
+	// backup network gateway not contains
+	BackupNetworkGatewayNotContains *string `json:"backup_network_gateway_not_contains,omitempty"`
+
+	// backup network gateway not ends with
+	BackupNetworkGatewayNotEndsWith *string `json:"backup_network_gateway_not_ends_with,omitempty"`
+
+	// backup network gateway not in
+	BackupNetworkGatewayNotIn []string `json:"backup_network_gateway_not_in,omitempty"`
+
+	// backup network gateway not starts with
+	BackupNetworkGatewayNotStartsWith *string `json:"backup_network_gateway_not_starts_with,omitempty"`
+
+	// backup network gateway starts with
+	BackupNetworkGatewayStartsWith *string `json:"backup_network_gateway_starts_with,omitempty"`
+
+	// backup network ip
+	BackupNetworkIP *string `json:"backup_network_ip,omitempty"`
+
+	// backup network ip contains
+	BackupNetworkIPContains *string `json:"backup_network_ip_contains,omitempty"`
+
+	// backup network ip ends with
+	BackupNetworkIPEndsWith *string `json:"backup_network_ip_ends_with,omitempty"`
+
+	// backup network ip gt
+	BackupNetworkIPGt *string `json:"backup_network_ip_gt,omitempty"`
+
+	// backup network ip gte
+	BackupNetworkIPGte *string `json:"backup_network_ip_gte,omitempty"`
+
+	// backup network ip in
+	BackupNetworkIPIn []string `json:"backup_network_ip_in,omitempty"`
+
+	// backup network ip lt
+	BackupNetworkIPLt *string `json:"backup_network_ip_lt,omitempty"`
+
+	// backup network ip lte
+	BackupNetworkIPLte *string `json:"backup_network_ip_lte,omitempty"`
+
+	// backup network ip not
+	BackupNetworkIPNot *string `json:"backup_network_ip_not,omitempty"`
+
+	// backup network ip not contains
+	BackupNetworkIPNotContains *string `json:"backup_network_ip_not_contains,omitempty"`
+
+	// backup network ip not ends with
+	BackupNetworkIPNotEndsWith *string `json:"backup_network_ip_not_ends_with,omitempty"`
+
+	// backup network ip not in
+	BackupNetworkIPNotIn []string `json:"backup_network_ip_not_in,omitempty"`
+
+	// backup network ip not starts with
+	BackupNetworkIPNotStartsWith *string `json:"backup_network_ip_not_starts_with,omitempty"`
+
+	// backup network ip starts with
+	BackupNetworkIPStartsWith *string `json:"backup_network_ip_starts_with,omitempty"`
+
+	// backup network subnet mask
+	BackupNetworkSubnetMask *string `json:"backup_network_subnet_mask,omitempty"`
+
+	// backup network subnet mask contains
+	BackupNetworkSubnetMaskContains *string `json:"backup_network_subnet_mask_contains,omitempty"`
+
+	// backup network subnet mask ends with
+	BackupNetworkSubnetMaskEndsWith *string `json:"backup_network_subnet_mask_ends_with,omitempty"`
+
+	// backup network subnet mask gt
+	BackupNetworkSubnetMaskGt *string `json:"backup_network_subnet_mask_gt,omitempty"`
+
+	// backup network subnet mask gte
+	BackupNetworkSubnetMaskGte *string `json:"backup_network_subnet_mask_gte,omitempty"`
+
+	// backup network subnet mask in
+	BackupNetworkSubnetMaskIn []string `json:"backup_network_subnet_mask_in,omitempty"`
+
+	// backup network subnet mask lt
+	BackupNetworkSubnetMaskLt *string `json:"backup_network_subnet_mask_lt,omitempty"`
+
+	// backup network subnet mask lte
+	BackupNetworkSubnetMaskLte *string `json:"backup_network_subnet_mask_lte,omitempty"`
+
+	// backup network subnet mask not
+	BackupNetworkSubnetMaskNot *string `json:"backup_network_subnet_mask_not,omitempty"`
+
+	// backup network subnet mask not contains
+	BackupNetworkSubnetMaskNotContains *string `json:"backup_network_subnet_mask_not_contains,omitempty"`
+
+	// backup network subnet mask not ends with
+	BackupNetworkSubnetMaskNotEndsWith *string `json:"backup_network_subnet_mask_not_ends_with,omitempty"`
+
+	// backup network subnet mask not in
+	BackupNetworkSubnetMaskNotIn []string `json:"backup_network_subnet_mask_not_in,omitempty"`
+
+	// backup network subnet mask not starts with
+	BackupNetworkSubnetMaskNotStartsWith *string `json:"backup_network_subnet_mask_not_starts_with,omitempty"`
+
+	// backup network subnet mask starts with
+	BackupNetworkSubnetMaskStartsWith *string `json:"backup_network_subnet_mask_starts_with,omitempty"`
+
+	// backup network type
+	BackupNetworkType struct {
+		BackupServiceNetworkType
+	} `json:"backup_network_type,omitempty"`
+
+	// backup network type in
+	BackupNetworkTypeIn []BackupServiceNetworkType `json:"backup_network_type_in,omitempty"`
+
+	// backup network type not
+	BackupNetworkTypeNot struct {
+		BackupServiceNetworkType
+	} `json:"backup_network_type_not,omitempty"`
+
+	// backup network type not in
+	BackupNetworkTypeNotIn []BackupServiceNetworkType `json:"backup_network_type_not_in,omitempty"`
+
+	// backup network vlan
+	BackupNetworkVlan *string `json:"backup_network_vlan,omitempty"`
+
+	// backup network vlan contains
+	BackupNetworkVlanContains *string `json:"backup_network_vlan_contains,omitempty"`
+
+	// backup network vlan ends with
+	BackupNetworkVlanEndsWith *string `json:"backup_network_vlan_ends_with,omitempty"`
+
+	// backup network vlan gt
+	BackupNetworkVlanGt *string `json:"backup_network_vlan_gt,omitempty"`
+
+	// backup network vlan gte
+	BackupNetworkVlanGte *string `json:"backup_network_vlan_gte,omitempty"`
+
+	// backup network vlan in
+	BackupNetworkVlanIn []string `json:"backup_network_vlan_in,omitempty"`
+
+	// backup network vlan lt
+	BackupNetworkVlanLt *string `json:"backup_network_vlan_lt,omitempty"`
+
+	// backup network vlan lte
+	BackupNetworkVlanLte *string `json:"backup_network_vlan_lte,omitempty"`
+
+	// backup network vlan not
+	BackupNetworkVlanNot *string `json:"backup_network_vlan_not,omitempty"`
+
+	// backup network vlan not contains
+	BackupNetworkVlanNotContains *string `json:"backup_network_vlan_not_contains,omitempty"`
+
+	// backup network vlan not ends with
+	BackupNetworkVlanNotEndsWith *string `json:"backup_network_vlan_not_ends_with,omitempty"`
+
+	// backup network vlan not in
+	BackupNetworkVlanNotIn []string `json:"backup_network_vlan_not_in,omitempty"`
+
+	// backup network vlan not starts with
+	BackupNetworkVlanNotStartsWith *string `json:"backup_network_vlan_not_starts_with,omitempty"`
+
+	// backup network vlan starts with
+	BackupNetworkVlanStartsWith *string `json:"backup_network_vlan_starts_with,omitempty"`
 
 	// backup package
-	BackupPackage interface{} `json:"backup_package,omitempty"`
+	BackupPackage struct {
+		BackupPackageWhereInput
+	} `json:"backup_package,omitempty"`
 
 	// backup plans every
-	BackupPlansEvery interface{} `json:"backup_plans_every,omitempty"`
+	BackupPlansEvery struct {
+		BackupPlanWhereInput
+	} `json:"backup_plans_every,omitempty"`
 
 	// backup plans none
-	BackupPlansNone interface{} `json:"backup_plans_none,omitempty"`
+	BackupPlansNone struct {
+		BackupPlanWhereInput
+	} `json:"backup_plans_none,omitempty"`
 
 	// backup plans some
-	BackupPlansSome interface{} `json:"backup_plans_some,omitempty"`
+	BackupPlansSome struct {
+		BackupPlanWhereInput
+	} `json:"backup_plans_some,omitempty"`
+
+	// backup rd iops max
+	BackupRdIopsMax *float64 `json:"backup_rd_iops_max,omitempty"`
+
+	// backup rd iops max gt
+	BackupRdIopsMaxGt *float64 `json:"backup_rd_iops_max_gt,omitempty"`
+
+	// backup rd iops max gte
+	BackupRdIopsMaxGte *float64 `json:"backup_rd_iops_max_gte,omitempty"`
+
+	// backup rd iops max in
+	BackupRdIopsMaxIn []float64 `json:"backup_rd_iops_max_in,omitempty"`
+
+	// backup rd iops max lt
+	BackupRdIopsMaxLt *float64 `json:"backup_rd_iops_max_lt,omitempty"`
+
+	// backup rd iops max lte
+	BackupRdIopsMaxLte *float64 `json:"backup_rd_iops_max_lte,omitempty"`
+
+	// backup rd iops max not
+	BackupRdIopsMaxNot *float64 `json:"backup_rd_iops_max_not,omitempty"`
+
+	// backup rd iops max not in
+	BackupRdIopsMaxNotIn []float64 `json:"backup_rd_iops_max_not_in,omitempty"`
 
 	// backup store repositories every
-	BackupStoreRepositoriesEvery interface{} `json:"backup_store_repositories_every,omitempty"`
+	BackupStoreRepositoriesEvery struct {
+		BackupStoreRepositoryWhereInput
+	} `json:"backup_store_repositories_every,omitempty"`
 
 	// backup store repositories none
-	BackupStoreRepositoriesNone interface{} `json:"backup_store_repositories_none,omitempty"`
+	BackupStoreRepositoriesNone struct {
+		BackupStoreRepositoryWhereInput
+	} `json:"backup_store_repositories_none,omitempty"`
 
 	// backup store repositories some
-	BackupStoreRepositoriesSome interface{} `json:"backup_store_repositories_some,omitempty"`
+	BackupStoreRepositoriesSome struct {
+		BackupStoreRepositoryWhereInput
+	} `json:"backup_store_repositories_some,omitempty"`
+
+	// backup wr iops max
+	BackupWrIopsMax *float64 `json:"backup_wr_iops_max,omitempty"`
+
+	// backup wr iops max gt
+	BackupWrIopsMaxGt *float64 `json:"backup_wr_iops_max_gt,omitempty"`
+
+	// backup wr iops max gte
+	BackupWrIopsMaxGte *float64 `json:"backup_wr_iops_max_gte,omitempty"`
+
+	// backup wr iops max in
+	BackupWrIopsMaxIn []float64 `json:"backup_wr_iops_max_in,omitempty"`
+
+	// backup wr iops max lt
+	BackupWrIopsMaxLt *float64 `json:"backup_wr_iops_max_lt,omitempty"`
+
+	// backup wr iops max lte
+	BackupWrIopsMaxLte *float64 `json:"backup_wr_iops_max_lte,omitempty"`
+
+	// backup wr iops max not
+	BackupWrIopsMaxNot *float64 `json:"backup_wr_iops_max_not,omitempty"`
+
+	// backup wr iops max not in
+	BackupWrIopsMaxNotIn []float64 `json:"backup_wr_iops_max_not_in,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -102,58 +354,20 @@ type BackupServiceWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
-
-	// gateway
-	Gateway *string `json:"gateway,omitempty"`
-
-	// gateway contains
-	GatewayContains *string `json:"gateway_contains,omitempty"`
-
-	// gateway ends with
-	GatewayEndsWith *string `json:"gateway_ends_with,omitempty"`
-
-	// gateway gt
-	GatewayGt *string `json:"gateway_gt,omitempty"`
-
-	// gateway gte
-	GatewayGte *string `json:"gateway_gte,omitempty"`
-
-	// gateway in
-	GatewayIn []string `json:"gateway_in,omitempty"`
-
-	// gateway lt
-	GatewayLt *string `json:"gateway_lt,omitempty"`
-
-	// gateway lte
-	GatewayLte *string `json:"gateway_lte,omitempty"`
-
-	// gateway not
-	GatewayNot *string `json:"gateway_not,omitempty"`
-
-	// gateway not contains
-	GatewayNotContains *string `json:"gateway_not_contains,omitempty"`
-
-	// gateway not ends with
-	GatewayNotEndsWith *string `json:"gateway_not_ends_with,omitempty"`
-
-	// gateway not in
-	GatewayNotIn []string `json:"gateway_not_in,omitempty"`
-
-	// gateway not starts with
-	GatewayNotStartsWith *string `json:"gateway_not_starts_with,omitempty"`
-
-	// gateway starts with
-	GatewayStartsWith *string `json:"gateway_starts_with,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -197,72 +411,6 @@ type BackupServiceWhereInput struct {
 	// id starts with
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
-	// iops limit
-	IopsLimit *int32 `json:"iops_limit,omitempty"`
-
-	// iops limit gt
-	IopsLimitGt *int32 `json:"iops_limit_gt,omitempty"`
-
-	// iops limit gte
-	IopsLimitGte *int32 `json:"iops_limit_gte,omitempty"`
-
-	// iops limit in
-	IopsLimitIn []int32 `json:"iops_limit_in,omitempty"`
-
-	// iops limit lt
-	IopsLimitLt *int32 `json:"iops_limit_lt,omitempty"`
-
-	// iops limit lte
-	IopsLimitLte *int32 `json:"iops_limit_lte,omitempty"`
-
-	// iops limit not
-	IopsLimitNot *int32 `json:"iops_limit_not,omitempty"`
-
-	// iops limit not in
-	IopsLimitNotIn []int32 `json:"iops_limit_not_in,omitempty"`
-
-	// ip
-	IP *string `json:"ip,omitempty"`
-
-	// ip contains
-	IPContains *string `json:"ip_contains,omitempty"`
-
-	// ip ends with
-	IPEndsWith *string `json:"ip_ends_with,omitempty"`
-
-	// ip gt
-	IPGt *string `json:"ip_gt,omitempty"`
-
-	// ip gte
-	IPGte *string `json:"ip_gte,omitempty"`
-
-	// ip in
-	IPIn []string `json:"ip_in,omitempty"`
-
-	// ip lt
-	IPLt *string `json:"ip_lt,omitempty"`
-
-	// ip lte
-	IPLte *string `json:"ip_lte,omitempty"`
-
-	// ip not
-	IPNot *string `json:"ip_not,omitempty"`
-
-	// ip not contains
-	IPNotContains *string `json:"ip_not_contains,omitempty"`
-
-	// ip not ends with
-	IPNotEndsWith *string `json:"ip_not_ends_with,omitempty"`
-
-	// ip not in
-	IPNotIn []string `json:"ip_not_in,omitempty"`
-
-	// ip not starts with
-	IPNotStartsWith *string `json:"ip_not_starts_with,omitempty"`
-
-	// ip starts with
-	IPStartsWith *string `json:"ip_starts_with,omitempty"`
-
 	// kube config
 	KubeConfig *string `json:"kube_config,omitempty"`
 
@@ -304,6 +452,174 @@ type BackupServiceWhereInput struct {
 
 	// kube config starts with
 	KubeConfigStartsWith *string `json:"kube_config_starts_with,omitempty"`
+
+	// management network gateway
+	ManagementNetworkGateway *string `json:"management_network_gateway,omitempty"`
+
+	// management network gateway contains
+	ManagementNetworkGatewayContains *string `json:"management_network_gateway_contains,omitempty"`
+
+	// management network gateway ends with
+	ManagementNetworkGatewayEndsWith *string `json:"management_network_gateway_ends_with,omitempty"`
+
+	// management network gateway gt
+	ManagementNetworkGatewayGt *string `json:"management_network_gateway_gt,omitempty"`
+
+	// management network gateway gte
+	ManagementNetworkGatewayGte *string `json:"management_network_gateway_gte,omitempty"`
+
+	// management network gateway in
+	ManagementNetworkGatewayIn []string `json:"management_network_gateway_in,omitempty"`
+
+	// management network gateway lt
+	ManagementNetworkGatewayLt *string `json:"management_network_gateway_lt,omitempty"`
+
+	// management network gateway lte
+	ManagementNetworkGatewayLte *string `json:"management_network_gateway_lte,omitempty"`
+
+	// management network gateway not
+	ManagementNetworkGatewayNot *string `json:"management_network_gateway_not,omitempty"`
+
+	// management network gateway not contains
+	ManagementNetworkGatewayNotContains *string `json:"management_network_gateway_not_contains,omitempty"`
+
+	// management network gateway not ends with
+	ManagementNetworkGatewayNotEndsWith *string `json:"management_network_gateway_not_ends_with,omitempty"`
+
+	// management network gateway not in
+	ManagementNetworkGatewayNotIn []string `json:"management_network_gateway_not_in,omitempty"`
+
+	// management network gateway not starts with
+	ManagementNetworkGatewayNotStartsWith *string `json:"management_network_gateway_not_starts_with,omitempty"`
+
+	// management network gateway starts with
+	ManagementNetworkGatewayStartsWith *string `json:"management_network_gateway_starts_with,omitempty"`
+
+	// management network ip
+	ManagementNetworkIP *string `json:"management_network_ip,omitempty"`
+
+	// management network ip contains
+	ManagementNetworkIPContains *string `json:"management_network_ip_contains,omitempty"`
+
+	// management network ip ends with
+	ManagementNetworkIPEndsWith *string `json:"management_network_ip_ends_with,omitempty"`
+
+	// management network ip gt
+	ManagementNetworkIPGt *string `json:"management_network_ip_gt,omitempty"`
+
+	// management network ip gte
+	ManagementNetworkIPGte *string `json:"management_network_ip_gte,omitempty"`
+
+	// management network ip in
+	ManagementNetworkIPIn []string `json:"management_network_ip_in,omitempty"`
+
+	// management network ip lt
+	ManagementNetworkIPLt *string `json:"management_network_ip_lt,omitempty"`
+
+	// management network ip lte
+	ManagementNetworkIPLte *string `json:"management_network_ip_lte,omitempty"`
+
+	// management network ip not
+	ManagementNetworkIPNot *string `json:"management_network_ip_not,omitempty"`
+
+	// management network ip not contains
+	ManagementNetworkIPNotContains *string `json:"management_network_ip_not_contains,omitempty"`
+
+	// management network ip not ends with
+	ManagementNetworkIPNotEndsWith *string `json:"management_network_ip_not_ends_with,omitempty"`
+
+	// management network ip not in
+	ManagementNetworkIPNotIn []string `json:"management_network_ip_not_in,omitempty"`
+
+	// management network ip not starts with
+	ManagementNetworkIPNotStartsWith *string `json:"management_network_ip_not_starts_with,omitempty"`
+
+	// management network ip starts with
+	ManagementNetworkIPStartsWith *string `json:"management_network_ip_starts_with,omitempty"`
+
+	// management network subnet mask
+	ManagementNetworkSubnetMask *string `json:"management_network_subnet_mask,omitempty"`
+
+	// management network subnet mask contains
+	ManagementNetworkSubnetMaskContains *string `json:"management_network_subnet_mask_contains,omitempty"`
+
+	// management network subnet mask ends with
+	ManagementNetworkSubnetMaskEndsWith *string `json:"management_network_subnet_mask_ends_with,omitempty"`
+
+	// management network subnet mask gt
+	ManagementNetworkSubnetMaskGt *string `json:"management_network_subnet_mask_gt,omitempty"`
+
+	// management network subnet mask gte
+	ManagementNetworkSubnetMaskGte *string `json:"management_network_subnet_mask_gte,omitempty"`
+
+	// management network subnet mask in
+	ManagementNetworkSubnetMaskIn []string `json:"management_network_subnet_mask_in,omitempty"`
+
+	// management network subnet mask lt
+	ManagementNetworkSubnetMaskLt *string `json:"management_network_subnet_mask_lt,omitempty"`
+
+	// management network subnet mask lte
+	ManagementNetworkSubnetMaskLte *string `json:"management_network_subnet_mask_lte,omitempty"`
+
+	// management network subnet mask not
+	ManagementNetworkSubnetMaskNot *string `json:"management_network_subnet_mask_not,omitempty"`
+
+	// management network subnet mask not contains
+	ManagementNetworkSubnetMaskNotContains *string `json:"management_network_subnet_mask_not_contains,omitempty"`
+
+	// management network subnet mask not ends with
+	ManagementNetworkSubnetMaskNotEndsWith *string `json:"management_network_subnet_mask_not_ends_with,omitempty"`
+
+	// management network subnet mask not in
+	ManagementNetworkSubnetMaskNotIn []string `json:"management_network_subnet_mask_not_in,omitempty"`
+
+	// management network subnet mask not starts with
+	ManagementNetworkSubnetMaskNotStartsWith *string `json:"management_network_subnet_mask_not_starts_with,omitempty"`
+
+	// management network subnet mask starts with
+	ManagementNetworkSubnetMaskStartsWith *string `json:"management_network_subnet_mask_starts_with,omitempty"`
+
+	// management network vlan
+	ManagementNetworkVlan *string `json:"management_network_vlan,omitempty"`
+
+	// management network vlan contains
+	ManagementNetworkVlanContains *string `json:"management_network_vlan_contains,omitempty"`
+
+	// management network vlan ends with
+	ManagementNetworkVlanEndsWith *string `json:"management_network_vlan_ends_with,omitempty"`
+
+	// management network vlan gt
+	ManagementNetworkVlanGt *string `json:"management_network_vlan_gt,omitempty"`
+
+	// management network vlan gte
+	ManagementNetworkVlanGte *string `json:"management_network_vlan_gte,omitempty"`
+
+	// management network vlan in
+	ManagementNetworkVlanIn []string `json:"management_network_vlan_in,omitempty"`
+
+	// management network vlan lt
+	ManagementNetworkVlanLt *string `json:"management_network_vlan_lt,omitempty"`
+
+	// management network vlan lte
+	ManagementNetworkVlanLte *string `json:"management_network_vlan_lte,omitempty"`
+
+	// management network vlan not
+	ManagementNetworkVlanNot *string `json:"management_network_vlan_not,omitempty"`
+
+	// management network vlan not contains
+	ManagementNetworkVlanNotContains *string `json:"management_network_vlan_not_contains,omitempty"`
+
+	// management network vlan not ends with
+	ManagementNetworkVlanNotEndsWith *string `json:"management_network_vlan_not_ends_with,omitempty"`
+
+	// management network vlan not in
+	ManagementNetworkVlanNotIn []string `json:"management_network_vlan_not_in,omitempty"`
+
+	// management network vlan not starts with
+	ManagementNetworkVlanNotStartsWith *string `json:"management_network_vlan_not_starts_with,omitempty"`
+
+	// management network vlan starts with
+	ManagementNetworkVlanStartsWith *string `json:"management_network_vlan_starts_with,omitempty"`
 
 	// max job retry times
 	MaxJobRetryTimes *int32 `json:"max_job_retry_times,omitempty"`
@@ -440,6 +756,54 @@ type BackupServiceWhereInput struct {
 	// resource version not in
 	ResourceVersionNotIn []int32 `json:"resource_version_not_in,omitempty"`
 
+	// restore rd iops max
+	RestoreRdIopsMax *float64 `json:"restore_rd_iops_max,omitempty"`
+
+	// restore rd iops max gt
+	RestoreRdIopsMaxGt *float64 `json:"restore_rd_iops_max_gt,omitempty"`
+
+	// restore rd iops max gte
+	RestoreRdIopsMaxGte *float64 `json:"restore_rd_iops_max_gte,omitempty"`
+
+	// restore rd iops max in
+	RestoreRdIopsMaxIn []float64 `json:"restore_rd_iops_max_in,omitempty"`
+
+	// restore rd iops max lt
+	RestoreRdIopsMaxLt *float64 `json:"restore_rd_iops_max_lt,omitempty"`
+
+	// restore rd iops max lte
+	RestoreRdIopsMaxLte *float64 `json:"restore_rd_iops_max_lte,omitempty"`
+
+	// restore rd iops max not
+	RestoreRdIopsMaxNot *float64 `json:"restore_rd_iops_max_not,omitempty"`
+
+	// restore rd iops max not in
+	RestoreRdIopsMaxNotIn []float64 `json:"restore_rd_iops_max_not_in,omitempty"`
+
+	// restore wr iops max
+	RestoreWrIopsMax *float64 `json:"restore_wr_iops_max,omitempty"`
+
+	// restore wr iops max gt
+	RestoreWrIopsMaxGt *float64 `json:"restore_wr_iops_max_gt,omitempty"`
+
+	// restore wr iops max gte
+	RestoreWrIopsMaxGte *float64 `json:"restore_wr_iops_max_gte,omitempty"`
+
+	// restore wr iops max in
+	RestoreWrIopsMaxIn []float64 `json:"restore_wr_iops_max_in,omitempty"`
+
+	// restore wr iops max lt
+	RestoreWrIopsMaxLt *float64 `json:"restore_wr_iops_max_lt,omitempty"`
+
+	// restore wr iops max lte
+	RestoreWrIopsMaxLte *float64 `json:"restore_wr_iops_max_lte,omitempty"`
+
+	// restore wr iops max not
+	RestoreWrIopsMaxNot *float64 `json:"restore_wr_iops_max_not,omitempty"`
+
+	// restore wr iops max not in
+	RestoreWrIopsMaxNotIn []float64 `json:"restore_wr_iops_max_not_in,omitempty"`
+
 	// retry interval
 	RetryInterval *int32 `json:"retry_interval,omitempty"`
 
@@ -465,61 +829,209 @@ type BackupServiceWhereInput struct {
 	RetryIntervalNotIn []int32 `json:"retry_interval_not_in,omitempty"`
 
 	// running vm
-	RunningVM interface{} `json:"running_vm,omitempty"`
+	RunningVM struct {
+		VMWhereInput
+	} `json:"running_vm,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		BackupServiceStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []BackupServiceStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		BackupServiceStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []BackupServiceStatus `json:"status_not_in,omitempty"`
 
-	// subnet mask
-	SubnetMask *string `json:"subnet_mask,omitempty"`
+	// storage network gateway
+	StorageNetworkGateway *string `json:"storage_network_gateway,omitempty"`
 
-	// subnet mask contains
-	SubnetMaskContains *string `json:"subnet_mask_contains,omitempty"`
+	// storage network gateway contains
+	StorageNetworkGatewayContains *string `json:"storage_network_gateway_contains,omitempty"`
 
-	// subnet mask ends with
-	SubnetMaskEndsWith *string `json:"subnet_mask_ends_with,omitempty"`
+	// storage network gateway ends with
+	StorageNetworkGatewayEndsWith *string `json:"storage_network_gateway_ends_with,omitempty"`
 
-	// subnet mask gt
-	SubnetMaskGt *string `json:"subnet_mask_gt,omitempty"`
+	// storage network gateway gt
+	StorageNetworkGatewayGt *string `json:"storage_network_gateway_gt,omitempty"`
 
-	// subnet mask gte
-	SubnetMaskGte *string `json:"subnet_mask_gte,omitempty"`
+	// storage network gateway gte
+	StorageNetworkGatewayGte *string `json:"storage_network_gateway_gte,omitempty"`
 
-	// subnet mask in
-	SubnetMaskIn []string `json:"subnet_mask_in,omitempty"`
+	// storage network gateway in
+	StorageNetworkGatewayIn []string `json:"storage_network_gateway_in,omitempty"`
 
-	// subnet mask lt
-	SubnetMaskLt *string `json:"subnet_mask_lt,omitempty"`
+	// storage network gateway lt
+	StorageNetworkGatewayLt *string `json:"storage_network_gateway_lt,omitempty"`
 
-	// subnet mask lte
-	SubnetMaskLte *string `json:"subnet_mask_lte,omitempty"`
+	// storage network gateway lte
+	StorageNetworkGatewayLte *string `json:"storage_network_gateway_lte,omitempty"`
 
-	// subnet mask not
-	SubnetMaskNot *string `json:"subnet_mask_not,omitempty"`
+	// storage network gateway not
+	StorageNetworkGatewayNot *string `json:"storage_network_gateway_not,omitempty"`
 
-	// subnet mask not contains
-	SubnetMaskNotContains *string `json:"subnet_mask_not_contains,omitempty"`
+	// storage network gateway not contains
+	StorageNetworkGatewayNotContains *string `json:"storage_network_gateway_not_contains,omitempty"`
 
-	// subnet mask not ends with
-	SubnetMaskNotEndsWith *string `json:"subnet_mask_not_ends_with,omitempty"`
+	// storage network gateway not ends with
+	StorageNetworkGatewayNotEndsWith *string `json:"storage_network_gateway_not_ends_with,omitempty"`
 
-	// subnet mask not in
-	SubnetMaskNotIn []string `json:"subnet_mask_not_in,omitempty"`
+	// storage network gateway not in
+	StorageNetworkGatewayNotIn []string `json:"storage_network_gateway_not_in,omitempty"`
 
-	// subnet mask not starts with
-	SubnetMaskNotStartsWith *string `json:"subnet_mask_not_starts_with,omitempty"`
+	// storage network gateway not starts with
+	StorageNetworkGatewayNotStartsWith *string `json:"storage_network_gateway_not_starts_with,omitempty"`
 
-	// subnet mask starts with
-	SubnetMaskStartsWith *string `json:"subnet_mask_starts_with,omitempty"`
+	// storage network gateway starts with
+	StorageNetworkGatewayStartsWith *string `json:"storage_network_gateway_starts_with,omitempty"`
+
+	// storage network ip
+	StorageNetworkIP *string `json:"storage_network_ip,omitempty"`
+
+	// storage network ip contains
+	StorageNetworkIPContains *string `json:"storage_network_ip_contains,omitempty"`
+
+	// storage network ip ends with
+	StorageNetworkIPEndsWith *string `json:"storage_network_ip_ends_with,omitempty"`
+
+	// storage network ip gt
+	StorageNetworkIPGt *string `json:"storage_network_ip_gt,omitempty"`
+
+	// storage network ip gte
+	StorageNetworkIPGte *string `json:"storage_network_ip_gte,omitempty"`
+
+	// storage network ip in
+	StorageNetworkIPIn []string `json:"storage_network_ip_in,omitempty"`
+
+	// storage network ip lt
+	StorageNetworkIPLt *string `json:"storage_network_ip_lt,omitempty"`
+
+	// storage network ip lte
+	StorageNetworkIPLte *string `json:"storage_network_ip_lte,omitempty"`
+
+	// storage network ip not
+	StorageNetworkIPNot *string `json:"storage_network_ip_not,omitempty"`
+
+	// storage network ip not contains
+	StorageNetworkIPNotContains *string `json:"storage_network_ip_not_contains,omitempty"`
+
+	// storage network ip not ends with
+	StorageNetworkIPNotEndsWith *string `json:"storage_network_ip_not_ends_with,omitempty"`
+
+	// storage network ip not in
+	StorageNetworkIPNotIn []string `json:"storage_network_ip_not_in,omitempty"`
+
+	// storage network ip not starts with
+	StorageNetworkIPNotStartsWith *string `json:"storage_network_ip_not_starts_with,omitempty"`
+
+	// storage network ip starts with
+	StorageNetworkIPStartsWith *string `json:"storage_network_ip_starts_with,omitempty"`
+
+	// storage network subnet mask
+	StorageNetworkSubnetMask *string `json:"storage_network_subnet_mask,omitempty"`
+
+	// storage network subnet mask contains
+	StorageNetworkSubnetMaskContains *string `json:"storage_network_subnet_mask_contains,omitempty"`
+
+	// storage network subnet mask ends with
+	StorageNetworkSubnetMaskEndsWith *string `json:"storage_network_subnet_mask_ends_with,omitempty"`
+
+	// storage network subnet mask gt
+	StorageNetworkSubnetMaskGt *string `json:"storage_network_subnet_mask_gt,omitempty"`
+
+	// storage network subnet mask gte
+	StorageNetworkSubnetMaskGte *string `json:"storage_network_subnet_mask_gte,omitempty"`
+
+	// storage network subnet mask in
+	StorageNetworkSubnetMaskIn []string `json:"storage_network_subnet_mask_in,omitempty"`
+
+	// storage network subnet mask lt
+	StorageNetworkSubnetMaskLt *string `json:"storage_network_subnet_mask_lt,omitempty"`
+
+	// storage network subnet mask lte
+	StorageNetworkSubnetMaskLte *string `json:"storage_network_subnet_mask_lte,omitempty"`
+
+	// storage network subnet mask not
+	StorageNetworkSubnetMaskNot *string `json:"storage_network_subnet_mask_not,omitempty"`
+
+	// storage network subnet mask not contains
+	StorageNetworkSubnetMaskNotContains *string `json:"storage_network_subnet_mask_not_contains,omitempty"`
+
+	// storage network subnet mask not ends with
+	StorageNetworkSubnetMaskNotEndsWith *string `json:"storage_network_subnet_mask_not_ends_with,omitempty"`
+
+	// storage network subnet mask not in
+	StorageNetworkSubnetMaskNotIn []string `json:"storage_network_subnet_mask_not_in,omitempty"`
+
+	// storage network subnet mask not starts with
+	StorageNetworkSubnetMaskNotStartsWith *string `json:"storage_network_subnet_mask_not_starts_with,omitempty"`
+
+	// storage network subnet mask starts with
+	StorageNetworkSubnetMaskStartsWith *string `json:"storage_network_subnet_mask_starts_with,omitempty"`
+
+	// storage network type
+	StorageNetworkType struct {
+		BackupServiceNetworkType
+	} `json:"storage_network_type,omitempty"`
+
+	// storage network type in
+	StorageNetworkTypeIn []BackupServiceNetworkType `json:"storage_network_type_in,omitempty"`
+
+	// storage network type not
+	StorageNetworkTypeNot struct {
+		BackupServiceNetworkType
+	} `json:"storage_network_type_not,omitempty"`
+
+	// storage network type not in
+	StorageNetworkTypeNotIn []BackupServiceNetworkType `json:"storage_network_type_not_in,omitempty"`
+
+	// storage network vlan
+	StorageNetworkVlan *string `json:"storage_network_vlan,omitempty"`
+
+	// storage network vlan contains
+	StorageNetworkVlanContains *string `json:"storage_network_vlan_contains,omitempty"`
+
+	// storage network vlan ends with
+	StorageNetworkVlanEndsWith *string `json:"storage_network_vlan_ends_with,omitempty"`
+
+	// storage network vlan gt
+	StorageNetworkVlanGt *string `json:"storage_network_vlan_gt,omitempty"`
+
+	// storage network vlan gte
+	StorageNetworkVlanGte *string `json:"storage_network_vlan_gte,omitempty"`
+
+	// storage network vlan in
+	StorageNetworkVlanIn []string `json:"storage_network_vlan_in,omitempty"`
+
+	// storage network vlan lt
+	StorageNetworkVlanLt *string `json:"storage_network_vlan_lt,omitempty"`
+
+	// storage network vlan lte
+	StorageNetworkVlanLte *string `json:"storage_network_vlan_lte,omitempty"`
+
+	// storage network vlan not
+	StorageNetworkVlanNot *string `json:"storage_network_vlan_not,omitempty"`
+
+	// storage network vlan not contains
+	StorageNetworkVlanNotContains *string `json:"storage_network_vlan_not_contains,omitempty"`
+
+	// storage network vlan not ends with
+	StorageNetworkVlanNotEndsWith *string `json:"storage_network_vlan_not_ends_with,omitempty"`
+
+	// storage network vlan not in
+	StorageNetworkVlanNotIn []string `json:"storage_network_vlan_not_in,omitempty"`
+
+	// storage network vlan not starts with
+	StorageNetworkVlanNotStartsWith *string `json:"storage_network_vlan_not_starts_with,omitempty"`
+
+	// storage network vlan starts with
+	StorageNetworkVlanStartsWith *string `json:"storage_network_vlan_starts_with,omitempty"`
 }
 
 // Validate validates this backup service where input
@@ -538,7 +1050,71 @@ func (m *BackupServiceWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBackupClustersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupClustersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupClustersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupNetworkType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupNetworkTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupNetworkTypeNot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupNetworkTypeNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPackage(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPlansEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPlansNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPlansSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupStoreRepositoriesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupStoreRepositoriesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupStoreRepositoriesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -546,11 +1122,39 @@ func (m *BackupServiceWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRunningVM(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatusNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStorageNetworkType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStorageNetworkTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStorageNetworkTypeNot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStorageNetworkTypeNotIn(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -574,6 +1178,8 @@ func (m *BackupServiceWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -598,6 +1204,8 @@ func (m *BackupServiceWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -622,11 +1230,159 @@ func (m *BackupServiceWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupClustersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupClustersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupClustersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupClustersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupClustersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupClustersSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupNetworkType(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupNetworkType) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupNetworkTypeIn(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupNetworkTypeIn) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.BackupNetworkTypeIn); i++ {
+
+		if err := m.BackupNetworkTypeIn[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupNetworkTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupNetworkTypeNot) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupNetworkTypeNotIn(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupNetworkTypeNotIn) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.BackupNetworkTypeNotIn); i++ {
+
+		if err := m.BackupNetworkTypeNotIn[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type_not_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupPackage(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPackage) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupPlansEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlansEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupPlansNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlansNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupPlansSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlansSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupStoreRepositoriesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupStoreRepositoriesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupStoreRepositoriesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupStoreRepositoriesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateBackupStoreRepositoriesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupStoreRepositoriesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -642,10 +1398,20 @@ func (m *BackupServiceWhereInput) validateEntityAsyncStatusIn(formats strfmt.Reg
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -661,10 +1427,28 @@ func (m *BackupServiceWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateRunningVM(formats strfmt.Registry) error {
+	if swag.IsZero(m.RunningVM) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -680,10 +1464,20 @@ func (m *BackupServiceWhereInput) validateStatusIn(formats strfmt.Registry) erro
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -699,6 +1493,66 @@ func (m *BackupServiceWhereInput) validateStatusNotIn(formats strfmt.Registry) e
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateStorageNetworkType(formats strfmt.Registry) error {
+	if swag.IsZero(m.StorageNetworkType) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateStorageNetworkTypeIn(formats strfmt.Registry) error {
+	if swag.IsZero(m.StorageNetworkTypeIn) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.StorageNetworkTypeIn); i++ {
+
+		if err := m.StorageNetworkTypeIn[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateStorageNetworkTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StorageNetworkTypeNot) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) validateStorageNetworkTypeNotIn(formats strfmt.Registry) error {
+	if swag.IsZero(m.StorageNetworkTypeNotIn) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.StorageNetworkTypeNotIn); i++ {
+
+		if err := m.StorageNetworkTypeNotIn[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -724,7 +1578,71 @@ func (m *BackupServiceWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBackupClustersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupClustersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupClustersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupNetworkType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupNetworkTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupNetworkTypeNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupNetworkTypeNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupPackage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupPlansEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupPlansNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupPlansSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupStoreRepositoriesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupStoreRepositoriesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupStoreRepositoriesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -732,11 +1650,39 @@ func (m *BackupServiceWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRunningVM(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStorageNetworkType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStorageNetworkTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStorageNetworkTypeNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStorageNetworkTypeNotIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -754,6 +1700,8 @@ func (m *BackupServiceWhereInput) contextValidateAND(ctx context.Context, format
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -772,6 +1720,8 @@ func (m *BackupServiceWhereInput) contextValidateNOT(ctx context.Context, format
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -790,12 +1740,115 @@ func (m *BackupServiceWhereInput) contextValidateOR(ctx context.Context, formats
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupClustersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupClustersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupNetworkType(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupNetworkTypeIn(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.BackupNetworkTypeIn); i++ {
+
+		if err := m.BackupNetworkTypeIn[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupNetworkTypeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupNetworkTypeNotIn(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.BackupNetworkTypeNotIn); i++ {
+
+		if err := m.BackupNetworkTypeNotIn[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type_not_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupPackage(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupPlansEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupPlansNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupPlansSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupStoreRepositoriesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupStoreRepositoriesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateBackupStoreRepositoriesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -807,11 +1860,18 @@ func (m *BackupServiceWhereInput) contextValidateEntityAsyncStatusIn(ctx context
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -823,11 +1883,23 @@ func (m *BackupServiceWhereInput) contextValidateEntityAsyncStatusNotIn(ctx cont
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateRunningVM(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -839,11 +1911,18 @@ func (m *BackupServiceWhereInput) contextValidateStatusIn(ctx context.Context, f
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -855,6 +1934,54 @@ func (m *BackupServiceWhereInput) contextValidateStatusNotIn(ctx context.Context
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateStorageNetworkType(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateStorageNetworkTypeIn(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.StorageNetworkTypeIn); i++ {
+
+		if err := m.StorageNetworkTypeIn[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type_in" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateStorageNetworkTypeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupServiceWhereInput) contextValidateStorageNetworkTypeNotIn(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.StorageNetworkTypeNotIn); i++ {
+
+		if err := m.StorageNetworkTypeNotIn[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

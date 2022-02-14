@@ -20,8 +20,12 @@ import (
 type ElfDataStoreType string
 
 func NewElfDataStoreType(value ElfDataStoreType) *ElfDataStoreType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ElfDataStoreType.
+func (m ElfDataStoreType) Pointer() *ElfDataStoreType {
+	return &m
 }
 
 const (

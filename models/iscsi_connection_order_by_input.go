@@ -20,8 +20,12 @@ import (
 type IscsiConnectionOrderByInput string
 
 func NewIscsiConnectionOrderByInput(value IscsiConnectionOrderByInput) *IscsiConnectionOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated IscsiConnectionOrderByInput.
+func (m IscsiConnectionOrderByInput) Pointer() *IscsiConnectionOrderByInput {
+	return &m
 }
 
 const (

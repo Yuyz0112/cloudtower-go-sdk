@@ -56,7 +56,9 @@ type GlobalAlertRule struct {
 	Name *string `json:"name"`
 
 	// object
-	Object interface{} `json:"object,omitempty"`
+	Object struct {
+		AlertRuleObject
+	} `json:"object,omitempty"`
 
 	// operator
 	// Required: true
@@ -115,6 +117,10 @@ func (m *GlobalAlertRule) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateObject(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOperator(formats); err != nil {
 		res = append(res, err)
 	}
@@ -151,6 +157,8 @@ func (m *GlobalAlertRule) validateAlertRules(formats strfmt.Registry) error {
 			if err := m.AlertRules[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alert_rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alert_rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -194,6 +202,8 @@ func (m *GlobalAlertRule) validateDefaultThresholds(formats strfmt.Registry) err
 			if err := m.DefaultThresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("default_thresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("default_thresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -249,6 +259,14 @@ func (m *GlobalAlertRule) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GlobalAlertRule) validateObject(formats strfmt.Registry) error {
+	if swag.IsZero(m.Object) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *GlobalAlertRule) validateOperator(formats strfmt.Registry) error {
 
 	if err := validate.Required("operator", "body", m.Operator); err != nil {
@@ -282,6 +300,8 @@ func (m *GlobalAlertRule) validateThresholds(formats strfmt.Registry) error {
 			if err := m.Thresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("thresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("thresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -306,6 +326,8 @@ func (m *GlobalAlertRule) validateUnit(formats strfmt.Registry) error {
 		if err := m.Unit.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("unit")
 			}
 			return err
 		}
@@ -323,6 +345,10 @@ func (m *GlobalAlertRule) ContextValidate(ctx context.Context, formats strfmt.Re
 	}
 
 	if err := m.contextValidateDefaultThresholds(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateObject(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -348,6 +374,8 @@ func (m *GlobalAlertRule) contextValidateAlertRules(ctx context.Context, formats
 			if err := m.AlertRules[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alert_rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alert_rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -366,12 +394,19 @@ func (m *GlobalAlertRule) contextValidateDefaultThresholds(ctx context.Context, 
 			if err := m.DefaultThresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("default_thresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("default_thresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *GlobalAlertRule) contextValidateObject(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -384,6 +419,8 @@ func (m *GlobalAlertRule) contextValidateThresholds(ctx context.Context, formats
 			if err := m.Thresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("thresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("thresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -400,6 +437,8 @@ func (m *GlobalAlertRule) contextValidateUnit(ctx context.Context, formats strfm
 		if err := m.Unit.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("unit")
 			}
 			return err
 		}

@@ -8,12 +8,13 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // GetGlobalSettingsesConnectionRequestBody get global settingses connection request body
-// Example: {"after":"globalSettingsesConnection-id-string","before":"globalSettingsesConnection-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"GlobalSettingsWhereInput[]","NOT":"GlobalSettingsWhereInput[]","OR":"GlobalSettingsWhereInput[]","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string"}}
+// Example: {"after":"globalSettingsesConnection-id-string","before":"globalSettingsesConnection-id-string","first":0,"last":0,"orderBy":"auth_ASC","skip":0,"where":{"AND":"GlobalSettingsWhereInput[]","NOT":"GlobalSettingsWhereInput[]","OR":"GlobalSettingsWhereInput[]","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string"}}
 //
 // swagger:model GetGlobalSettingsesConnectionRequestBody
 type GetGlobalSettingsesConnectionRequestBody struct {
@@ -31,22 +32,78 @@ type GetGlobalSettingsesConnectionRequestBody struct {
 	Last *int32 `json:"last,omitempty"`
 
 	// order by
-	OrderBy interface{} `json:"orderBy,omitempty"`
+	OrderBy struct {
+		GlobalSettingsOrderByInput
+	} `json:"orderBy,omitempty"`
 
 	// skip
 	Skip *int32 `json:"skip,omitempty"`
 
 	// where
-	Where interface{} `json:"where,omitempty"`
+	Where struct {
+		GlobalSettingsWhereInput
+	} `json:"where,omitempty"`
 }
 
 // Validate validates this get global settingses connection request body
 func (m *GetGlobalSettingsesConnectionRequestBody) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateOrderBy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this get global settingses connection request body based on context it is used
+func (m *GetGlobalSettingsesConnectionRequestBody) validateOrderBy(formats strfmt.Registry) error {
+	if swag.IsZero(m.OrderBy) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *GetGlobalSettingsesConnectionRequestBody) validateWhere(formats strfmt.Registry) error {
+	if swag.IsZero(m.Where) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this get global settingses connection request body based on the context it is used
 func (m *GetGlobalSettingsesConnectionRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateOrderBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetGlobalSettingsesConnectionRequestBody) contextValidateOrderBy(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GetGlobalSettingsesConnectionRequestBody) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

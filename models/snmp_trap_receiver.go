@@ -23,7 +23,9 @@ type SnmpTrapReceiver struct {
 	AuthPassPhrase *string `json:"auth_pass_phrase,omitempty"`
 
 	// auth protocol
-	AuthProtocol interface{} `json:"auth_protocol,omitempty"`
+	AuthProtocol struct {
+		SnmpAuthProtocol
+	} `json:"auth_protocol,omitempty"`
 
 	// cluster
 	// Required: true
@@ -40,7 +42,9 @@ type SnmpTrapReceiver struct {
 	EngineID *string `json:"engine_id,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// host
 	// Required: true
@@ -74,7 +78,9 @@ type SnmpTrapReceiver struct {
 	PrivacyPassPhrase *string `json:"privacy_pass_phrase,omitempty"`
 
 	// privacy protocol
-	PrivacyProtocol interface{} `json:"privacy_protocol,omitempty"`
+	PrivacyProtocol struct {
+		SnmpPrivacyProtocol
+	} `json:"privacy_protocol,omitempty"`
 
 	// protocol
 	// Required: true
@@ -92,11 +98,19 @@ type SnmpTrapReceiver struct {
 func (m *SnmpTrapReceiver) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuthProtocol(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCluster(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateDisabled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -128,6 +142,10 @@ func (m *SnmpTrapReceiver) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePrivacyProtocol(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateProtocol(formats); err != nil {
 		res = append(res, err)
 	}
@@ -142,6 +160,14 @@ func (m *SnmpTrapReceiver) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *SnmpTrapReceiver) validateAuthProtocol(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthProtocol) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *SnmpTrapReceiver) validateCluster(formats strfmt.Registry) error {
 
 	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
@@ -152,6 +178,8 @@ func (m *SnmpTrapReceiver) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -164,6 +192,14 @@ func (m *SnmpTrapReceiver) validateDisabled(formats strfmt.Registry) error {
 
 	if err := validate.Required("disabled", "body", m.Disabled); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *SnmpTrapReceiver) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -210,6 +246,8 @@ func (m *SnmpTrapReceiver) validateLanguageCode(formats strfmt.Registry) error {
 		if err := m.LanguageCode.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("language_code")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code")
 			}
 			return err
 		}
@@ -245,6 +283,14 @@ func (m *SnmpTrapReceiver) validatePort(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *SnmpTrapReceiver) validatePrivacyProtocol(formats strfmt.Registry) error {
+	if swag.IsZero(m.PrivacyProtocol) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *SnmpTrapReceiver) validateProtocol(formats strfmt.Registry) error {
 
 	if err := validate.Required("protocol", "body", m.Protocol); err != nil {
@@ -259,6 +305,8 @@ func (m *SnmpTrapReceiver) validateProtocol(formats strfmt.Registry) error {
 		if err := m.Protocol.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol")
 			}
 			return err
 		}
@@ -281,6 +329,8 @@ func (m *SnmpTrapReceiver) validateVersion(formats strfmt.Registry) error {
 		if err := m.Version.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("version")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version")
 			}
 			return err
 		}
@@ -293,11 +343,23 @@ func (m *SnmpTrapReceiver) validateVersion(formats strfmt.Registry) error {
 func (m *SnmpTrapReceiver) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuthProtocol(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLanguageCode(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrivacyProtocol(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -315,16 +377,28 @@ func (m *SnmpTrapReceiver) ContextValidate(ctx context.Context, formats strfmt.R
 	return nil
 }
 
+func (m *SnmpTrapReceiver) contextValidateAuthProtocol(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *SnmpTrapReceiver) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cluster != nil {
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *SnmpTrapReceiver) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -335,10 +409,17 @@ func (m *SnmpTrapReceiver) contextValidateLanguageCode(ctx context.Context, form
 		if err := m.LanguageCode.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("language_code")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *SnmpTrapReceiver) contextValidatePrivacyProtocol(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -349,6 +430,8 @@ func (m *SnmpTrapReceiver) contextValidateProtocol(ctx context.Context, formats 
 		if err := m.Protocol.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol")
 			}
 			return err
 		}
@@ -363,6 +446,8 @@ func (m *SnmpTrapReceiver) contextValidateVersion(ctx context.Context, formats s
 		if err := m.Version.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("version")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version")
 			}
 			return err
 		}

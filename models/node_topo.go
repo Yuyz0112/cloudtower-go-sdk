@@ -20,14 +20,18 @@ import (
 type NodeTopo struct {
 
 	// brick topo
-	BrickTopo interface{} `json:"brick_topo,omitempty"`
+	BrickTopo struct {
+		NestedBrickTopo
+	} `json:"brick_topo,omitempty"`
 
 	// cluster
 	// Required: true
 	Cluster *NestedCluster `json:"cluster"`
 
 	// cluster topo
-	ClusterTopo interface{} `json:"cluster_topo,omitempty"`
+	ClusterTopo struct {
+		NestedClusterTopo
+	} `json:"cluster_topo,omitempty"`
 
 	// host
 	// Required: true
@@ -54,7 +58,15 @@ type NodeTopo struct {
 func (m *NodeTopo) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateBrickTopo(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClusterTopo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -84,6 +96,14 @@ func (m *NodeTopo) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *NodeTopo) validateBrickTopo(formats strfmt.Registry) error {
+	if swag.IsZero(m.BrickTopo) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NodeTopo) validateCluster(formats strfmt.Registry) error {
 
 	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
@@ -94,9 +114,19 @@ func (m *NodeTopo) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *NodeTopo) validateClusterTopo(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClusterTopo) { // not required
+		return nil
 	}
 
 	return nil
@@ -112,6 +142,8 @@ func (m *NodeTopo) validateHost(formats strfmt.Registry) error {
 		if err := m.Host.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -157,6 +189,8 @@ func (m *NodeTopo) validatePosition(formats strfmt.Registry) error {
 		if err := m.Position.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("position")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("position")
 			}
 			return err
 		}
@@ -169,7 +203,15 @@ func (m *NodeTopo) validatePosition(formats strfmt.Registry) error {
 func (m *NodeTopo) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateBrickTopo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClusterTopo(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -187,16 +229,28 @@ func (m *NodeTopo) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
+func (m *NodeTopo) contextValidateBrickTopo(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *NodeTopo) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cluster != nil {
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *NodeTopo) contextValidateClusterTopo(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -207,6 +261,8 @@ func (m *NodeTopo) contextValidateHost(ctx context.Context, formats strfmt.Regis
 		if err := m.Host.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -221,6 +277,8 @@ func (m *NodeTopo) contextValidatePosition(ctx context.Context, formats strfmt.R
 		if err := m.Position.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("position")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("position")
 			}
 			return err
 		}

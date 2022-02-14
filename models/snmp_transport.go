@@ -23,7 +23,9 @@ type SnmpTransport struct {
 	AuthPassPhrase *string `json:"auth_pass_phrase,omitempty"`
 
 	// auth protocol
-	AuthProtocol interface{} `json:"auth_protocol,omitempty"`
+	AuthProtocol struct {
+		SnmpAuthProtocol
+	} `json:"auth_protocol,omitempty"`
 
 	// cluster
 	// Required: true
@@ -37,7 +39,9 @@ type SnmpTransport struct {
 	Disabled *bool `json:"disabled"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -59,7 +63,9 @@ type SnmpTransport struct {
 	PrivacyPassPhrase *string `json:"privacy_pass_phrase,omitempty"`
 
 	// privacy protocol
-	PrivacyProtocol interface{} `json:"privacy_protocol,omitempty"`
+	PrivacyProtocol struct {
+		SnmpPrivacyProtocol
+	} `json:"privacy_protocol,omitempty"`
 
 	// protocol
 	// Required: true
@@ -77,11 +83,19 @@ type SnmpTransport struct {
 func (m *SnmpTransport) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuthProtocol(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCluster(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateDisabled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -101,6 +115,10 @@ func (m *SnmpTransport) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePrivacyProtocol(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateProtocol(formats); err != nil {
 		res = append(res, err)
 	}
@@ -115,6 +133,14 @@ func (m *SnmpTransport) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *SnmpTransport) validateAuthProtocol(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthProtocol) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *SnmpTransport) validateCluster(formats strfmt.Registry) error {
 
 	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
@@ -125,6 +151,8 @@ func (m *SnmpTransport) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -137,6 +165,14 @@ func (m *SnmpTransport) validateDisabled(formats strfmt.Registry) error {
 
 	if err := validate.Required("disabled", "body", m.Disabled); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *SnmpTransport) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -178,6 +214,14 @@ func (m *SnmpTransport) validatePort(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *SnmpTransport) validatePrivacyProtocol(formats strfmt.Registry) error {
+	if swag.IsZero(m.PrivacyProtocol) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *SnmpTransport) validateProtocol(formats strfmt.Registry) error {
 
 	if err := validate.Required("protocol", "body", m.Protocol); err != nil {
@@ -192,6 +236,8 @@ func (m *SnmpTransport) validateProtocol(formats strfmt.Registry) error {
 		if err := m.Protocol.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol")
 			}
 			return err
 		}
@@ -214,6 +260,8 @@ func (m *SnmpTransport) validateVersion(formats strfmt.Registry) error {
 		if err := m.Version.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("version")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version")
 			}
 			return err
 		}
@@ -226,7 +274,19 @@ func (m *SnmpTransport) validateVersion(formats strfmt.Registry) error {
 func (m *SnmpTransport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuthProtocol(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrivacyProtocol(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -244,16 +304,33 @@ func (m *SnmpTransport) ContextValidate(ctx context.Context, formats strfmt.Regi
 	return nil
 }
 
+func (m *SnmpTransport) contextValidateAuthProtocol(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *SnmpTransport) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cluster != nil {
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *SnmpTransport) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnmpTransport) contextValidatePrivacyProtocol(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -264,6 +341,8 @@ func (m *SnmpTransport) contextValidateProtocol(ctx context.Context, formats str
 		if err := m.Protocol.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol")
 			}
 			return err
 		}
@@ -278,6 +357,8 @@ func (m *SnmpTransport) contextValidateVersion(ctx context.Context, formats strf
 		if err := m.Version.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("version")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version")
 			}
 			return err
 		}

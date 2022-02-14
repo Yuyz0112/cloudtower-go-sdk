@@ -20,8 +20,12 @@ import (
 type StoreConnectionType string
 
 func NewStoreConnectionType(value StoreConnectionType) *StoreConnectionType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated StoreConnectionType.
+func (m StoreConnectionType) Pointer() *StoreConnectionType {
+	return &m
 }
 
 const (

@@ -20,8 +20,12 @@ import (
 type Hypervisor string
 
 func NewHypervisor(value Hypervisor) *Hypervisor {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated Hypervisor.
+func (m Hypervisor) Pointer() *Hypervisor {
+	return &m
 }
 
 const (

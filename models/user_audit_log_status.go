@@ -20,8 +20,12 @@ import (
 type UserAuditLogStatus string
 
 func NewUserAuditLogStatus(value UserAuditLogStatus) *UserAuditLogStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UserAuditLogStatus.
+func (m UserAuditLogStatus) Pointer() *UserAuditLogStatus {
+	return &m
 }
 
 const (

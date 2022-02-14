@@ -85,6 +85,8 @@ func (m *NestedBrickDiskLayout) validateDirection(formats strfmt.Registry) error
 		if err := m.Direction.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("direction")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("direction")
 			}
 			return err
 		}
@@ -107,6 +109,8 @@ func (m *NestedBrickDiskLayout) validatePhase(formats strfmt.Registry) error {
 		if err := m.Phase.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
 			}
 			return err
 		}
@@ -148,6 +152,8 @@ func (m *NestedBrickDiskLayout) contextValidateDirection(ctx context.Context, fo
 		if err := m.Direction.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("direction")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("direction")
 			}
 			return err
 		}
@@ -162,6 +168,8 @@ func (m *NestedBrickDiskLayout) contextValidatePhase(ctx context.Context, format
 		if err := m.Phase.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
 			}
 			return err
 		}

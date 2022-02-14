@@ -20,8 +20,12 @@ import (
 type EverouteClusterPhase string
 
 func NewEverouteClusterPhase(value EverouteClusterPhase) *EverouteClusterPhase {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EverouteClusterPhase.
+func (m EverouteClusterPhase) Pointer() *EverouteClusterPhase {
+	return &m
 }
 
 const (

@@ -138,7 +138,9 @@ type HostWhereInput struct {
 	ChunkIDStartsWith *string `json:"chunk_id_starts_with,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// cpu brand
 	CPUBrand *string `json:"cpu_brand,omitempty"`
@@ -183,13 +185,17 @@ type HostWhereInput struct {
 	CPUBrandStartsWith *string `json:"cpu_brand_starts_with,omitempty"`
 
 	// cpu fan speed unit
-	CPUFanSpeedUnit interface{} `json:"cpu_fan_speed_unit,omitempty"`
+	CPUFanSpeedUnit struct {
+		CPUFanSpeedUnit
+	} `json:"cpu_fan_speed_unit,omitempty"`
 
 	// cpu fan speed unit in
 	CPUFanSpeedUnitIn []CPUFanSpeedUnit `json:"cpu_fan_speed_unit_in,omitempty"`
 
 	// cpu fan speed unit not
-	CPUFanSpeedUnitNot interface{} `json:"cpu_fan_speed_unit_not,omitempty"`
+	CPUFanSpeedUnitNot struct {
+		CPUFanSpeedUnit
+	} `json:"cpu_fan_speed_unit_not,omitempty"`
 
 	// cpu fan speed unit not in
 	CPUFanSpeedUnitNotIn []CPUFanSpeedUnit `json:"cpu_fan_speed_unit_not_in,omitempty"`
@@ -303,13 +309,19 @@ type HostWhereInput struct {
 	DataIPStartsWith *string `json:"data_ip_starts_with,omitempty"`
 
 	// disks every
-	DisksEvery interface{} `json:"disks_every,omitempty"`
+	DisksEvery struct {
+		DiskWhereInput
+	} `json:"disks_every,omitempty"`
 
 	// disks none
-	DisksNone interface{} `json:"disks_none,omitempty"`
+	DisksNone struct {
+		DiskWhereInput
+	} `json:"disks_none,omitempty"`
 
 	// disks some
-	DisksSome interface{} `json:"disks_some,omitempty"`
+	DisksSome struct {
+		DiskWhereInput
+	} `json:"disks_some,omitempty"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
@@ -426,7 +438,9 @@ type HostWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// ipmi
-	Ipmi interface{} `json:"ipmi,omitempty"`
+	Ipmi struct {
+		IpmiWhereInput
+	} `json:"ipmi,omitempty"`
 
 	// is os in raid1
 	IsOsInRaid1 *bool `json:"is_os_in_raid1,omitempty"`
@@ -435,13 +449,19 @@ type HostWhereInput struct {
 	IsOsInRaid1Not *bool `json:"is_os_in_raid1_not,omitempty"`
 
 	// labels every
-	LabelsEvery interface{} `json:"labels_every,omitempty"`
+	LabelsEvery struct {
+		LabelWhereInput
+	} `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone interface{} `json:"labels_none,omitempty"`
+	LabelsNone struct {
+		LabelWhereInput
+	} `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome interface{} `json:"labels_some,omitempty"`
+	LabelsSome struct {
+		LabelWhereInput
+	} `json:"labels_some,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -648,13 +668,19 @@ type HostWhereInput struct {
 	NicCountNotIn []int32 `json:"nic_count_not_in,omitempty"`
 
 	// nics every
-	NicsEvery interface{} `json:"nics_every,omitempty"`
+	NicsEvery struct {
+		NicWhereInput
+	} `json:"nics_every,omitempty"`
 
 	// nics none
-	NicsNone interface{} `json:"nics_none,omitempty"`
+	NicsNone struct {
+		NicWhereInput
+	} `json:"nics_none,omitempty"`
 
 	// nics some
-	NicsSome interface{} `json:"nics_some,omitempty"`
+	NicsSome struct {
+		NicWhereInput
+	} `json:"nics_some,omitempty"`
 
 	// node topo local id
 	NodeTopoLocalID *string `json:"node_topo_local_id,omitempty"`
@@ -813,13 +839,19 @@ type HostWhereInput struct {
 	PmemDimmCountNotIn []int32 `json:"pmem_dimm_count_not_in,omitempty"`
 
 	// pmem dimms every
-	PmemDimmsEvery interface{} `json:"pmem_dimms_every,omitempty"`
+	PmemDimmsEvery struct {
+		PmemDimmWhereInput
+	} `json:"pmem_dimms_every,omitempty"`
 
 	// pmem dimms none
-	PmemDimmsNone interface{} `json:"pmem_dimms_none,omitempty"`
+	PmemDimmsNone struct {
+		PmemDimmWhereInput
+	} `json:"pmem_dimms_none,omitempty"`
 
 	// pmem dimms some
-	PmemDimmsSome interface{} `json:"pmem_dimms_some,omitempty"`
+	PmemDimmsSome struct {
+		PmemDimmWhereInput
+	} `json:"pmem_dimms_some,omitempty"`
 
 	// pmem disk count
 	PmemDiskCount *int32 `json:"pmem_disk_count,omitempty"`
@@ -1122,25 +1154,33 @@ type HostWhereInput struct {
 	SsdDiskCountNotIn []int32 `json:"ssd_disk_count_not_in,omitempty"`
 
 	// state
-	State interface{} `json:"state,omitempty"`
+	State struct {
+		HostState
+	} `json:"state,omitempty"`
 
 	// state in
 	StateIn []HostState `json:"state_in,omitempty"`
 
 	// state not
-	StateNot interface{} `json:"state_not,omitempty"`
+	StateNot struct {
+		HostState
+	} `json:"state_not,omitempty"`
 
 	// state not in
 	StateNotIn []HostState `json:"state_not_in,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		HostStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []HostStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		HostStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []HostStatus `json:"status_not_in,omitempty"`
@@ -1338,13 +1378,19 @@ type HostWhereInput struct {
 	TotalMemoryBytesNotIn []float64 `json:"total_memory_bytes_not_in,omitempty"`
 
 	// usb devices every
-	UsbDevicesEvery interface{} `json:"usb_devices_every,omitempty"`
+	UsbDevicesEvery struct {
+		UsbDeviceWhereInput
+	} `json:"usb_devices_every,omitempty"`
 
 	// usb devices none
-	UsbDevicesNone interface{} `json:"usb_devices_none,omitempty"`
+	UsbDevicesNone struct {
+		UsbDeviceWhereInput
+	} `json:"usb_devices_none,omitempty"`
 
 	// usb devices some
-	UsbDevicesSome interface{} `json:"usb_devices_some,omitempty"`
+	UsbDevicesSome struct {
+		UsbDeviceWhereInput
+	} `json:"usb_devices_some,omitempty"`
 
 	// used cpu hz
 	UsedCPUHz *float64 `json:"used_cpu_hz,omitempty"`
@@ -1485,16 +1531,24 @@ type HostWhereInput struct {
 	VmotionIPStartsWith *string `json:"vmotion_ip_starts_with,omitempty"`
 
 	// vms every
-	VmsEvery interface{} `json:"vms_every,omitempty"`
+	VmsEvery struct {
+		VMWhereInput
+	} `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone interface{} `json:"vms_none,omitempty"`
+	VmsNone struct {
+		VMWhereInput
+	} `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome interface{} `json:"vms_some,omitempty"`
+	VmsSome struct {
+		VMWhereInput
+	} `json:"vms_some,omitempty"`
 
 	// vsphere esxi account
-	VsphereEsxiAccount interface{} `json:"vsphereEsxiAccount,omitempty"`
+	VsphereEsxiAccount struct {
+		VsphereEsxiAccountWhereInput
+	} `json:"vsphereEsxiAccount,omitempty"`
 
 	// with faster ssd as cache
 	WithFasterSsdAsCache *bool `json:"with_faster_ssd_as_cache,omitempty"`
@@ -1503,7 +1557,9 @@ type HostWhereInput struct {
 	WithFasterSsdAsCacheNot *bool `json:"with_faster_ssd_as_cache_not,omitempty"`
 
 	// zone
-	Zone interface{} `json:"zone,omitempty"`
+	Zone struct {
+		ZoneWhereInput
+	} `json:"zone,omitempty"`
 }
 
 // Validate validates this host where input
@@ -1522,7 +1578,19 @@ func (m *HostWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCPUFanSpeedUnit(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCPUFanSpeedUnitIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCPUFanSpeedUnitNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1530,7 +1598,67 @@ func (m *HostWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDisksEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisksNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisksSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIpmi(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNicsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNicsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNicsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePmemDimmsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePmemDimmsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePmemDimmsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateState(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStateIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStateNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1538,11 +1666,51 @@ func (m *HostWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatusNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUsbDevicesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUsbDevicesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUsbDevicesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVsphereEsxiAccount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateZone(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1566,6 +1734,8 @@ func (m *HostWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1590,6 +1760,8 @@ func (m *HostWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1614,11 +1786,29 @@ func (m *HostWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateCPUFanSpeedUnit(formats strfmt.Registry) error {
+	if swag.IsZero(m.CPUFanSpeedUnit) { // not required
+		return nil
 	}
 
 	return nil
@@ -1634,10 +1824,20 @@ func (m *HostWhereInput) validateCPUFanSpeedUnitIn(formats strfmt.Registry) erro
 		if err := m.CPUFanSpeedUnitIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cpu_fan_speed_unit_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cpu_fan_speed_unit_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateCPUFanSpeedUnitNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.CPUFanSpeedUnitNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1653,10 +1853,124 @@ func (m *HostWhereInput) validateCPUFanSpeedUnitNotIn(formats strfmt.Registry) e
 		if err := m.CPUFanSpeedUnitNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cpu_fan_speed_unit_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cpu_fan_speed_unit_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateDisksEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisksEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateDisksNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisksNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateDisksSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisksSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateIpmi(formats strfmt.Registry) error {
+	if swag.IsZero(m.Ipmi) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateLabelsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateLabelsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateNicsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NicsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateNicsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NicsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateNicsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NicsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validatePmemDimmsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.PmemDimmsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validatePmemDimmsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.PmemDimmsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validatePmemDimmsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.PmemDimmsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateState(formats strfmt.Registry) error {
+	if swag.IsZero(m.State) { // not required
+		return nil
 	}
 
 	return nil
@@ -1672,10 +1986,20 @@ func (m *HostWhereInput) validateStateIn(formats strfmt.Registry) error {
 		if err := m.StateIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateStateNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StateNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1691,10 +2015,20 @@ func (m *HostWhereInput) validateStateNotIn(formats strfmt.Registry) error {
 		if err := m.StateNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -1710,10 +2044,20 @@ func (m *HostWhereInput) validateStatusIn(formats strfmt.Registry) error {
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1729,10 +2073,76 @@ func (m *HostWhereInput) validateStatusNotIn(formats strfmt.Registry) error {
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateUsbDevicesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsbDevicesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateUsbDevicesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsbDevicesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateUsbDevicesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsbDevicesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateVmsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateVmsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateVmsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateVsphereEsxiAccount(formats strfmt.Registry) error {
+	if swag.IsZero(m.VsphereEsxiAccount) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *HostWhereInput) validateZone(formats strfmt.Registry) error {
+	if swag.IsZero(m.Zone) { // not required
+		return nil
 	}
 
 	return nil
@@ -1754,7 +2164,19 @@ func (m *HostWhereInput) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCPUFanSpeedUnit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCPUFanSpeedUnitIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCPUFanSpeedUnitNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1762,7 +2184,67 @@ func (m *HostWhereInput) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateDisksEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisksNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisksSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIpmi(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNicsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNicsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNicsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePmemDimmsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePmemDimmsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePmemDimmsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateState(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStateIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStateNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1770,11 +2252,51 @@ func (m *HostWhereInput) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsbDevicesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsbDevicesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsbDevicesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVsphereEsxiAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateZone(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1792,6 +2314,8 @@ func (m *HostWhereInput) contextValidateAND(ctx context.Context, formats strfmt.
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1810,6 +2334,8 @@ func (m *HostWhereInput) contextValidateNOT(ctx context.Context, formats strfmt.
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1828,12 +2354,24 @@ func (m *HostWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateCPUFanSpeedUnit(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1845,11 +2383,18 @@ func (m *HostWhereInput) contextValidateCPUFanSpeedUnitIn(ctx context.Context, f
 		if err := m.CPUFanSpeedUnitIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cpu_fan_speed_unit_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cpu_fan_speed_unit_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateCPUFanSpeedUnitNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1861,11 +2406,83 @@ func (m *HostWhereInput) contextValidateCPUFanSpeedUnitNotIn(ctx context.Context
 		if err := m.CPUFanSpeedUnitNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cpu_fan_speed_unit_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cpu_fan_speed_unit_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateDisksEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateDisksNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateDisksSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateIpmi(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateNicsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateNicsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateNicsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidatePmemDimmsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidatePmemDimmsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidatePmemDimmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateState(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1877,11 +2494,18 @@ func (m *HostWhereInput) contextValidateStateIn(ctx context.Context, formats str
 		if err := m.StateIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateStateNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1893,11 +2517,18 @@ func (m *HostWhereInput) contextValidateStateNotIn(ctx context.Context, formats 
 		if err := m.StateNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1909,11 +2540,18 @@ func (m *HostWhereInput) contextValidateStatusIn(ctx context.Context, formats st
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1925,11 +2563,53 @@ func (m *HostWhereInput) contextValidateStatusNotIn(ctx context.Context, formats
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateUsbDevicesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateUsbDevicesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateUsbDevicesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateVsphereEsxiAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *HostWhereInput) contextValidateZone(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

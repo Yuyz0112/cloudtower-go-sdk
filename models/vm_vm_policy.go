@@ -20,8 +20,12 @@ import (
 type VMVMPolicy string
 
 func NewVMVMPolicy(value VMVMPolicy) *VMVMPolicy {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMVMPolicy.
+func (m VMVMPolicy) Pointer() *VMVMPolicy {
+	return &m
 }
 
 const (

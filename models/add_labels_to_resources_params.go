@@ -56,6 +56,8 @@ func (m *AddLabelsToResourcesParams) validateData(formats strfmt.Registry) error
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -74,6 +76,8 @@ func (m *AddLabelsToResourcesParams) validateWhere(formats strfmt.Registry) erro
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -106,6 +110,8 @@ func (m *AddLabelsToResourcesParams) contextValidateData(ctx context.Context, fo
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -120,6 +126,8 @@ func (m *AddLabelsToResourcesParams) contextValidateWhere(ctx context.Context, f
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -332,6 +340,8 @@ func (m *AddLabelsToResourcesParamsData) validateClusters(formats strfmt.Registr
 		if err := m.Clusters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "clusters")
 			}
 			return err
 		}
@@ -349,6 +359,8 @@ func (m *AddLabelsToResourcesParamsData) validateConsistencyGroupSnapshots(forma
 		if err := m.ConsistencyGroupSnapshots.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "consistency_group_snapshots")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "consistency_group_snapshots")
 			}
 			return err
 		}
@@ -366,6 +378,8 @@ func (m *AddLabelsToResourcesParamsData) validateConsistencyGroups(formats strfm
 		if err := m.ConsistencyGroups.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "consistency_groups")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "consistency_groups")
 			}
 			return err
 		}
@@ -383,6 +397,8 @@ func (m *AddLabelsToResourcesParamsData) validateDatacenters(formats strfmt.Regi
 		if err := m.Datacenters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "datacenters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "datacenters")
 			}
 			return err
 		}
@@ -400,6 +416,8 @@ func (m *AddLabelsToResourcesParamsData) validateDisks(formats strfmt.Registry) 
 		if err := m.Disks.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "disks")
 			}
 			return err
 		}
@@ -417,6 +435,8 @@ func (m *AddLabelsToResourcesParamsData) validateElfImages(formats strfmt.Regist
 		if err := m.ElfImages.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "elf_images")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "elf_images")
 			}
 			return err
 		}
@@ -434,6 +454,8 @@ func (m *AddLabelsToResourcesParamsData) validateHosts(formats strfmt.Registry) 
 		if err := m.Hosts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "hosts")
 			}
 			return err
 		}
@@ -451,6 +473,8 @@ func (m *AddLabelsToResourcesParamsData) validateIscsiLunSnapshots(formats strfm
 		if err := m.IscsiLunSnapshots.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "iscsi_lun_snapshots")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "iscsi_lun_snapshots")
 			}
 			return err
 		}
@@ -468,6 +492,8 @@ func (m *AddLabelsToResourcesParamsData) validateIscsiLuns(formats strfmt.Regist
 		if err := m.IscsiLuns.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "iscsi_luns")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "iscsi_luns")
 			}
 			return err
 		}
@@ -485,6 +511,8 @@ func (m *AddLabelsToResourcesParamsData) validateIscsiTargets(formats strfmt.Reg
 		if err := m.IscsiTargets.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "iscsi_targets")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "iscsi_targets")
 			}
 			return err
 		}
@@ -502,6 +530,8 @@ func (m *AddLabelsToResourcesParamsData) validateNamespaceGroups(formats strfmt.
 		if err := m.NamespaceGroups.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "namespace_groups")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "namespace_groups")
 			}
 			return err
 		}
@@ -519,6 +549,8 @@ func (m *AddLabelsToResourcesParamsData) validateNfsExports(formats strfmt.Regis
 		if err := m.NfsExports.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nfs_exports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nfs_exports")
 			}
 			return err
 		}
@@ -536,6 +568,8 @@ func (m *AddLabelsToResourcesParamsData) validateNfsInodes(formats strfmt.Regist
 		if err := m.NfsInodes.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nfs_inodes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nfs_inodes")
 			}
 			return err
 		}
@@ -553,6 +587,8 @@ func (m *AddLabelsToResourcesParamsData) validateNics(formats strfmt.Registry) e
 		if err := m.Nics.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nics")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nics")
 			}
 			return err
 		}
@@ -570,6 +606,8 @@ func (m *AddLabelsToResourcesParamsData) validateNvmfNamespaceSnapshots(formats 
 		if err := m.NvmfNamespaceSnapshots.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nvmf_namespace_snapshots")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nvmf_namespace_snapshots")
 			}
 			return err
 		}
@@ -587,6 +625,8 @@ func (m *AddLabelsToResourcesParamsData) validateNvmfNamespaces(formats strfmt.R
 		if err := m.NvmfNamespaces.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nvmf_namespaces")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nvmf_namespaces")
 			}
 			return err
 		}
@@ -604,6 +644,8 @@ func (m *AddLabelsToResourcesParamsData) validateNvmfSubsystems(formats strfmt.R
 		if err := m.NvmfSubsystems.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nvmf_subsystems")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nvmf_subsystems")
 			}
 			return err
 		}
@@ -621,6 +663,8 @@ func (m *AddLabelsToResourcesParamsData) validateVdses(formats strfmt.Registry) 
 		if err := m.Vdses.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vdses")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vdses")
 			}
 			return err
 		}
@@ -638,6 +682,8 @@ func (m *AddLabelsToResourcesParamsData) validateVlans(formats strfmt.Registry) 
 		if err := m.Vlans.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vlans")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vlans")
 			}
 			return err
 		}
@@ -655,6 +701,8 @@ func (m *AddLabelsToResourcesParamsData) validateVMSnapshots(formats strfmt.Regi
 		if err := m.VMSnapshots.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vm_snapshots")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vm_snapshots")
 			}
 			return err
 		}
@@ -672,6 +720,8 @@ func (m *AddLabelsToResourcesParamsData) validateVMTemplates(formats strfmt.Regi
 		if err := m.VMTemplates.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vm_templates")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vm_templates")
 			}
 			return err
 		}
@@ -689,6 +739,8 @@ func (m *AddLabelsToResourcesParamsData) validateVMVolumes(formats strfmt.Regist
 		if err := m.VMVolumes.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vm_volumes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vm_volumes")
 			}
 			return err
 		}
@@ -706,6 +758,8 @@ func (m *AddLabelsToResourcesParamsData) validateVms(formats strfmt.Registry) er
 		if err := m.Vms.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vms")
 			}
 			return err
 		}
@@ -822,6 +876,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateClusters(ctx context.Con
 		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "clusters")
 			}
 			return err
 		}
@@ -836,6 +892,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateConsistencyGroupSnapshot
 		if err := m.ConsistencyGroupSnapshots.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "consistency_group_snapshots")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "consistency_group_snapshots")
 			}
 			return err
 		}
@@ -850,6 +908,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateConsistencyGroups(ctx co
 		if err := m.ConsistencyGroups.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "consistency_groups")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "consistency_groups")
 			}
 			return err
 		}
@@ -864,6 +924,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateDatacenters(ctx context.
 		if err := m.Datacenters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "datacenters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "datacenters")
 			}
 			return err
 		}
@@ -878,6 +940,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateDisks(ctx context.Contex
 		if err := m.Disks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "disks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "disks")
 			}
 			return err
 		}
@@ -892,6 +956,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateElfImages(ctx context.Co
 		if err := m.ElfImages.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "elf_images")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "elf_images")
 			}
 			return err
 		}
@@ -906,6 +972,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateHosts(ctx context.Contex
 		if err := m.Hosts.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "hosts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "hosts")
 			}
 			return err
 		}
@@ -920,6 +988,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateIscsiLunSnapshots(ctx co
 		if err := m.IscsiLunSnapshots.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "iscsi_lun_snapshots")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "iscsi_lun_snapshots")
 			}
 			return err
 		}
@@ -934,6 +1004,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateIscsiLuns(ctx context.Co
 		if err := m.IscsiLuns.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "iscsi_luns")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "iscsi_luns")
 			}
 			return err
 		}
@@ -948,6 +1020,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateIscsiTargets(ctx context
 		if err := m.IscsiTargets.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "iscsi_targets")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "iscsi_targets")
 			}
 			return err
 		}
@@ -962,6 +1036,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateNamespaceGroups(ctx cont
 		if err := m.NamespaceGroups.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "namespace_groups")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "namespace_groups")
 			}
 			return err
 		}
@@ -976,6 +1052,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateNfsExports(ctx context.C
 		if err := m.NfsExports.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nfs_exports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nfs_exports")
 			}
 			return err
 		}
@@ -990,6 +1068,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateNfsInodes(ctx context.Co
 		if err := m.NfsInodes.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nfs_inodes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nfs_inodes")
 			}
 			return err
 		}
@@ -1004,6 +1084,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateNics(ctx context.Context
 		if err := m.Nics.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nics")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nics")
 			}
 			return err
 		}
@@ -1018,6 +1100,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateNvmfNamespaceSnapshots(c
 		if err := m.NvmfNamespaceSnapshots.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nvmf_namespace_snapshots")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nvmf_namespace_snapshots")
 			}
 			return err
 		}
@@ -1032,6 +1116,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateNvmfNamespaces(ctx conte
 		if err := m.NvmfNamespaces.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nvmf_namespaces")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nvmf_namespaces")
 			}
 			return err
 		}
@@ -1046,6 +1132,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateNvmfSubsystems(ctx conte
 		if err := m.NvmfSubsystems.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "nvmf_subsystems")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "nvmf_subsystems")
 			}
 			return err
 		}
@@ -1060,6 +1148,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateVdses(ctx context.Contex
 		if err := m.Vdses.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vdses")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vdses")
 			}
 			return err
 		}
@@ -1074,6 +1164,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateVlans(ctx context.Contex
 		if err := m.Vlans.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vlans")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vlans")
 			}
 			return err
 		}
@@ -1088,6 +1180,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateVMSnapshots(ctx context.
 		if err := m.VMSnapshots.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vm_snapshots")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vm_snapshots")
 			}
 			return err
 		}
@@ -1102,6 +1196,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateVMTemplates(ctx context.
 		if err := m.VMTemplates.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vm_templates")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vm_templates")
 			}
 			return err
 		}
@@ -1116,6 +1212,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateVMVolumes(ctx context.Co
 		if err := m.VMVolumes.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vm_volumes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vm_volumes")
 			}
 			return err
 		}
@@ -1130,6 +1228,8 @@ func (m *AddLabelsToResourcesParamsData) contextValidateVms(ctx context.Context,
 		if err := m.Vms.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "vms")
 			}
 			return err
 		}

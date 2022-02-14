@@ -20,8 +20,12 @@ import (
 type ConsistencyGroupSnapshotOrderByInput string
 
 func NewConsistencyGroupSnapshotOrderByInput(value ConsistencyGroupSnapshotOrderByInput) *ConsistencyGroupSnapshotOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ConsistencyGroupSnapshotOrderByInput.
+func (m ConsistencyGroupSnapshotOrderByInput) Pointer() *ConsistencyGroupSnapshotOrderByInput {
+	return &m
 }
 
 const (

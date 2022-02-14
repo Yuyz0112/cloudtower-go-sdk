@@ -78,6 +78,8 @@ func (m *NestedSnapshotGroupVMInfo) validateDisks(formats strfmt.Registry) error
 			if err := m.Disks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -120,6 +122,8 @@ func (m *NestedSnapshotGroupVMInfo) validateVMSnapshotStatus(formats strfmt.Regi
 		if err := m.VMSnapshotStatus.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_snapshot_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_snapshot_status")
 			}
 			return err
 		}
@@ -154,6 +158,8 @@ func (m *NestedSnapshotGroupVMInfo) contextValidateDisks(ctx context.Context, fo
 			if err := m.Disks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -170,6 +176,8 @@ func (m *NestedSnapshotGroupVMInfo) contextValidateVMSnapshotStatus(ctx context.
 		if err := m.VMSnapshotStatus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_snapshot_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_snapshot_status")
 			}
 			return err
 		}

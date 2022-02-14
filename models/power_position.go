@@ -20,8 +20,12 @@ import (
 type PowerPosition string
 
 func NewPowerPosition(value PowerPosition) *PowerPosition {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated PowerPosition.
+func (m PowerPosition) Pointer() *PowerPosition {
+	return &m
 }
 
 const (

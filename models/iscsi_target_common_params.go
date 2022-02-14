@@ -123,6 +123,8 @@ func (m *IscsiTargetCommonParams) validateInitiatorChaps(formats strfmt.Registry
 			if err := m.InitiatorChaps[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("initiator_chaps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("initiator_chaps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -155,6 +157,8 @@ func (m *IscsiTargetCommonParams) contextValidateInitiatorChaps(ctx context.Cont
 			if err := m.InitiatorChaps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("initiator_chaps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("initiator_chaps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

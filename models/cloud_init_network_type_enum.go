@@ -20,8 +20,12 @@ import (
 type CloudInitNetworkTypeEnum string
 
 func NewCloudInitNetworkTypeEnum(value CloudInitNetworkTypeEnum) *CloudInitNetworkTypeEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated CloudInitNetworkTypeEnum.
+func (m CloudInitNetworkTypeEnum) Pointer() *CloudInitNetworkTypeEnum {
+	return &m
 }
 
 const (

@@ -348,6 +348,8 @@ func (m *Label) validateClusters(formats strfmt.Registry) error {
 			if err := m.Clusters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clusters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("clusters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -372,6 +374,8 @@ func (m *Label) validateConsistencyGroupSnapshots(formats strfmt.Registry) error
 			if err := m.ConsistencyGroupSnapshots[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consistency_group_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("consistency_group_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -396,6 +400,8 @@ func (m *Label) validateConsistencyGroups(formats strfmt.Registry) error {
 			if err := m.ConsistencyGroups[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consistency_groups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("consistency_groups" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -420,6 +426,8 @@ func (m *Label) validateContentLibraryImages(formats strfmt.Registry) error {
 			if err := m.ContentLibraryImages[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("content_library_images" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("content_library_images" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -444,6 +452,8 @@ func (m *Label) validateContentLibraryVMTemplates(formats strfmt.Registry) error
 			if err := m.ContentLibraryVMTemplates[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("content_library_vm_templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("content_library_vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -477,6 +487,8 @@ func (m *Label) validateDatacenters(formats strfmt.Registry) error {
 			if err := m.Datacenters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("datacenters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("datacenters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -501,6 +513,8 @@ func (m *Label) validateDisks(formats strfmt.Registry) error {
 			if err := m.Disks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -525,6 +539,8 @@ func (m *Label) validateElfImages(formats strfmt.Registry) error {
 			if err := m.ElfImages[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("elf_images" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("elf_images" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -549,6 +565,8 @@ func (m *Label) validateHosts(formats strfmt.Registry) error {
 			if err := m.Hosts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("hosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -582,6 +600,8 @@ func (m *Label) validateIscsiLunSnapshots(formats strfmt.Registry) error {
 			if err := m.IscsiLunSnapshots[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("iscsi_lun_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("iscsi_lun_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -606,6 +626,8 @@ func (m *Label) validateIscsiLuns(formats strfmt.Registry) error {
 			if err := m.IscsiLuns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("iscsi_luns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("iscsi_luns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -630,6 +652,8 @@ func (m *Label) validateIscsiTargets(formats strfmt.Registry) error {
 			if err := m.IscsiTargets[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("iscsi_targets" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("iscsi_targets" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -654,6 +678,8 @@ func (m *Label) validateIsolationPolicies(formats strfmt.Registry) error {
 			if err := m.IsolationPolicies[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("isolation_policies" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("isolation_policies" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -687,6 +713,8 @@ func (m *Label) validateNamespaceGroups(formats strfmt.Registry) error {
 			if err := m.NamespaceGroups[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("namespace_groups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("namespace_groups" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -711,6 +739,8 @@ func (m *Label) validateNfsExports(formats strfmt.Registry) error {
 			if err := m.NfsExports[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nfs_exports" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nfs_exports" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -735,6 +765,8 @@ func (m *Label) validateNfsInodes(formats strfmt.Registry) error {
 			if err := m.NfsInodes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nfs_inodes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nfs_inodes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -759,6 +791,8 @@ func (m *Label) validateNics(formats strfmt.Registry) error {
 			if err := m.Nics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -783,6 +817,8 @@ func (m *Label) validateNvmfNamespaceSnapshots(formats strfmt.Registry) error {
 			if err := m.NvmfNamespaceSnapshots[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nvmf_namespace_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nvmf_namespace_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -807,6 +843,8 @@ func (m *Label) validateNvmfNamespaces(formats strfmt.Registry) error {
 			if err := m.NvmfNamespaces[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nvmf_namespaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nvmf_namespaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -831,6 +869,8 @@ func (m *Label) validateNvmfSubsystems(formats strfmt.Registry) error {
 			if err := m.NvmfSubsystems[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nvmf_subsystems" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nvmf_subsystems" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -855,6 +895,8 @@ func (m *Label) validateSecurityPolicies(formats strfmt.Registry) error {
 			if err := m.SecurityPolicies[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("security_policies" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("security_policies" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -879,6 +921,8 @@ func (m *Label) validateVdses(formats strfmt.Registry) error {
 			if err := m.Vdses[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vdses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vdses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -903,6 +947,8 @@ func (m *Label) validateVlans(formats strfmt.Registry) error {
 			if err := m.Vlans[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vlans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vlans" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -927,6 +973,8 @@ func (m *Label) validateVMSnapshots(formats strfmt.Registry) error {
 			if err := m.VMSnapshots[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -951,6 +999,8 @@ func (m *Label) validateVMTemplates(formats strfmt.Registry) error {
 			if err := m.VMTemplates[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -975,6 +1025,8 @@ func (m *Label) validateVMVolumes(formats strfmt.Registry) error {
 			if err := m.VMVolumes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_volumes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_volumes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -999,6 +1051,8 @@ func (m *Label) validateVms(formats strfmt.Registry) error {
 			if err := m.Vms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1135,6 +1189,8 @@ func (m *Label) contextValidateClusters(ctx context.Context, formats strfmt.Regi
 			if err := m.Clusters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clusters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("clusters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1153,6 +1209,8 @@ func (m *Label) contextValidateConsistencyGroupSnapshots(ctx context.Context, fo
 			if err := m.ConsistencyGroupSnapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consistency_group_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("consistency_group_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1171,6 +1229,8 @@ func (m *Label) contextValidateConsistencyGroups(ctx context.Context, formats st
 			if err := m.ConsistencyGroups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consistency_groups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("consistency_groups" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1189,6 +1249,8 @@ func (m *Label) contextValidateContentLibraryImages(ctx context.Context, formats
 			if err := m.ContentLibraryImages[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("content_library_images" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("content_library_images" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1207,6 +1269,8 @@ func (m *Label) contextValidateContentLibraryVMTemplates(ctx context.Context, fo
 			if err := m.ContentLibraryVMTemplates[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("content_library_vm_templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("content_library_vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1225,6 +1289,8 @@ func (m *Label) contextValidateDatacenters(ctx context.Context, formats strfmt.R
 			if err := m.Datacenters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("datacenters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("datacenters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1243,6 +1309,8 @@ func (m *Label) contextValidateDisks(ctx context.Context, formats strfmt.Registr
 			if err := m.Disks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1261,6 +1329,8 @@ func (m *Label) contextValidateElfImages(ctx context.Context, formats strfmt.Reg
 			if err := m.ElfImages[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("elf_images" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("elf_images" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1279,6 +1349,8 @@ func (m *Label) contextValidateHosts(ctx context.Context, formats strfmt.Registr
 			if err := m.Hosts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("hosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1297,6 +1369,8 @@ func (m *Label) contextValidateIscsiLunSnapshots(ctx context.Context, formats st
 			if err := m.IscsiLunSnapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("iscsi_lun_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("iscsi_lun_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1315,6 +1389,8 @@ func (m *Label) contextValidateIscsiLuns(ctx context.Context, formats strfmt.Reg
 			if err := m.IscsiLuns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("iscsi_luns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("iscsi_luns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1333,6 +1409,8 @@ func (m *Label) contextValidateIscsiTargets(ctx context.Context, formats strfmt.
 			if err := m.IscsiTargets[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("iscsi_targets" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("iscsi_targets" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1351,6 +1429,8 @@ func (m *Label) contextValidateIsolationPolicies(ctx context.Context, formats st
 			if err := m.IsolationPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("isolation_policies" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("isolation_policies" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1369,6 +1449,8 @@ func (m *Label) contextValidateNamespaceGroups(ctx context.Context, formats strf
 			if err := m.NamespaceGroups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("namespace_groups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("namespace_groups" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1387,6 +1469,8 @@ func (m *Label) contextValidateNfsExports(ctx context.Context, formats strfmt.Re
 			if err := m.NfsExports[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nfs_exports" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nfs_exports" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1405,6 +1489,8 @@ func (m *Label) contextValidateNfsInodes(ctx context.Context, formats strfmt.Reg
 			if err := m.NfsInodes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nfs_inodes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nfs_inodes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1423,6 +1509,8 @@ func (m *Label) contextValidateNics(ctx context.Context, formats strfmt.Registry
 			if err := m.Nics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1441,6 +1529,8 @@ func (m *Label) contextValidateNvmfNamespaceSnapshots(ctx context.Context, forma
 			if err := m.NvmfNamespaceSnapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nvmf_namespace_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nvmf_namespace_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1459,6 +1549,8 @@ func (m *Label) contextValidateNvmfNamespaces(ctx context.Context, formats strfm
 			if err := m.NvmfNamespaces[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nvmf_namespaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nvmf_namespaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1477,6 +1569,8 @@ func (m *Label) contextValidateNvmfSubsystems(ctx context.Context, formats strfm
 			if err := m.NvmfSubsystems[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nvmf_subsystems" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nvmf_subsystems" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1495,6 +1589,8 @@ func (m *Label) contextValidateSecurityPolicies(ctx context.Context, formats str
 			if err := m.SecurityPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("security_policies" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("security_policies" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1513,6 +1609,8 @@ func (m *Label) contextValidateVdses(ctx context.Context, formats strfmt.Registr
 			if err := m.Vdses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vdses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vdses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1531,6 +1629,8 @@ func (m *Label) contextValidateVlans(ctx context.Context, formats strfmt.Registr
 			if err := m.Vlans[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vlans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vlans" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1549,6 +1649,8 @@ func (m *Label) contextValidateVMSnapshots(ctx context.Context, formats strfmt.R
 			if err := m.VMSnapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1567,6 +1669,8 @@ func (m *Label) contextValidateVMTemplates(ctx context.Context, formats strfmt.R
 			if err := m.VMTemplates[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1585,6 +1689,8 @@ func (m *Label) contextValidateVMVolumes(ctx context.Context, formats strfmt.Reg
 			if err := m.VMVolumes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_volumes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_volumes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1603,6 +1709,8 @@ func (m *Label) contextValidateVms(ctx context.Context, formats strfmt.Registry)
 			if err := m.Vms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

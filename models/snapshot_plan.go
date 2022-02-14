@@ -40,7 +40,9 @@ type SnapshotPlan struct {
 	EndTime *string `json:"end_time,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// exec h m
 	Exechm interface{} `json:"exec_h_m,omitempty"`
@@ -146,6 +148,10 @@ func (m *SnapshotPlan) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -259,6 +265,8 @@ func (m *SnapshotPlan) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -271,6 +279,14 @@ func (m *SnapshotPlan) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *SnapshotPlan) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -299,6 +315,8 @@ func (m *SnapshotPlan) validateExecutePlanType(formats strfmt.Registry) error {
 		if err := m.ExecutePlanType.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("execute_plan_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execute_plan_type")
 			}
 			return err
 		}
@@ -321,6 +339,8 @@ func (m *SnapshotPlan) validateExecutionTasks(formats strfmt.Registry) error {
 			if err := m.ExecutionTasks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("execution_tasks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("execution_tasks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -363,6 +383,8 @@ func (m *SnapshotPlan) validateLastExecuteStatus(formats strfmt.Registry) error 
 		if err := m.LastExecuteStatus.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("last_execute_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status")
 			}
 			return err
 		}
@@ -484,6 +506,8 @@ func (m *SnapshotPlan) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -506,6 +530,8 @@ func (m *SnapshotPlan) validateVms(formats strfmt.Registry) error {
 			if err := m.Vms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -521,6 +547,10 @@ func (m *SnapshotPlan) ContextValidate(ctx context.Context, formats strfmt.Regis
 	var res []error
 
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -556,10 +586,17 @@ func (m *SnapshotPlan) contextValidateCluster(ctx context.Context, formats strfm
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *SnapshotPlan) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -570,6 +607,8 @@ func (m *SnapshotPlan) contextValidateExecutePlanType(ctx context.Context, forma
 		if err := m.ExecutePlanType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("execute_plan_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execute_plan_type")
 			}
 			return err
 		}
@@ -586,6 +625,8 @@ func (m *SnapshotPlan) contextValidateExecutionTasks(ctx context.Context, format
 			if err := m.ExecutionTasks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("execution_tasks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("execution_tasks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -602,6 +643,8 @@ func (m *SnapshotPlan) contextValidateLastExecuteStatus(ctx context.Context, for
 		if err := m.LastExecuteStatus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("last_execute_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status")
 			}
 			return err
 		}
@@ -616,6 +659,8 @@ func (m *SnapshotPlan) contextValidateStatus(ctx context.Context, formats strfmt
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -632,6 +677,8 @@ func (m *SnapshotPlan) contextValidateVms(ctx context.Context, formats strfmt.Re
 			if err := m.Vms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

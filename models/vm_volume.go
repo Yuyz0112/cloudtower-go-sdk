@@ -53,7 +53,9 @@ type VMVolume struct {
 	LocalID *string `json:"local_id"`
 
 	// lun
-	Lun interface{} `json:"lun,omitempty"`
+	Lun struct {
+		NestedIscsiLun
+	} `json:"lun,omitempty"`
 
 	// mounting
 	// Required: true
@@ -110,6 +112,10 @@ func (m *VMVolume) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLun(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMounting(formats); err != nil {
 		res = append(res, err)
 	}
@@ -150,6 +156,8 @@ func (m *VMVolume) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -172,6 +180,8 @@ func (m *VMVolume) validateElfStoragePolicy(formats strfmt.Registry) error {
 		if err := m.ElfStoragePolicy.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("elf_storage_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_storage_policy")
 			}
 			return err
 		}
@@ -203,6 +213,8 @@ func (m *VMVolume) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -226,6 +238,14 @@ func (m *VMVolume) validateLocalID(formats strfmt.Registry) error {
 
 	if err := validate.Required("local_id", "body", m.LocalID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *VMVolume) validateLun(formats strfmt.Registry) error {
+	if swag.IsZero(m.Lun) { // not required
+		return nil
 	}
 
 	return nil
@@ -290,6 +310,8 @@ func (m *VMVolume) validateVMDisks(formats strfmt.Registry) error {
 			if err := m.VMDisks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -316,6 +338,10 @@ func (m *VMVolume) ContextValidate(ctx context.Context, formats strfmt.Registry)
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLun(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVMDisks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -332,6 +358,8 @@ func (m *VMVolume) contextValidateCluster(ctx context.Context, formats strfmt.Re
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -346,6 +374,8 @@ func (m *VMVolume) contextValidateElfStoragePolicy(ctx context.Context, formats 
 		if err := m.ElfStoragePolicy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("elf_storage_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_storage_policy")
 			}
 			return err
 		}
@@ -362,12 +392,19 @@ func (m *VMVolume) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMVolume) contextValidateLun(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -380,6 +417,8 @@ func (m *VMVolume) contextValidateVMDisks(ctx context.Context, formats strfmt.Re
 			if err := m.VMDisks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

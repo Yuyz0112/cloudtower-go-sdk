@@ -20,8 +20,12 @@ import (
 type LogCollectionOrderByInput string
 
 func NewLogCollectionOrderByInput(value LogCollectionOrderByInput) *LogCollectionOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated LogCollectionOrderByInput.
+func (m LogCollectionOrderByInput) Pointer() *LogCollectionOrderByInput {
+	return &m
 }
 
 const (
@@ -74,6 +78,12 @@ const (
 	// LogCollectionOrderByInputProgressDESC captures enum value "progress_DESC"
 	LogCollectionOrderByInputProgressDESC LogCollectionOrderByInput = "progress_DESC"
 
+	// LogCollectionOrderByInputServiceGroupsASC captures enum value "service_groups_ASC"
+	LogCollectionOrderByInputServiceGroupsASC LogCollectionOrderByInput = "service_groups_ASC"
+
+	// LogCollectionOrderByInputServiceGroupsDESC captures enum value "service_groups_DESC"
+	LogCollectionOrderByInputServiceGroupsDESC LogCollectionOrderByInput = "service_groups_DESC"
+
 	// LogCollectionOrderByInputSizeASC captures enum value "size_ASC"
 	LogCollectionOrderByInputSizeASC LogCollectionOrderByInput = "size_ASC"
 
@@ -104,7 +114,7 @@ var logCollectionOrderByInputEnum []interface{}
 
 func init() {
 	var res []LogCollectionOrderByInput
-	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","id_ASC","id_DESC","local_id_ASC","local_id_DESC","log_ended_at_ASC","log_ended_at_DESC","log_started_at_ASC","log_started_at_DESC","owner_ASC","owner_DESC","path_ASC","path_DESC","progress_ASC","progress_DESC","size_ASC","size_DESC","started_at_ASC","started_at_DESC","status_ASC","status_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","id_ASC","id_DESC","local_id_ASC","local_id_DESC","log_ended_at_ASC","log_ended_at_DESC","log_started_at_ASC","log_started_at_DESC","owner_ASC","owner_DESC","path_ASC","path_DESC","progress_ASC","progress_DESC","service_groups_ASC","service_groups_DESC","size_ASC","size_DESC","started_at_ASC","started_at_DESC","status_ASC","status_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

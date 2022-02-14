@@ -20,8 +20,12 @@ import (
 type LabelOrderByInput string
 
 func NewLabelOrderByInput(value LabelOrderByInput) *LabelOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated LabelOrderByInput.
+func (m LabelOrderByInput) Pointer() *LabelOrderByInput {
+	return &m
 }
 
 const (

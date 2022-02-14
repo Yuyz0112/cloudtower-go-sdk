@@ -64,7 +64,9 @@ type UsbDevice struct {
 	UsbType *string `json:"usb_type"`
 
 	// vm
-	VM interface{} `json:"vm,omitempty"`
+	VM struct {
+		NestedVM
+	} `json:"vm,omitempty"`
 }
 
 // Validate validates this usb device
@@ -115,6 +117,10 @@ func (m *UsbDevice) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateVM(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -149,6 +155,8 @@ func (m *UsbDevice) validateHost(formats strfmt.Registry) error {
 		if err := m.Host.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -225,6 +233,8 @@ func (m *UsbDevice) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -242,6 +252,14 @@ func (m *UsbDevice) validateUsbType(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *UsbDevice) validateVM(formats strfmt.Registry) error {
+	if swag.IsZero(m.VM) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 // ContextValidate validate this usb device based on the context it is used
 func (m *UsbDevice) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -251,6 +269,10 @@ func (m *UsbDevice) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVM(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -266,6 +288,8 @@ func (m *UsbDevice) contextValidateHost(ctx context.Context, formats strfmt.Regi
 		if err := m.Host.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -280,10 +304,17 @@ func (m *UsbDevice) contextValidateStatus(ctx context.Context, formats strfmt.Re
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *UsbDevice) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

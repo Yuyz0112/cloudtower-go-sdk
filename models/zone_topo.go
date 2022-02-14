@@ -80,6 +80,8 @@ func (m *ZoneTopo) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -98,6 +100,8 @@ func (m *ZoneTopo) validateClusterTopo(formats strfmt.Registry) error {
 		if err := m.ClusterTopo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster_topo")
 			}
 			return err
 		}
@@ -138,6 +142,8 @@ func (m *ZoneTopo) validateRackTopoes(formats strfmt.Registry) error {
 			if err := m.RackTopoes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rack_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rack_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -176,6 +182,8 @@ func (m *ZoneTopo) contextValidateCluster(ctx context.Context, formats strfmt.Re
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -190,6 +198,8 @@ func (m *ZoneTopo) contextValidateClusterTopo(ctx context.Context, formats strfm
 		if err := m.ClusterTopo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster_topo")
 			}
 			return err
 		}
@@ -206,6 +216,8 @@ func (m *ZoneTopo) contextValidateRackTopoes(ctx context.Context, formats strfmt
 			if err := m.RackTopoes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rack_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rack_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

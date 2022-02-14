@@ -102,6 +102,8 @@ func (m *HostCreationParamsData) validateDisks(formats strfmt.Registry) error {
 			if err := m.Disks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -154,6 +156,8 @@ func (m *HostCreationParamsData) validateIfaces(formats strfmt.Registry) error {
 			if err := m.Ifaces[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ifaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ifaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -173,6 +177,8 @@ func (m *HostCreationParamsData) validateIpmi(formats strfmt.Registry) error {
 		if err := m.Ipmi.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ipmi")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ipmi")
 			}
 			return err
 		}
@@ -211,6 +217,8 @@ func (m *HostCreationParamsData) contextValidateDisks(ctx context.Context, forma
 			if err := m.Disks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -229,6 +237,8 @@ func (m *HostCreationParamsData) contextValidateIfaces(ctx context.Context, form
 			if err := m.Ifaces[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ifaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ifaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -245,6 +255,8 @@ func (m *HostCreationParamsData) contextValidateIpmi(ctx context.Context, format
 		if err := m.Ipmi.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ipmi")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ipmi")
 			}
 			return err
 		}

@@ -20,8 +20,12 @@ import (
 type IsolationMode string
 
 func NewIsolationMode(value IsolationMode) *IsolationMode {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated IsolationMode.
+func (m IsolationMode) Pointer() *IsolationMode {
+	return &m
 }
 
 const (

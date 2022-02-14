@@ -21,7 +21,9 @@ import (
 type Alert struct {
 
 	// alert rule
-	AlertRule interface{} `json:"alert_rule,omitempty"`
+	AlertRule struct {
+		NestedAlertRule
+	} `json:"alert_rule,omitempty"`
 
 	// cause
 	// Required: true
@@ -35,14 +37,18 @@ type Alert struct {
 	CreateTime *string `json:"create_time,omitempty"`
 
 	// disk
-	Disk interface{} `json:"disk,omitempty"`
+	Disk struct {
+		NestedDisk
+	} `json:"disk,omitempty"`
 
 	// ended
 	// Required: true
 	Ended *bool `json:"ended"`
 
 	// host
-	Host interface{} `json:"host,omitempty"`
+	Host struct {
+		NestedHost
+	} `json:"host,omitempty"`
 
 	// id
 	// Required: true
@@ -104,6 +110,10 @@ type Alert struct {
 func (m *Alert) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAlertRule(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCause(formats); err != nil {
 		res = append(res, err)
 	}
@@ -112,7 +122,15 @@ func (m *Alert) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDisk(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEnded(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHost(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -178,6 +196,14 @@ func (m *Alert) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Alert) validateAlertRule(formats strfmt.Registry) error {
+	if swag.IsZero(m.AlertRule) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Alert) validateCause(formats strfmt.Registry) error {
 
 	if err := validate.Required("cause", "body", m.Cause); err != nil {
@@ -197,9 +223,19 @@ func (m *Alert) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Alert) validateDisk(formats strfmt.Registry) error {
+	if swag.IsZero(m.Disk) { // not required
+		return nil
 	}
 
 	return nil
@@ -209,6 +245,14 @@ func (m *Alert) validateEnded(formats strfmt.Registry) error {
 
 	if err := validate.Required("ended", "body", m.Ended); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) validateHost(formats strfmt.Registry) error {
+	if swag.IsZero(m.Host) { // not required
+		return nil
 	}
 
 	return nil
@@ -345,6 +389,8 @@ func (m *Alert) validateVms(formats strfmt.Registry) error {
 			if err := m.Vms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -359,7 +405,19 @@ func (m *Alert) validateVms(formats strfmt.Registry) error {
 func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAlertRule(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisk(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHost(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -373,16 +431,33 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	return nil
 }
 
+func (m *Alert) contextValidateAlertRule(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *Alert) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cluster != nil {
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *Alert) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -395,6 +470,8 @@ func (m *Alert) contextValidateVms(ctx context.Context, formats strfmt.Registry)
 			if err := m.Vms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

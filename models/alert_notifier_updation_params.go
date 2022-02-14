@@ -63,6 +63,8 @@ func (m *AlertNotifierUpdationParams) validateLanguageCode(formats strfmt.Regist
 	if err := m.LanguageCode.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("language_code")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("language_code")
 		}
 		return err
 	}
@@ -125,6 +127,8 @@ func (m *AlertNotifierUpdationParams) contextValidateLanguageCode(ctx context.Co
 	if err := m.LanguageCode.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("language_code")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("language_code")
 		}
 		return err
 	}

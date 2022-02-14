@@ -20,8 +20,12 @@ import (
 type VMVideoType string
 
 func NewVMVideoType(value VMVideoType) *VMVideoType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMVideoType.
+func (m VMVideoType) Pointer() *VMVideoType {
+	return &m
 }
 
 const (

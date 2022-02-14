@@ -20,8 +20,12 @@ import (
 type ReportTaskOrderByInput string
 
 func NewReportTaskOrderByInput(value ReportTaskOrderByInput) *ReportTaskOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ReportTaskOrderByInput.
+func (m ReportTaskOrderByInput) Pointer() *ReportTaskOrderByInput {
+	return &m
 }
 
 const (

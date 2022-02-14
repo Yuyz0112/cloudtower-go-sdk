@@ -20,8 +20,12 @@ import (
 type SvtImageOrderByInput string
 
 func NewSvtImageOrderByInput(value SvtImageOrderByInput) *SvtImageOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SvtImageOrderByInput.
+func (m SvtImageOrderByInput) Pointer() *SvtImageOrderByInput {
+	return &m
 }
 
 const (

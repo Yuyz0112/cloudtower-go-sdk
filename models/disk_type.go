@@ -20,8 +20,12 @@ import (
 type DiskType string
 
 func NewDiskType(value DiskType) *DiskType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated DiskType.
+func (m DiskType) Pointer() *DiskType {
+	return &m
 }
 
 const (

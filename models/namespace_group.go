@@ -21,7 +21,9 @@ import (
 type NamespaceGroup struct {
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -53,6 +55,10 @@ type NamespaceGroup struct {
 // Validate validates this namespace group
 func (m *NamespaceGroup) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
@@ -88,6 +94,14 @@ func (m *NamespaceGroup) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *NamespaceGroup) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NamespaceGroup) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
@@ -111,6 +125,8 @@ func (m *NamespaceGroup) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -162,6 +178,8 @@ func (m *NamespaceGroup) validateNamespaces(formats strfmt.Registry) error {
 			if err := m.Namespaces[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("namespaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("namespaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -182,6 +200,8 @@ func (m *NamespaceGroup) validateNvmfSubsystem(formats strfmt.Registry) error {
 		if err := m.NvmfSubsystem.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nvmf_subsystem")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystem")
 			}
 			return err
 		}
@@ -193,6 +213,10 @@ func (m *NamespaceGroup) validateNvmfSubsystem(formats strfmt.Registry) error {
 // ContextValidate validate this namespace group based on the context it is used
 func (m *NamespaceGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
 		res = append(res, err)
@@ -212,6 +236,11 @@ func (m *NamespaceGroup) ContextValidate(ctx context.Context, formats strfmt.Reg
 	return nil
 }
 
+func (m *NamespaceGroup) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *NamespaceGroup) contextValidateLabels(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Labels); i++ {
@@ -220,6 +249,8 @@ func (m *NamespaceGroup) contextValidateLabels(ctx context.Context, formats strf
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -238,6 +269,8 @@ func (m *NamespaceGroup) contextValidateNamespaces(ctx context.Context, formats 
 			if err := m.Namespaces[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("namespaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("namespaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -254,6 +287,8 @@ func (m *NamespaceGroup) contextValidateNvmfSubsystem(ctx context.Context, forma
 		if err := m.NvmfSubsystem.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nvmf_subsystem")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystem")
 			}
 			return err
 		}

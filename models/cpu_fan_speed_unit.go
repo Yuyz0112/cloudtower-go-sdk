@@ -20,8 +20,12 @@ import (
 type CPUFanSpeedUnit string
 
 func NewCPUFanSpeedUnit(value CPUFanSpeedUnit) *CPUFanSpeedUnit {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated CPUFanSpeedUnit.
+func (m CPUFanSpeedUnit) Pointer() *CPUFanSpeedUnit {
+	return &m
 }
 
 const (

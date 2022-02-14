@@ -20,8 +20,12 @@ import (
 type UsbDeviceOrderByInput string
 
 func NewUsbDeviceOrderByInput(value UsbDeviceOrderByInput) *UsbDeviceOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UsbDeviceOrderByInput.
+func (m UsbDeviceOrderByInput) Pointer() *UsbDeviceOrderByInput {
+	return &m
 }
 
 const (

@@ -20,8 +20,12 @@ import (
 type SeverityEnum string
 
 func NewSeverityEnum(value SeverityEnum) *SeverityEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SeverityEnum.
+func (m SeverityEnum) Pointer() *SeverityEnum {
+	return &m
 }
 
 const (

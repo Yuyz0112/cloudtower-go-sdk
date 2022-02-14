@@ -20,8 +20,12 @@ import (
 type VMDiskIoPolicy string
 
 func NewVMDiskIoPolicy(value VMDiskIoPolicy) *VMDiskIoPolicy {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMDiskIoPolicy.
+func (m VMDiskIoPolicy) Pointer() *VMDiskIoPolicy {
+	return &m
 }
 
 const (

@@ -30,13 +30,17 @@ type ContentLibraryVMTemplateWhereInput struct {
 	OR []*ContentLibraryVMTemplateWhereInput `json:"OR,omitempty"`
 
 	// architecture
-	Architecture interface{} `json:"architecture,omitempty"`
+	Architecture struct {
+		Architecture
+	} `json:"architecture,omitempty"`
 
 	// architecture in
 	ArchitectureIn []Architecture `json:"architecture_in,omitempty"`
 
 	// architecture not
-	ArchitectureNot interface{} `json:"architecture_not,omitempty"`
+	ArchitectureNot struct {
+		Architecture
+	} `json:"architecture_not,omitempty"`
 
 	// architecture not in
 	ArchitectureNotIn []Architecture `json:"architecture_not_in,omitempty"`
@@ -48,13 +52,19 @@ type ContentLibraryVMTemplateWhereInput struct {
 	CloudInitSupportedNot *bool `json:"cloud_init_supported_not,omitempty"`
 
 	// clusters every
-	ClustersEvery interface{} `json:"clusters_every,omitempty"`
+	ClustersEvery struct {
+		ClusterWhereInput
+	} `json:"clusters_every,omitempty"`
 
 	// clusters none
-	ClustersNone interface{} `json:"clusters_none,omitempty"`
+	ClustersNone struct {
+		ClusterWhereInput
+	} `json:"clusters_none,omitempty"`
 
 	// clusters some
-	ClustersSome interface{} `json:"clusters_some,omitempty"`
+	ClustersSome struct {
+		ClusterWhereInput
+	} `json:"clusters_some,omitempty"`
 
 	// created at
 	CreatedAt *string `json:"createdAt,omitempty"`
@@ -123,13 +133,17 @@ type ContentLibraryVMTemplateWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -177,13 +191,19 @@ type ContentLibraryVMTemplateWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery interface{} `json:"labels_every,omitempty"`
+	LabelsEvery struct {
+		LabelWhereInput
+	} `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone interface{} `json:"labels_none,omitempty"`
+	LabelsNone struct {
+		LabelWhereInput
+	} `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome interface{} `json:"labels_some,omitempty"`
+	LabelsSome struct {
+		LabelWhereInput
+	} `json:"labels_some,omitempty"`
 
 	// memory
 	Memory *float64 `json:"memory,omitempty"`
@@ -342,13 +362,19 @@ type ContentLibraryVMTemplateWhereInput struct {
 	VcpuNotIn []int32 `json:"vcpu_not_in,omitempty"`
 
 	// vm templates every
-	VMTemplatesEvery interface{} `json:"vm_templates_every,omitempty"`
+	VMTemplatesEvery struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_every,omitempty"`
 
 	// vm templates none
-	VMTemplatesNone interface{} `json:"vm_templates_none,omitempty"`
+	VMTemplatesNone struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_none,omitempty"`
 
 	// vm templates some
-	VMTemplatesSome interface{} `json:"vm_templates_some,omitempty"`
+	VMTemplatesSome struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_some,omitempty"`
 }
 
 // Validate validates this content library Vm template where input
@@ -367,7 +393,15 @@ func (m *ContentLibraryVMTemplateWhereInput) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.validateArchitecture(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateArchitectureIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateArchitectureNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -375,11 +409,55 @@ func (m *ContentLibraryVMTemplateWhereInput) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.validateClustersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -403,6 +481,8 @@ func (m *ContentLibraryVMTemplateWhereInput) validateAND(formats strfmt.Registry
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -427,6 +507,8 @@ func (m *ContentLibraryVMTemplateWhereInput) validateNOT(formats strfmt.Registry
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -451,11 +533,21 @@ func (m *ContentLibraryVMTemplateWhereInput) validateOR(formats strfmt.Registry)
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateArchitecture(formats strfmt.Registry) error {
+	if swag.IsZero(m.Architecture) { // not required
+		return nil
 	}
 
 	return nil
@@ -471,10 +563,20 @@ func (m *ContentLibraryVMTemplateWhereInput) validateArchitectureIn(formats strf
 		if err := m.ArchitectureIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("architecture_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("architecture_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateArchitectureNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ArchitectureNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -490,10 +592,44 @@ func (m *ContentLibraryVMTemplateWhereInput) validateArchitectureNotIn(formats s
 		if err := m.ArchitectureNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("architecture_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("architecture_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateClustersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateClustersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateClustersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -509,10 +645,20 @@ func (m *ContentLibraryVMTemplateWhereInput) validateEntityAsyncStatusIn(formats
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -528,10 +674,60 @@ func (m *ContentLibraryVMTemplateWhereInput) validateEntityAsyncStatusNotIn(form
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateLabelsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateLabelsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateVMTemplatesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateVMTemplatesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) validateVMTemplatesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -553,7 +749,15 @@ func (m *ContentLibraryVMTemplateWhereInput) ContextValidate(ctx context.Context
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateArchitecture(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateArchitectureIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateArchitectureNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -561,11 +765,55 @@ func (m *ContentLibraryVMTemplateWhereInput) ContextValidate(ctx context.Context
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateClustersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClustersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClustersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -583,6 +831,8 @@ func (m *ContentLibraryVMTemplateWhereInput) contextValidateAND(ctx context.Cont
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -601,6 +851,8 @@ func (m *ContentLibraryVMTemplateWhereInput) contextValidateNOT(ctx context.Cont
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -619,12 +871,19 @@ func (m *ContentLibraryVMTemplateWhereInput) contextValidateOR(ctx context.Conte
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateArchitecture(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -636,11 +895,18 @@ func (m *ContentLibraryVMTemplateWhereInput) contextValidateArchitectureIn(ctx c
 		if err := m.ArchitectureIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("architecture_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("architecture_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateArchitectureNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -652,11 +918,33 @@ func (m *ContentLibraryVMTemplateWhereInput) contextValidateArchitectureNotIn(ct
 		if err := m.ArchitectureNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("architecture_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("architecture_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateClustersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateClustersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -668,11 +956,18 @@ func (m *ContentLibraryVMTemplateWhereInput) contextValidateEntityAsyncStatusIn(
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -684,11 +979,43 @@ func (m *ContentLibraryVMTemplateWhereInput) contextValidateEntityAsyncStatusNot
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateVMTemplatesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateVMTemplatesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ContentLibraryVMTemplateWhereInput) contextValidateVMTemplatesSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

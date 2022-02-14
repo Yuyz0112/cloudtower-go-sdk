@@ -21,13 +21,17 @@ import (
 type BackupRestoreExecution struct {
 
 	// backup restore point
-	BackupRestorePoint interface{} `json:"backup_restore_point,omitempty"`
+	BackupRestorePoint struct {
+		NestedBackupRestorePoint
+	} `json:"backup_restore_point,omitempty"`
 
 	// duration
 	Duration *int32 `json:"duration,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// executed at
 	// Required: true
@@ -77,6 +81,14 @@ type BackupRestoreExecution struct {
 func (m *BackupRestoreExecution) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateBackupRestorePoint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateExecutedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -108,6 +120,22 @@ func (m *BackupRestoreExecution) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *BackupRestoreExecution) validateBackupRestorePoint(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePoint) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecution) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
 	return nil
 }
 
@@ -143,6 +171,8 @@ func (m *BackupRestoreExecution) validateMode(formats strfmt.Registry) error {
 		if err := m.Mode.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode")
 			}
 			return err
 		}
@@ -175,6 +205,8 @@ func (m *BackupRestoreExecution) validateRebuildNetworkMapping(formats strfmt.Re
 			if err := m.RebuildNetworkMapping[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rebuild_network_mapping" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rebuild_network_mapping" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -208,6 +240,8 @@ func (m *BackupRestoreExecution) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -219,6 +253,14 @@ func (m *BackupRestoreExecution) validateStatus(formats strfmt.Registry) error {
 // ContextValidate validate this backup restore execution based on the context it is used
 func (m *BackupRestoreExecution) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateBackupRestorePoint(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateMode(ctx, formats); err != nil {
 		res = append(res, err)
@@ -238,12 +280,24 @@ func (m *BackupRestoreExecution) ContextValidate(ctx context.Context, formats st
 	return nil
 }
 
+func (m *BackupRestoreExecution) contextValidateBackupRestorePoint(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupRestoreExecution) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *BackupRestoreExecution) contextValidateMode(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Mode != nil {
 		if err := m.Mode.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode")
 			}
 			return err
 		}
@@ -260,6 +314,8 @@ func (m *BackupRestoreExecution) contextValidateRebuildNetworkMapping(ctx contex
 			if err := m.RebuildNetworkMapping[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rebuild_network_mapping" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rebuild_network_mapping" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -276,6 +332,8 @@ func (m *BackupRestoreExecution) contextValidateStatus(ctx context.Context, form
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}

@@ -20,8 +20,12 @@ import (
 type StepUnit string
 
 func NewStepUnit(value StepUnit) *StepUnit {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated StepUnit.
+func (m StepUnit) Pointer() *StepUnit {
+	return &m
 }
 
 const (

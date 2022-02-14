@@ -30,10 +30,14 @@ type ZoneWhereInput struct {
 	OR []*ZoneWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// datacenter
-	Datacenter interface{} `json:"datacenter,omitempty"`
+	Datacenter struct {
+		DatacenterWhereInput
+	} `json:"datacenter,omitempty"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
@@ -84,13 +88,19 @@ type ZoneWhereInput struct {
 	HostNumNotIn []int32 `json:"host_num_not_in,omitempty"`
 
 	// hosts every
-	HostsEvery interface{} `json:"hosts_every,omitempty"`
+	HostsEvery struct {
+		HostWhereInput
+	} `json:"hosts_every,omitempty"`
 
 	// hosts none
-	HostsNone interface{} `json:"hosts_none,omitempty"`
+	HostsNone struct {
+		HostWhereInput
+	} `json:"hosts_none,omitempty"`
 
 	// hosts some
-	HostsSome interface{} `json:"hosts_some,omitempty"`
+	HostsSome struct {
+		HostWhereInput
+	} `json:"hosts_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -559,6 +569,26 @@ func (m *ZoneWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacenter(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -579,6 +609,8 @@ func (m *ZoneWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -603,6 +635,8 @@ func (m *ZoneWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -627,11 +661,53 @@ func (m *ZoneWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ZoneWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ZoneWhereInput) validateDatacenter(formats strfmt.Registry) error {
+	if swag.IsZero(m.Datacenter) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ZoneWhereInput) validateHostsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ZoneWhereInput) validateHostsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ZoneWhereInput) validateHostsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -653,6 +729,26 @@ func (m *ZoneWhereInput) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacenter(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -667,6 +763,8 @@ func (m *ZoneWhereInput) contextValidateAND(ctx context.Context, formats strfmt.
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -685,6 +783,8 @@ func (m *ZoneWhereInput) contextValidateNOT(ctx context.Context, formats strfmt.
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -703,12 +803,39 @@ func (m *ZoneWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ZoneWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ZoneWhereInput) contextValidateDatacenter(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ZoneWhereInput) contextValidateHostsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ZoneWhereInput) contextValidateHostsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ZoneWhereInput) contextValidateHostsSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

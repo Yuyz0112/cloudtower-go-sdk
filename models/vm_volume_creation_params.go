@@ -93,6 +93,8 @@ func (m *VMVolumeCreationParams) validateElfStoragePolicy(formats strfmt.Registr
 		if err := m.ElfStoragePolicy.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("elf_storage_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_storage_policy")
 			}
 			return err
 		}
@@ -148,6 +150,8 @@ func (m *VMVolumeCreationParams) contextValidateElfStoragePolicy(ctx context.Con
 		if err := m.ElfStoragePolicy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("elf_storage_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_storage_policy")
 			}
 			return err
 		}

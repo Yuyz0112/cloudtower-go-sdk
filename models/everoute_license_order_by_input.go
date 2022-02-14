@@ -20,8 +20,12 @@ import (
 type EverouteLicenseOrderByInput string
 
 func NewEverouteLicenseOrderByInput(value EverouteLicenseOrderByInput) *EverouteLicenseOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EverouteLicenseOrderByInput.
+func (m EverouteLicenseOrderByInput) Pointer() *EverouteLicenseOrderByInput {
+	return &m
 }
 
 const (

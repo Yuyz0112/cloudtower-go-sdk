@@ -20,8 +20,12 @@ import (
 type WitnessOrderByInput string
 
 func NewWitnessOrderByInput(value WitnessOrderByInput) *WitnessOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated WitnessOrderByInput.
+func (m WitnessOrderByInput) Pointer() *WitnessOrderByInput {
+	return &m
 }
 
 const (

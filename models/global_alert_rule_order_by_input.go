@@ -20,8 +20,12 @@ import (
 type GlobalAlertRuleOrderByInput string
 
 func NewGlobalAlertRuleOrderByInput(value GlobalAlertRuleOrderByInput) *GlobalAlertRuleOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated GlobalAlertRuleOrderByInput.
+func (m GlobalAlertRuleOrderByInput) Pointer() *GlobalAlertRuleOrderByInput {
+	return &m
 }
 
 const (

@@ -20,8 +20,12 @@ import (
 type VMVolumeElfStoragePolicyType string
 
 func NewVMVolumeElfStoragePolicyType(value VMVolumeElfStoragePolicyType) *VMVolumeElfStoragePolicyType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMVolumeElfStoragePolicyType.
+func (m VMVolumeElfStoragePolicyType) Pointer() *VMVolumeElfStoragePolicyType {
+	return &m
 }
 
 const (

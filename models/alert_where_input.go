@@ -30,7 +30,9 @@ type AlertWhereInput struct {
 	OR []*AlertWhereInput `json:"OR,omitempty"`
 
 	// alert rule
-	AlertRule interface{} `json:"alert_rule,omitempty"`
+	AlertRule struct {
+		AlertRuleWhereInput
+	} `json:"alert_rule,omitempty"`
 
 	// cause
 	Cause *string `json:"cause,omitempty"`
@@ -75,7 +77,9 @@ type AlertWhereInput struct {
 	CauseStartsWith *string `json:"cause_starts_with,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// create time
 	CreateTime *string `json:"create_time,omitempty"`
@@ -102,7 +106,9 @@ type AlertWhereInput struct {
 	CreateTimeNotIn []string `json:"create_time_not_in,omitempty"`
 
 	// disk
-	Disk interface{} `json:"disk,omitempty"`
+	Disk struct {
+		DiskWhereInput
+	} `json:"disk,omitempty"`
 
 	// ended
 	Ended *bool `json:"ended,omitempty"`
@@ -111,7 +117,9 @@ type AlertWhereInput struct {
 	EndedNot *bool `json:"ended_not,omitempty"`
 
 	// host
-	Host interface{} `json:"host,omitempty"`
+	Host struct {
+		HostWhereInput
+	} `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -564,13 +572,19 @@ type AlertWhereInput struct {
 	ValueNotIn []float64 `json:"value_not_in,omitempty"`
 
 	// vms every
-	VmsEvery interface{} `json:"vms_every,omitempty"`
+	VmsEvery struct {
+		VMWhereInput
+	} `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone interface{} `json:"vms_none,omitempty"`
+	VmsNone struct {
+		VMWhereInput
+	} `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome interface{} `json:"vms_some,omitempty"`
+	VmsSome struct {
+		VMWhereInput
+	} `json:"vms_some,omitempty"`
 }
 
 // Validate validates this alert where input
@@ -586,6 +600,34 @@ func (m *AlertWhereInput) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOR(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAlertRule(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisk(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -609,6 +651,8 @@ func (m *AlertWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -633,6 +677,8 @@ func (m *AlertWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -657,11 +703,69 @@ func (m *AlertWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) validateAlertRule(formats strfmt.Registry) error {
+	if swag.IsZero(m.AlertRule) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) validateDisk(formats strfmt.Registry) error {
+	if swag.IsZero(m.Disk) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) validateHost(formats strfmt.Registry) error {
+	if swag.IsZero(m.Host) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) validateVmsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) validateVmsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) validateVmsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -683,6 +787,34 @@ func (m *AlertWhereInput) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAlertRule(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisk(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHost(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -697,6 +829,8 @@ func (m *AlertWhereInput) contextValidateAND(ctx context.Context, formats strfmt
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -715,6 +849,8 @@ func (m *AlertWhereInput) contextValidateNOT(ctx context.Context, formats strfmt
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -733,12 +869,49 @@ func (m *AlertWhereInput) contextValidateOR(ctx context.Context, formats strfmt.
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) contextValidateAlertRule(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *AlertWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *AlertWhereInput) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *AlertWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *AlertWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *AlertWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *AlertWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

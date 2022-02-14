@@ -55,6 +55,8 @@ func (m *NestedNetworkPolicyRulePort) validateProtocol(formats strfmt.Registry) 
 		if err := m.Protocol.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol")
 			}
 			return err
 		}
@@ -83,6 +85,8 @@ func (m *NestedNetworkPolicyRulePort) contextValidateProtocol(ctx context.Contex
 		if err := m.Protocol.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol")
 			}
 			return err
 		}

@@ -24,7 +24,9 @@ type NestedEverouteManageVDSStatus struct {
 	Message *string `json:"message"`
 
 	// phase
-	Phase interface{} `json:"phase,omitempty"`
+	Phase struct {
+		EverouteClusterPhase
+	} `json:"phase,omitempty"`
 
 	// reason
 	// Required: true
@@ -35,7 +37,9 @@ type NestedEverouteManageVDSStatus struct {
 	RetryCount *int32 `json:"retryCount"`
 
 	// vds
-	Vds interface{} `json:"vds,omitempty"`
+	Vds struct {
+		NestedVds
+	} `json:"vds,omitempty"`
 
 	// vds ID
 	// Required: true
@@ -50,11 +54,19 @@ func (m *NestedEverouteManageVDSStatus) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validatePhase(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateReason(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateRetryCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVds(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -72,6 +84,14 @@ func (m *NestedEverouteManageVDSStatus) validateMessage(formats strfmt.Registry)
 
 	if err := validate.Required("message", "body", m.Message); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *NestedEverouteManageVDSStatus) validatePhase(formats strfmt.Registry) error {
+	if swag.IsZero(m.Phase) { // not required
+		return nil
 	}
 
 	return nil
@@ -95,6 +115,14 @@ func (m *NestedEverouteManageVDSStatus) validateRetryCount(formats strfmt.Regist
 	return nil
 }
 
+func (m *NestedEverouteManageVDSStatus) validateVds(formats strfmt.Registry) error {
+	if swag.IsZero(m.Vds) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NestedEverouteManageVDSStatus) validateVdsID(formats strfmt.Registry) error {
 
 	if err := validate.Required("vdsID", "body", m.VdsID); err != nil {
@@ -104,8 +132,31 @@ func (m *NestedEverouteManageVDSStatus) validateVdsID(formats strfmt.Registry) e
 	return nil
 }
 
-// ContextValidate validates this nested everoute manage v d s status based on context it is used
+// ContextValidate validate this nested everoute manage v d s status based on the context it is used
 func (m *NestedEverouteManageVDSStatus) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidatePhase(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVds(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NestedEverouteManageVDSStatus) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NestedEverouteManageVDSStatus) contextValidateVds(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

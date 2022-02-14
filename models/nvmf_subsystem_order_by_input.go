@@ -20,8 +20,12 @@ import (
 type NvmfSubsystemOrderByInput string
 
 func NewNvmfSubsystemOrderByInput(value NvmfSubsystemOrderByInput) *NvmfSubsystemOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NvmfSubsystemOrderByInput.
+func (m NvmfSubsystemOrderByInput) Pointer() *NvmfSubsystemOrderByInput {
+	return &m
 }
 
 const (

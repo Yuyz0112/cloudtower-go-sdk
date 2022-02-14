@@ -20,8 +20,12 @@ import (
 type ViewOrderByInput string
 
 func NewViewOrderByInput(value ViewOrderByInput) *ViewOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ViewOrderByInput.
+func (m ViewOrderByInput) Pointer() *ViewOrderByInput {
+	return &m
 }
 
 const (

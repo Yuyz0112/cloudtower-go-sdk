@@ -132,6 +132,8 @@ func (m *EntityFilter) validateClusters(formats strfmt.Registry) error {
 			if err := m.Clusters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clusters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("clusters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -156,6 +158,8 @@ func (m *EntityFilter) validateEntityType(formats strfmt.Registry) error {
 		if err := m.EntityType.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entity_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entity_type")
 			}
 			return err
 		}
@@ -187,6 +191,8 @@ func (m *EntityFilter) validateExecFailedCluster(formats strfmt.Registry) error 
 			if err := m.ExecFailedCluster[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("exec_failed_cluster" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("exec_failed_cluster" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -220,6 +226,8 @@ func (m *EntityFilter) validateFilterStatus(formats strfmt.Registry) error {
 		if err := m.FilterStatus.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filter_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filter_status")
 			}
 			return err
 		}
@@ -270,6 +278,8 @@ func (m *EntityFilter) validateRules(formats strfmt.Registry) error {
 			if err := m.Rules[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -318,6 +328,8 @@ func (m *EntityFilter) contextValidateClusters(ctx context.Context, formats strf
 			if err := m.Clusters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clusters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("clusters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -334,6 +346,8 @@ func (m *EntityFilter) contextValidateEntityType(ctx context.Context, formats st
 		if err := m.EntityType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entity_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entity_type")
 			}
 			return err
 		}
@@ -350,6 +364,8 @@ func (m *EntityFilter) contextValidateExecFailedCluster(ctx context.Context, for
 			if err := m.ExecFailedCluster[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("exec_failed_cluster" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("exec_failed_cluster" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -366,6 +382,8 @@ func (m *EntityFilter) contextValidateFilterStatus(ctx context.Context, formats 
 		if err := m.FilterStatus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filter_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filter_status")
 			}
 			return err
 		}
@@ -382,6 +400,8 @@ func (m *EntityFilter) contextValidateRules(ctx context.Context, formats strfmt.
 			if err := m.Rules[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

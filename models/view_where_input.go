@@ -30,28 +30,40 @@ type ViewWhereInput struct {
 	OR []*ViewWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
 
 	// graphs every
-	GraphsEvery interface{} `json:"graphs_every,omitempty"`
+	GraphsEvery struct {
+		GraphWhereInput
+	} `json:"graphs_every,omitempty"`
 
 	// graphs none
-	GraphsNone interface{} `json:"graphs_none,omitempty"`
+	GraphsNone struct {
+		GraphWhereInput
+	} `json:"graphs_none,omitempty"`
 
 	// graphs some
-	GraphsSome interface{} `json:"graphs_some,omitempty"`
+	GraphsSome struct {
+		GraphWhereInput
+	} `json:"graphs_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -204,13 +216,17 @@ type ViewWhereInput struct {
 	TimeSpanNotIn []int32 `json:"time_span_not_in,omitempty"`
 
 	// time unit
-	TimeUnit interface{} `json:"time_unit,omitempty"`
+	TimeUnit struct {
+		TimeUnit
+	} `json:"time_unit,omitempty"`
 
 	// time unit in
 	TimeUnitIn []TimeUnit `json:"time_unit_in,omitempty"`
 
 	// time unit not
-	TimeUnitNot interface{} `json:"time_unit_not,omitempty"`
+	TimeUnitNot struct {
+		TimeUnit
+	} `json:"time_unit_not,omitempty"`
 
 	// time unit not in
 	TimeUnitNotIn []TimeUnit `json:"time_unit_not_in,omitempty"`
@@ -232,7 +248,19 @@ func (m *ViewWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -240,7 +268,27 @@ func (m *ViewWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateGraphsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGraphsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGraphsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTimeUnit(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTimeUnitIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTimeUnitNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -268,6 +316,8 @@ func (m *ViewWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -292,6 +342,8 @@ func (m *ViewWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -316,11 +368,29 @@ func (m *ViewWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -336,10 +406,20 @@ func (m *ViewWhereInput) validateEntityAsyncStatusIn(formats strfmt.Registry) er
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -355,10 +435,44 @@ func (m *ViewWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.Registry)
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) validateGraphsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.GraphsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) validateGraphsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.GraphsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) validateGraphsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.GraphsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) validateTimeUnit(formats strfmt.Registry) error {
+	if swag.IsZero(m.TimeUnit) { // not required
+		return nil
 	}
 
 	return nil
@@ -374,10 +488,20 @@ func (m *ViewWhereInput) validateTimeUnitIn(formats strfmt.Registry) error {
 		if err := m.TimeUnitIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("time_unit_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("time_unit_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) validateTimeUnitNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TimeUnitNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -393,6 +517,8 @@ func (m *ViewWhereInput) validateTimeUnitNotIn(formats strfmt.Registry) error {
 		if err := m.TimeUnitNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("time_unit_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("time_unit_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -418,7 +544,19 @@ func (m *ViewWhereInput) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -426,7 +564,27 @@ func (m *ViewWhereInput) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateGraphsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGraphsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGraphsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTimeUnit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTimeUnitIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTimeUnitNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -448,6 +606,8 @@ func (m *ViewWhereInput) contextValidateAND(ctx context.Context, formats strfmt.
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -466,6 +626,8 @@ func (m *ViewWhereInput) contextValidateNOT(ctx context.Context, formats strfmt.
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -484,12 +646,24 @@ func (m *ViewWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ViewWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -501,11 +675,18 @@ func (m *ViewWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Context,
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -517,11 +698,33 @@ func (m *ViewWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.Conte
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) contextValidateGraphsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ViewWhereInput) contextValidateGraphsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ViewWhereInput) contextValidateGraphsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ViewWhereInput) contextValidateTimeUnit(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -533,11 +736,18 @@ func (m *ViewWhereInput) contextValidateTimeUnitIn(ctx context.Context, formats 
 		if err := m.TimeUnitIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("time_unit_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("time_unit_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ViewWhereInput) contextValidateTimeUnitNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -549,6 +759,8 @@ func (m *ViewWhereInput) contextValidateTimeUnitNotIn(ctx context.Context, forma
 		if err := m.TimeUnitNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("time_unit_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("time_unit_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

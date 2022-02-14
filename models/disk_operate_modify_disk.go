@@ -56,6 +56,8 @@ func (m *DiskOperateModifyDisk) validateBus(formats strfmt.Registry) error {
 	if err := m.Bus.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("bus")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("bus")
 		}
 		return err
 	}
@@ -91,6 +93,8 @@ func (m *DiskOperateModifyDisk) contextValidateBus(ctx context.Context, formats 
 	if err := m.Bus.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("bus")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("bus")
 		}
 		return err
 	}

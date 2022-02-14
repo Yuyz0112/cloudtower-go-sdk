@@ -20,8 +20,12 @@ import (
 type BackupExecutionMethod string
 
 func NewBackupExecutionMethod(value BackupExecutionMethod) *BackupExecutionMethod {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupExecutionMethod.
+func (m BackupExecutionMethod) Pointer() *BackupExecutionMethod {
+	return &m
 }
 
 const (

@@ -42,7 +42,9 @@ type NestedFrozenNic struct {
 	Mirror *bool `json:"mirror,omitempty"`
 
 	// model
-	Model interface{} `json:"model,omitempty"`
+	Model struct {
+		VMNicModel
+	} `json:"model,omitempty"`
 
 	// subnet mask
 	// Required: true
@@ -70,6 +72,10 @@ func (m *NestedFrozenNic) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMacAddress(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateModel(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -123,6 +129,14 @@ func (m *NestedFrozenNic) validateMacAddress(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *NestedFrozenNic) validateModel(formats strfmt.Registry) error {
+	if swag.IsZero(m.Model) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NestedFrozenNic) validateSubnetMask(formats strfmt.Registry) error {
 
 	if err := validate.Required("subnet_mask", "body", m.SubnetMask); err != nil {
@@ -142,6 +156,8 @@ func (m *NestedFrozenNic) validateVlan(formats strfmt.Registry) error {
 		if err := m.Vlan.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vlan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlan")
 			}
 			return err
 		}
@@ -154,6 +170,10 @@ func (m *NestedFrozenNic) validateVlan(formats strfmt.Registry) error {
 func (m *NestedFrozenNic) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateModel(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVlan(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -164,12 +184,19 @@ func (m *NestedFrozenNic) ContextValidate(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
+func (m *NestedFrozenNic) contextValidateModel(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *NestedFrozenNic) contextValidateVlan(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Vlan != nil {
 		if err := m.Vlan.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vlan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlan")
 			}
 			return err
 		}

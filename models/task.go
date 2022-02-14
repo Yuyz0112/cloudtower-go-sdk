@@ -25,7 +25,9 @@ type Task struct {
 	Args interface{} `json:"args"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		NestedCluster
+	} `json:"cluster,omitempty"`
 
 	// description
 	// Required: true
@@ -90,7 +92,9 @@ type Task struct {
 	Steps []*NestedStep `json:"steps"`
 
 	// user
-	User interface{} `json:"user,omitempty"`
+	User struct {
+		NestedUser
+	} `json:"user,omitempty"`
 }
 
 // Validate validates this task
@@ -98,6 +102,10 @@ func (m *Task) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateArgs(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCluster(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -133,6 +141,10 @@ func (m *Task) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateUser(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -143,6 +155,14 @@ func (m *Task) validateArgs(formats strfmt.Registry) error {
 
 	if m.Args == nil {
 		return errors.Required("args", "body", nil)
+	}
+
+	return nil
+}
+
+func (m *Task) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
 	}
 
 	return nil
@@ -216,6 +236,8 @@ func (m *Task) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -239,6 +261,8 @@ func (m *Task) validateSteps(formats strfmt.Registry) error {
 			if err := m.Steps[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -249,9 +273,21 @@ func (m *Task) validateSteps(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Task) validateUser(formats strfmt.Registry) error {
+	if swag.IsZero(m.User) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 // ContextValidate validate this task based on the context it is used
 func (m *Task) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
 		res = append(res, err)
@@ -261,9 +297,18 @@ func (m *Task) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateUser(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Task) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 
@@ -273,6 +318,8 @@ func (m *Task) contextValidateStatus(ctx context.Context, formats strfmt.Registr
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -289,12 +336,19 @@ func (m *Task) contextValidateSteps(ctx context.Context, formats strfmt.Registry
 			if err := m.Steps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *Task) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

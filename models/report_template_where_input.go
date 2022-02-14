@@ -246,13 +246,19 @@ type ReportTemplateWhereInput struct {
 	TaskNumNotIn []int32 `json:"task_num_not_in,omitempty"`
 
 	// tasks every
-	TasksEvery interface{} `json:"tasks_every,omitempty"`
+	TasksEvery struct {
+		ReportTaskWhereInput
+	} `json:"tasks_every,omitempty"`
 
 	// tasks none
-	TasksNone interface{} `json:"tasks_none,omitempty"`
+	TasksNone struct {
+		ReportTaskWhereInput
+	} `json:"tasks_none,omitempty"`
 
 	// tasks some
-	TasksSome interface{} `json:"tasks_some,omitempty"`
+	TasksSome struct {
+		ReportTaskWhereInput
+	} `json:"tasks_some,omitempty"`
 }
 
 // Validate validates this report template where input
@@ -268,6 +274,18 @@ func (m *ReportTemplateWhereInput) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOR(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTasksEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTasksNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTasksSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -291,6 +309,8 @@ func (m *ReportTemplateWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -315,6 +335,8 @@ func (m *ReportTemplateWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -339,11 +361,37 @@ func (m *ReportTemplateWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ReportTemplateWhereInput) validateTasksEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.TasksEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ReportTemplateWhereInput) validateTasksNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.TasksNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ReportTemplateWhereInput) validateTasksSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.TasksSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -365,6 +413,18 @@ func (m *ReportTemplateWhereInput) ContextValidate(ctx context.Context, formats 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTasksEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTasksNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTasksSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -379,6 +439,8 @@ func (m *ReportTemplateWhereInput) contextValidateAND(ctx context.Context, forma
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -397,6 +459,8 @@ func (m *ReportTemplateWhereInput) contextValidateNOT(ctx context.Context, forma
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -415,12 +479,29 @@ func (m *ReportTemplateWhereInput) contextValidateOR(ctx context.Context, format
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ReportTemplateWhereInput) contextValidateTasksEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ReportTemplateWhereInput) contextValidateTasksNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ReportTemplateWhereInput) contextValidateTasksSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

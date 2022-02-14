@@ -21,10 +21,14 @@ import (
 type NvmfNamespaceSnapshot struct {
 
 	// consistency group snapshot
-	ConsistencyGroupSnapshot interface{} `json:"consistency_group_snapshot,omitempty"`
+	ConsistencyGroupSnapshot struct {
+		NestedConsistencyGroupSnapshot
+	} `json:"consistency_group_snapshot,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -46,7 +50,9 @@ type NvmfNamespaceSnapshot struct {
 	Name *string `json:"name"`
 
 	// nvmf namespace
-	NvmfNamespace interface{} `json:"nvmf_namespace,omitempty"`
+	NvmfNamespace struct {
+		NestedNvmfNamespace
+	} `json:"nvmf_namespace,omitempty"`
 
 	// nvmf subsystem
 	// Required: true
@@ -60,6 +66,14 @@ type NvmfNamespaceSnapshot struct {
 // Validate validates this nvmf namespace snapshot
 func (m *NvmfNamespaceSnapshot) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateConsistencyGroupSnapshot(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
@@ -81,6 +95,10 @@ func (m *NvmfNamespaceSnapshot) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateNvmfNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateNvmfSubsystem(formats); err != nil {
 		res = append(res, err)
 	}
@@ -92,6 +110,22 @@ func (m *NvmfNamespaceSnapshot) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *NvmfNamespaceSnapshot) validateConsistencyGroupSnapshot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupSnapshot) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *NvmfNamespaceSnapshot) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
 	return nil
 }
 
@@ -118,6 +152,8 @@ func (m *NvmfNamespaceSnapshot) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -155,6 +191,14 @@ func (m *NvmfNamespaceSnapshot) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *NvmfNamespaceSnapshot) validateNvmfNamespace(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespace) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NvmfNamespaceSnapshot) validateNvmfSubsystem(formats strfmt.Registry) error {
 
 	if err := validate.Required("nvmf_subsystem", "body", m.NvmfSubsystem); err != nil {
@@ -165,6 +209,8 @@ func (m *NvmfNamespaceSnapshot) validateNvmfSubsystem(formats strfmt.Registry) e
 		if err := m.NvmfSubsystem.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nvmf_subsystem")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystem")
 			}
 			return err
 		}
@@ -186,7 +232,19 @@ func (m *NvmfNamespaceSnapshot) validateUniqueSize(formats strfmt.Registry) erro
 func (m *NvmfNamespaceSnapshot) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateConsistencyGroupSnapshot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespace(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -200,6 +258,16 @@ func (m *NvmfNamespaceSnapshot) ContextValidate(ctx context.Context, formats str
 	return nil
 }
 
+func (m *NvmfNamespaceSnapshot) contextValidateConsistencyGroupSnapshot(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NvmfNamespaceSnapshot) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *NvmfNamespaceSnapshot) contextValidateLabels(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Labels); i++ {
@@ -208,6 +276,8 @@ func (m *NvmfNamespaceSnapshot) contextValidateLabels(ctx context.Context, forma
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -218,12 +288,19 @@ func (m *NvmfNamespaceSnapshot) contextValidateLabels(ctx context.Context, forma
 	return nil
 }
 
+func (m *NvmfNamespaceSnapshot) contextValidateNvmfNamespace(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *NvmfNamespaceSnapshot) contextValidateNvmfSubsystem(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NvmfSubsystem != nil {
 		if err := m.NvmfSubsystem.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nvmf_subsystem")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystem")
 			}
 			return err
 		}

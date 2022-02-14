@@ -32,17 +32,23 @@ type NestedEverouteControllerStatus struct {
 	Message *string `json:"message"`
 
 	// metrics
-	Metrics interface{} `json:"metrics,omitempty"`
+	Metrics struct {
+		NestedEverouteClusterVMMetrics
+	} `json:"metrics,omitempty"`
 
 	// phase
-	Phase interface{} `json:"phase,omitempty"`
+	Phase struct {
+		EverouteClusterPhase
+	} `json:"phase,omitempty"`
 
 	// reason
 	// Required: true
 	Reason *string `json:"reason"`
 
 	// vm
-	VM interface{} `json:"vm,omitempty"`
+	VM struct {
+		NestedVM
+	} `json:"vm,omitempty"`
 
 	// vm ID
 	// Required: true
@@ -65,7 +71,19 @@ func (m *NestedEverouteControllerStatus) Validate(formats strfmt.Registry) error
 		res = append(res, err)
 	}
 
+	if err := m.validateMetrics(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateReason(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVM(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,10 +124,34 @@ func (m *NestedEverouteControllerStatus) validateMessage(formats strfmt.Registry
 	return nil
 }
 
+func (m *NestedEverouteControllerStatus) validateMetrics(formats strfmt.Registry) error {
+	if swag.IsZero(m.Metrics) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *NestedEverouteControllerStatus) validatePhase(formats strfmt.Registry) error {
+	if swag.IsZero(m.Phase) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NestedEverouteControllerStatus) validateReason(formats strfmt.Registry) error {
 
 	if err := validate.Required("reason", "body", m.Reason); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *NestedEverouteControllerStatus) validateVM(formats strfmt.Registry) error {
+	if swag.IsZero(m.VM) { // not required
+		return nil
 	}
 
 	return nil
@@ -124,8 +166,40 @@ func (m *NestedEverouteControllerStatus) validateVMID(formats strfmt.Registry) e
 	return nil
 }
 
-// ContextValidate validates this nested everoute controller status based on context it is used
+// ContextValidate validate this nested everoute controller status based on the context it is used
 func (m *NestedEverouteControllerStatus) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateMetrics(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhase(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVM(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NestedEverouteControllerStatus) contextValidateMetrics(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NestedEverouteControllerStatus) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NestedEverouteControllerStatus) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

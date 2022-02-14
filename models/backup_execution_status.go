@@ -20,8 +20,12 @@ import (
 type BackupExecutionStatus string
 
 func NewBackupExecutionStatus(value BackupExecutionStatus) *BackupExecutionStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupExecutionStatus.
+func (m BackupExecutionStatus) Pointer() *BackupExecutionStatus {
+	return &m
 }
 
 const (
@@ -38,6 +42,9 @@ const (
 	// BackupExecutionStatusPAUSED captures enum value "PAUSED"
 	BackupExecutionStatusPAUSED BackupExecutionStatus = "PAUSED"
 
+	// BackupExecutionStatusPENDING captures enum value "PENDING"
+	BackupExecutionStatusPENDING BackupExecutionStatus = "PENDING"
+
 	// BackupExecutionStatusRUNNING captures enum value "RUNNING"
 	BackupExecutionStatusRUNNING BackupExecutionStatus = "RUNNING"
 
@@ -50,7 +57,7 @@ var backupExecutionStatusEnum []interface{}
 
 func init() {
 	var res []BackupExecutionStatus
-	if err := json.Unmarshal([]byte(`["ABORTED","FAILED","INITIALIZING","PAUSED","RUNNING","SUCCESS"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ABORTED","FAILED","INITIALIZING","PAUSED","PENDING","RUNNING","SUCCESS"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

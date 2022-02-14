@@ -20,8 +20,12 @@ import (
 type ApplicationState string
 
 func NewApplicationState(value ApplicationState) *ApplicationState {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ApplicationState.
+func (m ApplicationState) Pointer() *ApplicationState {
+	return &m
 }
 
 const (

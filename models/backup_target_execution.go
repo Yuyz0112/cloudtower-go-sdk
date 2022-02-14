@@ -24,10 +24,14 @@ type BackupTargetExecution struct {
 	BackupGroup *string `json:"backup_group"`
 
 	// backup plan execution
-	BackupPlanExecution interface{} `json:"backup_plan_execution,omitempty"`
+	BackupPlanExecution struct {
+		NestedBackupPlanExecution
+	} `json:"backup_plan_execution,omitempty"`
 
 	// backup restore point
-	BackupRestorePoint interface{} `json:"backup_restore_point,omitempty"`
+	BackupRestorePoint struct {
+		NestedBackupRestorePoint
+	} `json:"backup_restore_point,omitempty"`
 
 	// cluster local id
 	ClusterLocalID *string `json:"cluster_local_id,omitempty"`
@@ -36,7 +40,9 @@ type BackupTargetExecution struct {
 	Duration *int32 `json:"duration,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// executed at
 	// Required: true
@@ -58,7 +64,9 @@ type BackupTargetExecution struct {
 	ReadBytes *float64 `json:"read_bytes,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		BackupExecutionStatus
+	} `json:"status,omitempty"`
 
 	// total bytes
 	TotalBytes *float64 `json:"total_bytes,omitempty"`
@@ -68,7 +76,9 @@ type BackupTargetExecution struct {
 	Type *BackupExecutionType `json:"type"`
 
 	// vm
-	VM interface{} `json:"vm,omitempty"`
+	VM struct {
+		NestedVM
+	} `json:"vm,omitempty"`
 
 	// vm local id
 	VMLocalID *string `json:"vm_local_id,omitempty"`
@@ -82,6 +92,18 @@ func (m *BackupTargetExecution) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBackupGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPlanExecution(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupRestorePoint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -101,7 +123,15 @@ func (m *BackupTargetExecution) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVM(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -115,6 +145,30 @@ func (m *BackupTargetExecution) validateBackupGroup(formats strfmt.Registry) err
 
 	if err := validate.Required("backup_group", "body", m.BackupGroup); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *BackupTargetExecution) validateBackupPlanExecution(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlanExecution) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupTargetExecution) validateBackupRestorePoint(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePoint) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupTargetExecution) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -156,6 +210,14 @@ func (m *BackupTargetExecution) validateParentBackup(formats strfmt.Registry) er
 	return nil
 }
 
+func (m *BackupTargetExecution) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *BackupTargetExecution) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
@@ -170,9 +232,19 @@ func (m *BackupTargetExecution) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *BackupTargetExecution) validateVM(formats strfmt.Registry) error {
+	if swag.IsZero(m.VM) { // not required
+		return nil
 	}
 
 	return nil
@@ -182,7 +254,27 @@ func (m *BackupTargetExecution) validateType(formats strfmt.Registry) error {
 func (m *BackupTargetExecution) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateBackupPlanExecution(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupRestorePoint(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVM(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -192,16 +284,43 @@ func (m *BackupTargetExecution) ContextValidate(ctx context.Context, formats str
 	return nil
 }
 
+func (m *BackupTargetExecution) contextValidateBackupPlanExecution(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupTargetExecution) contextValidateBackupRestorePoint(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupTargetExecution) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupTargetExecution) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *BackupTargetExecution) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *BackupTargetExecution) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

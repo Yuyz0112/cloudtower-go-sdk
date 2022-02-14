@@ -20,8 +20,12 @@ import (
 type IscsiTargetOrderByInput string
 
 func NewIscsiTargetOrderByInput(value IscsiTargetOrderByInput) *IscsiTargetOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated IscsiTargetOrderByInput.
+func (m IscsiTargetOrderByInput) Pointer() *IscsiTargetOrderByInput {
+	return &m
 }
 
 const (

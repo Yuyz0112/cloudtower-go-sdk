@@ -20,8 +20,12 @@ import (
 type SnapshotPlanTaskOrderByInput string
 
 func NewSnapshotPlanTaskOrderByInput(value SnapshotPlanTaskOrderByInput) *SnapshotPlanTaskOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnapshotPlanTaskOrderByInput.
+func (m SnapshotPlanTaskOrderByInput) Pointer() *SnapshotPlanTaskOrderByInput {
+	return &m
 }
 
 const (

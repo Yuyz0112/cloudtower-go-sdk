@@ -30,7 +30,9 @@ type SnapshotGroupWhereInput struct {
 	OR []*SnapshotGroupWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// deleted
 	Deleted *bool `json:"deleted,omitempty"`
@@ -39,13 +41,17 @@ type SnapshotGroupWhereInput struct {
 	DeletedNot *bool `json:"deleted_not,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -285,16 +291,24 @@ type SnapshotGroupWhereInput struct {
 	ObjectNumNotIn []int32 `json:"object_num_not_in,omitempty"`
 
 	// snapshot plan task
-	SnapshotPlanTask interface{} `json:"snapshotPlanTask,omitempty"`
+	SnapshotPlanTask struct {
+		SnapshotPlanTaskWhereInput
+	} `json:"snapshotPlanTask,omitempty"`
 
 	// vm snapshots every
-	VMSnapshotsEvery interface{} `json:"vm_snapshots_every,omitempty"`
+	VMSnapshotsEvery struct {
+		VMSnapshotWhereInput
+	} `json:"vm_snapshots_every,omitempty"`
 
 	// vm snapshots none
-	VMSnapshotsNone interface{} `json:"vm_snapshots_none,omitempty"`
+	VMSnapshotsNone struct {
+		VMSnapshotWhereInput
+	} `json:"vm_snapshots_none,omitempty"`
 
 	// vm snapshots some
-	VMSnapshotsSome interface{} `json:"vm_snapshots_some,omitempty"`
+	VMSnapshotsSome struct {
+		VMSnapshotWhereInput
+	} `json:"vm_snapshots_some,omitempty"`
 }
 
 // Validate validates this snapshot group where input
@@ -313,11 +327,39 @@ func (m *SnapshotGroupWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSnapshotPlanTask(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMSnapshotsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMSnapshotsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMSnapshotsSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -341,6 +383,8 @@ func (m *SnapshotGroupWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -365,6 +409,8 @@ func (m *SnapshotGroupWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -389,11 +435,29 @@ func (m *SnapshotGroupWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -409,10 +473,20 @@ func (m *SnapshotGroupWhereInput) validateEntityAsyncStatusIn(formats strfmt.Reg
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -428,10 +502,44 @@ func (m *SnapshotGroupWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) validateSnapshotPlanTask(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotPlanTask) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) validateVMSnapshotsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMSnapshotsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) validateVMSnapshotsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMSnapshotsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) validateVMSnapshotsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMSnapshotsSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -453,11 +561,39 @@ func (m *SnapshotGroupWhereInput) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSnapshotPlanTask(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMSnapshotsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMSnapshotsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMSnapshotsSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -475,6 +611,8 @@ func (m *SnapshotGroupWhereInput) contextValidateAND(ctx context.Context, format
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -493,6 +631,8 @@ func (m *SnapshotGroupWhereInput) contextValidateNOT(ctx context.Context, format
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -511,12 +651,24 @@ func (m *SnapshotGroupWhereInput) contextValidateOR(ctx context.Context, formats
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -528,11 +680,18 @@ func (m *SnapshotGroupWhereInput) contextValidateEntityAsyncStatusIn(ctx context
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -544,11 +703,33 @@ func (m *SnapshotGroupWhereInput) contextValidateEntityAsyncStatusNotIn(ctx cont
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) contextValidateSnapshotPlanTask(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) contextValidateVMSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) contextValidateVMSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *SnapshotGroupWhereInput) contextValidateVMSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

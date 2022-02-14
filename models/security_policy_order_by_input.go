@@ -20,8 +20,12 @@ import (
 type SecurityPolicyOrderByInput string
 
 func NewSecurityPolicyOrderByInput(value SecurityPolicyOrderByInput) *SecurityPolicyOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SecurityPolicyOrderByInput.
+func (m SecurityPolicyOrderByInput) Pointer() *SecurityPolicyOrderByInput {
+	return &m
 }
 
 const (

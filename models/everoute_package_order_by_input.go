@@ -20,8 +20,12 @@ import (
 type EveroutePackageOrderByInput string
 
 func NewEveroutePackageOrderByInput(value EveroutePackageOrderByInput) *EveroutePackageOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EveroutePackageOrderByInput.
+func (m EveroutePackageOrderByInput) Pointer() *EveroutePackageOrderByInput {
+	return &m
 }
 
 const (

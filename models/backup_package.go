@@ -28,7 +28,9 @@ type BackupPackage struct {
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -64,6 +66,10 @@ func (m *BackupPackage) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -111,6 +117,8 @@ func (m *BackupPackage) validateArch(formats strfmt.Registry) error {
 		if err := m.Arch.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("arch")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arch")
 			}
 			return err
 		}
@@ -123,6 +131,14 @@ func (m *BackupPackage) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *BackupPackage) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -190,6 +206,10 @@ func (m *BackupPackage) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -202,10 +222,17 @@ func (m *BackupPackage) contextValidateArch(ctx context.Context, formats strfmt.
 		if err := m.Arch.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("arch")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arch")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *BackupPackage) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

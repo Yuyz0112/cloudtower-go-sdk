@@ -20,8 +20,12 @@ import (
 type NtpMode string
 
 func NewNtpMode(value NtpMode) *NtpMode {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NtpMode.
+func (m NtpMode) Pointer() *NtpMode {
+	return &m
 }
 
 const (

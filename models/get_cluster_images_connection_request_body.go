@@ -8,12 +8,13 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // GetClusterImagesConnectionRequestBody get cluster images connection request body
-// Example: {"after":"clusterImagesConnection-id-string","before":"clusterImagesConnection-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"ClusterImageWhereInput[]","NOT":"ClusterImageWhereInput[]","OR":"ClusterImageWhereInput[]","cluster":"ClusterWhereInput","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","meta_name":"string","meta_name_contains":"string","meta_name_ends_with":"string","meta_name_gt":"string","meta_name_gte":"string","meta_name_in":["string"],"meta_name_lt":"string","meta_name_lte":"string","meta_name_not":"string","meta_name_not_contains":"string","meta_name_not_ends_with":"string","meta_name_not_in":["string"],"meta_name_not_starts_with":"string","meta_name_starts_with":"string","meta_size":0,"meta_size_gt":0,"meta_size_gte":0,"meta_size_in":[0],"meta_size_lt":0,"meta_size_lte":0,"meta_size_not":0,"meta_size_not_in":[0],"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","size":0,"size_gt":0,"size_gte":0,"size_in":[0],"size_lt":0,"size_lte":0,"size_not":0,"size_not_in":[0],"upgrade_tool_version":"string","upgrade_tool_version_contains":"string","upgrade_tool_version_ends_with":"string","upgrade_tool_version_gt":"string","upgrade_tool_version_gte":"string","upgrade_tool_version_in":["string"],"upgrade_tool_version_lt":"string","upgrade_tool_version_lte":"string","upgrade_tool_version_not":"string","upgrade_tool_version_not_contains":"string","upgrade_tool_version_not_ends_with":"string","upgrade_tool_version_not_in":["string"],"upgrade_tool_version_not_starts_with":"string","upgrade_tool_version_starts_with":"string","version":"string","version_contains":"string","version_ends_with":"string","version_gt":"string","version_gte":"string","version_in":["string"],"version_lt":"string","version_lte":"string","version_not":"string","version_not_contains":"string","version_not_ends_with":"string","version_not_in":["string"],"version_not_starts_with":"string","version_semantic_gt":"string","version_semantic_gte":"string","version_semantic_lt":"string","version_semantic_lte":"string","version_starts_with":"string","zbs_version":"string","zbs_version_contains":"string","zbs_version_ends_with":"string","zbs_version_gt":"string","zbs_version_gte":"string","zbs_version_in":["string"],"zbs_version_lt":"string","zbs_version_lte":"string","zbs_version_not":"string","zbs_version_not_contains":"string","zbs_version_not_ends_with":"string","zbs_version_not_in":["string"],"zbs_version_not_starts_with":"string","zbs_version_starts_with":"string"}}
+// Example: {"after":"clusterImagesConnection-id-string","before":"clusterImagesConnection-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"ClusterImageWhereInput[]","NOT":"ClusterImageWhereInput[]","OR":"ClusterImageWhereInput[]","cluster":"ClusterWhereInput","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","meta_name":"string","meta_name_contains":"string","meta_name_ends_with":"string","meta_name_gt":"string","meta_name_gte":"string","meta_name_in":["string"],"meta_name_lt":"string","meta_name_lte":"string","meta_name_not":"string","meta_name_not_contains":"string","meta_name_not_ends_with":"string","meta_name_not_in":["string"],"meta_name_not_starts_with":"string","meta_name_starts_with":"string","meta_size":0,"meta_size_gt":0,"meta_size_gte":0,"meta_size_in":[0],"meta_size_lt":0,"meta_size_lte":0,"meta_size_not":0,"meta_size_not_in":[0],"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","size":0,"size_gt":0,"size_gte":0,"size_in":[0],"size_lt":0,"size_lte":0,"size_not":0,"size_not_in":[0],"upgrade_tool_version":"string","upgrade_tool_version_contains":"string","upgrade_tool_version_ends_with":"string","upgrade_tool_version_gt":"string","upgrade_tool_version_gte":"string","upgrade_tool_version_in":["string"],"upgrade_tool_version_lt":"string","upgrade_tool_version_lte":"string","upgrade_tool_version_not":"string","upgrade_tool_version_not_contains":"string","upgrade_tool_version_not_ends_with":"string","upgrade_tool_version_not_in":["string"],"upgrade_tool_version_not_starts_with":"string","upgrade_tool_version_starts_with":"string","version":"string","version_contains":"string","version_ends_with":"string","version_gt":"string","version_gte":"string","version_in":["string"],"version_lt":"string","version_lte":"string","version_not":"string","version_not_contains":"string","version_not_ends_with":"string","version_not_in":["string"],"version_not_starts_with":"string","version_semantic_gt":"string","version_semantic_gte":"string","version_semantic_lt":"string","version_semantic_lte":"string","version_starts_with":"string","zbs_version":"string","zbs_version_contains":"string","zbs_version_ends_with":"string","zbs_version_gt":"string","zbs_version_gte":"string","zbs_version_in":["string"],"zbs_version_lt":"string","zbs_version_lte":"string","zbs_version_not":"string","zbs_version_not_contains":"string","zbs_version_not_ends_with":"string","zbs_version_not_in":["string"],"zbs_version_not_starts_with":"string","zbs_version_starts_with":"string"}}
 //
 // swagger:model GetClusterImagesConnectionRequestBody
 type GetClusterImagesConnectionRequestBody struct {
@@ -31,22 +32,78 @@ type GetClusterImagesConnectionRequestBody struct {
 	Last *int32 `json:"last,omitempty"`
 
 	// order by
-	OrderBy interface{} `json:"orderBy,omitempty"`
+	OrderBy struct {
+		ClusterImageOrderByInput
+	} `json:"orderBy,omitempty"`
 
 	// skip
 	Skip *int32 `json:"skip,omitempty"`
 
 	// where
-	Where interface{} `json:"where,omitempty"`
+	Where struct {
+		ClusterImageWhereInput
+	} `json:"where,omitempty"`
 }
 
 // Validate validates this get cluster images connection request body
 func (m *GetClusterImagesConnectionRequestBody) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateOrderBy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWhere(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this get cluster images connection request body based on context it is used
+func (m *GetClusterImagesConnectionRequestBody) validateOrderBy(formats strfmt.Registry) error {
+	if swag.IsZero(m.OrderBy) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *GetClusterImagesConnectionRequestBody) validateWhere(formats strfmt.Registry) error {
+	if swag.IsZero(m.Where) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this get cluster images connection request body based on the context it is used
 func (m *GetClusterImagesConnectionRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateOrderBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWhere(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetClusterImagesConnectionRequestBody) contextValidateOrderBy(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GetClusterImagesConnectionRequestBody) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

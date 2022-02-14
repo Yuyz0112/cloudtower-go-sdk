@@ -20,8 +20,12 @@ import (
 type SnmpTrapReceiverOrderByInput string
 
 func NewSnmpTrapReceiverOrderByInput(value SnmpTrapReceiverOrderByInput) *SnmpTrapReceiverOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnmpTrapReceiverOrderByInput.
+func (m SnmpTrapReceiverOrderByInput) Pointer() *SnmpTrapReceiverOrderByInput {
+	return &m
 }
 
 const (

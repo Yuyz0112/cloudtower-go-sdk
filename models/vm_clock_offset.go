@@ -20,8 +20,12 @@ import (
 type VMClockOffset string
 
 func NewVMClockOffset(value VMClockOffset) *VMClockOffset {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMClockOffset.
+func (m VMClockOffset) Pointer() *VMClockOffset {
+	return &m
 }
 
 const (

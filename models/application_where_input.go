@@ -30,7 +30,9 @@ type ApplicationWhereInput struct {
 	OR []*ApplicationWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// error message
 	ErrorMessage *string `json:"error_message,omitempty"`
@@ -225,13 +227,17 @@ type ApplicationWhereInput struct {
 	MemoryNotIn []float64 `json:"memory_not_in,omitempty"`
 
 	// state
-	State interface{} `json:"state,omitempty"`
+	State struct {
+		ApplicationState
+	} `json:"state,omitempty"`
 
 	// state in
 	StateIn []ApplicationState `json:"state_in,omitempty"`
 
 	// state not
-	StateNot interface{} `json:"state_not,omitempty"`
+	StateNot struct {
+		ApplicationState
+	} `json:"state_not,omitempty"`
 
 	// state not in
 	StateNotIn []ApplicationState `json:"state_not_in,omitempty"`
@@ -279,13 +285,17 @@ type ApplicationWhereInput struct {
 	StorageIPStartsWith *string `json:"storage_ip_starts_with,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		ApplicationType
+	} `json:"type,omitempty"`
 
 	// type in
 	TypeIn []ApplicationType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot interface{} `json:"type_not,omitempty"`
+	TypeNot struct {
+		ApplicationType
+	} `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []ApplicationType `json:"type_not_in,omitempty"`
@@ -381,7 +391,9 @@ type ApplicationWhereInput struct {
 	VersionStartsWith *string `json:"version_starts_with,omitempty"`
 
 	// vm
-	VM interface{} `json:"vm,omitempty"`
+	VM struct {
+		VMWhereInput
+	} `json:"vm,omitempty"`
 
 	// volume size
 	VolumeSize *float64 `json:"volume_size,omitempty"`
@@ -424,7 +436,19 @@ func (m *ApplicationWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateState(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStateIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStateNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -432,11 +456,23 @@ func (m *ApplicationWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateTypeNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVM(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -460,6 +496,8 @@ func (m *ApplicationWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -484,6 +522,8 @@ func (m *ApplicationWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -508,11 +548,29 @@ func (m *ApplicationWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) validateState(formats strfmt.Registry) error {
+	if swag.IsZero(m.State) { // not required
+		return nil
 	}
 
 	return nil
@@ -528,10 +586,20 @@ func (m *ApplicationWhereInput) validateStateIn(formats strfmt.Registry) error {
 		if err := m.StateIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) validateStateNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StateNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -547,10 +615,20 @@ func (m *ApplicationWhereInput) validateStateNotIn(formats strfmt.Registry) erro
 		if err := m.StateNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	return nil
@@ -566,10 +644,20 @@ func (m *ApplicationWhereInput) validateTypeIn(formats strfmt.Registry) error {
 		if err := m.TypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) validateTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -585,10 +673,20 @@ func (m *ApplicationWhereInput) validateTypeNotIn(formats strfmt.Registry) error
 		if err := m.TypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) validateVM(formats strfmt.Registry) error {
+	if swag.IsZero(m.VM) { // not required
+		return nil
 	}
 
 	return nil
@@ -610,7 +708,19 @@ func (m *ApplicationWhereInput) ContextValidate(ctx context.Context, formats str
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateState(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStateIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStateNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -618,11 +728,23 @@ func (m *ApplicationWhereInput) ContextValidate(ctx context.Context, formats str
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTypeNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVM(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -640,6 +762,8 @@ func (m *ApplicationWhereInput) contextValidateAND(ctx context.Context, formats 
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -658,6 +782,8 @@ func (m *ApplicationWhereInput) contextValidateNOT(ctx context.Context, formats 
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -676,12 +802,24 @@ func (m *ApplicationWhereInput) contextValidateOR(ctx context.Context, formats s
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) contextValidateState(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -693,11 +831,18 @@ func (m *ApplicationWhereInput) contextValidateStateIn(ctx context.Context, form
 		if err := m.StateIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) contextValidateStateNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -709,11 +854,18 @@ func (m *ApplicationWhereInput) contextValidateStateNotIn(ctx context.Context, f
 		if err := m.StateNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -725,11 +877,18 @@ func (m *ApplicationWhereInput) contextValidateTypeIn(ctx context.Context, forma
 		if err := m.TypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -741,11 +900,18 @@ func (m *ApplicationWhereInput) contextValidateTypeNotIn(ctx context.Context, fo
 		if err := m.TypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ApplicationWhereInput) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

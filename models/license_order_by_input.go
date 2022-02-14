@@ -20,8 +20,12 @@ import (
 type LicenseOrderByInput string
 
 func NewLicenseOrderByInput(value LicenseOrderByInput) *LicenseOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated LicenseOrderByInput.
+func (m LicenseOrderByInput) Pointer() *LicenseOrderByInput {
+	return &m
 }
 
 const (

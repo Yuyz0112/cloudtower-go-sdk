@@ -20,8 +20,12 @@ import (
 type ReportResourceInputEnum string
 
 func NewReportResourceInputEnum(value ReportResourceInputEnum) *ReportResourceInputEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ReportResourceInputEnum.
+func (m ReportResourceInputEnum) Pointer() *ReportResourceInputEnum {
+	return &m
 }
 
 const (

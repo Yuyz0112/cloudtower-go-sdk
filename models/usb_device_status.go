@@ -20,8 +20,12 @@ import (
 type UsbDeviceStatus string
 
 func NewUsbDeviceStatus(value UsbDeviceStatus) *UsbDeviceStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UsbDeviceStatus.
+func (m UsbDeviceStatus) Pointer() *UsbDeviceStatus {
+	return &m
 }
 
 const (

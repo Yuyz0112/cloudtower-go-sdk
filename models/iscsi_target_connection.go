@@ -48,6 +48,8 @@ func (m *IscsiTargetConnection) validateAggregate(formats strfmt.Registry) error
 		if err := m.Aggregate.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("aggregate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("aggregate")
 			}
 			return err
 		}
@@ -76,6 +78,8 @@ func (m *IscsiTargetConnection) contextValidateAggregate(ctx context.Context, fo
 		if err := m.Aggregate.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("aggregate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("aggregate")
 			}
 			return err
 		}

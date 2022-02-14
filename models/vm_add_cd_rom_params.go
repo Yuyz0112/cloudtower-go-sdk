@@ -57,6 +57,8 @@ func (m *VMAddCdRomParams) validateData(formats strfmt.Registry) error {
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -75,6 +77,8 @@ func (m *VMAddCdRomParams) validateWhere(formats strfmt.Registry) error {
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -107,6 +111,8 @@ func (m *VMAddCdRomParams) contextValidateData(ctx context.Context, formats strf
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -121,6 +127,8 @@ func (m *VMAddCdRomParams) contextValidateWhere(ctx context.Context, formats str
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -186,6 +194,8 @@ func (m *VMAddCdRomParamsData) validateVMCdRoms(formats strfmt.Registry) error {
 			if err := m.VMCdRoms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "vm_cd_roms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "vm_cd_roms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -218,6 +228,8 @@ func (m *VMAddCdRomParamsData) contextValidateVMCdRoms(ctx context.Context, form
 			if err := m.VMCdRoms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "vm_cd_roms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "vm_cd_roms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

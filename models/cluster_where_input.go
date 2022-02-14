@@ -30,22 +30,32 @@ type ClusterWhereInput struct {
 	OR []*ClusterWhereInput `json:"OR,omitempty"`
 
 	// applications every
-	ApplicationsEvery interface{} `json:"applications_every,omitempty"`
+	ApplicationsEvery struct {
+		ApplicationWhereInput
+	} `json:"applications_every,omitempty"`
 
 	// applications none
-	ApplicationsNone interface{} `json:"applications_none,omitempty"`
+	ApplicationsNone struct {
+		ApplicationWhereInput
+	} `json:"applications_none,omitempty"`
 
 	// applications some
-	ApplicationsSome interface{} `json:"applications_some,omitempty"`
+	ApplicationsSome struct {
+		ApplicationWhereInput
+	} `json:"applications_some,omitempty"`
 
 	// architecture
-	Architecture interface{} `json:"architecture,omitempty"`
+	Architecture struct {
+		Architecture
+	} `json:"architecture,omitempty"`
 
 	// architecture in
 	ArchitectureIn []Architecture `json:"architecture_in,omitempty"`
 
 	// architecture not
-	ArchitectureNot interface{} `json:"architecture_not,omitempty"`
+	ArchitectureNot struct {
+		Architecture
+	} `json:"architecture_not,omitempty"`
 
 	// architecture not in
 	ArchitectureNotIn []Architecture `json:"architecture_not_in,omitempty"`
@@ -57,28 +67,40 @@ type ClusterWhereInput struct {
 	AutoConvergeNot *bool `json:"auto_converge_not,omitempty"`
 
 	// backup by service
-	BackupByService interface{} `json:"backup_by_service,omitempty"`
+	BackupByService struct {
+		BackupServiceWhereInput
+	} `json:"backup_by_service,omitempty"`
 
 	// connect state
-	ConnectState interface{} `json:"connect_state,omitempty"`
+	ConnectState struct {
+		ConnectState
+	} `json:"connect_state,omitempty"`
 
 	// connect state in
 	ConnectStateIn []ConnectState `json:"connect_state_in,omitempty"`
 
 	// connect state not
-	ConnectStateNot interface{} `json:"connect_state_not,omitempty"`
+	ConnectStateNot struct {
+		ConnectState
+	} `json:"connect_state_not,omitempty"`
 
 	// connect state not in
 	ConnectStateNotIn []ConnectState `json:"connect_state_not_in,omitempty"`
 
 	// consistency groups every
-	ConsistencyGroupsEvery interface{} `json:"consistency_groups_every,omitempty"`
+	ConsistencyGroupsEvery struct {
+		ConsistencyGroupWhereInput
+	} `json:"consistency_groups_every,omitempty"`
 
 	// consistency groups none
-	ConsistencyGroupsNone interface{} `json:"consistency_groups_none,omitempty"`
+	ConsistencyGroupsNone struct {
+		ConsistencyGroupWhereInput
+	} `json:"consistency_groups_none,omitempty"`
 
 	// consistency groups some
-	ConsistencyGroupsSome interface{} `json:"consistency_groups_some,omitempty"`
+	ConsistencyGroupsSome struct {
+		ConsistencyGroupWhereInput
+	} `json:"consistency_groups_some,omitempty"`
 
 	// current cpu model
 	CurrentCPUModel *string `json:"current_cpu_model,omitempty"`
@@ -123,13 +145,19 @@ type ClusterWhereInput struct {
 	CurrentCPUModelStartsWith *string `json:"current_cpu_model_starts_with,omitempty"`
 
 	// datacenters every
-	DatacentersEvery interface{} `json:"datacenters_every,omitempty"`
+	DatacentersEvery struct {
+		DatacenterWhereInput
+	} `json:"datacenters_every,omitempty"`
 
 	// datacenters none
-	DatacentersNone interface{} `json:"datacenters_none,omitempty"`
+	DatacentersNone struct {
+		DatacenterWhereInput
+	} `json:"datacenters_none,omitempty"`
 
 	// datacenters some
-	DatacentersSome interface{} `json:"datacenters_some,omitempty"`
+	DatacentersSome struct {
+		DatacenterWhereInput
+	} `json:"datacenters_some,omitempty"`
 
 	// disconnected date
 	DisconnectedDate *string `json:"disconnected_date,omitempty"`
@@ -156,31 +184,41 @@ type ClusterWhereInput struct {
 	DisconnectedDateNotIn []string `json:"disconnected_date_not_in,omitempty"`
 
 	// disconnected reason
-	DisconnectedReason interface{} `json:"disconnected_reason,omitempty"`
+	DisconnectedReason struct {
+		ClusterConnectorErrorCode
+	} `json:"disconnected_reason,omitempty"`
 
 	// disconnected reason in
 	DisconnectedReasonIn []ClusterConnectorErrorCode `json:"disconnected_reason_in,omitempty"`
 
 	// disconnected reason not
-	DisconnectedReasonNot interface{} `json:"disconnected_reason_not,omitempty"`
+	DisconnectedReasonNot struct {
+		ClusterConnectorErrorCode
+	} `json:"disconnected_reason_not,omitempty"`
 
 	// disconnected reason not in
 	DisconnectedReasonNotIn []ClusterConnectorErrorCode `json:"disconnected_reason_not_in,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
 
 	// everoute cluster
-	EverouteCluster interface{} `json:"everoute_cluster,omitempty"`
+	EverouteCluster struct {
+		EverouteClusterWhereInput
+	} `json:"everoute_cluster,omitempty"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
@@ -243,22 +281,32 @@ type ClusterWhereInput struct {
 	HostNumNotIn []int32 `json:"host_num_not_in,omitempty"`
 
 	// hosts every
-	HostsEvery interface{} `json:"hosts_every,omitempty"`
+	HostsEvery struct {
+		HostWhereInput
+	} `json:"hosts_every,omitempty"`
 
 	// hosts none
-	HostsNone interface{} `json:"hosts_none,omitempty"`
+	HostsNone struct {
+		HostWhereInput
+	} `json:"hosts_none,omitempty"`
 
 	// hosts some
-	HostsSome interface{} `json:"hosts_some,omitempty"`
+	HostsSome struct {
+		HostWhereInput
+	} `json:"hosts_some,omitempty"`
 
 	// hypervisor
-	Hypervisor interface{} `json:"hypervisor,omitempty"`
+	Hypervisor struct {
+		Hypervisor
+	} `json:"hypervisor,omitempty"`
 
 	// hypervisor in
 	HypervisorIn []Hypervisor `json:"hypervisor_in,omitempty"`
 
 	// hypervisor not
-	HypervisorNot interface{} `json:"hypervisor_not,omitempty"`
+	HypervisorNot struct {
+		Hypervisor
+	} `json:"hypervisor_not,omitempty"`
 
 	// hypervisor not in
 	HypervisorNotIn []Hypervisor `json:"hypervisor_not_in,omitempty"`
@@ -396,13 +444,19 @@ type ClusterWhereInput struct {
 	IscsiVipStartsWith *string `json:"iscsi_vip_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery interface{} `json:"labels_every,omitempty"`
+	LabelsEvery struct {
+		LabelWhereInput
+	} `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone interface{} `json:"labels_none,omitempty"`
+	LabelsNone struct {
+		LabelWhereInput
+	} `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome interface{} `json:"labels_some,omitempty"`
+	LabelsSome struct {
+		LabelWhereInput
+	} `json:"labels_some,omitempty"`
 
 	// license expire date
 	LicenseExpireDate *string `json:"license_expire_date,omitempty"`
@@ -495,13 +549,17 @@ type ClusterWhereInput struct {
 	LicenseSignDateNotIn []string `json:"license_sign_date_not_in,omitempty"`
 
 	// license type
-	LicenseType interface{} `json:"license_type,omitempty"`
+	LicenseType struct {
+		LicenseType
+	} `json:"license_type,omitempty"`
 
 	// license type in
 	LicenseTypeIn []LicenseType `json:"license_type_in,omitempty"`
 
 	// license type not
-	LicenseTypeNot interface{} `json:"license_type_not,omitempty"`
+	LicenseTypeNot struct {
+		LicenseType
+	} `json:"license_type_not,omitempty"`
 
 	// license type not in
 	LicenseTypeNotIn []LicenseType `json:"license_type_not_in,omitempty"`
@@ -885,13 +943,17 @@ type ClusterWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// ntp mode
-	NtpMode interface{} `json:"ntp_mode,omitempty"`
+	NtpMode struct {
+		NtpMode
+	} `json:"ntp_mode,omitempty"`
 
 	// ntp mode in
 	NtpModeIn []NtpMode `json:"ntp_mode_in,omitempty"`
 
 	// ntp mode not
-	NtpModeNot interface{} `json:"ntp_mode_not,omitempty"`
+	NtpModeNot struct {
+		NtpMode
+	} `json:"ntp_mode_not,omitempty"`
 
 	// ntp mode not in
 	NtpModeNotIn []NtpMode `json:"ntp_mode_not_in,omitempty"`
@@ -1173,16 +1235,22 @@ type ClusterWhereInput struct {
 	RunningVMNumNotIn []int32 `json:"running_vm_num_not_in,omitempty"`
 
 	// settings
-	Settings interface{} `json:"settings,omitempty"`
+	Settings struct {
+		ClusterSettingsWhereInput
+	} `json:"settings,omitempty"`
 
 	// software edition
-	SoftwareEdition interface{} `json:"software_edition,omitempty"`
+	SoftwareEdition struct {
+		SoftwareEdition
+	} `json:"software_edition,omitempty"`
 
 	// software edition in
 	SoftwareEditionIn []SoftwareEdition `json:"software_edition_in,omitempty"`
 
 	// software edition not
-	SoftwareEditionNot interface{} `json:"software_edition_not,omitempty"`
+	SoftwareEditionNot struct {
+		SoftwareEdition
+	} `json:"software_edition_not,omitempty"`
 
 	// software edition not in
 	SoftwareEditionNotIn []SoftwareEdition `json:"software_edition_not_in,omitempty"`
@@ -1386,13 +1454,17 @@ type ClusterWhereInput struct {
 	TotalMemoryBytesNotIn []float64 `json:"total_memory_bytes_not_in,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		ClusterType
+	} `json:"type,omitempty"`
 
 	// type in
 	TypeIn []ClusterType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot interface{} `json:"type_not,omitempty"`
+	TypeNot struct {
+		ClusterType
+	} `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []ClusterType `json:"type_not_in,omitempty"`
@@ -1578,16 +1650,24 @@ type ClusterWhereInput struct {
 	ValidDataSpaceNotIn []float64 `json:"valid_data_space_not_in,omitempty"`
 
 	// vcenter account
-	VcenterAccount interface{} `json:"vcenterAccount,omitempty"`
+	VcenterAccount struct {
+		VcenterAccountWhereInput
+	} `json:"vcenterAccount,omitempty"`
 
 	// vdses every
-	VdsesEvery interface{} `json:"vdses_every,omitempty"`
+	VdsesEvery struct {
+		VdsWhereInput
+	} `json:"vdses_every,omitempty"`
 
 	// vdses none
-	VdsesNone interface{} `json:"vdses_none,omitempty"`
+	VdsesNone struct {
+		VdsWhereInput
+	} `json:"vdses_none,omitempty"`
 
 	// vdses some
-	VdsesSome interface{} `json:"vdses_some,omitempty"`
+	VdsesSome struct {
+		VdsWhereInput
+	} `json:"vdses_some,omitempty"`
 
 	// version
 	Version *string `json:"version,omitempty"`
@@ -1650,13 +1730,19 @@ type ClusterWhereInput struct {
 	VhostEnabledNot *bool `json:"vhost_enabled_not,omitempty"`
 
 	// vm folders every
-	VMFoldersEvery interface{} `json:"vm_folders_every,omitempty"`
+	VMFoldersEvery struct {
+		VMFolderWhereInput
+	} `json:"vm_folders_every,omitempty"`
 
 	// vm folders none
-	VMFoldersNone interface{} `json:"vm_folders_none,omitempty"`
+	VMFoldersNone struct {
+		VMFolderWhereInput
+	} `json:"vm_folders_none,omitempty"`
 
 	// vm folders some
-	VMFoldersSome interface{} `json:"vm_folders_some,omitempty"`
+	VMFoldersSome struct {
+		VMFolderWhereInput
+	} `json:"vm_folders_some,omitempty"`
 
 	// vm num
 	VMNum *int32 `json:"vm_num,omitempty"`
@@ -1683,34 +1769,54 @@ type ClusterWhereInput struct {
 	VMNumNotIn []int32 `json:"vm_num_not_in,omitempty"`
 
 	// vm templates every
-	VMTemplatesEvery interface{} `json:"vm_templates_every,omitempty"`
+	VMTemplatesEvery struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_every,omitempty"`
 
 	// vm templates none
-	VMTemplatesNone interface{} `json:"vm_templates_none,omitempty"`
+	VMTemplatesNone struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_none,omitempty"`
 
 	// vm templates some
-	VMTemplatesSome interface{} `json:"vm_templates_some,omitempty"`
+	VMTemplatesSome struct {
+		VMTemplateWhereInput
+	} `json:"vm_templates_some,omitempty"`
 
 	// vms every
-	VmsEvery interface{} `json:"vms_every,omitempty"`
+	VmsEvery struct {
+		VMWhereInput
+	} `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone interface{} `json:"vms_none,omitempty"`
+	VmsNone struct {
+		VMWhereInput
+	} `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome interface{} `json:"vms_some,omitempty"`
+	VmsSome struct {
+		VMWhereInput
+	} `json:"vms_some,omitempty"`
 
 	// witness
-	Witness interface{} `json:"witness,omitempty"`
+	Witness struct {
+		WitnessWhereInput
+	} `json:"witness,omitempty"`
 
 	// zones every
-	ZonesEvery interface{} `json:"zones_every,omitempty"`
+	ZonesEvery struct {
+		ZoneWhereInput
+	} `json:"zones_every,omitempty"`
 
 	// zones none
-	ZonesNone interface{} `json:"zones_none,omitempty"`
+	ZonesNone struct {
+		ZoneWhereInput
+	} `json:"zones_none,omitempty"`
 
 	// zones some
-	ZonesSome interface{} `json:"zones_some,omitempty"`
+	ZonesSome struct {
+		ZoneWhereInput
+	} `json:"zones_some,omitempty"`
 }
 
 // Validate validates this cluster where input
@@ -1729,7 +1835,27 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateApplicationsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateApplicationsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateApplicationsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateArchitecture(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateArchitectureIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateArchitectureNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1737,7 +1863,19 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBackupByService(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConnectState(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConnectStateIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConnectStateNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1745,7 +1883,39 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateConsistencyGroupsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroupsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsistencyGroupsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacentersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacentersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacentersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisconnectedReason(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDisconnectedReasonIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisconnectedReasonNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1753,7 +1923,15 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1761,7 +1939,31 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEverouteCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHostsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHypervisor(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateHypervisorIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHypervisorNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1769,7 +1971,27 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLabelsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLicenseType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLicenseTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLicenseTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1777,7 +1999,15 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateNtpMode(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateNtpModeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNtpModeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1785,7 +2015,19 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSoftwareEdition(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSoftwareEditionIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSoftwareEditionNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1793,11 +2035,87 @@ func (m *ClusterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateTypeNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVcenterAccount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVdsesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVdsesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVdsesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMFoldersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMFoldersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMFoldersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMTemplatesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVmsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWitness(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateZonesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateZonesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateZonesSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1821,6 +2139,8 @@ func (m *ClusterWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1845,6 +2165,8 @@ func (m *ClusterWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1869,11 +2191,45 @@ func (m *ClusterWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateApplicationsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ApplicationsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateApplicationsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ApplicationsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateApplicationsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ApplicationsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateArchitecture(formats strfmt.Registry) error {
+	if swag.IsZero(m.Architecture) { // not required
+		return nil
 	}
 
 	return nil
@@ -1889,10 +2245,20 @@ func (m *ClusterWhereInput) validateArchitectureIn(formats strfmt.Registry) erro
 		if err := m.ArchitectureIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("architecture_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("architecture_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateArchitectureNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ArchitectureNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1908,10 +2274,28 @@ func (m *ClusterWhereInput) validateArchitectureNotIn(formats strfmt.Registry) e
 		if err := m.ArchitectureNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("architecture_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("architecture_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateBackupByService(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupByService) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateConnectState(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConnectState) { // not required
+		return nil
 	}
 
 	return nil
@@ -1927,10 +2311,20 @@ func (m *ClusterWhereInput) validateConnectStateIn(formats strfmt.Registry) erro
 		if err := m.ConnectStateIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("connect_state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connect_state_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateConnectStateNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConnectStateNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1946,10 +2340,68 @@ func (m *ClusterWhereInput) validateConnectStateNotIn(formats strfmt.Registry) e
 		if err := m.ConnectStateNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("connect_state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connect_state_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateConsistencyGroupsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateConsistencyGroupsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateConsistencyGroupsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroupsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateDatacentersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateDatacentersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateDatacentersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateDisconnectedReason(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisconnectedReason) { // not required
+		return nil
 	}
 
 	return nil
@@ -1965,10 +2417,20 @@ func (m *ClusterWhereInput) validateDisconnectedReasonIn(formats strfmt.Registry
 		if err := m.DisconnectedReasonIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disconnected_reason_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disconnected_reason_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateDisconnectedReasonNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisconnectedReasonNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1984,10 +2446,20 @@ func (m *ClusterWhereInput) validateDisconnectedReasonNotIn(formats strfmt.Regis
 		if err := m.DisconnectedReasonNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disconnected_reason_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disconnected_reason_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -2003,10 +2475,20 @@ func (m *ClusterWhereInput) validateEntityAsyncStatusIn(formats strfmt.Registry)
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -2022,10 +2504,52 @@ func (m *ClusterWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.Regist
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateEverouteCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.EverouteCluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateHostsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateHostsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateHostsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.HostsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateHypervisor(formats strfmt.Registry) error {
+	if swag.IsZero(m.Hypervisor) { // not required
+		return nil
 	}
 
 	return nil
@@ -2041,10 +2565,20 @@ func (m *ClusterWhereInput) validateHypervisorIn(formats strfmt.Registry) error 
 		if err := m.HypervisorIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hypervisor_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hypervisor_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateHypervisorNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.HypervisorNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -2060,10 +2594,44 @@ func (m *ClusterWhereInput) validateHypervisorNotIn(formats strfmt.Registry) err
 		if err := m.HypervisorNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hypervisor_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hypervisor_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateLabelsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateLabelsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateLicenseType(formats strfmt.Registry) error {
+	if swag.IsZero(m.LicenseType) { // not required
+		return nil
 	}
 
 	return nil
@@ -2079,10 +2647,20 @@ func (m *ClusterWhereInput) validateLicenseTypeIn(formats strfmt.Registry) error
 		if err := m.LicenseTypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("license_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateLicenseTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.LicenseTypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -2098,10 +2676,20 @@ func (m *ClusterWhereInput) validateLicenseTypeNotIn(formats strfmt.Registry) er
 		if err := m.LicenseTypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("license_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateNtpMode(formats strfmt.Registry) error {
+	if swag.IsZero(m.NtpMode) { // not required
+		return nil
 	}
 
 	return nil
@@ -2117,10 +2705,20 @@ func (m *ClusterWhereInput) validateNtpModeIn(formats strfmt.Registry) error {
 		if err := m.NtpModeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ntp_mode_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ntp_mode_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateNtpModeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.NtpModeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -2136,10 +2734,28 @@ func (m *ClusterWhereInput) validateNtpModeNotIn(formats strfmt.Registry) error 
 		if err := m.NtpModeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ntp_mode_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ntp_mode_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Settings) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateSoftwareEdition(formats strfmt.Registry) error {
+	if swag.IsZero(m.SoftwareEdition) { // not required
+		return nil
 	}
 
 	return nil
@@ -2155,10 +2771,20 @@ func (m *ClusterWhereInput) validateSoftwareEditionIn(formats strfmt.Registry) e
 		if err := m.SoftwareEditionIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateSoftwareEditionNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.SoftwareEditionNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -2174,10 +2800,20 @@ func (m *ClusterWhereInput) validateSoftwareEditionNotIn(formats strfmt.Registry
 		if err := m.SoftwareEditionNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	return nil
@@ -2193,10 +2829,20 @@ func (m *ClusterWhereInput) validateTypeIn(formats strfmt.Registry) error {
 		if err := m.TypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -2212,10 +2858,148 @@ func (m *ClusterWhereInput) validateTypeNotIn(formats strfmt.Registry) error {
 		if err := m.TypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVcenterAccount(formats strfmt.Registry) error {
+	if swag.IsZero(m.VcenterAccount) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVdsesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VdsesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVdsesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VdsesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVdsesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VdsesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVMFoldersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMFoldersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVMFoldersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMFoldersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVMFoldersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMFoldersSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVMTemplatesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVMTemplatesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVMTemplatesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMTemplatesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVmsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVmsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateVmsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VmsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateWitness(formats strfmt.Registry) error {
+	if swag.IsZero(m.Witness) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateZonesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ZonesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateZonesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ZonesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) validateZonesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ZonesSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -2237,7 +3021,27 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateApplicationsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateApplicationsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateApplicationsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateArchitecture(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateArchitectureIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateArchitectureNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2245,7 +3049,19 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBackupByService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConnectState(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateConnectStateIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConnectStateNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2253,7 +3069,39 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateConsistencyGroupsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsistencyGroupsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsistencyGroupsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacentersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacentersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacentersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisconnectedReason(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDisconnectedReasonIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisconnectedReasonNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2261,7 +3109,15 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2269,7 +3125,31 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEverouteCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHostsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHypervisor(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateHypervisorIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHypervisorNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2277,7 +3157,27 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLabelsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLicenseType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLicenseTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLicenseTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2285,7 +3185,15 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNtpMode(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateNtpModeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNtpModeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2293,7 +3201,19 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSoftwareEdition(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSoftwareEditionIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSoftwareEditionNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2301,11 +3221,87 @@ func (m *ClusterWhereInput) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTypeNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVcenterAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVdsesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVdsesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVdsesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMFoldersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMFoldersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMFoldersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMTemplatesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVmsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWitness(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateZonesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateZonesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateZonesSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2323,6 +3319,8 @@ func (m *ClusterWhereInput) contextValidateAND(ctx context.Context, formats strf
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -2341,6 +3339,8 @@ func (m *ClusterWhereInput) contextValidateNOT(ctx context.Context, formats strf
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -2359,12 +3359,34 @@ func (m *ClusterWhereInput) contextValidateOR(ctx context.Context, formats strfm
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateApplicationsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateApplicationsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateApplicationsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateArchitecture(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2376,11 +3398,18 @@ func (m *ClusterWhereInput) contextValidateArchitectureIn(ctx context.Context, f
 		if err := m.ArchitectureIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("architecture_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("architecture_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateArchitectureNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2392,11 +3421,23 @@ func (m *ClusterWhereInput) contextValidateArchitectureNotIn(ctx context.Context
 		if err := m.ArchitectureNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("architecture_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("architecture_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateBackupByService(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateConnectState(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2408,11 +3449,18 @@ func (m *ClusterWhereInput) contextValidateConnectStateIn(ctx context.Context, f
 		if err := m.ConnectStateIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("connect_state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connect_state_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateConnectStateNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2424,11 +3472,48 @@ func (m *ClusterWhereInput) contextValidateConnectStateNotIn(ctx context.Context
 		if err := m.ConnectStateNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("connect_state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connect_state_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateConsistencyGroupsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateConsistencyGroupsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateConsistencyGroupsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateDatacentersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateDatacentersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateDatacentersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateDisconnectedReason(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2440,11 +3525,18 @@ func (m *ClusterWhereInput) contextValidateDisconnectedReasonIn(ctx context.Cont
 		if err := m.DisconnectedReasonIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disconnected_reason_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disconnected_reason_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateDisconnectedReasonNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2456,11 +3548,18 @@ func (m *ClusterWhereInput) contextValidateDisconnectedReasonNotIn(ctx context.C
 		if err := m.DisconnectedReasonNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("disconnected_reason_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disconnected_reason_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2472,11 +3571,18 @@ func (m *ClusterWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Conte
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2488,11 +3594,38 @@ func (m *ClusterWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.Co
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateEverouteCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateHostsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateHostsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateHostsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateHypervisor(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2504,11 +3637,18 @@ func (m *ClusterWhereInput) contextValidateHypervisorIn(ctx context.Context, for
 		if err := m.HypervisorIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hypervisor_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hypervisor_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateHypervisorNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2520,11 +3660,33 @@ func (m *ClusterWhereInput) contextValidateHypervisorNotIn(ctx context.Context, 
 		if err := m.HypervisorNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hypervisor_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hypervisor_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateLicenseType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2536,11 +3698,18 @@ func (m *ClusterWhereInput) contextValidateLicenseTypeIn(ctx context.Context, fo
 		if err := m.LicenseTypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("license_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateLicenseTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2552,11 +3721,18 @@ func (m *ClusterWhereInput) contextValidateLicenseTypeNotIn(ctx context.Context,
 		if err := m.LicenseTypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("license_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateNtpMode(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2568,11 +3744,18 @@ func (m *ClusterWhereInput) contextValidateNtpModeIn(ctx context.Context, format
 		if err := m.NtpModeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ntp_mode_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ntp_mode_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateNtpModeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2584,11 +3767,23 @@ func (m *ClusterWhereInput) contextValidateNtpModeNotIn(ctx context.Context, for
 		if err := m.NtpModeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ntp_mode_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ntp_mode_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateSoftwareEdition(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2600,11 +3795,18 @@ func (m *ClusterWhereInput) contextValidateSoftwareEditionIn(ctx context.Context
 		if err := m.SoftwareEditionIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateSoftwareEditionNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2616,11 +3818,18 @@ func (m *ClusterWhereInput) contextValidateSoftwareEditionNotIn(ctx context.Cont
 		if err := m.SoftwareEditionNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2632,11 +3841,18 @@ func (m *ClusterWhereInput) contextValidateTypeIn(ctx context.Context, formats s
 		if err := m.TypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2648,11 +3864,98 @@ func (m *ClusterWhereInput) contextValidateTypeNotIn(ctx context.Context, format
 		if err := m.TypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVcenterAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVdsesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVdsesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVdsesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVMFoldersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVMFoldersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVMFoldersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVMTemplatesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVMTemplatesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVMTemplatesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateWitness(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateZonesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateZonesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ClusterWhereInput) contextValidateZonesSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

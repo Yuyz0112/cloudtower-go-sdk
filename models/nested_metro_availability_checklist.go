@@ -88,6 +88,8 @@ func (m *NestedMetroAvailabilityChecklist) validatePrimaryZone(formats strfmt.Re
 		if err := m.PrimaryZone.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("primaryZone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("primaryZone")
 			}
 			return err
 		}
@@ -106,6 +108,8 @@ func (m *NestedMetroAvailabilityChecklist) validatePrimaryZoneAndWitness(formats
 		if err := m.PrimaryZoneAndWitness.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("primaryZoneAndWitness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("primaryZoneAndWitness")
 			}
 			return err
 		}
@@ -124,6 +128,8 @@ func (m *NestedMetroAvailabilityChecklist) validateSecondaryZone(formats strfmt.
 		if err := m.SecondaryZone.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("secondaryZone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("secondaryZone")
 			}
 			return err
 		}
@@ -142,6 +148,8 @@ func (m *NestedMetroAvailabilityChecklist) validateSecondaryZoneAndWitness(forma
 		if err := m.SecondaryZoneAndWitness.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("secondaryZoneAndWitness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("secondaryZoneAndWitness")
 			}
 			return err
 		}
@@ -160,6 +168,8 @@ func (m *NestedMetroAvailabilityChecklist) validateWitness(formats strfmt.Regist
 		if err := m.Witness.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("witness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witness")
 			}
 			return err
 		}
@@ -178,6 +188,8 @@ func (m *NestedMetroAvailabilityChecklist) validateZoneAndZone(formats strfmt.Re
 		if err := m.ZoneAndZone.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("zoneAndZone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zoneAndZone")
 			}
 			return err
 		}
@@ -226,6 +238,8 @@ func (m *NestedMetroAvailabilityChecklist) contextValidatePrimaryZone(ctx contex
 		if err := m.PrimaryZone.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("primaryZone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("primaryZone")
 			}
 			return err
 		}
@@ -240,6 +254,8 @@ func (m *NestedMetroAvailabilityChecklist) contextValidatePrimaryZoneAndWitness(
 		if err := m.PrimaryZoneAndWitness.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("primaryZoneAndWitness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("primaryZoneAndWitness")
 			}
 			return err
 		}
@@ -254,6 +270,8 @@ func (m *NestedMetroAvailabilityChecklist) contextValidateSecondaryZone(ctx cont
 		if err := m.SecondaryZone.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("secondaryZone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("secondaryZone")
 			}
 			return err
 		}
@@ -268,6 +286,8 @@ func (m *NestedMetroAvailabilityChecklist) contextValidateSecondaryZoneAndWitnes
 		if err := m.SecondaryZoneAndWitness.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("secondaryZoneAndWitness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("secondaryZoneAndWitness")
 			}
 			return err
 		}
@@ -282,6 +302,8 @@ func (m *NestedMetroAvailabilityChecklist) contextValidateWitness(ctx context.Co
 		if err := m.Witness.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("witness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witness")
 			}
 			return err
 		}
@@ -296,6 +318,8 @@ func (m *NestedMetroAvailabilityChecklist) contextValidateZoneAndZone(ctx contex
 		if err := m.ZoneAndZone.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("zoneAndZone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zoneAndZone")
 			}
 			return err
 		}

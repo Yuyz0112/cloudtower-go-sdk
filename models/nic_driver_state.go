@@ -20,8 +20,12 @@ import (
 type NicDriverState string
 
 func NewNicDriverState(value NicDriverState) *NicDriverState {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NicDriverState.
+func (m NicDriverState) Pointer() *NicDriverState {
+	return &m
 }
 
 const (

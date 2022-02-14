@@ -30,7 +30,9 @@ type ElfDataStoreWhereInput struct {
 	OR []*ElfDataStoreWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -171,7 +173,9 @@ type ElfDataStoreWhereInput struct {
 	IPWhitelistStartsWith *string `json:"ip_whitelist_starts_with,omitempty"`
 
 	// iscsi target
-	IscsiTarget interface{} `json:"iscsi_target,omitempty"`
+	IscsiTarget struct {
+		IscsiTargetWhereInput
+	} `json:"iscsi_target,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -258,10 +262,14 @@ type ElfDataStoreWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// nfs export
-	NfsExport interface{} `json:"nfs_export,omitempty"`
+	NfsExport struct {
+		NfsExportWhereInput
+	} `json:"nfs_export,omitempty"`
 
 	// nvmf subsystem
-	NvmfSubsystem interface{} `json:"nvmf_subsystem,omitempty"`
+	NvmfSubsystem struct {
+		NvmfSubsystemWhereInput
+	} `json:"nvmf_subsystem,omitempty"`
 
 	// replica num
 	ReplicaNum *int32 `json:"replica_num,omitempty"`
@@ -294,13 +302,17 @@ type ElfDataStoreWhereInput struct {
 	ThinProvisionNot *bool `json:"thin_provision_not,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		ElfDataStoreType
+	} `json:"type,omitempty"`
 
 	// type in
 	TypeIn []ElfDataStoreType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot interface{} `json:"type_not,omitempty"`
+	TypeNot struct {
+		ElfDataStoreType
+	} `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []ElfDataStoreType `json:"type_not_in,omitempty"`
@@ -322,7 +334,31 @@ func (m *ElfDataStoreWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiTarget(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNfsExport(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfSubsystem(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -350,6 +386,8 @@ func (m *ElfDataStoreWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -374,6 +412,8 @@ func (m *ElfDataStoreWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -398,11 +438,53 @@ func (m *ElfDataStoreWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) validateIscsiTarget(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiTarget) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) validateNfsExport(formats strfmt.Registry) error {
+	if swag.IsZero(m.NfsExport) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) validateNvmfSubsystem(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfSubsystem) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	return nil
@@ -418,10 +500,20 @@ func (m *ElfDataStoreWhereInput) validateTypeIn(formats strfmt.Registry) error {
 		if err := m.TypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) validateTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -437,6 +529,8 @@ func (m *ElfDataStoreWhereInput) validateTypeNotIn(formats strfmt.Registry) erro
 		if err := m.TypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -462,7 +556,31 @@ func (m *ElfDataStoreWhereInput) ContextValidate(ctx context.Context, formats st
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiTarget(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNfsExport(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfSubsystem(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -484,6 +602,8 @@ func (m *ElfDataStoreWhereInput) contextValidateAND(ctx context.Context, formats
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -502,6 +622,8 @@ func (m *ElfDataStoreWhereInput) contextValidateNOT(ctx context.Context, formats
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -520,12 +642,39 @@ func (m *ElfDataStoreWhereInput) contextValidateOR(ctx context.Context, formats 
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) contextValidateNfsExport(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) contextValidateNvmfSubsystem(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -537,11 +686,18 @@ func (m *ElfDataStoreWhereInput) contextValidateTypeIn(ctx context.Context, form
 		if err := m.TypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ElfDataStoreWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -553,6 +709,8 @@ func (m *ElfDataStoreWhereInput) contextValidateTypeNotIn(ctx context.Context, f
 		if err := m.TypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

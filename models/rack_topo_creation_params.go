@@ -78,6 +78,8 @@ func (m *RackTopoCreationParams) validateBrickTopoes(formats strfmt.Registry) er
 		if err := m.BrickTopoes.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("brick_topoes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("brick_topoes")
 			}
 			return err
 		}
@@ -142,6 +144,8 @@ func (m *RackTopoCreationParams) contextValidateBrickTopoes(ctx context.Context,
 		if err := m.BrickTopoes.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("brick_topoes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("brick_topoes")
 			}
 			return err
 		}

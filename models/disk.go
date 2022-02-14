@@ -21,20 +21,28 @@ import (
 type Disk struct {
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// failure information
-	FailureInformation interface{} `json:"failure_information,omitempty"`
+	FailureInformation struct {
+		NestedDiskFailureInformation
+	} `json:"failure_information,omitempty"`
 
 	// firmware
 	// Required: true
 	Firmware *string `json:"firmware"`
 
 	// function
-	Function interface{} `json:"function,omitempty"`
+	Function struct {
+		DiskFunction
+	} `json:"function,omitempty"`
 
 	// health status
-	HealthStatus interface{} `json:"health_status,omitempty"`
+	HealthStatus struct {
+		DiskHealthStatus
+	} `json:"health_status,omitempty"`
 
 	// healthy
 	// Required: true
@@ -92,7 +100,9 @@ type Disk struct {
 	PmemDimms []*NestedPmemDimm `json:"pmem_dimms,omitempty"`
 
 	// recommended usage
-	RecommendedUsage interface{} `json:"recommended_usage,omitempty"`
+	RecommendedUsage struct {
+		DiskUsage
+	} `json:"recommended_usage,omitempty"`
 
 	// remaining life percent
 	RemainingLifePercent *int32 `json:"remaining_life_percent,omitempty"`
@@ -114,14 +124,32 @@ type Disk struct {
 	Usage *DiskUsage `json:"usage"`
 
 	// usage status
-	UsageStatus interface{} `json:"usage_status,omitempty"`
+	UsageStatus struct {
+		DiskUsageStatus
+	} `json:"usage_status,omitempty"`
 }
 
 // Validate validates this disk
 func (m *Disk) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFailureInformation(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFirmware(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFunction(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHealthStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -173,6 +201,10 @@ func (m *Disk) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRecommendedUsage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSerial(formats); err != nil {
 		res = append(res, err)
 	}
@@ -189,9 +221,29 @@ func (m *Disk) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateUsageStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Disk) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *Disk) validateFailureInformation(formats strfmt.Registry) error {
+	if swag.IsZero(m.FailureInformation) { // not required
+		return nil
+	}
+
 	return nil
 }
 
@@ -199,6 +251,22 @@ func (m *Disk) validateFirmware(formats strfmt.Registry) error {
 
 	if err := validate.Required("firmware", "body", m.Firmware); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Disk) validateFunction(formats strfmt.Registry) error {
+	if swag.IsZero(m.Function) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *Disk) validateHealthStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.HealthStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -223,6 +291,8 @@ func (m *Disk) validateHost(formats strfmt.Registry) error {
 		if err := m.Host.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -254,6 +324,8 @@ func (m *Disk) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -324,6 +396,8 @@ func (m *Disk) validatePartitions(formats strfmt.Registry) error {
 			if err := m.Partitions[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("partitions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("partitions" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -357,11 +431,21 @@ func (m *Disk) validatePmemDimms(formats strfmt.Registry) error {
 			if err := m.PmemDimms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pmem_dimms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("pmem_dimms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Disk) validateRecommendedUsage(formats strfmt.Registry) error {
+	if swag.IsZero(m.RecommendedUsage) { // not required
+		return nil
 	}
 
 	return nil
@@ -399,6 +483,8 @@ func (m *Disk) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -421,6 +507,8 @@ func (m *Disk) validateUsage(formats strfmt.Registry) error {
 		if err := m.Usage.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("usage")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage")
 			}
 			return err
 		}
@@ -429,9 +517,33 @@ func (m *Disk) validateUsage(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Disk) validateUsageStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsageStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 // ContextValidate validate this disk based on the context it is used
 func (m *Disk) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFailureInformation(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFunction(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHealthStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateHost(ctx, formats); err != nil {
 		res = append(res, err)
@@ -449,11 +561,19 @@ func (m *Disk) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRecommendedUsage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateUsage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsageStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -463,12 +583,34 @@ func (m *Disk) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	return nil
 }
 
+func (m *Disk) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *Disk) contextValidateFailureInformation(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *Disk) contextValidateFunction(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *Disk) contextValidateHealthStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *Disk) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Host != nil {
 		if err := m.Host.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -485,6 +627,8 @@ func (m *Disk) contextValidateLabels(ctx context.Context, formats strfmt.Registr
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -503,6 +647,8 @@ func (m *Disk) contextValidatePartitions(ctx context.Context, formats strfmt.Reg
 			if err := m.Partitions[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("partitions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("partitions" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -521,6 +667,8 @@ func (m *Disk) contextValidatePmemDimms(ctx context.Context, formats strfmt.Regi
 			if err := m.PmemDimms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pmem_dimms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("pmem_dimms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -531,12 +679,19 @@ func (m *Disk) contextValidatePmemDimms(ctx context.Context, formats strfmt.Regi
 	return nil
 }
 
+func (m *Disk) contextValidateRecommendedUsage(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *Disk) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -551,10 +706,17 @@ func (m *Disk) contextValidateUsage(ctx context.Context, formats strfmt.Registry
 		if err := m.Usage.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("usage")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *Disk) contextValidateUsageStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

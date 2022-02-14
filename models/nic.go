@@ -24,7 +24,9 @@ type Nic struct {
 	Driver *string `json:"driver,omitempty"`
 
 	// driver state
-	DriverState interface{} `json:"driver_state,omitempty"`
+	DriverState struct {
+		NicDriverState
+	} `json:"driver_state,omitempty"`
 
 	// gateway ip
 	GatewayIP *string `json:"gateway_ip,omitempty"`
@@ -95,7 +97,9 @@ type Nic struct {
 	TotalVfNum *int32 `json:"total_vf_num,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		NetworkType
+	} `json:"type,omitempty"`
 
 	// up
 	// Required: true
@@ -105,12 +109,18 @@ type Nic struct {
 	UsedVfNum *int32 `json:"used_vf_num,omitempty"`
 
 	// vds
-	Vds interface{} `json:"vds,omitempty"`
+	Vds struct {
+		NestedVds
+	} `json:"vds,omitempty"`
 }
 
 // Validate validates this nic
 func (m *Nic) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateDriverState(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateHost(formats); err != nil {
 		res = append(res, err)
@@ -148,13 +158,29 @@ func (m *Nic) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUp(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVds(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Nic) validateDriverState(formats strfmt.Registry) error {
+	if swag.IsZero(m.DriverState) { // not required
+		return nil
+	}
+
 	return nil
 }
 
@@ -168,6 +194,8 @@ func (m *Nic) validateHost(formats strfmt.Registry) error {
 		if err := m.Host.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -199,6 +227,8 @@ func (m *Nic) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -263,6 +293,14 @@ func (m *Nic) validateRunning(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Nic) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Nic) validateUp(formats strfmt.Registry) error {
 
 	if err := validate.Required("up", "body", m.Up); err != nil {
@@ -272,9 +310,21 @@ func (m *Nic) validateUp(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Nic) validateVds(formats strfmt.Registry) error {
+	if swag.IsZero(m.Vds) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 // ContextValidate validate this nic based on the context it is used
 func (m *Nic) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateDriverState(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateHost(ctx, formats); err != nil {
 		res = append(res, err)
@@ -284,9 +334,22 @@ func (m *Nic) ContextValidate(ctx context.Context, formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVds(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Nic) contextValidateDriverState(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 
@@ -296,6 +359,8 @@ func (m *Nic) contextValidateHost(ctx context.Context, formats strfmt.Registry) 
 		if err := m.Host.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -312,12 +377,24 @@ func (m *Nic) contextValidateLabels(ctx context.Context, formats strfmt.Registry
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *Nic) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *Nic) contextValidateVds(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

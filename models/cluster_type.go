@@ -20,8 +20,12 @@ import (
 type ClusterType string
 
 func NewClusterType(value ClusterType) *ClusterType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ClusterType.
+func (m ClusterType) Pointer() *ClusterType {
+	return &m
 }
 
 const (

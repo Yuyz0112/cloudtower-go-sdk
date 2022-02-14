@@ -20,7 +20,9 @@ import (
 type BackupLicense struct {
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// expire date
 	// Required: true
@@ -55,6 +57,10 @@ type BackupLicense struct {
 func (m *BackupLicense) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateExpireDate(formats); err != nil {
 		res = append(res, err)
 	}
@@ -86,6 +92,14 @@ func (m *BackupLicense) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *BackupLicense) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
 	return nil
 }
 
@@ -148,6 +162,8 @@ func (m *BackupLicense) validateSoftwareEdition(formats strfmt.Registry) error {
 		if err := m.SoftwareEdition.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
 			}
 			return err
 		}
@@ -170,6 +186,8 @@ func (m *BackupLicense) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -181,6 +199,10 @@ func (m *BackupLicense) validateType(formats strfmt.Registry) error {
 // ContextValidate validate this backup license based on the context it is used
 func (m *BackupLicense) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateSoftwareEdition(ctx, formats); err != nil {
 		res = append(res, err)
@@ -196,12 +218,19 @@ func (m *BackupLicense) ContextValidate(ctx context.Context, formats strfmt.Regi
 	return nil
 }
 
+func (m *BackupLicense) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *BackupLicense) contextValidateSoftwareEdition(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SoftwareEdition != nil {
 		if err := m.SoftwareEdition.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
 			}
 			return err
 		}
@@ -216,6 +245,8 @@ func (m *BackupLicense) contextValidateType(ctx context.Context, formats strfmt.
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

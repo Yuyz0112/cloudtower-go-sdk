@@ -20,8 +20,12 @@ import (
 type EntityFilterOrderByInput string
 
 func NewEntityFilterOrderByInput(value EntityFilterOrderByInput) *EntityFilterOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EntityFilterOrderByInput.
+func (m EntityFilterOrderByInput) Pointer() *EntityFilterOrderByInput {
+	return &m
 }
 
 const (

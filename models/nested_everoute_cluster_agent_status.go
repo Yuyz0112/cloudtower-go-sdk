@@ -118,6 +118,8 @@ func (m *NestedEverouteClusterAgentStatus) validateInstances(formats strfmt.Regi
 			if err := m.Instances[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("instances" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("instances" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -142,6 +144,8 @@ func (m *NestedEverouteClusterAgentStatus) validateManageVDSes(formats strfmt.Re
 			if err := m.ManageVDSes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("manageVDSes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("manageVDSes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -187,6 +191,8 @@ func (m *NestedEverouteClusterAgentStatus) contextValidateInstances(ctx context.
 			if err := m.Instances[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("instances" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("instances" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -205,6 +211,8 @@ func (m *NestedEverouteClusterAgentStatus) contextValidateManageVDSes(ctx contex
 			if err := m.ManageVDSes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("manageVDSes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("manageVDSes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

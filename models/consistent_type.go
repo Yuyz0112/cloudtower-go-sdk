@@ -20,8 +20,12 @@ import (
 type ConsistentType string
 
 func NewConsistentType(value ConsistentType) *ConsistentType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ConsistentType.
+func (m ConsistentType) Pointer() *ConsistentType {
+	return &m
 }
 
 const (

@@ -20,8 +20,12 @@ import (
 type VMOrderByInput string
 
 func NewVMOrderByInput(value VMOrderByInput) *VMOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMOrderByInput.
+func (m VMOrderByInput) Pointer() *VMOrderByInput {
+	return &m
 }
 
 const (

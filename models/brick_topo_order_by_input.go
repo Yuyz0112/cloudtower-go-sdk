@@ -20,8 +20,12 @@ import (
 type BrickTopoOrderByInput string
 
 func NewBrickTopoOrderByInput(value BrickTopoOrderByInput) *BrickTopoOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BrickTopoOrderByInput.
+func (m BrickTopoOrderByInput) Pointer() *BrickTopoOrderByInput {
+	return &m
 }
 
 const (

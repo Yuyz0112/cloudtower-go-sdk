@@ -20,8 +20,12 @@ import (
 type AlertRuleUnit string
 
 func NewAlertRuleUnit(value AlertRuleUnit) *AlertRuleUnit {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated AlertRuleUnit.
+func (m AlertRuleUnit) Pointer() *AlertRuleUnit {
+	return &m
 }
 
 const (

@@ -20,8 +20,12 @@ import (
 type DiskHealthStatus string
 
 func NewDiskHealthStatus(value DiskHealthStatus) *DiskHealthStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated DiskHealthStatus.
+func (m DiskHealthStatus) Pointer() *DiskHealthStatus {
+	return &m
 }
 
 const (

@@ -144,13 +144,17 @@ type UploadTaskWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// resource type
-	ResourceType interface{} `json:"resource_type,omitempty"`
+	ResourceType struct {
+		UploadResourceType
+	} `json:"resource_type,omitempty"`
 
 	// resource type in
 	ResourceTypeIn []UploadResourceType `json:"resource_type_in,omitempty"`
 
 	// resource type not
-	ResourceTypeNot interface{} `json:"resource_type_not,omitempty"`
+	ResourceTypeNot struct {
+		UploadResourceType
+	} `json:"resource_type_not,omitempty"`
 
 	// resource type not in
 	ResourceTypeNotIn []UploadResourceType `json:"resource_type_not_in,omitempty"`
@@ -204,13 +208,17 @@ type UploadTaskWhereInput struct {
 	StartedAtNotIn []string `json:"started_at_not_in,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		UploadTaskStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []UploadTaskStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		UploadTaskStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []UploadTaskStatus `json:"status_not_in,omitempty"`
@@ -256,7 +264,15 @@ func (m *UploadTaskWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateResourceType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateResourceTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResourceTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -264,7 +280,15 @@ func (m *UploadTaskWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -292,6 +316,8 @@ func (m *UploadTaskWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -316,6 +342,8 @@ func (m *UploadTaskWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -340,11 +368,21 @@ func (m *UploadTaskWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UploadTaskWhereInput) validateResourceType(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceType) { // not required
+		return nil
 	}
 
 	return nil
@@ -360,10 +398,20 @@ func (m *UploadTaskWhereInput) validateResourceTypeIn(formats strfmt.Registry) e
 		if err := m.ResourceTypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UploadTaskWhereInput) validateResourceTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceTypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -379,10 +427,20 @@ func (m *UploadTaskWhereInput) validateResourceTypeNotIn(formats strfmt.Registry
 		if err := m.ResourceTypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UploadTaskWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -398,10 +456,20 @@ func (m *UploadTaskWhereInput) validateStatusIn(formats strfmt.Registry) error {
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *UploadTaskWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -417,6 +485,8 @@ func (m *UploadTaskWhereInput) validateStatusNotIn(formats strfmt.Registry) erro
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -442,7 +512,15 @@ func (m *UploadTaskWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateResourceType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateResourceTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResourceTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -450,7 +528,15 @@ func (m *UploadTaskWhereInput) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -472,6 +558,8 @@ func (m *UploadTaskWhereInput) contextValidateAND(ctx context.Context, formats s
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -490,6 +578,8 @@ func (m *UploadTaskWhereInput) contextValidateNOT(ctx context.Context, formats s
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -508,12 +598,19 @@ func (m *UploadTaskWhereInput) contextValidateOR(ctx context.Context, formats st
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UploadTaskWhereInput) contextValidateResourceType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -525,11 +622,18 @@ func (m *UploadTaskWhereInput) contextValidateResourceTypeIn(ctx context.Context
 		if err := m.ResourceTypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UploadTaskWhereInput) contextValidateResourceTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -541,11 +645,18 @@ func (m *UploadTaskWhereInput) contextValidateResourceTypeNotIn(ctx context.Cont
 		if err := m.ResourceTypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UploadTaskWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -557,11 +668,18 @@ func (m *UploadTaskWhereInput) contextValidateStatusIn(ctx context.Context, form
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *UploadTaskWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -573,6 +691,8 @@ func (m *UploadTaskWhereInput) contextValidateStatusNotIn(ctx context.Context, f
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

@@ -86,6 +86,8 @@ func (m *VMNicParams) validateModel(formats strfmt.Registry) error {
 	if err := m.Model.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("model")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("model")
 		}
 		return err
 	}
@@ -112,6 +114,8 @@ func (m *VMNicParams) contextValidateModel(ctx context.Context, formats strfmt.R
 	if err := m.Model.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("model")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("model")
 		}
 		return err
 	}

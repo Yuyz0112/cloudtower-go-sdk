@@ -98,6 +98,8 @@ func (m *ClusterTopo) validateBrickTopoes(formats strfmt.Registry) error {
 			if err := m.BrickTopoes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("brick_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("brick_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -118,6 +120,8 @@ func (m *ClusterTopo) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -167,6 +171,8 @@ func (m *ClusterTopo) validateNodeTopoes(formats strfmt.Registry) error {
 			if err := m.NodeTopoes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("node_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("node_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -191,6 +197,8 @@ func (m *ClusterTopo) validateZoneTopoes(formats strfmt.Registry) error {
 			if err := m.ZoneTopoes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("zone_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("zone_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -235,6 +243,8 @@ func (m *ClusterTopo) contextValidateBrickTopoes(ctx context.Context, formats st
 			if err := m.BrickTopoes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("brick_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("brick_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -251,6 +261,8 @@ func (m *ClusterTopo) contextValidateCluster(ctx context.Context, formats strfmt
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -267,6 +279,8 @@ func (m *ClusterTopo) contextValidateNodeTopoes(ctx context.Context, formats str
 			if err := m.NodeTopoes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("node_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("node_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -285,6 +299,8 @@ func (m *ClusterTopo) contextValidateZoneTopoes(ctx context.Context, formats str
 			if err := m.ZoneTopoes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("zone_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("zone_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

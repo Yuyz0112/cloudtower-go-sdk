@@ -20,8 +20,12 @@ import (
 type VMFirmware string
 
 func NewVMFirmware(value VMFirmware) *VMFirmware {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMFirmware.
+func (m VMFirmware) Pointer() *VMFirmware {
+	return &m
 }
 
 const (

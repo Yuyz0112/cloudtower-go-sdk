@@ -20,8 +20,12 @@ import (
 type SnapshotPlanTaskType string
 
 func NewSnapshotPlanTaskType(value SnapshotPlanTaskType) *SnapshotPlanTaskType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnapshotPlanTaskType.
+func (m SnapshotPlanTaskType) Pointer() *SnapshotPlanTaskType {
+	return &m
 }
 
 const (

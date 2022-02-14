@@ -57,6 +57,8 @@ func (m *BrickTopoUpdationParams) validateData(formats strfmt.Registry) error {
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -75,6 +77,8 @@ func (m *BrickTopoUpdationParams) validateWhere(formats strfmt.Registry) error {
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -107,6 +111,8 @@ func (m *BrickTopoUpdationParams) contextValidateData(ctx context.Context, forma
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -121,6 +127,8 @@ func (m *BrickTopoUpdationParams) contextValidateWhere(ctx context.Context, form
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -202,6 +210,8 @@ func (m *BrickTopoUpdationParamsData) validateCapacity(formats strfmt.Registry) 
 		if err := m.Capacity.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "capacity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "capacity")
 			}
 			return err
 		}
@@ -219,6 +229,8 @@ func (m *BrickTopoUpdationParamsData) validateNodeTopoes(formats strfmt.Registry
 		if err := m.NodeTopoes.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "node_topoes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "node_topoes")
 			}
 			return err
 		}
@@ -241,6 +253,8 @@ func (m *BrickTopoUpdationParamsData) validateTagPositionInBrick(formats strfmt.
 			if err := m.TagPositionInBrick[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "tag_position_in_brick" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "tag_position_in_brick" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -279,6 +293,8 @@ func (m *BrickTopoUpdationParamsData) contextValidateCapacity(ctx context.Contex
 		if err := m.Capacity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "capacity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "capacity")
 			}
 			return err
 		}
@@ -293,6 +309,8 @@ func (m *BrickTopoUpdationParamsData) contextValidateNodeTopoes(ctx context.Cont
 		if err := m.NodeTopoes.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "node_topoes")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "node_topoes")
 			}
 			return err
 		}
@@ -309,6 +327,8 @@ func (m *BrickTopoUpdationParamsData) contextValidateTagPositionInBrick(ctx cont
 			if err := m.TagPositionInBrick[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "tag_position_in_brick" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "tag_position_in_brick" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

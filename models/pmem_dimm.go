@@ -28,10 +28,14 @@ type PmemDimm struct {
 	DeviceLocator *string `json:"device_locator"`
 
 	// disk
-	Disk interface{} `json:"disk,omitempty"`
+	Disk struct {
+		NestedDisk
+	} `json:"disk,omitempty"`
 
 	// health status
-	HealthStatus interface{} `json:"health_status,omitempty"`
+	HealthStatus struct {
+		DiskHealthStatus
+	} `json:"health_status,omitempty"`
 
 	// host
 	// Required: true
@@ -73,6 +77,14 @@ func (m *PmemDimm) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDeviceLocator(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisk(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHealthStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -124,6 +136,22 @@ func (m *PmemDimm) validateDeviceLocator(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *PmemDimm) validateDisk(formats strfmt.Registry) error {
+	if swag.IsZero(m.Disk) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *PmemDimm) validateHealthStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.HealthStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *PmemDimm) validateHost(formats strfmt.Registry) error {
 
 	if err := validate.Required("host", "body", m.Host); err != nil {
@@ -134,6 +162,8 @@ func (m *PmemDimm) validateHost(formats strfmt.Registry) error {
 		if err := m.Host.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -191,6 +221,14 @@ func (m *PmemDimm) validateVersion(formats strfmt.Registry) error {
 func (m *PmemDimm) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateDisk(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHealthStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateHost(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -201,12 +239,24 @@ func (m *PmemDimm) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
+func (m *PmemDimm) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *PmemDimm) contextValidateHealthStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *PmemDimm) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Host != nil {
 		if err := m.Host.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}

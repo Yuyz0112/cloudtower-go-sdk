@@ -34,7 +34,9 @@ type NestedBackupPlanTimePoint struct {
 	Minute *int32 `json:"minute"`
 
 	// weekday
-	Weekday interface{} `json:"weekday,omitempty"`
+	Weekday struct {
+		WeekdayTypeEnum
+	} `json:"weekday,omitempty"`
 }
 
 // Validate validates this nested backup plan time point
@@ -46,6 +48,10 @@ func (m *NestedBackupPlanTimePoint) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMinute(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWeekday(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,8 +79,30 @@ func (m *NestedBackupPlanTimePoint) validateMinute(formats strfmt.Registry) erro
 	return nil
 }
 
-// ContextValidate validates this nested backup plan time point based on context it is used
+func (m *NestedBackupPlanTimePoint) validateWeekday(formats strfmt.Registry) error {
+	if swag.IsZero(m.Weekday) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this nested backup plan time point based on the context it is used
 func (m *NestedBackupPlanTimePoint) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateWeekday(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NestedBackupPlanTimePoint) contextValidateWeekday(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

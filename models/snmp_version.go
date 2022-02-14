@@ -20,8 +20,12 @@ import (
 type SnmpVersion string
 
 func NewSnmpVersion(value SnmpVersion) *SnmpVersion {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnmpVersion.
+func (m SnmpVersion) Pointer() *SnmpVersion {
+	return &m
 }
 
 const (

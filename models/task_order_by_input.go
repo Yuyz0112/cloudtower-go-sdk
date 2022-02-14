@@ -20,8 +20,12 @@ import (
 type TaskOrderByInput string
 
 func NewTaskOrderByInput(value TaskOrderByInput) *TaskOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated TaskOrderByInput.
+func (m TaskOrderByInput) Pointer() *TaskOrderByInput {
+	return &m
 }
 
 const (

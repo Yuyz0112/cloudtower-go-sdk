@@ -20,8 +20,12 @@ import (
 type SnmpProtocol string
 
 func NewSnmpProtocol(value SnmpProtocol) *SnmpProtocol {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnmpProtocol.
+func (m SnmpProtocol) Pointer() *SnmpProtocol {
+	return &m
 }
 
 const (

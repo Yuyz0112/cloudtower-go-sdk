@@ -20,8 +20,12 @@ import (
 type NfsExportOrderByInput string
 
 func NewNfsExportOrderByInput(value NfsExportOrderByInput) *NfsExportOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NfsExportOrderByInput.
+func (m NfsExportOrderByInput) Pointer() *NfsExportOrderByInput {
+	return &m
 }
 
 const (

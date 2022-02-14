@@ -20,8 +20,12 @@ import (
 type BackupPlanDeleteStrategy string
 
 func NewBackupPlanDeleteStrategy(value BackupPlanDeleteStrategy) *BackupPlanDeleteStrategy {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupPlanDeleteStrategy.
+func (m BackupPlanDeleteStrategy) Pointer() *BackupPlanDeleteStrategy {
+	return &m
 }
 
 const (

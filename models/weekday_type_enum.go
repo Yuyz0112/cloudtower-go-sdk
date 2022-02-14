@@ -20,8 +20,12 @@ import (
 type WeekdayTypeEnum string
 
 func NewWeekdayTypeEnum(value WeekdayTypeEnum) *WeekdayTypeEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated WeekdayTypeEnum.
+func (m WeekdayTypeEnum) Pointer() *WeekdayTypeEnum {
+	return &m
 }
 
 const (

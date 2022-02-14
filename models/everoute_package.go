@@ -28,7 +28,9 @@ type EveroutePackage struct {
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -51,7 +53,9 @@ type EveroutePackage struct {
 	Size *float64 `json:"size"`
 
 	// upload task
-	UploadTask interface{} `json:"upload_task,omitempty"`
+	UploadTask struct {
+		NestedUploadTask
+	} `json:"upload_task,omitempty"`
 
 	// version
 	// Required: true
@@ -67,6 +71,10 @@ func (m *EveroutePackage) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,6 +95,10 @@ func (m *EveroutePackage) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSize(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUploadTask(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -114,6 +126,8 @@ func (m *EveroutePackage) validateArch(formats strfmt.Registry) error {
 		if err := m.Arch.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("arch")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arch")
 			}
 			return err
 		}
@@ -126,6 +140,14 @@ func (m *EveroutePackage) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *EveroutePackage) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -176,6 +198,14 @@ func (m *EveroutePackage) validateSize(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *EveroutePackage) validateUploadTask(formats strfmt.Registry) error {
+	if swag.IsZero(m.UploadTask) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *EveroutePackage) validateVersion(formats strfmt.Registry) error {
 
 	if err := validate.Required("version", "body", m.Version); err != nil {
@@ -193,6 +223,14 @@ func (m *EveroutePackage) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUploadTask(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -205,10 +243,22 @@ func (m *EveroutePackage) contextValidateArch(ctx context.Context, formats strfm
 		if err := m.Arch.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("arch")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arch")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *EveroutePackage) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *EveroutePackage) contextValidateUploadTask(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

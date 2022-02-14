@@ -134,6 +134,8 @@ func (m *Zone) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -152,6 +154,8 @@ func (m *Zone) validateDatacenter(formats strfmt.Registry) error {
 		if err := m.Datacenter.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("datacenter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenter")
 			}
 			return err
 		}
@@ -174,6 +178,8 @@ func (m *Zone) validateHosts(formats strfmt.Registry) error {
 			if err := m.Hosts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("hosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -230,6 +236,8 @@ func (m *Zone) contextValidateCluster(ctx context.Context, formats strfmt.Regist
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -244,6 +252,8 @@ func (m *Zone) contextValidateDatacenter(ctx context.Context, formats strfmt.Reg
 		if err := m.Datacenter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("datacenter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenter")
 			}
 			return err
 		}
@@ -260,6 +270,8 @@ func (m *Zone) contextValidateHosts(ctx context.Context, formats strfmt.Registry
 			if err := m.Hosts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("hosts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

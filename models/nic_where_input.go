@@ -72,13 +72,17 @@ type NicWhereInput struct {
 	DriverStartsWith *string `json:"driver_starts_with,omitempty"`
 
 	// driver state
-	DriverState interface{} `json:"driver_state,omitempty"`
+	DriverState struct {
+		NicDriverState
+	} `json:"driver_state,omitempty"`
 
 	// driver state in
 	DriverStateIn []NicDriverState `json:"driver_state_in,omitempty"`
 
 	// driver state not
-	DriverStateNot interface{} `json:"driver_state_not,omitempty"`
+	DriverStateNot struct {
+		NicDriverState
+	} `json:"driver_state_not,omitempty"`
 
 	// driver state not in
 	DriverStateNotIn []NicDriverState `json:"driver_state_not_in,omitempty"`
@@ -126,7 +130,9 @@ type NicWhereInput struct {
 	GatewayIPStartsWith *string `json:"gateway_ip_starts_with,omitempty"`
 
 	// host
-	Host interface{} `json:"host,omitempty"`
+	Host struct {
+		HostWhereInput
+	} `json:"host,omitempty"`
 
 	// ibdev
 	Ibdev *string `json:"ibdev,omitempty"`
@@ -261,13 +267,19 @@ type NicWhereInput struct {
 	IsSriovNot *bool `json:"is_sriov_not,omitempty"`
 
 	// labels every
-	LabelsEvery interface{} `json:"labels_every,omitempty"`
+	LabelsEvery struct {
+		LabelWhereInput
+	} `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone interface{} `json:"labels_none,omitempty"`
+	LabelsNone struct {
+		LabelWhereInput
+	} `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome interface{} `json:"labels_some,omitempty"`
+	LabelsSome struct {
+		LabelWhereInput
+	} `json:"labels_some,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -636,13 +648,17 @@ type NicWhereInput struct {
 	TotalVfNumNotIn []int32 `json:"total_vf_num_not_in,omitempty"`
 
 	// type
-	Type interface{} `json:"type,omitempty"`
+	Type struct {
+		NetworkType
+	} `json:"type,omitempty"`
 
 	// type in
 	TypeIn []NetworkType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot interface{} `json:"type_not,omitempty"`
+	TypeNot struct {
+		NetworkType
+	} `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []NetworkType `json:"type_not_in,omitempty"`
@@ -678,7 +694,9 @@ type NicWhereInput struct {
 	UsedVfNumNotIn []int32 `json:"used_vf_num_not_in,omitempty"`
 
 	// vds
-	Vds interface{} `json:"vds,omitempty"`
+	Vds struct {
+		VdsWhereInput
+	} `json:"vds,omitempty"`
 }
 
 // Validate validates this nic where input
@@ -697,7 +715,15 @@ func (m *NicWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDriverState(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDriverStateIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDriverStateNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -705,11 +731,39 @@ func (m *NicWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateHost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateTypeNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTypeNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVds(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -733,6 +787,8 @@ func (m *NicWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -757,6 +813,8 @@ func (m *NicWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -781,11 +839,21 @@ func (m *NicWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateDriverState(formats strfmt.Registry) error {
+	if swag.IsZero(m.DriverState) { // not required
+		return nil
 	}
 
 	return nil
@@ -801,10 +869,20 @@ func (m *NicWhereInput) validateDriverStateIn(formats strfmt.Registry) error {
 		if err := m.DriverStateIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("driver_state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("driver_state_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateDriverStateNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.DriverStateNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -820,10 +898,52 @@ func (m *NicWhereInput) validateDriverStateNotIn(formats strfmt.Registry) error 
 		if err := m.DriverStateNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("driver_state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("driver_state_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateHost(formats strfmt.Registry) error {
+	if swag.IsZero(m.Host) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateLabelsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateLabelsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
 	}
 
 	return nil
@@ -839,10 +959,20 @@ func (m *NicWhereInput) validateTypeIn(formats strfmt.Registry) error {
 		if err := m.TypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.TypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -858,10 +988,20 @@ func (m *NicWhereInput) validateTypeNotIn(formats strfmt.Registry) error {
 		if err := m.TypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *NicWhereInput) validateVds(formats strfmt.Registry) error {
+	if swag.IsZero(m.Vds) { // not required
+		return nil
 	}
 
 	return nil
@@ -883,7 +1023,15 @@ func (m *NicWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateDriverState(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDriverStateIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDriverStateNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -891,11 +1039,39 @@ func (m *NicWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateHost(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTypeNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTypeNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVds(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -913,6 +1089,8 @@ func (m *NicWhereInput) contextValidateAND(ctx context.Context, formats strfmt.R
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -931,6 +1109,8 @@ func (m *NicWhereInput) contextValidateNOT(ctx context.Context, formats strfmt.R
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -949,12 +1129,19 @@ func (m *NicWhereInput) contextValidateOR(ctx context.Context, formats strfmt.Re
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateDriverState(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -966,11 +1153,18 @@ func (m *NicWhereInput) contextValidateDriverStateIn(ctx context.Context, format
 		if err := m.DriverStateIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("driver_state_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("driver_state_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateDriverStateNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -982,11 +1176,38 @@ func (m *NicWhereInput) contextValidateDriverStateNotIn(ctx context.Context, for
 		if err := m.DriverStateNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("driver_state_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("driver_state_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -998,11 +1219,18 @@ func (m *NicWhereInput) contextValidateTypeIn(ctx context.Context, formats strfm
 		if err := m.TypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -1014,11 +1242,18 @@ func (m *NicWhereInput) contextValidateTypeNotIn(ctx context.Context, formats st
 		if err := m.TypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *NicWhereInput) contextValidateVds(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

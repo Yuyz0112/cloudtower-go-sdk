@@ -20,8 +20,12 @@ import (
 type Architecture string
 
 func NewArchitecture(value Architecture) *Architecture {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated Architecture.
+func (m Architecture) Pointer() *Architecture {
+	return &m
 }
 
 const (

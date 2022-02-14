@@ -59,7 +59,6 @@ import (
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/license"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/log_collection"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/log_service_config"
-	"github.com/Yuyz0112/cloudtower-go-sdk/client/migrate_transmitter"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/namespace_group"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/nfs_export"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/nfs_inode"
@@ -87,7 +86,9 @@ import (
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/usb_device"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/user"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/user_audit_log"
+	"github.com/Yuyz0112/cloudtower-go-sdk/client/user_login_info"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/user_role_next"
+	"github.com/Yuyz0112/cloudtower-go-sdk/client/user_session"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/vcenter_account"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/vds"
 	"github.com/Yuyz0112/cloudtower-go-sdk/client/view"
@@ -199,7 +200,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *CloudTower
 	cli.License = license.New(transport, formats)
 	cli.LogCollection = log_collection.New(transport, formats)
 	cli.LogServiceConfig = log_service_config.New(transport, formats)
-	cli.MigrateTransmitter = migrate_transmitter.New(transport, formats)
 	cli.NamespaceGroup = namespace_group.New(transport, formats)
 	cli.NfsExport = nfs_export.New(transport, formats)
 	cli.NfsInode = nfs_inode.New(transport, formats)
@@ -227,7 +227,9 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *CloudTower
 	cli.UsbDevice = usb_device.New(transport, formats)
 	cli.User = user.New(transport, formats)
 	cli.UserAuditLog = user_audit_log.New(transport, formats)
+	cli.UserLoginInfo = user_login_info.New(transport, formats)
 	cli.UserRoleNext = user_role_next.New(transport, formats)
+	cli.UserSession = user_session.New(transport, formats)
 	cli.VcenterAccount = vcenter_account.New(transport, formats)
 	cli.Vds = vds.New(transport, formats)
 	cli.View = view.New(transport, formats)
@@ -388,8 +390,6 @@ type CloudTowerAPIs struct {
 
 	LogServiceConfig log_service_config.ClientService
 
-	MigrateTransmitter migrate_transmitter.ClientService
-
 	NamespaceGroup namespace_group.ClientService
 
 	NfsExport nfs_export.ClientService
@@ -444,7 +444,11 @@ type CloudTowerAPIs struct {
 
 	UserAuditLog user_audit_log.ClientService
 
+	UserLoginInfo user_login_info.ClientService
+
 	UserRoleNext user_role_next.ClientService
+
+	UserSession user_session.ClientService
 
 	VcenterAccount vcenter_account.ClientService
 
@@ -537,7 +541,6 @@ func (c *CloudTowerAPIs) SetTransport(transport runtime.ClientTransport) {
 	c.License.SetTransport(transport)
 	c.LogCollection.SetTransport(transport)
 	c.LogServiceConfig.SetTransport(transport)
-	c.MigrateTransmitter.SetTransport(transport)
 	c.NamespaceGroup.SetTransport(transport)
 	c.NfsExport.SetTransport(transport)
 	c.NfsInode.SetTransport(transport)
@@ -565,7 +568,9 @@ func (c *CloudTowerAPIs) SetTransport(transport runtime.ClientTransport) {
 	c.UsbDevice.SetTransport(transport)
 	c.User.SetTransport(transport)
 	c.UserAuditLog.SetTransport(transport)
+	c.UserLoginInfo.SetTransport(transport)
 	c.UserRoleNext.SetTransport(transport)
+	c.UserSession.SetTransport(transport)
 	c.VcenterAccount.SetTransport(transport)
 	c.Vds.SetTransport(transport)
 	c.View.SetTransport(transport)

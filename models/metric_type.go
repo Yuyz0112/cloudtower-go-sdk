@@ -20,8 +20,12 @@ import (
 type MetricType string
 
 func NewMetricType(value MetricType) *MetricType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated MetricType.
+func (m MetricType) Pointer() *MetricType {
+	return &m
 }
 
 const (

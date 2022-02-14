@@ -68,6 +68,8 @@ func (m *Organization) validateDatacenters(formats strfmt.Registry) error {
 			if err := m.Datacenters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("datacenters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("datacenters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -118,6 +120,8 @@ func (m *Organization) contextValidateDatacenters(ctx context.Context, formats s
 			if err := m.Datacenters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("datacenters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("datacenters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

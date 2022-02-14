@@ -20,7 +20,9 @@ import (
 type NestedEverouteAgentStatus struct {
 
 	// host
-	Host interface{} `json:"host,omitempty"`
+	Host struct {
+		NestedHost
+	} `json:"host,omitempty"`
 
 	// host ID
 	// Required: true
@@ -39,7 +41,9 @@ type NestedEverouteAgentStatus struct {
 	Message *string `json:"message"`
 
 	// phase
-	Phase interface{} `json:"phase,omitempty"`
+	Phase struct {
+		EverouteClusterPhase
+	} `json:"phase,omitempty"`
 
 	// reason
 	// Required: true
@@ -49,6 +53,10 @@ type NestedEverouteAgentStatus struct {
 // Validate validates this nested everoute agent status
 func (m *NestedEverouteAgentStatus) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateHost(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateHostID(formats); err != nil {
 		res = append(res, err)
@@ -66,6 +74,10 @@ func (m *NestedEverouteAgentStatus) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePhase(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateReason(formats); err != nil {
 		res = append(res, err)
 	}
@@ -73,6 +85,14 @@ func (m *NestedEverouteAgentStatus) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *NestedEverouteAgentStatus) validateHost(formats strfmt.Registry) error {
+	if swag.IsZero(m.Host) { // not required
+		return nil
+	}
+
 	return nil
 }
 
@@ -112,6 +132,14 @@ func (m *NestedEverouteAgentStatus) validateMessage(formats strfmt.Registry) err
 	return nil
 }
 
+func (m *NestedEverouteAgentStatus) validatePhase(formats strfmt.Registry) error {
+	if swag.IsZero(m.Phase) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *NestedEverouteAgentStatus) validateReason(formats strfmt.Registry) error {
 
 	if err := validate.Required("reason", "body", m.Reason); err != nil {
@@ -121,8 +149,31 @@ func (m *NestedEverouteAgentStatus) validateReason(formats strfmt.Registry) erro
 	return nil
 }
 
-// ContextValidate validates this nested everoute agent status based on context it is used
+// ContextValidate validate this nested everoute agent status based on the context it is used
 func (m *NestedEverouteAgentStatus) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateHost(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhase(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NestedEverouteAgentStatus) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *NestedEverouteAgentStatus) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

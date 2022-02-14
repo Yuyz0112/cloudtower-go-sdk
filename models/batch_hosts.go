@@ -96,6 +96,8 @@ func (m *BatchHosts) validateTask(formats strfmt.Registry) error {
 		if err := m.Task.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("task")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("task")
 			}
 			return err
 		}
@@ -124,6 +126,8 @@ func (m *BatchHosts) contextValidateTask(ctx context.Context, formats strfmt.Reg
 		if err := m.Task.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("task")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("task")
 			}
 			return err
 		}

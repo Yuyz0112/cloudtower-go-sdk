@@ -20,8 +20,12 @@ import (
 type NicOrderByInput string
 
 func NewNicOrderByInput(value NicOrderByInput) *NicOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NicOrderByInput.
+func (m NicOrderByInput) Pointer() *NicOrderByInput {
+	return &m
 }
 
 const (

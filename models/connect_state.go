@@ -20,8 +20,12 @@ import (
 type ConnectState string
 
 func NewConnectState(value ConnectState) *ConnectState {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ConnectState.
+func (m ConnectState) Pointer() *ConnectState {
+	return &m
 }
 
 const (

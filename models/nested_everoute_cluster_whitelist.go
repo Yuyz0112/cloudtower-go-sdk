@@ -67,6 +67,8 @@ func (m *NestedEverouteClusterWhitelist) validateEgress(formats strfmt.Registry)
 			if err := m.Egress[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("egress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("egress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +102,8 @@ func (m *NestedEverouteClusterWhitelist) validateIngress(formats strfmt.Registry
 			if err := m.Ingress[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ingress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ingress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -136,6 +140,8 @@ func (m *NestedEverouteClusterWhitelist) contextValidateEgress(ctx context.Conte
 			if err := m.Egress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("egress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("egress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -154,6 +160,8 @@ func (m *NestedEverouteClusterWhitelist) contextValidateIngress(ctx context.Cont
 			if err := m.Ingress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ingress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ingress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

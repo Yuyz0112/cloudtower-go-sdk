@@ -98,6 +98,8 @@ func (m *IsolationPolicy) validateEgress(formats strfmt.Registry) error {
 			if err := m.Egress[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("egress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("egress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -118,6 +120,8 @@ func (m *IsolationPolicy) validateEverouteCluster(formats strfmt.Registry) error
 		if err := m.EverouteCluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
 			}
 			return err
 		}
@@ -149,6 +153,8 @@ func (m *IsolationPolicy) validateIngress(formats strfmt.Registry) error {
 			if err := m.Ingress[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ingress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ingress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -173,6 +179,8 @@ func (m *IsolationPolicy) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -197,6 +205,8 @@ func (m *IsolationPolicy) validateMode(formats strfmt.Registry) error {
 		if err := m.Mode.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode")
 			}
 			return err
 		}
@@ -215,6 +225,8 @@ func (m *IsolationPolicy) validateVM(formats strfmt.Registry) error {
 		if err := m.VM.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
 			}
 			return err
 		}
@@ -265,6 +277,8 @@ func (m *IsolationPolicy) contextValidateEgress(ctx context.Context, formats str
 			if err := m.Egress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("egress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("egress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -281,6 +295,8 @@ func (m *IsolationPolicy) contextValidateEverouteCluster(ctx context.Context, fo
 		if err := m.EverouteCluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
 			}
 			return err
 		}
@@ -297,6 +313,8 @@ func (m *IsolationPolicy) contextValidateIngress(ctx context.Context, formats st
 			if err := m.Ingress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ingress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ingress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -315,6 +333,8 @@ func (m *IsolationPolicy) contextValidateLabels(ctx context.Context, formats str
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -331,6 +351,8 @@ func (m *IsolationPolicy) contextValidateMode(ctx context.Context, formats strfm
 		if err := m.Mode.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode")
 			}
 			return err
 		}
@@ -345,6 +367,8 @@ func (m *IsolationPolicy) contextValidateVM(ctx context.Context, formats strfmt.
 		if err := m.VM.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
 			}
 			return err
 		}

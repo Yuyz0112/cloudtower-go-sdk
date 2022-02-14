@@ -20,8 +20,12 @@ import (
 type EntityAsyncStatus string
 
 func NewEntityAsyncStatus(value EntityAsyncStatus) *EntityAsyncStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EntityAsyncStatus.
+func (m EntityAsyncStatus) Pointer() *EntityAsyncStatus {
+	return &m
 }
 
 const (

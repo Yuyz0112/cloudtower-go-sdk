@@ -30,7 +30,9 @@ type VMEntityFilterResultWhereInput struct {
 	OR []*VMEntityFilterResultWhereInput `json:"OR,omitempty"`
 
 	// entity filter
-	EntityFilter interface{} `json:"entityFilter,omitempty"`
+	EntityFilter struct {
+		EntityFilterWhereInput
+	} `json:"entityFilter,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -75,7 +77,9 @@ type VMEntityFilterResultWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// vm
-	VM interface{} `json:"vm,omitempty"`
+	VM struct {
+		VMWhereInput
+	} `json:"vm,omitempty"`
 }
 
 // Validate validates this Vm entity filter result where input
@@ -91,6 +95,14 @@ func (m *VMEntityFilterResultWhereInput) Validate(formats strfmt.Registry) error
 	}
 
 	if err := m.validateOR(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityFilter(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVM(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -114,6 +126,8 @@ func (m *VMEntityFilterResultWhereInput) validateAND(formats strfmt.Registry) er
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -138,6 +152,8 @@ func (m *VMEntityFilterResultWhereInput) validateNOT(formats strfmt.Registry) er
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -162,11 +178,29 @@ func (m *VMEntityFilterResultWhereInput) validateOR(formats strfmt.Registry) err
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMEntityFilterResultWhereInput) validateEntityFilter(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityFilter) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMEntityFilterResultWhereInput) validateVM(formats strfmt.Registry) error {
+	if swag.IsZero(m.VM) { // not required
+		return nil
 	}
 
 	return nil
@@ -188,6 +222,14 @@ func (m *VMEntityFilterResultWhereInput) ContextValidate(ctx context.Context, fo
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityFilter(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVM(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -202,6 +244,8 @@ func (m *VMEntityFilterResultWhereInput) contextValidateAND(ctx context.Context,
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -220,6 +264,8 @@ func (m *VMEntityFilterResultWhereInput) contextValidateNOT(ctx context.Context,
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -238,12 +284,24 @@ func (m *VMEntityFilterResultWhereInput) contextValidateOR(ctx context.Context, 
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMEntityFilterResultWhereInput) contextValidateEntityFilter(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMEntityFilterResultWhereInput) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -20,8 +20,12 @@ import (
 type VMUsage string
 
 func NewVMUsage(value VMUsage) *VMUsage {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMUsage.
+func (m VMUsage) Pointer() *VMUsage {
+	return &m
 }
 
 const (

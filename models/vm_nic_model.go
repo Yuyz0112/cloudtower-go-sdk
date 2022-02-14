@@ -20,8 +20,12 @@ import (
 type VMNicModel string
 
 func NewVMNicModel(value VMNicModel) *VMNicModel {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMNicModel.
+func (m VMNicModel) Pointer() *VMNicModel {
+	return &m
 }
 
 const (

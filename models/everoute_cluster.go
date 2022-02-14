@@ -35,14 +35,18 @@ type EverouteCluster struct {
 	ControllerTemplate *NestedEverouteControllerTemplate `json:"controller_template"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// global default action
 	// Required: true
 	GlobalDefaultAction *GlobalPolicyAction `json:"global_default_action"`
 
 	// global whitelist
-	GlobalWhitelist interface{} `json:"global_whitelist,omitempty"`
+	GlobalWhitelist struct {
+		NestedEverouteClusterWhitelist
+	} `json:"global_whitelist,omitempty"`
 
 	// id
 	// Required: true
@@ -56,7 +60,9 @@ type EverouteCluster struct {
 	Name *string `json:"name"`
 
 	// phase
-	Phase interface{} `json:"phase,omitempty"`
+	Phase struct {
+		EverouteClusterPhase
+	} `json:"phase,omitempty"`
 
 	// status
 	// Required: true
@@ -87,7 +93,15 @@ func (m *EverouteCluster) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGlobalDefaultAction(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGlobalWhitelist(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -96,6 +110,10 @@ func (m *EverouteCluster) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePhase(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -127,6 +145,8 @@ func (m *EverouteCluster) validateAgentElfClusters(formats strfmt.Registry) erro
 			if err := m.AgentElfClusters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("agent_elf_clusters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("agent_elf_clusters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -151,6 +171,8 @@ func (m *EverouteCluster) validateAgentElfVdses(formats strfmt.Registry) error {
 			if err := m.AgentElfVdses[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("agent_elf_vdses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("agent_elf_vdses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -176,6 +198,8 @@ func (m *EverouteCluster) validateControllerInstances(formats strfmt.Registry) e
 			if err := m.ControllerInstances[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("controller_instances" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("controller_instances" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -196,9 +220,19 @@ func (m *EverouteCluster) validateControllerTemplate(formats strfmt.Registry) er
 		if err := m.ControllerTemplate.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("controller_template")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("controller_template")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *EverouteCluster) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -218,9 +252,19 @@ func (m *EverouteCluster) validateGlobalDefaultAction(formats strfmt.Registry) e
 		if err := m.GlobalDefaultAction.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("global_default_action")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_default_action")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *EverouteCluster) validateGlobalWhitelist(formats strfmt.Registry) error {
+	if swag.IsZero(m.GlobalWhitelist) { // not required
+		return nil
 	}
 
 	return nil
@@ -244,6 +288,14 @@ func (m *EverouteCluster) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *EverouteCluster) validatePhase(formats strfmt.Registry) error {
+	if swag.IsZero(m.Phase) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *EverouteCluster) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
@@ -254,6 +306,8 @@ func (m *EverouteCluster) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -291,7 +345,19 @@ func (m *EverouteCluster) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGlobalDefaultAction(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGlobalWhitelist(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhase(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -313,6 +379,8 @@ func (m *EverouteCluster) contextValidateAgentElfClusters(ctx context.Context, f
 			if err := m.AgentElfClusters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("agent_elf_clusters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("agent_elf_clusters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -331,6 +399,8 @@ func (m *EverouteCluster) contextValidateAgentElfVdses(ctx context.Context, form
 			if err := m.AgentElfVdses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("agent_elf_vdses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("agent_elf_vdses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -349,6 +419,8 @@ func (m *EverouteCluster) contextValidateControllerInstances(ctx context.Context
 			if err := m.ControllerInstances[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("controller_instances" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("controller_instances" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -365,10 +437,17 @@ func (m *EverouteCluster) contextValidateControllerTemplate(ctx context.Context,
 		if err := m.ControllerTemplate.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("controller_template")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("controller_template")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *EverouteCluster) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -379,10 +458,22 @@ func (m *EverouteCluster) contextValidateGlobalDefaultAction(ctx context.Context
 		if err := m.GlobalDefaultAction.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("global_default_action")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_default_action")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *EverouteCluster) contextValidateGlobalWhitelist(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *EverouteCluster) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -393,6 +484,8 @@ func (m *EverouteCluster) contextValidateStatus(ctx context.Context, formats str
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}

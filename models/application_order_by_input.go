@@ -20,8 +20,12 @@ import (
 type ApplicationOrderByInput string
 
 func NewApplicationOrderByInput(value ApplicationOrderByInput) *ApplicationOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ApplicationOrderByInput.
+func (m ApplicationOrderByInput) Pointer() *ApplicationOrderByInput {
+	return &m
 }
 
 const (

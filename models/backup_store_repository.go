@@ -27,13 +27,17 @@ type BackupStoreRepository struct {
 	BackupRestorePoints []*NestedBackupRestorePoint `json:"backup_restore_points,omitempty"`
 
 	// backup service
-	BackupService interface{} `json:"backup_service,omitempty"`
+	BackupService struct {
+		NestedBackupService
+	} `json:"backup_service,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -99,6 +103,14 @@ func (m *BackupStoreRepository) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBackupService(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -143,6 +155,8 @@ func (m *BackupStoreRepository) validateBackupPlans(formats strfmt.Registry) err
 			if err := m.BackupPlans[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("backup_plans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("backup_plans" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -167,11 +181,29 @@ func (m *BackupStoreRepository) validateBackupRestorePoints(formats strfmt.Regis
 			if err := m.BackupRestorePoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("backup_restore_points" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("backup_restore_points" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupStoreRepository) validateBackupService(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupService) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupStoreRepository) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -209,6 +241,8 @@ func (m *BackupStoreRepository) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -240,6 +274,8 @@ func (m *BackupStoreRepository) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -269,6 +305,14 @@ func (m *BackupStoreRepository) ContextValidate(ctx context.Context, formats str
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBackupService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -291,6 +335,8 @@ func (m *BackupStoreRepository) contextValidateBackupPlans(ctx context.Context, 
 			if err := m.BackupPlans[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("backup_plans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("backup_plans" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -309,6 +355,8 @@ func (m *BackupStoreRepository) contextValidateBackupRestorePoints(ctx context.C
 			if err := m.BackupRestorePoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("backup_restore_points" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("backup_restore_points" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -319,12 +367,24 @@ func (m *BackupStoreRepository) contextValidateBackupRestorePoints(ctx context.C
 	return nil
 }
 
+func (m *BackupStoreRepository) contextValidateBackupService(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupStoreRepository) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *BackupStoreRepository) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -339,6 +399,8 @@ func (m *BackupStoreRepository) contextValidateType(ctx context.Context, formats
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

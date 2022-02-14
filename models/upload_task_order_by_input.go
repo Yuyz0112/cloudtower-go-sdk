@@ -20,8 +20,12 @@ import (
 type UploadTaskOrderByInput string
 
 func NewUploadTaskOrderByInput(value UploadTaskOrderByInput) *UploadTaskOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UploadTaskOrderByInput.
+func (m UploadTaskOrderByInput) Pointer() *UploadTaskOrderByInput {
+	return &m
 }
 
 const (

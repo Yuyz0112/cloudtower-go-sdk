@@ -30,7 +30,9 @@ type BackupRestoreExecutionWhereInput struct {
 	OR []*BackupRestoreExecutionWhereInput `json:"OR,omitempty"`
 
 	// backup restore point
-	BackupRestorePoint interface{} `json:"backup_restore_point,omitempty"`
+	BackupRestorePoint struct {
+		BackupRestorePointWhereInput
+	} `json:"backup_restore_point,omitempty"`
 
 	// duration
 	Duration *int32 `json:"duration,omitempty"`
@@ -57,13 +59,17 @@ type BackupRestoreExecutionWhereInput struct {
 	DurationNotIn []int32 `json:"duration_not_in,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -135,13 +141,17 @@ type BackupRestoreExecutionWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// mode
-	Mode interface{} `json:"mode,omitempty"`
+	Mode struct {
+		BackupRestoreExecutionMode
+	} `json:"mode,omitempty"`
 
 	// mode in
 	ModeIn []BackupRestoreExecutionMode `json:"mode_in,omitempty"`
 
 	// mode not
-	ModeNot interface{} `json:"mode_not,omitempty"`
+	ModeNot struct {
+		BackupRestoreExecutionMode
+	} `json:"mode_not,omitempty"`
 
 	// mode not in
 	ModeNotIn []BackupRestoreExecutionMode `json:"mode_not_in,omitempty"`
@@ -366,13 +376,17 @@ type BackupRestoreExecutionWhereInput struct {
 	StartupAfterRestoreNot *bool `json:"startup_after_restore_not,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		BackupExecutionStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []BackupExecutionStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		BackupExecutionStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []BackupExecutionStatus `json:"status_not_in,omitempty"`
@@ -418,7 +432,19 @@ func (m *BackupRestoreExecutionWhereInput) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateBackupRestorePoint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -426,7 +452,15 @@ func (m *BackupRestoreExecutionWhereInput) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateMode(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateModeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateModeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -434,7 +468,15 @@ func (m *BackupRestoreExecutionWhereInput) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -462,6 +504,8 @@ func (m *BackupRestoreExecutionWhereInput) validateAND(formats strfmt.Registry) 
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -486,6 +530,8 @@ func (m *BackupRestoreExecutionWhereInput) validateNOT(formats strfmt.Registry) 
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -510,11 +556,29 @@ func (m *BackupRestoreExecutionWhereInput) validateOR(formats strfmt.Registry) e
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) validateBackupRestorePoint(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupRestorePoint) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -530,10 +594,20 @@ func (m *BackupRestoreExecutionWhereInput) validateEntityAsyncStatusIn(formats s
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -549,10 +623,20 @@ func (m *BackupRestoreExecutionWhereInput) validateEntityAsyncStatusNotIn(format
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) validateMode(formats strfmt.Registry) error {
+	if swag.IsZero(m.Mode) { // not required
+		return nil
 	}
 
 	return nil
@@ -568,10 +652,20 @@ func (m *BackupRestoreExecutionWhereInput) validateModeIn(formats strfmt.Registr
 		if err := m.ModeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) validateModeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ModeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -587,10 +681,20 @@ func (m *BackupRestoreExecutionWhereInput) validateModeNotIn(formats strfmt.Regi
 		if err := m.ModeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -606,10 +710,20 @@ func (m *BackupRestoreExecutionWhereInput) validateStatusIn(formats strfmt.Regis
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -625,6 +739,8 @@ func (m *BackupRestoreExecutionWhereInput) validateStatusNotIn(formats strfmt.Re
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -650,7 +766,19 @@ func (m *BackupRestoreExecutionWhereInput) ContextValidate(ctx context.Context, 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBackupRestorePoint(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -658,7 +786,15 @@ func (m *BackupRestoreExecutionWhereInput) ContextValidate(ctx context.Context, 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMode(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateModeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateModeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -666,7 +802,15 @@ func (m *BackupRestoreExecutionWhereInput) ContextValidate(ctx context.Context, 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -688,6 +832,8 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateAND(ctx context.Contex
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -706,6 +852,8 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateNOT(ctx context.Contex
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -724,12 +872,24 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateOR(ctx context.Context
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) contextValidateBackupRestorePoint(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -741,11 +901,18 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateEntityAsyncStatusIn(ct
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -757,11 +924,18 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateEntityAsyncStatusNotIn
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) contextValidateMode(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -773,11 +947,18 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateModeIn(ctx context.Con
 		if err := m.ModeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) contextValidateModeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -789,11 +970,18 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateModeNotIn(ctx context.
 		if err := m.ModeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mode_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mode_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -805,11 +993,18 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateStatusIn(ctx context.C
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BackupRestoreExecutionWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -821,6 +1016,8 @@ func (m *BackupRestoreExecutionWhereInput) contextValidateStatusNotIn(ctx contex
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

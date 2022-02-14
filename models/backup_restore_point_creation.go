@@ -20,8 +20,12 @@ import (
 type BackupRestorePointCreation string
 
 func NewBackupRestorePointCreation(value BackupRestorePointCreation) *BackupRestorePointCreation {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupRestorePointCreation.
+func (m BackupRestorePointCreation) Pointer() *BackupRestorePointCreation {
+	return &m
 }
 
 const (

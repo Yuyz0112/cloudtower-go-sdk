@@ -72,6 +72,8 @@ func (m *VMEntityFilterResult) validateEntityFilter(formats strfmt.Registry) err
 		if err := m.EntityFilter.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityFilter")
 			}
 			return err
 		}
@@ -108,6 +110,8 @@ func (m *VMEntityFilterResult) validateVM(formats strfmt.Registry) error {
 		if err := m.VM.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
 			}
 			return err
 		}
@@ -140,6 +144,8 @@ func (m *VMEntityFilterResult) contextValidateEntityFilter(ctx context.Context, 
 		if err := m.EntityFilter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityFilter")
 			}
 			return err
 		}
@@ -154,6 +160,8 @@ func (m *VMEntityFilterResult) contextValidateVM(ctx context.Context, formats st
 		if err := m.VM.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
 			}
 			return err
 		}

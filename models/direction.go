@@ -20,8 +20,12 @@ import (
 type Direction string
 
 func NewDirection(value Direction) *Direction {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated Direction.
+func (m Direction) Pointer() *Direction {
+	return &m
 }
 
 const (

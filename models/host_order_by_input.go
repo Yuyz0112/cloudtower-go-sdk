@@ -20,8 +20,12 @@ import (
 type HostOrderByInput string
 
 func NewHostOrderByInput(value HostOrderByInput) *HostOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated HostOrderByInput.
+func (m HostOrderByInput) Pointer() *HostOrderByInput {
+	return &m
 }
 
 const (

@@ -20,8 +20,12 @@ import (
 type ContentLibraryImageOrderByInput string
 
 func NewContentLibraryImageOrderByInput(value ContentLibraryImageOrderByInput) *ContentLibraryImageOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ContentLibraryImageOrderByInput.
+func (m ContentLibraryImageOrderByInput) Pointer() *ContentLibraryImageOrderByInput {
+	return &m
 }
 
 const (

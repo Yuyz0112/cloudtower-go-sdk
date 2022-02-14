@@ -35,14 +35,18 @@ type AlertNotifier struct {
 	ID *string `json:"id"`
 
 	// language code
-	LanguageCode interface{} `json:"language_code,omitempty"`
+	LanguageCode struct {
+		NotifierLanguageCode
+	} `json:"language_code,omitempty"`
 
 	// notice severities
 	// Required: true
 	NoticeSeverities []string `json:"notice_severities"`
 
 	// security mode
-	SecurityMode interface{} `json:"security_mode,omitempty"`
+	SecurityMode struct {
+		NotifierSecurityMode
+	} `json:"security_mode,omitempty"`
 
 	// smtp server host
 	SMTPServerHost *string `json:"smtp_server_host,omitempty"`
@@ -70,7 +74,15 @@ func (m *AlertNotifier) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLanguageCode(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateNoticeSeverities(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSecurityMode(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -107,6 +119,14 @@ func (m *AlertNotifier) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AlertNotifier) validateLanguageCode(formats strfmt.Registry) error {
+	if swag.IsZero(m.LanguageCode) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *AlertNotifier) validateNoticeSeverities(formats strfmt.Registry) error {
 
 	if err := validate.Required("notice_severities", "body", m.NoticeSeverities); err != nil {
@@ -116,8 +136,39 @@ func (m *AlertNotifier) validateNoticeSeverities(formats strfmt.Registry) error 
 	return nil
 }
 
-// ContextValidate validates this alert notifier based on context it is used
+func (m *AlertNotifier) validateSecurityMode(formats strfmt.Registry) error {
+	if swag.IsZero(m.SecurityMode) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this alert notifier based on the context it is used
 func (m *AlertNotifier) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLanguageCode(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSecurityMode(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AlertNotifier) contextValidateLanguageCode(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *AlertNotifier) contextValidateSecurityMode(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

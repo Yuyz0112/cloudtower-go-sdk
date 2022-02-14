@@ -145,6 +145,8 @@ func (m *DiscoveredHost) validateDimms(formats strfmt.Registry) error {
 			if err := m.Dimms[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dimms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dimms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -170,6 +172,8 @@ func (m *DiscoveredHost) validateDisks(formats strfmt.Registry) error {
 			if err := m.Disks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -222,6 +226,8 @@ func (m *DiscoveredHost) validateIfaces(formats strfmt.Registry) error {
 			if err := m.Ifaces[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ifaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ifaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -289,6 +295,8 @@ func (m *DiscoveredHost) contextValidateDimms(ctx context.Context, formats strfm
 			if err := m.Dimms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dimms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dimms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -307,6 +315,8 @@ func (m *DiscoveredHost) contextValidateDisks(ctx context.Context, formats strfm
 			if err := m.Disks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -325,6 +335,8 @@ func (m *DiscoveredHost) contextValidateIfaces(ctx context.Context, formats strf
 			if err := m.Ifaces[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ifaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ifaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

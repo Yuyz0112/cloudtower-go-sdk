@@ -20,8 +20,12 @@ import (
 type PmemDimmOrderByInput string
 
 func NewPmemDimmOrderByInput(value PmemDimmOrderByInput) *PmemDimmOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated PmemDimmOrderByInput.
+func (m PmemDimmOrderByInput) Pointer() *PmemDimmOrderByInput {
+	return &m
 }
 
 const (

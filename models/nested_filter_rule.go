@@ -92,6 +92,8 @@ func (m *NestedFilterRule) validateAggregation(formats strfmt.Registry) error {
 		if err := m.Aggregation.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("aggregation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("aggregation")
 			}
 			return err
 		}
@@ -123,6 +125,8 @@ func (m *NestedFilterRule) validateMetric(formats strfmt.Registry) error {
 		if err := m.Metric.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metric")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric")
 			}
 			return err
 		}
@@ -145,6 +149,8 @@ func (m *NestedFilterRule) validateOp(formats strfmt.Registry) error {
 		if err := m.Op.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("op")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("op")
 			}
 			return err
 		}
@@ -199,6 +205,8 @@ func (m *NestedFilterRule) contextValidateAggregation(ctx context.Context, forma
 		if err := m.Aggregation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("aggregation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("aggregation")
 			}
 			return err
 		}
@@ -213,6 +221,8 @@ func (m *NestedFilterRule) contextValidateMetric(ctx context.Context, formats st
 		if err := m.Metric.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metric")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric")
 			}
 			return err
 		}
@@ -227,6 +237,8 @@ func (m *NestedFilterRule) contextValidateOp(ctx context.Context, formats strfmt
 		if err := m.Op.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("op")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("op")
 			}
 			return err
 		}

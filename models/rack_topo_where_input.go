@@ -30,16 +30,24 @@ type RackTopoWhereInput struct {
 	OR []*RackTopoWhereInput `json:"OR,omitempty"`
 
 	// brick topoes every
-	BrickTopoesEvery interface{} `json:"brick_topoes_every,omitempty"`
+	BrickTopoesEvery struct {
+		BrickTopoWhereInput
+	} `json:"brick_topoes_every,omitempty"`
 
 	// brick topoes none
-	BrickTopoesNone interface{} `json:"brick_topoes_none,omitempty"`
+	BrickTopoesNone struct {
+		BrickTopoWhereInput
+	} `json:"brick_topoes_none,omitempty"`
 
 	// brick topoes some
-	BrickTopoesSome interface{} `json:"brick_topoes_some,omitempty"`
+	BrickTopoesSome struct {
+		BrickTopoWhereInput
+	} `json:"brick_topoes_some,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// height
 	Height *int32 `json:"height,omitempty"`
@@ -192,7 +200,9 @@ type RackTopoWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// zone topo
-	ZoneTopo interface{} `json:"zone_topo,omitempty"`
+	ZoneTopo struct {
+		ZoneTopoWhereInput
+	} `json:"zone_topo,omitempty"`
 }
 
 // Validate validates this rack topo where input
@@ -208,6 +218,26 @@ func (m *RackTopoWhereInput) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOR(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBrickTopoesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBrickTopoesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBrickTopoesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateZoneTopo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -231,6 +261,8 @@ func (m *RackTopoWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -255,6 +287,8 @@ func (m *RackTopoWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -279,11 +313,53 @@ func (m *RackTopoWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) validateBrickTopoesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BrickTopoesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) validateBrickTopoesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BrickTopoesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) validateBrickTopoesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BrickTopoesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) validateZoneTopo(formats strfmt.Registry) error {
+	if swag.IsZero(m.ZoneTopo) { // not required
+		return nil
 	}
 
 	return nil
@@ -305,6 +381,26 @@ func (m *RackTopoWhereInput) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBrickTopoesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBrickTopoesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBrickTopoesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateZoneTopo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -319,6 +415,8 @@ func (m *RackTopoWhereInput) contextValidateAND(ctx context.Context, formats str
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -337,6 +435,8 @@ func (m *RackTopoWhereInput) contextValidateNOT(ctx context.Context, formats str
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -355,12 +455,39 @@ func (m *RackTopoWhereInput) contextValidateOR(ctx context.Context, formats strf
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) contextValidateBrickTopoesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) contextValidateBrickTopoesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) contextValidateBrickTopoesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *RackTopoWhereInput) contextValidateZoneTopo(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -20,8 +20,12 @@ import (
 type BackupPlanDelayOption string
 
 func NewBackupPlanDelayOption(value BackupPlanDelayOption) *BackupPlanDelayOption {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupPlanDelayOption.
+func (m BackupPlanDelayOption) Pointer() *BackupPlanDelayOption {
+	return &m
 }
 
 const (

@@ -66,7 +66,9 @@ type IscsiTarget struct {
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// external use
 	// Required: true
@@ -172,6 +174,10 @@ func (m *IscsiTarget) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateExternalUse(formats); err != nil {
 		res = append(res, err)
 	}
@@ -257,6 +263,8 @@ func (m *IscsiTarget) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -269,6 +277,14 @@ func (m *IscsiTarget) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *IscsiTarget) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -306,6 +322,8 @@ func (m *IscsiTarget) validateInitiatorChaps(formats strfmt.Registry) error {
 			if err := m.InitiatorChaps[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("initiator_chaps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("initiator_chaps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -366,6 +384,8 @@ func (m *IscsiTarget) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -399,6 +419,8 @@ func (m *IscsiTarget) validateLuns(formats strfmt.Registry) error {
 			if err := m.Luns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("luns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("luns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -462,6 +484,10 @@ func (m *IscsiTarget) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateInitiatorChaps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -486,10 +512,17 @@ func (m *IscsiTarget) contextValidateCluster(ctx context.Context, formats strfmt
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *IscsiTarget) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -502,6 +535,8 @@ func (m *IscsiTarget) contextValidateInitiatorChaps(ctx context.Context, formats
 			if err := m.InitiatorChaps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("initiator_chaps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("initiator_chaps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -520,6 +555,8 @@ func (m *IscsiTarget) contextValidateLabels(ctx context.Context, formats strfmt.
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -538,6 +575,8 @@ func (m *IscsiTarget) contextValidateLuns(ctx context.Context, formats strfmt.Re
 			if err := m.Luns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("luns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("luns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

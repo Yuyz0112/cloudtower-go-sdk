@@ -100,6 +100,8 @@ func (m *SecurityPolicy) validateApplyTo(formats strfmt.Registry) error {
 			if err := m.ApplyTo[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apply_to" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("apply_to" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -133,6 +135,8 @@ func (m *SecurityPolicy) validateEgress(formats strfmt.Registry) error {
 			if err := m.Egress[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("egress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("egress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -153,6 +157,8 @@ func (m *SecurityPolicy) validateEverouteCluster(formats strfmt.Registry) error 
 		if err := m.EverouteCluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
 			}
 			return err
 		}
@@ -184,6 +190,8 @@ func (m *SecurityPolicy) validateIngress(formats strfmt.Registry) error {
 			if err := m.Ingress[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ingress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ingress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -237,6 +245,8 @@ func (m *SecurityPolicy) contextValidateApplyTo(ctx context.Context, formats str
 			if err := m.ApplyTo[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apply_to" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("apply_to" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -255,6 +265,8 @@ func (m *SecurityPolicy) contextValidateEgress(ctx context.Context, formats strf
 			if err := m.Egress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("egress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("egress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -271,6 +283,8 @@ func (m *SecurityPolicy) contextValidateEverouteCluster(ctx context.Context, for
 		if err := m.EverouteCluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
 			}
 			return err
 		}
@@ -287,6 +301,8 @@ func (m *SecurityPolicy) contextValidateIngress(ctx context.Context, formats str
 			if err := m.Ingress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ingress" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ingress" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

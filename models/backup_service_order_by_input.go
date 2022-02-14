@@ -20,11 +20,57 @@ import (
 type BackupServiceOrderByInput string
 
 func NewBackupServiceOrderByInput(value BackupServiceOrderByInput) *BackupServiceOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupServiceOrderByInput.
+func (m BackupServiceOrderByInput) Pointer() *BackupServiceOrderByInput {
+	return &m
 }
 
 const (
+
+	// BackupServiceOrderByInputBackupNetworkGatewayASC captures enum value "backup_network_gateway_ASC"
+	BackupServiceOrderByInputBackupNetworkGatewayASC BackupServiceOrderByInput = "backup_network_gateway_ASC"
+
+	// BackupServiceOrderByInputBackupNetworkGatewayDESC captures enum value "backup_network_gateway_DESC"
+	BackupServiceOrderByInputBackupNetworkGatewayDESC BackupServiceOrderByInput = "backup_network_gateway_DESC"
+
+	// BackupServiceOrderByInputBackupNetworkIPASC captures enum value "backup_network_ip_ASC"
+	BackupServiceOrderByInputBackupNetworkIPASC BackupServiceOrderByInput = "backup_network_ip_ASC"
+
+	// BackupServiceOrderByInputBackupNetworkIPDESC captures enum value "backup_network_ip_DESC"
+	BackupServiceOrderByInputBackupNetworkIPDESC BackupServiceOrderByInput = "backup_network_ip_DESC"
+
+	// BackupServiceOrderByInputBackupNetworkSubnetMaskASC captures enum value "backup_network_subnet_mask_ASC"
+	BackupServiceOrderByInputBackupNetworkSubnetMaskASC BackupServiceOrderByInput = "backup_network_subnet_mask_ASC"
+
+	// BackupServiceOrderByInputBackupNetworkSubnetMaskDESC captures enum value "backup_network_subnet_mask_DESC"
+	BackupServiceOrderByInputBackupNetworkSubnetMaskDESC BackupServiceOrderByInput = "backup_network_subnet_mask_DESC"
+
+	// BackupServiceOrderByInputBackupNetworkTypeASC captures enum value "backup_network_type_ASC"
+	BackupServiceOrderByInputBackupNetworkTypeASC BackupServiceOrderByInput = "backup_network_type_ASC"
+
+	// BackupServiceOrderByInputBackupNetworkTypeDESC captures enum value "backup_network_type_DESC"
+	BackupServiceOrderByInputBackupNetworkTypeDESC BackupServiceOrderByInput = "backup_network_type_DESC"
+
+	// BackupServiceOrderByInputBackupNetworkVlanASC captures enum value "backup_network_vlan_ASC"
+	BackupServiceOrderByInputBackupNetworkVlanASC BackupServiceOrderByInput = "backup_network_vlan_ASC"
+
+	// BackupServiceOrderByInputBackupNetworkVlanDESC captures enum value "backup_network_vlan_DESC"
+	BackupServiceOrderByInputBackupNetworkVlanDESC BackupServiceOrderByInput = "backup_network_vlan_DESC"
+
+	// BackupServiceOrderByInputBackupRdIopsMaxASC captures enum value "backup_rd_iops_max_ASC"
+	BackupServiceOrderByInputBackupRdIopsMaxASC BackupServiceOrderByInput = "backup_rd_iops_max_ASC"
+
+	// BackupServiceOrderByInputBackupRdIopsMaxDESC captures enum value "backup_rd_iops_max_DESC"
+	BackupServiceOrderByInputBackupRdIopsMaxDESC BackupServiceOrderByInput = "backup_rd_iops_max_DESC"
+
+	// BackupServiceOrderByInputBackupWrIopsMaxASC captures enum value "backup_wr_iops_max_ASC"
+	BackupServiceOrderByInputBackupWrIopsMaxASC BackupServiceOrderByInput = "backup_wr_iops_max_ASC"
+
+	// BackupServiceOrderByInputBackupWrIopsMaxDESC captures enum value "backup_wr_iops_max_DESC"
+	BackupServiceOrderByInputBackupWrIopsMaxDESC BackupServiceOrderByInput = "backup_wr_iops_max_DESC"
 
 	// BackupServiceOrderByInputCreatedAtASC captures enum value "createdAt_ASC"
 	BackupServiceOrderByInputCreatedAtASC BackupServiceOrderByInput = "createdAt_ASC"
@@ -44,35 +90,41 @@ const (
 	// BackupServiceOrderByInputEntityAsyncStatusDESC captures enum value "entityAsyncStatus_DESC"
 	BackupServiceOrderByInputEntityAsyncStatusDESC BackupServiceOrderByInput = "entityAsyncStatus_DESC"
 
-	// BackupServiceOrderByInputGatewayASC captures enum value "gateway_ASC"
-	BackupServiceOrderByInputGatewayASC BackupServiceOrderByInput = "gateway_ASC"
-
-	// BackupServiceOrderByInputGatewayDESC captures enum value "gateway_DESC"
-	BackupServiceOrderByInputGatewayDESC BackupServiceOrderByInput = "gateway_DESC"
-
 	// BackupServiceOrderByInputIDASC captures enum value "id_ASC"
 	BackupServiceOrderByInputIDASC BackupServiceOrderByInput = "id_ASC"
 
 	// BackupServiceOrderByInputIDDESC captures enum value "id_DESC"
 	BackupServiceOrderByInputIDDESC BackupServiceOrderByInput = "id_DESC"
 
-	// BackupServiceOrderByInputIopsLimitASC captures enum value "iops_limit_ASC"
-	BackupServiceOrderByInputIopsLimitASC BackupServiceOrderByInput = "iops_limit_ASC"
-
-	// BackupServiceOrderByInputIopsLimitDESC captures enum value "iops_limit_DESC"
-	BackupServiceOrderByInputIopsLimitDESC BackupServiceOrderByInput = "iops_limit_DESC"
-
-	// BackupServiceOrderByInputIPASC captures enum value "ip_ASC"
-	BackupServiceOrderByInputIPASC BackupServiceOrderByInput = "ip_ASC"
-
-	// BackupServiceOrderByInputIPDESC captures enum value "ip_DESC"
-	BackupServiceOrderByInputIPDESC BackupServiceOrderByInput = "ip_DESC"
-
 	// BackupServiceOrderByInputKubeConfigASC captures enum value "kube_config_ASC"
 	BackupServiceOrderByInputKubeConfigASC BackupServiceOrderByInput = "kube_config_ASC"
 
 	// BackupServiceOrderByInputKubeConfigDESC captures enum value "kube_config_DESC"
 	BackupServiceOrderByInputKubeConfigDESC BackupServiceOrderByInput = "kube_config_DESC"
+
+	// BackupServiceOrderByInputManagementNetworkGatewayASC captures enum value "management_network_gateway_ASC"
+	BackupServiceOrderByInputManagementNetworkGatewayASC BackupServiceOrderByInput = "management_network_gateway_ASC"
+
+	// BackupServiceOrderByInputManagementNetworkGatewayDESC captures enum value "management_network_gateway_DESC"
+	BackupServiceOrderByInputManagementNetworkGatewayDESC BackupServiceOrderByInput = "management_network_gateway_DESC"
+
+	// BackupServiceOrderByInputManagementNetworkIPASC captures enum value "management_network_ip_ASC"
+	BackupServiceOrderByInputManagementNetworkIPASC BackupServiceOrderByInput = "management_network_ip_ASC"
+
+	// BackupServiceOrderByInputManagementNetworkIPDESC captures enum value "management_network_ip_DESC"
+	BackupServiceOrderByInputManagementNetworkIPDESC BackupServiceOrderByInput = "management_network_ip_DESC"
+
+	// BackupServiceOrderByInputManagementNetworkSubnetMaskASC captures enum value "management_network_subnet_mask_ASC"
+	BackupServiceOrderByInputManagementNetworkSubnetMaskASC BackupServiceOrderByInput = "management_network_subnet_mask_ASC"
+
+	// BackupServiceOrderByInputManagementNetworkSubnetMaskDESC captures enum value "management_network_subnet_mask_DESC"
+	BackupServiceOrderByInputManagementNetworkSubnetMaskDESC BackupServiceOrderByInput = "management_network_subnet_mask_DESC"
+
+	// BackupServiceOrderByInputManagementNetworkVlanASC captures enum value "management_network_vlan_ASC"
+	BackupServiceOrderByInputManagementNetworkVlanASC BackupServiceOrderByInput = "management_network_vlan_ASC"
+
+	// BackupServiceOrderByInputManagementNetworkVlanDESC captures enum value "management_network_vlan_DESC"
+	BackupServiceOrderByInputManagementNetworkVlanDESC BackupServiceOrderByInput = "management_network_vlan_DESC"
 
 	// BackupServiceOrderByInputMaxJobRetryTimesASC captures enum value "max_job_retry_times_ASC"
 	BackupServiceOrderByInputMaxJobRetryTimesASC BackupServiceOrderByInput = "max_job_retry_times_ASC"
@@ -110,6 +162,18 @@ const (
 	// BackupServiceOrderByInputResourceVersionDESC captures enum value "resource_version_DESC"
 	BackupServiceOrderByInputResourceVersionDESC BackupServiceOrderByInput = "resource_version_DESC"
 
+	// BackupServiceOrderByInputRestoreRdIopsMaxASC captures enum value "restore_rd_iops_max_ASC"
+	BackupServiceOrderByInputRestoreRdIopsMaxASC BackupServiceOrderByInput = "restore_rd_iops_max_ASC"
+
+	// BackupServiceOrderByInputRestoreRdIopsMaxDESC captures enum value "restore_rd_iops_max_DESC"
+	BackupServiceOrderByInputRestoreRdIopsMaxDESC BackupServiceOrderByInput = "restore_rd_iops_max_DESC"
+
+	// BackupServiceOrderByInputRestoreWrIopsMaxASC captures enum value "restore_wr_iops_max_ASC"
+	BackupServiceOrderByInputRestoreWrIopsMaxASC BackupServiceOrderByInput = "restore_wr_iops_max_ASC"
+
+	// BackupServiceOrderByInputRestoreWrIopsMaxDESC captures enum value "restore_wr_iops_max_DESC"
+	BackupServiceOrderByInputRestoreWrIopsMaxDESC BackupServiceOrderByInput = "restore_wr_iops_max_DESC"
+
 	// BackupServiceOrderByInputRetryIntervalASC captures enum value "retry_interval_ASC"
 	BackupServiceOrderByInputRetryIntervalASC BackupServiceOrderByInput = "retry_interval_ASC"
 
@@ -122,11 +186,35 @@ const (
 	// BackupServiceOrderByInputStatusDESC captures enum value "status_DESC"
 	BackupServiceOrderByInputStatusDESC BackupServiceOrderByInput = "status_DESC"
 
-	// BackupServiceOrderByInputSubnetMaskASC captures enum value "subnet_mask_ASC"
-	BackupServiceOrderByInputSubnetMaskASC BackupServiceOrderByInput = "subnet_mask_ASC"
+	// BackupServiceOrderByInputStorageNetworkGatewayASC captures enum value "storage_network_gateway_ASC"
+	BackupServiceOrderByInputStorageNetworkGatewayASC BackupServiceOrderByInput = "storage_network_gateway_ASC"
 
-	// BackupServiceOrderByInputSubnetMaskDESC captures enum value "subnet_mask_DESC"
-	BackupServiceOrderByInputSubnetMaskDESC BackupServiceOrderByInput = "subnet_mask_DESC"
+	// BackupServiceOrderByInputStorageNetworkGatewayDESC captures enum value "storage_network_gateway_DESC"
+	BackupServiceOrderByInputStorageNetworkGatewayDESC BackupServiceOrderByInput = "storage_network_gateway_DESC"
+
+	// BackupServiceOrderByInputStorageNetworkIPASC captures enum value "storage_network_ip_ASC"
+	BackupServiceOrderByInputStorageNetworkIPASC BackupServiceOrderByInput = "storage_network_ip_ASC"
+
+	// BackupServiceOrderByInputStorageNetworkIPDESC captures enum value "storage_network_ip_DESC"
+	BackupServiceOrderByInputStorageNetworkIPDESC BackupServiceOrderByInput = "storage_network_ip_DESC"
+
+	// BackupServiceOrderByInputStorageNetworkSubnetMaskASC captures enum value "storage_network_subnet_mask_ASC"
+	BackupServiceOrderByInputStorageNetworkSubnetMaskASC BackupServiceOrderByInput = "storage_network_subnet_mask_ASC"
+
+	// BackupServiceOrderByInputStorageNetworkSubnetMaskDESC captures enum value "storage_network_subnet_mask_DESC"
+	BackupServiceOrderByInputStorageNetworkSubnetMaskDESC BackupServiceOrderByInput = "storage_network_subnet_mask_DESC"
+
+	// BackupServiceOrderByInputStorageNetworkTypeASC captures enum value "storage_network_type_ASC"
+	BackupServiceOrderByInputStorageNetworkTypeASC BackupServiceOrderByInput = "storage_network_type_ASC"
+
+	// BackupServiceOrderByInputStorageNetworkTypeDESC captures enum value "storage_network_type_DESC"
+	BackupServiceOrderByInputStorageNetworkTypeDESC BackupServiceOrderByInput = "storage_network_type_DESC"
+
+	// BackupServiceOrderByInputStorageNetworkVlanASC captures enum value "storage_network_vlan_ASC"
+	BackupServiceOrderByInputStorageNetworkVlanASC BackupServiceOrderByInput = "storage_network_vlan_ASC"
+
+	// BackupServiceOrderByInputStorageNetworkVlanDESC captures enum value "storage_network_vlan_DESC"
+	BackupServiceOrderByInputStorageNetworkVlanDESC BackupServiceOrderByInput = "storage_network_vlan_DESC"
 
 	// BackupServiceOrderByInputUpdatedAtASC captures enum value "updatedAt_ASC"
 	BackupServiceOrderByInputUpdatedAtASC BackupServiceOrderByInput = "updatedAt_ASC"
@@ -140,7 +228,7 @@ var backupServiceOrderByInputEnum []interface{}
 
 func init() {
 	var res []BackupServiceOrderByInput
-	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","description_ASC","description_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","gateway_ASC","gateway_DESC","id_ASC","id_DESC","iops_limit_ASC","iops_limit_DESC","ip_ASC","ip_DESC","kube_config_ASC","kube_config_DESC","max_job_retry_times_ASC","max_job_retry_times_DESC","max_parallel_backup_jobs_ASC","max_parallel_backup_jobs_DESC","max_parallel_restore_jobs_ASC","max_parallel_restore_jobs_DESC","name_ASC","name_DESC","network_status_ASC","network_status_DESC","resource_version_ASC","resource_version_DESC","retry_interval_ASC","retry_interval_DESC","status_ASC","status_DESC","subnet_mask_ASC","subnet_mask_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["backup_network_gateway_ASC","backup_network_gateway_DESC","backup_network_ip_ASC","backup_network_ip_DESC","backup_network_subnet_mask_ASC","backup_network_subnet_mask_DESC","backup_network_type_ASC","backup_network_type_DESC","backup_network_vlan_ASC","backup_network_vlan_DESC","backup_rd_iops_max_ASC","backup_rd_iops_max_DESC","backup_wr_iops_max_ASC","backup_wr_iops_max_DESC","createdAt_ASC","createdAt_DESC","description_ASC","description_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","id_ASC","id_DESC","kube_config_ASC","kube_config_DESC","management_network_gateway_ASC","management_network_gateway_DESC","management_network_ip_ASC","management_network_ip_DESC","management_network_subnet_mask_ASC","management_network_subnet_mask_DESC","management_network_vlan_ASC","management_network_vlan_DESC","max_job_retry_times_ASC","max_job_retry_times_DESC","max_parallel_backup_jobs_ASC","max_parallel_backup_jobs_DESC","max_parallel_restore_jobs_ASC","max_parallel_restore_jobs_DESC","name_ASC","name_DESC","network_status_ASC","network_status_DESC","resource_version_ASC","resource_version_DESC","restore_rd_iops_max_ASC","restore_rd_iops_max_DESC","restore_wr_iops_max_ASC","restore_wr_iops_max_DESC","retry_interval_ASC","retry_interval_DESC","status_ASC","status_DESC","storage_network_gateway_ASC","storage_network_gateway_DESC","storage_network_ip_ASC","storage_network_ip_DESC","storage_network_subnet_mask_ASC","storage_network_subnet_mask_DESC","storage_network_type_ASC","storage_network_type_DESC","storage_network_vlan_ASC","storage_network_vlan_DESC","updatedAt_ASC","updatedAt_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

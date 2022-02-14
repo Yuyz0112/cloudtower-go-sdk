@@ -108,6 +108,8 @@ func (m *MountDisksParams) validateBus(formats strfmt.Registry) error {
 		if err := m.Bus.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus")
 			}
 			return err
 		}
@@ -133,6 +135,8 @@ func (m *MountDisksParams) validateMaxBandwidthPolicy(formats strfmt.Registry) e
 	if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_bandwidth_policy")
 		}
 		return err
 	}
@@ -148,6 +152,8 @@ func (m *MountDisksParams) validateMaxIopsPolicy(formats strfmt.Registry) error 
 	if err := m.MaxIopsPolicy.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_iops_policy")
 		}
 		return err
 	}
@@ -192,6 +198,8 @@ func (m *MountDisksParams) contextValidateBus(ctx context.Context, formats strfm
 		if err := m.Bus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus")
 			}
 			return err
 		}
@@ -205,6 +213,8 @@ func (m *MountDisksParams) contextValidateMaxBandwidthPolicy(ctx context.Context
 	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_bandwidth_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_bandwidth_policy")
 		}
 		return err
 	}
@@ -217,6 +227,8 @@ func (m *MountDisksParams) contextValidateMaxIopsPolicy(ctx context.Context, for
 	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("max_iops_policy")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("max_iops_policy")
 		}
 		return err
 	}

@@ -20,8 +20,12 @@ import (
 type ClusterConnectorErrorCode string
 
 func NewClusterConnectorErrorCode(value ClusterConnectorErrorCode) *ClusterConnectorErrorCode {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ClusterConnectorErrorCode.
+func (m ClusterConnectorErrorCode) Pointer() *ClusterConnectorErrorCode {
+	return &m
 }
 
 const (

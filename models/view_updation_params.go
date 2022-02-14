@@ -54,6 +54,8 @@ func (m *ViewUpdationParams) validateData(formats strfmt.Registry) error {
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -72,6 +74,8 @@ func (m *ViewUpdationParams) validateWhere(formats strfmt.Registry) error {
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -104,6 +108,8 @@ func (m *ViewUpdationParams) contextValidateData(ctx context.Context, formats st
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -118,6 +124,8 @@ func (m *ViewUpdationParams) contextValidateWhere(ctx context.Context, formats s
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -181,6 +189,8 @@ func (m *ViewUpdationParamsData) validateTimeUnit(formats strfmt.Registry) error
 	if err := m.TimeUnit.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "time_unit")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "time_unit")
 		}
 		return err
 	}
@@ -207,6 +217,8 @@ func (m *ViewUpdationParamsData) contextValidateTimeUnit(ctx context.Context, fo
 	if err := m.TimeUnit.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("data" + "." + "time_unit")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("data" + "." + "time_unit")
 		}
 		return err
 	}

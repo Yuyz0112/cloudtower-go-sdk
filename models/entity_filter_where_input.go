@@ -36,43 +36,63 @@ type EntityFilterWhereInput struct {
 	ApplyToAllClustersNot *bool `json:"apply_to_all_clusters_not,omitempty"`
 
 	// clusters every
-	ClustersEvery interface{} `json:"clusters_every,omitempty"`
+	ClustersEvery struct {
+		ClusterWhereInput
+	} `json:"clusters_every,omitempty"`
 
 	// clusters none
-	ClustersNone interface{} `json:"clusters_none,omitempty"`
+	ClustersNone struct {
+		ClusterWhereInput
+	} `json:"clusters_none,omitempty"`
 
 	// clusters some
-	ClustersSome interface{} `json:"clusters_some,omitempty"`
+	ClustersSome struct {
+		ClusterWhereInput
+	} `json:"clusters_some,omitempty"`
 
 	// entity type
-	EntityType interface{} `json:"entity_type,omitempty"`
+	EntityType struct {
+		EntityType
+	} `json:"entity_type,omitempty"`
 
 	// entity type in
 	EntityTypeIn []EntityType `json:"entity_type_in,omitempty"`
 
 	// entity type not
-	EntityTypeNot interface{} `json:"entity_type_not,omitempty"`
+	EntityTypeNot struct {
+		EntityType
+	} `json:"entity_type_not,omitempty"`
 
 	// entity type not in
 	EntityTypeNotIn []EntityType `json:"entity_type_not_in,omitempty"`
 
 	// exec failed cluster every
-	ExecFailedClusterEvery interface{} `json:"exec_failed_cluster_every,omitempty"`
+	ExecFailedClusterEvery struct {
+		ClusterWhereInput
+	} `json:"exec_failed_cluster_every,omitempty"`
 
 	// exec failed cluster none
-	ExecFailedClusterNone interface{} `json:"exec_failed_cluster_none,omitempty"`
+	ExecFailedClusterNone struct {
+		ClusterWhereInput
+	} `json:"exec_failed_cluster_none,omitempty"`
 
 	// exec failed cluster some
-	ExecFailedClusterSome interface{} `json:"exec_failed_cluster_some,omitempty"`
+	ExecFailedClusterSome struct {
+		ClusterWhereInput
+	} `json:"exec_failed_cluster_some,omitempty"`
 
 	// filter status
-	FilterStatus interface{} `json:"filter_status,omitempty"`
+	FilterStatus struct {
+		FilterStatus
+	} `json:"filter_status,omitempty"`
 
 	// filter status in
 	FilterStatusIn []FilterStatus `json:"filter_status_in,omitempty"`
 
 	// filter status not
-	FilterStatusNot interface{} `json:"filter_status_not,omitempty"`
+	FilterStatusNot struct {
+		FilterStatus
+	} `json:"filter_status_not,omitempty"`
 
 	// filter status not in
 	FilterStatusNotIn []FilterStatus `json:"filter_status_not_in,omitempty"`
@@ -244,7 +264,27 @@ func (m *EntityFilterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateClustersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClustersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -252,7 +292,27 @@ func (m *EntityFilterWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateExecFailedClusterEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExecFailedClusterNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExecFailedClusterSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFilterStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFilterStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFilterStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -280,6 +340,8 @@ func (m *EntityFilterWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -304,6 +366,8 @@ func (m *EntityFilterWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -328,11 +392,45 @@ func (m *EntityFilterWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateClustersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateClustersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateClustersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClustersSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateEntityType(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityType) { // not required
+		return nil
 	}
 
 	return nil
@@ -348,10 +446,20 @@ func (m *EntityFilterWhereInput) validateEntityTypeIn(formats strfmt.Registry) e
 		if err := m.EntityTypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entity_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entity_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateEntityTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityTypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -367,10 +475,44 @@ func (m *EntityFilterWhereInput) validateEntityTypeNotIn(formats strfmt.Registry
 		if err := m.EntityTypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entity_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entity_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateExecFailedClusterEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ExecFailedClusterEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateExecFailedClusterNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ExecFailedClusterNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateExecFailedClusterSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ExecFailedClusterSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateFilterStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.FilterStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -386,10 +528,20 @@ func (m *EntityFilterWhereInput) validateFilterStatusIn(formats strfmt.Registry)
 		if err := m.FilterStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filter_status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filter_status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) validateFilterStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.FilterStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -405,6 +557,8 @@ func (m *EntityFilterWhereInput) validateFilterStatusNotIn(formats strfmt.Regist
 		if err := m.FilterStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filter_status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filter_status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -430,7 +584,27 @@ func (m *EntityFilterWhereInput) ContextValidate(ctx context.Context, formats st
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateClustersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClustersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClustersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -438,7 +612,27 @@ func (m *EntityFilterWhereInput) ContextValidate(ctx context.Context, formats st
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateExecFailedClusterEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateExecFailedClusterNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateExecFailedClusterSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFilterStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFilterStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFilterStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -460,6 +654,8 @@ func (m *EntityFilterWhereInput) contextValidateAND(ctx context.Context, formats
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -478,6 +674,8 @@ func (m *EntityFilterWhereInput) contextValidateNOT(ctx context.Context, formats
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -496,12 +694,34 @@ func (m *EntityFilterWhereInput) contextValidateOR(ctx context.Context, formats 
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateClustersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateClustersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateEntityType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -513,11 +733,18 @@ func (m *EntityFilterWhereInput) contextValidateEntityTypeIn(ctx context.Context
 		if err := m.EntityTypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entity_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entity_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateEntityTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -529,11 +756,33 @@ func (m *EntityFilterWhereInput) contextValidateEntityTypeNotIn(ctx context.Cont
 		if err := m.EntityTypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entity_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entity_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateExecFailedClusterEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateExecFailedClusterNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateExecFailedClusterSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateFilterStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -545,11 +794,18 @@ func (m *EntityFilterWhereInput) contextValidateFilterStatusIn(ctx context.Conte
 		if err := m.FilterStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filter_status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filter_status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *EntityFilterWhereInput) contextValidateFilterStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -561,6 +817,8 @@ func (m *EntityFilterWhereInput) contextValidateFilterStatusNotIn(ctx context.Co
 		if err := m.FilterStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filter_status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filter_status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

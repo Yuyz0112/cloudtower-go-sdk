@@ -20,8 +20,12 @@ import (
 type ZoneOrderByInput string
 
 func NewZoneOrderByInput(value ZoneOrderByInput) *ZoneOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ZoneOrderByInput.
+func (m ZoneOrderByInput) Pointer() *ZoneOrderByInput {
+	return &m
 }
 
 const (

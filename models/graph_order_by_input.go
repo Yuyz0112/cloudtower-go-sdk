@@ -20,8 +20,12 @@ import (
 type GraphOrderByInput string
 
 func NewGraphOrderByInput(value GraphOrderByInput) *GraphOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated GraphOrderByInput.
+func (m GraphOrderByInput) Pointer() *GraphOrderByInput {
+	return &m
 }
 
 const (

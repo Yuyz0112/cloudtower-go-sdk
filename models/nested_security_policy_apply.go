@@ -79,6 +79,8 @@ func (m *NestedSecurityPolicyApply) validateSelector(formats strfmt.Registry) er
 			if err := m.Selector[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("selector" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("selector" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -120,6 +122,8 @@ func (m *NestedSecurityPolicyApply) contextValidateSelector(ctx context.Context,
 			if err := m.Selector[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("selector" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("selector" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

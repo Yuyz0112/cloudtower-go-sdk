@@ -21,17 +21,23 @@ import (
 type ElfImage struct {
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		NestedCluster
+	} `json:"cluster,omitempty"`
 
 	// content library image
-	ContentLibraryImage interface{} `json:"content_library_image,omitempty"`
+	ContentLibraryImage struct {
+		NestedContentLibraryImage
+	} `json:"content_library_image,omitempty"`
 
 	// description
 	// Required: true
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -61,7 +67,9 @@ type ElfImage struct {
 	Size *float64 `json:"size"`
 
 	// upload task
-	UploadTask interface{} `json:"upload_task,omitempty"`
+	UploadTask struct {
+		NestedUploadTask
+	} `json:"upload_task,omitempty"`
 
 	// vm disks
 	VMDisks []*NestedVMDisk `json:"vm_disks,omitempty"`
@@ -77,7 +85,19 @@ type ElfImage struct {
 func (m *ElfImage) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryImage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -109,6 +129,10 @@ func (m *ElfImage) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateUploadTask(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateVMDisks(formats); err != nil {
 		res = append(res, err)
 	}
@@ -127,10 +151,34 @@ func (m *ElfImage) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ElfImage) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ElfImage) validateContentLibraryImage(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryImage) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *ElfImage) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ElfImage) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -159,6 +207,8 @@ func (m *ElfImage) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -214,6 +264,14 @@ func (m *ElfImage) validateSize(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ElfImage) validateUploadTask(formats strfmt.Registry) error {
+	if swag.IsZero(m.UploadTask) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *ElfImage) validateVMDisks(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMDisks) { // not required
 		return nil
@@ -228,6 +286,8 @@ func (m *ElfImage) validateVMDisks(formats strfmt.Registry) error {
 			if err := m.VMDisks[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -252,6 +312,8 @@ func (m *ElfImage) validateVMSnapshots(formats strfmt.Registry) error {
 			if err := m.VMSnapshots[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -276,6 +338,8 @@ func (m *ElfImage) validateVMTemplates(formats strfmt.Registry) error {
 			if err := m.VMTemplates[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -290,7 +354,23 @@ func (m *ElfImage) validateVMTemplates(formats strfmt.Registry) error {
 func (m *ElfImage) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContentLibraryImage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUploadTask(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -312,6 +392,21 @@ func (m *ElfImage) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
+func (m *ElfImage) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ElfImage) contextValidateContentLibraryImage(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ElfImage) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *ElfImage) contextValidateLabels(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Labels); i++ {
@@ -320,12 +415,19 @@ func (m *ElfImage) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ElfImage) contextValidateUploadTask(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -338,6 +440,8 @@ func (m *ElfImage) contextValidateVMDisks(ctx context.Context, formats strfmt.Re
 			if err := m.VMDisks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_disks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -356,6 +460,8 @@ func (m *ElfImage) contextValidateVMSnapshots(ctx context.Context, formats strfm
 			if err := m.VMSnapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -374,6 +480,8 @@ func (m *ElfImage) contextValidateVMTemplates(ctx context.Context, formats strfm
 			if err := m.VMTemplates[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vm_templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

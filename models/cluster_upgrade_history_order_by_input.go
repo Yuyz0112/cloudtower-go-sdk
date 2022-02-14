@@ -20,8 +20,12 @@ import (
 type ClusterUpgradeHistoryOrderByInput string
 
 func NewClusterUpgradeHistoryOrderByInput(value ClusterUpgradeHistoryOrderByInput) *ClusterUpgradeHistoryOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ClusterUpgradeHistoryOrderByInput.
+func (m ClusterUpgradeHistoryOrderByInput) Pointer() *ClusterUpgradeHistoryOrderByInput {
+	return &m
 }
 
 const (

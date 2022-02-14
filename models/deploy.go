@@ -24,7 +24,9 @@ type Deploy struct {
 	ID *string `json:"id"`
 
 	// license
-	License interface{} `json:"license,omitempty"`
+	License struct {
+		NestedLicense
+	} `json:"license,omitempty"`
 
 	// version
 	// Required: true
@@ -36,6 +38,10 @@ func (m *Deploy) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLicense(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -58,6 +64,14 @@ func (m *Deploy) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Deploy) validateLicense(formats strfmt.Registry) error {
+	if swag.IsZero(m.License) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *Deploy) validateVersion(formats strfmt.Registry) error {
 
 	if err := validate.Required("version", "body", m.Version); err != nil {
@@ -67,8 +81,22 @@ func (m *Deploy) validateVersion(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this deploy based on context it is used
+// ContextValidate validate this deploy based on the context it is used
 func (m *Deploy) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLicense(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Deploy) contextValidateLicense(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

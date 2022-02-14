@@ -20,8 +20,12 @@ import (
 type NotifierLanguageCode string
 
 func NewNotifierLanguageCode(value NotifierLanguageCode) *NotifierLanguageCode {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NotifierLanguageCode.
+func (m NotifierLanguageCode) Pointer() *NotifierLanguageCode {
+	return &m
 }
 
 const (

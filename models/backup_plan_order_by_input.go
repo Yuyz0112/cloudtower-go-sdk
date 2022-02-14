@@ -20,8 +20,12 @@ import (
 type BackupPlanOrderByInput string
 
 func NewBackupPlanOrderByInput(value BackupPlanOrderByInput) *BackupPlanOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated BackupPlanOrderByInput.
+func (m BackupPlanOrderByInput) Pointer() *BackupPlanOrderByInput {
+	return &m
 }
 
 const (
@@ -176,6 +180,12 @@ const (
 	// BackupPlanOrderByInputNextExecuteTimeDESC captures enum value "next_execute_time_DESC"
 	BackupPlanOrderByInputNextExecuteTimeDESC BackupPlanOrderByInput = "next_execute_time_DESC"
 
+	// BackupPlanOrderByInputPhaseASC captures enum value "phase_ASC"
+	BackupPlanOrderByInputPhaseASC BackupPlanOrderByInput = "phase_ASC"
+
+	// BackupPlanOrderByInputPhaseDESC captures enum value "phase_DESC"
+	BackupPlanOrderByInputPhaseDESC BackupPlanOrderByInput = "phase_DESC"
+
 	// BackupPlanOrderByInputResourceVersionASC captures enum value "resource_version_ASC"
 	BackupPlanOrderByInputResourceVersionASC BackupPlanOrderByInput = "resource_version_ASC"
 
@@ -212,7 +222,7 @@ var backupPlanOrderByInputEnum []interface{}
 
 func init() {
 	var res []BackupPlanOrderByInput
-	if err := json.Unmarshal([]byte(`["backup_delay_option_ASC","backup_delay_option_DESC","backup_restore_point_count_ASC","backup_restore_point_count_DESC","backup_total_size_ASC","backup_total_size_DESC","compression_ASC","compression_DESC","createdAt_ASC","createdAt_DESC","delete_strategy_ASC","delete_strategy_DESC","description_ASC","description_DESC","enable_window_ASC","enable_window_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","full_interval_ASC","full_interval_DESC","full_period_ASC","full_period_DESC","full_time_point_ASC","full_time_point_DESC","id_ASC","id_DESC","incremental_period_ASC","incremental_period_DESC","incremental_time_points_ASC","incremental_time_points_DESC","keep_policy_ASC","keep_policy_DESC","keep_policy_value_ASC","keep_policy_value_DESC","last_execute_status_ASC","last_execute_status_DESC","last_execute_status_message_ASC","last_execute_status_message_DESC","last_execute_success_job_count_ASC","last_execute_success_job_count_DESC","last_execute_total_job_count_ASC","last_execute_total_job_count_DESC","last_executed_at_ASC","last_executed_at_DESC","name_ASC","name_DESC","namespace_ASC","namespace_DESC","next_execute_time_ASC","next_execute_time_DESC","resource_version_ASC","resource_version_DESC","status_ASC","status_DESC","updatedAt_ASC","updatedAt_DESC","window_end_ASC","window_end_DESC","window_start_ASC","window_start_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["backup_delay_option_ASC","backup_delay_option_DESC","backup_restore_point_count_ASC","backup_restore_point_count_DESC","backup_total_size_ASC","backup_total_size_DESC","compression_ASC","compression_DESC","createdAt_ASC","createdAt_DESC","delete_strategy_ASC","delete_strategy_DESC","description_ASC","description_DESC","enable_window_ASC","enable_window_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","full_interval_ASC","full_interval_DESC","full_period_ASC","full_period_DESC","full_time_point_ASC","full_time_point_DESC","id_ASC","id_DESC","incremental_period_ASC","incremental_period_DESC","incremental_time_points_ASC","incremental_time_points_DESC","keep_policy_ASC","keep_policy_DESC","keep_policy_value_ASC","keep_policy_value_DESC","last_execute_status_ASC","last_execute_status_DESC","last_execute_status_message_ASC","last_execute_status_message_DESC","last_execute_success_job_count_ASC","last_execute_success_job_count_DESC","last_execute_total_job_count_ASC","last_execute_total_job_count_DESC","last_executed_at_ASC","last_executed_at_DESC","name_ASC","name_DESC","namespace_ASC","namespace_DESC","next_execute_time_ASC","next_execute_time_DESC","phase_ASC","phase_DESC","resource_version_ASC","resource_version_DESC","status_ASC","status_DESC","updatedAt_ASC","updatedAt_DESC","window_end_ASC","window_end_DESC","window_start_ASC","window_start_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

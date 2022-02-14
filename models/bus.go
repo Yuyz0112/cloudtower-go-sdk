@@ -20,8 +20,12 @@ import (
 type Bus string
 
 func NewBus(value Bus) *Bus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated Bus.
+func (m Bus) Pointer() *Bus {
+	return &m
 }
 
 const (

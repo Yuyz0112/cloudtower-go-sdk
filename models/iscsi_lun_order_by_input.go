@@ -20,8 +20,12 @@ import (
 type IscsiLunOrderByInput string
 
 func NewIscsiLunOrderByInput(value IscsiLunOrderByInput) *IscsiLunOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated IscsiLunOrderByInput.
+func (m IscsiLunOrderByInput) Pointer() *IscsiLunOrderByInput {
+	return &m
 }
 
 const (

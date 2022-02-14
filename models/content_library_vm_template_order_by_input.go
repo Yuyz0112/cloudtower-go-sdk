@@ -20,8 +20,12 @@ import (
 type ContentLibraryVMTemplateOrderByInput string
 
 func NewContentLibraryVMTemplateOrderByInput(value ContentLibraryVMTemplateOrderByInput) *ContentLibraryVMTemplateOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ContentLibraryVMTemplateOrderByInput.
+func (m ContentLibraryVMTemplateOrderByInput) Pointer() *ContentLibraryVMTemplateOrderByInput {
+	return &m
 }
 
 const (

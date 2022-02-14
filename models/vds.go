@@ -29,10 +29,14 @@ type Vds struct {
 	Cluster *NestedCluster `json:"cluster"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// everoute cluster
-	EverouteCluster interface{} `json:"everoute_cluster,omitempty"`
+	EverouteCluster struct {
+		NestedEverouteCluster
+	} `json:"everoute_cluster,omitempty"`
 
 	// id
 	// Required: true
@@ -84,6 +88,14 @@ func (m *Vds) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEverouteCluster(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -152,9 +164,27 @@ func (m *Vds) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Vds) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *Vds) validateEverouteCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.EverouteCluster) { // not required
+		return nil
 	}
 
 	return nil
@@ -192,6 +222,8 @@ func (m *Vds) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -234,6 +266,8 @@ func (m *Vds) validateNics(formats strfmt.Registry) error {
 			if err := m.Nics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -267,6 +301,8 @@ func (m *Vds) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -289,6 +325,8 @@ func (m *Vds) validateVlans(formats strfmt.Registry) error {
 			if err := m.Vlans[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vlans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vlans" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -313,6 +351,14 @@ func (m *Vds) ContextValidate(ctx context.Context, formats strfmt.Registry) erro
 	var res []error
 
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEverouteCluster(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -344,10 +390,22 @@ func (m *Vds) contextValidateCluster(ctx context.Context, formats strfmt.Registr
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *Vds) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *Vds) contextValidateEverouteCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -360,6 +418,8 @@ func (m *Vds) contextValidateLabels(ctx context.Context, formats strfmt.Registry
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -378,6 +438,8 @@ func (m *Vds) contextValidateNics(ctx context.Context, formats strfmt.Registry) 
 			if err := m.Nics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -394,6 +456,8 @@ func (m *Vds) contextValidateType(ctx context.Context, formats strfmt.Registry) 
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -410,6 +474,8 @@ func (m *Vds) contextValidateVlans(ctx context.Context, formats strfmt.Registry)
 			if err := m.Vlans[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("vlans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("vlans" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

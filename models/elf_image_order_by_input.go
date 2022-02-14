@@ -20,8 +20,12 @@ import (
 type ElfImageOrderByInput string
 
 func NewElfImageOrderByInput(value ElfImageOrderByInput) *ElfImageOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated ElfImageOrderByInput.
+func (m ElfImageOrderByInput) Pointer() *ElfImageOrderByInput {
+	return &m
 }
 
 const (

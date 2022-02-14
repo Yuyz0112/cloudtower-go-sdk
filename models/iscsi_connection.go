@@ -40,10 +40,14 @@ type IscsiConnection struct {
 	InitiatorIP *string `json:"initiator_ip"`
 
 	// iscsi target
-	IscsiTarget interface{} `json:"iscsi_target,omitempty"`
+	IscsiTarget struct {
+		NestedIscsiTarget
+	} `json:"iscsi_target,omitempty"`
 
 	// nvmf subsystem
-	NvmfSubsystem interface{} `json:"nvmf_subsystem,omitempty"`
+	NvmfSubsystem struct {
+		NestedNvmfSubsystem
+	} `json:"nvmf_subsystem,omitempty"`
 
 	// type
 	// Required: true
@@ -71,6 +75,14 @@ func (m *IscsiConnection) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateInitiatorIP(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiTarget(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfSubsystem(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -103,6 +115,8 @@ func (m *IscsiConnection) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -121,6 +135,8 @@ func (m *IscsiConnection) validateHost(formats strfmt.Registry) error {
 		if err := m.Host.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
@@ -147,6 +163,22 @@ func (m *IscsiConnection) validateInitiatorIP(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IscsiConnection) validateIscsiTarget(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiTarget) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *IscsiConnection) validateNvmfSubsystem(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfSubsystem) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *IscsiConnection) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
@@ -161,6 +193,8 @@ func (m *IscsiConnection) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -181,6 +215,14 @@ func (m *IscsiConnection) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIscsiTarget(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfSubsystem(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -197,6 +239,8 @@ func (m *IscsiConnection) contextValidateCluster(ctx context.Context, formats st
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -211,10 +255,22 @@ func (m *IscsiConnection) contextValidateHost(ctx context.Context, formats strfm
 		if err := m.Host.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *IscsiConnection) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *IscsiConnection) contextValidateNvmfSubsystem(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -225,6 +281,8 @@ func (m *IscsiConnection) contextValidateType(ctx context.Context, formats strfm
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

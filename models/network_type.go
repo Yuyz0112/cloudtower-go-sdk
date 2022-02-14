@@ -20,8 +20,12 @@ import (
 type NetworkType string
 
 func NewNetworkType(value NetworkType) *NetworkType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NetworkType.
+func (m NetworkType) Pointer() *NetworkType {
+	return &m
 }
 
 const (

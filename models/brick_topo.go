@@ -29,10 +29,14 @@ type BrickTopo struct {
 	Cluster *NestedCluster `json:"cluster"`
 
 	// cluster topo
-	ClusterTopo interface{} `json:"cluster_topo,omitempty"`
+	ClusterTopo struct {
+		NestedClusterTopo
+	} `json:"cluster_topo,omitempty"`
 
 	// disk layout
-	DiskLayout interface{} `json:"disk_layout,omitempty"`
+	DiskLayout struct {
+		NestedBrickDiskLayout
+	} `json:"disk_layout,omitempty"`
 
 	// height
 	// Required: true
@@ -61,16 +65,22 @@ type BrickTopo struct {
 	Position *int32 `json:"position"`
 
 	// power layout
-	PowerLayout interface{} `json:"power_layout,omitempty"`
+	PowerLayout struct {
+		Direction
+	} `json:"power_layout,omitempty"`
 
 	// power position
-	PowerPosition interface{} `json:"power_position,omitempty"`
+	PowerPosition struct {
+		PowerPosition
+	} `json:"power_position,omitempty"`
 
 	// powers
 	Powers []*NestedBrickPower `json:"powers,omitempty"`
 
 	// rack topo
-	RackTopo interface{} `json:"rack_topo,omitempty"`
+	RackTopo struct {
+		NestedRackTopo
+	} `json:"rack_topo,omitempty"`
 
 	// tag position in brick
 	TagPositionInBrick []*NestedTagPosition `json:"tag_position_in_brick,omitempty"`
@@ -85,6 +95,14 @@ func (m *BrickTopo) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClusterTopo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDiskLayout(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -112,7 +130,19 @@ func (m *BrickTopo) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePowerLayout(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePowerPosition(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePowers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRackTopo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -136,6 +166,8 @@ func (m *BrickTopo) validateCapacity(formats strfmt.Registry) error {
 		if err := m.Capacity.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("capacity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("capacity")
 			}
 			return err
 		}
@@ -154,9 +186,27 @@ func (m *BrickTopo) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *BrickTopo) validateClusterTopo(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClusterTopo) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BrickTopo) validateDiskLayout(formats strfmt.Registry) error {
+	if swag.IsZero(m.DiskLayout) { // not required
+		return nil
 	}
 
 	return nil
@@ -212,6 +262,8 @@ func (m *BrickTopo) validateNodeTopoes(formats strfmt.Registry) error {
 			if err := m.NodeTopoes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("node_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("node_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -231,6 +283,22 @@ func (m *BrickTopo) validatePosition(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *BrickTopo) validatePowerLayout(formats strfmt.Registry) error {
+	if swag.IsZero(m.PowerLayout) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *BrickTopo) validatePowerPosition(formats strfmt.Registry) error {
+	if swag.IsZero(m.PowerPosition) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *BrickTopo) validatePowers(formats strfmt.Registry) error {
 	if swag.IsZero(m.Powers) { // not required
 		return nil
@@ -245,11 +313,21 @@ func (m *BrickTopo) validatePowers(formats strfmt.Registry) error {
 			if err := m.Powers[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("powers" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("powers" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BrickTopo) validateRackTopo(formats strfmt.Registry) error {
+	if swag.IsZero(m.RackTopo) { // not required
+		return nil
 	}
 
 	return nil
@@ -269,6 +347,8 @@ func (m *BrickTopo) validateTagPositionInBrick(formats strfmt.Registry) error {
 			if err := m.TagPositionInBrick[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tag_position_in_brick" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tag_position_in_brick" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -291,11 +371,31 @@ func (m *BrickTopo) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateClusterTopo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDiskLayout(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateNodeTopoes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePowerLayout(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePowerPosition(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePowers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRackTopo(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -315,6 +415,8 @@ func (m *BrickTopo) contextValidateCapacity(ctx context.Context, formats strfmt.
 		if err := m.Capacity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("capacity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("capacity")
 			}
 			return err
 		}
@@ -329,10 +431,22 @@ func (m *BrickTopo) contextValidateCluster(ctx context.Context, formats strfmt.R
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *BrickTopo) contextValidateClusterTopo(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BrickTopo) contextValidateDiskLayout(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -345,12 +459,24 @@ func (m *BrickTopo) contextValidateNodeTopoes(ctx context.Context, formats strfm
 			if err := m.NodeTopoes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("node_topoes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("node_topoes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BrickTopo) contextValidatePowerLayout(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *BrickTopo) contextValidatePowerPosition(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -363,12 +489,19 @@ func (m *BrickTopo) contextValidatePowers(ctx context.Context, formats strfmt.Re
 			if err := m.Powers[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("powers" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("powers" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *BrickTopo) contextValidateRackTopo(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -381,6 +514,8 @@ func (m *BrickTopo) contextValidateTagPositionInBrick(ctx context.Context, forma
 			if err := m.TagPositionInBrick[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tag_position_in_brick" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tag_position_in_brick" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

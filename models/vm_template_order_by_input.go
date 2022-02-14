@@ -20,8 +20,12 @@ import (
 type VMTemplateOrderByInput string
 
 func NewVMTemplateOrderByInput(value VMTemplateOrderByInput) *VMTemplateOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VMTemplateOrderByInput.
+func (m VMTemplateOrderByInput) Pointer() *VMTemplateOrderByInput {
+	return &m
 }
 
 const (

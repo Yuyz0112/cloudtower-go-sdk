@@ -20,8 +20,12 @@ import (
 type SnmpPrivacyProtocol string
 
 func NewSnmpPrivacyProtocol(value SnmpPrivacyProtocol) *SnmpPrivacyProtocol {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated SnmpPrivacyProtocol.
+func (m SnmpPrivacyProtocol) Pointer() *SnmpPrivacyProtocol {
+	return &m
 }
 
 const (

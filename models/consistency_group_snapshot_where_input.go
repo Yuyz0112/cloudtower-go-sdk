@@ -24,13 +24,19 @@ type ConsistencyGroupSnapshotWhereInput struct {
 	AND []*ConsistencyGroupSnapshotWhereInput `json:"AND,omitempty"`
 
 	// iscsi lun snapshots every
-	IscsiLunSnapshotsEvery interface{} `json:"Iscsi_lun_snapshots_every,omitempty"`
+	IscsiLunSnapshotsEvery struct {
+		IscsiLunSnapshotWhereInput
+	} `json:"Iscsi_lun_snapshots_every,omitempty"`
 
 	// iscsi lun snapshots none
-	IscsiLunSnapshotsNone interface{} `json:"Iscsi_lun_snapshots_none,omitempty"`
+	IscsiLunSnapshotsNone struct {
+		IscsiLunSnapshotWhereInput
+	} `json:"Iscsi_lun_snapshots_none,omitempty"`
 
 	// iscsi lun snapshots some
-	IscsiLunSnapshotsSome interface{} `json:"Iscsi_lun_snapshots_some,omitempty"`
+	IscsiLunSnapshotsSome struct {
+		IscsiLunSnapshotWhereInput
+	} `json:"Iscsi_lun_snapshots_some,omitempty"`
 
 	// n o t
 	NOT []*ConsistencyGroupSnapshotWhereInput `json:"NOT,omitempty"`
@@ -39,16 +45,22 @@ type ConsistencyGroupSnapshotWhereInput struct {
 	OR []*ConsistencyGroupSnapshotWhereInput `json:"OR,omitempty"`
 
 	// consistency group
-	ConsistencyGroup interface{} `json:"consistency_group,omitempty"`
+	ConsistencyGroup struct {
+		ConsistencyGroupWhereInput
+	} `json:"consistency_group,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -96,13 +108,19 @@ type ConsistencyGroupSnapshotWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery interface{} `json:"labels_every,omitempty"`
+	LabelsEvery struct {
+		LabelWhereInput
+	} `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone interface{} `json:"labels_none,omitempty"`
+	LabelsNone struct {
+		LabelWhereInput
+	} `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome interface{} `json:"labels_some,omitempty"`
+	LabelsSome struct {
+		LabelWhereInput
+	} `json:"labels_some,omitempty"`
 
 	// local created at
 	LocalCreatedAt *string `json:"local_created_at,omitempty"`
@@ -213,13 +231,19 @@ type ConsistencyGroupSnapshotWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// nvmf namespace snapshots every
-	NvmfNamespaceSnapshotsEvery interface{} `json:"nvmf_namespace_snapshots_every,omitempty"`
+	NvmfNamespaceSnapshotsEvery struct {
+		NvmfNamespaceSnapshotWhereInput
+	} `json:"nvmf_namespace_snapshots_every,omitempty"`
 
 	// nvmf namespace snapshots none
-	NvmfNamespaceSnapshotsNone interface{} `json:"nvmf_namespace_snapshots_none,omitempty"`
+	NvmfNamespaceSnapshotsNone struct {
+		NvmfNamespaceSnapshotWhereInput
+	} `json:"nvmf_namespace_snapshots_none,omitempty"`
 
 	// nvmf namespace snapshots some
-	NvmfNamespaceSnapshotsSome interface{} `json:"nvmf_namespace_snapshots_some,omitempty"`
+	NvmfNamespaceSnapshotsSome struct {
+		NvmfNamespaceSnapshotWhereInput
+	} `json:"nvmf_namespace_snapshots_some,omitempty"`
 
 	// unique size
 	UniqueSize *float64 `json:"unique_size,omitempty"`
@@ -254,6 +278,18 @@ func (m *ConsistencyGroupSnapshotWhereInput) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.validateIscsiLunSnapshotsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLunSnapshotsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIscsiLunSnapshotsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateNOT(formats); err != nil {
 		res = append(res, err)
 	}
@@ -262,11 +298,47 @@ func (m *ConsistencyGroupSnapshotWhereInput) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.validateConsistencyGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusNotIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespaceSnapshotsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespaceSnapshotsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNvmfNamespaceSnapshotsSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -290,11 +362,37 @@ func (m *ConsistencyGroupSnapshotWhereInput) validateAND(formats strfmt.Registry
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateIscsiLunSnapshotsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunSnapshotsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateIscsiLunSnapshotsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunSnapshotsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateIscsiLunSnapshotsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.IscsiLunSnapshotsSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -314,6 +412,8 @@ func (m *ConsistencyGroupSnapshotWhereInput) validateNOT(formats strfmt.Registry
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -338,11 +438,29 @@ func (m *ConsistencyGroupSnapshotWhereInput) validateOR(formats strfmt.Registry)
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateConsistencyGroup(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsistencyGroup) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -358,10 +476,20 @@ func (m *ConsistencyGroupSnapshotWhereInput) validateEntityAsyncStatusIn(formats
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -377,10 +505,60 @@ func (m *ConsistencyGroupSnapshotWhereInput) validateEntityAsyncStatusNotIn(form
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateLabelsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateLabelsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateNvmfNamespaceSnapshotsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespaceSnapshotsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateNvmfNamespaceSnapshotsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespaceSnapshotsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) validateNvmfNamespaceSnapshotsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.NvmfNamespaceSnapshotsSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -394,6 +572,18 @@ func (m *ConsistencyGroupSnapshotWhereInput) ContextValidate(ctx context.Context
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIscsiLunSnapshotsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLunSnapshotsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIscsiLunSnapshotsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateNOT(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -402,11 +592,47 @@ func (m *ConsistencyGroupSnapshotWhereInput) ContextValidate(ctx context.Context
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateConsistencyGroup(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusNotIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespaceSnapshotsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespaceSnapshotsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNvmfNamespaceSnapshotsSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -424,12 +650,29 @@ func (m *ConsistencyGroupSnapshotWhereInput) contextValidateAND(ctx context.Cont
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateIscsiLunSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateIscsiLunSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateIscsiLunSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -442,6 +685,8 @@ func (m *ConsistencyGroupSnapshotWhereInput) contextValidateNOT(ctx context.Cont
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -460,12 +705,24 @@ func (m *ConsistencyGroupSnapshotWhereInput) contextValidateOR(ctx context.Conte
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateConsistencyGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -477,11 +734,18 @@ func (m *ConsistencyGroupSnapshotWhereInput) contextValidateEntityAsyncStatusIn(
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -493,11 +757,43 @@ func (m *ConsistencyGroupSnapshotWhereInput) contextValidateEntityAsyncStatusNot
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateNvmfNamespaceSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateNvmfNamespaceSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ConsistencyGroupSnapshotWhereInput) contextValidateNvmfNamespaceSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

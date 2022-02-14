@@ -30,28 +30,40 @@ type VMWhereInput struct {
 	OR []*VMWhereInput `json:"OR,omitempty"`
 
 	// backup plans every
-	BackupPlansEvery interface{} `json:"backup_plans_every,omitempty"`
+	BackupPlansEvery struct {
+		BackupPlanWhereInput
+	} `json:"backup_plans_every,omitempty"`
 
 	// backup plans none
-	BackupPlansNone interface{} `json:"backup_plans_none,omitempty"`
+	BackupPlansNone struct {
+		BackupPlanWhereInput
+	} `json:"backup_plans_none,omitempty"`
 
 	// backup plans some
-	BackupPlansSome interface{} `json:"backup_plans_some,omitempty"`
+	BackupPlansSome struct {
+		BackupPlanWhereInput
+	} `json:"backup_plans_some,omitempty"`
 
 	// clock offset
-	ClockOffset interface{} `json:"clock_offset,omitempty"`
+	ClockOffset struct {
+		VMClockOffset
+	} `json:"clock_offset,omitempty"`
 
 	// clock offset in
 	ClockOffsetIn []VMClockOffset `json:"clock_offset_in,omitempty"`
 
 	// clock offset not
-	ClockOffsetNot interface{} `json:"clock_offset_not,omitempty"`
+	ClockOffsetNot struct {
+		VMClockOffset
+	} `json:"clock_offset_not,omitempty"`
 
 	// clock offset not in
 	ClockOffsetNotIn []VMClockOffset `json:"clock_offset_not_in,omitempty"`
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		ClusterWhereInput
+	} `json:"cluster,omitempty"`
 
 	// cpu model
 	CPUModel *string `json:"cpu_model,omitempty"`
@@ -228,40 +240,56 @@ type VMWhereInput struct {
 	DNSServersStartsWith *string `json:"dns_servers_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot interface{} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
 
 	// entity filter results every
-	EntityFilterResultsEvery interface{} `json:"entity_filter_results_every,omitempty"`
+	EntityFilterResultsEvery struct {
+		VMEntityFilterResultWhereInput
+	} `json:"entity_filter_results_every,omitempty"`
 
 	// entity filter results none
-	EntityFilterResultsNone interface{} `json:"entity_filter_results_none,omitempty"`
+	EntityFilterResultsNone struct {
+		VMEntityFilterResultWhereInput
+	} `json:"entity_filter_results_none,omitempty"`
 
 	// entity filter results some
-	EntityFilterResultsSome interface{} `json:"entity_filter_results_some,omitempty"`
+	EntityFilterResultsSome struct {
+		VMEntityFilterResultWhereInput
+	} `json:"entity_filter_results_some,omitempty"`
 
 	// firmware
-	Firmware interface{} `json:"firmware,omitempty"`
+	Firmware struct {
+		VMFirmware
+	} `json:"firmware,omitempty"`
 
 	// firmware in
 	FirmwareIn []VMFirmware `json:"firmware_in,omitempty"`
 
 	// firmware not
-	FirmwareNot interface{} `json:"firmware_not,omitempty"`
+	FirmwareNot struct {
+		VMFirmware
+	} `json:"firmware_not,omitempty"`
 
 	// firmware not in
 	FirmwareNotIn []VMFirmware `json:"firmware_not_in,omitempty"`
 
 	// folder
-	Folder interface{} `json:"folder,omitempty"`
+	Folder struct {
+		VMFolderWhereInput
+	} `json:"folder,omitempty"`
 
 	// guest cpu model
 	GuestCPUModel *string `json:"guest_cpu_model,omitempty"`
@@ -306,13 +334,17 @@ type VMWhereInput struct {
 	GuestCPUModelStartsWith *string `json:"guest_cpu_model_starts_with,omitempty"`
 
 	// guest os type
-	GuestOsType interface{} `json:"guest_os_type,omitempty"`
+	GuestOsType struct {
+		VMGuestsOperationSystem
+	} `json:"guest_os_type,omitempty"`
 
 	// guest os type in
 	GuestOsTypeIn []VMGuestsOperationSystem `json:"guest_os_type_in,omitempty"`
 
 	// guest os type not
-	GuestOsTypeNot interface{} `json:"guest_os_type_not,omitempty"`
+	GuestOsTypeNot struct {
+		VMGuestsOperationSystem
+	} `json:"guest_os_type_not,omitempty"`
 
 	// guest os type not in
 	GuestOsTypeNotIn []VMGuestsOperationSystem `json:"guest_os_type_not_in,omitempty"`
@@ -372,7 +404,9 @@ type VMWhereInput struct {
 	HaNot *bool `json:"ha_not,omitempty"`
 
 	// host
-	Host interface{} `json:"host,omitempty"`
+	Host struct {
+		HostWhereInput
+	} `json:"host,omitempty"`
 
 	// hostname
 	Hostname *string `json:"hostname,omitempty"`
@@ -465,7 +499,9 @@ type VMWhereInput struct {
 	InRecycleBinNot *bool `json:"in_recycle_bin_not,omitempty"`
 
 	// installed backup service
-	InstalledBackupService interface{} `json:"installed_backup_service,omitempty"`
+	InstalledBackupService struct {
+		BackupServiceWhereInput
+	} `json:"installed_backup_service,omitempty"`
 
 	// internal
 	Internal *bool `json:"internal,omitempty"`
@@ -474,13 +510,17 @@ type VMWhereInput struct {
 	InternalNot *bool `json:"internal_not,omitempty"`
 
 	// io policy
-	IoPolicy interface{} `json:"io_policy,omitempty"`
+	IoPolicy struct {
+		VMDiskIoPolicy
+	} `json:"io_policy,omitempty"`
 
 	// io policy in
 	IoPolicyIn []VMDiskIoPolicy `json:"io_policy_in,omitempty"`
 
 	// io policy not
-	IoPolicyNot interface{} `json:"io_policy_not,omitempty"`
+	IoPolicyNot struct {
+		VMDiskIoPolicy
+	} `json:"io_policy_not,omitempty"`
 
 	// io policy not in
 	IoPolicyNotIn []VMDiskIoPolicy `json:"io_policy_not_in,omitempty"`
@@ -528,7 +568,9 @@ type VMWhereInput struct {
 	IpsStartsWith *string `json:"ips_starts_with,omitempty"`
 
 	// isolation policy
-	IsolationPolicy interface{} `json:"isolation_policy,omitempty"`
+	IsolationPolicy struct {
+		IsolationPolicyWhereInput
+	} `json:"isolation_policy,omitempty"`
 
 	// kernel info
 	KernelInfo *string `json:"kernel_info,omitempty"`
@@ -573,13 +615,19 @@ type VMWhereInput struct {
 	KernelInfoStartsWith *string `json:"kernel_info_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery interface{} `json:"labels_every,omitempty"`
+	LabelsEvery struct {
+		LabelWhereInput
+	} `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone interface{} `json:"labels_none,omitempty"`
+	LabelsNone struct {
+		LabelWhereInput
+	} `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome interface{} `json:"labels_some,omitempty"`
+	LabelsSome struct {
+		LabelWhereInput
+	} `json:"labels_some,omitempty"`
 
 	// last shutdown time
 	LastShutdownTime *string `json:"last_shutdown_time,omitempty"`
@@ -720,13 +768,17 @@ type VMWhereInput struct {
 	MaxBandwidthNotIn []float64 `json:"max_bandwidth_not_in,omitempty"`
 
 	// max bandwidth policy
-	MaxBandwidthPolicy interface{} `json:"max_bandwidth_policy,omitempty"`
+	MaxBandwidthPolicy struct {
+		VMDiskIoRestrictType
+	} `json:"max_bandwidth_policy,omitempty"`
 
 	// max bandwidth policy in
 	MaxBandwidthPolicyIn []VMDiskIoRestrictType `json:"max_bandwidth_policy_in,omitempty"`
 
 	// max bandwidth policy not
-	MaxBandwidthPolicyNot interface{} `json:"max_bandwidth_policy_not,omitempty"`
+	MaxBandwidthPolicyNot struct {
+		VMDiskIoRestrictType
+	} `json:"max_bandwidth_policy_not,omitempty"`
 
 	// max bandwidth policy not in
 	MaxBandwidthPolicyNotIn []VMDiskIoRestrictType `json:"max_bandwidth_policy_not_in,omitempty"`
@@ -756,13 +808,17 @@ type VMWhereInput struct {
 	MaxIopsNotIn []int32 `json:"max_iops_not_in,omitempty"`
 
 	// max iops policy
-	MaxIopsPolicy interface{} `json:"max_iops_policy,omitempty"`
+	MaxIopsPolicy struct {
+		VMDiskIoRestrictType
+	} `json:"max_iops_policy,omitempty"`
 
 	// max iops policy in
 	MaxIopsPolicyIn []VMDiskIoRestrictType `json:"max_iops_policy_in,omitempty"`
 
 	// max iops policy not
-	MaxIopsPolicyNot interface{} `json:"max_iops_policy_not,omitempty"`
+	MaxIopsPolicyNot struct {
+		VMDiskIoRestrictType
+	} `json:"max_iops_policy_not,omitempty"`
 
 	// max iops policy not in
 	MaxIopsPolicyNotIn []VMDiskIoRestrictType `json:"max_iops_policy_not_in,omitempty"`
@@ -1044,25 +1100,37 @@ type VMWhereInput struct {
 	SizeNotIn []float64 `json:"size_not_in,omitempty"`
 
 	// snapshot plan
-	SnapshotPlan interface{} `json:"snapshot_plan,omitempty"`
+	SnapshotPlan struct {
+		SnapshotPlanWhereInput
+	} `json:"snapshot_plan,omitempty"`
 
 	// snapshots every
-	SnapshotsEvery interface{} `json:"snapshots_every,omitempty"`
+	SnapshotsEvery struct {
+		VMSnapshotWhereInput
+	} `json:"snapshots_every,omitempty"`
 
 	// snapshots none
-	SnapshotsNone interface{} `json:"snapshots_none,omitempty"`
+	SnapshotsNone struct {
+		VMSnapshotWhereInput
+	} `json:"snapshots_none,omitempty"`
 
 	// snapshots some
-	SnapshotsSome interface{} `json:"snapshots_some,omitempty"`
+	SnapshotsSome struct {
+		VMSnapshotWhereInput
+	} `json:"snapshots_some,omitempty"`
 
 	// status
-	Status interface{} `json:"status,omitempty"`
+	Status struct {
+		VMStatus
+	} `json:"status,omitempty"`
 
 	// status in
 	StatusIn []VMStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot interface{} `json:"status_not,omitempty"`
+	StatusNot struct {
+		VMStatus
+	} `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []VMStatus `json:"status_not_in,omitempty"`
@@ -1092,13 +1160,19 @@ type VMWhereInput struct {
 	UniqueSizeNotIn []float64 `json:"unique_size_not_in,omitempty"`
 
 	// usb devices every
-	UsbDevicesEvery interface{} `json:"usb_devices_every,omitempty"`
+	UsbDevicesEvery struct {
+		UsbDeviceWhereInput
+	} `json:"usb_devices_every,omitempty"`
 
 	// usb devices none
-	UsbDevicesNone interface{} `json:"usb_devices_none,omitempty"`
+	UsbDevicesNone struct {
+		UsbDeviceWhereInput
+	} `json:"usb_devices_none,omitempty"`
 
 	// usb devices some
-	UsbDevicesSome interface{} `json:"usb_devices_some,omitempty"`
+	UsbDevicesSome struct {
+		UsbDeviceWhereInput
+	} `json:"usb_devices_some,omitempty"`
 
 	// vcpu
 	Vcpu *int32 `json:"vcpu,omitempty"`
@@ -1125,52 +1199,78 @@ type VMWhereInput struct {
 	VcpuNotIn []int32 `json:"vcpu_not_in,omitempty"`
 
 	// video type
-	VideoType interface{} `json:"video_type,omitempty"`
+	VideoType struct {
+		VMVideoType
+	} `json:"video_type,omitempty"`
 
 	// video type in
 	VideoTypeIn []VMVideoType `json:"video_type_in,omitempty"`
 
 	// video type not
-	VideoTypeNot interface{} `json:"video_type_not,omitempty"`
+	VideoTypeNot struct {
+		VMVideoType
+	} `json:"video_type_not,omitempty"`
 
 	// video type not in
 	VideoTypeNotIn []VMVideoType `json:"video_type_not_in,omitempty"`
 
 	// vm disks every
-	VMDisksEvery interface{} `json:"vm_disks_every,omitempty"`
+	VMDisksEvery struct {
+		VMDiskWhereInput
+	} `json:"vm_disks_every,omitempty"`
 
 	// vm disks none
-	VMDisksNone interface{} `json:"vm_disks_none,omitempty"`
+	VMDisksNone struct {
+		VMDiskWhereInput
+	} `json:"vm_disks_none,omitempty"`
 
 	// vm disks some
-	VMDisksSome interface{} `json:"vm_disks_some,omitempty"`
+	VMDisksSome struct {
+		VMDiskWhereInput
+	} `json:"vm_disks_some,omitempty"`
 
 	// vm nics every
-	VMNicsEvery interface{} `json:"vm_nics_every,omitempty"`
+	VMNicsEvery struct {
+		VMNicWhereInput
+	} `json:"vm_nics_every,omitempty"`
 
 	// vm nics none
-	VMNicsNone interface{} `json:"vm_nics_none,omitempty"`
+	VMNicsNone struct {
+		VMNicWhereInput
+	} `json:"vm_nics_none,omitempty"`
 
 	// vm nics some
-	VMNicsSome interface{} `json:"vm_nics_some,omitempty"`
+	VMNicsSome struct {
+		VMNicWhereInput
+	} `json:"vm_nics_some,omitempty"`
 
 	// vm placement group every
-	VMPlacementGroupEvery interface{} `json:"vm_placement_group_every,omitempty"`
+	VMPlacementGroupEvery struct {
+		VMPlacementGroupWhereInput
+	} `json:"vm_placement_group_every,omitempty"`
 
 	// vm placement group none
-	VMPlacementGroupNone interface{} `json:"vm_placement_group_none,omitempty"`
+	VMPlacementGroupNone struct {
+		VMPlacementGroupWhereInput
+	} `json:"vm_placement_group_none,omitempty"`
 
 	// vm placement group some
-	VMPlacementGroupSome interface{} `json:"vm_placement_group_some,omitempty"`
+	VMPlacementGroupSome struct {
+		VMPlacementGroupWhereInput
+	} `json:"vm_placement_group_some,omitempty"`
 
 	// vm tools status
-	VMToolsStatus interface{} `json:"vm_tools_status,omitempty"`
+	VMToolsStatus struct {
+		VMToolsStatus
+	} `json:"vm_tools_status,omitempty"`
 
 	// vm tools status in
 	VMToolsStatusIn []VMToolsStatus `json:"vm_tools_status_in,omitempty"`
 
 	// vm tools status not
-	VMToolsStatusNot interface{} `json:"vm_tools_status_not,omitempty"`
+	VMToolsStatusNot struct {
+		VMToolsStatus
+	} `json:"vm_tools_status_not,omitempty"`
 
 	// vm tools status not in
 	VMToolsStatusNotIn []VMToolsStatus `json:"vm_tools_status_not_in,omitempty"`
@@ -1218,13 +1318,17 @@ type VMWhereInput struct {
 	VMToolsVersionStartsWith *string `json:"vm_tools_version_starts_with,omitempty"`
 
 	// vm usage
-	VMUsage interface{} `json:"vm_usage,omitempty"`
+	VMUsage struct {
+		VMUsage
+	} `json:"vm_usage,omitempty"`
 
 	// vm usage in
 	VMUsageIn []VMUsage `json:"vm_usage_in,omitempty"`
 
 	// vm usage not
-	VMUsageNot interface{} `json:"vm_usage_not,omitempty"`
+	VMUsageNot struct {
+		VMUsage
+	} `json:"vm_usage_not,omitempty"`
 
 	// vm usage not in
 	VMUsageNotIn []VMUsage `json:"vm_usage_not_in,omitempty"`
@@ -1252,7 +1356,27 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateBackupPlansEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPlansNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBackupPlansSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClockOffset(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateClockOffsetIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClockOffsetNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1260,7 +1384,19 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1268,7 +1404,27 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEntityFilterResultsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityFilterResultsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityFilterResultsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFirmware(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFirmwareIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFirmwareNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1276,7 +1432,19 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateFolder(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGuestOsType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGuestOsTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGuestOsTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1284,7 +1452,23 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateHost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInstalledBackupService(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIoPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIoPolicyIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIoPolicyNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1292,7 +1476,31 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIsolationPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLabelsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxBandwidthPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMaxBandwidthPolicyIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxBandwidthPolicyNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1300,7 +1508,15 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateMaxIopsPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMaxIopsPolicyIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxIopsPolicyNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1308,7 +1524,31 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSnapshotPlan(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSnapshotsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSnapshotsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSnapshotsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1316,7 +1556,27 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateUsbDevicesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUsbDevicesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUsbDevicesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVideoType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateVideoTypeIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVideoTypeNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1324,7 +1584,51 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateVMDisksEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMDisksNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMDisksSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMNicsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMNicsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMNicsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMPlacementGroupEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMPlacementGroupNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMPlacementGroupSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMToolsStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateVMToolsStatusIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMToolsStatusNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1332,7 +1636,15 @@ func (m *VMWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateVMUsage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateVMUsageIn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMUsageNot(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1360,6 +1672,8 @@ func (m *VMWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1384,6 +1698,8 @@ func (m *VMWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1408,11 +1724,45 @@ func (m *VMWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateBackupPlansEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlansEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateBackupPlansNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlansNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateBackupPlansSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlansSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateClockOffset(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClockOffset) { // not required
+		return nil
 	}
 
 	return nil
@@ -1428,10 +1778,20 @@ func (m *VMWhereInput) validateClockOffsetIn(formats strfmt.Registry) error {
 		if err := m.ClockOffsetIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clock_offset_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clock_offset_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateClockOffsetNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClockOffsetNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1447,10 +1807,28 @@ func (m *VMWhereInput) validateClockOffsetNotIn(formats strfmt.Registry) error {
 		if err := m.ClockOffsetNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clock_offset_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clock_offset_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -1466,10 +1844,20 @@ func (m *VMWhereInput) validateEntityAsyncStatusIn(formats strfmt.Registry) erro
 		if err := m.EntityAsyncStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1485,10 +1873,44 @@ func (m *VMWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.Registry) e
 		if err := m.EntityAsyncStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateEntityFilterResultsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityFilterResultsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateEntityFilterResultsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityFilterResultsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateEntityFilterResultsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityFilterResultsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateFirmware(formats strfmt.Registry) error {
+	if swag.IsZero(m.Firmware) { // not required
+		return nil
 	}
 
 	return nil
@@ -1504,10 +1926,20 @@ func (m *VMWhereInput) validateFirmwareIn(formats strfmt.Registry) error {
 		if err := m.FirmwareIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("firmware_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firmware_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateFirmwareNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.FirmwareNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1523,10 +1955,28 @@ func (m *VMWhereInput) validateFirmwareNotIn(formats strfmt.Registry) error {
 		if err := m.FirmwareNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("firmware_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firmware_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateFolder(formats strfmt.Registry) error {
+	if swag.IsZero(m.Folder) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateGuestOsType(formats strfmt.Registry) error {
+	if swag.IsZero(m.GuestOsType) { // not required
+		return nil
 	}
 
 	return nil
@@ -1542,10 +1992,20 @@ func (m *VMWhereInput) validateGuestOsTypeIn(formats strfmt.Registry) error {
 		if err := m.GuestOsTypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("guest_os_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("guest_os_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateGuestOsTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.GuestOsTypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1561,10 +2021,36 @@ func (m *VMWhereInput) validateGuestOsTypeNotIn(formats strfmt.Registry) error {
 		if err := m.GuestOsTypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("guest_os_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("guest_os_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateHost(formats strfmt.Registry) error {
+	if swag.IsZero(m.Host) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateInstalledBackupService(formats strfmt.Registry) error {
+	if swag.IsZero(m.InstalledBackupService) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateIoPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.IoPolicy) { // not required
+		return nil
 	}
 
 	return nil
@@ -1580,10 +2066,20 @@ func (m *VMWhereInput) validateIoPolicyIn(formats strfmt.Registry) error {
 		if err := m.IoPolicyIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("io_policy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateIoPolicyNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.IoPolicyNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1599,10 +2095,52 @@ func (m *VMWhereInput) validateIoPolicyNotIn(formats strfmt.Registry) error {
 		if err := m.IoPolicyNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("io_policy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateIsolationPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.IsolationPolicy) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateLabelsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateLabelsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LabelsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
+		return nil
 	}
 
 	return nil
@@ -1618,10 +2156,20 @@ func (m *VMWhereInput) validateMaxBandwidthPolicyIn(formats strfmt.Registry) err
 		if err := m.MaxBandwidthPolicyIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("max_bandwidth_policy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateMaxBandwidthPolicyNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxBandwidthPolicyNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1637,10 +2185,20 @@ func (m *VMWhereInput) validateMaxBandwidthPolicyNotIn(formats strfmt.Registry) 
 		if err := m.MaxBandwidthPolicyNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("max_bandwidth_policy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateMaxIopsPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxIopsPolicy) { // not required
+		return nil
 	}
 
 	return nil
@@ -1656,10 +2214,20 @@ func (m *VMWhereInput) validateMaxIopsPolicyIn(formats strfmt.Registry) error {
 		if err := m.MaxIopsPolicyIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("max_iops_policy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateMaxIopsPolicyNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxIopsPolicyNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1675,10 +2243,52 @@ func (m *VMWhereInput) validateMaxIopsPolicyNotIn(formats strfmt.Registry) error
 		if err := m.MaxIopsPolicyNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("max_iops_policy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateSnapshotPlan(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotPlan) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateSnapshotsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateSnapshotsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateSnapshotsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -1694,10 +2304,20 @@ func (m *VMWhereInput) validateStatusIn(formats strfmt.Registry) error {
 		if err := m.StatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1713,10 +2333,44 @@ func (m *VMWhereInput) validateStatusNotIn(formats strfmt.Registry) error {
 		if err := m.StatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateUsbDevicesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsbDevicesEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateUsbDevicesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsbDevicesNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateUsbDevicesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.UsbDevicesSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVideoType(formats strfmt.Registry) error {
+	if swag.IsZero(m.VideoType) { // not required
+		return nil
 	}
 
 	return nil
@@ -1732,10 +2386,20 @@ func (m *VMWhereInput) validateVideoTypeIn(formats strfmt.Registry) error {
 		if err := m.VideoTypeIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("video_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("video_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVideoTypeNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.VideoTypeNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1751,10 +2415,92 @@ func (m *VMWhereInput) validateVideoTypeNotIn(formats strfmt.Registry) error {
 		if err := m.VideoTypeNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("video_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("video_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMDisksEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMDisksEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMDisksNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMDisksNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMDisksSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMDisksSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMNicsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMNicsEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMNicsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMNicsNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMNicsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMNicsSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMPlacementGroupEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMPlacementGroupEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMPlacementGroupNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMPlacementGroupNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMPlacementGroupSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMPlacementGroupSome) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMToolsStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMToolsStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -1770,10 +2516,20 @@ func (m *VMWhereInput) validateVMToolsStatusIn(formats strfmt.Registry) error {
 		if err := m.VMToolsStatusIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_tools_status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_tools_status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMToolsStatusNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMToolsStatusNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1789,10 +2545,20 @@ func (m *VMWhereInput) validateVMToolsStatusNotIn(formats strfmt.Registry) error
 		if err := m.VMToolsStatusNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_tools_status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_tools_status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMUsage(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMUsage) { // not required
+		return nil
 	}
 
 	return nil
@@ -1808,10 +2574,20 @@ func (m *VMWhereInput) validateVMUsageIn(formats strfmt.Registry) error {
 		if err := m.VMUsageIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_usage_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_usage_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VMWhereInput) validateVMUsageNot(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMUsageNot) { // not required
+		return nil
 	}
 
 	return nil
@@ -1827,6 +2603,8 @@ func (m *VMWhereInput) validateVMUsageNotIn(formats strfmt.Registry) error {
 		if err := m.VMUsageNotIn[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_usage_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_usage_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -1852,7 +2630,27 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateBackupPlansEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupPlansNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBackupPlansSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClockOffset(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateClockOffsetIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClockOffsetNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1860,7 +2658,19 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateEntityAsyncStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1868,7 +2678,27 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityFilterResultsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityFilterResultsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityFilterResultsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFirmware(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFirmwareIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFirmwareNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1876,7 +2706,19 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateFolder(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGuestOsType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGuestOsTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGuestOsTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1884,7 +2726,23 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateHost(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstalledBackupService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIoPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIoPolicyIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIoPolicyNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1892,7 +2750,31 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIsolationPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxBandwidthPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMaxBandwidthPolicyIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxBandwidthPolicyNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1900,7 +2782,15 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMaxIopsPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMaxIopsPolicyIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMaxIopsPolicyNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1908,7 +2798,31 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSnapshotPlan(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSnapshotsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSnapshotsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSnapshotsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1916,7 +2830,27 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateUsbDevicesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsbDevicesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsbDevicesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVideoType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVideoTypeIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVideoTypeNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1924,7 +2858,51 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateVMDisksEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMDisksNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMDisksSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMNicsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMNicsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMNicsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMPlacementGroupEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMPlacementGroupNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMPlacementGroupSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMToolsStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVMToolsStatusIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMToolsStatusNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1932,7 +2910,15 @@ func (m *VMWhereInput) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateVMUsage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVMUsageIn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMUsageNot(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1954,6 +2940,8 @@ func (m *VMWhereInput) contextValidateAND(ctx context.Context, formats strfmt.Re
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1972,6 +2960,8 @@ func (m *VMWhereInput) contextValidateNOT(ctx context.Context, formats strfmt.Re
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1990,12 +2980,34 @@ func (m *VMWhereInput) contextValidateOR(ctx context.Context, formats strfmt.Reg
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateBackupPlansEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateBackupPlansNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateBackupPlansSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateClockOffset(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2007,11 +3019,18 @@ func (m *VMWhereInput) contextValidateClockOffsetIn(ctx context.Context, formats
 		if err := m.ClockOffsetIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clock_offset_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clock_offset_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateClockOffsetNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2023,11 +3042,23 @@ func (m *VMWhereInput) contextValidateClockOffsetNotIn(ctx context.Context, form
 		if err := m.ClockOffsetNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clock_offset_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clock_offset_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2039,11 +3070,18 @@ func (m *VMWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Context, f
 		if err := m.EntityAsyncStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2055,11 +3093,33 @@ func (m *VMWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.Context
 		if err := m.EntityAsyncStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateEntityFilterResultsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateEntityFilterResultsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateEntityFilterResultsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateFirmware(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2071,11 +3131,18 @@ func (m *VMWhereInput) contextValidateFirmwareIn(ctx context.Context, formats st
 		if err := m.FirmwareIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("firmware_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firmware_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateFirmwareNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2087,11 +3154,23 @@ func (m *VMWhereInput) contextValidateFirmwareNotIn(ctx context.Context, formats
 		if err := m.FirmwareNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("firmware_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firmware_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateFolder(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateGuestOsType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2103,11 +3182,18 @@ func (m *VMWhereInput) contextValidateGuestOsTypeIn(ctx context.Context, formats
 		if err := m.GuestOsTypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("guest_os_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("guest_os_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateGuestOsTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2119,11 +3205,28 @@ func (m *VMWhereInput) contextValidateGuestOsTypeNotIn(ctx context.Context, form
 		if err := m.GuestOsTypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("guest_os_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("guest_os_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateInstalledBackupService(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateIoPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2135,11 +3238,18 @@ func (m *VMWhereInput) contextValidateIoPolicyIn(ctx context.Context, formats st
 		if err := m.IoPolicyIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("io_policy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateIoPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2151,11 +3261,38 @@ func (m *VMWhereInput) contextValidateIoPolicyNotIn(ctx context.Context, formats
 		if err := m.IoPolicyNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("io_policy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateIsolationPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2167,11 +3304,18 @@ func (m *VMWhereInput) contextValidateMaxBandwidthPolicyIn(ctx context.Context, 
 		if err := m.MaxBandwidthPolicyIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("max_bandwidth_policy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateMaxBandwidthPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2183,11 +3327,18 @@ func (m *VMWhereInput) contextValidateMaxBandwidthPolicyNotIn(ctx context.Contex
 		if err := m.MaxBandwidthPolicyNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("max_bandwidth_policy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2199,11 +3350,18 @@ func (m *VMWhereInput) contextValidateMaxIopsPolicyIn(ctx context.Context, forma
 		if err := m.MaxIopsPolicyIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("max_iops_policy_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateMaxIopsPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2215,11 +3373,38 @@ func (m *VMWhereInput) contextValidateMaxIopsPolicyNotIn(ctx context.Context, fo
 		if err := m.MaxIopsPolicyNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("max_iops_policy_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateSnapshotPlan(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2231,11 +3416,18 @@ func (m *VMWhereInput) contextValidateStatusIn(ctx context.Context, formats strf
 		if err := m.StatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2247,11 +3439,33 @@ func (m *VMWhereInput) contextValidateStatusNotIn(ctx context.Context, formats s
 		if err := m.StatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateUsbDevicesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateUsbDevicesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateUsbDevicesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVideoType(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2263,11 +3477,18 @@ func (m *VMWhereInput) contextValidateVideoTypeIn(ctx context.Context, formats s
 		if err := m.VideoTypeIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("video_type_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("video_type_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVideoTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2279,11 +3500,63 @@ func (m *VMWhereInput) contextValidateVideoTypeNotIn(ctx context.Context, format
 		if err := m.VideoTypeNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("video_type_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("video_type_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMDisksEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMDisksNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMDisksSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMNicsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMNicsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMNicsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMPlacementGroupEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMPlacementGroupNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMPlacementGroupSome(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMToolsStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2295,11 +3568,18 @@ func (m *VMWhereInput) contextValidateVMToolsStatusIn(ctx context.Context, forma
 		if err := m.VMToolsStatusIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_tools_status_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_tools_status_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMToolsStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2311,11 +3591,18 @@ func (m *VMWhereInput) contextValidateVMToolsStatusNotIn(ctx context.Context, fo
 		if err := m.VMToolsStatusNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_tools_status_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_tools_status_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMUsage(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2327,11 +3614,18 @@ func (m *VMWhereInput) contextValidateVMUsageIn(ctx context.Context, formats str
 		if err := m.VMUsageIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_usage_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_usage_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
 
 	}
+
+	return nil
+}
+
+func (m *VMWhereInput) contextValidateVMUsageNot(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -2343,6 +3637,8 @@ func (m *VMWhereInput) contextValidateVMUsageNotIn(ctx context.Context, formats 
 		if err := m.VMUsageNotIn[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("vm_usage_not_in" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_usage_not_in" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

@@ -32,7 +32,9 @@ type ConsistencyGroup struct {
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -77,6 +79,10 @@ func (m *ConsistencyGroup) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -128,6 +134,8 @@ func (m *ConsistencyGroup) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -150,6 +158,8 @@ func (m *ConsistencyGroup) validateConsistencyGroupSnapshots(formats strfmt.Regi
 			if err := m.ConsistencyGroupSnapshots[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consistency_group_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("consistency_group_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -164,6 +174,14 @@ func (m *ConsistencyGroup) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ConsistencyGroup) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -192,6 +210,8 @@ func (m *ConsistencyGroup) validateIscsiLuns(formats strfmt.Registry) error {
 			if err := m.IscsiLuns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("iscsi_luns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("iscsi_luns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -216,6 +236,8 @@ func (m *ConsistencyGroup) validateLabels(formats strfmt.Registry) error {
 			if err := m.Labels[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -267,6 +289,8 @@ func (m *ConsistencyGroup) validateNamespaces(formats strfmt.Registry) error {
 			if err := m.Namespaces[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("namespaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("namespaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -298,6 +322,10 @@ func (m *ConsistencyGroup) ContextValidate(ctx context.Context, formats strfmt.R
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIscsiLuns(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -322,6 +350,8 @@ func (m *ConsistencyGroup) contextValidateCluster(ctx context.Context, formats s
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
@@ -338,12 +368,19 @@ func (m *ConsistencyGroup) contextValidateConsistencyGroupSnapshots(ctx context.
 			if err := m.ConsistencyGroupSnapshots[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consistency_group_snapshots" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("consistency_group_snapshots" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *ConsistencyGroup) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -356,6 +393,8 @@ func (m *ConsistencyGroup) contextValidateIscsiLuns(ctx context.Context, formats
 			if err := m.IscsiLuns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("iscsi_luns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("iscsi_luns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -374,6 +413,8 @@ func (m *ConsistencyGroup) contextValidateLabels(ctx context.Context, formats st
 			if err := m.Labels[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -392,6 +433,8 @@ func (m *ConsistencyGroup) contextValidateNamespaces(ctx context.Context, format
 			if err := m.Namespaces[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("namespaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("namespaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

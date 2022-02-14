@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -33,16 +34,49 @@ type NestedStep struct {
 	Total *float64 `json:"total,omitempty"`
 
 	// unit
-	Unit interface{} `json:"unit,omitempty"`
+	Unit struct {
+		StepUnit
+	} `json:"unit,omitempty"`
 }
 
 // Validate validates this nested step
 func (m *NestedStep) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateUnit(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this nested step based on context it is used
+func (m *NestedStep) validateUnit(formats strfmt.Registry) error {
+	if swag.IsZero(m.Unit) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this nested step based on the context it is used
 func (m *NestedStep) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateUnit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NestedStep) contextValidateUnit(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

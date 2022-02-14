@@ -20,7 +20,9 @@ import (
 type VcenterAccount struct {
 
 	// cluster
-	Cluster interface{} `json:"cluster,omitempty"`
+	Cluster struct {
+		NestedCluster
+	} `json:"cluster,omitempty"`
 
 	// id
 	// Required: true
@@ -55,6 +57,10 @@ type VcenterAccount struct {
 func (m *VcenterAccount) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -86,6 +92,14 @@ func (m *VcenterAccount) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *VcenterAccount) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
 	return nil
 }
 
@@ -152,8 +166,22 @@ func (m *VcenterAccount) validateUsername(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this vcenter account based on context it is used
+// ContextValidate validate this vcenter account based on the context it is used
 func (m *VcenterAccount) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VcenterAccount) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

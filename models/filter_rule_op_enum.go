@@ -20,8 +20,12 @@ import (
 type FilterRuleOpEnum string
 
 func NewFilterRuleOpEnum(value FilterRuleOpEnum) *FilterRuleOpEnum {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated FilterRuleOpEnum.
+func (m FilterRuleOpEnum) Pointer() *FilterRuleOpEnum {
+	return &m
 }
 
 const (

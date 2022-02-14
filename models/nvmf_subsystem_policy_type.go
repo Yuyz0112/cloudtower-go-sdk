@@ -20,8 +20,12 @@ import (
 type NvmfSubsystemPolicyType string
 
 func NewNvmfSubsystemPolicyType(value NvmfSubsystemPolicyType) *NvmfSubsystemPolicyType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated NvmfSubsystemPolicyType.
+func (m NvmfSubsystemPolicyType) Pointer() *NvmfSubsystemPolicyType {
+	return &m
 }
 
 const (

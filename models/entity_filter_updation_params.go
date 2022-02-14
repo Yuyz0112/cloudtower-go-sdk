@@ -57,6 +57,8 @@ func (m *EntityFilterUpdationParams) validateData(formats strfmt.Registry) error
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -75,6 +77,8 @@ func (m *EntityFilterUpdationParams) validateWhere(formats strfmt.Registry) erro
 		if err := m.Where.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -107,6 +111,8 @@ func (m *EntityFilterUpdationParams) contextValidateData(ctx context.Context, fo
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -121,6 +127,8 @@ func (m *EntityFilterUpdationParams) contextValidateWhere(ctx context.Context, f
 		if err := m.Where.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
 			}
 			return err
 		}
@@ -199,6 +207,8 @@ func (m *EntityFilterUpdationParamsData) validateClusters(formats strfmt.Registr
 		if err := m.Clusters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "clusters")
 			}
 			return err
 		}
@@ -216,6 +226,8 @@ func (m *EntityFilterUpdationParamsData) validateExcludeVms(formats strfmt.Regis
 		if err := m.ExcludeVms.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "exclude_vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "exclude_vms")
 			}
 			return err
 		}
@@ -238,6 +250,8 @@ func (m *EntityFilterUpdationParamsData) validateRules(formats strfmt.Registry) 
 			if err := m.Rules[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -276,6 +290,8 @@ func (m *EntityFilterUpdationParamsData) contextValidateClusters(ctx context.Con
 		if err := m.Clusters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "clusters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "clusters")
 			}
 			return err
 		}
@@ -290,6 +306,8 @@ func (m *EntityFilterUpdationParamsData) contextValidateExcludeVms(ctx context.C
 		if err := m.ExcludeVms.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data" + "." + "exclude_vms")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data" + "." + "exclude_vms")
 			}
 			return err
 		}
@@ -306,6 +324,8 @@ func (m *EntityFilterUpdationParamsData) contextValidateRules(ctx context.Contex
 			if err := m.Rules[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + "rules" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + "rules" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

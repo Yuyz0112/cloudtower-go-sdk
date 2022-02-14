@@ -20,8 +20,12 @@ import (
 type UserSource string
 
 func NewUserSource(value UserSource) *UserSource {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UserSource.
+func (m UserSource) Pointer() *UserSource {
+	return &m
 }
 
 const (

@@ -20,8 +20,12 @@ import (
 type UserRolePreset string
 
 func NewUserRolePreset(value UserRolePreset) *UserRolePreset {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UserRolePreset.
+func (m UserRolePreset) Pointer() *UserRolePreset {
+	return &m
 }
 
 const (

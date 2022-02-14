@@ -20,8 +20,12 @@ import (
 type UploadTaskStatus string
 
 func NewUploadTaskStatus(value UploadTaskStatus) *UploadTaskStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated UploadTaskStatus.
+func (m UploadTaskStatus) Pointer() *UploadTaskStatus {
+	return &m
 }
 
 const (

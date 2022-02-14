@@ -20,8 +20,12 @@ import (
 type GlobalPolicyAction string
 
 func NewGlobalPolicyAction(value GlobalPolicyAction) *GlobalPolicyAction {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated GlobalPolicyAction.
+func (m GlobalPolicyAction) Pointer() *GlobalPolicyAction {
+	return &m
 }
 
 const (

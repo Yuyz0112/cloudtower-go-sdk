@@ -61,6 +61,8 @@ func (m *VMSnapshotCreationParamData) validateConsistentType(formats strfmt.Regi
 	if err := m.ConsistentType.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("consistent_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("consistent_type")
 		}
 		return err
 	}
@@ -105,6 +107,8 @@ func (m *VMSnapshotCreationParamData) contextValidateConsistentType(ctx context.
 	if err := m.ConsistentType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("consistent_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("consistent_type")
 		}
 		return err
 	}

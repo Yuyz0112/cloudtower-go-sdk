@@ -20,8 +20,12 @@ import (
 type VlanOrderByInput string
 
 func NewVlanOrderByInput(value VlanOrderByInput) *VlanOrderByInput {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated VlanOrderByInput.
+func (m VlanOrderByInput) Pointer() *VlanOrderByInput {
+	return &m
 }
 
 const (

@@ -20,8 +20,12 @@ import (
 type HostStatus string
 
 func NewHostStatus(value HostStatus) *HostStatus {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated HostStatus.
+func (m HostStatus) Pointer() *HostStatus {
+	return &m
 }
 
 const (

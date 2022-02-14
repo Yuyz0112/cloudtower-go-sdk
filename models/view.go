@@ -25,7 +25,9 @@ type View struct {
 	Cluster *NestedCluster `json:"cluster"`
 
 	// entity async status
-	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus struct {
+		EntityAsyncStatus
+	} `json:"entityAsyncStatus,omitempty"`
 
 	// graphs
 	Graphs []*NestedGraph `json:"graphs,omitempty"`
@@ -56,6 +58,10 @@ func (m *View) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -99,9 +105,19 @@ func (m *View) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *View) validateEntityAsyncStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityAsyncStatus) { // not required
+		return nil
 	}
 
 	return nil
@@ -121,6 +137,8 @@ func (m *View) validateGraphs(formats strfmt.Registry) error {
 			if err := m.Graphs[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("graphs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("graphs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -181,6 +199,8 @@ func (m *View) validateTimeUnit(formats strfmt.Registry) error {
 		if err := m.TimeUnit.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("time_unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("time_unit")
 			}
 			return err
 		}
@@ -194,6 +214,10 @@ func (m *View) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	var res []error
 
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -217,10 +241,17 @@ func (m *View) contextValidateCluster(ctx context.Context, formats strfmt.Regist
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
 			}
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *View) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -233,6 +264,8 @@ func (m *View) contextValidateGraphs(ctx context.Context, formats strfmt.Registr
 			if err := m.Graphs[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("graphs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("graphs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -249,6 +282,8 @@ func (m *View) contextValidateTimeUnit(ctx context.Context, formats strfmt.Regis
 		if err := m.TimeUnit.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("time_unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("time_unit")
 			}
 			return err
 		}

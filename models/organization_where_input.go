@@ -30,13 +30,19 @@ type OrganizationWhereInput struct {
 	OR []*OrganizationWhereInput `json:"OR,omitempty"`
 
 	// datacenters every
-	DatacentersEvery interface{} `json:"datacenters_every,omitempty"`
+	DatacentersEvery struct {
+		DatacenterWhereInput
+	} `json:"datacenters_every,omitempty"`
 
 	// datacenters none
-	DatacentersNone interface{} `json:"datacenters_none,omitempty"`
+	DatacentersNone struct {
+		DatacenterWhereInput
+	} `json:"datacenters_none,omitempty"`
 
 	// datacenters some
-	DatacentersSome interface{} `json:"datacenters_some,omitempty"`
+	DatacentersSome struct {
+		DatacenterWhereInput
+	} `json:"datacenters_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -139,6 +145,18 @@ func (m *OrganizationWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDatacentersEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacentersNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatacentersSome(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -159,6 +177,8 @@ func (m *OrganizationWhereInput) validateAND(formats strfmt.Registry) error {
 			if err := m.AND[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -183,6 +203,8 @@ func (m *OrganizationWhereInput) validateNOT(formats strfmt.Registry) error {
 			if err := m.NOT[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -207,11 +229,37 @@ func (m *OrganizationWhereInput) validateOR(formats strfmt.Registry) error {
 			if err := m.OR[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *OrganizationWhereInput) validateDatacentersEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersEvery) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *OrganizationWhereInput) validateDatacentersNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersNone) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *OrganizationWhereInput) validateDatacentersSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatacentersSome) { // not required
+		return nil
 	}
 
 	return nil
@@ -233,6 +281,18 @@ func (m *OrganizationWhereInput) ContextValidate(ctx context.Context, formats st
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateDatacentersEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacentersNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDatacentersSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -247,6 +307,8 @@ func (m *OrganizationWhereInput) contextValidateAND(ctx context.Context, formats
 			if err := m.AND[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AND" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("AND" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -265,6 +327,8 @@ func (m *OrganizationWhereInput) contextValidateNOT(ctx context.Context, formats
 			if err := m.NOT[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("NOT" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("NOT" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -283,12 +347,29 @@ func (m *OrganizationWhereInput) contextValidateOR(ctx context.Context, formats 
 			if err := m.OR[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OR" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("OR" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
 	}
+
+	return nil
+}
+
+func (m *OrganizationWhereInput) contextValidateDatacentersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *OrganizationWhereInput) contextValidateDatacentersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *OrganizationWhereInput) contextValidateDatacentersSome(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

@@ -124,6 +124,8 @@ func (m *SnapshotPlanCreationParams) validateExecutePlanType(formats strfmt.Regi
 		if err := m.ExecutePlanType.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("execute_plan_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execute_plan_type")
 			}
 			return err
 		}
@@ -188,6 +190,8 @@ func (m *SnapshotPlanCreationParams) contextValidateExecutePlanType(ctx context.
 		if err := m.ExecutePlanType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("execute_plan_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execute_plan_type")
 			}
 			return err
 		}
