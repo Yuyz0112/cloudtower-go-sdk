@@ -24,7 +24,7 @@ type SystemAuditLog struct {
 	Action *string `json:"action"`
 
 	// cluster
-	Cluster *SystemAuditLogCluster `json:"cluster,omitempty"`
+	Cluster interface{} `json:"cluster,omitempty"`
 
 	// finished at
 	FinishedAt *string `json:"finished_at,omitempty"`
@@ -59,10 +59,6 @@ func (m *SystemAuditLog) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCluster(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -85,23 +81,6 @@ func (m *SystemAuditLog) validateAction(formats strfmt.Registry) error {
 
 	if err := validate.Required("action", "body", m.Action); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *SystemAuditLog) validateCluster(formats strfmt.Registry) error {
-	if swag.IsZero(m.Cluster) { // not required
-		return nil
-	}
-
-	if m.Cluster != nil {
-		if err := m.Cluster.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -134,31 +113,8 @@ func (m *SystemAuditLog) validateMessage(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this system audit log based on the context it is used
+// ContextValidate validates this system audit log based on context it is used
 func (m *SystemAuditLog) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateCluster(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SystemAuditLog) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Cluster != nil {
-		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -173,79 +129,6 @@ func (m *SystemAuditLog) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SystemAuditLog) UnmarshalBinary(b []byte) error {
 	var res SystemAuditLog
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SystemAuditLogCluster system audit log cluster
-//
-// swagger:model SystemAuditLogCluster
-type SystemAuditLogCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this system audit log cluster
-func (m *SystemAuditLogCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SystemAuditLogCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SystemAuditLogCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this system audit log cluster based on context it is used
-func (m *SystemAuditLogCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SystemAuditLogCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SystemAuditLogCluster) UnmarshalBinary(b []byte) error {
-	var res SystemAuditLogCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

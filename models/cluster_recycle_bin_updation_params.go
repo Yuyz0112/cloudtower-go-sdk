@@ -151,20 +151,20 @@ func (m *ClusterRecycleBinUpdationParams) UnmarshalBinary(b []byte) error {
 // swagger:model ClusterRecycleBinUpdationParamsData
 type ClusterRecycleBinUpdationParamsData struct {
 
-	// enaled
+	// enabled
 	// Required: true
-	Enaled *bool `json:"enaled"`
+	Enabled *bool `json:"enabled"`
 
 	// retain
 	// Required: true
-	Retain *float64 `json:"retain"`
+	Retain *int32 `json:"retain"`
 }
 
 // Validate validates this cluster recycle bin updation params data
 func (m *ClusterRecycleBinUpdationParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEnaled(formats); err != nil {
+	if err := m.validateEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -178,9 +178,9 @@ func (m *ClusterRecycleBinUpdationParamsData) Validate(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *ClusterRecycleBinUpdationParamsData) validateEnaled(formats strfmt.Registry) error {
+func (m *ClusterRecycleBinUpdationParamsData) validateEnabled(formats strfmt.Registry) error {
 
-	if err := validate.Required("data"+"."+"enaled", "body", m.Enaled); err != nil {
+	if err := validate.Required("data"+"."+"enabled", "body", m.Enabled); err != nil {
 		return err
 	}
 

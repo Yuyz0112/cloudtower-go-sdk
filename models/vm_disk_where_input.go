@@ -15,6 +15,7 @@ import (
 )
 
 // VMDiskWhereInput Vm disk where input
+// Example: {"AND":"VmDiskWhereInput[]","NOT":"VmDiskWhereInput[]","OR":"VmDiskWhereInput[]","boot":0,"boot_gt":0,"boot_gte":0,"boot_in":[0],"boot_lt":0,"boot_lte":0,"boot_not":0,"boot_not_in":[0],"bus":"IDE","bus_in":["IDE"],"bus_not":"IDE","bus_not_in":["IDE"],"cloud_init_image_name":"string","cloud_init_image_name_contains":"string","cloud_init_image_name_ends_with":"string","cloud_init_image_name_gt":"string","cloud_init_image_name_gte":"string","cloud_init_image_name_in":["string"],"cloud_init_image_name_lt":"string","cloud_init_image_name_lte":"string","cloud_init_image_name_not":"string","cloud_init_image_name_not_contains":"string","cloud_init_image_name_not_ends_with":"string","cloud_init_image_name_not_in":["string"],"cloud_init_image_name_not_starts_with":"string","cloud_init_image_name_starts_with":"string","cloud_init_image_path":"string","cloud_init_image_path_contains":"string","cloud_init_image_path_ends_with":"string","cloud_init_image_path_gt":"string","cloud_init_image_path_gte":"string","cloud_init_image_path_in":["string"],"cloud_init_image_path_lt":"string","cloud_init_image_path_lte":"string","cloud_init_image_path_not":"string","cloud_init_image_path_not_contains":"string","cloud_init_image_path_not_ends_with":"string","cloud_init_image_path_not_in":["string"],"cloud_init_image_path_not_starts_with":"string","cloud_init_image_path_starts_with":"string","device":"string","device_contains":"string","device_ends_with":"string","device_gt":"string","device_gte":"string","device_in":["string"],"device_lt":"string","device_lte":"string","device_not":"string","device_not_contains":"string","device_not_ends_with":"string","device_not_in":["string"],"device_not_starts_with":"string","device_starts_with":"string","disabled":false,"disabled_not":false,"elf_image":"ElfImageWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","key":0,"key_gt":0,"key_gte":0,"key_in":[0],"key_lt":0,"key_lte":0,"key_not":0,"key_not_in":[0],"max_bandwidth":0,"max_bandwidth_gt":0,"max_bandwidth_gte":0,"max_bandwidth_in":[0],"max_bandwidth_lt":0,"max_bandwidth_lte":0,"max_bandwidth_not":0,"max_bandwidth_not_in":[0],"max_bandwidth_policy":"DYNAMIC","max_bandwidth_policy_in":["DYNAMIC"],"max_bandwidth_policy_not":"DYNAMIC","max_bandwidth_policy_not_in":["DYNAMIC"],"max_iops":0,"max_iops_gt":0,"max_iops_gte":0,"max_iops_in":[0],"max_iops_lt":0,"max_iops_lte":0,"max_iops_not":0,"max_iops_not_in":[0],"max_iops_policy":"DYNAMIC","max_iops_policy_in":["DYNAMIC"],"max_iops_policy_not":"DYNAMIC","max_iops_policy_not_in":["DYNAMIC"],"serial":"string","serial_contains":"string","serial_ends_with":"string","serial_gt":"string","serial_gte":"string","serial_in":["string"],"serial_lt":"string","serial_lte":"string","serial_not":"string","serial_not_contains":"string","serial_not_ends_with":"string","serial_not_in":["string"],"serial_not_starts_with":"string","serial_starts_with":"string","svt_image":"SvtImageWhereInput","type":"CD_ROM","type_in":["CD_ROM"],"type_not":"CD_ROM","type_not_in":["CD_ROM"],"unsafe_image_path":"string","unsafe_image_path_contains":"string","unsafe_image_path_ends_with":"string","unsafe_image_path_gt":"string","unsafe_image_path_gte":"string","unsafe_image_path_in":["string"],"unsafe_image_path_lt":"string","unsafe_image_path_lte":"string","unsafe_image_path_not":"string","unsafe_image_path_not_contains":"string","unsafe_image_path_not_ends_with":"string","unsafe_image_path_not_in":["string"],"unsafe_image_path_not_starts_with":"string","unsafe_image_path_starts_with":"string","unsafe_image_uuid":"string","unsafe_image_uuid_contains":"string","unsafe_image_uuid_ends_with":"string","unsafe_image_uuid_gt":"string","unsafe_image_uuid_gte":"string","unsafe_image_uuid_in":["string"],"unsafe_image_uuid_lt":"string","unsafe_image_uuid_lte":"string","unsafe_image_uuid_not":"string","unsafe_image_uuid_not_contains":"string","unsafe_image_uuid_not_ends_with":"string","unsafe_image_uuid_not_in":["string"],"unsafe_image_uuid_not_starts_with":"string","unsafe_image_uuid_starts_with":"string","unsafe_provision":"string","unsafe_provision_contains":"string","unsafe_provision_ends_with":"string","unsafe_provision_gt":"string","unsafe_provision_gte":"string","unsafe_provision_in":["string"],"unsafe_provision_lt":"string","unsafe_provision_lte":"string","unsafe_provision_not":"string","unsafe_provision_not_contains":"string","unsafe_provision_not_ends_with":"string","unsafe_provision_not_in":["string"],"unsafe_provision_not_starts_with":"string","unsafe_provision_starts_with":"string","vm":"VmWhereInput","vm_volume":"VmVolumeWhereInput"}
 //
 // swagger:model VmDiskWhereInput
 type VMDiskWhereInput struct {
@@ -29,28 +30,28 @@ type VMDiskWhereInput struct {
 	OR []*VMDiskWhereInput `json:"OR,omitempty"`
 
 	// boot
-	Boot *float64 `json:"boot,omitempty"`
+	Boot *int32 `json:"boot,omitempty"`
 
 	// boot gt
-	BootGt *float64 `json:"boot_gt,omitempty"`
+	BootGt *int32 `json:"boot_gt,omitempty"`
 
 	// boot gte
-	BootGte *float64 `json:"boot_gte,omitempty"`
+	BootGte *int32 `json:"boot_gte,omitempty"`
 
 	// boot in
-	BootIn []float64 `json:"boot_in,omitempty"`
+	BootIn []int32 `json:"boot_in,omitempty"`
 
 	// boot lt
-	BootLt *float64 `json:"boot_lt,omitempty"`
+	BootLt *int32 `json:"boot_lt,omitempty"`
 
 	// boot lte
-	BootLte *float64 `json:"boot_lte,omitempty"`
+	BootLte *int32 `json:"boot_lte,omitempty"`
 
 	// boot not
-	BootNot *float64 `json:"boot_not,omitempty"`
+	BootNot *int32 `json:"boot_not,omitempty"`
 
 	// boot not in
-	BootNotIn []float64 `json:"boot_not_in,omitempty"`
+	BootNotIn []int32 `json:"boot_not_in,omitempty"`
 
 	// bus
 	Bus interface{} `json:"bus,omitempty"`
@@ -242,28 +243,28 @@ type VMDiskWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// key
-	Key *float64 `json:"key,omitempty"`
+	Key *int32 `json:"key,omitempty"`
 
 	// key gt
-	KeyGt *float64 `json:"key_gt,omitempty"`
+	KeyGt *int32 `json:"key_gt,omitempty"`
 
 	// key gte
-	KeyGte *float64 `json:"key_gte,omitempty"`
+	KeyGte *int32 `json:"key_gte,omitempty"`
 
 	// key in
-	KeyIn []float64 `json:"key_in,omitempty"`
+	KeyIn []int32 `json:"key_in,omitempty"`
 
 	// key lt
-	KeyLt *float64 `json:"key_lt,omitempty"`
+	KeyLt *int32 `json:"key_lt,omitempty"`
 
 	// key lte
-	KeyLte *float64 `json:"key_lte,omitempty"`
+	KeyLte *int32 `json:"key_lte,omitempty"`
 
 	// key not
-	KeyNot *float64 `json:"key_not,omitempty"`
+	KeyNot *int32 `json:"key_not,omitempty"`
 
 	// key not in
-	KeyNotIn []float64 `json:"key_not_in,omitempty"`
+	KeyNotIn []int32 `json:"key_not_in,omitempty"`
 
 	// max bandwidth
 	MaxBandwidth *float64 `json:"max_bandwidth,omitempty"`
@@ -302,28 +303,28 @@ type VMDiskWhereInput struct {
 	MaxBandwidthPolicyNotIn []VMDiskIoRestrictType `json:"max_bandwidth_policy_not_in,omitempty"`
 
 	// max iops
-	MaxIops *float64 `json:"max_iops,omitempty"`
+	MaxIops *int32 `json:"max_iops,omitempty"`
 
 	// max iops gt
-	MaxIopsGt *float64 `json:"max_iops_gt,omitempty"`
+	MaxIopsGt *int32 `json:"max_iops_gt,omitempty"`
 
 	// max iops gte
-	MaxIopsGte *float64 `json:"max_iops_gte,omitempty"`
+	MaxIopsGte *int32 `json:"max_iops_gte,omitempty"`
 
 	// max iops in
-	MaxIopsIn []float64 `json:"max_iops_in,omitempty"`
+	MaxIopsIn []int32 `json:"max_iops_in,omitempty"`
 
 	// max iops lt
-	MaxIopsLt *float64 `json:"max_iops_lt,omitempty"`
+	MaxIopsLt *int32 `json:"max_iops_lt,omitempty"`
 
 	// max iops lte
-	MaxIopsLte *float64 `json:"max_iops_lte,omitempty"`
+	MaxIopsLte *int32 `json:"max_iops_lte,omitempty"`
 
 	// max iops not
-	MaxIopsNot *float64 `json:"max_iops_not,omitempty"`
+	MaxIopsNot *int32 `json:"max_iops_not,omitempty"`
 
 	// max iops not in
-	MaxIopsNotIn []float64 `json:"max_iops_not_in,omitempty"`
+	MaxIopsNotIn []int32 `json:"max_iops_not_in,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy interface{} `json:"max_iops_policy,omitempty"`

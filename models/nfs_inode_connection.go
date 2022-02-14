@@ -21,7 +21,7 @@ type NfsInodeConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *NfsInodeConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateNfsInode `json:"aggregate"`
 }
 
 // Validate validates this nfs inode connection
@@ -95,62 +95,6 @@ func (m *NfsInodeConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NfsInodeConnection) UnmarshalBinary(b []byte) error {
 	var res NfsInodeConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NfsInodeConnectionAggregate nfs inode connection aggregate
-//
-// swagger:model NfsInodeConnectionAggregate
-type NfsInodeConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this nfs inode connection aggregate
-func (m *NfsInodeConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NfsInodeConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nfs inode connection aggregate based on context it is used
-func (m *NfsInodeConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NfsInodeConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NfsInodeConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res NfsInodeConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

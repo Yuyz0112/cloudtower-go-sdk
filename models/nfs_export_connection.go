@@ -21,7 +21,7 @@ type NfsExportConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *NfsExportConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateNfsExport `json:"aggregate"`
 }
 
 // Validate validates this nfs export connection
@@ -95,62 +95,6 @@ func (m *NfsExportConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NfsExportConnection) UnmarshalBinary(b []byte) error {
 	var res NfsExportConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NfsExportConnectionAggregate nfs export connection aggregate
-//
-// swagger:model NfsExportConnectionAggregate
-type NfsExportConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this nfs export connection aggregate
-func (m *NfsExportConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NfsExportConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nfs export connection aggregate based on context it is used
-func (m *NfsExportConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NfsExportConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NfsExportConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res NfsExportConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

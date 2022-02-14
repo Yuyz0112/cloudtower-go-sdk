@@ -15,6 +15,7 @@ import (
 )
 
 // SnmpTransportWhereInput snmp transport where input
+// Example: {"AND":"SnmpTransportWhereInput[]","NOT":"SnmpTransportWhereInput[]","OR":"SnmpTransportWhereInput[]","auth_pass_phrase":"string","auth_pass_phrase_contains":"string","auth_pass_phrase_ends_with":"string","auth_pass_phrase_gt":"string","auth_pass_phrase_gte":"string","auth_pass_phrase_in":["string"],"auth_pass_phrase_lt":"string","auth_pass_phrase_lte":"string","auth_pass_phrase_not":"string","auth_pass_phrase_not_contains":"string","auth_pass_phrase_not_ends_with":"string","auth_pass_phrase_not_in":["string"],"auth_pass_phrase_not_starts_with":"string","auth_pass_phrase_starts_with":"string","auth_protocol":"MD5","auth_protocol_in":["MD5"],"auth_protocol_not":"MD5","auth_protocol_not_in":["MD5"],"cluster":"ClusterWhereInput","community":"string","community_contains":"string","community_ends_with":"string","community_gt":"string","community_gte":"string","community_in":["string"],"community_lt":"string","community_lte":"string","community_not":"string","community_not_contains":"string","community_not_ends_with":"string","community_not_in":["string"],"community_not_starts_with":"string","community_starts_with":"string","disabled":false,"disabled_not":false,"entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","port":0,"port_gt":0,"port_gte":0,"port_in":[0],"port_lt":0,"port_lte":0,"port_not":0,"port_not_in":[0],"privacy_pass_phrase":"string","privacy_pass_phrase_contains":"string","privacy_pass_phrase_ends_with":"string","privacy_pass_phrase_gt":"string","privacy_pass_phrase_gte":"string","privacy_pass_phrase_in":["string"],"privacy_pass_phrase_lt":"string","privacy_pass_phrase_lte":"string","privacy_pass_phrase_not":"string","privacy_pass_phrase_not_contains":"string","privacy_pass_phrase_not_ends_with":"string","privacy_pass_phrase_not_in":["string"],"privacy_pass_phrase_not_starts_with":"string","privacy_pass_phrase_starts_with":"string","privacy_protocol":"AES","privacy_protocol_in":["AES"],"privacy_protocol_not":"AES","privacy_protocol_not_in":["AES"],"protocol":"TCP","protocol_in":["TCP"],"protocol_not":"TCP","protocol_not_in":["TCP"],"username":"string","username_contains":"string","username_ends_with":"string","username_gt":"string","username_gte":"string","username_in":["string"],"username_lt":"string","username_lte":"string","username_not":"string","username_not_contains":"string","username_not_ends_with":"string","username_not_in":["string"],"username_not_starts_with":"string","username_starts_with":"string","version":"V2C","version_in":["V2C"],"version_not":"V2C","version_not_in":["V2C"]}
 //
 // swagger:model SnmpTransportWhereInput
 type SnmpTransportWhereInput struct {
@@ -272,28 +273,28 @@ type SnmpTransportWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// port
-	Port *float64 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty"`
 
 	// port gt
-	PortGt *float64 `json:"port_gt,omitempty"`
+	PortGt *int32 `json:"port_gt,omitempty"`
 
 	// port gte
-	PortGte *float64 `json:"port_gte,omitempty"`
+	PortGte *int32 `json:"port_gte,omitempty"`
 
 	// port in
-	PortIn []float64 `json:"port_in,omitempty"`
+	PortIn []int32 `json:"port_in,omitempty"`
 
 	// port lt
-	PortLt *float64 `json:"port_lt,omitempty"`
+	PortLt *int32 `json:"port_lt,omitempty"`
 
 	// port lte
-	PortLte *float64 `json:"port_lte,omitempty"`
+	PortLte *int32 `json:"port_lte,omitempty"`
 
 	// port not
-	PortNot *float64 `json:"port_not,omitempty"`
+	PortNot *int32 `json:"port_not,omitempty"`
 
 	// port not in
-	PortNotIn []float64 `json:"port_not_in,omitempty"`
+	PortNotIn []int32 `json:"port_not_in,omitempty"`
 
 	// privacy pass phrase
 	PrivacyPassPhrase *string `json:"privacy_pass_phrase,omitempty"`

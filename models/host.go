@@ -33,7 +33,7 @@ type Host struct {
 
 	// cluster
 	// Required: true
-	Cluster *HostCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// compatible cpu models
 	// Required: true
@@ -60,13 +60,13 @@ type Host struct {
 
 	// cpu temperature celsius
 	// Required: true
-	CPUTemperatureCelsius []float64 `json:"cpu_temperature_celsius"`
+	CPUTemperatureCelsius []int32 `json:"cpu_temperature_celsius"`
 
 	// data ip
 	DataIP *string `json:"data_ip,omitempty"`
 
 	// disks
-	Disks []*HostDisksItems0 `json:"disks,omitempty"`
+	Disks []*NestedDisk `json:"disks,omitempty"`
 
 	// failure data space
 	// Required: true
@@ -78,20 +78,20 @@ type Host struct {
 
 	// hdd disk count
 	// Required: true
-	HddDiskCount *float64 `json:"hdd_disk_count"`
+	HddDiskCount *int32 `json:"hdd_disk_count"`
 
 	// id
 	// Required: true
 	ID *string `json:"id"`
 
 	// ipmi
-	Ipmi *HostIpmi `json:"ipmi,omitempty"`
+	Ipmi interface{} `json:"ipmi,omitempty"`
 
 	// is os in raid1
 	IsOsInRaid1 *bool `json:"is_os_in_raid1,omitempty"`
 
 	// labels
-	Labels []*HostLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local id
 	// Required: true
@@ -119,10 +119,10 @@ type Host struct {
 
 	// nic count
 	// Required: true
-	NicCount *float64 `json:"nic_count"`
+	NicCount *int32 `json:"nic_count"`
 
 	// nics
-	Nics []*HostNicsItems0 `json:"nics,omitempty"`
+	Nics []*NestedNic `json:"nics,omitempty"`
 
 	// node topo local id
 	NodeTopoLocalID *string `json:"node_topo_local_id,omitempty"`
@@ -140,18 +140,18 @@ type Host struct {
 
 	// pmem dimm count
 	// Required: true
-	PmemDimmCount *float64 `json:"pmem_dimm_count"`
+	PmemDimmCount *int32 `json:"pmem_dimm_count"`
 
 	// pmem dimms
-	PmemDimms []*HostPmemDimmsItems0 `json:"pmem_dimms,omitempty"`
+	PmemDimms []*NestedPmemDimm `json:"pmem_dimms,omitempty"`
 
 	// pmem disk count
 	// Required: true
-	PmemDiskCount *float64 `json:"pmem_disk_count"`
+	PmemDiskCount *int32 `json:"pmem_disk_count"`
 
 	// provisioned cpu cores
 	// Required: true
-	ProvisionedCPUCores *float64 `json:"provisioned_cpu_cores"`
+	ProvisionedCPUCores *int32 `json:"provisioned_cpu_cores"`
 
 	// provisioned memory bytes
 	// Required: true
@@ -162,7 +162,7 @@ type Host struct {
 	RunningPauseVMMemoryBytes *float64 `json:"running_pause_vm_memory_bytes"`
 
 	// running vm num
-	RunningVMNum *float64 `json:"running_vm_num,omitempty"`
+	RunningVMNum *int32 `json:"running_vm_num,omitempty"`
 
 	// scvm cpu
 	ScvmCPU *float64 `json:"scvm_cpu,omitempty"`
@@ -182,7 +182,7 @@ type Host struct {
 
 	// ssd disk count
 	// Required: true
-	SsdDiskCount *float64 `json:"ssd_disk_count"`
+	SsdDiskCount *int32 `json:"ssd_disk_count"`
 
 	// state
 	// Required: true
@@ -193,21 +193,24 @@ type Host struct {
 	Status *HostStatus `json:"status"`
 
 	// stopped vm num
-	StoppedVMNum *float64 `json:"stopped_vm_num,omitempty"`
+	StoppedVMNum *int32 `json:"stopped_vm_num,omitempty"`
 
 	// suspended vm num
-	SuspendedVMNum *float64 `json:"suspended_vm_num,omitempty"`
+	SuspendedVMNum *int32 `json:"suspended_vm_num,omitempty"`
 
 	// total cache capacity
 	TotalCacheCapacity *float64 `json:"total_cache_capacity,omitempty"`
 
 	// total cpu cores
 	// Required: true
-	TotalCPUCores *float64 `json:"total_cpu_cores"`
+	TotalCPUCores *int32 `json:"total_cpu_cores"`
 
 	// total cpu hz
 	// Required: true
 	TotalCPUHz *float64 `json:"total_cpu_hz"`
+
+	// total cpu sockets
+	TotalCPUSockets *int32 `json:"total_cpu_sockets,omitempty"`
 
 	// total data capacity
 	// Required: true
@@ -218,7 +221,7 @@ type Host struct {
 	TotalMemoryBytes *float64 `json:"total_memory_bytes"`
 
 	// usb devices
-	UsbDevices []*HostUsbDevicesItems0 `json:"usb_devices,omitempty"`
+	UsbDevices []*NestedUsbDevice `json:"usb_devices,omitempty"`
 
 	// used cpu hz
 	UsedCPUHz *float64 `json:"used_cpu_hz,omitempty"`
@@ -231,22 +234,22 @@ type Host struct {
 	UsedMemoryBytes *float64 `json:"used_memory_bytes,omitempty"`
 
 	// vm num
-	VMNum *float64 `json:"vm_num,omitempty"`
+	VMNum *int32 `json:"vm_num,omitempty"`
 
 	// vmotion ip
 	VmotionIP *string `json:"vmotion_ip,omitempty"`
 
 	// vms
-	Vms []*HostVmsItems0 `json:"vms,omitempty"`
+	Vms []*NestedVM `json:"vms,omitempty"`
 
 	// vsphere esxi account
-	VsphereEsxiAccount *HostVsphereEsxiAccount `json:"vsphereEsxiAccount,omitempty"`
+	VsphereEsxiAccount interface{} `json:"vsphereEsxiAccount,omitempty"`
 
 	// with faster ssd as cache
 	WithFasterSsdAsCache *bool `json:"with_faster_ssd_as_cache,omitempty"`
 
 	// zone
-	Zone *HostZone `json:"zone,omitempty"`
+	Zone interface{} `json:"zone,omitempty"`
 }
 
 // Validate validates this host
@@ -306,10 +309,6 @@ func (m *Host) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateIpmi(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -422,14 +421,6 @@ func (m *Host) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateVms(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVsphereEsxiAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateZone(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -584,23 +575,6 @@ func (m *Host) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *Host) validateIpmi(formats strfmt.Registry) error {
-	if swag.IsZero(m.Ipmi) { // not required
-		return nil
-	}
-
-	if m.Ipmi != nil {
-		if err := m.Ipmi.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ipmi")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -959,40 +933,6 @@ func (m *Host) validateVms(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Host) validateVsphereEsxiAccount(formats strfmt.Registry) error {
-	if swag.IsZero(m.VsphereEsxiAccount) { // not required
-		return nil
-	}
-
-	if m.VsphereEsxiAccount != nil {
-		if err := m.VsphereEsxiAccount.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vsphereEsxiAccount")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Host) validateZone(formats strfmt.Registry) error {
-	if swag.IsZero(m.Zone) { // not required
-		return nil
-	}
-
-	if m.Zone != nil {
-		if err := m.Zone.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("zone")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this host based on the context it is used
 func (m *Host) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -1002,10 +942,6 @@ func (m *Host) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateDisks(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateIpmi(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1034,14 +970,6 @@ func (m *Host) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateVms(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVsphereEsxiAccount(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateZone(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1078,20 +1006,6 @@ func (m *Host) contextValidateDisks(ctx context.Context, formats strfmt.Registry
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *Host) contextValidateIpmi(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Ipmi != nil {
-		if err := m.Ipmi.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("ipmi")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -1215,34 +1129,6 @@ func (m *Host) contextValidateVms(ctx context.Context, formats strfmt.Registry) 
 	return nil
 }
 
-func (m *Host) contextValidateVsphereEsxiAccount(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VsphereEsxiAccount != nil {
-		if err := m.VsphereEsxiAccount.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vsphereEsxiAccount")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Host) contextValidateZone(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Zone != nil {
-		if err := m.Zone.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("zone")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // MarshalBinary interface implementation
 func (m *Host) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -1254,668 +1140,6 @@ func (m *Host) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Host) UnmarshalBinary(b []byte) error {
 	var res Host
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostCluster host cluster
-//
-// swagger:model HostCluster
-type HostCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this host cluster
-func (m *HostCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *HostCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host cluster based on context it is used
-func (m *HostCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostCluster) UnmarshalBinary(b []byte) error {
-	var res HostCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostDisksItems0 host disks items0
-//
-// swagger:model HostDisksItems0
-type HostDisksItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this host disks items0
-func (m *HostDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostDisksItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *HostDisksItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host disks items0 based on context it is used
-func (m *HostDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostDisksItems0) UnmarshalBinary(b []byte) error {
-	var res HostDisksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostIpmi host ipmi
-//
-// swagger:model HostIpmi
-type HostIpmi struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this host ipmi
-func (m *HostIpmi) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostIpmi) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("ipmi"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host ipmi based on context it is used
-func (m *HostIpmi) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostIpmi) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostIpmi) UnmarshalBinary(b []byte) error {
-	var res HostIpmi
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostLabelsItems0 host labels items0
-//
-// swagger:model HostLabelsItems0
-type HostLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this host labels items0
-func (m *HostLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host labels items0 based on context it is used
-func (m *HostLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res HostLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostNicsItems0 host nics items0
-//
-// swagger:model HostNicsItems0
-type HostNicsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this host nics items0
-func (m *HostNicsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostNicsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *HostNicsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host nics items0 based on context it is used
-func (m *HostNicsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostNicsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostNicsItems0) UnmarshalBinary(b []byte) error {
-	var res HostNicsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostPmemDimmsItems0 host pmem dimms items0
-//
-// swagger:model HostPmemDimmsItems0
-type HostPmemDimmsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this host pmem dimms items0
-func (m *HostPmemDimmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostPmemDimmsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *HostPmemDimmsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host pmem dimms items0 based on context it is used
-func (m *HostPmemDimmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostPmemDimmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostPmemDimmsItems0) UnmarshalBinary(b []byte) error {
-	var res HostPmemDimmsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostUsbDevicesItems0 host usb devices items0
-//
-// swagger:model HostUsbDevicesItems0
-type HostUsbDevicesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this host usb devices items0
-func (m *HostUsbDevicesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostUsbDevicesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *HostUsbDevicesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host usb devices items0 based on context it is used
-func (m *HostUsbDevicesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostUsbDevicesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostUsbDevicesItems0) UnmarshalBinary(b []byte) error {
-	var res HostUsbDevicesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostVmsItems0 host vms items0
-//
-// swagger:model HostVmsItems0
-type HostVmsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this host vms items0
-func (m *HostVmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostVmsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *HostVmsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host vms items0 based on context it is used
-func (m *HostVmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostVmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostVmsItems0) UnmarshalBinary(b []byte) error {
-	var res HostVmsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostVsphereEsxiAccount host vsphere esxi account
-//
-// swagger:model HostVsphereEsxiAccount
-type HostVsphereEsxiAccount struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this host vsphere esxi account
-func (m *HostVsphereEsxiAccount) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostVsphereEsxiAccount) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("vsphereEsxiAccount"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host vsphere esxi account based on context it is used
-func (m *HostVsphereEsxiAccount) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostVsphereEsxiAccount) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostVsphereEsxiAccount) UnmarshalBinary(b []byte) error {
-	var res HostVsphereEsxiAccount
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// HostZone host zone
-//
-// swagger:model HostZone
-type HostZone struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this host zone
-func (m *HostZone) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *HostZone) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("zone"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this host zone based on context it is used
-func (m *HostZone) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *HostZone) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *HostZone) UnmarshalBinary(b []byte) error {
-	var res HostZone
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

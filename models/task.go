@@ -25,7 +25,7 @@ type Task struct {
 	Args interface{} `json:"args"`
 
 	// cluster
-	Cluster *TaskCluster `json:"cluster,omitempty"`
+	Cluster interface{} `json:"cluster,omitempty"`
 
 	// description
 	// Required: true
@@ -62,6 +62,12 @@ type Task struct {
 	// resource mutation
 	ResourceMutation *string `json:"resource_mutation,omitempty"`
 
+	// resource rollback error
+	ResourceRollbackError *string `json:"resource_rollback_error,omitempty"`
+
+	// resource rollback retry count
+	ResourceRollbackRetryCount *int32 `json:"resource_rollback_retry_count,omitempty"`
+
 	// resource rollbacked
 	ResourceRollbacked *bool `json:"resource_rollbacked,omitempty"`
 
@@ -81,10 +87,10 @@ type Task struct {
 
 	// steps
 	// Required: true
-	Steps []*TaskStepsItems0 `json:"steps"`
+	Steps []*NestedStep `json:"steps"`
 
 	// user
-	User *TaskUser `json:"user,omitempty"`
+	User interface{} `json:"user,omitempty"`
 }
 
 // Validate validates this task
@@ -92,10 +98,6 @@ func (m *Task) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateArgs(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCluster(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -131,10 +133,6 @@ func (m *Task) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateUser(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -145,23 +143,6 @@ func (m *Task) validateArgs(formats strfmt.Registry) error {
 
 	if m.Args == nil {
 		return errors.Required("args", "body", nil)
-	}
-
-	return nil
-}
-
-func (m *Task) validateCluster(formats strfmt.Registry) error {
-	if swag.IsZero(m.Cluster) { // not required
-		return nil
-	}
-
-	if m.Cluster != nil {
-		if err := m.Cluster.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -268,30 +249,9 @@ func (m *Task) validateSteps(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Task) validateUser(formats strfmt.Registry) error {
-	if swag.IsZero(m.User) { // not required
-		return nil
-	}
-
-	if m.User != nil {
-		if err := m.User.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("user")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this task based on the context it is used
 func (m *Task) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.contextValidateCluster(ctx, formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
 		res = append(res, err)
@@ -301,27 +261,9 @@ func (m *Task) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateUser(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *Task) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Cluster != nil {
-		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -357,20 +299,6 @@ func (m *Task) contextValidateSteps(ctx context.Context, formats strfmt.Registry
 	return nil
 }
 
-func (m *Task) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.User != nil {
-		if err := m.User.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("user")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // MarshalBinary interface implementation
 func (m *Task) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -382,204 +310,6 @@ func (m *Task) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Task) UnmarshalBinary(b []byte) error {
 	var res Task
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// TaskCluster task cluster
-//
-// swagger:model TaskCluster
-type TaskCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this task cluster
-func (m *TaskCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *TaskCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *TaskCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this task cluster based on context it is used
-func (m *TaskCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *TaskCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *TaskCluster) UnmarshalBinary(b []byte) error {
-	var res TaskCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// TaskStepsItems0 task steps items0
-//
-// swagger:model TaskStepsItems0
-type TaskStepsItems0 struct {
-
-	// current
-	Current *float64 `json:"current,omitempty"`
-
-	// finished
-	Finished *bool `json:"finished,omitempty"`
-
-	// key
-	Key *string `json:"key,omitempty"`
-
-	// per second
-	PerSecond *float64 `json:"per_second,omitempty"`
-
-	// total
-	Total *float64 `json:"total,omitempty"`
-
-	// unit
-	Unit interface{} `json:"unit,omitempty"`
-}
-
-// Validate validates this task steps items0
-func (m *TaskStepsItems0) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this task steps items0 based on context it is used
-func (m *TaskStepsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *TaskStepsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *TaskStepsItems0) UnmarshalBinary(b []byte) error {
-	var res TaskStepsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// TaskUser task user
-//
-// swagger:model TaskUser
-type TaskUser struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this task user
-func (m *TaskUser) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *TaskUser) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("user"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *TaskUser) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("user"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this task user based on context it is used
-func (m *TaskUser) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *TaskUser) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *TaskUser) UnmarshalBinary(b []byte) error {
-	var res TaskUser
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

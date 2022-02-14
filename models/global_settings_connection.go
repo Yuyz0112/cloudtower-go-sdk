@@ -21,7 +21,7 @@ type GlobalSettingsConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *GlobalSettingsConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateGlobalSettings `json:"aggregate"`
 }
 
 // Validate validates this global settings connection
@@ -95,62 +95,6 @@ func (m *GlobalSettingsConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GlobalSettingsConnection) UnmarshalBinary(b []byte) error {
 	var res GlobalSettingsConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GlobalSettingsConnectionAggregate global settings connection aggregate
-//
-// swagger:model GlobalSettingsConnectionAggregate
-type GlobalSettingsConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this global settings connection aggregate
-func (m *GlobalSettingsConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GlobalSettingsConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this global settings connection aggregate based on context it is used
-func (m *GlobalSettingsConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GlobalSettingsConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GlobalSettingsConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res GlobalSettingsConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -21,7 +21,7 @@ type ViewConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ViewConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateView `json:"aggregate"`
 }
 
 // Validate validates this view connection
@@ -95,62 +95,6 @@ func (m *ViewConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ViewConnection) UnmarshalBinary(b []byte) error {
 	var res ViewConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ViewConnectionAggregate view connection aggregate
-//
-// swagger:model ViewConnectionAggregate
-type ViewConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this view connection aggregate
-func (m *ViewConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ViewConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this view connection aggregate based on context it is used
-func (m *ViewConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ViewConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ViewConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ViewConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -159,6 +159,9 @@ type VdsUpdationParamsData struct {
 
 	// nic ids
 	NicIds []string `json:"nicIds"`
+
+	// work mode
+	WorkMode string `json:"work_mode,omitempty"`
 }
 
 // Validate validates this vds updation params data

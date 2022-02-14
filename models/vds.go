@@ -26,10 +26,13 @@ type Vds struct {
 
 	// cluster
 	// Required: true
-	Cluster *VdsCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
+
+	// everoute cluster
+	EverouteCluster interface{} `json:"everoute_cluster,omitempty"`
 
 	// id
 	// Required: true
@@ -40,7 +43,7 @@ type Vds struct {
 	Internal *bool `json:"internal"`
 
 	// labels
-	Labels []*VdsLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local id
 	// Required: true
@@ -51,7 +54,7 @@ type Vds struct {
 	Name *string `json:"name"`
 
 	// nics
-	Nics []*VdsNicsItems0 `json:"nics,omitempty"`
+	Nics []*NestedNic `json:"nics,omitempty"`
 
 	// ovsbr name
 	// Required: true
@@ -62,11 +65,14 @@ type Vds struct {
 	Type *NetworkType `json:"type"`
 
 	// vlans
-	Vlans []*VdsVlansItems0 `json:"vlans,omitempty"`
+	Vlans []*NestedVlan `json:"vlans,omitempty"`
 
 	// vlans num
 	// Required: true
-	VlansNum *float64 `json:"vlans_num"`
+	VlansNum *int32 `json:"vlans_num"`
+
+	// work mode
+	WorkMode *string `json:"work_mode,omitempty"`
 }
 
 // Validate validates this vds
@@ -425,281 +431,6 @@ func (m *Vds) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Vds) UnmarshalBinary(b []byte) error {
 	var res Vds
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VdsCluster vds cluster
-//
-// swagger:model VdsCluster
-type VdsCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this vds cluster
-func (m *VdsCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VdsCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VdsCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this vds cluster based on context it is used
-func (m *VdsCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VdsCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VdsCluster) UnmarshalBinary(b []byte) error {
-	var res VdsCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VdsLabelsItems0 vds labels items0
-//
-// swagger:model VdsLabelsItems0
-type VdsLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this vds labels items0
-func (m *VdsLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VdsLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this vds labels items0 based on context it is used
-func (m *VdsLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VdsLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VdsLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res VdsLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VdsNicsItems0 vds nics items0
-//
-// swagger:model VdsNicsItems0
-type VdsNicsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this vds nics items0
-func (m *VdsNicsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VdsNicsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VdsNicsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this vds nics items0 based on context it is used
-func (m *VdsNicsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VdsNicsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VdsNicsItems0) UnmarshalBinary(b []byte) error {
-	var res VdsNicsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VdsVlansItems0 vds vlans items0
-//
-// swagger:model VdsVlansItems0
-type VdsVlansItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this vds vlans items0
-func (m *VdsVlansItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VdsVlansItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VdsVlansItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this vds vlans items0 based on context it is used
-func (m *VdsVlansItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VdsVlansItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VdsVlansItems0) UnmarshalBinary(b []byte) error {
-	var res VdsVlansItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

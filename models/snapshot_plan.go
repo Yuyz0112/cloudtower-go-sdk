@@ -22,15 +22,15 @@ type SnapshotPlan struct {
 
 	// auto delete num
 	// Required: true
-	AutoDeleteNum *float64 `json:"auto_delete_num"`
+	AutoDeleteNum *int32 `json:"auto_delete_num"`
 
 	// auto execute num
 	// Required: true
-	AutoExecuteNum *float64 `json:"auto_execute_num"`
+	AutoExecuteNum *int32 `json:"auto_execute_num"`
 
 	// cluster
 	// Required: true
-	Cluster *SnapshotPlanCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// description
 	// Required: true
@@ -47,14 +47,14 @@ type SnapshotPlan struct {
 
 	// execute intervals
 	// Required: true
-	ExecuteIntervals []float64 `json:"execute_intervals"`
+	ExecuteIntervals []int32 `json:"execute_intervals"`
 
 	// execute plan type
 	// Required: true
 	ExecutePlanType *SnapshotPlanExecuteType `json:"execute_plan_type"`
 
 	// execution tasks
-	ExecutionTasks []*SnapshotPlanExecutionTasksItems0 `json:"execution_tasks,omitempty"`
+	ExecutionTasks []*NestedSnapshotPlanTask `json:"execution_tasks,omitempty"`
 
 	// healthy
 	// Required: true
@@ -84,11 +84,11 @@ type SnapshotPlan struct {
 
 	// manual delete num
 	// Required: true
-	ManualDeleteNum *float64 `json:"manual_delete_num"`
+	ManualDeleteNum *int32 `json:"manual_delete_num"`
 
 	// manual execute num
 	// Required: true
-	ManualExecuteNum *float64 `json:"manual_execute_num"`
+	ManualExecuteNum *int32 `json:"manual_execute_num"`
 
 	// mirror
 	// Required: true
@@ -103,7 +103,7 @@ type SnapshotPlan struct {
 
 	// object num
 	// Required: true
-	ObjectNum *float64 `json:"object_num"`
+	ObjectNum *int32 `json:"object_num"`
 
 	// physical size bytes
 	// Required: true
@@ -111,11 +111,11 @@ type SnapshotPlan struct {
 
 	// remain snapshot num
 	// Required: true
-	RemainSnapshotNum *float64 `json:"remain_snapshot_num"`
+	RemainSnapshotNum *int32 `json:"remain_snapshot_num"`
 
 	// snapshot group num
 	// Required: true
-	SnapshotGroupNum *float64 `json:"snapshot_group_num"`
+	SnapshotGroupNum *int32 `json:"snapshot_group_num"`
 
 	// start time
 	// Required: true
@@ -126,7 +126,7 @@ type SnapshotPlan struct {
 	Status *SnapshotPlanStatus `json:"status"`
 
 	// vms
-	Vms []*SnapshotPlanVmsItems0 `json:"vms,omitempty"`
+	Vms []*NestedVM `json:"vms,omitempty"`
 }
 
 // Validate validates this snapshot plan
@@ -653,208 +653,6 @@ func (m *SnapshotPlan) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SnapshotPlan) UnmarshalBinary(b []byte) error {
 	var res SnapshotPlan
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SnapshotPlanCluster snapshot plan cluster
-//
-// swagger:model SnapshotPlanCluster
-type SnapshotPlanCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this snapshot plan cluster
-func (m *SnapshotPlanCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SnapshotPlanCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SnapshotPlanCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this snapshot plan cluster based on context it is used
-func (m *SnapshotPlanCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SnapshotPlanCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SnapshotPlanCluster) UnmarshalBinary(b []byte) error {
-	var res SnapshotPlanCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SnapshotPlanExecutionTasksItems0 snapshot plan execution tasks items0
-//
-// swagger:model SnapshotPlanExecutionTasksItems0
-type SnapshotPlanExecutionTasksItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this snapshot plan execution tasks items0
-func (m *SnapshotPlanExecutionTasksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SnapshotPlanExecutionTasksItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this snapshot plan execution tasks items0 based on context it is used
-func (m *SnapshotPlanExecutionTasksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SnapshotPlanExecutionTasksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SnapshotPlanExecutionTasksItems0) UnmarshalBinary(b []byte) error {
-	var res SnapshotPlanExecutionTasksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SnapshotPlanVmsItems0 snapshot plan vms items0
-//
-// swagger:model SnapshotPlanVmsItems0
-type SnapshotPlanVmsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this snapshot plan vms items0
-func (m *SnapshotPlanVmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SnapshotPlanVmsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SnapshotPlanVmsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this snapshot plan vms items0 based on context it is used
-func (m *SnapshotPlanVmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SnapshotPlanVmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SnapshotPlanVmsItems0) UnmarshalBinary(b []byte) error {
-	var res SnapshotPlanVmsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

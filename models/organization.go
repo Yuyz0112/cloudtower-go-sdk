@@ -21,7 +21,7 @@ import (
 type Organization struct {
 
 	// datacenters
-	Datacenters []*OrganizationDatacentersItems0 `json:"datacenters,omitempty"`
+	Datacenters []*NestedDatacenter `json:"datacenters,omitempty"`
 
 	// id
 	// Required: true
@@ -139,79 +139,6 @@ func (m *Organization) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Organization) UnmarshalBinary(b []byte) error {
 	var res Organization
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// OrganizationDatacentersItems0 organization datacenters items0
-//
-// swagger:model OrganizationDatacentersItems0
-type OrganizationDatacentersItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this organization datacenters items0
-func (m *OrganizationDatacentersItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *OrganizationDatacentersItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *OrganizationDatacentersItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this organization datacenters items0 based on context it is used
-func (m *OrganizationDatacentersItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *OrganizationDatacentersItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *OrganizationDatacentersItems0) UnmarshalBinary(b []byte) error {
-	var res OrganizationDatacentersItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

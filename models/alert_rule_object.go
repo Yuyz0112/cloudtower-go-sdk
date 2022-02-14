@@ -71,6 +71,9 @@ const (
 	// AlertRuleObjectWITNESS captures enum value "WITNESS"
 	AlertRuleObjectWITNESS AlertRuleObject = "WITNESS"
 
+	// AlertRuleObjectWITNESSNETWORK captures enum value "WITNESS_NETWORK"
+	AlertRuleObjectWITNESSNETWORK AlertRuleObject = "WITNESS_NETWORK"
+
 	// AlertRuleObjectZBSZONE captures enum value "ZBS_ZONE"
 	AlertRuleObjectZBSZONE AlertRuleObject = "ZBS_ZONE"
 )
@@ -80,7 +83,7 @@ var alertRuleObjectEnum []interface{}
 
 func init() {
 	var res []AlertRuleObject
-	if err := json.Unmarshal([]byte(`["BRICK","CLUSTER","DISK","HYPERVISOR","NETWORK","NTP_SERVER","PHYSICAL_HOST","SCVM","SNAPSHOT_PLAN","STORAGE_CHUNK","STORAGE_POOL","SYSTEM_SERVICE","TIME_MACHINE_PLAN","VM","WITNESS","ZBS_ZONE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["BRICK","CLUSTER","DISK","HYPERVISOR","NETWORK","NTP_SERVER","PHYSICAL_HOST","SCVM","SNAPSHOT_PLAN","STORAGE_CHUNK","STORAGE_POOL","SYSTEM_SERVICE","TIME_MACHINE_PLAN","VM","WITNESS","WITNESS_NETWORK","ZBS_ZONE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

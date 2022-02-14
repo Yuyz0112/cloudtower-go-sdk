@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -161,7 +162,7 @@ type VMAddDiskParamsData struct {
 	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
-	MaxIops float64 `json:"max_iops,omitempty"`
+	MaxIops int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
@@ -360,10 +361,10 @@ func (m *VMAddDiskParamsData) UnmarshalBinary(b []byte) error {
 type VMAddDiskParamsDataVMDisks struct {
 
 	// mount disks
-	MountDisks MountDisksParams `json:"mount_disks,omitempty"`
+	MountDisks []*MountDisksParams `json:"mount_disks"`
 
 	// mount new create disks
-	MountNewCreateDisks MountNewCreateDisksParams `json:"mount_new_create_disks,omitempty"`
+	MountNewCreateDisks []*MountNewCreateDisksParams `json:"mount_new_create_disks"`
 }
 
 // Validate validates this VM add disk params data VM disks
@@ -389,11 +390,20 @@ func (m *VMAddDiskParamsDataVMDisks) validateMountDisks(formats strfmt.Registry)
 		return nil
 	}
 
-	if err := m.MountDisks.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks")
+	for i := 0; i < len(m.MountDisks); i++ {
+		if swag.IsZero(m.MountDisks[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.MountDisks[i] != nil {
+			if err := m.MountDisks[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -404,11 +414,20 @@ func (m *VMAddDiskParamsDataVMDisks) validateMountNewCreateDisks(formats strfmt.
 		return nil
 	}
 
-	if err := m.MountNewCreateDisks.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks")
+	for i := 0; i < len(m.MountNewCreateDisks); i++ {
+		if swag.IsZero(m.MountNewCreateDisks[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.MountNewCreateDisks[i] != nil {
+			if err := m.MountNewCreateDisks[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -434,11 +453,17 @@ func (m *VMAddDiskParamsDataVMDisks) ContextValidate(ctx context.Context, format
 
 func (m *VMAddDiskParamsDataVMDisks) contextValidateMountDisks(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.MountDisks.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks")
+	for i := 0; i < len(m.MountDisks); i++ {
+
+		if m.MountDisks[i] != nil {
+			if err := m.MountDisks[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_disks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
-		return err
+
 	}
 
 	return nil
@@ -446,11 +471,17 @@ func (m *VMAddDiskParamsDataVMDisks) contextValidateMountDisks(ctx context.Conte
 
 func (m *VMAddDiskParamsDataVMDisks) contextValidateMountNewCreateDisks(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.MountNewCreateDisks.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks")
+	for i := 0; i < len(m.MountNewCreateDisks); i++ {
+
+		if m.MountNewCreateDisks[i] != nil {
+			if err := m.MountNewCreateDisks[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "vm_disks" + "." + "mount_new_create_disks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
-		return err
+
 	}
 
 	return nil

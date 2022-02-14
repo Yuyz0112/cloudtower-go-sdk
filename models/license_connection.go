@@ -21,7 +21,7 @@ type LicenseConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *LicenseConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateLicense `json:"aggregate"`
 }
 
 // Validate validates this license connection
@@ -95,62 +95,6 @@ func (m *LicenseConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *LicenseConnection) UnmarshalBinary(b []byte) error {
 	var res LicenseConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LicenseConnectionAggregate license connection aggregate
-//
-// swagger:model LicenseConnectionAggregate
-type LicenseConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this license connection aggregate
-func (m *LicenseConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LicenseConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this license connection aggregate based on context it is used
-func (m *LicenseConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LicenseConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LicenseConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res LicenseConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

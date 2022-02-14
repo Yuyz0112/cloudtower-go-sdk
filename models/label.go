@@ -21,163 +21,187 @@ import (
 type Label struct {
 
 	// cluster num
-	ClusterNum *float64 `json:"cluster_num,omitempty"`
+	ClusterNum *int32 `json:"cluster_num,omitempty"`
 
 	// clusters
-	Clusters []*LabelClustersItems0 `json:"clusters,omitempty"`
+	Clusters []*NestedCluster `json:"clusters,omitempty"`
 
 	// consistency group num
-	ConsistencyGroupNum *float64 `json:"consistency_group_num,omitempty"`
+	ConsistencyGroupNum *int32 `json:"consistency_group_num,omitempty"`
 
 	// consistency group snapshot num
-	ConsistencyGroupSnapshotNum *float64 `json:"consistency_group_snapshot_num,omitempty"`
+	ConsistencyGroupSnapshotNum *int32 `json:"consistency_group_snapshot_num,omitempty"`
 
 	// consistency group snapshots
-	ConsistencyGroupSnapshots []*LabelConsistencyGroupSnapshotsItems0 `json:"consistency_group_snapshots,omitempty"`
+	ConsistencyGroupSnapshots []*NestedConsistencyGroupSnapshot `json:"consistency_group_snapshots,omitempty"`
 
 	// consistency groups
-	ConsistencyGroups []*LabelConsistencyGroupsItems0 `json:"consistency_groups,omitempty"`
+	ConsistencyGroups []*NestedConsistencyGroup `json:"consistency_groups,omitempty"`
+
+	// content library image num
+	ContentLibraryImageNum *int32 `json:"content_library_image_num,omitempty"`
+
+	// content library images
+	ContentLibraryImages []*NestedContentLibraryImage `json:"content_library_images,omitempty"`
+
+	// content library vm template num
+	ContentLibraryVMTemplateNum *int32 `json:"content_library_vm_template_num,omitempty"`
+
+	// content library vm templates
+	ContentLibraryVMTemplates []*NestedContentLibraryVMTemplate `json:"content_library_vm_templates,omitempty"`
 
 	// created at
 	// Required: true
 	CreatedAt *string `json:"createdAt"`
 
 	// datacenter num
-	DatacenterNum *float64 `json:"datacenter_num,omitempty"`
+	DatacenterNum *int32 `json:"datacenter_num,omitempty"`
 
 	// datacenters
-	Datacenters []*LabelDatacentersItems0 `json:"datacenters,omitempty"`
+	Datacenters []*NestedDatacenter `json:"datacenters,omitempty"`
 
 	// disk num
-	DiskNum *float64 `json:"disk_num,omitempty"`
+	DiskNum *int32 `json:"disk_num,omitempty"`
 
 	// disks
-	Disks []*LabelDisksItems0 `json:"disks,omitempty"`
+	Disks []*NestedDisk `json:"disks,omitempty"`
 
 	// elf image num
-	ElfImageNum *float64 `json:"elf_image_num,omitempty"`
+	ElfImageNum *int32 `json:"elf_image_num,omitempty"`
 
 	// elf images
-	ElfImages []*LabelElfImagesItems0 `json:"elf_images,omitempty"`
+	ElfImages []*NestedElfImage `json:"elf_images,omitempty"`
 
 	// host num
-	HostNum *float64 `json:"host_num,omitempty"`
+	HostNum *int32 `json:"host_num,omitempty"`
 
 	// hosts
-	Hosts []*LabelHostsItems0 `json:"hosts,omitempty"`
+	Hosts []*NestedHost `json:"hosts,omitempty"`
 
 	// id
 	// Required: true
 	ID *string `json:"id"`
 
 	// iscsi lun num
-	IscsiLunNum *float64 `json:"iscsi_lun_num,omitempty"`
+	IscsiLunNum *int32 `json:"iscsi_lun_num,omitempty"`
 
 	// iscsi lun snapshot num
-	IscsiLunSnapshotNum *float64 `json:"iscsi_lun_snapshot_num,omitempty"`
+	IscsiLunSnapshotNum *int32 `json:"iscsi_lun_snapshot_num,omitempty"`
 
 	// iscsi lun snapshots
-	IscsiLunSnapshots []*LabelIscsiLunSnapshotsItems0 `json:"iscsi_lun_snapshots,omitempty"`
+	IscsiLunSnapshots []*NestedIscsiLunSnapshot `json:"iscsi_lun_snapshots,omitempty"`
 
 	// iscsi luns
-	IscsiLuns []*LabelIscsiLunsItems0 `json:"iscsi_luns,omitempty"`
+	IscsiLuns []*NestedIscsiLun `json:"iscsi_luns,omitempty"`
 
 	// iscsi target num
-	IscsiTargetNum *float64 `json:"iscsi_target_num,omitempty"`
+	IscsiTargetNum *int32 `json:"iscsi_target_num,omitempty"`
 
 	// iscsi targets
-	IscsiTargets []*LabelIscsiTargetsItems0 `json:"iscsi_targets,omitempty"`
+	IscsiTargets []*NestedIscsiTarget `json:"iscsi_targets,omitempty"`
+
+	// isolation policies
+	IsolationPolicies []*NestedIsolationPolicy `json:"isolation_policies,omitempty"`
+
+	// isolation policy num
+	IsolationPolicyNum *int32 `json:"isolation_policy_num,omitempty"`
 
 	// key
 	// Required: true
 	Key *string `json:"key"`
 
 	// namespace group num
-	NamespaceGroupNum *float64 `json:"namespace_group_num,omitempty"`
+	NamespaceGroupNum *int32 `json:"namespace_group_num,omitempty"`
 
 	// namespace groups
-	NamespaceGroups []*LabelNamespaceGroupsItems0 `json:"namespace_groups,omitempty"`
+	NamespaceGroups []*NestedNamespaceGroup `json:"namespace_groups,omitempty"`
 
 	// nfs export num
-	NfsExportNum *float64 `json:"nfs_export_num,omitempty"`
+	NfsExportNum *int32 `json:"nfs_export_num,omitempty"`
 
 	// nfs exports
-	NfsExports []*LabelNfsExportsItems0 `json:"nfs_exports,omitempty"`
+	NfsExports []*NestedNfsExport `json:"nfs_exports,omitempty"`
 
 	// nfs inode num
-	NfsInodeNum *float64 `json:"nfs_inode_num,omitempty"`
+	NfsInodeNum *int32 `json:"nfs_inode_num,omitempty"`
 
 	// nfs inodes
-	NfsInodes []*LabelNfsInodesItems0 `json:"nfs_inodes,omitempty"`
+	NfsInodes []*NestedNfsInode `json:"nfs_inodes,omitempty"`
 
 	// nic num
-	NicNum *float64 `json:"nic_num,omitempty"`
+	NicNum *int32 `json:"nic_num,omitempty"`
 
 	// nics
-	Nics []*LabelNicsItems0 `json:"nics,omitempty"`
+	Nics []*NestedNic `json:"nics,omitempty"`
 
 	// nvmf namespace num
-	NvmfNamespaceNum *float64 `json:"nvmf_namespace_num,omitempty"`
+	NvmfNamespaceNum *int32 `json:"nvmf_namespace_num,omitempty"`
 
 	// nvmf namespace snapshot num
-	NvmfNamespaceSnapshotNum *float64 `json:"nvmf_namespace_snapshot_num,omitempty"`
+	NvmfNamespaceSnapshotNum *int32 `json:"nvmf_namespace_snapshot_num,omitempty"`
 
 	// nvmf namespace snapshots
-	NvmfNamespaceSnapshots []*LabelNvmfNamespaceSnapshotsItems0 `json:"nvmf_namespace_snapshots,omitempty"`
+	NvmfNamespaceSnapshots []*NestedNvmfNamespaceSnapshot `json:"nvmf_namespace_snapshots,omitempty"`
 
 	// nvmf namespaces
-	NvmfNamespaces []*LabelNvmfNamespacesItems0 `json:"nvmf_namespaces,omitempty"`
+	NvmfNamespaces []*NestedNvmfNamespace `json:"nvmf_namespaces,omitempty"`
 
 	// nvmf subsystem num
-	NvmfSubsystemNum *float64 `json:"nvmf_subsystem_num,omitempty"`
+	NvmfSubsystemNum *int32 `json:"nvmf_subsystem_num,omitempty"`
 
 	// nvmf subsystems
-	NvmfSubsystems []*LabelNvmfSubsystemsItems0 `json:"nvmf_subsystems,omitempty"`
+	NvmfSubsystems []*NestedNvmfSubsystem `json:"nvmf_subsystems,omitempty"`
+
+	// security policies
+	SecurityPolicies []*NestedSecurityPolicy `json:"security_policies,omitempty"`
+
+	// security policy num
+	SecurityPolicyNum *int32 `json:"security_policy_num,omitempty"`
 
 	// system vlan num
-	SystemVlanNum *float64 `json:"system_vlan_num,omitempty"`
+	SystemVlanNum *int32 `json:"system_vlan_num,omitempty"`
 
 	// total num
-	TotalNum *float64 `json:"total_num,omitempty"`
+	TotalNum *int32 `json:"total_num,omitempty"`
 
 	// value
 	Value *string `json:"value,omitempty"`
 
 	// vds num
-	VdsNum *float64 `json:"vds_num,omitempty"`
+	VdsNum *int32 `json:"vds_num,omitempty"`
 
 	// vdses
-	Vdses []*LabelVdsesItems0 `json:"vdses,omitempty"`
+	Vdses []*NestedVds `json:"vdses,omitempty"`
 
 	// vlans
-	Vlans []*LabelVlansItems0 `json:"vlans,omitempty"`
+	Vlans []*NestedVlan `json:"vlans,omitempty"`
 
 	// vm num
-	VMNum *float64 `json:"vm_num,omitempty"`
+	VMNum *int32 `json:"vm_num,omitempty"`
 
 	// vm snapshot num
-	VMSnapshotNum *float64 `json:"vm_snapshot_num,omitempty"`
+	VMSnapshotNum *int32 `json:"vm_snapshot_num,omitempty"`
 
 	// vm snapshots
-	VMSnapshots []*LabelVMSnapshotsItems0 `json:"vm_snapshots,omitempty"`
+	VMSnapshots []*NestedVMSnapshot `json:"vm_snapshots,omitempty"`
 
 	// vm template num
-	VMTemplateNum *float64 `json:"vm_template_num,omitempty"`
+	VMTemplateNum *int32 `json:"vm_template_num,omitempty"`
 
 	// vm templates
-	VMTemplates []*LabelVMTemplatesItems0 `json:"vm_templates,omitempty"`
+	VMTemplates []*NestedVMTemplate `json:"vm_templates,omitempty"`
 
 	// vm vlan num
-	VMVlanNum *float64 `json:"vm_vlan_num,omitempty"`
+	VMVlanNum *int32 `json:"vm_vlan_num,omitempty"`
 
 	// vm volume num
-	VMVolumeNum *float64 `json:"vm_volume_num,omitempty"`
+	VMVolumeNum *int32 `json:"vm_volume_num,omitempty"`
 
 	// vm volumes
-	VMVolumes []*LabelVMVolumesItems0 `json:"vm_volumes,omitempty"`
+	VMVolumes []*NestedVMVolume `json:"vm_volumes,omitempty"`
 
 	// vms
-	Vms []*LabelVmsItems0 `json:"vms,omitempty"`
+	Vms []*NestedVM `json:"vms,omitempty"`
 }
 
 // Validate validates this label
@@ -193,6 +217,14 @@ func (m *Label) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateConsistencyGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryImages(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContentLibraryVMTemplates(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -232,6 +264,10 @@ func (m *Label) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIsolationPolicies(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateKey(formats); err != nil {
 		res = append(res, err)
 	}
@@ -261,6 +297,10 @@ func (m *Label) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNvmfSubsystems(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSecurityPolicies(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -356,6 +396,54 @@ func (m *Label) validateConsistencyGroups(formats strfmt.Registry) error {
 			if err := m.ConsistencyGroups[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consistency_groups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Label) validateContentLibraryImages(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryImages) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ContentLibraryImages); i++ {
+		if swag.IsZero(m.ContentLibraryImages[i]) { // not required
+			continue
+		}
+
+		if m.ContentLibraryImages[i] != nil {
+			if err := m.ContentLibraryImages[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("content_library_images" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Label) validateContentLibraryVMTemplates(formats strfmt.Registry) error {
+	if swag.IsZero(m.ContentLibraryVMTemplates) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ContentLibraryVMTemplates); i++ {
+		if swag.IsZero(m.ContentLibraryVMTemplates[i]) { // not required
+			continue
+		}
+
+		if m.ContentLibraryVMTemplates[i] != nil {
+			if err := m.ContentLibraryVMTemplates[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("content_library_vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -552,6 +640,30 @@ func (m *Label) validateIscsiTargets(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Label) validateIsolationPolicies(formats strfmt.Registry) error {
+	if swag.IsZero(m.IsolationPolicies) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.IsolationPolicies); i++ {
+		if swag.IsZero(m.IsolationPolicies[i]) { // not required
+			continue
+		}
+
+		if m.IsolationPolicies[i] != nil {
+			if err := m.IsolationPolicies[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("isolation_policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Label) validateKey(formats strfmt.Registry) error {
 
 	if err := validate.Required("key", "body", m.Key); err != nil {
@@ -729,6 +841,30 @@ func (m *Label) validateNvmfSubsystems(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Label) validateSecurityPolicies(formats strfmt.Registry) error {
+	if swag.IsZero(m.SecurityPolicies) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.SecurityPolicies); i++ {
+		if swag.IsZero(m.SecurityPolicies[i]) { // not required
+			continue
+		}
+
+		if m.SecurityPolicies[i] != nil {
+			if err := m.SecurityPolicies[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("security_policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Label) validateVdses(formats strfmt.Registry) error {
 	if swag.IsZero(m.Vdses) { // not required
 		return nil
@@ -889,6 +1025,14 @@ func (m *Label) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateContentLibraryImages(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContentLibraryVMTemplates(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDatacenters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -917,6 +1061,10 @@ func (m *Label) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIsolationPolicies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateNamespaceGroups(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -942,6 +1090,10 @@ func (m *Label) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	}
 
 	if err := m.contextValidateNvmfSubsystems(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSecurityPolicies(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1019,6 +1171,42 @@ func (m *Label) contextValidateConsistencyGroups(ctx context.Context, formats st
 			if err := m.ConsistencyGroups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consistency_groups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Label) contextValidateContentLibraryImages(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ContentLibraryImages); i++ {
+
+		if m.ContentLibraryImages[i] != nil {
+			if err := m.ContentLibraryImages[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("content_library_images" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Label) contextValidateContentLibraryVMTemplates(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ContentLibraryVMTemplates); i++ {
+
+		if m.ContentLibraryVMTemplates[i] != nil {
+			if err := m.ContentLibraryVMTemplates[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("content_library_vm_templates" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1155,6 +1343,24 @@ func (m *Label) contextValidateIscsiTargets(ctx context.Context, formats strfmt.
 	return nil
 }
 
+func (m *Label) contextValidateIsolationPolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IsolationPolicies); i++ {
+
+		if m.IsolationPolicies[i] != nil {
+			if err := m.IsolationPolicies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("isolation_policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Label) contextValidateNamespaceGroups(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.NamespaceGroups); i++ {
@@ -1271,6 +1477,24 @@ func (m *Label) contextValidateNvmfSubsystems(ctx context.Context, formats strfm
 			if err := m.NvmfSubsystems[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nvmf_subsystems" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Label) contextValidateSecurityPolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.SecurityPolicies); i++ {
+
+		if m.SecurityPolicies[i] != nil {
+			if err := m.SecurityPolicies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("security_policies" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1400,1685 +1624,6 @@ func (m *Label) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Label) UnmarshalBinary(b []byte) error {
 	var res Label
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelClustersItems0 label clusters items0
-//
-// swagger:model LabelClustersItems0
-type LabelClustersItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label clusters items0
-func (m *LabelClustersItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelClustersItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelClustersItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label clusters items0 based on context it is used
-func (m *LabelClustersItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelClustersItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelClustersItems0) UnmarshalBinary(b []byte) error {
-	var res LabelClustersItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelConsistencyGroupSnapshotsItems0 label consistency group snapshots items0
-//
-// swagger:model LabelConsistencyGroupSnapshotsItems0
-type LabelConsistencyGroupSnapshotsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label consistency group snapshots items0
-func (m *LabelConsistencyGroupSnapshotsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelConsistencyGroupSnapshotsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelConsistencyGroupSnapshotsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label consistency group snapshots items0 based on context it is used
-func (m *LabelConsistencyGroupSnapshotsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelConsistencyGroupSnapshotsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelConsistencyGroupSnapshotsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelConsistencyGroupSnapshotsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelConsistencyGroupsItems0 label consistency groups items0
-//
-// swagger:model LabelConsistencyGroupsItems0
-type LabelConsistencyGroupsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label consistency groups items0
-func (m *LabelConsistencyGroupsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelConsistencyGroupsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelConsistencyGroupsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label consistency groups items0 based on context it is used
-func (m *LabelConsistencyGroupsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelConsistencyGroupsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelConsistencyGroupsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelConsistencyGroupsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelDatacentersItems0 label datacenters items0
-//
-// swagger:model LabelDatacentersItems0
-type LabelDatacentersItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label datacenters items0
-func (m *LabelDatacentersItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelDatacentersItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelDatacentersItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label datacenters items0 based on context it is used
-func (m *LabelDatacentersItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelDatacentersItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelDatacentersItems0) UnmarshalBinary(b []byte) error {
-	var res LabelDatacentersItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelDisksItems0 label disks items0
-//
-// swagger:model LabelDisksItems0
-type LabelDisksItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label disks items0
-func (m *LabelDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelDisksItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelDisksItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label disks items0 based on context it is used
-func (m *LabelDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelDisksItems0) UnmarshalBinary(b []byte) error {
-	var res LabelDisksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelElfImagesItems0 label elf images items0
-//
-// swagger:model LabelElfImagesItems0
-type LabelElfImagesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label elf images items0
-func (m *LabelElfImagesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelElfImagesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelElfImagesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label elf images items0 based on context it is used
-func (m *LabelElfImagesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelElfImagesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelElfImagesItems0) UnmarshalBinary(b []byte) error {
-	var res LabelElfImagesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelHostsItems0 label hosts items0
-//
-// swagger:model LabelHostsItems0
-type LabelHostsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label hosts items0
-func (m *LabelHostsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelHostsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelHostsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label hosts items0 based on context it is used
-func (m *LabelHostsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelHostsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelHostsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelHostsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelIscsiLunSnapshotsItems0 label iscsi lun snapshots items0
-//
-// swagger:model LabelIscsiLunSnapshotsItems0
-type LabelIscsiLunSnapshotsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label iscsi lun snapshots items0
-func (m *LabelIscsiLunSnapshotsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelIscsiLunSnapshotsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelIscsiLunSnapshotsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label iscsi lun snapshots items0 based on context it is used
-func (m *LabelIscsiLunSnapshotsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelIscsiLunSnapshotsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelIscsiLunSnapshotsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelIscsiLunSnapshotsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelIscsiLunsItems0 label iscsi luns items0
-//
-// swagger:model LabelIscsiLunsItems0
-type LabelIscsiLunsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label iscsi luns items0
-func (m *LabelIscsiLunsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelIscsiLunsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelIscsiLunsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label iscsi luns items0 based on context it is used
-func (m *LabelIscsiLunsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelIscsiLunsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelIscsiLunsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelIscsiLunsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelIscsiTargetsItems0 label iscsi targets items0
-//
-// swagger:model LabelIscsiTargetsItems0
-type LabelIscsiTargetsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label iscsi targets items0
-func (m *LabelIscsiTargetsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelIscsiTargetsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelIscsiTargetsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label iscsi targets items0 based on context it is used
-func (m *LabelIscsiTargetsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelIscsiTargetsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelIscsiTargetsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelIscsiTargetsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelNamespaceGroupsItems0 label namespace groups items0
-//
-// swagger:model LabelNamespaceGroupsItems0
-type LabelNamespaceGroupsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label namespace groups items0
-func (m *LabelNamespaceGroupsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelNamespaceGroupsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelNamespaceGroupsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label namespace groups items0 based on context it is used
-func (m *LabelNamespaceGroupsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelNamespaceGroupsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelNamespaceGroupsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelNamespaceGroupsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelNfsExportsItems0 label nfs exports items0
-//
-// swagger:model LabelNfsExportsItems0
-type LabelNfsExportsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label nfs exports items0
-func (m *LabelNfsExportsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelNfsExportsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelNfsExportsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label nfs exports items0 based on context it is used
-func (m *LabelNfsExportsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelNfsExportsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelNfsExportsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelNfsExportsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelNfsInodesItems0 label nfs inodes items0
-//
-// swagger:model LabelNfsInodesItems0
-type LabelNfsInodesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label nfs inodes items0
-func (m *LabelNfsInodesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelNfsInodesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelNfsInodesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label nfs inodes items0 based on context it is used
-func (m *LabelNfsInodesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelNfsInodesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelNfsInodesItems0) UnmarshalBinary(b []byte) error {
-	var res LabelNfsInodesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelNicsItems0 label nics items0
-//
-// swagger:model LabelNicsItems0
-type LabelNicsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label nics items0
-func (m *LabelNicsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelNicsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelNicsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label nics items0 based on context it is used
-func (m *LabelNicsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelNicsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelNicsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelNicsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelNvmfNamespaceSnapshotsItems0 label nvmf namespace snapshots items0
-//
-// swagger:model LabelNvmfNamespaceSnapshotsItems0
-type LabelNvmfNamespaceSnapshotsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label nvmf namespace snapshots items0
-func (m *LabelNvmfNamespaceSnapshotsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelNvmfNamespaceSnapshotsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelNvmfNamespaceSnapshotsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label nvmf namespace snapshots items0 based on context it is used
-func (m *LabelNvmfNamespaceSnapshotsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelNvmfNamespaceSnapshotsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelNvmfNamespaceSnapshotsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelNvmfNamespaceSnapshotsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelNvmfNamespacesItems0 label nvmf namespaces items0
-//
-// swagger:model LabelNvmfNamespacesItems0
-type LabelNvmfNamespacesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label nvmf namespaces items0
-func (m *LabelNvmfNamespacesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelNvmfNamespacesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelNvmfNamespacesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label nvmf namespaces items0 based on context it is used
-func (m *LabelNvmfNamespacesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelNvmfNamespacesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelNvmfNamespacesItems0) UnmarshalBinary(b []byte) error {
-	var res LabelNvmfNamespacesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelNvmfSubsystemsItems0 label nvmf subsystems items0
-//
-// swagger:model LabelNvmfSubsystemsItems0
-type LabelNvmfSubsystemsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label nvmf subsystems items0
-func (m *LabelNvmfSubsystemsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelNvmfSubsystemsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelNvmfSubsystemsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label nvmf subsystems items0 based on context it is used
-func (m *LabelNvmfSubsystemsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelNvmfSubsystemsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelNvmfSubsystemsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelNvmfSubsystemsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelVMSnapshotsItems0 label VM snapshots items0
-//
-// swagger:model LabelVMSnapshotsItems0
-type LabelVMSnapshotsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label VM snapshots items0
-func (m *LabelVMSnapshotsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelVMSnapshotsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelVMSnapshotsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label VM snapshots items0 based on context it is used
-func (m *LabelVMSnapshotsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelVMSnapshotsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelVMSnapshotsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelVMSnapshotsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelVMTemplatesItems0 label VM templates items0
-//
-// swagger:model LabelVMTemplatesItems0
-type LabelVMTemplatesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label VM templates items0
-func (m *LabelVMTemplatesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelVMTemplatesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelVMTemplatesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label VM templates items0 based on context it is used
-func (m *LabelVMTemplatesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelVMTemplatesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelVMTemplatesItems0) UnmarshalBinary(b []byte) error {
-	var res LabelVMTemplatesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelVMVolumesItems0 label VM volumes items0
-//
-// swagger:model LabelVMVolumesItems0
-type LabelVMVolumesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label VM volumes items0
-func (m *LabelVMVolumesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelVMVolumesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelVMVolumesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label VM volumes items0 based on context it is used
-func (m *LabelVMVolumesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelVMVolumesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelVMVolumesItems0) UnmarshalBinary(b []byte) error {
-	var res LabelVMVolumesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelVdsesItems0 label vdses items0
-//
-// swagger:model LabelVdsesItems0
-type LabelVdsesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label vdses items0
-func (m *LabelVdsesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelVdsesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelVdsesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label vdses items0 based on context it is used
-func (m *LabelVdsesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelVdsesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelVdsesItems0) UnmarshalBinary(b []byte) error {
-	var res LabelVdsesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelVlansItems0 label vlans items0
-//
-// swagger:model LabelVlansItems0
-type LabelVlansItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label vlans items0
-func (m *LabelVlansItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelVlansItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelVlansItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label vlans items0 based on context it is used
-func (m *LabelVlansItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelVlansItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelVlansItems0) UnmarshalBinary(b []byte) error {
-	var res LabelVlansItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelVmsItems0 label vms items0
-//
-// swagger:model LabelVmsItems0
-type LabelVmsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this label vms items0
-func (m *LabelVmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelVmsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LabelVmsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label vms items0 based on context it is used
-func (m *LabelVmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelVmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelVmsItems0) UnmarshalBinary(b []byte) error {
-	var res LabelVmsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

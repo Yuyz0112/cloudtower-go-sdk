@@ -29,7 +29,7 @@ type UsbDevice struct {
 
 	// host
 	// Required: true
-	Host *UsbDeviceHost `json:"host"`
+	Host *NestedHost `json:"host"`
 
 	// id
 	// Required: true
@@ -64,7 +64,7 @@ type UsbDevice struct {
 	UsbType *string `json:"usb_type"`
 
 	// vm
-	VM *UsbDeviceVM `json:"vm,omitempty"`
+	VM interface{} `json:"vm,omitempty"`
 }
 
 // Validate validates this usb device
@@ -112,10 +112,6 @@ func (m *UsbDevice) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateUsbType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVM(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -246,23 +242,6 @@ func (m *UsbDevice) validateUsbType(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UsbDevice) validateVM(formats strfmt.Registry) error {
-	if swag.IsZero(m.VM) { // not required
-		return nil
-	}
-
-	if m.VM != nil {
-		if err := m.VM.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vm")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this usb device based on the context it is used
 func (m *UsbDevice) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -272,10 +251,6 @@ func (m *UsbDevice) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVM(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -313,20 +288,6 @@ func (m *UsbDevice) contextValidateStatus(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
-func (m *UsbDevice) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VM != nil {
-		if err := m.VM.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vm")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // MarshalBinary interface implementation
 func (m *UsbDevice) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -338,152 +299,6 @@ func (m *UsbDevice) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *UsbDevice) UnmarshalBinary(b []byte) error {
 	var res UsbDevice
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// UsbDeviceHost usb device host
-//
-// swagger:model UsbDeviceHost
-type UsbDeviceHost struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this usb device host
-func (m *UsbDeviceHost) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UsbDeviceHost) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UsbDeviceHost) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this usb device host based on context it is used
-func (m *UsbDeviceHost) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *UsbDeviceHost) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *UsbDeviceHost) UnmarshalBinary(b []byte) error {
-	var res UsbDeviceHost
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// UsbDeviceVM usb device VM
-//
-// swagger:model UsbDeviceVM
-type UsbDeviceVM struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this usb device VM
-func (m *UsbDeviceVM) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UsbDeviceVM) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UsbDeviceVM) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this usb device VM based on context it is used
-func (m *UsbDeviceVM) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *UsbDeviceVM) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *UsbDeviceVM) UnmarshalBinary(b []byte) error {
-	var res UsbDeviceVM
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

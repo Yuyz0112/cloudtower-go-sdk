@@ -14,7 +14,7 @@ import (
 // MaybeScalarsAtInt maybe scalars at int
 //
 // swagger:model Maybe_Scalars-at-Int_
-type MaybeScalarsAtInt float64
+type MaybeScalarsAtInt int32
 
 // Validate validates this maybe scalars at int
 func (m MaybeScalarsAtInt) Validate(formats strfmt.Registry) error {

@@ -21,7 +21,7 @@ type SnmpTransportConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *SnmpTransportConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateSnmpTransport `json:"aggregate"`
 }
 
 // Validate validates this snmp transport connection
@@ -95,62 +95,6 @@ func (m *SnmpTransportConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SnmpTransportConnection) UnmarshalBinary(b []byte) error {
 	var res SnmpTransportConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SnmpTransportConnectionAggregate snmp transport connection aggregate
-//
-// swagger:model SnmpTransportConnectionAggregate
-type SnmpTransportConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this snmp transport connection aggregate
-func (m *SnmpTransportConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SnmpTransportConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this snmp transport connection aggregate based on context it is used
-func (m *SnmpTransportConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SnmpTransportConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SnmpTransportConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res SnmpTransportConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

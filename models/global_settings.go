@@ -25,7 +25,7 @@ type GlobalSettings struct {
 
 	// vm recycle bin
 	// Required: true
-	VMRecycleBin *GlobalSettingsVMRecycleBin `json:"vm_recycle_bin"`
+	VMRecycleBin *NestedVMRecycleBin `json:"vm_recycle_bin"`
 }
 
 // Validate validates this global settings
@@ -112,79 +112,6 @@ func (m *GlobalSettings) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *GlobalSettings) UnmarshalBinary(b []byte) error {
 	var res GlobalSettings
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GlobalSettingsVMRecycleBin global settings VM recycle bin
-//
-// swagger:model GlobalSettingsVMRecycleBin
-type GlobalSettingsVMRecycleBin struct {
-
-	// enabled
-	// Required: true
-	Enabled *bool `json:"enabled"`
-
-	// retain
-	// Required: true
-	Retain *float64 `json:"retain"`
-}
-
-// Validate validates this global settings VM recycle bin
-func (m *GlobalSettingsVMRecycleBin) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateEnabled(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRetain(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GlobalSettingsVMRecycleBin) validateEnabled(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm_recycle_bin"+"."+"enabled", "body", m.Enabled); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GlobalSettingsVMRecycleBin) validateRetain(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm_recycle_bin"+"."+"retain", "body", m.Retain); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this global settings VM recycle bin based on context it is used
-func (m *GlobalSettingsVMRecycleBin) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GlobalSettingsVMRecycleBin) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GlobalSettingsVMRecycleBin) UnmarshalBinary(b []byte) error {
-	var res GlobalSettingsVMRecycleBin
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

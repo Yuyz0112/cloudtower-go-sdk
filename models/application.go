@@ -21,7 +21,7 @@ type Application struct {
 
 	// cluster
 	// Required: true
-	Cluster *ApplicationCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// error message
 	ErrorMessage *string `json:"error_message,omitempty"`
@@ -58,11 +58,14 @@ type Application struct {
 
 	// vcpu
 	// Required: true
-	Vcpu *float64 `json:"vcpu"`
+	Vcpu *int32 `json:"vcpu"`
 
 	// version
 	// Required: true
 	Version *string `json:"version"`
+
+	// vm
+	VM interface{} `json:"vm,omitempty"`
 
 	// volume size
 	// Required: true
@@ -319,79 +322,6 @@ func (m *Application) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Application) UnmarshalBinary(b []byte) error {
 	var res Application
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ApplicationCluster application cluster
-//
-// swagger:model ApplicationCluster
-type ApplicationCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this application cluster
-func (m *ApplicationCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ApplicationCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ApplicationCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this application cluster based on context it is used
-func (m *ApplicationCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ApplicationCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ApplicationCluster) UnmarshalBinary(b []byte) error {
-	var res ApplicationCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

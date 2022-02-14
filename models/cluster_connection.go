@@ -21,7 +21,7 @@ type ClusterConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ClusterConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateCluster `json:"aggregate"`
 }
 
 // Validate validates this cluster connection
@@ -95,62 +95,6 @@ func (m *ClusterConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ClusterConnection) UnmarshalBinary(b []byte) error {
 	var res ClusterConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ClusterConnectionAggregate cluster connection aggregate
-//
-// swagger:model ClusterConnectionAggregate
-type ClusterConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this cluster connection aggregate
-func (m *ClusterConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ClusterConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this cluster connection aggregate based on context it is used
-func (m *ClusterConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ClusterConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ClusterConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ClusterConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

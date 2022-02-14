@@ -21,7 +21,7 @@ type ZoneTopoConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ZoneTopoConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateZoneTopo `json:"aggregate"`
 }
 
 // Validate validates this zone topo connection
@@ -95,62 +95,6 @@ func (m *ZoneTopoConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ZoneTopoConnection) UnmarshalBinary(b []byte) error {
 	var res ZoneTopoConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ZoneTopoConnectionAggregate zone topo connection aggregate
-//
-// swagger:model ZoneTopoConnectionAggregate
-type ZoneTopoConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this zone topo connection aggregate
-func (m *ZoneTopoConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ZoneTopoConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this zone topo connection aggregate based on context it is used
-func (m *ZoneTopoConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ZoneTopoConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ZoneTopoConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ZoneTopoConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

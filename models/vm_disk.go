@@ -21,7 +21,7 @@ type VMDisk struct {
 
 	// boot
 	// Required: true
-	Boot *float64 `json:"boot"`
+	Boot *int32 `json:"boot"`
 
 	// bus
 	// Required: true
@@ -40,14 +40,14 @@ type VMDisk struct {
 	Disabled *bool `json:"disabled,omitempty"`
 
 	// elf image
-	ElfImage *VMDiskElfImage `json:"elf_image,omitempty"`
+	ElfImage interface{} `json:"elf_image,omitempty"`
 
 	// id
 	// Required: true
 	ID *string `json:"id"`
 
 	// key
-	Key *float64 `json:"key,omitempty"`
+	Key *int32 `json:"key,omitempty"`
 
 	// max bandwidth
 	MaxBandwidth *float64 `json:"max_bandwidth,omitempty"`
@@ -56,7 +56,7 @@ type VMDisk struct {
 	MaxBandwidthPolicy interface{} `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
-	MaxIops *float64 `json:"max_iops,omitempty"`
+	MaxIops *int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy interface{} `json:"max_iops_policy,omitempty"`
@@ -65,7 +65,7 @@ type VMDisk struct {
 	Serial *string `json:"serial,omitempty"`
 
 	// svt image
-	SvtImage *VMDiskSvtImage `json:"svt_image,omitempty"`
+	SvtImage interface{} `json:"svt_image,omitempty"`
 
 	// type
 	// Required: true
@@ -82,10 +82,10 @@ type VMDisk struct {
 
 	// vm
 	// Required: true
-	VM *VMDiskVM `json:"vm"`
+	VM *NestedVM `json:"vm"`
 
 	// vm volume
-	VMVolume *VMDiskVMVolume `json:"vm_volume,omitempty"`
+	VMVolume interface{} `json:"vm_volume,omitempty"`
 }
 
 // Validate validates this Vm disk
@@ -100,15 +100,7 @@ func (m *VMDisk) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateElfImage(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSvtImage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -117,10 +109,6 @@ func (m *VMDisk) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateVM(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVMVolume(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -161,44 +149,10 @@ func (m *VMDisk) validateBus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMDisk) validateElfImage(formats strfmt.Registry) error {
-	if swag.IsZero(m.ElfImage) { // not required
-		return nil
-	}
-
-	if m.ElfImage != nil {
-		if err := m.ElfImage.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("elf_image")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *VMDisk) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *VMDisk) validateSvtImage(formats strfmt.Registry) error {
-	if swag.IsZero(m.SvtImage) { // not required
-		return nil
-	}
-
-	if m.SvtImage != nil {
-		if err := m.SvtImage.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("svt_image")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -244,23 +198,6 @@ func (m *VMDisk) validateVM(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMDisk) validateVMVolume(formats strfmt.Registry) error {
-	if swag.IsZero(m.VMVolume) { // not required
-		return nil
-	}
-
-	if m.VMVolume != nil {
-		if err := m.VMVolume.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vm_volume")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this Vm disk based on the context it is used
 func (m *VMDisk) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -269,23 +206,11 @@ func (m *VMDisk) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateElfImage(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSvtImage(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateVM(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVMVolume(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -301,34 +226,6 @@ func (m *VMDisk) contextValidateBus(ctx context.Context, formats strfmt.Registry
 		if err := m.Bus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bus")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *VMDisk) contextValidateElfImage(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.ElfImage != nil {
-		if err := m.ElfImage.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("elf_image")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *VMDisk) contextValidateSvtImage(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.SvtImage != nil {
-		if err := m.SvtImage.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("svt_image")
 			}
 			return err
 		}
@@ -365,20 +262,6 @@ func (m *VMDisk) contextValidateVM(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
-func (m *VMDisk) contextValidateVMVolume(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VMVolume != nil {
-		if err := m.VMVolume.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vm_volume")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // MarshalBinary interface implementation
 func (m *VMDisk) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -390,298 +273,6 @@ func (m *VMDisk) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMDisk) UnmarshalBinary(b []byte) error {
 	var res VMDisk
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMDiskElfImage VM disk elf image
-//
-// swagger:model VMDiskElfImage
-type VMDiskElfImage struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM disk elf image
-func (m *VMDiskElfImage) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMDiskElfImage) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("elf_image"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMDiskElfImage) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("elf_image"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM disk elf image based on context it is used
-func (m *VMDiskElfImage) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMDiskElfImage) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMDiskElfImage) UnmarshalBinary(b []byte) error {
-	var res VMDiskElfImage
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMDiskSvtImage VM disk svt image
-//
-// swagger:model VMDiskSvtImage
-type VMDiskSvtImage struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM disk svt image
-func (m *VMDiskSvtImage) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMDiskSvtImage) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("svt_image"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMDiskSvtImage) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("svt_image"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM disk svt image based on context it is used
-func (m *VMDiskSvtImage) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMDiskSvtImage) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMDiskSvtImage) UnmarshalBinary(b []byte) error {
-	var res VMDiskSvtImage
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMDiskVM VM disk VM
-//
-// swagger:model VMDiskVM
-type VMDiskVM struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM disk VM
-func (m *VMDiskVM) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMDiskVM) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMDiskVM) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM disk VM based on context it is used
-func (m *VMDiskVM) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMDiskVM) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMDiskVM) UnmarshalBinary(b []byte) error {
-	var res VMDiskVM
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMDiskVMVolume VM disk VM volume
-//
-// swagger:model VMDiskVMVolume
-type VMDiskVMVolume struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM disk VM volume
-func (m *VMDiskVMVolume) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMDiskVMVolume) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm_volume"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMDiskVMVolume) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm_volume"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM disk VM volume based on context it is used
-func (m *VMDiskVMVolume) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMDiskVMVolume) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMDiskVMVolume) UnmarshalBinary(b []byte) error {
-	var res VMDiskVMVolume
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

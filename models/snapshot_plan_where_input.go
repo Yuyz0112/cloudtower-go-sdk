@@ -15,6 +15,7 @@ import (
 )
 
 // SnapshotPlanWhereInput snapshot plan where input
+// Example: {"AND":"SnapshotPlanWhereInput[]","NOT":"SnapshotPlanWhereInput[]","OR":"SnapshotPlanWhereInput[]","auto_delete_num":0,"auto_delete_num_gt":0,"auto_delete_num_gte":0,"auto_delete_num_in":[0],"auto_delete_num_lt":0,"auto_delete_num_lte":0,"auto_delete_num_not":0,"auto_delete_num_not_in":[0],"auto_execute_num":0,"auto_execute_num_gt":0,"auto_execute_num_gte":0,"auto_execute_num_in":[0],"auto_execute_num_lt":0,"auto_execute_num_lte":0,"auto_execute_num_not":0,"auto_execute_num_not_in":[0],"cluster":"ClusterWhereInput","description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","end_time":"string","end_time_gt":"string","end_time_gte":"string","end_time_in":["string"],"end_time_lt":"string","end_time_lte":"string","end_time_not":"string","end_time_not_in":["string"],"entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"execute_plan_type":"DAY","execute_plan_type_in":["DAY"],"execute_plan_type_not":"DAY","execute_plan_type_not_in":["DAY"],"execution_tasks_every":"SnapshotPlanTaskWhereInput","execution_tasks_none":"SnapshotPlanTaskWhereInput","execution_tasks_some":"SnapshotPlanTaskWhereInput","healthy":false,"healthy_not":false,"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","last_execute_end_time":"string","last_execute_end_time_gt":"string","last_execute_end_time_gte":"string","last_execute_end_time_in":["string"],"last_execute_end_time_lt":"string","last_execute_end_time_lte":"string","last_execute_end_time_not":"string","last_execute_end_time_not_in":["string"],"last_execute_status":"CREATED","last_execute_status_in":["CREATED"],"last_execute_status_not":"CREATED","last_execute_status_not_in":["CREATED"],"last_execute_time":"string","last_execute_time_gt":"string","last_execute_time_gte":"string","last_execute_time_in":["string"],"last_execute_time_lt":"string","last_execute_time_lte":"string","last_execute_time_not":"string","last_execute_time_not_in":["string"],"local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","logical_size_bytes":0,"logical_size_bytes_gt":0,"logical_size_bytes_gte":0,"logical_size_bytes_in":[0],"logical_size_bytes_lt":0,"logical_size_bytes_lte":0,"logical_size_bytes_not":0,"logical_size_bytes_not_in":[0],"manual_delete_num":0,"manual_delete_num_gt":0,"manual_delete_num_gte":0,"manual_delete_num_in":[0],"manual_delete_num_lt":0,"manual_delete_num_lte":0,"manual_delete_num_not":0,"manual_delete_num_not_in":[0],"manual_execute_num":0,"manual_execute_num_gt":0,"manual_execute_num_gte":0,"manual_execute_num_in":[0],"manual_execute_num_lt":0,"manual_execute_num_lte":0,"manual_execute_num_not":0,"manual_execute_num_not_in":[0],"mirror":false,"mirror_not":false,"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","next_execute_time":"string","next_execute_time_gt":"string","next_execute_time_gte":"string","next_execute_time_in":["string"],"next_execute_time_lt":"string","next_execute_time_lte":"string","next_execute_time_not":"string","next_execute_time_not_in":["string"],"object_num":0,"object_num_gt":0,"object_num_gte":0,"object_num_in":[0],"object_num_lt":0,"object_num_lte":0,"object_num_not":0,"object_num_not_in":[0],"physical_size_bytes":0,"physical_size_bytes_gt":0,"physical_size_bytes_gte":0,"physical_size_bytes_in":[0],"physical_size_bytes_lt":0,"physical_size_bytes_lte":0,"physical_size_bytes_not":0,"physical_size_bytes_not_in":[0],"remain_snapshot_num":0,"remain_snapshot_num_gt":0,"remain_snapshot_num_gte":0,"remain_snapshot_num_in":[0],"remain_snapshot_num_lt":0,"remain_snapshot_num_lte":0,"remain_snapshot_num_not":0,"remain_snapshot_num_not_in":[0],"snapshot_group_num":0,"snapshot_group_num_gt":0,"snapshot_group_num_gte":0,"snapshot_group_num_in":[0],"snapshot_group_num_lt":0,"snapshot_group_num_lte":0,"snapshot_group_num_not":0,"snapshot_group_num_not_in":[0],"start_time":"string","start_time_gt":"string","start_time_gte":"string","start_time_in":["string"],"start_time_lt":"string","start_time_lte":"string","start_time_not":"string","start_time_not_in":["string"],"status":"NORMAL","status_in":["NORMAL"],"status_not":"NORMAL","status_not_in":["NORMAL"],"vms_every":"VmWhereInput","vms_none":"VmWhereInput","vms_some":"VmWhereInput"}
 //
 // swagger:model SnapshotPlanWhereInput
 type SnapshotPlanWhereInput struct {
@@ -29,52 +30,52 @@ type SnapshotPlanWhereInput struct {
 	OR []*SnapshotPlanWhereInput `json:"OR,omitempty"`
 
 	// auto delete num
-	AutoDeleteNum *float64 `json:"auto_delete_num,omitempty"`
+	AutoDeleteNum *int32 `json:"auto_delete_num,omitempty"`
 
 	// auto delete num gt
-	AutoDeleteNumGt *float64 `json:"auto_delete_num_gt,omitempty"`
+	AutoDeleteNumGt *int32 `json:"auto_delete_num_gt,omitempty"`
 
 	// auto delete num gte
-	AutoDeleteNumGte *float64 `json:"auto_delete_num_gte,omitempty"`
+	AutoDeleteNumGte *int32 `json:"auto_delete_num_gte,omitempty"`
 
 	// auto delete num in
-	AutoDeleteNumIn []float64 `json:"auto_delete_num_in,omitempty"`
+	AutoDeleteNumIn []int32 `json:"auto_delete_num_in,omitempty"`
 
 	// auto delete num lt
-	AutoDeleteNumLt *float64 `json:"auto_delete_num_lt,omitempty"`
+	AutoDeleteNumLt *int32 `json:"auto_delete_num_lt,omitempty"`
 
 	// auto delete num lte
-	AutoDeleteNumLte *float64 `json:"auto_delete_num_lte,omitempty"`
+	AutoDeleteNumLte *int32 `json:"auto_delete_num_lte,omitempty"`
 
 	// auto delete num not
-	AutoDeleteNumNot *float64 `json:"auto_delete_num_not,omitempty"`
+	AutoDeleteNumNot *int32 `json:"auto_delete_num_not,omitempty"`
 
 	// auto delete num not in
-	AutoDeleteNumNotIn []float64 `json:"auto_delete_num_not_in,omitempty"`
+	AutoDeleteNumNotIn []int32 `json:"auto_delete_num_not_in,omitempty"`
 
 	// auto execute num
-	AutoExecuteNum *float64 `json:"auto_execute_num,omitempty"`
+	AutoExecuteNum *int32 `json:"auto_execute_num,omitempty"`
 
 	// auto execute num gt
-	AutoExecuteNumGt *float64 `json:"auto_execute_num_gt,omitempty"`
+	AutoExecuteNumGt *int32 `json:"auto_execute_num_gt,omitempty"`
 
 	// auto execute num gte
-	AutoExecuteNumGte *float64 `json:"auto_execute_num_gte,omitempty"`
+	AutoExecuteNumGte *int32 `json:"auto_execute_num_gte,omitempty"`
 
 	// auto execute num in
-	AutoExecuteNumIn []float64 `json:"auto_execute_num_in,omitempty"`
+	AutoExecuteNumIn []int32 `json:"auto_execute_num_in,omitempty"`
 
 	// auto execute num lt
-	AutoExecuteNumLt *float64 `json:"auto_execute_num_lt,omitempty"`
+	AutoExecuteNumLt *int32 `json:"auto_execute_num_lt,omitempty"`
 
 	// auto execute num lte
-	AutoExecuteNumLte *float64 `json:"auto_execute_num_lte,omitempty"`
+	AutoExecuteNumLte *int32 `json:"auto_execute_num_lte,omitempty"`
 
 	// auto execute num not
-	AutoExecuteNumNot *float64 `json:"auto_execute_num_not,omitempty"`
+	AutoExecuteNumNot *int32 `json:"auto_execute_num_not,omitempty"`
 
 	// auto execute num not in
-	AutoExecuteNumNotIn []float64 `json:"auto_execute_num_not_in,omitempty"`
+	AutoExecuteNumNotIn []int32 `json:"auto_execute_num_not_in,omitempty"`
 
 	// cluster
 	Cluster interface{} `json:"cluster,omitempty"`
@@ -353,52 +354,52 @@ type SnapshotPlanWhereInput struct {
 	LogicalSizeBytesNotIn []float64 `json:"logical_size_bytes_not_in,omitempty"`
 
 	// manual delete num
-	ManualDeleteNum *float64 `json:"manual_delete_num,omitempty"`
+	ManualDeleteNum *int32 `json:"manual_delete_num,omitempty"`
 
 	// manual delete num gt
-	ManualDeleteNumGt *float64 `json:"manual_delete_num_gt,omitempty"`
+	ManualDeleteNumGt *int32 `json:"manual_delete_num_gt,omitempty"`
 
 	// manual delete num gte
-	ManualDeleteNumGte *float64 `json:"manual_delete_num_gte,omitempty"`
+	ManualDeleteNumGte *int32 `json:"manual_delete_num_gte,omitempty"`
 
 	// manual delete num in
-	ManualDeleteNumIn []float64 `json:"manual_delete_num_in,omitempty"`
+	ManualDeleteNumIn []int32 `json:"manual_delete_num_in,omitempty"`
 
 	// manual delete num lt
-	ManualDeleteNumLt *float64 `json:"manual_delete_num_lt,omitempty"`
+	ManualDeleteNumLt *int32 `json:"manual_delete_num_lt,omitempty"`
 
 	// manual delete num lte
-	ManualDeleteNumLte *float64 `json:"manual_delete_num_lte,omitempty"`
+	ManualDeleteNumLte *int32 `json:"manual_delete_num_lte,omitempty"`
 
 	// manual delete num not
-	ManualDeleteNumNot *float64 `json:"manual_delete_num_not,omitempty"`
+	ManualDeleteNumNot *int32 `json:"manual_delete_num_not,omitempty"`
 
 	// manual delete num not in
-	ManualDeleteNumNotIn []float64 `json:"manual_delete_num_not_in,omitempty"`
+	ManualDeleteNumNotIn []int32 `json:"manual_delete_num_not_in,omitempty"`
 
 	// manual execute num
-	ManualExecuteNum *float64 `json:"manual_execute_num,omitempty"`
+	ManualExecuteNum *int32 `json:"manual_execute_num,omitempty"`
 
 	// manual execute num gt
-	ManualExecuteNumGt *float64 `json:"manual_execute_num_gt,omitempty"`
+	ManualExecuteNumGt *int32 `json:"manual_execute_num_gt,omitempty"`
 
 	// manual execute num gte
-	ManualExecuteNumGte *float64 `json:"manual_execute_num_gte,omitempty"`
+	ManualExecuteNumGte *int32 `json:"manual_execute_num_gte,omitempty"`
 
 	// manual execute num in
-	ManualExecuteNumIn []float64 `json:"manual_execute_num_in,omitempty"`
+	ManualExecuteNumIn []int32 `json:"manual_execute_num_in,omitempty"`
 
 	// manual execute num lt
-	ManualExecuteNumLt *float64 `json:"manual_execute_num_lt,omitempty"`
+	ManualExecuteNumLt *int32 `json:"manual_execute_num_lt,omitempty"`
 
 	// manual execute num lte
-	ManualExecuteNumLte *float64 `json:"manual_execute_num_lte,omitempty"`
+	ManualExecuteNumLte *int32 `json:"manual_execute_num_lte,omitempty"`
 
 	// manual execute num not
-	ManualExecuteNumNot *float64 `json:"manual_execute_num_not,omitempty"`
+	ManualExecuteNumNot *int32 `json:"manual_execute_num_not,omitempty"`
 
 	// manual execute num not in
-	ManualExecuteNumNotIn []float64 `json:"manual_execute_num_not_in,omitempty"`
+	ManualExecuteNumNotIn []int32 `json:"manual_execute_num_not_in,omitempty"`
 
 	// mirror
 	Mirror *bool `json:"mirror,omitempty"`
@@ -473,28 +474,28 @@ type SnapshotPlanWhereInput struct {
 	NextExecuteTimeNotIn []string `json:"next_execute_time_not_in,omitempty"`
 
 	// object num
-	ObjectNum *float64 `json:"object_num,omitempty"`
+	ObjectNum *int32 `json:"object_num,omitempty"`
 
 	// object num gt
-	ObjectNumGt *float64 `json:"object_num_gt,omitempty"`
+	ObjectNumGt *int32 `json:"object_num_gt,omitempty"`
 
 	// object num gte
-	ObjectNumGte *float64 `json:"object_num_gte,omitempty"`
+	ObjectNumGte *int32 `json:"object_num_gte,omitempty"`
 
 	// object num in
-	ObjectNumIn []float64 `json:"object_num_in,omitempty"`
+	ObjectNumIn []int32 `json:"object_num_in,omitempty"`
 
 	// object num lt
-	ObjectNumLt *float64 `json:"object_num_lt,omitempty"`
+	ObjectNumLt *int32 `json:"object_num_lt,omitempty"`
 
 	// object num lte
-	ObjectNumLte *float64 `json:"object_num_lte,omitempty"`
+	ObjectNumLte *int32 `json:"object_num_lte,omitempty"`
 
 	// object num not
-	ObjectNumNot *float64 `json:"object_num_not,omitempty"`
+	ObjectNumNot *int32 `json:"object_num_not,omitempty"`
 
 	// object num not in
-	ObjectNumNotIn []float64 `json:"object_num_not_in,omitempty"`
+	ObjectNumNotIn []int32 `json:"object_num_not_in,omitempty"`
 
 	// physical size bytes
 	PhysicalSizeBytes *float64 `json:"physical_size_bytes,omitempty"`
@@ -521,52 +522,52 @@ type SnapshotPlanWhereInput struct {
 	PhysicalSizeBytesNotIn []float64 `json:"physical_size_bytes_not_in,omitempty"`
 
 	// remain snapshot num
-	RemainSnapshotNum *float64 `json:"remain_snapshot_num,omitempty"`
+	RemainSnapshotNum *int32 `json:"remain_snapshot_num,omitempty"`
 
 	// remain snapshot num gt
-	RemainSnapshotNumGt *float64 `json:"remain_snapshot_num_gt,omitempty"`
+	RemainSnapshotNumGt *int32 `json:"remain_snapshot_num_gt,omitempty"`
 
 	// remain snapshot num gte
-	RemainSnapshotNumGte *float64 `json:"remain_snapshot_num_gte,omitempty"`
+	RemainSnapshotNumGte *int32 `json:"remain_snapshot_num_gte,omitempty"`
 
 	// remain snapshot num in
-	RemainSnapshotNumIn []float64 `json:"remain_snapshot_num_in,omitempty"`
+	RemainSnapshotNumIn []int32 `json:"remain_snapshot_num_in,omitempty"`
 
 	// remain snapshot num lt
-	RemainSnapshotNumLt *float64 `json:"remain_snapshot_num_lt,omitempty"`
+	RemainSnapshotNumLt *int32 `json:"remain_snapshot_num_lt,omitempty"`
 
 	// remain snapshot num lte
-	RemainSnapshotNumLte *float64 `json:"remain_snapshot_num_lte,omitempty"`
+	RemainSnapshotNumLte *int32 `json:"remain_snapshot_num_lte,omitempty"`
 
 	// remain snapshot num not
-	RemainSnapshotNumNot *float64 `json:"remain_snapshot_num_not,omitempty"`
+	RemainSnapshotNumNot *int32 `json:"remain_snapshot_num_not,omitempty"`
 
 	// remain snapshot num not in
-	RemainSnapshotNumNotIn []float64 `json:"remain_snapshot_num_not_in,omitempty"`
+	RemainSnapshotNumNotIn []int32 `json:"remain_snapshot_num_not_in,omitempty"`
 
 	// snapshot group num
-	SnapshotGroupNum *float64 `json:"snapshot_group_num,omitempty"`
+	SnapshotGroupNum *int32 `json:"snapshot_group_num,omitempty"`
 
 	// snapshot group num gt
-	SnapshotGroupNumGt *float64 `json:"snapshot_group_num_gt,omitempty"`
+	SnapshotGroupNumGt *int32 `json:"snapshot_group_num_gt,omitempty"`
 
 	// snapshot group num gte
-	SnapshotGroupNumGte *float64 `json:"snapshot_group_num_gte,omitempty"`
+	SnapshotGroupNumGte *int32 `json:"snapshot_group_num_gte,omitempty"`
 
 	// snapshot group num in
-	SnapshotGroupNumIn []float64 `json:"snapshot_group_num_in,omitempty"`
+	SnapshotGroupNumIn []int32 `json:"snapshot_group_num_in,omitempty"`
 
 	// snapshot group num lt
-	SnapshotGroupNumLt *float64 `json:"snapshot_group_num_lt,omitempty"`
+	SnapshotGroupNumLt *int32 `json:"snapshot_group_num_lt,omitempty"`
 
 	// snapshot group num lte
-	SnapshotGroupNumLte *float64 `json:"snapshot_group_num_lte,omitempty"`
+	SnapshotGroupNumLte *int32 `json:"snapshot_group_num_lte,omitempty"`
 
 	// snapshot group num not
-	SnapshotGroupNumNot *float64 `json:"snapshot_group_num_not,omitempty"`
+	SnapshotGroupNumNot *int32 `json:"snapshot_group_num_not,omitempty"`
 
 	// snapshot group num not in
-	SnapshotGroupNumNotIn []float64 `json:"snapshot_group_num_not_in,omitempty"`
+	SnapshotGroupNumNotIn []int32 `json:"snapshot_group_num_not_in,omitempty"`
 
 	// start time
 	StartTime *string `json:"start_time,omitempty"`

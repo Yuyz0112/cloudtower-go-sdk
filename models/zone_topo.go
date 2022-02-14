@@ -22,11 +22,11 @@ type ZoneTopo struct {
 
 	// cluster
 	// Required: true
-	Cluster *ZoneTopoCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// cluster topo
 	// Required: true
-	ClusterTopo *ZoneTopoClusterTopo `json:"cluster_topo"`
+	ClusterTopo *NestedClusterTopo `json:"cluster_topo"`
 
 	// id
 	// Required: true
@@ -37,7 +37,7 @@ type ZoneTopo struct {
 	LocalID *string `json:"local_id"`
 
 	// rack topoes
-	RackTopoes []*ZoneTopoRackTopoesItems0 `json:"rack_topoes,omitempty"`
+	RackTopoes []*NestedRackTopo `json:"rack_topoes,omitempty"`
 }
 
 // Validate validates this zone topo
@@ -227,225 +227,6 @@ func (m *ZoneTopo) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ZoneTopo) UnmarshalBinary(b []byte) error {
 	var res ZoneTopo
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ZoneTopoCluster zone topo cluster
-//
-// swagger:model ZoneTopoCluster
-type ZoneTopoCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this zone topo cluster
-func (m *ZoneTopoCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ZoneTopoCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ZoneTopoCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this zone topo cluster based on context it is used
-func (m *ZoneTopoCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ZoneTopoCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ZoneTopoCluster) UnmarshalBinary(b []byte) error {
-	var res ZoneTopoCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ZoneTopoClusterTopo zone topo cluster topo
-//
-// swagger:model ZoneTopoClusterTopo
-type ZoneTopoClusterTopo struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this zone topo cluster topo
-func (m *ZoneTopoClusterTopo) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ZoneTopoClusterTopo) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster_topo"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ZoneTopoClusterTopo) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster_topo"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this zone topo cluster topo based on context it is used
-func (m *ZoneTopoClusterTopo) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ZoneTopoClusterTopo) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ZoneTopoClusterTopo) UnmarshalBinary(b []byte) error {
-	var res ZoneTopoClusterTopo
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ZoneTopoRackTopoesItems0 zone topo rack topoes items0
-//
-// swagger:model ZoneTopoRackTopoesItems0
-type ZoneTopoRackTopoesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this zone topo rack topoes items0
-func (m *ZoneTopoRackTopoesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ZoneTopoRackTopoesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ZoneTopoRackTopoesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this zone topo rack topoes items0 based on context it is used
-func (m *ZoneTopoRackTopoesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ZoneTopoRackTopoesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ZoneTopoRackTopoesItems0) UnmarshalBinary(b []byte) error {
-	var res ZoneTopoRackTopoesItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

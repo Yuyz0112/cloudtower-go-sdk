@@ -65,7 +65,7 @@ type IscsiLun struct {
 	BpsWrMaxLength *float64 `json:"bps_wr_max_length"`
 
 	// consistency group
-	ConsistencyGroup *IscsiLunConsistencyGroup `json:"consistency_group,omitempty"`
+	ConsistencyGroup interface{} `json:"consistency_group,omitempty"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
@@ -116,10 +116,10 @@ type IscsiLun struct {
 
 	// iscsi target
 	// Required: true
-	IscsiTarget *IscsiLunIscsiTarget `json:"iscsi_target"`
+	IscsiTarget *NestedIscsiTarget `json:"iscsi_target"`
 
 	// labels
-	Labels []*IscsiLunLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local created at
 	// Required: true
@@ -131,7 +131,7 @@ type IscsiLun struct {
 
 	// lun id
 	// Required: true
-	LunID *float64 `json:"lun_id"`
+	LunID *int32 `json:"lun_id"`
 
 	// name
 	// Required: true
@@ -139,7 +139,7 @@ type IscsiLun struct {
 
 	// replica num
 	// Required: true
-	ReplicaNum *float64 `json:"replica_num"`
+	ReplicaNum *int32 `json:"replica_num"`
 
 	// shared size
 	// Required: true
@@ -147,11 +147,11 @@ type IscsiLun struct {
 
 	// snapshot num
 	// Required: true
-	SnapshotNum *float64 `json:"snapshot_num"`
+	SnapshotNum *int32 `json:"snapshot_num"`
 
 	// stripe num
 	// Required: true
-	StripeNum *float64 `json:"stripe_num"`
+	StripeNum *int32 `json:"stripe_num"`
 
 	// stripe size
 	// Required: true
@@ -215,10 +215,6 @@ func (m *IscsiLun) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateBpsWrMaxLength(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateConsistencyGroup(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -422,23 +418,6 @@ func (m *IscsiLun) validateBpsWrMaxLength(formats strfmt.Registry) error {
 
 	if err := validate.Required("bps_wr_max_length", "body", m.BpsWrMaxLength); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiLun) validateConsistencyGroup(formats strfmt.Registry) error {
-	if swag.IsZero(m.ConsistencyGroup) { // not required
-		return nil
-	}
-
-	if m.ConsistencyGroup != nil {
-		if err := m.ConsistencyGroup.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("consistency_group")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -697,10 +676,6 @@ func (m *IscsiLun) validateZbsVolumeID(formats strfmt.Registry) error {
 func (m *IscsiLun) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateConsistencyGroup(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateIscsiTarget(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -712,20 +687,6 @@ func (m *IscsiLun) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *IscsiLun) contextValidateConsistencyGroup(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.ConsistencyGroup != nil {
-		if err := m.ConsistencyGroup.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("consistency_group")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -772,208 +733,6 @@ func (m *IscsiLun) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *IscsiLun) UnmarshalBinary(b []byte) error {
 	var res IscsiLun
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiLunConsistencyGroup iscsi lun consistency group
-//
-// swagger:model IscsiLunConsistencyGroup
-type IscsiLunConsistencyGroup struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi lun consistency group
-func (m *IscsiLunConsistencyGroup) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiLunConsistencyGroup) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistency_group"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiLunConsistencyGroup) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistency_group"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi lun consistency group based on context it is used
-func (m *IscsiLunConsistencyGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiLunConsistencyGroup) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiLunConsistencyGroup) UnmarshalBinary(b []byte) error {
-	var res IscsiLunConsistencyGroup
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiLunIscsiTarget iscsi lun iscsi target
-//
-// swagger:model IscsiLunIscsiTarget
-type IscsiLunIscsiTarget struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi lun iscsi target
-func (m *IscsiLunIscsiTarget) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiLunIscsiTarget) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("iscsi_target"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiLunIscsiTarget) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("iscsi_target"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi lun iscsi target based on context it is used
-func (m *IscsiLunIscsiTarget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiLunIscsiTarget) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiLunIscsiTarget) UnmarshalBinary(b []byte) error {
-	var res IscsiLunIscsiTarget
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiLunLabelsItems0 iscsi lun labels items0
-//
-// swagger:model IscsiLunLabelsItems0
-type IscsiLunLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this iscsi lun labels items0
-func (m *IscsiLunLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiLunLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi lun labels items0 based on context it is used
-func (m *IscsiLunLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiLunLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiLunLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res IscsiLunLabelsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

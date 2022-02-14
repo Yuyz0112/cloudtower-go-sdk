@@ -21,23 +21,23 @@ import (
 type Datacenter struct {
 
 	// cluster num
-	ClusterNum *float64 `json:"cluster_num,omitempty"`
+	ClusterNum *int32 `json:"cluster_num,omitempty"`
 
 	// clusters
-	Clusters []*DatacenterClustersItems0 `json:"clusters,omitempty"`
+	Clusters []*NestedCluster `json:"clusters,omitempty"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
 
 	// host num
-	HostNum *float64 `json:"host_num,omitempty"`
+	HostNum *int32 `json:"host_num,omitempty"`
 
 	// id
 	// Required: true
 	ID *string `json:"id"`
 
 	// labels
-	Labels []*DatacenterLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// name
 	// Required: true
@@ -45,7 +45,7 @@ type Datacenter struct {
 
 	// organization
 	// Required: true
-	Organization *DatacenterOrganization `json:"organization"`
+	Organization *NestedOrganization `json:"organization"`
 
 	// total cpu hz
 	TotalCPUHz *float64 `json:"total_cpu_hz,omitempty"`
@@ -66,7 +66,7 @@ type Datacenter struct {
 	UsedMemoryBytes *float64 `json:"used_memory_bytes,omitempty"`
 
 	// vm num
-	VMNum *float64 `json:"vm_num,omitempty"`
+	VMNum *int32 `json:"vm_num,omitempty"`
 }
 
 // Validate validates this datacenter
@@ -266,208 +266,6 @@ func (m *Datacenter) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Datacenter) UnmarshalBinary(b []byte) error {
 	var res Datacenter
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DatacenterClustersItems0 datacenter clusters items0
-//
-// swagger:model DatacenterClustersItems0
-type DatacenterClustersItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this datacenter clusters items0
-func (m *DatacenterClustersItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DatacenterClustersItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DatacenterClustersItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this datacenter clusters items0 based on context it is used
-func (m *DatacenterClustersItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DatacenterClustersItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DatacenterClustersItems0) UnmarshalBinary(b []byte) error {
-	var res DatacenterClustersItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DatacenterLabelsItems0 datacenter labels items0
-//
-// swagger:model DatacenterLabelsItems0
-type DatacenterLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this datacenter labels items0
-func (m *DatacenterLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DatacenterLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this datacenter labels items0 based on context it is used
-func (m *DatacenterLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DatacenterLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DatacenterLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res DatacenterLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DatacenterOrganization datacenter organization
-//
-// swagger:model DatacenterOrganization
-type DatacenterOrganization struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this datacenter organization
-func (m *DatacenterOrganization) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DatacenterOrganization) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("organization"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DatacenterOrganization) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("organization"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this datacenter organization based on context it is used
-func (m *DatacenterOrganization) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DatacenterOrganization) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DatacenterOrganization) UnmarshalBinary(b []byte) error {
-	var res DatacenterOrganization
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -21,7 +21,7 @@ type UserConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *UserConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateUser `json:"aggregate"`
 }
 
 // Validate validates this user connection
@@ -95,62 +95,6 @@ func (m *UserConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *UserConnection) UnmarshalBinary(b []byte) error {
 	var res UserConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// UserConnectionAggregate user connection aggregate
-//
-// swagger:model UserConnectionAggregate
-type UserConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this user connection aggregate
-func (m *UserConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UserConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this user connection aggregate based on context it is used
-func (m *UserConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *UserConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *UserConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res UserConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

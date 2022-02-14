@@ -21,7 +21,7 @@ type SnapshotGroupConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *SnapshotGroupConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateSnapshotGroup `json:"aggregate"`
 }
 
 // Validate validates this snapshot group connection
@@ -95,62 +95,6 @@ func (m *SnapshotGroupConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SnapshotGroupConnection) UnmarshalBinary(b []byte) error {
 	var res SnapshotGroupConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SnapshotGroupConnectionAggregate snapshot group connection aggregate
-//
-// swagger:model SnapshotGroupConnectionAggregate
-type SnapshotGroupConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this snapshot group connection aggregate
-func (m *SnapshotGroupConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SnapshotGroupConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this snapshot group connection aggregate based on context it is used
-func (m *SnapshotGroupConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SnapshotGroupConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SnapshotGroupConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res SnapshotGroupConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

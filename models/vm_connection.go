@@ -21,7 +21,7 @@ type VMConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *VMConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateVM `json:"aggregate"`
 }
 
 // Validate validates this Vm connection
@@ -95,62 +95,6 @@ func (m *VMConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMConnection) UnmarshalBinary(b []byte) error {
 	var res VMConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMConnectionAggregate VM connection aggregate
-//
-// swagger:model VMConnectionAggregate
-type VMConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this VM connection aggregate
-func (m *VMConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM connection aggregate based on context it is used
-func (m *VMConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res VMConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

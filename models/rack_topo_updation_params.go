@@ -158,7 +158,7 @@ type RackTopoUpdationParamsData struct {
 	ClusterID string `json:"cluster_id,omitempty"`
 
 	// height
-	Height float64 `json:"height,omitempty"`
+	Height int32 `json:"height,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`

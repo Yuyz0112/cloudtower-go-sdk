@@ -154,6 +154,9 @@ type UserUpdationParamsData struct {
 	// email address
 	EmailAddress string `json:"email_address,omitempty"`
 
+	// internal
+	Internal bool `json:"internal,omitempty"`
+
 	// mobile phone
 	MobilePhone string `json:"mobile_phone,omitempty"`
 

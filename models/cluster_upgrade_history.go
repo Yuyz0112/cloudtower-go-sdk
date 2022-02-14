@@ -21,7 +21,7 @@ type ClusterUpgradeHistory struct {
 
 	// cluster
 	// Required: true
-	Cluster *ClusterUpgradeHistoryCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// date
 	// Required: true
@@ -214,79 +214,6 @@ func (m *ClusterUpgradeHistory) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ClusterUpgradeHistory) UnmarshalBinary(b []byte) error {
 	var res ClusterUpgradeHistory
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ClusterUpgradeHistoryCluster cluster upgrade history cluster
-//
-// swagger:model ClusterUpgradeHistoryCluster
-type ClusterUpgradeHistoryCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this cluster upgrade history cluster
-func (m *ClusterUpgradeHistoryCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ClusterUpgradeHistoryCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ClusterUpgradeHistoryCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this cluster upgrade history cluster based on context it is used
-func (m *ClusterUpgradeHistoryCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ClusterUpgradeHistoryCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ClusterUpgradeHistoryCluster) UnmarshalBinary(b []byte) error {
-	var res ClusterUpgradeHistoryCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

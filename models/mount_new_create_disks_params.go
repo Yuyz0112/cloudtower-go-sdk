@@ -7,7 +7,6 @@ package models
 
 import (
 	"context"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -18,75 +17,21 @@ import (
 // MountNewCreateDisksParams mount new create disks params
 //
 // swagger:model MountNewCreateDisksParams
-type MountNewCreateDisksParams []*MountNewCreateDisksParamsItems0
-
-// Validate validates this mount new create disks params
-func (m MountNewCreateDisksParams) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	for i := 0; i < len(m); i++ {
-		if swag.IsZero(m[i]) { // not required
-			continue
-		}
-
-		if m[i] != nil {
-			if err := m[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName(strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-// ContextValidate validate this mount new create disks params based on the context it is used
-func (m MountNewCreateDisksParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	for i := 0; i < len(m); i++ {
-
-		if m[i] != nil {
-			if err := m[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName(strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-// MountNewCreateDisksParamsItems0 mount new create disks params items0
-//
-// swagger:model MountNewCreateDisksParamsItems0
-type MountNewCreateDisksParamsItems0 struct {
+type MountNewCreateDisksParams struct {
 
 	// boot
 	// Required: true
-	Boot *float64 `json:"boot"`
+	Boot *int32 `json:"boot"`
 
 	// bus
 	// Required: true
 	Bus *Bus `json:"bus"`
 
 	// index
-	Index float64 `json:"index,omitempty"`
+	Index int32 `json:"index,omitempty"`
 
 	// key
-	Key float64 `json:"key,omitempty"`
+	Key int32 `json:"key,omitempty"`
 
 	// max bandwidth
 	MaxBandwidth float64 `json:"max_bandwidth,omitempty"`
@@ -95,18 +40,18 @@ type MountNewCreateDisksParamsItems0 struct {
 	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
-	MaxIops float64 `json:"max_iops,omitempty"`
+	MaxIops int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
 
 	// vm volume
 	// Required: true
-	VMVolume *MountNewCreateDisksParamsItems0VMVolume `json:"vm_volume"`
+	VMVolume *MountNewCreateDisksParamsVMVolume `json:"vm_volume"`
 }
 
-// Validate validates this mount new create disks params items0
-func (m *MountNewCreateDisksParamsItems0) Validate(formats strfmt.Registry) error {
+// Validate validates this mount new create disks params
+func (m *MountNewCreateDisksParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBoot(formats); err != nil {
@@ -135,7 +80,7 @@ func (m *MountNewCreateDisksParamsItems0) Validate(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) validateBoot(formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) validateBoot(formats strfmt.Registry) error {
 
 	if err := validate.Required("boot", "body", m.Boot); err != nil {
 		return err
@@ -144,7 +89,7 @@ func (m *MountNewCreateDisksParamsItems0) validateBoot(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) validateBus(formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) validateBus(formats strfmt.Registry) error {
 
 	if err := validate.Required("bus", "body", m.Bus); err != nil {
 		return err
@@ -166,7 +111,7 @@ func (m *MountNewCreateDisksParamsItems0) validateBus(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
 		return nil
 	}
@@ -181,7 +126,7 @@ func (m *MountNewCreateDisksParamsItems0) validateMaxBandwidthPolicy(formats str
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) validateMaxIopsPolicy(formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) validateMaxIopsPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxIopsPolicy) { // not required
 		return nil
 	}
@@ -196,7 +141,7 @@ func (m *MountNewCreateDisksParamsItems0) validateMaxIopsPolicy(formats strfmt.R
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) validateVMVolume(formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) validateVMVolume(formats strfmt.Registry) error {
 
 	if err := validate.Required("vm_volume", "body", m.VMVolume); err != nil {
 		return err
@@ -214,8 +159,8 @@ func (m *MountNewCreateDisksParamsItems0) validateVMVolume(formats strfmt.Regist
 	return nil
 }
 
-// ContextValidate validate this mount new create disks params items0 based on the context it is used
-func (m *MountNewCreateDisksParamsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this mount new create disks params based on the context it is used
+func (m *MountNewCreateDisksParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateBus(ctx, formats); err != nil {
@@ -240,7 +185,7 @@ func (m *MountNewCreateDisksParamsItems0) ContextValidate(ctx context.Context, f
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) contextValidateBus(ctx context.Context, formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) contextValidateBus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Bus != nil {
 		if err := m.Bus.ContextValidate(ctx, formats); err != nil {
@@ -254,7 +199,7 @@ func (m *MountNewCreateDisksParamsItems0) contextValidateBus(ctx context.Context
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -266,7 +211,7 @@ func (m *MountNewCreateDisksParamsItems0) contextValidateMaxBandwidthPolicy(ctx 
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -278,7 +223,7 @@ func (m *MountNewCreateDisksParamsItems0) contextValidateMaxIopsPolicy(ctx conte
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0) contextValidateVMVolume(ctx context.Context, formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParams) contextValidateVMVolume(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.VMVolume != nil {
 		if err := m.VMVolume.ContextValidate(ctx, formats); err != nil {
@@ -293,7 +238,7 @@ func (m *MountNewCreateDisksParamsItems0) contextValidateVMVolume(ctx context.Co
 }
 
 // MarshalBinary interface implementation
-func (m *MountNewCreateDisksParamsItems0) MarshalBinary() ([]byte, error) {
+func (m *MountNewCreateDisksParams) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -301,8 +246,8 @@ func (m *MountNewCreateDisksParamsItems0) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *MountNewCreateDisksParamsItems0) UnmarshalBinary(b []byte) error {
-	var res MountNewCreateDisksParamsItems0
+func (m *MountNewCreateDisksParams) UnmarshalBinary(b []byte) error {
+	var res MountNewCreateDisksParams
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
@@ -310,10 +255,10 @@ func (m *MountNewCreateDisksParamsItems0) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-// MountNewCreateDisksParamsItems0VMVolume mount new create disks params items0 VM volume
+// MountNewCreateDisksParamsVMVolume mount new create disks params VM volume
 //
-// swagger:model MountNewCreateDisksParamsItems0VMVolume
-type MountNewCreateDisksParamsItems0VMVolume struct {
+// swagger:model MountNewCreateDisksParamsVMVolume
+type MountNewCreateDisksParamsVMVolume struct {
 
 	// elf storage policy
 	// Required: true
@@ -331,8 +276,8 @@ type MountNewCreateDisksParamsItems0VMVolume struct {
 	Size *float64 `json:"size"`
 }
 
-// Validate validates this mount new create disks params items0 VM volume
-func (m *MountNewCreateDisksParamsItems0VMVolume) Validate(formats strfmt.Registry) error {
+// Validate validates this mount new create disks params VM volume
+func (m *MountNewCreateDisksParamsVMVolume) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateElfStoragePolicy(formats); err != nil {
@@ -353,7 +298,7 @@ func (m *MountNewCreateDisksParamsItems0VMVolume) Validate(formats strfmt.Regist
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0VMVolume) validateElfStoragePolicy(formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParamsVMVolume) validateElfStoragePolicy(formats strfmt.Registry) error {
 
 	if err := validate.Required("vm_volume"+"."+"elf_storage_policy", "body", m.ElfStoragePolicy); err != nil {
 		return err
@@ -375,7 +320,7 @@ func (m *MountNewCreateDisksParamsItems0VMVolume) validateElfStoragePolicy(forma
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0VMVolume) validateName(formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParamsVMVolume) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("vm_volume"+"."+"name", "body", m.Name); err != nil {
 		return err
@@ -384,7 +329,7 @@ func (m *MountNewCreateDisksParamsItems0VMVolume) validateName(formats strfmt.Re
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0VMVolume) validateSize(formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParamsVMVolume) validateSize(formats strfmt.Registry) error {
 
 	if err := validate.Required("vm_volume"+"."+"size", "body", m.Size); err != nil {
 		return err
@@ -393,8 +338,8 @@ func (m *MountNewCreateDisksParamsItems0VMVolume) validateSize(formats strfmt.Re
 	return nil
 }
 
-// ContextValidate validate this mount new create disks params items0 VM volume based on the context it is used
-func (m *MountNewCreateDisksParamsItems0VMVolume) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this mount new create disks params VM volume based on the context it is used
+func (m *MountNewCreateDisksParamsVMVolume) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateElfStoragePolicy(ctx, formats); err != nil {
@@ -407,7 +352,7 @@ func (m *MountNewCreateDisksParamsItems0VMVolume) ContextValidate(ctx context.Co
 	return nil
 }
 
-func (m *MountNewCreateDisksParamsItems0VMVolume) contextValidateElfStoragePolicy(ctx context.Context, formats strfmt.Registry) error {
+func (m *MountNewCreateDisksParamsVMVolume) contextValidateElfStoragePolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ElfStoragePolicy != nil {
 		if err := m.ElfStoragePolicy.ContextValidate(ctx, formats); err != nil {
@@ -422,7 +367,7 @@ func (m *MountNewCreateDisksParamsItems0VMVolume) contextValidateElfStoragePolic
 }
 
 // MarshalBinary interface implementation
-func (m *MountNewCreateDisksParamsItems0VMVolume) MarshalBinary() ([]byte, error) {
+func (m *MountNewCreateDisksParamsVMVolume) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -430,8 +375,8 @@ func (m *MountNewCreateDisksParamsItems0VMVolume) MarshalBinary() ([]byte, error
 }
 
 // UnmarshalBinary interface implementation
-func (m *MountNewCreateDisksParamsItems0VMVolume) UnmarshalBinary(b []byte) error {
-	var res MountNewCreateDisksParamsItems0VMVolume
+func (m *MountNewCreateDisksParamsVMVolume) UnmarshalBinary(b []byte) error {
+	var res MountNewCreateDisksParamsVMVolume
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

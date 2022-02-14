@@ -21,7 +21,7 @@ type ClusterSettingsConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ClusterSettingsConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateClusterSettings `json:"aggregate"`
 }
 
 // Validate validates this cluster settings connection
@@ -95,62 +95,6 @@ func (m *ClusterSettingsConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ClusterSettingsConnection) UnmarshalBinary(b []byte) error {
 	var res ClusterSettingsConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ClusterSettingsConnectionAggregate cluster settings connection aggregate
-//
-// swagger:model ClusterSettingsConnectionAggregate
-type ClusterSettingsConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this cluster settings connection aggregate
-func (m *ClusterSettingsConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ClusterSettingsConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this cluster settings connection aggregate based on context it is used
-func (m *ClusterSettingsConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ClusterSettingsConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ClusterSettingsConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ClusterSettingsConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

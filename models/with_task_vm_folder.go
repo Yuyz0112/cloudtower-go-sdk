@@ -21,7 +21,7 @@ type WithTaskVMFolder struct {
 
 	// data
 	// Required: true
-	Data *VMFolder2 `json:"data"`
+	Data *VMFolder `json:"data"`
 
 	// task id
 	TaskID *string `json:"task_id,omitempty"`

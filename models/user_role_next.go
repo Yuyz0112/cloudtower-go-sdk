@@ -40,7 +40,7 @@ type UserRoleNext struct {
 	Preset interface{} `json:"preset,omitempty"`
 
 	// users
-	Users []*UserRoleNextUsersItems0 `json:"users,omitempty"`
+	Users []*NestedUser `json:"users,omitempty"`
 }
 
 // Validate validates this user role next
@@ -207,79 +207,6 @@ func (m *UserRoleNext) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *UserRoleNext) UnmarshalBinary(b []byte) error {
 	var res UserRoleNext
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// UserRoleNextUsersItems0 user role next users items0
-//
-// swagger:model UserRoleNextUsersItems0
-type UserRoleNextUsersItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this user role next users items0
-func (m *UserRoleNextUsersItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UserRoleNextUsersItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserRoleNextUsersItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this user role next users items0 based on context it is used
-func (m *UserRoleNextUsersItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *UserRoleNextUsersItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *UserRoleNextUsersItems0) UnmarshalBinary(b []byte) error {
-	var res UserRoleNextUsersItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

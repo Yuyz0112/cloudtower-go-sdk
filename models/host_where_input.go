@@ -15,6 +15,7 @@ import (
 )
 
 // HostWhereInput host where input
+// Example: {"AND":"HostWhereInput[]","NOT":"HostWhereInput[]","OR":"HostWhereInput[]","access_ip":"string","access_ip_contains":"string","access_ip_ends_with":"string","access_ip_gt":"string","access_ip_gte":"string","access_ip_in":["string"],"access_ip_lt":"string","access_ip_lte":"string","access_ip_not":"string","access_ip_not_contains":"string","access_ip_not_ends_with":"string","access_ip_not_in":["string"],"access_ip_not_starts_with":"string","access_ip_starts_with":"string","allocatable_memory_bytes":0,"allocatable_memory_bytes_gt":0,"allocatable_memory_bytes_gte":0,"allocatable_memory_bytes_in":[0],"allocatable_memory_bytes_lt":0,"allocatable_memory_bytes_lte":0,"allocatable_memory_bytes_not":0,"allocatable_memory_bytes_not_in":[0],"chunk_id":"string","chunk_id_contains":"string","chunk_id_ends_with":"string","chunk_id_gt":"string","chunk_id_gte":"string","chunk_id_in":["string"],"chunk_id_lt":"string","chunk_id_lte":"string","chunk_id_not":"string","chunk_id_not_contains":"string","chunk_id_not_ends_with":"string","chunk_id_not_in":["string"],"chunk_id_not_starts_with":"string","chunk_id_starts_with":"string","cluster":"ClusterWhereInput","cpu_brand":"string","cpu_brand_contains":"string","cpu_brand_ends_with":"string","cpu_brand_gt":"string","cpu_brand_gte":"string","cpu_brand_in":["string"],"cpu_brand_lt":"string","cpu_brand_lte":"string","cpu_brand_not":"string","cpu_brand_not_contains":"string","cpu_brand_not_ends_with":"string","cpu_brand_not_in":["string"],"cpu_brand_not_starts_with":"string","cpu_brand_starts_with":"string","cpu_fan_speed_unit":"PERCENT","cpu_fan_speed_unit_in":["PERCENT"],"cpu_fan_speed_unit_not":"PERCENT","cpu_fan_speed_unit_not_in":["PERCENT"],"cpu_hz_per_core":0,"cpu_hz_per_core_gt":0,"cpu_hz_per_core_gte":0,"cpu_hz_per_core_in":[0],"cpu_hz_per_core_lt":0,"cpu_hz_per_core_lte":0,"cpu_hz_per_core_not":0,"cpu_hz_per_core_not_in":[0],"cpu_model":"string","cpu_model_contains":"string","cpu_model_ends_with":"string","cpu_model_gt":"string","cpu_model_gte":"string","cpu_model_in":["string"],"cpu_model_lt":"string","cpu_model_lte":"string","cpu_model_not":"string","cpu_model_not_contains":"string","cpu_model_not_ends_with":"string","cpu_model_not_in":["string"],"cpu_model_not_starts_with":"string","cpu_model_starts_with":"string","data_ip":"string","data_ip_contains":"string","data_ip_ends_with":"string","data_ip_gt":"string","data_ip_gte":"string","data_ip_in":["string"],"data_ip_lt":"string","data_ip_lte":"string","data_ip_not":"string","data_ip_not_contains":"string","data_ip_not_ends_with":"string","data_ip_not_in":["string"],"data_ip_not_starts_with":"string","data_ip_starts_with":"string","disks_every":"DiskWhereInput","disks_none":"DiskWhereInput","disks_some":"DiskWhereInput","failure_data_space":0,"failure_data_space_gt":0,"failure_data_space_gte":0,"failure_data_space_in":[0],"failure_data_space_lt":0,"failure_data_space_lte":0,"failure_data_space_not":0,"failure_data_space_not_in":[0],"hdd_data_capacity":0,"hdd_data_capacity_gt":0,"hdd_data_capacity_gte":0,"hdd_data_capacity_in":[0],"hdd_data_capacity_lt":0,"hdd_data_capacity_lte":0,"hdd_data_capacity_not":0,"hdd_data_capacity_not_in":[0],"hdd_disk_count":0,"hdd_disk_count_gt":0,"hdd_disk_count_gte":0,"hdd_disk_count_in":[0],"hdd_disk_count_lt":0,"hdd_disk_count_lte":0,"hdd_disk_count_not":0,"hdd_disk_count_not_in":[0],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","ipmi":"IpmiWhereInput","is_os_in_raid1":false,"is_os_in_raid1_not":false,"labels_every":"LabelWhereInput","labels_none":"LabelWhereInput","labels_some":"LabelWhereInput","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","lsm_cap_disk_safe_umount":false,"lsm_cap_disk_safe_umount_not":false,"management_ip":"string","management_ip_contains":"string","management_ip_ends_with":"string","management_ip_gt":"string","management_ip_gte":"string","management_ip_in":["string"],"management_ip_lt":"string","management_ip_lte":"string","management_ip_not":"string","management_ip_not_contains":"string","management_ip_not_ends_with":"string","management_ip_not_in":["string"],"management_ip_not_starts_with":"string","management_ip_starts_with":"string","model":"string","model_contains":"string","model_ends_with":"string","model_gt":"string","model_gte":"string","model_in":["string"],"model_lt":"string","model_lte":"string","model_not":"string","model_not_contains":"string","model_not_ends_with":"string","model_not_in":["string"],"model_not_starts_with":"string","model_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","nested_virtualization":false,"nested_virtualization_not":false,"nic_count":0,"nic_count_gt":0,"nic_count_gte":0,"nic_count_in":[0],"nic_count_lt":0,"nic_count_lte":0,"nic_count_not":0,"nic_count_not_in":[0],"nics_every":"NicWhereInput","nics_none":"NicWhereInput","nics_some":"NicWhereInput","node_topo_local_id":"string","node_topo_local_id_contains":"string","node_topo_local_id_ends_with":"string","node_topo_local_id_gt":"string","node_topo_local_id_gte":"string","node_topo_local_id_in":["string"],"node_topo_local_id_lt":"string","node_topo_local_id_lte":"string","node_topo_local_id_not":"string","node_topo_local_id_not_contains":"string","node_topo_local_id_not_ends_with":"string","node_topo_local_id_not_in":["string"],"node_topo_local_id_not_starts_with":"string","node_topo_local_id_starts_with":"string","os_memory_bytes":0,"os_memory_bytes_gt":0,"os_memory_bytes_gte":0,"os_memory_bytes_in":[0],"os_memory_bytes_lt":0,"os_memory_bytes_lte":0,"os_memory_bytes_not":0,"os_memory_bytes_not_in":[0],"os_version":"string","os_version_contains":"string","os_version_ends_with":"string","os_version_gt":"string","os_version_gte":"string","os_version_in":["string"],"os_version_lt":"string","os_version_lte":"string","os_version_not":"string","os_version_not_contains":"string","os_version_not_ends_with":"string","os_version_not_in":["string"],"os_version_not_starts_with":"string","os_version_starts_with":"string","pmem_dimm_capacity":0,"pmem_dimm_capacity_gt":0,"pmem_dimm_capacity_gte":0,"pmem_dimm_capacity_in":[0],"pmem_dimm_capacity_lt":0,"pmem_dimm_capacity_lte":0,"pmem_dimm_capacity_not":0,"pmem_dimm_capacity_not_in":[0],"pmem_dimm_count":0,"pmem_dimm_count_gt":0,"pmem_dimm_count_gte":0,"pmem_dimm_count_in":[0],"pmem_dimm_count_lt":0,"pmem_dimm_count_lte":0,"pmem_dimm_count_not":0,"pmem_dimm_count_not_in":[0],"pmem_dimms_every":"PmemDimmWhereInput","pmem_dimms_none":"PmemDimmWhereInput","pmem_dimms_some":"PmemDimmWhereInput","pmem_disk_count":0,"pmem_disk_count_gt":0,"pmem_disk_count_gte":0,"pmem_disk_count_in":[0],"pmem_disk_count_lt":0,"pmem_disk_count_lte":0,"pmem_disk_count_not":0,"pmem_disk_count_not_in":[0],"provisioned_cpu_cores":0,"provisioned_cpu_cores_gt":0,"provisioned_cpu_cores_gte":0,"provisioned_cpu_cores_in":[0],"provisioned_cpu_cores_lt":0,"provisioned_cpu_cores_lte":0,"provisioned_cpu_cores_not":0,"provisioned_cpu_cores_not_in":[0],"provisioned_memory_bytes":0,"provisioned_memory_bytes_gt":0,"provisioned_memory_bytes_gte":0,"provisioned_memory_bytes_in":[0],"provisioned_memory_bytes_lt":0,"provisioned_memory_bytes_lte":0,"provisioned_memory_bytes_not":0,"provisioned_memory_bytes_not_in":[0],"running_pause_vm_memory_bytes":0,"running_pause_vm_memory_bytes_gt":0,"running_pause_vm_memory_bytes_gte":0,"running_pause_vm_memory_bytes_in":[0],"running_pause_vm_memory_bytes_lt":0,"running_pause_vm_memory_bytes_lte":0,"running_pause_vm_memory_bytes_not":0,"running_pause_vm_memory_bytes_not_in":[0],"running_vm_num":0,"running_vm_num_gt":0,"running_vm_num_gte":0,"running_vm_num_in":[0],"running_vm_num_lt":0,"running_vm_num_lte":0,"running_vm_num_not":0,"running_vm_num_not_in":[0],"scvm_cpu":0,"scvm_cpu_gt":0,"scvm_cpu_gte":0,"scvm_cpu_in":[0],"scvm_cpu_lt":0,"scvm_cpu_lte":0,"scvm_cpu_not":0,"scvm_cpu_not_in":[0],"scvm_memory":0,"scvm_memory_gt":0,"scvm_memory_gte":0,"scvm_memory_in":[0],"scvm_memory_lt":0,"scvm_memory_lte":0,"scvm_memory_not":0,"scvm_memory_not_in":[0],"scvm_name":"string","scvm_name_contains":"string","scvm_name_ends_with":"string","scvm_name_gt":"string","scvm_name_gte":"string","scvm_name_in":["string"],"scvm_name_lt":"string","scvm_name_lte":"string","scvm_name_not":"string","scvm_name_not_contains":"string","scvm_name_not_ends_with":"string","scvm_name_not_in":["string"],"scvm_name_not_starts_with":"string","scvm_name_starts_with":"string","serial":"string","serial_contains":"string","serial_ends_with":"string","serial_gt":"string","serial_gte":"string","serial_in":["string"],"serial_lt":"string","serial_lte":"string","serial_not":"string","serial_not_contains":"string","serial_not_ends_with":"string","serial_not_in":["string"],"serial_not_starts_with":"string","serial_starts_with":"string","ssd_data_capacity":0,"ssd_data_capacity_gt":0,"ssd_data_capacity_gte":0,"ssd_data_capacity_in":[0],"ssd_data_capacity_lt":0,"ssd_data_capacity_lte":0,"ssd_data_capacity_not":0,"ssd_data_capacity_not_in":[0],"ssd_disk_count":0,"ssd_disk_count_gt":0,"ssd_disk_count_gte":0,"ssd_disk_count_in":[0],"ssd_disk_count_lt":0,"ssd_disk_count_lte":0,"ssd_disk_count_not":0,"ssd_disk_count_not_in":[0],"state":"IDLE","state_in":["IDLE"],"state_not":"IDLE","state_not_in":["IDLE"],"status":"CONNECTED_ERROR","status_in":["CONNECTED_ERROR"],"status_not":"CONNECTED_ERROR","status_not_in":["CONNECTED_ERROR"],"stopped_vm_num":0,"stopped_vm_num_gt":0,"stopped_vm_num_gte":0,"stopped_vm_num_in":[0],"stopped_vm_num_lt":0,"stopped_vm_num_lte":0,"stopped_vm_num_not":0,"stopped_vm_num_not_in":[0],"suspended_vm_num":0,"suspended_vm_num_gt":0,"suspended_vm_num_gte":0,"suspended_vm_num_in":[0],"suspended_vm_num_lt":0,"suspended_vm_num_lte":0,"suspended_vm_num_not":0,"suspended_vm_num_not_in":[0],"total_cache_capacity":0,"total_cache_capacity_gt":0,"total_cache_capacity_gte":0,"total_cache_capacity_in":[0],"total_cache_capacity_lt":0,"total_cache_capacity_lte":0,"total_cache_capacity_not":0,"total_cache_capacity_not_in":[0],"total_cpu_cores":0,"total_cpu_cores_gt":0,"total_cpu_cores_gte":0,"total_cpu_cores_in":[0],"total_cpu_cores_lt":0,"total_cpu_cores_lte":0,"total_cpu_cores_not":0,"total_cpu_cores_not_in":[0],"total_cpu_hz":0,"total_cpu_hz_gt":0,"total_cpu_hz_gte":0,"total_cpu_hz_in":[0],"total_cpu_hz_lt":0,"total_cpu_hz_lte":0,"total_cpu_hz_not":0,"total_cpu_hz_not_in":[0],"total_cpu_sockets":0,"total_cpu_sockets_gt":0,"total_cpu_sockets_gte":0,"total_cpu_sockets_in":[0],"total_cpu_sockets_lt":0,"total_cpu_sockets_lte":0,"total_cpu_sockets_not":0,"total_cpu_sockets_not_in":[0],"total_data_capacity":0,"total_data_capacity_gt":0,"total_data_capacity_gte":0,"total_data_capacity_in":[0],"total_data_capacity_lt":0,"total_data_capacity_lte":0,"total_data_capacity_not":0,"total_data_capacity_not_in":[0],"total_memory_bytes":0,"total_memory_bytes_gt":0,"total_memory_bytes_gte":0,"total_memory_bytes_in":[0],"total_memory_bytes_lt":0,"total_memory_bytes_lte":0,"total_memory_bytes_not":0,"total_memory_bytes_not_in":[0],"usb_devices_every":"UsbDeviceWhereInput","usb_devices_none":"UsbDeviceWhereInput","usb_devices_some":"UsbDeviceWhereInput","used_cpu_hz":0,"used_cpu_hz_gt":0,"used_cpu_hz_gte":0,"used_cpu_hz_in":[0],"used_cpu_hz_lt":0,"used_cpu_hz_lte":0,"used_cpu_hz_not":0,"used_cpu_hz_not_in":[0],"used_data_space":0,"used_data_space_gt":0,"used_data_space_gte":0,"used_data_space_in":[0],"used_data_space_lt":0,"used_data_space_lte":0,"used_data_space_not":0,"used_data_space_not_in":[0],"used_memory_bytes":0,"used_memory_bytes_gt":0,"used_memory_bytes_gte":0,"used_memory_bytes_in":[0],"used_memory_bytes_lt":0,"used_memory_bytes_lte":0,"used_memory_bytes_not":0,"used_memory_bytes_not_in":[0],"vm_num":0,"vm_num_gt":0,"vm_num_gte":0,"vm_num_in":[0],"vm_num_lt":0,"vm_num_lte":0,"vm_num_not":0,"vm_num_not_in":[0],"vmotion_ip":"string","vmotion_ip_contains":"string","vmotion_ip_ends_with":"string","vmotion_ip_gt":"string","vmotion_ip_gte":"string","vmotion_ip_in":["string"],"vmotion_ip_lt":"string","vmotion_ip_lte":"string","vmotion_ip_not":"string","vmotion_ip_not_contains":"string","vmotion_ip_not_ends_with":"string","vmotion_ip_not_in":["string"],"vmotion_ip_not_starts_with":"string","vmotion_ip_starts_with":"string","vms_every":"VmWhereInput","vms_none":"VmWhereInput","vms_some":"VmWhereInput","vsphereEsxiAccount":"VsphereEsxiAccountWhereInput","with_faster_ssd_as_cache":false,"with_faster_ssd_as_cache_not":false,"zone":"ZoneWhereInput"}
 //
 // swagger:model HostWhereInput
 type HostWhereInput struct {
@@ -359,28 +360,28 @@ type HostWhereInput struct {
 	HddDataCapacityNotIn []float64 `json:"hdd_data_capacity_not_in,omitempty"`
 
 	// hdd disk count
-	HddDiskCount *float64 `json:"hdd_disk_count,omitempty"`
+	HddDiskCount *int32 `json:"hdd_disk_count,omitempty"`
 
 	// hdd disk count gt
-	HddDiskCountGt *float64 `json:"hdd_disk_count_gt,omitempty"`
+	HddDiskCountGt *int32 `json:"hdd_disk_count_gt,omitempty"`
 
 	// hdd disk count gte
-	HddDiskCountGte *float64 `json:"hdd_disk_count_gte,omitempty"`
+	HddDiskCountGte *int32 `json:"hdd_disk_count_gte,omitempty"`
 
 	// hdd disk count in
-	HddDiskCountIn []float64 `json:"hdd_disk_count_in,omitempty"`
+	HddDiskCountIn []int32 `json:"hdd_disk_count_in,omitempty"`
 
 	// hdd disk count lt
-	HddDiskCountLt *float64 `json:"hdd_disk_count_lt,omitempty"`
+	HddDiskCountLt *int32 `json:"hdd_disk_count_lt,omitempty"`
 
 	// hdd disk count lte
-	HddDiskCountLte *float64 `json:"hdd_disk_count_lte,omitempty"`
+	HddDiskCountLte *int32 `json:"hdd_disk_count_lte,omitempty"`
 
 	// hdd disk count not
-	HddDiskCountNot *float64 `json:"hdd_disk_count_not,omitempty"`
+	HddDiskCountNot *int32 `json:"hdd_disk_count_not,omitempty"`
 
 	// hdd disk count not in
-	HddDiskCountNotIn []float64 `json:"hdd_disk_count_not_in,omitempty"`
+	HddDiskCountNotIn []int32 `json:"hdd_disk_count_not_in,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -623,28 +624,28 @@ type HostWhereInput struct {
 	NestedVirtualizationNot *bool `json:"nested_virtualization_not,omitempty"`
 
 	// nic count
-	NicCount *float64 `json:"nic_count,omitempty"`
+	NicCount *int32 `json:"nic_count,omitempty"`
 
 	// nic count gt
-	NicCountGt *float64 `json:"nic_count_gt,omitempty"`
+	NicCountGt *int32 `json:"nic_count_gt,omitempty"`
 
 	// nic count gte
-	NicCountGte *float64 `json:"nic_count_gte,omitempty"`
+	NicCountGte *int32 `json:"nic_count_gte,omitempty"`
 
 	// nic count in
-	NicCountIn []float64 `json:"nic_count_in,omitempty"`
+	NicCountIn []int32 `json:"nic_count_in,omitempty"`
 
 	// nic count lt
-	NicCountLt *float64 `json:"nic_count_lt,omitempty"`
+	NicCountLt *int32 `json:"nic_count_lt,omitempty"`
 
 	// nic count lte
-	NicCountLte *float64 `json:"nic_count_lte,omitempty"`
+	NicCountLte *int32 `json:"nic_count_lte,omitempty"`
 
 	// nic count not
-	NicCountNot *float64 `json:"nic_count_not,omitempty"`
+	NicCountNot *int32 `json:"nic_count_not,omitempty"`
 
 	// nic count not in
-	NicCountNotIn []float64 `json:"nic_count_not_in,omitempty"`
+	NicCountNotIn []int32 `json:"nic_count_not_in,omitempty"`
 
 	// nics every
 	NicsEvery interface{} `json:"nics_every,omitempty"`
@@ -788,28 +789,28 @@ type HostWhereInput struct {
 	PmemDimmCapacityNotIn []float64 `json:"pmem_dimm_capacity_not_in,omitempty"`
 
 	// pmem dimm count
-	PmemDimmCount *float64 `json:"pmem_dimm_count,omitempty"`
+	PmemDimmCount *int32 `json:"pmem_dimm_count,omitempty"`
 
 	// pmem dimm count gt
-	PmemDimmCountGt *float64 `json:"pmem_dimm_count_gt,omitempty"`
+	PmemDimmCountGt *int32 `json:"pmem_dimm_count_gt,omitempty"`
 
 	// pmem dimm count gte
-	PmemDimmCountGte *float64 `json:"pmem_dimm_count_gte,omitempty"`
+	PmemDimmCountGte *int32 `json:"pmem_dimm_count_gte,omitempty"`
 
 	// pmem dimm count in
-	PmemDimmCountIn []float64 `json:"pmem_dimm_count_in,omitempty"`
+	PmemDimmCountIn []int32 `json:"pmem_dimm_count_in,omitempty"`
 
 	// pmem dimm count lt
-	PmemDimmCountLt *float64 `json:"pmem_dimm_count_lt,omitempty"`
+	PmemDimmCountLt *int32 `json:"pmem_dimm_count_lt,omitempty"`
 
 	// pmem dimm count lte
-	PmemDimmCountLte *float64 `json:"pmem_dimm_count_lte,omitempty"`
+	PmemDimmCountLte *int32 `json:"pmem_dimm_count_lte,omitempty"`
 
 	// pmem dimm count not
-	PmemDimmCountNot *float64 `json:"pmem_dimm_count_not,omitempty"`
+	PmemDimmCountNot *int32 `json:"pmem_dimm_count_not,omitempty"`
 
 	// pmem dimm count not in
-	PmemDimmCountNotIn []float64 `json:"pmem_dimm_count_not_in,omitempty"`
+	PmemDimmCountNotIn []int32 `json:"pmem_dimm_count_not_in,omitempty"`
 
 	// pmem dimms every
 	PmemDimmsEvery interface{} `json:"pmem_dimms_every,omitempty"`
@@ -821,52 +822,52 @@ type HostWhereInput struct {
 	PmemDimmsSome interface{} `json:"pmem_dimms_some,omitempty"`
 
 	// pmem disk count
-	PmemDiskCount *float64 `json:"pmem_disk_count,omitempty"`
+	PmemDiskCount *int32 `json:"pmem_disk_count,omitempty"`
 
 	// pmem disk count gt
-	PmemDiskCountGt *float64 `json:"pmem_disk_count_gt,omitempty"`
+	PmemDiskCountGt *int32 `json:"pmem_disk_count_gt,omitempty"`
 
 	// pmem disk count gte
-	PmemDiskCountGte *float64 `json:"pmem_disk_count_gte,omitempty"`
+	PmemDiskCountGte *int32 `json:"pmem_disk_count_gte,omitempty"`
 
 	// pmem disk count in
-	PmemDiskCountIn []float64 `json:"pmem_disk_count_in,omitempty"`
+	PmemDiskCountIn []int32 `json:"pmem_disk_count_in,omitempty"`
 
 	// pmem disk count lt
-	PmemDiskCountLt *float64 `json:"pmem_disk_count_lt,omitempty"`
+	PmemDiskCountLt *int32 `json:"pmem_disk_count_lt,omitempty"`
 
 	// pmem disk count lte
-	PmemDiskCountLte *float64 `json:"pmem_disk_count_lte,omitempty"`
+	PmemDiskCountLte *int32 `json:"pmem_disk_count_lte,omitempty"`
 
 	// pmem disk count not
-	PmemDiskCountNot *float64 `json:"pmem_disk_count_not,omitempty"`
+	PmemDiskCountNot *int32 `json:"pmem_disk_count_not,omitempty"`
 
 	// pmem disk count not in
-	PmemDiskCountNotIn []float64 `json:"pmem_disk_count_not_in,omitempty"`
+	PmemDiskCountNotIn []int32 `json:"pmem_disk_count_not_in,omitempty"`
 
 	// provisioned cpu cores
-	ProvisionedCPUCores *float64 `json:"provisioned_cpu_cores,omitempty"`
+	ProvisionedCPUCores *int32 `json:"provisioned_cpu_cores,omitempty"`
 
 	// provisioned cpu cores gt
-	ProvisionedCPUCoresGt *float64 `json:"provisioned_cpu_cores_gt,omitempty"`
+	ProvisionedCPUCoresGt *int32 `json:"provisioned_cpu_cores_gt,omitempty"`
 
 	// provisioned cpu cores gte
-	ProvisionedCPUCoresGte *float64 `json:"provisioned_cpu_cores_gte,omitempty"`
+	ProvisionedCPUCoresGte *int32 `json:"provisioned_cpu_cores_gte,omitempty"`
 
 	// provisioned cpu cores in
-	ProvisionedCPUCoresIn []float64 `json:"provisioned_cpu_cores_in,omitempty"`
+	ProvisionedCPUCoresIn []int32 `json:"provisioned_cpu_cores_in,omitempty"`
 
 	// provisioned cpu cores lt
-	ProvisionedCPUCoresLt *float64 `json:"provisioned_cpu_cores_lt,omitempty"`
+	ProvisionedCPUCoresLt *int32 `json:"provisioned_cpu_cores_lt,omitempty"`
 
 	// provisioned cpu cores lte
-	ProvisionedCPUCoresLte *float64 `json:"provisioned_cpu_cores_lte,omitempty"`
+	ProvisionedCPUCoresLte *int32 `json:"provisioned_cpu_cores_lte,omitempty"`
 
 	// provisioned cpu cores not
-	ProvisionedCPUCoresNot *float64 `json:"provisioned_cpu_cores_not,omitempty"`
+	ProvisionedCPUCoresNot *int32 `json:"provisioned_cpu_cores_not,omitempty"`
 
 	// provisioned cpu cores not in
-	ProvisionedCPUCoresNotIn []float64 `json:"provisioned_cpu_cores_not_in,omitempty"`
+	ProvisionedCPUCoresNotIn []int32 `json:"provisioned_cpu_cores_not_in,omitempty"`
 
 	// provisioned memory bytes
 	ProvisionedMemoryBytes *float64 `json:"provisioned_memory_bytes,omitempty"`
@@ -917,28 +918,28 @@ type HostWhereInput struct {
 	RunningPauseVMMemoryBytesNotIn []float64 `json:"running_pause_vm_memory_bytes_not_in,omitempty"`
 
 	// running vm num
-	RunningVMNum *float64 `json:"running_vm_num,omitempty"`
+	RunningVMNum *int32 `json:"running_vm_num,omitempty"`
 
 	// running vm num gt
-	RunningVMNumGt *float64 `json:"running_vm_num_gt,omitempty"`
+	RunningVMNumGt *int32 `json:"running_vm_num_gt,omitempty"`
 
 	// running vm num gte
-	RunningVMNumGte *float64 `json:"running_vm_num_gte,omitempty"`
+	RunningVMNumGte *int32 `json:"running_vm_num_gte,omitempty"`
 
 	// running vm num in
-	RunningVMNumIn []float64 `json:"running_vm_num_in,omitempty"`
+	RunningVMNumIn []int32 `json:"running_vm_num_in,omitempty"`
 
 	// running vm num lt
-	RunningVMNumLt *float64 `json:"running_vm_num_lt,omitempty"`
+	RunningVMNumLt *int32 `json:"running_vm_num_lt,omitempty"`
 
 	// running vm num lte
-	RunningVMNumLte *float64 `json:"running_vm_num_lte,omitempty"`
+	RunningVMNumLte *int32 `json:"running_vm_num_lte,omitempty"`
 
 	// running vm num not
-	RunningVMNumNot *float64 `json:"running_vm_num_not,omitempty"`
+	RunningVMNumNot *int32 `json:"running_vm_num_not,omitempty"`
 
 	// running vm num not in
-	RunningVMNumNotIn []float64 `json:"running_vm_num_not_in,omitempty"`
+	RunningVMNumNotIn []int32 `json:"running_vm_num_not_in,omitempty"`
 
 	// scvm cpu
 	ScvmCPU *float64 `json:"scvm_cpu,omitempty"`
@@ -1097,28 +1098,28 @@ type HostWhereInput struct {
 	SsdDataCapacityNotIn []float64 `json:"ssd_data_capacity_not_in,omitempty"`
 
 	// ssd disk count
-	SsdDiskCount *float64 `json:"ssd_disk_count,omitempty"`
+	SsdDiskCount *int32 `json:"ssd_disk_count,omitempty"`
 
 	// ssd disk count gt
-	SsdDiskCountGt *float64 `json:"ssd_disk_count_gt,omitempty"`
+	SsdDiskCountGt *int32 `json:"ssd_disk_count_gt,omitempty"`
 
 	// ssd disk count gte
-	SsdDiskCountGte *float64 `json:"ssd_disk_count_gte,omitempty"`
+	SsdDiskCountGte *int32 `json:"ssd_disk_count_gte,omitempty"`
 
 	// ssd disk count in
-	SsdDiskCountIn []float64 `json:"ssd_disk_count_in,omitempty"`
+	SsdDiskCountIn []int32 `json:"ssd_disk_count_in,omitempty"`
 
 	// ssd disk count lt
-	SsdDiskCountLt *float64 `json:"ssd_disk_count_lt,omitempty"`
+	SsdDiskCountLt *int32 `json:"ssd_disk_count_lt,omitempty"`
 
 	// ssd disk count lte
-	SsdDiskCountLte *float64 `json:"ssd_disk_count_lte,omitempty"`
+	SsdDiskCountLte *int32 `json:"ssd_disk_count_lte,omitempty"`
 
 	// ssd disk count not
-	SsdDiskCountNot *float64 `json:"ssd_disk_count_not,omitempty"`
+	SsdDiskCountNot *int32 `json:"ssd_disk_count_not,omitempty"`
 
 	// ssd disk count not in
-	SsdDiskCountNotIn []float64 `json:"ssd_disk_count_not_in,omitempty"`
+	SsdDiskCountNotIn []int32 `json:"ssd_disk_count_not_in,omitempty"`
 
 	// state
 	State interface{} `json:"state,omitempty"`
@@ -1145,52 +1146,52 @@ type HostWhereInput struct {
 	StatusNotIn []HostStatus `json:"status_not_in,omitempty"`
 
 	// stopped vm num
-	StoppedVMNum *float64 `json:"stopped_vm_num,omitempty"`
+	StoppedVMNum *int32 `json:"stopped_vm_num,omitempty"`
 
 	// stopped vm num gt
-	StoppedVMNumGt *float64 `json:"stopped_vm_num_gt,omitempty"`
+	StoppedVMNumGt *int32 `json:"stopped_vm_num_gt,omitempty"`
 
 	// stopped vm num gte
-	StoppedVMNumGte *float64 `json:"stopped_vm_num_gte,omitempty"`
+	StoppedVMNumGte *int32 `json:"stopped_vm_num_gte,omitempty"`
 
 	// stopped vm num in
-	StoppedVMNumIn []float64 `json:"stopped_vm_num_in,omitempty"`
+	StoppedVMNumIn []int32 `json:"stopped_vm_num_in,omitempty"`
 
 	// stopped vm num lt
-	StoppedVMNumLt *float64 `json:"stopped_vm_num_lt,omitempty"`
+	StoppedVMNumLt *int32 `json:"stopped_vm_num_lt,omitempty"`
 
 	// stopped vm num lte
-	StoppedVMNumLte *float64 `json:"stopped_vm_num_lte,omitempty"`
+	StoppedVMNumLte *int32 `json:"stopped_vm_num_lte,omitempty"`
 
 	// stopped vm num not
-	StoppedVMNumNot *float64 `json:"stopped_vm_num_not,omitempty"`
+	StoppedVMNumNot *int32 `json:"stopped_vm_num_not,omitempty"`
 
 	// stopped vm num not in
-	StoppedVMNumNotIn []float64 `json:"stopped_vm_num_not_in,omitempty"`
+	StoppedVMNumNotIn []int32 `json:"stopped_vm_num_not_in,omitempty"`
 
 	// suspended vm num
-	SuspendedVMNum *float64 `json:"suspended_vm_num,omitempty"`
+	SuspendedVMNum *int32 `json:"suspended_vm_num,omitempty"`
 
 	// suspended vm num gt
-	SuspendedVMNumGt *float64 `json:"suspended_vm_num_gt,omitempty"`
+	SuspendedVMNumGt *int32 `json:"suspended_vm_num_gt,omitempty"`
 
 	// suspended vm num gte
-	SuspendedVMNumGte *float64 `json:"suspended_vm_num_gte,omitempty"`
+	SuspendedVMNumGte *int32 `json:"suspended_vm_num_gte,omitempty"`
 
 	// suspended vm num in
-	SuspendedVMNumIn []float64 `json:"suspended_vm_num_in,omitempty"`
+	SuspendedVMNumIn []int32 `json:"suspended_vm_num_in,omitempty"`
 
 	// suspended vm num lt
-	SuspendedVMNumLt *float64 `json:"suspended_vm_num_lt,omitempty"`
+	SuspendedVMNumLt *int32 `json:"suspended_vm_num_lt,omitempty"`
 
 	// suspended vm num lte
-	SuspendedVMNumLte *float64 `json:"suspended_vm_num_lte,omitempty"`
+	SuspendedVMNumLte *int32 `json:"suspended_vm_num_lte,omitempty"`
 
 	// suspended vm num not
-	SuspendedVMNumNot *float64 `json:"suspended_vm_num_not,omitempty"`
+	SuspendedVMNumNot *int32 `json:"suspended_vm_num_not,omitempty"`
 
 	// suspended vm num not in
-	SuspendedVMNumNotIn []float64 `json:"suspended_vm_num_not_in,omitempty"`
+	SuspendedVMNumNotIn []int32 `json:"suspended_vm_num_not_in,omitempty"`
 
 	// total cache capacity
 	TotalCacheCapacity *float64 `json:"total_cache_capacity,omitempty"`
@@ -1217,28 +1218,28 @@ type HostWhereInput struct {
 	TotalCacheCapacityNotIn []float64 `json:"total_cache_capacity_not_in,omitempty"`
 
 	// total cpu cores
-	TotalCPUCores *float64 `json:"total_cpu_cores,omitempty"`
+	TotalCPUCores *int32 `json:"total_cpu_cores,omitempty"`
 
 	// total cpu cores gt
-	TotalCPUCoresGt *float64 `json:"total_cpu_cores_gt,omitempty"`
+	TotalCPUCoresGt *int32 `json:"total_cpu_cores_gt,omitempty"`
 
 	// total cpu cores gte
-	TotalCPUCoresGte *float64 `json:"total_cpu_cores_gte,omitempty"`
+	TotalCPUCoresGte *int32 `json:"total_cpu_cores_gte,omitempty"`
 
 	// total cpu cores in
-	TotalCPUCoresIn []float64 `json:"total_cpu_cores_in,omitempty"`
+	TotalCPUCoresIn []int32 `json:"total_cpu_cores_in,omitempty"`
 
 	// total cpu cores lt
-	TotalCPUCoresLt *float64 `json:"total_cpu_cores_lt,omitempty"`
+	TotalCPUCoresLt *int32 `json:"total_cpu_cores_lt,omitempty"`
 
 	// total cpu cores lte
-	TotalCPUCoresLte *float64 `json:"total_cpu_cores_lte,omitempty"`
+	TotalCPUCoresLte *int32 `json:"total_cpu_cores_lte,omitempty"`
 
 	// total cpu cores not
-	TotalCPUCoresNot *float64 `json:"total_cpu_cores_not,omitempty"`
+	TotalCPUCoresNot *int32 `json:"total_cpu_cores_not,omitempty"`
 
 	// total cpu cores not in
-	TotalCPUCoresNotIn []float64 `json:"total_cpu_cores_not_in,omitempty"`
+	TotalCPUCoresNotIn []int32 `json:"total_cpu_cores_not_in,omitempty"`
 
 	// total cpu hz
 	TotalCPUHz *float64 `json:"total_cpu_hz,omitempty"`
@@ -1263,6 +1264,30 @@ type HostWhereInput struct {
 
 	// total cpu hz not in
 	TotalCPUHzNotIn []float64 `json:"total_cpu_hz_not_in,omitempty"`
+
+	// total cpu sockets
+	TotalCPUSockets *int32 `json:"total_cpu_sockets,omitempty"`
+
+	// total cpu sockets gt
+	TotalCPUSocketsGt *int32 `json:"total_cpu_sockets_gt,omitempty"`
+
+	// total cpu sockets gte
+	TotalCPUSocketsGte *int32 `json:"total_cpu_sockets_gte,omitempty"`
+
+	// total cpu sockets in
+	TotalCPUSocketsIn []int32 `json:"total_cpu_sockets_in,omitempty"`
+
+	// total cpu sockets lt
+	TotalCPUSocketsLt *int32 `json:"total_cpu_sockets_lt,omitempty"`
+
+	// total cpu sockets lte
+	TotalCPUSocketsLte *int32 `json:"total_cpu_sockets_lte,omitempty"`
+
+	// total cpu sockets not
+	TotalCPUSocketsNot *int32 `json:"total_cpu_sockets_not,omitempty"`
+
+	// total cpu sockets not in
+	TotalCPUSocketsNotIn []int32 `json:"total_cpu_sockets_not_in,omitempty"`
 
 	// total data capacity
 	TotalDataCapacity *float64 `json:"total_data_capacity,omitempty"`
@@ -1394,28 +1419,28 @@ type HostWhereInput struct {
 	UsedMemoryBytesNotIn []float64 `json:"used_memory_bytes_not_in,omitempty"`
 
 	// vm num
-	VMNum *float64 `json:"vm_num,omitempty"`
+	VMNum *int32 `json:"vm_num,omitempty"`
 
 	// vm num gt
-	VMNumGt *float64 `json:"vm_num_gt,omitempty"`
+	VMNumGt *int32 `json:"vm_num_gt,omitempty"`
 
 	// vm num gte
-	VMNumGte *float64 `json:"vm_num_gte,omitempty"`
+	VMNumGte *int32 `json:"vm_num_gte,omitempty"`
 
 	// vm num in
-	VMNumIn []float64 `json:"vm_num_in,omitempty"`
+	VMNumIn []int32 `json:"vm_num_in,omitempty"`
 
 	// vm num lt
-	VMNumLt *float64 `json:"vm_num_lt,omitempty"`
+	VMNumLt *int32 `json:"vm_num_lt,omitempty"`
 
 	// vm num lte
-	VMNumLte *float64 `json:"vm_num_lte,omitempty"`
+	VMNumLte *int32 `json:"vm_num_lte,omitempty"`
 
 	// vm num not
-	VMNumNot *float64 `json:"vm_num_not,omitempty"`
+	VMNumNot *int32 `json:"vm_num_not,omitempty"`
 
 	// vm num not in
-	VMNumNotIn []float64 `json:"vm_num_not_in,omitempty"`
+	VMNumNotIn []int32 `json:"vm_num_not_in,omitempty"`
 
 	// vmotion ip
 	VmotionIP *string `json:"vmotion_ip,omitempty"`

@@ -21,7 +21,7 @@ type SnapshotPlanConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *SnapshotPlanConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateSnapshotPlan `json:"aggregate"`
 }
 
 // Validate validates this snapshot plan connection
@@ -95,62 +95,6 @@ func (m *SnapshotPlanConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SnapshotPlanConnection) UnmarshalBinary(b []byte) error {
 	var res SnapshotPlanConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SnapshotPlanConnectionAggregate snapshot plan connection aggregate
-//
-// swagger:model SnapshotPlanConnectionAggregate
-type SnapshotPlanConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this snapshot plan connection aggregate
-func (m *SnapshotPlanConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SnapshotPlanConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this snapshot plan connection aggregate based on context it is used
-func (m *SnapshotPlanConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SnapshotPlanConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SnapshotPlanConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res SnapshotPlanConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

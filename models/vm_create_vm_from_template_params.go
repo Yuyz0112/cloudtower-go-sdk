@@ -24,14 +24,13 @@ type VMCreateVMFromTemplateParams struct {
 	CloudInit *VMCreateVMFromTemplateParamsCloudInit `json:"cloud_init,omitempty"`
 
 	// cluster id
-	// Required: true
-	ClusterID *string `json:"cluster_id"`
+	ClusterID string `json:"cluster_id,omitempty"`
 
 	// cpu cores
-	CPUCores float64 `json:"cpu_cores,omitempty"`
+	CPUCores int32 `json:"cpu_cores,omitempty"`
 
 	// cpu sockets
-	CPUSockets float64 `json:"cpu_sockets,omitempty"`
+	CPUSockets int32 `json:"cpu_sockets,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -58,7 +57,8 @@ type VMCreateVMFromTemplateParams struct {
 	IoPolicy VMDiskIoPolicy `json:"io_policy,omitempty"`
 
 	// is full copy
-	IsFullCopy bool `json:"is_full_copy,omitempty"`
+	// Required: true
+	IsFullCopy *bool `json:"is_full_copy"`
 
 	// max bandwidth
 	MaxBandwidth float64 `json:"max_bandwidth,omitempty"`
@@ -67,7 +67,7 @@ type VMCreateVMFromTemplateParams struct {
 	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
-	MaxIops float64 `json:"max_iops,omitempty"`
+	MaxIops int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
@@ -87,10 +87,10 @@ type VMCreateVMFromTemplateParams struct {
 	TemplateID *string `json:"template_id"`
 
 	// vcpu
-	Vcpu float64 `json:"vcpu,omitempty"`
+	Vcpu int32 `json:"vcpu,omitempty"`
 
 	// vm nics
-	VMNics VMNicParams `json:"vm_nics,omitempty"`
+	VMNics []*VMNicParams `json:"vm_nics"`
 }
 
 // Validate validates this Vm create Vm from template params
@@ -98,10 +98,6 @@ func (m *VMCreateVMFromTemplateParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCloudInit(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateClusterID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -118,6 +114,10 @@ func (m *VMCreateVMFromTemplateParams) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIoPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsFullCopy(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -163,15 +163,6 @@ func (m *VMCreateVMFromTemplateParams) validateCloudInit(formats strfmt.Registry
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParams) validateClusterID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster_id", "body", m.ClusterID); err != nil {
-		return err
 	}
 
 	return nil
@@ -233,6 +224,15 @@ func (m *VMCreateVMFromTemplateParams) validateIoPolicy(formats strfmt.Registry)
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("io_policy")
 		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *VMCreateVMFromTemplateParams) validateIsFullCopy(formats strfmt.Registry) error {
+
+	if err := validate.Required("is_full_copy", "body", m.IsFullCopy); err != nil {
 		return err
 	}
 
@@ -307,11 +307,20 @@ func (m *VMCreateVMFromTemplateParams) validateVMNics(formats strfmt.Registry) e
 		return nil
 	}
 
-	if err := m.VMNics.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_nics")
+	for i := 0; i < len(m.VMNics); i++ {
+		if swag.IsZero(m.VMNics[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -465,11 +474,17 @@ func (m *VMCreateVMFromTemplateParams) contextValidateStatus(ctx context.Context
 
 func (m *VMCreateVMFromTemplateParams) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_nics")
+	for i := 0; i < len(m.VMNics); i++ {
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
-		return err
+
 	}
 
 	return nil
@@ -508,7 +523,7 @@ type VMCreateVMFromTemplateParamsCloudInit struct {
 	Nameservers []string `json:"nameservers"`
 
 	// networks
-	Networks []*VMCreateVMFromTemplateParamsCloudInitNetworksItems0 `json:"networks"`
+	Networks []*CloudInitNetWork `json:"networks"`
 
 	// public keys
 	PublicKeys []string `json:"public_keys"`
@@ -605,271 +620,13 @@ func (m *VMCreateVMFromTemplateParamsCloudInit) UnmarshalBinary(b []byte) error 
 	return nil
 }
 
-// VMCreateVMFromTemplateParamsCloudInitNetworksItems0 VM create VM from template params cloud init networks items0
-//
-// swagger:model VMCreateVMFromTemplateParamsCloudInitNetworksItems0
-type VMCreateVMFromTemplateParamsCloudInitNetworksItems0 struct {
-
-	// ip address
-	IPAddress string `json:"ip_address,omitempty"`
-
-	// netmask
-	Netmask string `json:"netmask,omitempty"`
-
-	// nic index
-	// Required: true
-	NicIndex *float64 `json:"nic_index"`
-
-	// routes
-	Routes []*VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0 `json:"routes"`
-
-	// type
-	// Required: true
-	Type *CloudInitNetworkTypeEnum `json:"type"`
-}
-
-// Validate validates this VM create VM from template params cloud init networks items0
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateNicIndex(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRoutes(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) validateNicIndex(formats strfmt.Registry) error {
-
-	if err := validate.Required("nic_index", "body", m.NicIndex); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) validateRoutes(formats strfmt.Registry) error {
-	if swag.IsZero(m.Routes) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Routes); i++ {
-		if swag.IsZero(m.Routes[i]) { // not required
-			continue
-		}
-
-		if m.Routes[i] != nil {
-			if err := m.Routes[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("routes" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	if m.Type != nil {
-		if err := m.Type.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("type")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this VM create VM from template params cloud init networks items0 based on the context it is used
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateRoutes(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateType(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) contextValidateRoutes(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Routes); i++ {
-
-		if m.Routes[i] != nil {
-			if err := m.Routes[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("routes" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Type != nil {
-		if err := m.Type.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("type")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0) UnmarshalBinary(b []byte) error {
-	var res VMCreateVMFromTemplateParamsCloudInitNetworksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0 VM create VM from template params cloud init networks items0 routes items0
-//
-// swagger:model VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0
-type VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0 struct {
-
-	// gateway
-	// Required: true
-	Gateway *string `json:"gateway"`
-
-	// netmask
-	// Required: true
-	Netmask *string `json:"netmask"`
-
-	// network
-	// Required: true
-	Network *string `json:"network"`
-}
-
-// Validate validates this VM create VM from template params cloud init networks items0 routes items0
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateGateway(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateNetmask(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateNetwork(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) validateGateway(formats strfmt.Registry) error {
-
-	if err := validate.Required("gateway", "body", m.Gateway); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) validateNetmask(formats strfmt.Registry) error {
-
-	if err := validate.Required("netmask", "body", m.Netmask); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) validateNetwork(formats strfmt.Registry) error {
-
-	if err := validate.Required("network", "body", m.Network); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM create VM from template params cloud init networks items0 routes items0 based on context it is used
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0) UnmarshalBinary(b []byte) error {
-	var res VMCreateVMFromTemplateParamsCloudInitNetworksItems0RoutesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
 // VMCreateVMFromTemplateParamsDiskOperate VM create VM from template params disk operate
 //
 // swagger:model VMCreateVMFromTemplateParamsDiskOperate
 type VMCreateVMFromTemplateParamsDiskOperate struct {
 
 	// modify disks
-	ModifyDisks []*VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0 `json:"modify_disks"`
+	ModifyDisks []*DiskOperateModifyDisk `json:"modify_disks"`
 
 	// new disks
 	NewDisks *VMDiskParams `json:"new_disks,omitempty"`
@@ -1044,108 +801,6 @@ func (m *VMCreateVMFromTemplateParamsDiskOperate) UnmarshalBinary(b []byte) erro
 	return nil
 }
 
-// VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0 VM create VM from template params disk operate modify disks items0
-//
-// swagger:model VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0
-type VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0 struct {
-
-	// bus
-	Bus Bus `json:"bus,omitempty"`
-
-	// disk index
-	// Required: true
-	DiskIndex *float64 `json:"disk_index"`
-
-	// vm volume id
-	VMVolumeID string `json:"vm_volume_id,omitempty"`
-}
-
-// Validate validates this VM create VM from template params disk operate modify disks items0
-func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateBus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDiskIndex(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) validateBus(formats strfmt.Registry) error {
-	if swag.IsZero(m.Bus) { // not required
-		return nil
-	}
-
-	if err := m.Bus.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("bus")
-		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) validateDiskIndex(formats strfmt.Registry) error {
-
-	if err := validate.Required("disk_index", "body", m.DiskIndex); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this VM create VM from template params disk operate modify disks items0 based on the context it is used
-func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateBus(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) contextValidateBus(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := m.Bus.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("bus")
-		}
-		return err
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0) UnmarshalBinary(b []byte) error {
-	var res VMCreateVMFromTemplateParamsDiskOperateModifyDisksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
 // VMCreateVMFromTemplateParamsDiskOperateRemoveDisks VM create VM from template params disk operate remove disks
 //
 // swagger:model VMCreateVMFromTemplateParamsDiskOperateRemoveDisks
@@ -1153,7 +808,7 @@ type VMCreateVMFromTemplateParamsDiskOperateRemoveDisks struct {
 
 	// disk index
 	// Required: true
-	DiskIndex []float64 `json:"disk_index"`
+	DiskIndex []int32 `json:"disk_index"`
 }
 
 // Validate validates this VM create VM from template params disk operate remove disks

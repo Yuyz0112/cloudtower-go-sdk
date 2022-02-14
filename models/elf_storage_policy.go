@@ -21,7 +21,7 @@ type ElfStoragePolicy struct {
 
 	// cluster
 	// Required: true
-	Cluster *ElfStoragePolicyCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// description
 	// Required: true
@@ -44,11 +44,11 @@ type ElfStoragePolicy struct {
 
 	// replica num
 	// Required: true
-	ReplicaNum *float64 `json:"replica_num"`
+	ReplicaNum *int32 `json:"replica_num"`
 
 	// stripe num
 	// Required: true
-	StripeNum *float64 `json:"stripe_num"`
+	StripeNum *int32 `json:"stripe_num"`
 
 	// stripe size
 	// Required: true
@@ -234,79 +234,6 @@ func (m *ElfStoragePolicy) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ElfStoragePolicy) UnmarshalBinary(b []byte) error {
 	var res ElfStoragePolicy
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ElfStoragePolicyCluster elf storage policy cluster
-//
-// swagger:model ElfStoragePolicyCluster
-type ElfStoragePolicyCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this elf storage policy cluster
-func (m *ElfStoragePolicyCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfStoragePolicyCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ElfStoragePolicyCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this elf storage policy cluster based on context it is used
-func (m *ElfStoragePolicyCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ElfStoragePolicyCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ElfStoragePolicyCluster) UnmarshalBinary(b []byte) error {
-	var res ElfStoragePolicyCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

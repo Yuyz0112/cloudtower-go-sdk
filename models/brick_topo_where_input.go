@@ -15,6 +15,7 @@ import (
 )
 
 // BrickTopoWhereInput brick topo where input
+// Example: {"AND":"BrickTopoWhereInput[]","NOT":"BrickTopoWhereInput[]","OR":"BrickTopoWhereInput[]","cluster":"ClusterWhereInput","cluster_topo":"ClusterTopoWhereInput","height":0,"height_gt":0,"height_gte":0,"height_in":[0],"height_lt":0,"height_lte":0,"height_not":0,"height_not_in":[0],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","model":"string","model_contains":"string","model_ends_with":"string","model_gt":"string","model_gte":"string","model_in":["string"],"model_lt":"string","model_lte":"string","model_not":"string","model_not_contains":"string","model_not_ends_with":"string","model_not_in":["string"],"model_not_starts_with":"string","model_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","node_topoes_every":"NodeTopoWhereInput","node_topoes_none":"NodeTopoWhereInput","node_topoes_some":"NodeTopoWhereInput","position":0,"position_gt":0,"position_gte":0,"position_in":[0],"position_lt":0,"position_lte":0,"position_not":0,"position_not_in":[0],"power_layout":"HORIZONTAL","power_layout_in":["HORIZONTAL"],"power_layout_not":"HORIZONTAL","power_layout_not_in":["HORIZONTAL"],"power_position":"LEFT","power_position_in":["LEFT"],"power_position_not":"LEFT","power_position_not_in":["LEFT"],"rack_topo":"RackTopoWhereInput"}
 //
 // swagger:model BrickTopoWhereInput
 type BrickTopoWhereInput struct {
@@ -35,28 +36,28 @@ type BrickTopoWhereInput struct {
 	ClusterTopo interface{} `json:"cluster_topo,omitempty"`
 
 	// height
-	Height *float64 `json:"height,omitempty"`
+	Height *int32 `json:"height,omitempty"`
 
 	// height gt
-	HeightGt *float64 `json:"height_gt,omitempty"`
+	HeightGt *int32 `json:"height_gt,omitempty"`
 
 	// height gte
-	HeightGte *float64 `json:"height_gte,omitempty"`
+	HeightGte *int32 `json:"height_gte,omitempty"`
 
 	// height in
-	HeightIn []float64 `json:"height_in,omitempty"`
+	HeightIn []int32 `json:"height_in,omitempty"`
 
 	// height lt
-	HeightLt *float64 `json:"height_lt,omitempty"`
+	HeightLt *int32 `json:"height_lt,omitempty"`
 
 	// height lte
-	HeightLte *float64 `json:"height_lte,omitempty"`
+	HeightLte *int32 `json:"height_lte,omitempty"`
 
 	// height not
-	HeightNot *float64 `json:"height_not,omitempty"`
+	HeightNot *int32 `json:"height_not,omitempty"`
 
 	// height not in
-	HeightNotIn []float64 `json:"height_not_in,omitempty"`
+	HeightNotIn []int32 `json:"height_not_in,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -236,28 +237,28 @@ type BrickTopoWhereInput struct {
 	NodeTopoesSome interface{} `json:"node_topoes_some,omitempty"`
 
 	// position
-	Position *float64 `json:"position,omitempty"`
+	Position *int32 `json:"position,omitempty"`
 
 	// position gt
-	PositionGt *float64 `json:"position_gt,omitempty"`
+	PositionGt *int32 `json:"position_gt,omitempty"`
 
 	// position gte
-	PositionGte *float64 `json:"position_gte,omitempty"`
+	PositionGte *int32 `json:"position_gte,omitempty"`
 
 	// position in
-	PositionIn []float64 `json:"position_in,omitempty"`
+	PositionIn []int32 `json:"position_in,omitempty"`
 
 	// position lt
-	PositionLt *float64 `json:"position_lt,omitempty"`
+	PositionLt *int32 `json:"position_lt,omitempty"`
 
 	// position lte
-	PositionLte *float64 `json:"position_lte,omitempty"`
+	PositionLte *int32 `json:"position_lte,omitempty"`
 
 	// position not
-	PositionNot *float64 `json:"position_not,omitempty"`
+	PositionNot *int32 `json:"position_not,omitempty"`
 
 	// position not in
-	PositionNotIn []float64 `json:"position_not_in,omitempty"`
+	PositionNotIn []int32 `json:"position_not_in,omitempty"`
 
 	// power layout
 	PowerLayout interface{} `json:"power_layout,omitempty"`

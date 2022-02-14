@@ -15,6 +15,7 @@ import (
 )
 
 // PmemDimmWhereInput pmem dimm where input
+// Example: {"AND":"PmemDimmWhereInput[]","NOT":"PmemDimmWhereInput[]","OR":"PmemDimmWhereInput[]","capacity":0,"capacity_gt":0,"capacity_gte":0,"capacity_in":[0],"capacity_lt":0,"capacity_lte":0,"capacity_not":0,"capacity_not_in":[0],"device_locator":"string","device_locator_contains":"string","device_locator_ends_with":"string","device_locator_gt":"string","device_locator_gte":"string","device_locator_in":["string"],"device_locator_lt":"string","device_locator_lte":"string","device_locator_not":"string","device_locator_not_contains":"string","device_locator_not_ends_with":"string","device_locator_not_in":["string"],"device_locator_not_starts_with":"string","device_locator_starts_with":"string","disk":"DiskWhereInput","health_status":"HEALTHY","health_status_in":["HEALTHY"],"health_status_not":"HEALTHY","health_status_not_in":["HEALTHY"],"host":"HostWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","numa_node":0,"numa_node_gt":0,"numa_node_gte":0,"numa_node_in":[0],"numa_node_lt":0,"numa_node_lte":0,"numa_node_not":0,"numa_node_not_in":[0],"part_number":"string","part_number_contains":"string","part_number_ends_with":"string","part_number_gt":"string","part_number_gte":"string","part_number_in":["string"],"part_number_lt":"string","part_number_lte":"string","part_number_not":"string","part_number_not_contains":"string","part_number_not_ends_with":"string","part_number_not_in":["string"],"part_number_not_starts_with":"string","part_number_starts_with":"string","remaining_life_percent":0,"remaining_life_percent_gt":0,"remaining_life_percent_gte":0,"remaining_life_percent_in":[0],"remaining_life_percent_lt":0,"remaining_life_percent_lte":0,"remaining_life_percent_not":0,"remaining_life_percent_not_in":[0],"version":"string","version_contains":"string","version_ends_with":"string","version_gt":"string","version_gte":"string","version_in":["string"],"version_lt":"string","version_lte":"string","version_not":"string","version_not_contains":"string","version_not_ends_with":"string","version_not_in":["string"],"version_not_starts_with":"string","version_starts_with":"string"}
 //
 // swagger:model PmemDimmWhereInput
 type PmemDimmWhereInput struct {
@@ -239,28 +240,28 @@ type PmemDimmWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// numa node
-	NumaNode *float64 `json:"numa_node,omitempty"`
+	NumaNode *int32 `json:"numa_node,omitempty"`
 
 	// numa node gt
-	NumaNodeGt *float64 `json:"numa_node_gt,omitempty"`
+	NumaNodeGt *int32 `json:"numa_node_gt,omitempty"`
 
 	// numa node gte
-	NumaNodeGte *float64 `json:"numa_node_gte,omitempty"`
+	NumaNodeGte *int32 `json:"numa_node_gte,omitempty"`
 
 	// numa node in
-	NumaNodeIn []float64 `json:"numa_node_in,omitempty"`
+	NumaNodeIn []int32 `json:"numa_node_in,omitempty"`
 
 	// numa node lt
-	NumaNodeLt *float64 `json:"numa_node_lt,omitempty"`
+	NumaNodeLt *int32 `json:"numa_node_lt,omitempty"`
 
 	// numa node lte
-	NumaNodeLte *float64 `json:"numa_node_lte,omitempty"`
+	NumaNodeLte *int32 `json:"numa_node_lte,omitempty"`
 
 	// numa node not
-	NumaNodeNot *float64 `json:"numa_node_not,omitempty"`
+	NumaNodeNot *int32 `json:"numa_node_not,omitempty"`
 
 	// numa node not in
-	NumaNodeNotIn []float64 `json:"numa_node_not_in,omitempty"`
+	NumaNodeNotIn []int32 `json:"numa_node_not_in,omitempty"`
 
 	// part number
 	PartNumber *string `json:"part_number,omitempty"`
@@ -305,28 +306,28 @@ type PmemDimmWhereInput struct {
 	PartNumberStartsWith *string `json:"part_number_starts_with,omitempty"`
 
 	// remaining life percent
-	RemainingLifePercent *float64 `json:"remaining_life_percent,omitempty"`
+	RemainingLifePercent *int32 `json:"remaining_life_percent,omitempty"`
 
 	// remaining life percent gt
-	RemainingLifePercentGt *float64 `json:"remaining_life_percent_gt,omitempty"`
+	RemainingLifePercentGt *int32 `json:"remaining_life_percent_gt,omitempty"`
 
 	// remaining life percent gte
-	RemainingLifePercentGte *float64 `json:"remaining_life_percent_gte,omitempty"`
+	RemainingLifePercentGte *int32 `json:"remaining_life_percent_gte,omitempty"`
 
 	// remaining life percent in
-	RemainingLifePercentIn []float64 `json:"remaining_life_percent_in,omitempty"`
+	RemainingLifePercentIn []int32 `json:"remaining_life_percent_in,omitempty"`
 
 	// remaining life percent lt
-	RemainingLifePercentLt *float64 `json:"remaining_life_percent_lt,omitempty"`
+	RemainingLifePercentLt *int32 `json:"remaining_life_percent_lt,omitempty"`
 
 	// remaining life percent lte
-	RemainingLifePercentLte *float64 `json:"remaining_life_percent_lte,omitempty"`
+	RemainingLifePercentLte *int32 `json:"remaining_life_percent_lte,omitempty"`
 
 	// remaining life percent not
-	RemainingLifePercentNot *float64 `json:"remaining_life_percent_not,omitempty"`
+	RemainingLifePercentNot *int32 `json:"remaining_life_percent_not,omitempty"`
 
 	// remaining life percent not in
-	RemainingLifePercentNotIn []float64 `json:"remaining_life_percent_not_in,omitempty"`
+	RemainingLifePercentNotIn []int32 `json:"remaining_life_percent_not_in,omitempty"`
 
 	// version
 	Version *string `json:"version,omitempty"`

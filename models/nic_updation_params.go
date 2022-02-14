@@ -152,10 +152,10 @@ func (m *NicUpdationParams) UnmarshalBinary(b []byte) error {
 type NicUpdationParamsData struct {
 
 	// mtu
-	Mtu float64 `json:"mtu,omitempty"`
+	Mtu int32 `json:"mtu,omitempty"`
 
 	// total vf num
-	TotalVfNum float64 `json:"total_vf_num,omitempty"`
+	TotalVfNum int32 `json:"total_vf_num,omitempty"`
 }
 
 // Validate validates this nic updation params data

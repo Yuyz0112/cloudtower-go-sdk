@@ -149,11 +149,26 @@ func (m *GraphUpdationParams) UnmarshalBinary(b []byte) error {
 // swagger:model GraphUpdationParamsData
 type GraphUpdationParamsData struct {
 
+	// cluster
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
+
 	// connect id
 	ConnectID []string `json:"connect_id"`
 
+	// disks
+	Disks *DiskWhereInput `json:"disks,omitempty"`
+
+	// hosts
+	Hosts *HostWhereInput `json:"hosts,omitempty"`
+
+	// instance ids
+	InstanceIds []string `json:"instance_ids"`
+
+	// luns
+	Luns *IscsiLunWhereInput `json:"luns,omitempty"`
+
 	// metric count
-	MetricCount float64 `json:"metric_count,omitempty"`
+	MetricCount int32 `json:"metric_count,omitempty"`
 
 	// metric name
 	MetricName string `json:"metric_name,omitempty"`
@@ -161,11 +176,11 @@ type GraphUpdationParamsData struct {
 	// metric type
 	MetricType MetricType `json:"metric_type,omitempty"`
 
-	// mode
-	Mode string `json:"mode,omitempty"`
-
 	// network
 	Network NetworkType `json:"network,omitempty"`
+
+	// nics
+	Nics *NicWhereInput `json:"nics,omitempty"`
 
 	// resource type
 	ResourceType string `json:"resource_type,omitempty"`
@@ -178,11 +193,36 @@ type GraphUpdationParamsData struct {
 
 	// type
 	Type GraphType `json:"type,omitempty"`
+
+	// vm nics
+	VMNics *VMNicWhereInput `json:"vmNics,omitempty"`
+
+	// vm volumes
+	VMVolumes *VMVolumeWhereInput `json:"vmVolumes,omitempty"`
+
+	// vms
+	Vms *VMWhereInput `json:"vms,omitempty"`
 }
 
 // Validate validates this graph updation params data
 func (m *GraphUpdationParamsData) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHosts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLuns(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateMetricType(formats); err != nil {
 		res = append(res, err)
@@ -192,13 +232,97 @@ func (m *GraphUpdationParamsData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateNics(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMNics(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVMVolumes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVms(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GraphUpdationParamsData) validateCluster(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cluster) { // not required
+		return nil
+	}
+
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "cluster")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) validateDisks(formats strfmt.Registry) error {
+	if swag.IsZero(m.Disks) { // not required
+		return nil
+	}
+
+	if m.Disks != nil {
+		if err := m.Disks.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) validateHosts(formats strfmt.Registry) error {
+	if swag.IsZero(m.Hosts) { // not required
+		return nil
+	}
+
+	if m.Hosts != nil {
+		if err := m.Hosts.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "hosts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) validateLuns(formats strfmt.Registry) error {
+	if swag.IsZero(m.Luns) { // not required
+		return nil
+	}
+
+	if m.Luns != nil {
+		if err := m.Luns.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "luns")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -232,6 +356,23 @@ func (m *GraphUpdationParamsData) validateNetwork(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *GraphUpdationParamsData) validateNics(formats strfmt.Registry) error {
+	if swag.IsZero(m.Nics) { // not required
+		return nil
+	}
+
+	if m.Nics != nil {
+		if err := m.Nics.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "nics")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *GraphUpdationParamsData) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
@@ -247,9 +388,76 @@ func (m *GraphUpdationParamsData) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GraphUpdationParamsData) validateVMNics(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMNics) { // not required
+		return nil
+	}
+
+	if m.VMNics != nil {
+		if err := m.VMNics.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vmNics")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) validateVMVolumes(formats strfmt.Registry) error {
+	if swag.IsZero(m.VMVolumes) { // not required
+		return nil
+	}
+
+	if m.VMVolumes != nil {
+		if err := m.VMVolumes.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vmVolumes")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) validateVms(formats strfmt.Registry) error {
+	if swag.IsZero(m.Vms) { // not required
+		return nil
+	}
+
+	if m.Vms != nil {
+		if err := m.Vms.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vms")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this graph updation params data based on the context it is used
 func (m *GraphUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHosts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLuns(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateMetricType(ctx, formats); err != nil {
 		res = append(res, err)
@@ -259,13 +467,85 @@ func (m *GraphUpdationParamsData) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNics(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMNics(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVMVolumes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVms(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GraphUpdationParamsData) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "cluster")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) contextValidateDisks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Disks != nil {
+		if err := m.Disks.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "disks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) contextValidateHosts(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Hosts != nil {
+		if err := m.Hosts.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "hosts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) contextValidateLuns(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Luns != nil {
+		if err := m.Luns.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "luns")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -293,6 +573,20 @@ func (m *GraphUpdationParamsData) contextValidateNetwork(ctx context.Context, fo
 	return nil
 }
 
+func (m *GraphUpdationParamsData) contextValidateNics(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Nics != nil {
+		if err := m.Nics.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "nics")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *GraphUpdationParamsData) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
@@ -300,6 +594,48 @@ func (m *GraphUpdationParamsData) contextValidateType(ctx context.Context, forma
 			return ve.ValidateName("data" + "." + "type")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMNics != nil {
+		if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vmNics")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) contextValidateVMVolumes(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMVolumes != nil {
+		if err := m.VMVolumes.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vmVolumes")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GraphUpdationParamsData) contextValidateVms(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Vms != nil {
+		if err := m.Vms.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data" + "." + "vms")
+			}
+			return err
+		}
 	}
 
 	return nil

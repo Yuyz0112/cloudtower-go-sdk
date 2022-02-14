@@ -21,7 +21,7 @@ type LabelConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *LabelConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateLabel `json:"aggregate"`
 }
 
 // Validate validates this label connection
@@ -95,62 +95,6 @@ func (m *LabelConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *LabelConnection) UnmarshalBinary(b []byte) error {
 	var res LabelConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LabelConnectionAggregate label connection aggregate
-//
-// swagger:model LabelConnectionAggregate
-type LabelConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this label connection aggregate
-func (m *LabelConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LabelConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this label connection aggregate based on context it is used
-func (m *LabelConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LabelConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LabelConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res LabelConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

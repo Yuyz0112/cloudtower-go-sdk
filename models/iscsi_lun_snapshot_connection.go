@@ -21,7 +21,7 @@ type IscsiLunSnapshotConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *IscsiLunSnapshotConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateIscsiLunSnapshot `json:"aggregate"`
 }
 
 // Validate validates this iscsi lun snapshot connection
@@ -95,62 +95,6 @@ func (m *IscsiLunSnapshotConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *IscsiLunSnapshotConnection) UnmarshalBinary(b []byte) error {
 	var res IscsiLunSnapshotConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiLunSnapshotConnectionAggregate iscsi lun snapshot connection aggregate
-//
-// swagger:model IscsiLunSnapshotConnectionAggregate
-type IscsiLunSnapshotConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this iscsi lun snapshot connection aggregate
-func (m *IscsiLunSnapshotConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiLunSnapshotConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi lun snapshot connection aggregate based on context it is used
-func (m *IscsiLunSnapshotConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiLunSnapshotConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiLunSnapshotConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res IscsiLunSnapshotConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

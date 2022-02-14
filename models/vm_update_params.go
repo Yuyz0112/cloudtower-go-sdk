@@ -152,10 +152,10 @@ func (m *VMUpdateParams) UnmarshalBinary(b []byte) error {
 type VMUpdateParamsData struct {
 
 	// cpu cores
-	CPUCores float64 `json:"cpu_cores,omitempty"`
+	CPUCores int32 `json:"cpu_cores,omitempty"`
 
 	// cpu sockets
-	CPUSockets float64 `json:"cpu_sockets,omitempty"`
+	CPUSockets int32 `json:"cpu_sockets,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -170,7 +170,7 @@ type VMUpdateParamsData struct {
 	Name string `json:"name,omitempty"`
 
 	// vcpu
-	Vcpu float64 `json:"vcpu,omitempty"`
+	Vcpu int32 `json:"vcpu,omitempty"`
 }
 
 // Validate validates this VM update params data

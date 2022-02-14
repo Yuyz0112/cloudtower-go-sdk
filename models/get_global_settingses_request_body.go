@@ -13,6 +13,7 @@ import (
 )
 
 // GetGlobalSettingsesRequestBody get global settingses request body
+// Example: {"after":"globalSettingses-id-string","before":"globalSettingses-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"GlobalSettingsWhereInput[]","NOT":"GlobalSettingsWhereInput[]","OR":"GlobalSettingsWhereInput[]","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string"}}
 //
 // swagger:model GetGlobalSettingsesRequestBody
 type GetGlobalSettingsesRequestBody struct {
@@ -24,16 +25,16 @@ type GetGlobalSettingsesRequestBody struct {
 	Before *string `json:"before,omitempty"`
 
 	// first
-	First *float64 `json:"first,omitempty"`
+	First *int32 `json:"first,omitempty"`
 
 	// last
-	Last *float64 `json:"last,omitempty"`
+	Last *int32 `json:"last,omitempty"`
 
 	// order by
 	OrderBy interface{} `json:"orderBy,omitempty"`
 
 	// skip
-	Skip *float64 `json:"skip,omitempty"`
+	Skip *int32 `json:"skip,omitempty"`
 
 	// where
 	Where interface{} `json:"where,omitempty"`

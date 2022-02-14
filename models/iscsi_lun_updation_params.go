@@ -21,7 +21,7 @@ type IscsiLunUpdationParams struct {
 
 	// data
 	// Required: true
-	Data interface{} `json:"data"`
+	Data IscsiLunUpdationParamsData `json:"data"`
 
 	// where
 	// Required: true

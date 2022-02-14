@@ -15,6 +15,7 @@ import (
 )
 
 // DiskWhereInput disk where input
+// Example: {"AND":"DiskWhereInput[]","NOT":"DiskWhereInput[]","OR":"DiskWhereInput[]","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"firmware":"string","firmware_contains":"string","firmware_ends_with":"string","firmware_gt":"string","firmware_gte":"string","firmware_in":["string"],"firmware_lt":"string","firmware_lte":"string","firmware_not":"string","firmware_not_contains":"string","firmware_not_ends_with":"string","firmware_not_in":["string"],"firmware_not_starts_with":"string","firmware_starts_with":"string","function":"CACHE","function_in":["CACHE"],"function_not":"CACHE","function_not_in":["CACHE"],"health_status":"HEALTHY","health_status_in":["HEALTHY"],"health_status_not":"HEALTHY","health_status_not_in":["HEALTHY"],"healthy":false,"healthy_not":false,"host":"HostWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","labels_every":"LabelWhereInput","labels_none":"LabelWhereInput","labels_some":"LabelWhereInput","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","model":"string","model_contains":"string","model_ends_with":"string","model_gt":"string","model_gte":"string","model_in":["string"],"model_lt":"string","model_lte":"string","model_not":"string","model_not_contains":"string","model_not_ends_with":"string","model_not_in":["string"],"model_not_starts_with":"string","model_starts_with":"string","mounted":false,"mounted_not":false,"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","numa_node":0,"numa_node_gt":0,"numa_node_gte":0,"numa_node_in":[0],"numa_node_lt":0,"numa_node_lte":0,"numa_node_not":0,"numa_node_not_in":[0],"offline":false,"offline_not":false,"path":"string","path_contains":"string","path_ends_with":"string","path_gt":"string","path_gte":"string","path_in":["string"],"path_lt":"string","path_lte":"string","path_not":"string","path_not_contains":"string","path_not_ends_with":"string","path_not_in":["string"],"path_not_starts_with":"string","path_starts_with":"string","persistent_memory_type":"string","persistent_memory_type_contains":"string","persistent_memory_type_ends_with":"string","persistent_memory_type_gt":"string","persistent_memory_type_gte":"string","persistent_memory_type_in":["string"],"persistent_memory_type_lt":"string","persistent_memory_type_lte":"string","persistent_memory_type_not":"string","persistent_memory_type_not_contains":"string","persistent_memory_type_not_ends_with":"string","persistent_memory_type_not_in":["string"],"persistent_memory_type_not_starts_with":"string","persistent_memory_type_starts_with":"string","physical_slot_on_brick":0,"physical_slot_on_brick_gt":0,"physical_slot_on_brick_gte":0,"physical_slot_on_brick_in":[0],"physical_slot_on_brick_lt":0,"physical_slot_on_brick_lte":0,"physical_slot_on_brick_not":0,"physical_slot_on_brick_not_in":[0],"pmem_dimms_every":"PmemDimmWhereInput","pmem_dimms_none":"PmemDimmWhereInput","pmem_dimms_some":"PmemDimmWhereInput","recommended_usage":"BOOT","recommended_usage_in":["BOOT"],"recommended_usage_not":"BOOT","recommended_usage_not_in":["BOOT"],"remaining_life_percent":0,"remaining_life_percent_gt":0,"remaining_life_percent_gte":0,"remaining_life_percent_in":[0],"remaining_life_percent_lt":0,"remaining_life_percent_lte":0,"remaining_life_percent_not":0,"remaining_life_percent_not_in":[0],"serial":"string","serial_contains":"string","serial_ends_with":"string","serial_gt":"string","serial_gte":"string","serial_in":["string"],"serial_lt":"string","serial_lte":"string","serial_not":"string","serial_not_contains":"string","serial_not_ends_with":"string","serial_not_in":["string"],"serial_not_starts_with":"string","serial_starts_with":"string","size":0,"size_gt":0,"size_gte":0,"size_in":[0],"size_lt":0,"size_lte":0,"size_not":0,"size_not_in":[0],"type":"HDD","type_in":["HDD"],"type_not":"HDD","type_not_in":["HDD"],"usage":"BOOT","usage_in":["BOOT"],"usage_not":"BOOT","usage_not_in":["BOOT"],"usage_status":"ISOLATED","usage_status_in":["ISOLATED"],"usage_status_not":"ISOLATED","usage_status_not_in":["ISOLATED"]}
 //
 // swagger:model DiskWhereInput
 type DiskWhereInput struct {
@@ -299,28 +300,28 @@ type DiskWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// numa node
-	NumaNode *float64 `json:"numa_node,omitempty"`
+	NumaNode *int32 `json:"numa_node,omitempty"`
 
 	// numa node gt
-	NumaNodeGt *float64 `json:"numa_node_gt,omitempty"`
+	NumaNodeGt *int32 `json:"numa_node_gt,omitempty"`
 
 	// numa node gte
-	NumaNodeGte *float64 `json:"numa_node_gte,omitempty"`
+	NumaNodeGte *int32 `json:"numa_node_gte,omitempty"`
 
 	// numa node in
-	NumaNodeIn []float64 `json:"numa_node_in,omitempty"`
+	NumaNodeIn []int32 `json:"numa_node_in,omitempty"`
 
 	// numa node lt
-	NumaNodeLt *float64 `json:"numa_node_lt,omitempty"`
+	NumaNodeLt *int32 `json:"numa_node_lt,omitempty"`
 
 	// numa node lte
-	NumaNodeLte *float64 `json:"numa_node_lte,omitempty"`
+	NumaNodeLte *int32 `json:"numa_node_lte,omitempty"`
 
 	// numa node not
-	NumaNodeNot *float64 `json:"numa_node_not,omitempty"`
+	NumaNodeNot *int32 `json:"numa_node_not,omitempty"`
 
 	// numa node not in
-	NumaNodeNotIn []float64 `json:"numa_node_not_in,omitempty"`
+	NumaNodeNotIn []int32 `json:"numa_node_not_in,omitempty"`
 
 	// offline
 	Offline *bool `json:"offline,omitempty"`
@@ -413,28 +414,28 @@ type DiskWhereInput struct {
 	PersistentMemoryTypeStartsWith *string `json:"persistent_memory_type_starts_with,omitempty"`
 
 	// physical slot on brick
-	PhysicalSlotOnBrick *float64 `json:"physical_slot_on_brick,omitempty"`
+	PhysicalSlotOnBrick *int32 `json:"physical_slot_on_brick,omitempty"`
 
 	// physical slot on brick gt
-	PhysicalSlotOnBrickGt *float64 `json:"physical_slot_on_brick_gt,omitempty"`
+	PhysicalSlotOnBrickGt *int32 `json:"physical_slot_on_brick_gt,omitempty"`
 
 	// physical slot on brick gte
-	PhysicalSlotOnBrickGte *float64 `json:"physical_slot_on_brick_gte,omitempty"`
+	PhysicalSlotOnBrickGte *int32 `json:"physical_slot_on_brick_gte,omitempty"`
 
 	// physical slot on brick in
-	PhysicalSlotOnBrickIn []float64 `json:"physical_slot_on_brick_in,omitempty"`
+	PhysicalSlotOnBrickIn []int32 `json:"physical_slot_on_brick_in,omitempty"`
 
 	// physical slot on brick lt
-	PhysicalSlotOnBrickLt *float64 `json:"physical_slot_on_brick_lt,omitempty"`
+	PhysicalSlotOnBrickLt *int32 `json:"physical_slot_on_brick_lt,omitempty"`
 
 	// physical slot on brick lte
-	PhysicalSlotOnBrickLte *float64 `json:"physical_slot_on_brick_lte,omitempty"`
+	PhysicalSlotOnBrickLte *int32 `json:"physical_slot_on_brick_lte,omitempty"`
 
 	// physical slot on brick not
-	PhysicalSlotOnBrickNot *float64 `json:"physical_slot_on_brick_not,omitempty"`
+	PhysicalSlotOnBrickNot *int32 `json:"physical_slot_on_brick_not,omitempty"`
 
 	// physical slot on brick not in
-	PhysicalSlotOnBrickNotIn []float64 `json:"physical_slot_on_brick_not_in,omitempty"`
+	PhysicalSlotOnBrickNotIn []int32 `json:"physical_slot_on_brick_not_in,omitempty"`
 
 	// pmem dimms every
 	PmemDimmsEvery interface{} `json:"pmem_dimms_every,omitempty"`
@@ -458,28 +459,28 @@ type DiskWhereInput struct {
 	RecommendedUsageNotIn []DiskUsage `json:"recommended_usage_not_in,omitempty"`
 
 	// remaining life percent
-	RemainingLifePercent *float64 `json:"remaining_life_percent,omitempty"`
+	RemainingLifePercent *int32 `json:"remaining_life_percent,omitempty"`
 
 	// remaining life percent gt
-	RemainingLifePercentGt *float64 `json:"remaining_life_percent_gt,omitempty"`
+	RemainingLifePercentGt *int32 `json:"remaining_life_percent_gt,omitempty"`
 
 	// remaining life percent gte
-	RemainingLifePercentGte *float64 `json:"remaining_life_percent_gte,omitempty"`
+	RemainingLifePercentGte *int32 `json:"remaining_life_percent_gte,omitempty"`
 
 	// remaining life percent in
-	RemainingLifePercentIn []float64 `json:"remaining_life_percent_in,omitempty"`
+	RemainingLifePercentIn []int32 `json:"remaining_life_percent_in,omitempty"`
 
 	// remaining life percent lt
-	RemainingLifePercentLt *float64 `json:"remaining_life_percent_lt,omitempty"`
+	RemainingLifePercentLt *int32 `json:"remaining_life_percent_lt,omitempty"`
 
 	// remaining life percent lte
-	RemainingLifePercentLte *float64 `json:"remaining_life_percent_lte,omitempty"`
+	RemainingLifePercentLte *int32 `json:"remaining_life_percent_lte,omitempty"`
 
 	// remaining life percent not
-	RemainingLifePercentNot *float64 `json:"remaining_life_percent_not,omitempty"`
+	RemainingLifePercentNot *int32 `json:"remaining_life_percent_not,omitempty"`
 
 	// remaining life percent not in
-	RemainingLifePercentNotIn []float64 `json:"remaining_life_percent_not_in,omitempty"`
+	RemainingLifePercentNotIn []int32 `json:"remaining_life_percent_not_in,omitempty"`
 
 	// serial
 	Serial *string `json:"serial,omitempty"`

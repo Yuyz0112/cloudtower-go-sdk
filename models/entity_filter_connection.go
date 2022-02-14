@@ -21,7 +21,7 @@ type EntityFilterConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *EntityFilterConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateEntityFilter `json:"aggregate"`
 }
 
 // Validate validates this entity filter connection
@@ -95,62 +95,6 @@ func (m *EntityFilterConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *EntityFilterConnection) UnmarshalBinary(b []byte) error {
 	var res EntityFilterConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// EntityFilterConnectionAggregate entity filter connection aggregate
-//
-// swagger:model EntityFilterConnectionAggregate
-type EntityFilterConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this entity filter connection aggregate
-func (m *EntityFilterConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *EntityFilterConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this entity filter connection aggregate based on context it is used
-func (m *EntityFilterConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *EntityFilterConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *EntityFilterConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res EntityFilterConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

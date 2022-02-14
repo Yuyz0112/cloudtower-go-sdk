@@ -61,6 +61,11 @@ func NewDeleteNvmfSubsystemParamsWithHTTPClient(client *http.Client) *DeleteNvmf
 */
 type DeleteNvmfSubsystemParams struct {
 
+	// ContentLanguage.
+	//
+	// Default: "en-US"
+	ContentLanguage *string
+
 	// RequestBody.
 	RequestBody *models.NvmfSubsystemDeletionParams
 
@@ -81,7 +86,18 @@ func (o *DeleteNvmfSubsystemParams) WithDefaults() *DeleteNvmfSubsystemParams {
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteNvmfSubsystemParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		contentLanguageDefault = string("en-US")
+	)
+
+	val := DeleteNvmfSubsystemParams{
+		ContentLanguage: &contentLanguageDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete nvmf subsystem params
@@ -117,6 +133,17 @@ func (o *DeleteNvmfSubsystemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithContentLanguage adds the contentLanguage to the delete nvmf subsystem params
+func (o *DeleteNvmfSubsystemParams) WithContentLanguage(contentLanguage *string) *DeleteNvmfSubsystemParams {
+	o.SetContentLanguage(contentLanguage)
+	return o
+}
+
+// SetContentLanguage adds the contentLanguage to the delete nvmf subsystem params
+func (o *DeleteNvmfSubsystemParams) SetContentLanguage(contentLanguage *string) {
+	o.ContentLanguage = contentLanguage
+}
+
 // WithRequestBody adds the requestBody to the delete nvmf subsystem params
 func (o *DeleteNvmfSubsystemParams) WithRequestBody(requestBody *models.NvmfSubsystemDeletionParams) *DeleteNvmfSubsystemParams {
 	o.SetRequestBody(requestBody)
@@ -135,6 +162,14 @@ func (o *DeleteNvmfSubsystemParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.ContentLanguage != nil {
+
+		// header param content-language
+		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
 	if o.RequestBody != nil {
 		if err := r.SetBodyParam(o.RequestBody); err != nil {
 			return err

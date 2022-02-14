@@ -15,6 +15,7 @@ import (
 )
 
 // ElfDataStoreWhereInput elf data store where input
+// Example: {"AND":"ElfDataStoreWhereInput[]","NOT":"ElfDataStoreWhereInput[]","OR":"ElfDataStoreWhereInput[]","cluster":"ClusterWhereInput","description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","external_use":false,"external_use_not":false,"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","internal":false,"internal_not":false,"ip_whitelist":"string","ip_whitelist_contains":"string","ip_whitelist_ends_with":"string","ip_whitelist_gt":"string","ip_whitelist_gte":"string","ip_whitelist_in":["string"],"ip_whitelist_lt":"string","ip_whitelist_lte":"string","ip_whitelist_not":"string","ip_whitelist_not_contains":"string","ip_whitelist_not_ends_with":"string","ip_whitelist_not_in":["string"],"ip_whitelist_not_starts_with":"string","ip_whitelist_starts_with":"string","iscsi_target":"IscsiTargetWhereInput","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","nfs_export":"NfsExportWhereInput","nvmf_subsystem":"NvmfSubsystemWhereInput","replica_num":0,"replica_num_gt":0,"replica_num_gte":0,"replica_num_in":[0],"replica_num_lt":0,"replica_num_lte":0,"replica_num_not":0,"replica_num_not_in":[0],"thin_provision":false,"thin_provision_not":false,"type":"ISCSI","type_in":["ISCSI"],"type_not":"ISCSI","type_not_in":["ISCSI"]}
 //
 // swagger:model ElfDataStoreWhereInput
 type ElfDataStoreWhereInput struct {
@@ -263,28 +264,28 @@ type ElfDataStoreWhereInput struct {
 	NvmfSubsystem interface{} `json:"nvmf_subsystem,omitempty"`
 
 	// replica num
-	ReplicaNum *float64 `json:"replica_num,omitempty"`
+	ReplicaNum *int32 `json:"replica_num,omitempty"`
 
 	// replica num gt
-	ReplicaNumGt *float64 `json:"replica_num_gt,omitempty"`
+	ReplicaNumGt *int32 `json:"replica_num_gt,omitempty"`
 
 	// replica num gte
-	ReplicaNumGte *float64 `json:"replica_num_gte,omitempty"`
+	ReplicaNumGte *int32 `json:"replica_num_gte,omitempty"`
 
 	// replica num in
-	ReplicaNumIn []float64 `json:"replica_num_in,omitempty"`
+	ReplicaNumIn []int32 `json:"replica_num_in,omitempty"`
 
 	// replica num lt
-	ReplicaNumLt *float64 `json:"replica_num_lt,omitempty"`
+	ReplicaNumLt *int32 `json:"replica_num_lt,omitempty"`
 
 	// replica num lte
-	ReplicaNumLte *float64 `json:"replica_num_lte,omitempty"`
+	ReplicaNumLte *int32 `json:"replica_num_lte,omitempty"`
 
 	// replica num not
-	ReplicaNumNot *float64 `json:"replica_num_not,omitempty"`
+	ReplicaNumNot *int32 `json:"replica_num_not,omitempty"`
 
 	// replica num not in
-	ReplicaNumNotIn []float64 `json:"replica_num_not_in,omitempty"`
+	ReplicaNumNotIn []int32 `json:"replica_num_not_in,omitempty"`
 
 	// thin provision
 	ThinProvision *bool `json:"thin_provision,omitempty"`

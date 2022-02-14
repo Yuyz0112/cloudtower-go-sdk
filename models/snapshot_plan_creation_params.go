@@ -31,7 +31,7 @@ type SnapshotPlanCreationParams struct {
 
 	// execute intervals
 	// Required: true
-	ExecuteIntervals []float64 `json:"execute_intervals"`
+	ExecuteIntervals []int32 `json:"execute_intervals"`
 
 	// execute plan type
 	// Required: true
@@ -43,7 +43,7 @@ type SnapshotPlanCreationParams struct {
 
 	// remain snapshot num
 	// Required: true
-	RemainSnapshotNum *float64 `json:"remain_snapshot_num"`
+	RemainSnapshotNum *int32 `json:"remain_snapshot_num"`
 
 	// start time
 	// Required: true

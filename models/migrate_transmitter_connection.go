@@ -21,7 +21,7 @@ type MigrateTransmitterConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *MigrateTransmitterConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateMigrateTransmitter `json:"aggregate"`
 }
 
 // Validate validates this migrate transmitter connection
@@ -95,62 +95,6 @@ func (m *MigrateTransmitterConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *MigrateTransmitterConnection) UnmarshalBinary(b []byte) error {
 	var res MigrateTransmitterConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// MigrateTransmitterConnectionAggregate migrate transmitter connection aggregate
-//
-// swagger:model MigrateTransmitterConnectionAggregate
-type MigrateTransmitterConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this migrate transmitter connection aggregate
-func (m *MigrateTransmitterConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *MigrateTransmitterConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this migrate transmitter connection aggregate based on context it is used
-func (m *MigrateTransmitterConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *MigrateTransmitterConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *MigrateTransmitterConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res MigrateTransmitterConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

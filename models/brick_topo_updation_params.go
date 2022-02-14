@@ -153,10 +153,10 @@ func (m *BrickTopoUpdationParams) UnmarshalBinary(b []byte) error {
 type BrickTopoUpdationParamsData struct {
 
 	// capacity
-	Capacity *BrickTopoUpdationParamsDataCapacity `json:"capacity,omitempty"`
+	Capacity *NestedCapacity `json:"capacity,omitempty"`
 
 	// height
-	Height float64 `json:"height,omitempty"`
+	Height int32 `json:"height,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -165,10 +165,10 @@ type BrickTopoUpdationParamsData struct {
 	NodeTopoes *NodeTopoWhereInput `json:"node_topoes,omitempty"`
 
 	// position
-	Position float64 `json:"position,omitempty"`
+	Position int32 `json:"position,omitempty"`
 
 	// tag position in brick
-	TagPositionInBrick []*BrickTopoUpdationParamsDataTagPositionInBrickItems0 `json:"tag_position_in_brick"`
+	TagPositionInBrick []*NestedTagPosition `json:"tag_position_in_brick"`
 }
 
 // Validate validates this brick topo updation params data
@@ -330,136 +330,6 @@ func (m *BrickTopoUpdationParamsData) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *BrickTopoUpdationParamsData) UnmarshalBinary(b []byte) error {
 	var res BrickTopoUpdationParamsData
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// BrickTopoUpdationParamsDataCapacity brick topo updation params data capacity
-//
-// swagger:model BrickTopoUpdationParamsDataCapacity
-type BrickTopoUpdationParamsDataCapacity struct {
-
-	// column
-	Column *float64 `json:"column,omitempty"`
-
-	// row
-	Row *float64 `json:"row,omitempty"`
-}
-
-// Validate validates this brick topo updation params data capacity
-func (m *BrickTopoUpdationParamsDataCapacity) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this brick topo updation params data capacity based on context it is used
-func (m *BrickTopoUpdationParamsDataCapacity) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *BrickTopoUpdationParamsDataCapacity) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *BrickTopoUpdationParamsDataCapacity) UnmarshalBinary(b []byte) error {
-	var res BrickTopoUpdationParamsDataCapacity
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// BrickTopoUpdationParamsDataTagPositionInBrickItems0 brick topo updation params data tag position in brick items0
-//
-// swagger:model BrickTopoUpdationParamsDataTagPositionInBrickItems0
-type BrickTopoUpdationParamsDataTagPositionInBrickItems0 struct {
-
-	// column
-	// Required: true
-	Column *float64 `json:"column"`
-
-	// row
-	// Required: true
-	Row *float64 `json:"row"`
-
-	// tag
-	// Required: true
-	Tag *string `json:"tag"`
-}
-
-// Validate validates this brick topo updation params data tag position in brick items0
-func (m *BrickTopoUpdationParamsDataTagPositionInBrickItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateColumn(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRow(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTag(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *BrickTopoUpdationParamsDataTagPositionInBrickItems0) validateColumn(formats strfmt.Registry) error {
-
-	if err := validate.Required("column", "body", m.Column); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *BrickTopoUpdationParamsDataTagPositionInBrickItems0) validateRow(formats strfmt.Registry) error {
-
-	if err := validate.Required("row", "body", m.Row); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *BrickTopoUpdationParamsDataTagPositionInBrickItems0) validateTag(formats strfmt.Registry) error {
-
-	if err := validate.Required("tag", "body", m.Tag); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this brick topo updation params data tag position in brick items0 based on context it is used
-func (m *BrickTopoUpdationParamsDataTagPositionInBrickItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *BrickTopoUpdationParamsDataTagPositionInBrickItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *BrickTopoUpdationParamsDataTagPositionInBrickItems0) UnmarshalBinary(b []byte) error {
-	var res BrickTopoUpdationParamsDataTagPositionInBrickItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

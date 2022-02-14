@@ -154,9 +154,12 @@ type VMUpdateDiskParamsData struct {
 	// bus
 	Bus Bus `json:"bus,omitempty"`
 
-	// vm disk index
+	// elf image id
+	ElfImageID *string `json:"elf_image_id,omitempty"`
+
+	// vm disk id
 	// Required: true
-	VMDiskIndex *float64 `json:"vm_disk_index"`
+	VMDiskID *string `json:"vm_disk_id"`
 
 	// vm volume id
 	VMVolumeID string `json:"vm_volume_id,omitempty"`
@@ -170,7 +173,7 @@ func (m *VMUpdateDiskParamsData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateVMDiskIndex(formats); err != nil {
+	if err := m.validateVMDiskID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -195,9 +198,9 @@ func (m *VMUpdateDiskParamsData) validateBus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMUpdateDiskParamsData) validateVMDiskIndex(formats strfmt.Registry) error {
+func (m *VMUpdateDiskParamsData) validateVMDiskID(formats strfmt.Registry) error {
 
-	if err := validate.Required("data"+"."+"vm_disk_index", "body", m.VMDiskIndex); err != nil {
+	if err := validate.Required("data"+"."+"vm_disk_id", "body", m.VMDiskID); err != nil {
 		return err
 	}
 

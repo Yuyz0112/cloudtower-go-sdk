@@ -22,7 +22,7 @@ type SvtImage struct {
 
 	// cluster
 	// Required: true
-	Cluster *SvtImageCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
@@ -53,10 +53,10 @@ type SvtImage struct {
 
 	// version
 	// Required: true
-	Version *float64 `json:"version"`
+	Version *int32 `json:"version"`
 
 	// vm disks
-	VMDisks []*SvtImageVMDisksItems0 `json:"vm_disks,omitempty"`
+	VMDisks []*NestedVMDisk `json:"vm_disks,omitempty"`
 }
 
 // Validate validates this svt image
@@ -271,135 +271,6 @@ func (m *SvtImage) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SvtImage) UnmarshalBinary(b []byte) error {
 	var res SvtImage
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SvtImageCluster svt image cluster
-//
-// swagger:model SvtImageCluster
-type SvtImageCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this svt image cluster
-func (m *SvtImageCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SvtImageCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SvtImageCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this svt image cluster based on context it is used
-func (m *SvtImageCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SvtImageCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SvtImageCluster) UnmarshalBinary(b []byte) error {
-	var res SvtImageCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SvtImageVMDisksItems0 svt image VM disks items0
-//
-// swagger:model SvtImageVMDisksItems0
-type SvtImageVMDisksItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this svt image VM disks items0
-func (m *SvtImageVMDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SvtImageVMDisksItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this svt image VM disks items0 based on context it is used
-func (m *SvtImageVMDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SvtImageVMDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SvtImageVMDisksItems0) UnmarshalBinary(b []byte) error {
-	var res SvtImageVMDisksItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -7,7 +7,6 @@ package models
 
 import (
 	"context"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -18,65 +17,11 @@ import (
 // MountDisksParams mount disks params
 //
 // swagger:model MountDisksParams
-type MountDisksParams []*MountDisksParamsItems0
-
-// Validate validates this mount disks params
-func (m MountDisksParams) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	for i := 0; i < len(m); i++ {
-		if swag.IsZero(m[i]) { // not required
-			continue
-		}
-
-		if m[i] != nil {
-			if err := m[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName(strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-// ContextValidate validate this mount disks params based on the context it is used
-func (m MountDisksParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	for i := 0; i < len(m); i++ {
-
-		if m[i] != nil {
-			if err := m[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName(strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-// MountDisksParamsItems0 mount disks params items0
-//
-// swagger:model MountDisksParamsItems0
-type MountDisksParamsItems0 struct {
+type MountDisksParams struct {
 
 	// boot
 	// Required: true
-	Boot *float64 `json:"boot"`
+	Boot *int32 `json:"boot"`
 
 	// bus
 	// Required: true
@@ -84,10 +29,10 @@ type MountDisksParamsItems0 struct {
 
 	// index
 	// Required: true
-	Index *float64 `json:"index"`
+	Index *int32 `json:"index"`
 
 	// key
-	Key float64 `json:"key,omitempty"`
+	Key int32 `json:"key,omitempty"`
 
 	// max bandwidth
 	MaxBandwidth float64 `json:"max_bandwidth,omitempty"`
@@ -96,7 +41,7 @@ type MountDisksParamsItems0 struct {
 	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
-	MaxIops float64 `json:"max_iops,omitempty"`
+	MaxIops int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
@@ -106,8 +51,8 @@ type MountDisksParamsItems0 struct {
 	VMVolumeID *string `json:"vm_volume_id"`
 }
 
-// Validate validates this mount disks params items0
-func (m *MountDisksParamsItems0) Validate(formats strfmt.Registry) error {
+// Validate validates this mount disks params
+func (m *MountDisksParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBoot(formats); err != nil {
@@ -140,7 +85,7 @@ func (m *MountDisksParamsItems0) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MountDisksParamsItems0) validateBoot(formats strfmt.Registry) error {
+func (m *MountDisksParams) validateBoot(formats strfmt.Registry) error {
 
 	if err := validate.Required("boot", "body", m.Boot); err != nil {
 		return err
@@ -149,7 +94,7 @@ func (m *MountDisksParamsItems0) validateBoot(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MountDisksParamsItems0) validateBus(formats strfmt.Registry) error {
+func (m *MountDisksParams) validateBus(formats strfmt.Registry) error {
 
 	if err := validate.Required("bus", "body", m.Bus); err != nil {
 		return err
@@ -171,7 +116,7 @@ func (m *MountDisksParamsItems0) validateBus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MountDisksParamsItems0) validateIndex(formats strfmt.Registry) error {
+func (m *MountDisksParams) validateIndex(formats strfmt.Registry) error {
 
 	if err := validate.Required("index", "body", m.Index); err != nil {
 		return err
@@ -180,7 +125,7 @@ func (m *MountDisksParamsItems0) validateIndex(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MountDisksParamsItems0) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
+func (m *MountDisksParams) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
 		return nil
 	}
@@ -195,7 +140,7 @@ func (m *MountDisksParamsItems0) validateMaxBandwidthPolicy(formats strfmt.Regis
 	return nil
 }
 
-func (m *MountDisksParamsItems0) validateMaxIopsPolicy(formats strfmt.Registry) error {
+func (m *MountDisksParams) validateMaxIopsPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxIopsPolicy) { // not required
 		return nil
 	}
@@ -210,7 +155,7 @@ func (m *MountDisksParamsItems0) validateMaxIopsPolicy(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *MountDisksParamsItems0) validateVMVolumeID(formats strfmt.Registry) error {
+func (m *MountDisksParams) validateVMVolumeID(formats strfmt.Registry) error {
 
 	if err := validate.Required("vm_volume_id", "body", m.VMVolumeID); err != nil {
 		return err
@@ -219,8 +164,8 @@ func (m *MountDisksParamsItems0) validateVMVolumeID(formats strfmt.Registry) err
 	return nil
 }
 
-// ContextValidate validate this mount disks params items0 based on the context it is used
-func (m *MountDisksParamsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this mount disks params based on the context it is used
+func (m *MountDisksParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateBus(ctx, formats); err != nil {
@@ -241,7 +186,7 @@ func (m *MountDisksParamsItems0) ContextValidate(ctx context.Context, formats st
 	return nil
 }
 
-func (m *MountDisksParamsItems0) contextValidateBus(ctx context.Context, formats strfmt.Registry) error {
+func (m *MountDisksParams) contextValidateBus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Bus != nil {
 		if err := m.Bus.ContextValidate(ctx, formats); err != nil {
@@ -255,7 +200,7 @@ func (m *MountDisksParamsItems0) contextValidateBus(ctx context.Context, formats
 	return nil
 }
 
-func (m *MountDisksParamsItems0) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+func (m *MountDisksParams) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -267,7 +212,7 @@ func (m *MountDisksParamsItems0) contextValidateMaxBandwidthPolicy(ctx context.C
 	return nil
 }
 
-func (m *MountDisksParamsItems0) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+func (m *MountDisksParams) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -280,7 +225,7 @@ func (m *MountDisksParamsItems0) contextValidateMaxIopsPolicy(ctx context.Contex
 }
 
 // MarshalBinary interface implementation
-func (m *MountDisksParamsItems0) MarshalBinary() ([]byte, error) {
+func (m *MountDisksParams) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -288,8 +233,8 @@ func (m *MountDisksParamsItems0) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *MountDisksParamsItems0) UnmarshalBinary(b []byte) error {
-	var res MountDisksParamsItems0
+func (m *MountDisksParams) UnmarshalBinary(b []byte) error {
+	var res MountDisksParams
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

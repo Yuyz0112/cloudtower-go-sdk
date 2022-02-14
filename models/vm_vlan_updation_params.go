@@ -155,7 +155,7 @@ type VMVlanUpdationParamsData struct {
 	Name string `json:"name,omitempty"`
 
 	// vlan id
-	VlanID float64 `json:"vlan_id,omitempty"`
+	VlanID int32 `json:"vlan_id,omitempty"`
 }
 
 // Validate validates this VM vlan updation params data

@@ -23,6 +23,9 @@ type Disk struct {
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
 
+	// failure information
+	FailureInformation interface{} `json:"failure_information,omitempty"`
+
 	// firmware
 	// Required: true
 	Firmware *string `json:"firmware"`
@@ -39,14 +42,14 @@ type Disk struct {
 
 	// host
 	// Required: true
-	Host *DiskHost `json:"host"`
+	Host *NestedHost `json:"host"`
 
 	// id
 	// Required: true
 	ID *string `json:"id"`
 
 	// labels
-	Labels []*DiskLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local id
 	// Required: true
@@ -65,7 +68,7 @@ type Disk struct {
 	Name *string `json:"name"`
 
 	// numa node
-	NumaNode *float64 `json:"numa_node,omitempty"`
+	NumaNode *int32 `json:"numa_node,omitempty"`
 
 	// offline
 	// Required: true
@@ -73,7 +76,7 @@ type Disk struct {
 
 	// partitions
 	// Required: true
-	Partitions []*DiskPartitionsItems0 `json:"partitions"`
+	Partitions []*NestedPartition `json:"partitions"`
 
 	// path
 	// Required: true
@@ -83,16 +86,16 @@ type Disk struct {
 	PersistentMemoryType *string `json:"persistent_memory_type,omitempty"`
 
 	// physical slot on brick
-	PhysicalSlotOnBrick *float64 `json:"physical_slot_on_brick,omitempty"`
+	PhysicalSlotOnBrick *int32 `json:"physical_slot_on_brick,omitempty"`
 
 	// pmem dimms
-	PmemDimms []*DiskPmemDimmsItems0 `json:"pmem_dimms,omitempty"`
+	PmemDimms []*NestedPmemDimm `json:"pmem_dimms,omitempty"`
 
 	// recommended usage
 	RecommendedUsage interface{} `json:"recommended_usage,omitempty"`
 
 	// remaining life percent
-	RemainingLifePercent *float64 `json:"remaining_life_percent,omitempty"`
+	RemainingLifePercent *int32 `json:"remaining_life_percent,omitempty"`
 
 	// serial
 	// Required: true
@@ -567,340 +570,6 @@ func (m *Disk) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Disk) UnmarshalBinary(b []byte) error {
 	var res Disk
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DiskHost disk host
-//
-// swagger:model DiskHost
-type DiskHost struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this disk host
-func (m *DiskHost) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiskHost) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiskHost) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this disk host based on context it is used
-func (m *DiskHost) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DiskHost) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DiskHost) UnmarshalBinary(b []byte) error {
-	var res DiskHost
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DiskLabelsItems0 disk labels items0
-//
-// swagger:model DiskLabelsItems0
-type DiskLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this disk labels items0
-func (m *DiskLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiskLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this disk labels items0 based on context it is used
-func (m *DiskLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DiskLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DiskLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res DiskLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DiskPartitionsItems0 disk partitions items0
-//
-// swagger:model DiskPartitionsItems0
-type DiskPartitionsItems0 struct {
-
-	// name
-	Name *string `json:"name,omitempty"`
-
-	// path
-	Path *string `json:"path,omitempty"`
-
-	// size
-	// Required: true
-	Size *float64 `json:"size"`
-
-	// usage
-	// Required: true
-	Usage *PartitionUsage `json:"usage"`
-
-	// used size
-	// Required: true
-	UsedSize *float64 `json:"used_size"`
-}
-
-// Validate validates this disk partitions items0
-func (m *DiskPartitionsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateSize(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUsage(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUsedSize(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiskPartitionsItems0) validateSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("size", "body", m.Size); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiskPartitionsItems0) validateUsage(formats strfmt.Registry) error {
-
-	if err := validate.Required("usage", "body", m.Usage); err != nil {
-		return err
-	}
-
-	if err := validate.Required("usage", "body", m.Usage); err != nil {
-		return err
-	}
-
-	if m.Usage != nil {
-		if err := m.Usage.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("usage")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *DiskPartitionsItems0) validateUsedSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("used_size", "body", m.UsedSize); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this disk partitions items0 based on the context it is used
-func (m *DiskPartitionsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateUsage(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiskPartitionsItems0) contextValidateUsage(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Usage != nil {
-		if err := m.Usage.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("usage")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DiskPartitionsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DiskPartitionsItems0) UnmarshalBinary(b []byte) error {
-	var res DiskPartitionsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DiskPmemDimmsItems0 disk pmem dimms items0
-//
-// swagger:model DiskPmemDimmsItems0
-type DiskPmemDimmsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this disk pmem dimms items0
-func (m *DiskPmemDimmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiskPmemDimmsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiskPmemDimmsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this disk pmem dimms items0 based on context it is used
-func (m *DiskPmemDimmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DiskPmemDimmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DiskPmemDimmsItems0) UnmarshalBinary(b []byte) error {
-	var res DiskPmemDimmsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -20,18 +20,18 @@ import (
 type NodeTopo struct {
 
 	// brick topo
-	BrickTopo *NodeTopoBrickTopo `json:"brick_topo,omitempty"`
+	BrickTopo interface{} `json:"brick_topo,omitempty"`
 
 	// cluster
 	// Required: true
-	Cluster *NodeTopoCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// cluster topo
-	ClusterTopo *NodeTopoClusterTopo `json:"cluster_topo,omitempty"`
+	ClusterTopo interface{} `json:"cluster_topo,omitempty"`
 
 	// host
 	// Required: true
-	Host *NodeTopoHost `json:"host"`
+	Host *NestedHost `json:"host"`
 
 	// id
 	// Required: true
@@ -47,22 +47,14 @@ type NodeTopo struct {
 
 	// position
 	// Required: true
-	Position *NodeTopoPosition `json:"position"`
+	Position *NestedPosition `json:"position"`
 }
 
 // Validate validates this node topo
 func (m *NodeTopo) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateBrickTopo(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCluster(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateClusterTopo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,23 +84,6 @@ func (m *NodeTopo) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *NodeTopo) validateBrickTopo(formats strfmt.Registry) error {
-	if swag.IsZero(m.BrickTopo) { // not required
-		return nil
-	}
-
-	if m.BrickTopo != nil {
-		if err := m.BrickTopo.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("brick_topo")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *NodeTopo) validateCluster(formats strfmt.Registry) error {
 
 	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
@@ -119,23 +94,6 @@ func (m *NodeTopo) validateCluster(formats strfmt.Registry) error {
 		if err := m.Cluster.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *NodeTopo) validateClusterTopo(formats strfmt.Registry) error {
-	if swag.IsZero(m.ClusterTopo) { // not required
-		return nil
-	}
-
-	if m.ClusterTopo != nil {
-		if err := m.ClusterTopo.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster_topo")
 			}
 			return err
 		}
@@ -211,15 +169,7 @@ func (m *NodeTopo) validatePosition(formats strfmt.Registry) error {
 func (m *NodeTopo) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateBrickTopo(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateClusterTopo(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -237,40 +187,12 @@ func (m *NodeTopo) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
-func (m *NodeTopo) contextValidateBrickTopo(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.BrickTopo != nil {
-		if err := m.BrickTopo.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("brick_topo")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *NodeTopo) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cluster != nil {
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *NodeTopo) contextValidateClusterTopo(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.ClusterTopo != nil {
-		if err := m.ClusterTopo.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster_topo")
 			}
 			return err
 		}
@@ -318,338 +240,6 @@ func (m *NodeTopo) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NodeTopo) UnmarshalBinary(b []byte) error {
 	var res NodeTopo
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NodeTopoBrickTopo node topo brick topo
-//
-// swagger:model NodeTopoBrickTopo
-type NodeTopoBrickTopo struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this node topo brick topo
-func (m *NodeTopoBrickTopo) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NodeTopoBrickTopo) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("brick_topo"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NodeTopoBrickTopo) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("brick_topo"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this node topo brick topo based on context it is used
-func (m *NodeTopoBrickTopo) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NodeTopoBrickTopo) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NodeTopoBrickTopo) UnmarshalBinary(b []byte) error {
-	var res NodeTopoBrickTopo
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NodeTopoCluster node topo cluster
-//
-// swagger:model NodeTopoCluster
-type NodeTopoCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this node topo cluster
-func (m *NodeTopoCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NodeTopoCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NodeTopoCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this node topo cluster based on context it is used
-func (m *NodeTopoCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NodeTopoCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NodeTopoCluster) UnmarshalBinary(b []byte) error {
-	var res NodeTopoCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NodeTopoClusterTopo node topo cluster topo
-//
-// swagger:model NodeTopoClusterTopo
-type NodeTopoClusterTopo struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this node topo cluster topo
-func (m *NodeTopoClusterTopo) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NodeTopoClusterTopo) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster_topo"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NodeTopoClusterTopo) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster_topo"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this node topo cluster topo based on context it is used
-func (m *NodeTopoClusterTopo) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NodeTopoClusterTopo) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NodeTopoClusterTopo) UnmarshalBinary(b []byte) error {
-	var res NodeTopoClusterTopo
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NodeTopoHost node topo host
-//
-// swagger:model NodeTopoHost
-type NodeTopoHost struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this node topo host
-func (m *NodeTopoHost) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NodeTopoHost) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NodeTopoHost) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this node topo host based on context it is used
-func (m *NodeTopoHost) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NodeTopoHost) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NodeTopoHost) UnmarshalBinary(b []byte) error {
-	var res NodeTopoHost
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NodeTopoPosition node topo position
-//
-// swagger:model NodeTopoPosition
-type NodeTopoPosition struct {
-
-	// column
-	Column *float64 `json:"column,omitempty"`
-
-	// row
-	Row *float64 `json:"row,omitempty"`
-}
-
-// Validate validates this node topo position
-func (m *NodeTopoPosition) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this node topo position based on context it is used
-func (m *NodeTopoPosition) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NodeTopoPosition) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NodeTopoPosition) UnmarshalBinary(b []byte) error {
-	var res NodeTopoPosition
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -34,9 +34,8 @@ type VdsCreationParams struct {
 	// Required: true
 	NicIds []string `json:"nic_ids"`
 
-	// type
-	// Required: true
-	Type *NetworkType `json:"type"`
+	// work mode
+	WorkMode string `json:"work_mode,omitempty"`
 }
 
 // Validate validates this vds creation params
@@ -52,10 +51,6 @@ func (m *VdsCreationParams) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNicIds(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,53 +87,8 @@ func (m *VdsCreationParams) validateNicIds(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VdsCreationParams) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	if m.Type != nil {
-		if err := m.Type.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("type")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this vds creation params based on the context it is used
+// ContextValidate validates this vds creation params based on context it is used
 func (m *VdsCreationParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateType(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VdsCreationParams) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Type != nil {
-		if err := m.Type.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("type")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

@@ -21,10 +21,10 @@ import (
 type ConsistencyGroupSnapshot struct {
 
 	// iscsi lun snapshots
-	IscsiLunSnapshots []*ConsistencyGroupSnapshotIscsiLunSnapshotsItems0 `json:"Iscsi_lun_snapshots,omitempty"`
+	IscsiLunSnapshots []*NestedIscsiLunSnapshot `json:"Iscsi_lun_snapshots,omitempty"`
 
 	// consistency group
-	ConsistencyGroup *ConsistencyGroupSnapshotConsistencyGroup `json:"consistency_group,omitempty"`
+	ConsistencyGroup interface{} `json:"consistency_group,omitempty"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
@@ -34,7 +34,7 @@ type ConsistencyGroupSnapshot struct {
 	ID *string `json:"id"`
 
 	// labels
-	Labels []*ConsistencyGroupSnapshotLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local created at
 	// Required: true
@@ -49,7 +49,7 @@ type ConsistencyGroupSnapshot struct {
 	Name *string `json:"name"`
 
 	// nvmf namespace snapshots
-	NvmfNamespaceSnapshots []*ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0 `json:"nvmf_namespace_snapshots,omitempty"`
+	NvmfNamespaceSnapshots []*NestedNvmfNamespaceSnapshot `json:"nvmf_namespace_snapshots,omitempty"`
 
 	// unique size
 	// Required: true
@@ -61,10 +61,6 @@ func (m *ConsistencyGroupSnapshot) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateIscsiLunSnapshots(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateConsistencyGroup(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -121,23 +117,6 @@ func (m *ConsistencyGroupSnapshot) validateIscsiLunSnapshots(formats strfmt.Regi
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshot) validateConsistencyGroup(formats strfmt.Registry) error {
-	if swag.IsZero(m.ConsistencyGroup) { // not required
-		return nil
-	}
-
-	if m.ConsistencyGroup != nil {
-		if err := m.ConsistencyGroup.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("consistency_group")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -244,10 +223,6 @@ func (m *ConsistencyGroupSnapshot) ContextValidate(ctx context.Context, formats 
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateConsistencyGroup(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -275,20 +250,6 @@ func (m *ConsistencyGroupSnapshot) contextValidateIscsiLunSnapshots(ctx context.
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshot) contextValidateConsistencyGroup(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.ConsistencyGroup != nil {
-		if err := m.ConsistencyGroup.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("consistency_group")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -341,281 +302,6 @@ func (m *ConsistencyGroupSnapshot) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ConsistencyGroupSnapshot) UnmarshalBinary(b []byte) error {
 	var res ConsistencyGroupSnapshot
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ConsistencyGroupSnapshotConsistencyGroup consistency group snapshot consistency group
-//
-// swagger:model ConsistencyGroupSnapshotConsistencyGroup
-type ConsistencyGroupSnapshotConsistencyGroup struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this consistency group snapshot consistency group
-func (m *ConsistencyGroupSnapshotConsistencyGroup) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshotConsistencyGroup) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistency_group"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshotConsistencyGroup) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistency_group"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this consistency group snapshot consistency group based on context it is used
-func (m *ConsistencyGroupSnapshotConsistencyGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ConsistencyGroupSnapshotConsistencyGroup) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ConsistencyGroupSnapshotConsistencyGroup) UnmarshalBinary(b []byte) error {
-	var res ConsistencyGroupSnapshotConsistencyGroup
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ConsistencyGroupSnapshotIscsiLunSnapshotsItems0 consistency group snapshot iscsi lun snapshots items0
-//
-// swagger:model ConsistencyGroupSnapshotIscsiLunSnapshotsItems0
-type ConsistencyGroupSnapshotIscsiLunSnapshotsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this consistency group snapshot iscsi lun snapshots items0
-func (m *ConsistencyGroupSnapshotIscsiLunSnapshotsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshotIscsiLunSnapshotsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshotIscsiLunSnapshotsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this consistency group snapshot iscsi lun snapshots items0 based on context it is used
-func (m *ConsistencyGroupSnapshotIscsiLunSnapshotsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ConsistencyGroupSnapshotIscsiLunSnapshotsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ConsistencyGroupSnapshotIscsiLunSnapshotsItems0) UnmarshalBinary(b []byte) error {
-	var res ConsistencyGroupSnapshotIscsiLunSnapshotsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ConsistencyGroupSnapshotLabelsItems0 consistency group snapshot labels items0
-//
-// swagger:model ConsistencyGroupSnapshotLabelsItems0
-type ConsistencyGroupSnapshotLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this consistency group snapshot labels items0
-func (m *ConsistencyGroupSnapshotLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshotLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this consistency group snapshot labels items0 based on context it is used
-func (m *ConsistencyGroupSnapshotLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ConsistencyGroupSnapshotLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ConsistencyGroupSnapshotLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res ConsistencyGroupSnapshotLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0 consistency group snapshot nvmf namespace snapshots items0
-//
-// swagger:model ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0
-type ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this consistency group snapshot nvmf namespace snapshots items0
-func (m *ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this consistency group snapshot nvmf namespace snapshots items0 based on context it is used
-func (m *ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0) UnmarshalBinary(b []byte) error {
-	var res ConsistencyGroupSnapshotNvmfNamespaceSnapshotsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

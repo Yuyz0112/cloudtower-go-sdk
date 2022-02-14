@@ -22,7 +22,7 @@ type NfsExport struct {
 
 	// cluster
 	// Required: true
-	Cluster *NfsExportCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// description
 	// Required: true
@@ -40,7 +40,7 @@ type NfsExport struct {
 	ID *string `json:"id"`
 
 	// inodes
-	Inodes []*NfsExportInodesItems0 `json:"inodes,omitempty"`
+	Inodes []*NestedNfsInode `json:"inodes,omitempty"`
 
 	// internal
 	// Required: true
@@ -51,7 +51,7 @@ type NfsExport struct {
 	IPWhitelist *string `json:"ip_whitelist"`
 
 	// labels
-	Labels []*NfsExportLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local id
 	// Required: true
@@ -63,7 +63,7 @@ type NfsExport struct {
 
 	// replica num
 	// Required: true
-	ReplicaNum *float64 `json:"replica_num"`
+	ReplicaNum *int32 `json:"replica_num"`
 
 	// thin provision
 	// Required: true
@@ -358,208 +358,6 @@ func (m *NfsExport) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NfsExport) UnmarshalBinary(b []byte) error {
 	var res NfsExport
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NfsExportCluster nfs export cluster
-//
-// swagger:model NfsExportCluster
-type NfsExportCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nfs export cluster
-func (m *NfsExportCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NfsExportCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NfsExportCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nfs export cluster based on context it is used
-func (m *NfsExportCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NfsExportCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NfsExportCluster) UnmarshalBinary(b []byte) error {
-	var res NfsExportCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NfsExportInodesItems0 nfs export inodes items0
-//
-// swagger:model NfsExportInodesItems0
-type NfsExportInodesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nfs export inodes items0
-func (m *NfsExportInodesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NfsExportInodesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NfsExportInodesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nfs export inodes items0 based on context it is used
-func (m *NfsExportInodesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NfsExportInodesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NfsExportInodesItems0) UnmarshalBinary(b []byte) error {
-	var res NfsExportInodesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NfsExportLabelsItems0 nfs export labels items0
-//
-// swagger:model NfsExportLabelsItems0
-type NfsExportLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this nfs export labels items0
-func (m *NfsExportLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NfsExportLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nfs export labels items0 based on context it is used
-func (m *NfsExportLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NfsExportLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NfsExportLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res NfsExportLabelsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

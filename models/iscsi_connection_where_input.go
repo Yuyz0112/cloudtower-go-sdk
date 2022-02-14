@@ -15,6 +15,7 @@ import (
 )
 
 // IscsiConnectionWhereInput iscsi connection where input
+// Example: {"AND":"IscsiConnectionWhereInput[]","NOT":"IscsiConnectionWhereInput[]","OR":"IscsiConnectionWhereInput[]","client_port":0,"client_port_gt":0,"client_port_gte":0,"client_port_in":[0],"client_port_lt":0,"client_port_lte":0,"client_port_not":0,"client_port_not_in":[0],"cluster":"ClusterWhereInput","host":"HostWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","initiator_ip":"string","initiator_ip_contains":"string","initiator_ip_ends_with":"string","initiator_ip_gt":"string","initiator_ip_gte":"string","initiator_ip_in":["string"],"initiator_ip_lt":"string","initiator_ip_lte":"string","initiator_ip_not":"string","initiator_ip_not_contains":"string","initiator_ip_not_ends_with":"string","initiator_ip_not_in":["string"],"initiator_ip_not_starts_with":"string","initiator_ip_starts_with":"string","iscsi_target":"IscsiTargetWhereInput","nvmf_subsystem":"NvmfSubsystemWhereInput","type":"ISCSI","type_in":["ISCSI"],"type_not":"ISCSI","type_not_in":["ISCSI"]}
 //
 // swagger:model IscsiConnectionWhereInput
 type IscsiConnectionWhereInput struct {
@@ -29,28 +30,28 @@ type IscsiConnectionWhereInput struct {
 	OR []*IscsiConnectionWhereInput `json:"OR,omitempty"`
 
 	// client port
-	ClientPort *float64 `json:"client_port,omitempty"`
+	ClientPort *int32 `json:"client_port,omitempty"`
 
 	// client port gt
-	ClientPortGt *float64 `json:"client_port_gt,omitempty"`
+	ClientPortGt *int32 `json:"client_port_gt,omitempty"`
 
 	// client port gte
-	ClientPortGte *float64 `json:"client_port_gte,omitempty"`
+	ClientPortGte *int32 `json:"client_port_gte,omitempty"`
 
 	// client port in
-	ClientPortIn []float64 `json:"client_port_in,omitempty"`
+	ClientPortIn []int32 `json:"client_port_in,omitempty"`
 
 	// client port lt
-	ClientPortLt *float64 `json:"client_port_lt,omitempty"`
+	ClientPortLt *int32 `json:"client_port_lt,omitempty"`
 
 	// client port lte
-	ClientPortLte *float64 `json:"client_port_lte,omitempty"`
+	ClientPortLte *int32 `json:"client_port_lte,omitempty"`
 
 	// client port not
-	ClientPortNot *float64 `json:"client_port_not,omitempty"`
+	ClientPortNot *int32 `json:"client_port_not,omitempty"`
 
 	// client port not in
-	ClientPortNotIn []float64 `json:"client_port_not_in,omitempty"`
+	ClientPortNotIn []int32 `json:"client_port_not_in,omitempty"`
 
 	// cluster
 	Cluster interface{} `json:"cluster,omitempty"`

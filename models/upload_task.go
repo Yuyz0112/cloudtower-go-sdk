@@ -29,7 +29,7 @@ type UploadTask struct {
 
 	// current chunk
 	// Required: true
-	CurrentChunk *float64 `json:"current_chunk"`
+	CurrentChunk *int32 `json:"current_chunk"`
 
 	// finished at
 	FinishedAt *string `json:"finished_at,omitempty"`

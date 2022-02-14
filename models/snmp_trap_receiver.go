@@ -27,7 +27,7 @@ type SnmpTrapReceiver struct {
 
 	// cluster
 	// Required: true
-	Cluster *SnmpTrapReceiverCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// community
 	Community *string `json:"community,omitempty"`
@@ -68,7 +68,7 @@ type SnmpTrapReceiver struct {
 
 	// port
 	// Required: true
-	Port *float64 `json:"port"`
+	Port *int32 `json:"port"`
 
 	// privacy pass phrase
 	PrivacyPassPhrase *string `json:"privacy_pass_phrase,omitempty"`
@@ -382,79 +382,6 @@ func (m *SnmpTrapReceiver) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SnmpTrapReceiver) UnmarshalBinary(b []byte) error {
 	var res SnmpTrapReceiver
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SnmpTrapReceiverCluster snmp trap receiver cluster
-//
-// swagger:model SnmpTrapReceiverCluster
-type SnmpTrapReceiverCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this snmp trap receiver cluster
-func (m *SnmpTrapReceiverCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SnmpTrapReceiverCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SnmpTrapReceiverCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this snmp trap receiver cluster based on context it is used
-func (m *SnmpTrapReceiverCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SnmpTrapReceiverCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SnmpTrapReceiverCluster) UnmarshalBinary(b []byte) error {
-	var res SnmpTrapReceiverCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

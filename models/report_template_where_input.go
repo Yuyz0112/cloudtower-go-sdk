@@ -15,6 +15,7 @@ import (
 )
 
 // ReportTemplateWhereInput report template where input
+// Example: {"AND":"ReportTemplateWhereInput[]","NOT":"ReportTemplateWhereInput[]","OR":"ReportTemplateWhereInput[]","createdAt":"string","createdAt_gt":"string","createdAt_gte":"string","createdAt_in":["string"],"createdAt_lt":"string","createdAt_lte":"string","createdAt_not":"string","createdAt_not_in":["string"],"description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","preset":"string","preset_contains":"string","preset_ends_with":"string","preset_gt":"string","preset_gte":"string","preset_in":["string"],"preset_lt":"string","preset_lte":"string","preset_not":"string","preset_not_contains":"string","preset_not_ends_with":"string","preset_not_in":["string"],"preset_not_starts_with":"string","preset_starts_with":"string","task_num":0,"task_num_gt":0,"task_num_gte":0,"task_num_in":[0],"task_num_lt":0,"task_num_lte":0,"task_num_not":0,"task_num_not_in":[0],"tasks_every":"ReportTaskWhereInput","tasks_none":"ReportTaskWhereInput","tasks_some":"ReportTaskWhereInput"}
 //
 // swagger:model ReportTemplateWhereInput
 type ReportTemplateWhereInput struct {
@@ -221,28 +222,28 @@ type ReportTemplateWhereInput struct {
 	PresetStartsWith *string `json:"preset_starts_with,omitempty"`
 
 	// task num
-	TaskNum *float64 `json:"task_num,omitempty"`
+	TaskNum *int32 `json:"task_num,omitempty"`
 
 	// task num gt
-	TaskNumGt *float64 `json:"task_num_gt,omitempty"`
+	TaskNumGt *int32 `json:"task_num_gt,omitempty"`
 
 	// task num gte
-	TaskNumGte *float64 `json:"task_num_gte,omitempty"`
+	TaskNumGte *int32 `json:"task_num_gte,omitempty"`
 
 	// task num in
-	TaskNumIn []float64 `json:"task_num_in,omitempty"`
+	TaskNumIn []int32 `json:"task_num_in,omitempty"`
 
 	// task num lt
-	TaskNumLt *float64 `json:"task_num_lt,omitempty"`
+	TaskNumLt *int32 `json:"task_num_lt,omitempty"`
 
 	// task num lte
-	TaskNumLte *float64 `json:"task_num_lte,omitempty"`
+	TaskNumLte *int32 `json:"task_num_lte,omitempty"`
 
 	// task num not
-	TaskNumNot *float64 `json:"task_num_not,omitempty"`
+	TaskNumNot *int32 `json:"task_num_not,omitempty"`
 
 	// task num not in
-	TaskNumNotIn []float64 `json:"task_num_not_in,omitempty"`
+	TaskNumNotIn []int32 `json:"task_num_not_in,omitempty"`
 
 	// tasks every
 	TasksEvery interface{} `json:"tasks_every,omitempty"`

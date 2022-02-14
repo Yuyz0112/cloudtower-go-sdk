@@ -13,6 +13,7 @@ import (
 )
 
 // GetDeploysRequestBody get deploys request body
+// Example: {"after":"deploys-id-string","before":"deploys-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"DeployWhereInput[]","NOT":"DeployWhereInput[]","OR":"DeployWhereInput[]","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","license":"LicenseWhereInput","version":"string","version_contains":"string","version_ends_with":"string","version_gt":"string","version_gte":"string","version_in":["string"],"version_lt":"string","version_lte":"string","version_not":"string","version_not_contains":"string","version_not_ends_with":"string","version_not_in":["string"],"version_not_starts_with":"string","version_starts_with":"string"}}
 //
 // swagger:model GetDeploysRequestBody
 type GetDeploysRequestBody struct {
@@ -24,16 +25,16 @@ type GetDeploysRequestBody struct {
 	Before *string `json:"before,omitempty"`
 
 	// first
-	First *float64 `json:"first,omitempty"`
+	First *int32 `json:"first,omitempty"`
 
 	// last
-	Last *float64 `json:"last,omitempty"`
+	Last *int32 `json:"last,omitempty"`
 
 	// order by
 	OrderBy interface{} `json:"orderBy,omitempty"`
 
 	// skip
-	Skip *float64 `json:"skip,omitempty"`
+	Skip *int32 `json:"skip,omitempty"`
 
 	// where
 	Where interface{} `json:"where,omitempty"`

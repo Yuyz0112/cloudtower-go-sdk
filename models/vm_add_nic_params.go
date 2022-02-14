@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -153,7 +154,7 @@ type VMAddNicParamsData struct {
 
 	// vm nics
 	// Required: true
-	VMNics VMNicParams `json:"vm_nics"`
+	VMNics []*VMNicParams `json:"vm_nics"`
 }
 
 // Validate validates this VM add nic params data
@@ -176,11 +177,20 @@ func (m *VMAddNicParamsData) validateVMNics(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.VMNics.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_nics")
+	for i := 0; i < len(m.VMNics); i++ {
+		if swag.IsZero(m.VMNics[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -202,11 +212,17 @@ func (m *VMAddNicParamsData) ContextValidate(ctx context.Context, formats strfmt
 
 func (m *VMAddNicParamsData) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_nics")
+	for i := 0; i < len(m.VMNics); i++ {
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
-		return err
+
 	}
 
 	return nil

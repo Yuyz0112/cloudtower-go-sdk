@@ -48,7 +48,7 @@ type AlertNotifier struct {
 	SMTPServerHost *string `json:"smtp_server_host,omitempty"`
 
 	// smtp server port
-	SMTPServerPort *float64 `json:"smtp_server_port,omitempty"`
+	SMTPServerPort *int32 `json:"smtp_server_port,omitempty"`
 
 	// username
 	Username *string `json:"username,omitempty"`

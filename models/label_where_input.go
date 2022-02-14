@@ -15,6 +15,7 @@ import (
 )
 
 // LabelWhereInput label where input
+// Example: {"AND":"LabelWhereInput[]","NOT":"LabelWhereInput[]","OR":"LabelWhereInput[]","cluster_num":0,"cluster_num_gt":0,"cluster_num_gte":0,"cluster_num_in":[0],"cluster_num_lt":0,"cluster_num_lte":0,"cluster_num_not":0,"cluster_num_not_in":[0],"clusters_every":"ClusterWhereInput","clusters_none":"ClusterWhereInput","clusters_some":"ClusterWhereInput","consistency_group_num":0,"consistency_group_num_gt":0,"consistency_group_num_gte":0,"consistency_group_num_in":[0],"consistency_group_num_lt":0,"consistency_group_num_lte":0,"consistency_group_num_not":0,"consistency_group_num_not_in":[0],"consistency_group_snapshot_num":0,"consistency_group_snapshot_num_gt":0,"consistency_group_snapshot_num_gte":0,"consistency_group_snapshot_num_in":[0],"consistency_group_snapshot_num_lt":0,"consistency_group_snapshot_num_lte":0,"consistency_group_snapshot_num_not":0,"consistency_group_snapshot_num_not_in":[0],"consistency_group_snapshots_every":"ConsistencyGroupSnapshotWhereInput","consistency_group_snapshots_none":"ConsistencyGroupSnapshotWhereInput","consistency_group_snapshots_some":"ConsistencyGroupSnapshotWhereInput","consistency_groups_every":"ConsistencyGroupWhereInput","consistency_groups_none":"ConsistencyGroupWhereInput","consistency_groups_some":"ConsistencyGroupWhereInput","content_library_image_num":0,"content_library_image_num_gt":0,"content_library_image_num_gte":0,"content_library_image_num_in":[0],"content_library_image_num_lt":0,"content_library_image_num_lte":0,"content_library_image_num_not":0,"content_library_image_num_not_in":[0],"content_library_images_every":"ContentLibraryImageWhereInput","content_library_images_none":"ContentLibraryImageWhereInput","content_library_images_some":"ContentLibraryImageWhereInput","content_library_vm_template_num":0,"content_library_vm_template_num_gt":0,"content_library_vm_template_num_gte":0,"content_library_vm_template_num_in":[0],"content_library_vm_template_num_lt":0,"content_library_vm_template_num_lte":0,"content_library_vm_template_num_not":0,"content_library_vm_template_num_not_in":[0],"content_library_vm_templates_every":"ContentLibraryVmTemplateWhereInput","content_library_vm_templates_none":"ContentLibraryVmTemplateWhereInput","content_library_vm_templates_some":"ContentLibraryVmTemplateWhereInput","createdAt":"string","createdAt_gt":"string","createdAt_gte":"string","createdAt_in":["string"],"createdAt_lt":"string","createdAt_lte":"string","createdAt_not":"string","createdAt_not_in":["string"],"datacenter_num":0,"datacenter_num_gt":0,"datacenter_num_gte":0,"datacenter_num_in":[0],"datacenter_num_lt":0,"datacenter_num_lte":0,"datacenter_num_not":0,"datacenter_num_not_in":[0],"datacenters_every":"DatacenterWhereInput","datacenters_none":"DatacenterWhereInput","datacenters_some":"DatacenterWhereInput","disk_num":0,"disk_num_gt":0,"disk_num_gte":0,"disk_num_in":[0],"disk_num_lt":0,"disk_num_lte":0,"disk_num_not":0,"disk_num_not_in":[0],"disks_every":"DiskWhereInput","disks_none":"DiskWhereInput","disks_some":"DiskWhereInput","elf_image_num":0,"elf_image_num_gt":0,"elf_image_num_gte":0,"elf_image_num_in":[0],"elf_image_num_lt":0,"elf_image_num_lte":0,"elf_image_num_not":0,"elf_image_num_not_in":[0],"elf_images_every":"ElfImageWhereInput","elf_images_none":"ElfImageWhereInput","elf_images_some":"ElfImageWhereInput","host_num":0,"host_num_gt":0,"host_num_gte":0,"host_num_in":[0],"host_num_lt":0,"host_num_lte":0,"host_num_not":0,"host_num_not_in":[0],"hosts_every":"HostWhereInput","hosts_none":"HostWhereInput","hosts_some":"HostWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","iscsi_lun_num":0,"iscsi_lun_num_gt":0,"iscsi_lun_num_gte":0,"iscsi_lun_num_in":[0],"iscsi_lun_num_lt":0,"iscsi_lun_num_lte":0,"iscsi_lun_num_not":0,"iscsi_lun_num_not_in":[0],"iscsi_lun_snapshot_num":0,"iscsi_lun_snapshot_num_gt":0,"iscsi_lun_snapshot_num_gte":0,"iscsi_lun_snapshot_num_in":[0],"iscsi_lun_snapshot_num_lt":0,"iscsi_lun_snapshot_num_lte":0,"iscsi_lun_snapshot_num_not":0,"iscsi_lun_snapshot_num_not_in":[0],"iscsi_lun_snapshots_every":"IscsiLunSnapshotWhereInput","iscsi_lun_snapshots_none":"IscsiLunSnapshotWhereInput","iscsi_lun_snapshots_some":"IscsiLunSnapshotWhereInput","iscsi_luns_every":"IscsiLunWhereInput","iscsi_luns_none":"IscsiLunWhereInput","iscsi_luns_some":"IscsiLunWhereInput","iscsi_target_num":0,"iscsi_target_num_gt":0,"iscsi_target_num_gte":0,"iscsi_target_num_in":[0],"iscsi_target_num_lt":0,"iscsi_target_num_lte":0,"iscsi_target_num_not":0,"iscsi_target_num_not_in":[0],"iscsi_targets_every":"IscsiTargetWhereInput","iscsi_targets_none":"IscsiTargetWhereInput","iscsi_targets_some":"IscsiTargetWhereInput","isolation_policies_every":"IsolationPolicyWhereInput","isolation_policies_none":"IsolationPolicyWhereInput","isolation_policies_some":"IsolationPolicyWhereInput","isolation_policy_num":0,"isolation_policy_num_gt":0,"isolation_policy_num_gte":0,"isolation_policy_num_in":[0],"isolation_policy_num_lt":0,"isolation_policy_num_lte":0,"isolation_policy_num_not":0,"isolation_policy_num_not_in":[0],"key":"string","key_contains":"string","key_ends_with":"string","key_gt":"string","key_gte":"string","key_in":["string"],"key_lt":"string","key_lte":"string","key_not":"string","key_not_contains":"string","key_not_ends_with":"string","key_not_in":["string"],"key_not_starts_with":"string","key_starts_with":"string","namespace_group_num":0,"namespace_group_num_gt":0,"namespace_group_num_gte":0,"namespace_group_num_in":[0],"namespace_group_num_lt":0,"namespace_group_num_lte":0,"namespace_group_num_not":0,"namespace_group_num_not_in":[0],"namespace_groups_every":"NamespaceGroupWhereInput","namespace_groups_none":"NamespaceGroupWhereInput","namespace_groups_some":"NamespaceGroupWhereInput","nfs_export_num":0,"nfs_export_num_gt":0,"nfs_export_num_gte":0,"nfs_export_num_in":[0],"nfs_export_num_lt":0,"nfs_export_num_lte":0,"nfs_export_num_not":0,"nfs_export_num_not_in":[0],"nfs_exports_every":"NfsExportWhereInput","nfs_exports_none":"NfsExportWhereInput","nfs_exports_some":"NfsExportWhereInput","nfs_inode_num":0,"nfs_inode_num_gt":0,"nfs_inode_num_gte":0,"nfs_inode_num_in":[0],"nfs_inode_num_lt":0,"nfs_inode_num_lte":0,"nfs_inode_num_not":0,"nfs_inode_num_not_in":[0],"nfs_inodes_every":"NfsInodeWhereInput","nfs_inodes_none":"NfsInodeWhereInput","nfs_inodes_some":"NfsInodeWhereInput","nic_num":0,"nic_num_gt":0,"nic_num_gte":0,"nic_num_in":[0],"nic_num_lt":0,"nic_num_lte":0,"nic_num_not":0,"nic_num_not_in":[0],"nics_every":"NicWhereInput","nics_none":"NicWhereInput","nics_some":"NicWhereInput","nvmf_namespace_num":0,"nvmf_namespace_num_gt":0,"nvmf_namespace_num_gte":0,"nvmf_namespace_num_in":[0],"nvmf_namespace_num_lt":0,"nvmf_namespace_num_lte":0,"nvmf_namespace_num_not":0,"nvmf_namespace_num_not_in":[0],"nvmf_namespace_snapshot_num":0,"nvmf_namespace_snapshot_num_gt":0,"nvmf_namespace_snapshot_num_gte":0,"nvmf_namespace_snapshot_num_in":[0],"nvmf_namespace_snapshot_num_lt":0,"nvmf_namespace_snapshot_num_lte":0,"nvmf_namespace_snapshot_num_not":0,"nvmf_namespace_snapshot_num_not_in":[0],"nvmf_namespace_snapshots_every":"NvmfNamespaceSnapshotWhereInput","nvmf_namespace_snapshots_none":"NvmfNamespaceSnapshotWhereInput","nvmf_namespace_snapshots_some":"NvmfNamespaceSnapshotWhereInput","nvmf_namespaces_every":"NvmfNamespaceWhereInput","nvmf_namespaces_none":"NvmfNamespaceWhereInput","nvmf_namespaces_some":"NvmfNamespaceWhereInput","nvmf_subsystem_num":0,"nvmf_subsystem_num_gt":0,"nvmf_subsystem_num_gte":0,"nvmf_subsystem_num_in":[0],"nvmf_subsystem_num_lt":0,"nvmf_subsystem_num_lte":0,"nvmf_subsystem_num_not":0,"nvmf_subsystem_num_not_in":[0],"nvmf_subsystems_every":"NvmfSubsystemWhereInput","nvmf_subsystems_none":"NvmfSubsystemWhereInput","nvmf_subsystems_some":"NvmfSubsystemWhereInput","security_policies_every":"SecurityPolicyWhereInput","security_policies_none":"SecurityPolicyWhereInput","security_policies_some":"SecurityPolicyWhereInput","security_policy_num":0,"security_policy_num_gt":0,"security_policy_num_gte":0,"security_policy_num_in":[0],"security_policy_num_lt":0,"security_policy_num_lte":0,"security_policy_num_not":0,"security_policy_num_not_in":[0],"system_vlan_num":0,"system_vlan_num_gt":0,"system_vlan_num_gte":0,"system_vlan_num_in":[0],"system_vlan_num_lt":0,"system_vlan_num_lte":0,"system_vlan_num_not":0,"system_vlan_num_not_in":[0],"total_num":0,"total_num_gt":0,"total_num_gte":0,"total_num_in":[0],"total_num_lt":0,"total_num_lte":0,"total_num_not":0,"total_num_not_in":[0],"value":"string","value_contains":"string","value_ends_with":"string","value_gt":"string","value_gte":"string","value_in":["string"],"value_lt":"string","value_lte":"string","value_not":"string","value_not_contains":"string","value_not_ends_with":"string","value_not_in":["string"],"value_not_starts_with":"string","value_starts_with":"string","vds_num":0,"vds_num_gt":0,"vds_num_gte":0,"vds_num_in":[0],"vds_num_lt":0,"vds_num_lte":0,"vds_num_not":0,"vds_num_not_in":[0],"vdses_every":"VdsWhereInput","vdses_none":"VdsWhereInput","vdses_some":"VdsWhereInput","vlans_every":"VlanWhereInput","vlans_none":"VlanWhereInput","vlans_some":"VlanWhereInput","vm_num":0,"vm_num_gt":0,"vm_num_gte":0,"vm_num_in":[0],"vm_num_lt":0,"vm_num_lte":0,"vm_num_not":0,"vm_num_not_in":[0],"vm_snapshot_num":0,"vm_snapshot_num_gt":0,"vm_snapshot_num_gte":0,"vm_snapshot_num_in":[0],"vm_snapshot_num_lt":0,"vm_snapshot_num_lte":0,"vm_snapshot_num_not":0,"vm_snapshot_num_not_in":[0],"vm_snapshots_every":"VmSnapshotWhereInput","vm_snapshots_none":"VmSnapshotWhereInput","vm_snapshots_some":"VmSnapshotWhereInput","vm_template_num":0,"vm_template_num_gt":0,"vm_template_num_gte":0,"vm_template_num_in":[0],"vm_template_num_lt":0,"vm_template_num_lte":0,"vm_template_num_not":0,"vm_template_num_not_in":[0],"vm_templates_every":"VmTemplateWhereInput","vm_templates_none":"VmTemplateWhereInput","vm_templates_some":"VmTemplateWhereInput","vm_vlan_num":0,"vm_vlan_num_gt":0,"vm_vlan_num_gte":0,"vm_vlan_num_in":[0],"vm_vlan_num_lt":0,"vm_vlan_num_lte":0,"vm_vlan_num_not":0,"vm_vlan_num_not_in":[0],"vm_volume_num":0,"vm_volume_num_gt":0,"vm_volume_num_gte":0,"vm_volume_num_in":[0],"vm_volume_num_lt":0,"vm_volume_num_lte":0,"vm_volume_num_not":0,"vm_volume_num_not_in":[0],"vm_volumes_every":"VmVolumeWhereInput","vm_volumes_none":"VmVolumeWhereInput","vm_volumes_some":"VmVolumeWhereInput","vms_every":"VmWhereInput","vms_none":"VmWhereInput","vms_some":"VmWhereInput"}
 //
 // swagger:model LabelWhereInput
 type LabelWhereInput struct {
@@ -29,28 +30,28 @@ type LabelWhereInput struct {
 	OR []*LabelWhereInput `json:"OR,omitempty"`
 
 	// cluster num
-	ClusterNum *float64 `json:"cluster_num,omitempty"`
+	ClusterNum *int32 `json:"cluster_num,omitempty"`
 
 	// cluster num gt
-	ClusterNumGt *float64 `json:"cluster_num_gt,omitempty"`
+	ClusterNumGt *int32 `json:"cluster_num_gt,omitempty"`
 
 	// cluster num gte
-	ClusterNumGte *float64 `json:"cluster_num_gte,omitempty"`
+	ClusterNumGte *int32 `json:"cluster_num_gte,omitempty"`
 
 	// cluster num in
-	ClusterNumIn []float64 `json:"cluster_num_in,omitempty"`
+	ClusterNumIn []int32 `json:"cluster_num_in,omitempty"`
 
 	// cluster num lt
-	ClusterNumLt *float64 `json:"cluster_num_lt,omitempty"`
+	ClusterNumLt *int32 `json:"cluster_num_lt,omitempty"`
 
 	// cluster num lte
-	ClusterNumLte *float64 `json:"cluster_num_lte,omitempty"`
+	ClusterNumLte *int32 `json:"cluster_num_lte,omitempty"`
 
 	// cluster num not
-	ClusterNumNot *float64 `json:"cluster_num_not,omitempty"`
+	ClusterNumNot *int32 `json:"cluster_num_not,omitempty"`
 
 	// cluster num not in
-	ClusterNumNotIn []float64 `json:"cluster_num_not_in,omitempty"`
+	ClusterNumNotIn []int32 `json:"cluster_num_not_in,omitempty"`
 
 	// clusters every
 	ClustersEvery interface{} `json:"clusters_every,omitempty"`
@@ -62,52 +63,52 @@ type LabelWhereInput struct {
 	ClustersSome interface{} `json:"clusters_some,omitempty"`
 
 	// consistency group num
-	ConsistencyGroupNum *float64 `json:"consistency_group_num,omitempty"`
+	ConsistencyGroupNum *int32 `json:"consistency_group_num,omitempty"`
 
 	// consistency group num gt
-	ConsistencyGroupNumGt *float64 `json:"consistency_group_num_gt,omitempty"`
+	ConsistencyGroupNumGt *int32 `json:"consistency_group_num_gt,omitempty"`
 
 	// consistency group num gte
-	ConsistencyGroupNumGte *float64 `json:"consistency_group_num_gte,omitempty"`
+	ConsistencyGroupNumGte *int32 `json:"consistency_group_num_gte,omitempty"`
 
 	// consistency group num in
-	ConsistencyGroupNumIn []float64 `json:"consistency_group_num_in,omitempty"`
+	ConsistencyGroupNumIn []int32 `json:"consistency_group_num_in,omitempty"`
 
 	// consistency group num lt
-	ConsistencyGroupNumLt *float64 `json:"consistency_group_num_lt,omitempty"`
+	ConsistencyGroupNumLt *int32 `json:"consistency_group_num_lt,omitempty"`
 
 	// consistency group num lte
-	ConsistencyGroupNumLte *float64 `json:"consistency_group_num_lte,omitempty"`
+	ConsistencyGroupNumLte *int32 `json:"consistency_group_num_lte,omitempty"`
 
 	// consistency group num not
-	ConsistencyGroupNumNot *float64 `json:"consistency_group_num_not,omitempty"`
+	ConsistencyGroupNumNot *int32 `json:"consistency_group_num_not,omitempty"`
 
 	// consistency group num not in
-	ConsistencyGroupNumNotIn []float64 `json:"consistency_group_num_not_in,omitempty"`
+	ConsistencyGroupNumNotIn []int32 `json:"consistency_group_num_not_in,omitempty"`
 
 	// consistency group snapshot num
-	ConsistencyGroupSnapshotNum *float64 `json:"consistency_group_snapshot_num,omitempty"`
+	ConsistencyGroupSnapshotNum *int32 `json:"consistency_group_snapshot_num,omitempty"`
 
 	// consistency group snapshot num gt
-	ConsistencyGroupSnapshotNumGt *float64 `json:"consistency_group_snapshot_num_gt,omitempty"`
+	ConsistencyGroupSnapshotNumGt *int32 `json:"consistency_group_snapshot_num_gt,omitempty"`
 
 	// consistency group snapshot num gte
-	ConsistencyGroupSnapshotNumGte *float64 `json:"consistency_group_snapshot_num_gte,omitempty"`
+	ConsistencyGroupSnapshotNumGte *int32 `json:"consistency_group_snapshot_num_gte,omitempty"`
 
 	// consistency group snapshot num in
-	ConsistencyGroupSnapshotNumIn []float64 `json:"consistency_group_snapshot_num_in,omitempty"`
+	ConsistencyGroupSnapshotNumIn []int32 `json:"consistency_group_snapshot_num_in,omitempty"`
 
 	// consistency group snapshot num lt
-	ConsistencyGroupSnapshotNumLt *float64 `json:"consistency_group_snapshot_num_lt,omitempty"`
+	ConsistencyGroupSnapshotNumLt *int32 `json:"consistency_group_snapshot_num_lt,omitempty"`
 
 	// consistency group snapshot num lte
-	ConsistencyGroupSnapshotNumLte *float64 `json:"consistency_group_snapshot_num_lte,omitempty"`
+	ConsistencyGroupSnapshotNumLte *int32 `json:"consistency_group_snapshot_num_lte,omitempty"`
 
 	// consistency group snapshot num not
-	ConsistencyGroupSnapshotNumNot *float64 `json:"consistency_group_snapshot_num_not,omitempty"`
+	ConsistencyGroupSnapshotNumNot *int32 `json:"consistency_group_snapshot_num_not,omitempty"`
 
 	// consistency group snapshot num not in
-	ConsistencyGroupSnapshotNumNotIn []float64 `json:"consistency_group_snapshot_num_not_in,omitempty"`
+	ConsistencyGroupSnapshotNumNotIn []int32 `json:"consistency_group_snapshot_num_not_in,omitempty"`
 
 	// consistency group snapshots every
 	ConsistencyGroupSnapshotsEvery interface{} `json:"consistency_group_snapshots_every,omitempty"`
@@ -126,6 +127,72 @@ type LabelWhereInput struct {
 
 	// consistency groups some
 	ConsistencyGroupsSome interface{} `json:"consistency_groups_some,omitempty"`
+
+	// content library image num
+	ContentLibraryImageNum *int32 `json:"content_library_image_num,omitempty"`
+
+	// content library image num gt
+	ContentLibraryImageNumGt *int32 `json:"content_library_image_num_gt,omitempty"`
+
+	// content library image num gte
+	ContentLibraryImageNumGte *int32 `json:"content_library_image_num_gte,omitempty"`
+
+	// content library image num in
+	ContentLibraryImageNumIn []int32 `json:"content_library_image_num_in,omitempty"`
+
+	// content library image num lt
+	ContentLibraryImageNumLt *int32 `json:"content_library_image_num_lt,omitempty"`
+
+	// content library image num lte
+	ContentLibraryImageNumLte *int32 `json:"content_library_image_num_lte,omitempty"`
+
+	// content library image num not
+	ContentLibraryImageNumNot *int32 `json:"content_library_image_num_not,omitempty"`
+
+	// content library image num not in
+	ContentLibraryImageNumNotIn []int32 `json:"content_library_image_num_not_in,omitempty"`
+
+	// content library images every
+	ContentLibraryImagesEvery interface{} `json:"content_library_images_every,omitempty"`
+
+	// content library images none
+	ContentLibraryImagesNone interface{} `json:"content_library_images_none,omitempty"`
+
+	// content library images some
+	ContentLibraryImagesSome interface{} `json:"content_library_images_some,omitempty"`
+
+	// content library vm template num
+	ContentLibraryVMTemplateNum *int32 `json:"content_library_vm_template_num,omitempty"`
+
+	// content library vm template num gt
+	ContentLibraryVMTemplateNumGt *int32 `json:"content_library_vm_template_num_gt,omitempty"`
+
+	// content library vm template num gte
+	ContentLibraryVMTemplateNumGte *int32 `json:"content_library_vm_template_num_gte,omitempty"`
+
+	// content library vm template num in
+	ContentLibraryVMTemplateNumIn []int32 `json:"content_library_vm_template_num_in,omitempty"`
+
+	// content library vm template num lt
+	ContentLibraryVMTemplateNumLt *int32 `json:"content_library_vm_template_num_lt,omitempty"`
+
+	// content library vm template num lte
+	ContentLibraryVMTemplateNumLte *int32 `json:"content_library_vm_template_num_lte,omitempty"`
+
+	// content library vm template num not
+	ContentLibraryVMTemplateNumNot *int32 `json:"content_library_vm_template_num_not,omitempty"`
+
+	// content library vm template num not in
+	ContentLibraryVMTemplateNumNotIn []int32 `json:"content_library_vm_template_num_not_in,omitempty"`
+
+	// content library vm templates every
+	ContentLibraryVMTemplatesEvery interface{} `json:"content_library_vm_templates_every,omitempty"`
+
+	// content library vm templates none
+	ContentLibraryVMTemplatesNone interface{} `json:"content_library_vm_templates_none,omitempty"`
+
+	// content library vm templates some
+	ContentLibraryVMTemplatesSome interface{} `json:"content_library_vm_templates_some,omitempty"`
 
 	// created at
 	CreatedAt *string `json:"createdAt,omitempty"`
@@ -152,28 +219,28 @@ type LabelWhereInput struct {
 	CreatedAtNotIn []string `json:"createdAt_not_in,omitempty"`
 
 	// datacenter num
-	DatacenterNum *float64 `json:"datacenter_num,omitempty"`
+	DatacenterNum *int32 `json:"datacenter_num,omitempty"`
 
 	// datacenter num gt
-	DatacenterNumGt *float64 `json:"datacenter_num_gt,omitempty"`
+	DatacenterNumGt *int32 `json:"datacenter_num_gt,omitempty"`
 
 	// datacenter num gte
-	DatacenterNumGte *float64 `json:"datacenter_num_gte,omitempty"`
+	DatacenterNumGte *int32 `json:"datacenter_num_gte,omitempty"`
 
 	// datacenter num in
-	DatacenterNumIn []float64 `json:"datacenter_num_in,omitempty"`
+	DatacenterNumIn []int32 `json:"datacenter_num_in,omitempty"`
 
 	// datacenter num lt
-	DatacenterNumLt *float64 `json:"datacenter_num_lt,omitempty"`
+	DatacenterNumLt *int32 `json:"datacenter_num_lt,omitempty"`
 
 	// datacenter num lte
-	DatacenterNumLte *float64 `json:"datacenter_num_lte,omitempty"`
+	DatacenterNumLte *int32 `json:"datacenter_num_lte,omitempty"`
 
 	// datacenter num not
-	DatacenterNumNot *float64 `json:"datacenter_num_not,omitempty"`
+	DatacenterNumNot *int32 `json:"datacenter_num_not,omitempty"`
 
 	// datacenter num not in
-	DatacenterNumNotIn []float64 `json:"datacenter_num_not_in,omitempty"`
+	DatacenterNumNotIn []int32 `json:"datacenter_num_not_in,omitempty"`
 
 	// datacenters every
 	DatacentersEvery interface{} `json:"datacenters_every,omitempty"`
@@ -185,28 +252,28 @@ type LabelWhereInput struct {
 	DatacentersSome interface{} `json:"datacenters_some,omitempty"`
 
 	// disk num
-	DiskNum *float64 `json:"disk_num,omitempty"`
+	DiskNum *int32 `json:"disk_num,omitempty"`
 
 	// disk num gt
-	DiskNumGt *float64 `json:"disk_num_gt,omitempty"`
+	DiskNumGt *int32 `json:"disk_num_gt,omitempty"`
 
 	// disk num gte
-	DiskNumGte *float64 `json:"disk_num_gte,omitempty"`
+	DiskNumGte *int32 `json:"disk_num_gte,omitempty"`
 
 	// disk num in
-	DiskNumIn []float64 `json:"disk_num_in,omitempty"`
+	DiskNumIn []int32 `json:"disk_num_in,omitempty"`
 
 	// disk num lt
-	DiskNumLt *float64 `json:"disk_num_lt,omitempty"`
+	DiskNumLt *int32 `json:"disk_num_lt,omitempty"`
 
 	// disk num lte
-	DiskNumLte *float64 `json:"disk_num_lte,omitempty"`
+	DiskNumLte *int32 `json:"disk_num_lte,omitempty"`
 
 	// disk num not
-	DiskNumNot *float64 `json:"disk_num_not,omitempty"`
+	DiskNumNot *int32 `json:"disk_num_not,omitempty"`
 
 	// disk num not in
-	DiskNumNotIn []float64 `json:"disk_num_not_in,omitempty"`
+	DiskNumNotIn []int32 `json:"disk_num_not_in,omitempty"`
 
 	// disks every
 	DisksEvery interface{} `json:"disks_every,omitempty"`
@@ -218,28 +285,28 @@ type LabelWhereInput struct {
 	DisksSome interface{} `json:"disks_some,omitempty"`
 
 	// elf image num
-	ElfImageNum *float64 `json:"elf_image_num,omitempty"`
+	ElfImageNum *int32 `json:"elf_image_num,omitempty"`
 
 	// elf image num gt
-	ElfImageNumGt *float64 `json:"elf_image_num_gt,omitempty"`
+	ElfImageNumGt *int32 `json:"elf_image_num_gt,omitempty"`
 
 	// elf image num gte
-	ElfImageNumGte *float64 `json:"elf_image_num_gte,omitempty"`
+	ElfImageNumGte *int32 `json:"elf_image_num_gte,omitempty"`
 
 	// elf image num in
-	ElfImageNumIn []float64 `json:"elf_image_num_in,omitempty"`
+	ElfImageNumIn []int32 `json:"elf_image_num_in,omitempty"`
 
 	// elf image num lt
-	ElfImageNumLt *float64 `json:"elf_image_num_lt,omitempty"`
+	ElfImageNumLt *int32 `json:"elf_image_num_lt,omitempty"`
 
 	// elf image num lte
-	ElfImageNumLte *float64 `json:"elf_image_num_lte,omitempty"`
+	ElfImageNumLte *int32 `json:"elf_image_num_lte,omitempty"`
 
 	// elf image num not
-	ElfImageNumNot *float64 `json:"elf_image_num_not,omitempty"`
+	ElfImageNumNot *int32 `json:"elf_image_num_not,omitempty"`
 
 	// elf image num not in
-	ElfImageNumNotIn []float64 `json:"elf_image_num_not_in,omitempty"`
+	ElfImageNumNotIn []int32 `json:"elf_image_num_not_in,omitempty"`
 
 	// elf images every
 	ElfImagesEvery interface{} `json:"elf_images_every,omitempty"`
@@ -251,28 +318,28 @@ type LabelWhereInput struct {
 	ElfImagesSome interface{} `json:"elf_images_some,omitempty"`
 
 	// host num
-	HostNum *float64 `json:"host_num,omitempty"`
+	HostNum *int32 `json:"host_num,omitempty"`
 
 	// host num gt
-	HostNumGt *float64 `json:"host_num_gt,omitempty"`
+	HostNumGt *int32 `json:"host_num_gt,omitempty"`
 
 	// host num gte
-	HostNumGte *float64 `json:"host_num_gte,omitempty"`
+	HostNumGte *int32 `json:"host_num_gte,omitempty"`
 
 	// host num in
-	HostNumIn []float64 `json:"host_num_in,omitempty"`
+	HostNumIn []int32 `json:"host_num_in,omitempty"`
 
 	// host num lt
-	HostNumLt *float64 `json:"host_num_lt,omitempty"`
+	HostNumLt *int32 `json:"host_num_lt,omitempty"`
 
 	// host num lte
-	HostNumLte *float64 `json:"host_num_lte,omitempty"`
+	HostNumLte *int32 `json:"host_num_lte,omitempty"`
 
 	// host num not
-	HostNumNot *float64 `json:"host_num_not,omitempty"`
+	HostNumNot *int32 `json:"host_num_not,omitempty"`
 
 	// host num not in
-	HostNumNotIn []float64 `json:"host_num_not_in,omitempty"`
+	HostNumNotIn []int32 `json:"host_num_not_in,omitempty"`
 
 	// hosts every
 	HostsEvery interface{} `json:"hosts_every,omitempty"`
@@ -326,52 +393,52 @@ type LabelWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// iscsi lun num
-	IscsiLunNum *float64 `json:"iscsi_lun_num,omitempty"`
+	IscsiLunNum *int32 `json:"iscsi_lun_num,omitempty"`
 
 	// iscsi lun num gt
-	IscsiLunNumGt *float64 `json:"iscsi_lun_num_gt,omitempty"`
+	IscsiLunNumGt *int32 `json:"iscsi_lun_num_gt,omitempty"`
 
 	// iscsi lun num gte
-	IscsiLunNumGte *float64 `json:"iscsi_lun_num_gte,omitempty"`
+	IscsiLunNumGte *int32 `json:"iscsi_lun_num_gte,omitempty"`
 
 	// iscsi lun num in
-	IscsiLunNumIn []float64 `json:"iscsi_lun_num_in,omitempty"`
+	IscsiLunNumIn []int32 `json:"iscsi_lun_num_in,omitempty"`
 
 	// iscsi lun num lt
-	IscsiLunNumLt *float64 `json:"iscsi_lun_num_lt,omitempty"`
+	IscsiLunNumLt *int32 `json:"iscsi_lun_num_lt,omitempty"`
 
 	// iscsi lun num lte
-	IscsiLunNumLte *float64 `json:"iscsi_lun_num_lte,omitempty"`
+	IscsiLunNumLte *int32 `json:"iscsi_lun_num_lte,omitempty"`
 
 	// iscsi lun num not
-	IscsiLunNumNot *float64 `json:"iscsi_lun_num_not,omitempty"`
+	IscsiLunNumNot *int32 `json:"iscsi_lun_num_not,omitempty"`
 
 	// iscsi lun num not in
-	IscsiLunNumNotIn []float64 `json:"iscsi_lun_num_not_in,omitempty"`
+	IscsiLunNumNotIn []int32 `json:"iscsi_lun_num_not_in,omitempty"`
 
 	// iscsi lun snapshot num
-	IscsiLunSnapshotNum *float64 `json:"iscsi_lun_snapshot_num,omitempty"`
+	IscsiLunSnapshotNum *int32 `json:"iscsi_lun_snapshot_num,omitempty"`
 
 	// iscsi lun snapshot num gt
-	IscsiLunSnapshotNumGt *float64 `json:"iscsi_lun_snapshot_num_gt,omitempty"`
+	IscsiLunSnapshotNumGt *int32 `json:"iscsi_lun_snapshot_num_gt,omitempty"`
 
 	// iscsi lun snapshot num gte
-	IscsiLunSnapshotNumGte *float64 `json:"iscsi_lun_snapshot_num_gte,omitempty"`
+	IscsiLunSnapshotNumGte *int32 `json:"iscsi_lun_snapshot_num_gte,omitempty"`
 
 	// iscsi lun snapshot num in
-	IscsiLunSnapshotNumIn []float64 `json:"iscsi_lun_snapshot_num_in,omitempty"`
+	IscsiLunSnapshotNumIn []int32 `json:"iscsi_lun_snapshot_num_in,omitempty"`
 
 	// iscsi lun snapshot num lt
-	IscsiLunSnapshotNumLt *float64 `json:"iscsi_lun_snapshot_num_lt,omitempty"`
+	IscsiLunSnapshotNumLt *int32 `json:"iscsi_lun_snapshot_num_lt,omitempty"`
 
 	// iscsi lun snapshot num lte
-	IscsiLunSnapshotNumLte *float64 `json:"iscsi_lun_snapshot_num_lte,omitempty"`
+	IscsiLunSnapshotNumLte *int32 `json:"iscsi_lun_snapshot_num_lte,omitempty"`
 
 	// iscsi lun snapshot num not
-	IscsiLunSnapshotNumNot *float64 `json:"iscsi_lun_snapshot_num_not,omitempty"`
+	IscsiLunSnapshotNumNot *int32 `json:"iscsi_lun_snapshot_num_not,omitempty"`
 
 	// iscsi lun snapshot num not in
-	IscsiLunSnapshotNumNotIn []float64 `json:"iscsi_lun_snapshot_num_not_in,omitempty"`
+	IscsiLunSnapshotNumNotIn []int32 `json:"iscsi_lun_snapshot_num_not_in,omitempty"`
 
 	// iscsi lun snapshots every
 	IscsiLunSnapshotsEvery interface{} `json:"iscsi_lun_snapshots_every,omitempty"`
@@ -392,28 +459,28 @@ type LabelWhereInput struct {
 	IscsiLunsSome interface{} `json:"iscsi_luns_some,omitempty"`
 
 	// iscsi target num
-	IscsiTargetNum *float64 `json:"iscsi_target_num,omitempty"`
+	IscsiTargetNum *int32 `json:"iscsi_target_num,omitempty"`
 
 	// iscsi target num gt
-	IscsiTargetNumGt *float64 `json:"iscsi_target_num_gt,omitempty"`
+	IscsiTargetNumGt *int32 `json:"iscsi_target_num_gt,omitempty"`
 
 	// iscsi target num gte
-	IscsiTargetNumGte *float64 `json:"iscsi_target_num_gte,omitempty"`
+	IscsiTargetNumGte *int32 `json:"iscsi_target_num_gte,omitempty"`
 
 	// iscsi target num in
-	IscsiTargetNumIn []float64 `json:"iscsi_target_num_in,omitempty"`
+	IscsiTargetNumIn []int32 `json:"iscsi_target_num_in,omitempty"`
 
 	// iscsi target num lt
-	IscsiTargetNumLt *float64 `json:"iscsi_target_num_lt,omitempty"`
+	IscsiTargetNumLt *int32 `json:"iscsi_target_num_lt,omitempty"`
 
 	// iscsi target num lte
-	IscsiTargetNumLte *float64 `json:"iscsi_target_num_lte,omitempty"`
+	IscsiTargetNumLte *int32 `json:"iscsi_target_num_lte,omitempty"`
 
 	// iscsi target num not
-	IscsiTargetNumNot *float64 `json:"iscsi_target_num_not,omitempty"`
+	IscsiTargetNumNot *int32 `json:"iscsi_target_num_not,omitempty"`
 
 	// iscsi target num not in
-	IscsiTargetNumNotIn []float64 `json:"iscsi_target_num_not_in,omitempty"`
+	IscsiTargetNumNotIn []int32 `json:"iscsi_target_num_not_in,omitempty"`
 
 	// iscsi targets every
 	IscsiTargetsEvery interface{} `json:"iscsi_targets_every,omitempty"`
@@ -423,6 +490,39 @@ type LabelWhereInput struct {
 
 	// iscsi targets some
 	IscsiTargetsSome interface{} `json:"iscsi_targets_some,omitempty"`
+
+	// isolation policies every
+	IsolationPoliciesEvery interface{} `json:"isolation_policies_every,omitempty"`
+
+	// isolation policies none
+	IsolationPoliciesNone interface{} `json:"isolation_policies_none,omitempty"`
+
+	// isolation policies some
+	IsolationPoliciesSome interface{} `json:"isolation_policies_some,omitempty"`
+
+	// isolation policy num
+	IsolationPolicyNum *int32 `json:"isolation_policy_num,omitempty"`
+
+	// isolation policy num gt
+	IsolationPolicyNumGt *int32 `json:"isolation_policy_num_gt,omitempty"`
+
+	// isolation policy num gte
+	IsolationPolicyNumGte *int32 `json:"isolation_policy_num_gte,omitempty"`
+
+	// isolation policy num in
+	IsolationPolicyNumIn []int32 `json:"isolation_policy_num_in,omitempty"`
+
+	// isolation policy num lt
+	IsolationPolicyNumLt *int32 `json:"isolation_policy_num_lt,omitempty"`
+
+	// isolation policy num lte
+	IsolationPolicyNumLte *int32 `json:"isolation_policy_num_lte,omitempty"`
+
+	// isolation policy num not
+	IsolationPolicyNumNot *int32 `json:"isolation_policy_num_not,omitempty"`
+
+	// isolation policy num not in
+	IsolationPolicyNumNotIn []int32 `json:"isolation_policy_num_not_in,omitempty"`
 
 	// key
 	Key *string `json:"key,omitempty"`
@@ -467,28 +567,28 @@ type LabelWhereInput struct {
 	KeyStartsWith *string `json:"key_starts_with,omitempty"`
 
 	// namespace group num
-	NamespaceGroupNum *float64 `json:"namespace_group_num,omitempty"`
+	NamespaceGroupNum *int32 `json:"namespace_group_num,omitempty"`
 
 	// namespace group num gt
-	NamespaceGroupNumGt *float64 `json:"namespace_group_num_gt,omitempty"`
+	NamespaceGroupNumGt *int32 `json:"namespace_group_num_gt,omitempty"`
 
 	// namespace group num gte
-	NamespaceGroupNumGte *float64 `json:"namespace_group_num_gte,omitempty"`
+	NamespaceGroupNumGte *int32 `json:"namespace_group_num_gte,omitempty"`
 
 	// namespace group num in
-	NamespaceGroupNumIn []float64 `json:"namespace_group_num_in,omitempty"`
+	NamespaceGroupNumIn []int32 `json:"namespace_group_num_in,omitempty"`
 
 	// namespace group num lt
-	NamespaceGroupNumLt *float64 `json:"namespace_group_num_lt,omitempty"`
+	NamespaceGroupNumLt *int32 `json:"namespace_group_num_lt,omitempty"`
 
 	// namespace group num lte
-	NamespaceGroupNumLte *float64 `json:"namespace_group_num_lte,omitempty"`
+	NamespaceGroupNumLte *int32 `json:"namespace_group_num_lte,omitempty"`
 
 	// namespace group num not
-	NamespaceGroupNumNot *float64 `json:"namespace_group_num_not,omitempty"`
+	NamespaceGroupNumNot *int32 `json:"namespace_group_num_not,omitempty"`
 
 	// namespace group num not in
-	NamespaceGroupNumNotIn []float64 `json:"namespace_group_num_not_in,omitempty"`
+	NamespaceGroupNumNotIn []int32 `json:"namespace_group_num_not_in,omitempty"`
 
 	// namespace groups every
 	NamespaceGroupsEvery interface{} `json:"namespace_groups_every,omitempty"`
@@ -500,28 +600,28 @@ type LabelWhereInput struct {
 	NamespaceGroupsSome interface{} `json:"namespace_groups_some,omitempty"`
 
 	// nfs export num
-	NfsExportNum *float64 `json:"nfs_export_num,omitempty"`
+	NfsExportNum *int32 `json:"nfs_export_num,omitempty"`
 
 	// nfs export num gt
-	NfsExportNumGt *float64 `json:"nfs_export_num_gt,omitempty"`
+	NfsExportNumGt *int32 `json:"nfs_export_num_gt,omitempty"`
 
 	// nfs export num gte
-	NfsExportNumGte *float64 `json:"nfs_export_num_gte,omitempty"`
+	NfsExportNumGte *int32 `json:"nfs_export_num_gte,omitempty"`
 
 	// nfs export num in
-	NfsExportNumIn []float64 `json:"nfs_export_num_in,omitempty"`
+	NfsExportNumIn []int32 `json:"nfs_export_num_in,omitempty"`
 
 	// nfs export num lt
-	NfsExportNumLt *float64 `json:"nfs_export_num_lt,omitempty"`
+	NfsExportNumLt *int32 `json:"nfs_export_num_lt,omitempty"`
 
 	// nfs export num lte
-	NfsExportNumLte *float64 `json:"nfs_export_num_lte,omitempty"`
+	NfsExportNumLte *int32 `json:"nfs_export_num_lte,omitempty"`
 
 	// nfs export num not
-	NfsExportNumNot *float64 `json:"nfs_export_num_not,omitempty"`
+	NfsExportNumNot *int32 `json:"nfs_export_num_not,omitempty"`
 
 	// nfs export num not in
-	NfsExportNumNotIn []float64 `json:"nfs_export_num_not_in,omitempty"`
+	NfsExportNumNotIn []int32 `json:"nfs_export_num_not_in,omitempty"`
 
 	// nfs exports every
 	NfsExportsEvery interface{} `json:"nfs_exports_every,omitempty"`
@@ -533,28 +633,28 @@ type LabelWhereInput struct {
 	NfsExportsSome interface{} `json:"nfs_exports_some,omitempty"`
 
 	// nfs inode num
-	NfsInodeNum *float64 `json:"nfs_inode_num,omitempty"`
+	NfsInodeNum *int32 `json:"nfs_inode_num,omitempty"`
 
 	// nfs inode num gt
-	NfsInodeNumGt *float64 `json:"nfs_inode_num_gt,omitempty"`
+	NfsInodeNumGt *int32 `json:"nfs_inode_num_gt,omitempty"`
 
 	// nfs inode num gte
-	NfsInodeNumGte *float64 `json:"nfs_inode_num_gte,omitempty"`
+	NfsInodeNumGte *int32 `json:"nfs_inode_num_gte,omitempty"`
 
 	// nfs inode num in
-	NfsInodeNumIn []float64 `json:"nfs_inode_num_in,omitempty"`
+	NfsInodeNumIn []int32 `json:"nfs_inode_num_in,omitempty"`
 
 	// nfs inode num lt
-	NfsInodeNumLt *float64 `json:"nfs_inode_num_lt,omitempty"`
+	NfsInodeNumLt *int32 `json:"nfs_inode_num_lt,omitempty"`
 
 	// nfs inode num lte
-	NfsInodeNumLte *float64 `json:"nfs_inode_num_lte,omitempty"`
+	NfsInodeNumLte *int32 `json:"nfs_inode_num_lte,omitempty"`
 
 	// nfs inode num not
-	NfsInodeNumNot *float64 `json:"nfs_inode_num_not,omitempty"`
+	NfsInodeNumNot *int32 `json:"nfs_inode_num_not,omitempty"`
 
 	// nfs inode num not in
-	NfsInodeNumNotIn []float64 `json:"nfs_inode_num_not_in,omitempty"`
+	NfsInodeNumNotIn []int32 `json:"nfs_inode_num_not_in,omitempty"`
 
 	// nfs inodes every
 	NfsInodesEvery interface{} `json:"nfs_inodes_every,omitempty"`
@@ -566,28 +666,28 @@ type LabelWhereInput struct {
 	NfsInodesSome interface{} `json:"nfs_inodes_some,omitempty"`
 
 	// nic num
-	NicNum *float64 `json:"nic_num,omitempty"`
+	NicNum *int32 `json:"nic_num,omitempty"`
 
 	// nic num gt
-	NicNumGt *float64 `json:"nic_num_gt,omitempty"`
+	NicNumGt *int32 `json:"nic_num_gt,omitempty"`
 
 	// nic num gte
-	NicNumGte *float64 `json:"nic_num_gte,omitempty"`
+	NicNumGte *int32 `json:"nic_num_gte,omitempty"`
 
 	// nic num in
-	NicNumIn []float64 `json:"nic_num_in,omitempty"`
+	NicNumIn []int32 `json:"nic_num_in,omitempty"`
 
 	// nic num lt
-	NicNumLt *float64 `json:"nic_num_lt,omitempty"`
+	NicNumLt *int32 `json:"nic_num_lt,omitempty"`
 
 	// nic num lte
-	NicNumLte *float64 `json:"nic_num_lte,omitempty"`
+	NicNumLte *int32 `json:"nic_num_lte,omitempty"`
 
 	// nic num not
-	NicNumNot *float64 `json:"nic_num_not,omitempty"`
+	NicNumNot *int32 `json:"nic_num_not,omitempty"`
 
 	// nic num not in
-	NicNumNotIn []float64 `json:"nic_num_not_in,omitempty"`
+	NicNumNotIn []int32 `json:"nic_num_not_in,omitempty"`
 
 	// nics every
 	NicsEvery interface{} `json:"nics_every,omitempty"`
@@ -599,52 +699,52 @@ type LabelWhereInput struct {
 	NicsSome interface{} `json:"nics_some,omitempty"`
 
 	// nvmf namespace num
-	NvmfNamespaceNum *float64 `json:"nvmf_namespace_num,omitempty"`
+	NvmfNamespaceNum *int32 `json:"nvmf_namespace_num,omitempty"`
 
 	// nvmf namespace num gt
-	NvmfNamespaceNumGt *float64 `json:"nvmf_namespace_num_gt,omitempty"`
+	NvmfNamespaceNumGt *int32 `json:"nvmf_namespace_num_gt,omitempty"`
 
 	// nvmf namespace num gte
-	NvmfNamespaceNumGte *float64 `json:"nvmf_namespace_num_gte,omitempty"`
+	NvmfNamespaceNumGte *int32 `json:"nvmf_namespace_num_gte,omitempty"`
 
 	// nvmf namespace num in
-	NvmfNamespaceNumIn []float64 `json:"nvmf_namespace_num_in,omitempty"`
+	NvmfNamespaceNumIn []int32 `json:"nvmf_namespace_num_in,omitempty"`
 
 	// nvmf namespace num lt
-	NvmfNamespaceNumLt *float64 `json:"nvmf_namespace_num_lt,omitempty"`
+	NvmfNamespaceNumLt *int32 `json:"nvmf_namespace_num_lt,omitempty"`
 
 	// nvmf namespace num lte
-	NvmfNamespaceNumLte *float64 `json:"nvmf_namespace_num_lte,omitempty"`
+	NvmfNamespaceNumLte *int32 `json:"nvmf_namespace_num_lte,omitempty"`
 
 	// nvmf namespace num not
-	NvmfNamespaceNumNot *float64 `json:"nvmf_namespace_num_not,omitempty"`
+	NvmfNamespaceNumNot *int32 `json:"nvmf_namespace_num_not,omitempty"`
 
 	// nvmf namespace num not in
-	NvmfNamespaceNumNotIn []float64 `json:"nvmf_namespace_num_not_in,omitempty"`
+	NvmfNamespaceNumNotIn []int32 `json:"nvmf_namespace_num_not_in,omitempty"`
 
 	// nvmf namespace snapshot num
-	NvmfNamespaceSnapshotNum *float64 `json:"nvmf_namespace_snapshot_num,omitempty"`
+	NvmfNamespaceSnapshotNum *int32 `json:"nvmf_namespace_snapshot_num,omitempty"`
 
 	// nvmf namespace snapshot num gt
-	NvmfNamespaceSnapshotNumGt *float64 `json:"nvmf_namespace_snapshot_num_gt,omitempty"`
+	NvmfNamespaceSnapshotNumGt *int32 `json:"nvmf_namespace_snapshot_num_gt,omitempty"`
 
 	// nvmf namespace snapshot num gte
-	NvmfNamespaceSnapshotNumGte *float64 `json:"nvmf_namespace_snapshot_num_gte,omitempty"`
+	NvmfNamespaceSnapshotNumGte *int32 `json:"nvmf_namespace_snapshot_num_gte,omitempty"`
 
 	// nvmf namespace snapshot num in
-	NvmfNamespaceSnapshotNumIn []float64 `json:"nvmf_namespace_snapshot_num_in,omitempty"`
+	NvmfNamespaceSnapshotNumIn []int32 `json:"nvmf_namespace_snapshot_num_in,omitempty"`
 
 	// nvmf namespace snapshot num lt
-	NvmfNamespaceSnapshotNumLt *float64 `json:"nvmf_namespace_snapshot_num_lt,omitempty"`
+	NvmfNamespaceSnapshotNumLt *int32 `json:"nvmf_namespace_snapshot_num_lt,omitempty"`
 
 	// nvmf namespace snapshot num lte
-	NvmfNamespaceSnapshotNumLte *float64 `json:"nvmf_namespace_snapshot_num_lte,omitempty"`
+	NvmfNamespaceSnapshotNumLte *int32 `json:"nvmf_namespace_snapshot_num_lte,omitempty"`
 
 	// nvmf namespace snapshot num not
-	NvmfNamespaceSnapshotNumNot *float64 `json:"nvmf_namespace_snapshot_num_not,omitempty"`
+	NvmfNamespaceSnapshotNumNot *int32 `json:"nvmf_namespace_snapshot_num_not,omitempty"`
 
 	// nvmf namespace snapshot num not in
-	NvmfNamespaceSnapshotNumNotIn []float64 `json:"nvmf_namespace_snapshot_num_not_in,omitempty"`
+	NvmfNamespaceSnapshotNumNotIn []int32 `json:"nvmf_namespace_snapshot_num_not_in,omitempty"`
 
 	// nvmf namespace snapshots every
 	NvmfNamespaceSnapshotsEvery interface{} `json:"nvmf_namespace_snapshots_every,omitempty"`
@@ -665,28 +765,28 @@ type LabelWhereInput struct {
 	NvmfNamespacesSome interface{} `json:"nvmf_namespaces_some,omitempty"`
 
 	// nvmf subsystem num
-	NvmfSubsystemNum *float64 `json:"nvmf_subsystem_num,omitempty"`
+	NvmfSubsystemNum *int32 `json:"nvmf_subsystem_num,omitempty"`
 
 	// nvmf subsystem num gt
-	NvmfSubsystemNumGt *float64 `json:"nvmf_subsystem_num_gt,omitempty"`
+	NvmfSubsystemNumGt *int32 `json:"nvmf_subsystem_num_gt,omitempty"`
 
 	// nvmf subsystem num gte
-	NvmfSubsystemNumGte *float64 `json:"nvmf_subsystem_num_gte,omitempty"`
+	NvmfSubsystemNumGte *int32 `json:"nvmf_subsystem_num_gte,omitempty"`
 
 	// nvmf subsystem num in
-	NvmfSubsystemNumIn []float64 `json:"nvmf_subsystem_num_in,omitempty"`
+	NvmfSubsystemNumIn []int32 `json:"nvmf_subsystem_num_in,omitempty"`
 
 	// nvmf subsystem num lt
-	NvmfSubsystemNumLt *float64 `json:"nvmf_subsystem_num_lt,omitempty"`
+	NvmfSubsystemNumLt *int32 `json:"nvmf_subsystem_num_lt,omitempty"`
 
 	// nvmf subsystem num lte
-	NvmfSubsystemNumLte *float64 `json:"nvmf_subsystem_num_lte,omitempty"`
+	NvmfSubsystemNumLte *int32 `json:"nvmf_subsystem_num_lte,omitempty"`
 
 	// nvmf subsystem num not
-	NvmfSubsystemNumNot *float64 `json:"nvmf_subsystem_num_not,omitempty"`
+	NvmfSubsystemNumNot *int32 `json:"nvmf_subsystem_num_not,omitempty"`
 
 	// nvmf subsystem num not in
-	NvmfSubsystemNumNotIn []float64 `json:"nvmf_subsystem_num_not_in,omitempty"`
+	NvmfSubsystemNumNotIn []int32 `json:"nvmf_subsystem_num_not_in,omitempty"`
 
 	// nvmf subsystems every
 	NvmfSubsystemsEvery interface{} `json:"nvmf_subsystems_every,omitempty"`
@@ -697,53 +797,86 @@ type LabelWhereInput struct {
 	// nvmf subsystems some
 	NvmfSubsystemsSome interface{} `json:"nvmf_subsystems_some,omitempty"`
 
+	// security policies every
+	SecurityPoliciesEvery interface{} `json:"security_policies_every,omitempty"`
+
+	// security policies none
+	SecurityPoliciesNone interface{} `json:"security_policies_none,omitempty"`
+
+	// security policies some
+	SecurityPoliciesSome interface{} `json:"security_policies_some,omitempty"`
+
+	// security policy num
+	SecurityPolicyNum *int32 `json:"security_policy_num,omitempty"`
+
+	// security policy num gt
+	SecurityPolicyNumGt *int32 `json:"security_policy_num_gt,omitempty"`
+
+	// security policy num gte
+	SecurityPolicyNumGte *int32 `json:"security_policy_num_gte,omitempty"`
+
+	// security policy num in
+	SecurityPolicyNumIn []int32 `json:"security_policy_num_in,omitempty"`
+
+	// security policy num lt
+	SecurityPolicyNumLt *int32 `json:"security_policy_num_lt,omitempty"`
+
+	// security policy num lte
+	SecurityPolicyNumLte *int32 `json:"security_policy_num_lte,omitempty"`
+
+	// security policy num not
+	SecurityPolicyNumNot *int32 `json:"security_policy_num_not,omitempty"`
+
+	// security policy num not in
+	SecurityPolicyNumNotIn []int32 `json:"security_policy_num_not_in,omitempty"`
+
 	// system vlan num
-	SystemVlanNum *float64 `json:"system_vlan_num,omitempty"`
+	SystemVlanNum *int32 `json:"system_vlan_num,omitempty"`
 
 	// system vlan num gt
-	SystemVlanNumGt *float64 `json:"system_vlan_num_gt,omitempty"`
+	SystemVlanNumGt *int32 `json:"system_vlan_num_gt,omitempty"`
 
 	// system vlan num gte
-	SystemVlanNumGte *float64 `json:"system_vlan_num_gte,omitempty"`
+	SystemVlanNumGte *int32 `json:"system_vlan_num_gte,omitempty"`
 
 	// system vlan num in
-	SystemVlanNumIn []float64 `json:"system_vlan_num_in,omitempty"`
+	SystemVlanNumIn []int32 `json:"system_vlan_num_in,omitempty"`
 
 	// system vlan num lt
-	SystemVlanNumLt *float64 `json:"system_vlan_num_lt,omitempty"`
+	SystemVlanNumLt *int32 `json:"system_vlan_num_lt,omitempty"`
 
 	// system vlan num lte
-	SystemVlanNumLte *float64 `json:"system_vlan_num_lte,omitempty"`
+	SystemVlanNumLte *int32 `json:"system_vlan_num_lte,omitempty"`
 
 	// system vlan num not
-	SystemVlanNumNot *float64 `json:"system_vlan_num_not,omitempty"`
+	SystemVlanNumNot *int32 `json:"system_vlan_num_not,omitempty"`
 
 	// system vlan num not in
-	SystemVlanNumNotIn []float64 `json:"system_vlan_num_not_in,omitempty"`
+	SystemVlanNumNotIn []int32 `json:"system_vlan_num_not_in,omitempty"`
 
 	// total num
-	TotalNum *float64 `json:"total_num,omitempty"`
+	TotalNum *int32 `json:"total_num,omitempty"`
 
 	// total num gt
-	TotalNumGt *float64 `json:"total_num_gt,omitempty"`
+	TotalNumGt *int32 `json:"total_num_gt,omitempty"`
 
 	// total num gte
-	TotalNumGte *float64 `json:"total_num_gte,omitempty"`
+	TotalNumGte *int32 `json:"total_num_gte,omitempty"`
 
 	// total num in
-	TotalNumIn []float64 `json:"total_num_in,omitempty"`
+	TotalNumIn []int32 `json:"total_num_in,omitempty"`
 
 	// total num lt
-	TotalNumLt *float64 `json:"total_num_lt,omitempty"`
+	TotalNumLt *int32 `json:"total_num_lt,omitempty"`
 
 	// total num lte
-	TotalNumLte *float64 `json:"total_num_lte,omitempty"`
+	TotalNumLte *int32 `json:"total_num_lte,omitempty"`
 
 	// total num not
-	TotalNumNot *float64 `json:"total_num_not,omitempty"`
+	TotalNumNot *int32 `json:"total_num_not,omitempty"`
 
 	// total num not in
-	TotalNumNotIn []float64 `json:"total_num_not_in,omitempty"`
+	TotalNumNotIn []int32 `json:"total_num_not_in,omitempty"`
 
 	// value
 	Value *string `json:"value,omitempty"`
@@ -788,28 +921,28 @@ type LabelWhereInput struct {
 	ValueStartsWith *string `json:"value_starts_with,omitempty"`
 
 	// vds num
-	VdsNum *float64 `json:"vds_num,omitempty"`
+	VdsNum *int32 `json:"vds_num,omitempty"`
 
 	// vds num gt
-	VdsNumGt *float64 `json:"vds_num_gt,omitempty"`
+	VdsNumGt *int32 `json:"vds_num_gt,omitempty"`
 
 	// vds num gte
-	VdsNumGte *float64 `json:"vds_num_gte,omitempty"`
+	VdsNumGte *int32 `json:"vds_num_gte,omitempty"`
 
 	// vds num in
-	VdsNumIn []float64 `json:"vds_num_in,omitempty"`
+	VdsNumIn []int32 `json:"vds_num_in,omitempty"`
 
 	// vds num lt
-	VdsNumLt *float64 `json:"vds_num_lt,omitempty"`
+	VdsNumLt *int32 `json:"vds_num_lt,omitempty"`
 
 	// vds num lte
-	VdsNumLte *float64 `json:"vds_num_lte,omitempty"`
+	VdsNumLte *int32 `json:"vds_num_lte,omitempty"`
 
 	// vds num not
-	VdsNumNot *float64 `json:"vds_num_not,omitempty"`
+	VdsNumNot *int32 `json:"vds_num_not,omitempty"`
 
 	// vds num not in
-	VdsNumNotIn []float64 `json:"vds_num_not_in,omitempty"`
+	VdsNumNotIn []int32 `json:"vds_num_not_in,omitempty"`
 
 	// vdses every
 	VdsesEvery interface{} `json:"vdses_every,omitempty"`
@@ -830,52 +963,52 @@ type LabelWhereInput struct {
 	VlansSome interface{} `json:"vlans_some,omitempty"`
 
 	// vm num
-	VMNum *float64 `json:"vm_num,omitempty"`
+	VMNum *int32 `json:"vm_num,omitempty"`
 
 	// vm num gt
-	VMNumGt *float64 `json:"vm_num_gt,omitempty"`
+	VMNumGt *int32 `json:"vm_num_gt,omitempty"`
 
 	// vm num gte
-	VMNumGte *float64 `json:"vm_num_gte,omitempty"`
+	VMNumGte *int32 `json:"vm_num_gte,omitempty"`
 
 	// vm num in
-	VMNumIn []float64 `json:"vm_num_in,omitempty"`
+	VMNumIn []int32 `json:"vm_num_in,omitempty"`
 
 	// vm num lt
-	VMNumLt *float64 `json:"vm_num_lt,omitempty"`
+	VMNumLt *int32 `json:"vm_num_lt,omitempty"`
 
 	// vm num lte
-	VMNumLte *float64 `json:"vm_num_lte,omitempty"`
+	VMNumLte *int32 `json:"vm_num_lte,omitempty"`
 
 	// vm num not
-	VMNumNot *float64 `json:"vm_num_not,omitempty"`
+	VMNumNot *int32 `json:"vm_num_not,omitempty"`
 
 	// vm num not in
-	VMNumNotIn []float64 `json:"vm_num_not_in,omitempty"`
+	VMNumNotIn []int32 `json:"vm_num_not_in,omitempty"`
 
 	// vm snapshot num
-	VMSnapshotNum *float64 `json:"vm_snapshot_num,omitempty"`
+	VMSnapshotNum *int32 `json:"vm_snapshot_num,omitempty"`
 
 	// vm snapshot num gt
-	VMSnapshotNumGt *float64 `json:"vm_snapshot_num_gt,omitempty"`
+	VMSnapshotNumGt *int32 `json:"vm_snapshot_num_gt,omitempty"`
 
 	// vm snapshot num gte
-	VMSnapshotNumGte *float64 `json:"vm_snapshot_num_gte,omitempty"`
+	VMSnapshotNumGte *int32 `json:"vm_snapshot_num_gte,omitempty"`
 
 	// vm snapshot num in
-	VMSnapshotNumIn []float64 `json:"vm_snapshot_num_in,omitempty"`
+	VMSnapshotNumIn []int32 `json:"vm_snapshot_num_in,omitempty"`
 
 	// vm snapshot num lt
-	VMSnapshotNumLt *float64 `json:"vm_snapshot_num_lt,omitempty"`
+	VMSnapshotNumLt *int32 `json:"vm_snapshot_num_lt,omitempty"`
 
 	// vm snapshot num lte
-	VMSnapshotNumLte *float64 `json:"vm_snapshot_num_lte,omitempty"`
+	VMSnapshotNumLte *int32 `json:"vm_snapshot_num_lte,omitempty"`
 
 	// vm snapshot num not
-	VMSnapshotNumNot *float64 `json:"vm_snapshot_num_not,omitempty"`
+	VMSnapshotNumNot *int32 `json:"vm_snapshot_num_not,omitempty"`
 
 	// vm snapshot num not in
-	VMSnapshotNumNotIn []float64 `json:"vm_snapshot_num_not_in,omitempty"`
+	VMSnapshotNumNotIn []int32 `json:"vm_snapshot_num_not_in,omitempty"`
 
 	// vm snapshots every
 	VMSnapshotsEvery interface{} `json:"vm_snapshots_every,omitempty"`
@@ -887,28 +1020,28 @@ type LabelWhereInput struct {
 	VMSnapshotsSome interface{} `json:"vm_snapshots_some,omitempty"`
 
 	// vm template num
-	VMTemplateNum *float64 `json:"vm_template_num,omitempty"`
+	VMTemplateNum *int32 `json:"vm_template_num,omitempty"`
 
 	// vm template num gt
-	VMTemplateNumGt *float64 `json:"vm_template_num_gt,omitempty"`
+	VMTemplateNumGt *int32 `json:"vm_template_num_gt,omitempty"`
 
 	// vm template num gte
-	VMTemplateNumGte *float64 `json:"vm_template_num_gte,omitempty"`
+	VMTemplateNumGte *int32 `json:"vm_template_num_gte,omitempty"`
 
 	// vm template num in
-	VMTemplateNumIn []float64 `json:"vm_template_num_in,omitempty"`
+	VMTemplateNumIn []int32 `json:"vm_template_num_in,omitempty"`
 
 	// vm template num lt
-	VMTemplateNumLt *float64 `json:"vm_template_num_lt,omitempty"`
+	VMTemplateNumLt *int32 `json:"vm_template_num_lt,omitempty"`
 
 	// vm template num lte
-	VMTemplateNumLte *float64 `json:"vm_template_num_lte,omitempty"`
+	VMTemplateNumLte *int32 `json:"vm_template_num_lte,omitempty"`
 
 	// vm template num not
-	VMTemplateNumNot *float64 `json:"vm_template_num_not,omitempty"`
+	VMTemplateNumNot *int32 `json:"vm_template_num_not,omitempty"`
 
 	// vm template num not in
-	VMTemplateNumNotIn []float64 `json:"vm_template_num_not_in,omitempty"`
+	VMTemplateNumNotIn []int32 `json:"vm_template_num_not_in,omitempty"`
 
 	// vm templates every
 	VMTemplatesEvery interface{} `json:"vm_templates_every,omitempty"`
@@ -920,52 +1053,52 @@ type LabelWhereInput struct {
 	VMTemplatesSome interface{} `json:"vm_templates_some,omitempty"`
 
 	// vm vlan num
-	VMVlanNum *float64 `json:"vm_vlan_num,omitempty"`
+	VMVlanNum *int32 `json:"vm_vlan_num,omitempty"`
 
 	// vm vlan num gt
-	VMVlanNumGt *float64 `json:"vm_vlan_num_gt,omitempty"`
+	VMVlanNumGt *int32 `json:"vm_vlan_num_gt,omitempty"`
 
 	// vm vlan num gte
-	VMVlanNumGte *float64 `json:"vm_vlan_num_gte,omitempty"`
+	VMVlanNumGte *int32 `json:"vm_vlan_num_gte,omitempty"`
 
 	// vm vlan num in
-	VMVlanNumIn []float64 `json:"vm_vlan_num_in,omitempty"`
+	VMVlanNumIn []int32 `json:"vm_vlan_num_in,omitempty"`
 
 	// vm vlan num lt
-	VMVlanNumLt *float64 `json:"vm_vlan_num_lt,omitempty"`
+	VMVlanNumLt *int32 `json:"vm_vlan_num_lt,omitempty"`
 
 	// vm vlan num lte
-	VMVlanNumLte *float64 `json:"vm_vlan_num_lte,omitempty"`
+	VMVlanNumLte *int32 `json:"vm_vlan_num_lte,omitempty"`
 
 	// vm vlan num not
-	VMVlanNumNot *float64 `json:"vm_vlan_num_not,omitempty"`
+	VMVlanNumNot *int32 `json:"vm_vlan_num_not,omitempty"`
 
 	// vm vlan num not in
-	VMVlanNumNotIn []float64 `json:"vm_vlan_num_not_in,omitempty"`
+	VMVlanNumNotIn []int32 `json:"vm_vlan_num_not_in,omitempty"`
 
 	// vm volume num
-	VMVolumeNum *float64 `json:"vm_volume_num,omitempty"`
+	VMVolumeNum *int32 `json:"vm_volume_num,omitempty"`
 
 	// vm volume num gt
-	VMVolumeNumGt *float64 `json:"vm_volume_num_gt,omitempty"`
+	VMVolumeNumGt *int32 `json:"vm_volume_num_gt,omitempty"`
 
 	// vm volume num gte
-	VMVolumeNumGte *float64 `json:"vm_volume_num_gte,omitempty"`
+	VMVolumeNumGte *int32 `json:"vm_volume_num_gte,omitempty"`
 
 	// vm volume num in
-	VMVolumeNumIn []float64 `json:"vm_volume_num_in,omitempty"`
+	VMVolumeNumIn []int32 `json:"vm_volume_num_in,omitempty"`
 
 	// vm volume num lt
-	VMVolumeNumLt *float64 `json:"vm_volume_num_lt,omitempty"`
+	VMVolumeNumLt *int32 `json:"vm_volume_num_lt,omitempty"`
 
 	// vm volume num lte
-	VMVolumeNumLte *float64 `json:"vm_volume_num_lte,omitempty"`
+	VMVolumeNumLte *int32 `json:"vm_volume_num_lte,omitempty"`
 
 	// vm volume num not
-	VMVolumeNumNot *float64 `json:"vm_volume_num_not,omitempty"`
+	VMVolumeNumNot *int32 `json:"vm_volume_num_not,omitempty"`
 
 	// vm volume num not in
-	VMVolumeNumNotIn []float64 `json:"vm_volume_num_not_in,omitempty"`
+	VMVolumeNumNotIn []int32 `json:"vm_volume_num_not_in,omitempty"`
 
 	// vm volumes every
 	VMVolumesEvery interface{} `json:"vm_volumes_every,omitempty"`

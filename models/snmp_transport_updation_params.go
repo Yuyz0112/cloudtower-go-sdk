@@ -167,7 +167,7 @@ type SnmpTransportUpdationParamsData struct {
 	Name string `json:"name,omitempty"`
 
 	// port
-	Port float64 `json:"port,omitempty"`
+	Port int32 `json:"port,omitempty"`
 
 	// privacy pass phrase
 	PrivacyPassPhrase string `json:"privacy_pass_phrase,omitempty"`

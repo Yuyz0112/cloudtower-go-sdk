@@ -28,7 +28,7 @@ type RackTopoCreationParams struct {
 
 	// height
 	// Required: true
-	Height *float64 `json:"height"`
+	Height *int32 `json:"height"`
 
 	// name
 	// Required: true

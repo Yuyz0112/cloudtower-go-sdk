@@ -21,7 +21,7 @@ type VMDiskConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *VMDiskConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateVMDisk `json:"aggregate"`
 }
 
 // Validate validates this Vm disk connection
@@ -95,62 +95,6 @@ func (m *VMDiskConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMDiskConnection) UnmarshalBinary(b []byte) error {
 	var res VMDiskConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMDiskConnectionAggregate VM disk connection aggregate
-//
-// swagger:model VMDiskConnectionAggregate
-type VMDiskConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this VM disk connection aggregate
-func (m *VMDiskConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMDiskConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM disk connection aggregate based on context it is used
-func (m *VMDiskConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMDiskConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMDiskConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res VMDiskConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

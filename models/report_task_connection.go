@@ -21,7 +21,7 @@ type ReportTaskConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ReportTaskConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateReportTask `json:"aggregate"`
 }
 
 // Validate validates this report task connection
@@ -95,62 +95,6 @@ func (m *ReportTaskConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ReportTaskConnection) UnmarshalBinary(b []byte) error {
 	var res ReportTaskConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ReportTaskConnectionAggregate report task connection aggregate
-//
-// swagger:model ReportTaskConnectionAggregate
-type ReportTaskConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this report task connection aggregate
-func (m *ReportTaskConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ReportTaskConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this report task connection aggregate based on context it is used
-func (m *ReportTaskConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ReportTaskConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ReportTaskConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ReportTaskConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

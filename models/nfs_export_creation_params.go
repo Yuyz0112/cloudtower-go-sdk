@@ -32,7 +32,7 @@ type NfsExportCreationParams struct {
 
 	// replica num
 	// Required: true
-	ReplicaNum *float64 `json:"replica_num"`
+	ReplicaNum *int32 `json:"replica_num"`
 
 	// thin provision
 	// Required: true

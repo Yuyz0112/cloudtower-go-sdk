@@ -15,6 +15,7 @@ import (
 )
 
 // RackTopoWhereInput rack topo where input
+// Example: {"AND":"RackTopoWhereInput[]","NOT":"RackTopoWhereInput[]","OR":"RackTopoWhereInput[]","brick_topoes_every":"BrickTopoWhereInput","brick_topoes_none":"BrickTopoWhereInput","brick_topoes_some":"BrickTopoWhereInput","cluster":"ClusterWhereInput","height":0,"height_gt":0,"height_gte":0,"height_in":[0],"height_lt":0,"height_lte":0,"height_not":0,"height_not_in":[0],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","zone_topo":"ZoneTopoWhereInput"}
 //
 // swagger:model RackTopoWhereInput
 type RackTopoWhereInput struct {
@@ -41,28 +42,28 @@ type RackTopoWhereInput struct {
 	Cluster interface{} `json:"cluster,omitempty"`
 
 	// height
-	Height *float64 `json:"height,omitempty"`
+	Height *int32 `json:"height,omitempty"`
 
 	// height gt
-	HeightGt *float64 `json:"height_gt,omitempty"`
+	HeightGt *int32 `json:"height_gt,omitempty"`
 
 	// height gte
-	HeightGte *float64 `json:"height_gte,omitempty"`
+	HeightGte *int32 `json:"height_gte,omitempty"`
 
 	// height in
-	HeightIn []float64 `json:"height_in,omitempty"`
+	HeightIn []int32 `json:"height_in,omitempty"`
 
 	// height lt
-	HeightLt *float64 `json:"height_lt,omitempty"`
+	HeightLt *int32 `json:"height_lt,omitempty"`
 
 	// height lte
-	HeightLte *float64 `json:"height_lte,omitempty"`
+	HeightLte *int32 `json:"height_lte,omitempty"`
 
 	// height not
-	HeightNot *float64 `json:"height_not,omitempty"`
+	HeightNot *int32 `json:"height_not,omitempty"`
 
 	// height not in
-	HeightNotIn []float64 `json:"height_not_in,omitempty"`
+	HeightNotIn []int32 `json:"height_not_in,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`

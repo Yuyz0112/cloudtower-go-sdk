@@ -21,7 +21,7 @@ type AlertNotifierConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *AlertNotifierConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateAlertNotifier `json:"aggregate"`
 }
 
 // Validate validates this alert notifier connection
@@ -95,62 +95,6 @@ func (m *AlertNotifierConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *AlertNotifierConnection) UnmarshalBinary(b []byte) error {
 	var res AlertNotifierConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertNotifierConnectionAggregate alert notifier connection aggregate
-//
-// swagger:model AlertNotifierConnectionAggregate
-type AlertNotifierConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this alert notifier connection aggregate
-func (m *AlertNotifierConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertNotifierConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert notifier connection aggregate based on context it is used
-func (m *AlertNotifierConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertNotifierConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertNotifierConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res AlertNotifierConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

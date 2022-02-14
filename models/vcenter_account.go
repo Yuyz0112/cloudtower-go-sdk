@@ -20,7 +20,7 @@ import (
 type VcenterAccount struct {
 
 	// cluster
-	Cluster *VcenterAccountCluster `json:"cluster,omitempty"`
+	Cluster interface{} `json:"cluster,omitempty"`
 
 	// id
 	// Required: true
@@ -44,7 +44,7 @@ type VcenterAccount struct {
 
 	// port
 	// Required: true
-	Port *float64 `json:"port"`
+	Port *int32 `json:"port"`
 
 	// username
 	// Required: true
@@ -54,10 +54,6 @@ type VcenterAccount struct {
 // Validate validates this vcenter account
 func (m *VcenterAccount) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateCluster(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
@@ -90,23 +86,6 @@ func (m *VcenterAccount) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *VcenterAccount) validateCluster(formats strfmt.Registry) error {
-	if swag.IsZero(m.Cluster) { // not required
-		return nil
-	}
-
-	if m.Cluster != nil {
-		if err := m.Cluster.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -173,31 +152,8 @@ func (m *VcenterAccount) validateUsername(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this vcenter account based on the context it is used
+// ContextValidate validates this vcenter account based on context it is used
 func (m *VcenterAccount) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateCluster(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VcenterAccount) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Cluster != nil {
-		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -212,79 +168,6 @@ func (m *VcenterAccount) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VcenterAccount) UnmarshalBinary(b []byte) error {
 	var res VcenterAccount
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VcenterAccountCluster vcenter account cluster
-//
-// swagger:model VcenterAccountCluster
-type VcenterAccountCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this vcenter account cluster
-func (m *VcenterAccountCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VcenterAccountCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VcenterAccountCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this vcenter account cluster based on context it is used
-func (m *VcenterAccountCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VcenterAccountCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VcenterAccountCluster) UnmarshalBinary(b []byte) error {
-	var res VcenterAccountCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

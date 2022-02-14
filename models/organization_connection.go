@@ -21,7 +21,7 @@ type OrganizationConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *OrganizationConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateOrganization `json:"aggregate"`
 }
 
 // Validate validates this organization connection
@@ -95,62 +95,6 @@ func (m *OrganizationConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *OrganizationConnection) UnmarshalBinary(b []byte) error {
 	var res OrganizationConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// OrganizationConnectionAggregate organization connection aggregate
-//
-// swagger:model OrganizationConnectionAggregate
-type OrganizationConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this organization connection aggregate
-func (m *OrganizationConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *OrganizationConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this organization connection aggregate based on context it is used
-func (m *OrganizationConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *OrganizationConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *OrganizationConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res OrganizationConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

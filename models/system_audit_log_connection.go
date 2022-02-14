@@ -21,7 +21,7 @@ type SystemAuditLogConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *SystemAuditLogConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateSystemAuditLog `json:"aggregate"`
 }
 
 // Validate validates this system audit log connection
@@ -95,62 +95,6 @@ func (m *SystemAuditLogConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SystemAuditLogConnection) UnmarshalBinary(b []byte) error {
 	var res SystemAuditLogConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SystemAuditLogConnectionAggregate system audit log connection aggregate
-//
-// swagger:model SystemAuditLogConnectionAggregate
-type SystemAuditLogConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this system audit log connection aggregate
-func (m *SystemAuditLogConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SystemAuditLogConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this system audit log connection aggregate based on context it is used
-func (m *SystemAuditLogConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SystemAuditLogConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SystemAuditLogConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res SystemAuditLogConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

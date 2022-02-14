@@ -15,6 +15,7 @@ import (
 )
 
 // ElfStoragePolicyWhereInput elf storage policy where input
+// Example: {"AND":"ElfStoragePolicyWhereInput[]","NOT":"ElfStoragePolicyWhereInput[]","OR":"ElfStoragePolicyWhereInput[]","cluster":"ClusterWhereInput","description":"string","description_contains":"string","description_ends_with":"string","description_gt":"string","description_gte":"string","description_in":["string"],"description_lt":"string","description_lte":"string","description_not":"string","description_not_contains":"string","description_not_ends_with":"string","description_not_in":["string"],"description_not_starts_with":"string","description_starts_with":"string","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","replica_num":0,"replica_num_gt":0,"replica_num_gte":0,"replica_num_in":[0],"replica_num_lt":0,"replica_num_lte":0,"replica_num_not":0,"replica_num_not_in":[0],"stripe_num":0,"stripe_num_gt":0,"stripe_num_gte":0,"stripe_num_in":[0],"stripe_num_lt":0,"stripe_num_lte":0,"stripe_num_not":0,"stripe_num_not_in":[0],"stripe_size":0,"stripe_size_gt":0,"stripe_size_gte":0,"stripe_size_in":[0],"stripe_size_lt":0,"stripe_size_lte":0,"stripe_size_not":0,"stripe_size_not_in":[0],"thin_provision":false,"thin_provision_not":false}
 //
 // swagger:model ElfStoragePolicyWhereInput
 type ElfStoragePolicyWhereInput struct {
@@ -212,52 +213,52 @@ type ElfStoragePolicyWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// replica num
-	ReplicaNum *float64 `json:"replica_num,omitempty"`
+	ReplicaNum *int32 `json:"replica_num,omitempty"`
 
 	// replica num gt
-	ReplicaNumGt *float64 `json:"replica_num_gt,omitempty"`
+	ReplicaNumGt *int32 `json:"replica_num_gt,omitempty"`
 
 	// replica num gte
-	ReplicaNumGte *float64 `json:"replica_num_gte,omitempty"`
+	ReplicaNumGte *int32 `json:"replica_num_gte,omitempty"`
 
 	// replica num in
-	ReplicaNumIn []float64 `json:"replica_num_in,omitempty"`
+	ReplicaNumIn []int32 `json:"replica_num_in,omitempty"`
 
 	// replica num lt
-	ReplicaNumLt *float64 `json:"replica_num_lt,omitempty"`
+	ReplicaNumLt *int32 `json:"replica_num_lt,omitempty"`
 
 	// replica num lte
-	ReplicaNumLte *float64 `json:"replica_num_lte,omitempty"`
+	ReplicaNumLte *int32 `json:"replica_num_lte,omitempty"`
 
 	// replica num not
-	ReplicaNumNot *float64 `json:"replica_num_not,omitempty"`
+	ReplicaNumNot *int32 `json:"replica_num_not,omitempty"`
 
 	// replica num not in
-	ReplicaNumNotIn []float64 `json:"replica_num_not_in,omitempty"`
+	ReplicaNumNotIn []int32 `json:"replica_num_not_in,omitempty"`
 
 	// stripe num
-	StripeNum *float64 `json:"stripe_num,omitempty"`
+	StripeNum *int32 `json:"stripe_num,omitempty"`
 
 	// stripe num gt
-	StripeNumGt *float64 `json:"stripe_num_gt,omitempty"`
+	StripeNumGt *int32 `json:"stripe_num_gt,omitempty"`
 
 	// stripe num gte
-	StripeNumGte *float64 `json:"stripe_num_gte,omitempty"`
+	StripeNumGte *int32 `json:"stripe_num_gte,omitempty"`
 
 	// stripe num in
-	StripeNumIn []float64 `json:"stripe_num_in,omitempty"`
+	StripeNumIn []int32 `json:"stripe_num_in,omitempty"`
 
 	// stripe num lt
-	StripeNumLt *float64 `json:"stripe_num_lt,omitempty"`
+	StripeNumLt *int32 `json:"stripe_num_lt,omitempty"`
 
 	// stripe num lte
-	StripeNumLte *float64 `json:"stripe_num_lte,omitempty"`
+	StripeNumLte *int32 `json:"stripe_num_lte,omitempty"`
 
 	// stripe num not
-	StripeNumNot *float64 `json:"stripe_num_not,omitempty"`
+	StripeNumNot *int32 `json:"stripe_num_not,omitempty"`
 
 	// stripe num not in
-	StripeNumNotIn []float64 `json:"stripe_num_not_in,omitempty"`
+	StripeNumNotIn []int32 `json:"stripe_num_not_in,omitempty"`
 
 	// stripe size
 	StripeSize *float64 `json:"stripe_size,omitempty"`

@@ -21,7 +21,7 @@ type VMEntityFilterResultConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *VMEntityFilterResultConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateVMEntityFilterResult `json:"aggregate"`
 }
 
 // Validate validates this Vm entity filter result connection
@@ -95,62 +95,6 @@ func (m *VMEntityFilterResultConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMEntityFilterResultConnection) UnmarshalBinary(b []byte) error {
 	var res VMEntityFilterResultConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMEntityFilterResultConnectionAggregate VM entity filter result connection aggregate
-//
-// swagger:model VMEntityFilterResultConnectionAggregate
-type VMEntityFilterResultConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this VM entity filter result connection aggregate
-func (m *VMEntityFilterResultConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMEntityFilterResultConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM entity filter result connection aggregate based on context it is used
-func (m *VMEntityFilterResultConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMEntityFilterResultConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMEntityFilterResultConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res VMEntityFilterResultConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

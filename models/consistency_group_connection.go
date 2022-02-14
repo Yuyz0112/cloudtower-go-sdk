@@ -21,7 +21,7 @@ type ConsistencyGroupConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ConsistencyGroupConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateConsistencyGroup `json:"aggregate"`
 }
 
 // Validate validates this consistency group connection
@@ -95,62 +95,6 @@ func (m *ConsistencyGroupConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ConsistencyGroupConnection) UnmarshalBinary(b []byte) error {
 	var res ConsistencyGroupConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ConsistencyGroupConnectionAggregate consistency group connection aggregate
-//
-// swagger:model ConsistencyGroupConnectionAggregate
-type ConsistencyGroupConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this consistency group connection aggregate
-func (m *ConsistencyGroupConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ConsistencyGroupConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this consistency group connection aggregate based on context it is used
-func (m *ConsistencyGroupConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ConsistencyGroupConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ConsistencyGroupConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ConsistencyGroupConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

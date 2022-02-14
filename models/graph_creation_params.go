@@ -27,8 +27,11 @@ type GraphCreationParams struct {
 	// Required: true
 	ConnectID []string `json:"connect_id"`
 
+	// instance ids
+	InstanceIds []string `json:"instance_ids"`
+
 	// metric count
-	MetricCount float64 `json:"metric_count,omitempty"`
+	MetricCount int32 `json:"metric_count,omitempty"`
 
 	// metric name
 	// Required: true

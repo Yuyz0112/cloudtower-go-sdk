@@ -151,165 +151,20 @@ func (m *ElfImageUpdationParams) UnmarshalBinary(b []byte) error {
 // swagger:model ElfImageUpdationParamsData
 type ElfImageUpdationParamsData struct {
 
-	// cluster id
-	ClusterID string `json:"cluster_id,omitempty"`
-
 	// description
 	Description string `json:"description,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
-
-	// path
-	Path string `json:"path,omitempty"`
-
-	// size
-	Size float64 `json:"size,omitempty"`
-
-	// vm disks
-	VMDisks *VMDiskWhereInput `json:"vm_disks,omitempty"`
-
-	// vm snapshots
-	VMSnapshots *VMSnapshotWhereInput `json:"vm_snapshots,omitempty"`
-
-	// vm templates
-	VMTemplates *VMTemplateWhereInput `json:"vm_templates,omitempty"`
 }
 
 // Validate validates this elf image updation params data
 func (m *ElfImageUpdationParamsData) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateVMDisks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVMSnapshots(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVMTemplates(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 
-func (m *ElfImageUpdationParamsData) validateVMDisks(formats strfmt.Registry) error {
-	if swag.IsZero(m.VMDisks) { // not required
-		return nil
-	}
-
-	if m.VMDisks != nil {
-		if err := m.VMDisks.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data" + "." + "vm_disks")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ElfImageUpdationParamsData) validateVMSnapshots(formats strfmt.Registry) error {
-	if swag.IsZero(m.VMSnapshots) { // not required
-		return nil
-	}
-
-	if m.VMSnapshots != nil {
-		if err := m.VMSnapshots.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data" + "." + "vm_snapshots")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ElfImageUpdationParamsData) validateVMTemplates(formats strfmt.Registry) error {
-	if swag.IsZero(m.VMTemplates) { // not required
-		return nil
-	}
-
-	if m.VMTemplates != nil {
-		if err := m.VMTemplates.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data" + "." + "vm_templates")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this elf image updation params data based on the context it is used
+// ContextValidate validates this elf image updation params data based on context it is used
 func (m *ElfImageUpdationParamsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateVMDisks(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVMSnapshots(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVMTemplates(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfImageUpdationParamsData) contextValidateVMDisks(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VMDisks != nil {
-		if err := m.VMDisks.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data" + "." + "vm_disks")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ElfImageUpdationParamsData) contextValidateVMSnapshots(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VMSnapshots != nil {
-		if err := m.VMSnapshots.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data" + "." + "vm_snapshots")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ElfImageUpdationParamsData) contextValidateVMTemplates(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.VMTemplates != nil {
-		if err := m.VMTemplates.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data" + "." + "vm_templates")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

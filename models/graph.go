@@ -21,31 +21,35 @@ import (
 type Graph struct {
 
 	// cluster
-	Cluster *GraphCluster `json:"cluster,omitempty"`
+	Cluster interface{} `json:"cluster,omitempty"`
 
 	// disks
-	Disks []*GraphDisksItems0 `json:"disks,omitempty"`
+	Disks []*NestedDisk `json:"disks,omitempty"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
 
 	// hosts
-	Hosts []*GraphHostsItems0 `json:"hosts,omitempty"`
+	Hosts []*NestedHost `json:"hosts,omitempty"`
 
 	// id
 	// Required: true
 	ID *string `json:"id"`
+
+	// instance ids
+	// Required: true
+	InstanceIds []string `json:"instance_ids"`
 
 	// local id
 	// Required: true
 	LocalID *string `json:"local_id"`
 
 	// luns
-	Luns []*GraphLunsItems0 `json:"luns,omitempty"`
+	Luns []*NestedIscsiLun `json:"luns,omitempty"`
 
 	// metric count
 	// Required: true
-	MetricCount *float64 `json:"metric_count"`
+	MetricCount *int32 `json:"metric_count"`
 
 	// metric name
 	// Required: true
@@ -56,13 +60,13 @@ type Graph struct {
 	MetricType *MetricType `json:"metric_type"`
 
 	// namespaces
-	Namespaces []*GraphNamespacesItems0 `json:"namespaces,omitempty"`
+	Namespaces []*NestedNvmfNamespace `json:"namespaces,omitempty"`
 
 	// network
 	Network interface{} `json:"network,omitempty"`
 
 	// nics
-	Nics []*GraphNicsItems0 `json:"nics,omitempty"`
+	Nics []*NestedNic `json:"nics,omitempty"`
 
 	// resource type
 	// Required: true
@@ -85,31 +89,27 @@ type Graph struct {
 
 	// view
 	// Required: true
-	View *GraphView `json:"view"`
+	View *NestedView `json:"view"`
 
 	// vm nics
-	VMNics []*GraphVMNicsItems0 `json:"vmNics,omitempty"`
+	VMNics []*NestedVMNic `json:"vmNics,omitempty"`
 
 	// vm volumes
-	VMVolumes []*GraphVMVolumesItems0 `json:"vmVolumes,omitempty"`
+	VMVolumes []*NestedVMVolume `json:"vmVolumes,omitempty"`
 
 	// vms
-	Vms []*GraphVmsItems0 `json:"vms,omitempty"`
+	Vms []*NestedVM `json:"vms,omitempty"`
 
 	// witnesses
-	Witnesses []*GraphWitnessesItems0 `json:"witnesses,omitempty"`
+	Witnesses []*NestedWitness `json:"witnesses,omitempty"`
 
 	// zones
-	Zones []*GraphZonesItems0 `json:"zones,omitempty"`
+	Zones []*NestedZone `json:"zones,omitempty"`
 }
 
 // Validate validates this graph
 func (m *Graph) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateCluster(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateDisks(formats); err != nil {
 		res = append(res, err)
@@ -120,6 +120,10 @@ func (m *Graph) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInstanceIds(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -197,23 +201,6 @@ func (m *Graph) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Graph) validateCluster(formats strfmt.Registry) error {
-	if swag.IsZero(m.Cluster) { // not required
-		return nil
-	}
-
-	if m.Cluster != nil {
-		if err := m.Cluster.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *Graph) validateDisks(formats strfmt.Registry) error {
 	if swag.IsZero(m.Disks) { // not required
 		return nil
@@ -265,6 +252,15 @@ func (m *Graph) validateHosts(formats strfmt.Registry) error {
 func (m *Graph) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Graph) validateInstanceIds(formats strfmt.Registry) error {
+
+	if err := validate.Required("instance_ids", "body", m.InstanceIds); err != nil {
 		return err
 	}
 
@@ -583,10 +579,6 @@ func (m *Graph) validateZones(formats strfmt.Registry) error {
 func (m *Graph) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateCluster(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateDisks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -642,20 +634,6 @@ func (m *Graph) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *Graph) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Cluster != nil {
-		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -892,848 +870,6 @@ func (m *Graph) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Graph) UnmarshalBinary(b []byte) error {
 	var res Graph
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphCluster graph cluster
-//
-// swagger:model GraphCluster
-type GraphCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph cluster
-func (m *GraphCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph cluster based on context it is used
-func (m *GraphCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphCluster) UnmarshalBinary(b []byte) error {
-	var res GraphCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphDisksItems0 graph disks items0
-//
-// swagger:model GraphDisksItems0
-type GraphDisksItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph disks items0
-func (m *GraphDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphDisksItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphDisksItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph disks items0 based on context it is used
-func (m *GraphDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphDisksItems0) UnmarshalBinary(b []byte) error {
-	var res GraphDisksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphHostsItems0 graph hosts items0
-//
-// swagger:model GraphHostsItems0
-type GraphHostsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph hosts items0
-func (m *GraphHostsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphHostsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphHostsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph hosts items0 based on context it is used
-func (m *GraphHostsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphHostsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphHostsItems0) UnmarshalBinary(b []byte) error {
-	var res GraphHostsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphLunsItems0 graph luns items0
-//
-// swagger:model GraphLunsItems0
-type GraphLunsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph luns items0
-func (m *GraphLunsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphLunsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphLunsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph luns items0 based on context it is used
-func (m *GraphLunsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphLunsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphLunsItems0) UnmarshalBinary(b []byte) error {
-	var res GraphLunsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphNamespacesItems0 graph namespaces items0
-//
-// swagger:model GraphNamespacesItems0
-type GraphNamespacesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph namespaces items0
-func (m *GraphNamespacesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphNamespacesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphNamespacesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph namespaces items0 based on context it is used
-func (m *GraphNamespacesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphNamespacesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphNamespacesItems0) UnmarshalBinary(b []byte) error {
-	var res GraphNamespacesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphNicsItems0 graph nics items0
-//
-// swagger:model GraphNicsItems0
-type GraphNicsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph nics items0
-func (m *GraphNicsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphNicsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphNicsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph nics items0 based on context it is used
-func (m *GraphNicsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphNicsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphNicsItems0) UnmarshalBinary(b []byte) error {
-	var res GraphNicsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphVMNicsItems0 graph VM nics items0
-//
-// swagger:model GraphVMNicsItems0
-type GraphVMNicsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this graph VM nics items0
-func (m *GraphVMNicsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphVMNicsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph VM nics items0 based on context it is used
-func (m *GraphVMNicsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphVMNicsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphVMNicsItems0) UnmarshalBinary(b []byte) error {
-	var res GraphVMNicsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphVMVolumesItems0 graph VM volumes items0
-//
-// swagger:model GraphVMVolumesItems0
-type GraphVMVolumesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph VM volumes items0
-func (m *GraphVMVolumesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphVMVolumesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphVMVolumesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph VM volumes items0 based on context it is used
-func (m *GraphVMVolumesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphVMVolumesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphVMVolumesItems0) UnmarshalBinary(b []byte) error {
-	var res GraphVMVolumesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphView graph view
-//
-// swagger:model GraphView
-type GraphView struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph view
-func (m *GraphView) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphView) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("view"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphView) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("view"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph view based on context it is used
-func (m *GraphView) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphView) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphView) UnmarshalBinary(b []byte) error {
-	var res GraphView
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphVmsItems0 graph vms items0
-//
-// swagger:model GraphVmsItems0
-type GraphVmsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph vms items0
-func (m *GraphVmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphVmsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphVmsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph vms items0 based on context it is used
-func (m *GraphVmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphVmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphVmsItems0) UnmarshalBinary(b []byte) error {
-	var res GraphVmsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphWitnessesItems0 graph witnesses items0
-//
-// swagger:model GraphWitnessesItems0
-type GraphWitnessesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this graph witnesses items0
-func (m *GraphWitnessesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphWitnessesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphWitnessesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph witnesses items0 based on context it is used
-func (m *GraphWitnessesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphWitnessesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphWitnessesItems0) UnmarshalBinary(b []byte) error {
-	var res GraphWitnessesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// GraphZonesItems0 graph zones items0
-//
-// swagger:model GraphZonesItems0
-type GraphZonesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this graph zones items0
-func (m *GraphZonesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphZonesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this graph zones items0 based on context it is used
-func (m *GraphZonesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *GraphZonesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *GraphZonesItems0) UnmarshalBinary(b []byte) error {
-	var res GraphZonesItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

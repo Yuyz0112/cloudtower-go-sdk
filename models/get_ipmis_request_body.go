@@ -13,6 +13,7 @@ import (
 )
 
 // GetIpmisRequestBody get ipmis request body
+// Example: {"after":"ipmis-id-string","before":"ipmis-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"IpmiWhereInput[]","NOT":"IpmiWhereInput[]","OR":"IpmiWhereInput[]","host":"HostWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","ip":"string","ip_contains":"string","ip_ends_with":"string","ip_gt":"string","ip_gte":"string","ip_in":["string"],"ip_lt":"string","ip_lte":"string","ip_not":"string","ip_not_contains":"string","ip_not_ends_with":"string","ip_not_in":["string"],"ip_not_starts_with":"string","ip_starts_with":"string","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","username":"string","username_contains":"string","username_ends_with":"string","username_gt":"string","username_gte":"string","username_in":["string"],"username_lt":"string","username_lte":"string","username_not":"string","username_not_contains":"string","username_not_ends_with":"string","username_not_in":["string"],"username_not_starts_with":"string","username_starts_with":"string","valid":false,"valid_not":false}}
 //
 // swagger:model GetIpmisRequestBody
 type GetIpmisRequestBody struct {
@@ -24,16 +25,16 @@ type GetIpmisRequestBody struct {
 	Before *string `json:"before,omitempty"`
 
 	// first
-	First *float64 `json:"first,omitempty"`
+	First *int32 `json:"first,omitempty"`
 
 	// last
-	Last *float64 `json:"last,omitempty"`
+	Last *int32 `json:"last,omitempty"`
 
 	// order by
 	OrderBy interface{} `json:"orderBy,omitempty"`
 
 	// skip
-	Skip *float64 `json:"skip,omitempty"`
+	Skip *int32 `json:"skip,omitempty"`
 
 	// where
 	Where interface{} `json:"where,omitempty"`

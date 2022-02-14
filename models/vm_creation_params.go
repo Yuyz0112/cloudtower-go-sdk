@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -25,11 +26,11 @@ type VMCreationParams struct {
 
 	// cpu cores
 	// Required: true
-	CPUCores *float64 `json:"cpu_cores"`
+	CPUCores *int32 `json:"cpu_cores"`
 
 	// cpu sockets
 	// Required: true
-	CPUSockets *float64 `json:"cpu_sockets"`
+	CPUSockets *int32 `json:"cpu_sockets"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -61,7 +62,7 @@ type VMCreationParams struct {
 	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
-	MaxIops float64 `json:"max_iops,omitempty"`
+	MaxIops int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
@@ -80,7 +81,7 @@ type VMCreationParams struct {
 
 	// vcpu
 	// Required: true
-	Vcpu *float64 `json:"vcpu"`
+	Vcpu *int32 `json:"vcpu"`
 
 	// vm disks
 	// Required: true
@@ -88,7 +89,7 @@ type VMCreationParams struct {
 
 	// vm nics
 	// Required: true
-	VMNics VMNicParams `json:"vm_nics"`
+	VMNics []*VMNicParams `json:"vm_nics"`
 }
 
 // Validate validates this Vm creation params
@@ -352,11 +353,20 @@ func (m *VMCreationParams) validateVMNics(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.VMNics.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_nics")
+	for i := 0; i < len(m.VMNics); i++ {
+		if swag.IsZero(m.VMNics[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -496,11 +506,17 @@ func (m *VMCreationParams) contextValidateVMDisks(ctx context.Context, formats s
 
 func (m *VMCreationParams) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_nics")
+	for i := 0; i < len(m.VMNics); i++ {
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
-		return err
+
 	}
 
 	return nil

@@ -13,6 +13,7 @@ import (
 )
 
 // GetIscsiConnectionsRequestBody get iscsi connections request body
+// Example: {"after":"iscsiConnections-id-string","before":"iscsiConnections-id-string","first":0,"last":0,"orderBy":"client_port_ASC","skip":0,"where":{"AND":"IscsiConnectionWhereInput[]","NOT":"IscsiConnectionWhereInput[]","OR":"IscsiConnectionWhereInput[]","client_port":0,"client_port_gt":0,"client_port_gte":0,"client_port_in":[0],"client_port_lt":0,"client_port_lte":0,"client_port_not":0,"client_port_not_in":[0],"cluster":"ClusterWhereInput","host":"HostWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","initiator_ip":"string","initiator_ip_contains":"string","initiator_ip_ends_with":"string","initiator_ip_gt":"string","initiator_ip_gte":"string","initiator_ip_in":["string"],"initiator_ip_lt":"string","initiator_ip_lte":"string","initiator_ip_not":"string","initiator_ip_not_contains":"string","initiator_ip_not_ends_with":"string","initiator_ip_not_in":["string"],"initiator_ip_not_starts_with":"string","initiator_ip_starts_with":"string","iscsi_target":"IscsiTargetWhereInput","nvmf_subsystem":"NvmfSubsystemWhereInput","type":"ISCSI","type_in":["ISCSI"],"type_not":"ISCSI","type_not_in":["ISCSI"]}}
 //
 // swagger:model GetIscsiConnectionsRequestBody
 type GetIscsiConnectionsRequestBody struct {
@@ -24,16 +25,16 @@ type GetIscsiConnectionsRequestBody struct {
 	Before *string `json:"before,omitempty"`
 
 	// first
-	First *float64 `json:"first,omitempty"`
+	First *int32 `json:"first,omitempty"`
 
 	// last
-	Last *float64 `json:"last,omitempty"`
+	Last *int32 `json:"last,omitempty"`
 
 	// order by
 	OrderBy interface{} `json:"orderBy,omitempty"`
 
 	// skip
-	Skip *float64 `json:"skip,omitempty"`
+	Skip *int32 `json:"skip,omitempty"`
 
 	// where
 	Where interface{} `json:"where,omitempty"`

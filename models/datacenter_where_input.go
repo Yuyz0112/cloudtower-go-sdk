@@ -15,6 +15,7 @@ import (
 )
 
 // DatacenterWhereInput datacenter where input
+// Example: {"AND":"DatacenterWhereInput[]","NOT":"DatacenterWhereInput[]","OR":"DatacenterWhereInput[]","cluster_num":0,"cluster_num_gt":0,"cluster_num_gte":0,"cluster_num_in":[0],"cluster_num_lt":0,"cluster_num_lte":0,"cluster_num_not":0,"cluster_num_not_in":[0],"clusters_every":"ClusterWhereInput","clusters_none":"ClusterWhereInput","clusters_some":"ClusterWhereInput","failure_data_space":0,"failure_data_space_gt":0,"failure_data_space_gte":0,"failure_data_space_in":[0],"failure_data_space_lt":0,"failure_data_space_lte":0,"failure_data_space_not":0,"failure_data_space_not_in":[0],"host_num":0,"host_num_gt":0,"host_num_gte":0,"host_num_in":[0],"host_num_lt":0,"host_num_lte":0,"host_num_not":0,"host_num_not_in":[0],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","labels_every":"LabelWhereInput","labels_none":"LabelWhereInput","labels_some":"LabelWhereInput","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","organization":"OrganizationWhereInput","total_cpu_hz":0,"total_cpu_hz_gt":0,"total_cpu_hz_gte":0,"total_cpu_hz_in":[0],"total_cpu_hz_lt":0,"total_cpu_hz_lte":0,"total_cpu_hz_not":0,"total_cpu_hz_not_in":[0],"total_data_capacity":0,"total_data_capacity_gt":0,"total_data_capacity_gte":0,"total_data_capacity_in":[0],"total_data_capacity_lt":0,"total_data_capacity_lte":0,"total_data_capacity_not":0,"total_data_capacity_not_in":[0],"total_memory_bytes":0,"total_memory_bytes_gt":0,"total_memory_bytes_gte":0,"total_memory_bytes_in":[0],"total_memory_bytes_lt":0,"total_memory_bytes_lte":0,"total_memory_bytes_not":0,"total_memory_bytes_not_in":[0],"used_cpu_hz":0,"used_cpu_hz_gt":0,"used_cpu_hz_gte":0,"used_cpu_hz_in":[0],"used_cpu_hz_lt":0,"used_cpu_hz_lte":0,"used_cpu_hz_not":0,"used_cpu_hz_not_in":[0],"used_data_space":0,"used_data_space_gt":0,"used_data_space_gte":0,"used_data_space_in":[0],"used_data_space_lt":0,"used_data_space_lte":0,"used_data_space_not":0,"used_data_space_not_in":[0],"used_memory_bytes":0,"used_memory_bytes_gt":0,"used_memory_bytes_gte":0,"used_memory_bytes_in":[0],"used_memory_bytes_lt":0,"used_memory_bytes_lte":0,"used_memory_bytes_not":0,"used_memory_bytes_not_in":[0],"vm_num":0,"vm_num_gt":0,"vm_num_gte":0,"vm_num_in":[0],"vm_num_lt":0,"vm_num_lte":0,"vm_num_not":0,"vm_num_not_in":[0]}
 //
 // swagger:model DatacenterWhereInput
 type DatacenterWhereInput struct {
@@ -29,28 +30,28 @@ type DatacenterWhereInput struct {
 	OR []*DatacenterWhereInput `json:"OR,omitempty"`
 
 	// cluster num
-	ClusterNum *float64 `json:"cluster_num,omitempty"`
+	ClusterNum *int32 `json:"cluster_num,omitempty"`
 
 	// cluster num gt
-	ClusterNumGt *float64 `json:"cluster_num_gt,omitempty"`
+	ClusterNumGt *int32 `json:"cluster_num_gt,omitempty"`
 
 	// cluster num gte
-	ClusterNumGte *float64 `json:"cluster_num_gte,omitempty"`
+	ClusterNumGte *int32 `json:"cluster_num_gte,omitempty"`
 
 	// cluster num in
-	ClusterNumIn []float64 `json:"cluster_num_in,omitempty"`
+	ClusterNumIn []int32 `json:"cluster_num_in,omitempty"`
 
 	// cluster num lt
-	ClusterNumLt *float64 `json:"cluster_num_lt,omitempty"`
+	ClusterNumLt *int32 `json:"cluster_num_lt,omitempty"`
 
 	// cluster num lte
-	ClusterNumLte *float64 `json:"cluster_num_lte,omitempty"`
+	ClusterNumLte *int32 `json:"cluster_num_lte,omitempty"`
 
 	// cluster num not
-	ClusterNumNot *float64 `json:"cluster_num_not,omitempty"`
+	ClusterNumNot *int32 `json:"cluster_num_not,omitempty"`
 
 	// cluster num not in
-	ClusterNumNotIn []float64 `json:"cluster_num_not_in,omitempty"`
+	ClusterNumNotIn []int32 `json:"cluster_num_not_in,omitempty"`
 
 	// clusters every
 	ClustersEvery interface{} `json:"clusters_every,omitempty"`
@@ -86,28 +87,28 @@ type DatacenterWhereInput struct {
 	FailureDataSpaceNotIn []float64 `json:"failure_data_space_not_in,omitempty"`
 
 	// host num
-	HostNum *float64 `json:"host_num,omitempty"`
+	HostNum *int32 `json:"host_num,omitempty"`
 
 	// host num gt
-	HostNumGt *float64 `json:"host_num_gt,omitempty"`
+	HostNumGt *int32 `json:"host_num_gt,omitempty"`
 
 	// host num gte
-	HostNumGte *float64 `json:"host_num_gte,omitempty"`
+	HostNumGte *int32 `json:"host_num_gte,omitempty"`
 
 	// host num in
-	HostNumIn []float64 `json:"host_num_in,omitempty"`
+	HostNumIn []int32 `json:"host_num_in,omitempty"`
 
 	// host num lt
-	HostNumLt *float64 `json:"host_num_lt,omitempty"`
+	HostNumLt *int32 `json:"host_num_lt,omitempty"`
 
 	// host num lte
-	HostNumLte *float64 `json:"host_num_lte,omitempty"`
+	HostNumLte *int32 `json:"host_num_lte,omitempty"`
 
 	// host num not
-	HostNumNot *float64 `json:"host_num_not,omitempty"`
+	HostNumNot *int32 `json:"host_num_not,omitempty"`
 
 	// host num not in
-	HostNumNotIn []float64 `json:"host_num_not_in,omitempty"`
+	HostNumNotIn []int32 `json:"host_num_not_in,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -350,28 +351,28 @@ type DatacenterWhereInput struct {
 	UsedMemoryBytesNotIn []float64 `json:"used_memory_bytes_not_in,omitempty"`
 
 	// vm num
-	VMNum *float64 `json:"vm_num,omitempty"`
+	VMNum *int32 `json:"vm_num,omitempty"`
 
 	// vm num gt
-	VMNumGt *float64 `json:"vm_num_gt,omitempty"`
+	VMNumGt *int32 `json:"vm_num_gt,omitempty"`
 
 	// vm num gte
-	VMNumGte *float64 `json:"vm_num_gte,omitempty"`
+	VMNumGte *int32 `json:"vm_num_gte,omitempty"`
 
 	// vm num in
-	VMNumIn []float64 `json:"vm_num_in,omitempty"`
+	VMNumIn []int32 `json:"vm_num_in,omitempty"`
 
 	// vm num lt
-	VMNumLt *float64 `json:"vm_num_lt,omitempty"`
+	VMNumLt *int32 `json:"vm_num_lt,omitempty"`
 
 	// vm num lte
-	VMNumLte *float64 `json:"vm_num_lte,omitempty"`
+	VMNumLte *int32 `json:"vm_num_lte,omitempty"`
 
 	// vm num not
-	VMNumNot *float64 `json:"vm_num_not,omitempty"`
+	VMNumNot *int32 `json:"vm_num_not,omitempty"`
 
 	// vm num not in
-	VMNumNotIn []float64 `json:"vm_num_not_in,omitempty"`
+	VMNumNotIn []int32 `json:"vm_num_not_in,omitempty"`
 }
 
 // Validate validates this datacenter where input

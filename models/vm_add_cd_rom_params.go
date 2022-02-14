@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -153,7 +154,7 @@ type VMAddCdRomParamsData struct {
 
 	// vm cd roms
 	// Required: true
-	VMCdRoms VMCdRomParams `json:"vm_cd_roms"`
+	VMCdRoms []*VMCdRomParams `json:"vm_cd_roms"`
 }
 
 // Validate validates this VM add cd rom params data
@@ -176,11 +177,20 @@ func (m *VMAddCdRomParamsData) validateVMCdRoms(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := m.VMCdRoms.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_cd_roms")
+	for i := 0; i < len(m.VMCdRoms); i++ {
+		if swag.IsZero(m.VMCdRoms[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.VMCdRoms[i] != nil {
+			if err := m.VMCdRoms[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "vm_cd_roms" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -202,11 +212,17 @@ func (m *VMAddCdRomParamsData) ContextValidate(ctx context.Context, formats strf
 
 func (m *VMAddCdRomParamsData) contextValidateVMCdRoms(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.VMCdRoms.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("data" + "." + "vm_cd_roms")
+	for i := 0; i < len(m.VMCdRoms); i++ {
+
+		if m.VMCdRoms[i] != nil {
+			if err := m.VMCdRoms[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + "vm_cd_roms" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
-		return err
+
 	}
 
 	return nil

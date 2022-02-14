@@ -13,6 +13,7 @@ import (
 )
 
 // GetMigrateTransmittersConnectionRequestBody get migrate transmitters connection request body
+// Example: {"after":"migrateTransmittersConnection-id-string","before":"migrateTransmittersConnection-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"MigrateTransmitterWhereInput[]","NOT":"MigrateTransmitterWhereInput[]","OR":"MigrateTransmitterWhereInput[]","createdAt":"string","createdAt_gt":"string","createdAt_gte":"string","createdAt_in":["string"],"createdAt_lt":"string","createdAt_lte":"string","createdAt_not":"string","createdAt_not_in":["string"],"entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","ip":"string","ip_contains":"string","ip_ends_with":"string","ip_gt":"string","ip_gte":"string","ip_in":["string"],"ip_lt":"string","ip_lte":"string","ip_not":"string","ip_not_contains":"string","ip_not_ends_with":"string","ip_not_in":["string"],"ip_not_starts_with":"string","ip_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","password":"string","password_contains":"string","password_ends_with":"string","password_gt":"string","password_gte":"string","password_in":["string"],"password_lt":"string","password_lte":"string","password_not":"string","password_not_contains":"string","password_not_ends_with":"string","password_not_in":["string"],"password_not_starts_with":"string","password_starts_with":"string","username":"string","username_contains":"string","username_ends_with":"string","username_gt":"string","username_gte":"string","username_in":["string"],"username_lt":"string","username_lte":"string","username_not":"string","username_not_contains":"string","username_not_ends_with":"string","username_not_in":["string"],"username_not_starts_with":"string","username_starts_with":"string"}}
 //
 // swagger:model GetMigrateTransmittersConnectionRequestBody
 type GetMigrateTransmittersConnectionRequestBody struct {
@@ -24,16 +25,16 @@ type GetMigrateTransmittersConnectionRequestBody struct {
 	Before *string `json:"before,omitempty"`
 
 	// first
-	First *float64 `json:"first,omitempty"`
+	First *int32 `json:"first,omitempty"`
 
 	// last
-	Last *float64 `json:"last,omitempty"`
+	Last *int32 `json:"last,omitempty"`
 
 	// order by
 	OrderBy interface{} `json:"orderBy,omitempty"`
 
 	// skip
-	Skip *float64 `json:"skip,omitempty"`
+	Skip *int32 `json:"skip,omitempty"`
 
 	// where
 	Where interface{} `json:"where,omitempty"`

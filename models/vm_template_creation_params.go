@@ -24,8 +24,7 @@ type VMTemplateCreationParams struct {
 	CloudInitSupported *bool `json:"cloud_init_supported"`
 
 	// cluster id
-	// Required: true
-	ClusterID *string `json:"cluster_id"`
+	ClusterID string `json:"cluster_id,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -47,10 +46,6 @@ func (m *VMTemplateCreationParams) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateClusterID(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -68,15 +63,6 @@ func (m *VMTemplateCreationParams) Validate(formats strfmt.Registry) error {
 func (m *VMTemplateCreationParams) validateCloudInitSupported(formats strfmt.Registry) error {
 
 	if err := validate.Required("cloud_init_supported", "body", m.CloudInitSupported); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMTemplateCreationParams) validateClusterID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster_id", "body", m.ClusterID); err != nil {
 		return err
 	}
 

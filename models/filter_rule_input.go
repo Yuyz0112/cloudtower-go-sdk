@@ -25,7 +25,7 @@ type FilterRuleInput struct {
 
 	// duration
 	// Required: true
-	Duration *float64 `json:"duration"`
+	Duration *int32 `json:"duration"`
 
 	// metric
 	// Required: true
@@ -37,7 +37,7 @@ type FilterRuleInput struct {
 
 	// quantile
 	// Required: true
-	Quantile *float64 `json:"quantile"`
+	Quantile *int32 `json:"quantile"`
 
 	// threshold
 	// Required: true

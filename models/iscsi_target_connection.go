@@ -21,7 +21,7 @@ type IscsiTargetConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *IscsiTargetConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateIscsiTarget `json:"aggregate"`
 }
 
 // Validate validates this iscsi target connection
@@ -95,62 +95,6 @@ func (m *IscsiTargetConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *IscsiTargetConnection) UnmarshalBinary(b []byte) error {
 	var res IscsiTargetConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiTargetConnectionAggregate iscsi target connection aggregate
-//
-// swagger:model IscsiTargetConnectionAggregate
-type IscsiTargetConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this iscsi target connection aggregate
-func (m *IscsiTargetConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiTargetConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi target connection aggregate based on context it is used
-func (m *IscsiTargetConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiTargetConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiTargetConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res IscsiTargetConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

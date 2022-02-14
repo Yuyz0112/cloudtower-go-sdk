@@ -21,7 +21,7 @@ type RackTopoConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *RackTopoConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateRackTopo `json:"aggregate"`
 }
 
 // Validate validates this rack topo connection
@@ -95,62 +95,6 @@ func (m *RackTopoConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *RackTopoConnection) UnmarshalBinary(b []byte) error {
 	var res RackTopoConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// RackTopoConnectionAggregate rack topo connection aggregate
-//
-// swagger:model RackTopoConnectionAggregate
-type RackTopoConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this rack topo connection aggregate
-func (m *RackTopoConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *RackTopoConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this rack topo connection aggregate based on context it is used
-func (m *RackTopoConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *RackTopoConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *RackTopoConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res RackTopoConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

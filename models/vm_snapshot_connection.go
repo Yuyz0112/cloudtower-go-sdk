@@ -21,7 +21,7 @@ type VMSnapshotConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *VMSnapshotConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateVMSnapshot `json:"aggregate"`
 }
 
 // Validate validates this Vm snapshot connection
@@ -95,62 +95,6 @@ func (m *VMSnapshotConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMSnapshotConnection) UnmarshalBinary(b []byte) error {
 	var res VMSnapshotConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMSnapshotConnectionAggregate VM snapshot connection aggregate
-//
-// swagger:model VMSnapshotConnectionAggregate
-type VMSnapshotConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this VM snapshot connection aggregate
-func (m *VMSnapshotConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMSnapshotConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM snapshot connection aggregate based on context it is used
-func (m *VMSnapshotConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMSnapshotConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMSnapshotConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res VMSnapshotConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -21,7 +21,7 @@ type PmemDimmConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *PmemDimmConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregatePmemDimm `json:"aggregate"`
 }
 
 // Validate validates this pmem dimm connection
@@ -95,62 +95,6 @@ func (m *PmemDimmConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *PmemDimmConnection) UnmarshalBinary(b []byte) error {
 	var res PmemDimmConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// PmemDimmConnectionAggregate pmem dimm connection aggregate
-//
-// swagger:model PmemDimmConnectionAggregate
-type PmemDimmConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this pmem dimm connection aggregate
-func (m *PmemDimmConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *PmemDimmConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this pmem dimm connection aggregate based on context it is used
-func (m *PmemDimmConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *PmemDimmConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *PmemDimmConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res PmemDimmConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

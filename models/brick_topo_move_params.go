@@ -153,7 +153,7 @@ type BrickTopoMoveParamsData struct {
 
 	// position
 	// Required: true
-	Position *float64 `json:"position"`
+	Position *int32 `json:"position"`
 
 	// rack topo id
 	RackTopoID string `json:"rack_topo_id,omitempty"`

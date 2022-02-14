@@ -24,7 +24,7 @@ type UserAuditLog struct {
 	Action *string `json:"action"`
 
 	// cluster
-	Cluster *UserAuditLogCluster `json:"cluster,omitempty"`
+	Cluster interface{} `json:"cluster,omitempty"`
 
 	// created at
 	// Required: true
@@ -55,7 +55,7 @@ type UserAuditLog struct {
 	Status interface{} `json:"status,omitempty"`
 
 	// user
-	User *UserAuditLogUser `json:"user,omitempty"`
+	User interface{} `json:"user,omitempty"`
 }
 
 // Validate validates this user audit log
@@ -63,10 +63,6 @@ func (m *UserAuditLog) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAction(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCluster(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -86,10 +82,6 @@ func (m *UserAuditLog) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateUser(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -100,23 +92,6 @@ func (m *UserAuditLog) validateAction(formats strfmt.Registry) error {
 
 	if err := validate.Required("action", "body", m.Action); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *UserAuditLog) validateCluster(formats strfmt.Registry) error {
-	if swag.IsZero(m.Cluster) { // not required
-		return nil
-	}
-
-	if m.Cluster != nil {
-		if err := m.Cluster.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -158,66 +133,8 @@ func (m *UserAuditLog) validateMessage(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UserAuditLog) validateUser(formats strfmt.Registry) error {
-	if swag.IsZero(m.User) { // not required
-		return nil
-	}
-
-	if m.User != nil {
-		if err := m.User.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("user")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this user audit log based on the context it is used
+// ContextValidate validates this user audit log based on context it is used
 func (m *UserAuditLog) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateCluster(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateUser(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UserAuditLog) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Cluster != nil {
-		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *UserAuditLog) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.User != nil {
-		if err := m.User.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("user")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -232,152 +149,6 @@ func (m *UserAuditLog) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *UserAuditLog) UnmarshalBinary(b []byte) error {
 	var res UserAuditLog
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// UserAuditLogCluster user audit log cluster
-//
-// swagger:model UserAuditLogCluster
-type UserAuditLogCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this user audit log cluster
-func (m *UserAuditLogCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UserAuditLogCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserAuditLogCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this user audit log cluster based on context it is used
-func (m *UserAuditLogCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *UserAuditLogCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *UserAuditLogCluster) UnmarshalBinary(b []byte) error {
-	var res UserAuditLogCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// UserAuditLogUser user audit log user
-//
-// swagger:model UserAuditLogUser
-type UserAuditLogUser struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this user audit log user
-func (m *UserAuditLogUser) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UserAuditLogUser) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("user"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserAuditLogUser) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("user"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this user audit log user based on context it is used
-func (m *UserAuditLogUser) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *UserAuditLogUser) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *UserAuditLogUser) UnmarshalBinary(b []byte) error {
-	var res UserAuditLogUser
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -21,7 +21,7 @@ import (
 type NvmfNamespaceSnapshot struct {
 
 	// consistency group snapshot
-	ConsistencyGroupSnapshot *NvmfNamespaceSnapshotConsistencyGroupSnapshot `json:"consistency_group_snapshot,omitempty"`
+	ConsistencyGroupSnapshot interface{} `json:"consistency_group_snapshot,omitempty"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
@@ -31,7 +31,7 @@ type NvmfNamespaceSnapshot struct {
 	ID *string `json:"id"`
 
 	// labels
-	Labels []*NvmfNamespaceSnapshotLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local created at
 	// Required: true
@@ -46,11 +46,11 @@ type NvmfNamespaceSnapshot struct {
 	Name *string `json:"name"`
 
 	// nvmf namespace
-	NvmfNamespace *NvmfNamespaceSnapshotNvmfNamespace `json:"nvmf_namespace,omitempty"`
+	NvmfNamespace interface{} `json:"nvmf_namespace,omitempty"`
 
 	// nvmf subsystem
 	// Required: true
-	NvmfSubsystem *NvmfNamespaceSnapshotNvmfSubsystem `json:"nvmf_subsystem"`
+	NvmfSubsystem *NestedNvmfSubsystem `json:"nvmf_subsystem"`
 
 	// unique size
 	// Required: true
@@ -60,10 +60,6 @@ type NvmfNamespaceSnapshot struct {
 // Validate validates this nvmf namespace snapshot
 func (m *NvmfNamespaceSnapshot) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateConsistencyGroupSnapshot(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
@@ -85,10 +81,6 @@ func (m *NvmfNamespaceSnapshot) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateNvmfNamespace(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateNvmfSubsystem(formats); err != nil {
 		res = append(res, err)
 	}
@@ -100,23 +92,6 @@ func (m *NvmfNamespaceSnapshot) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshot) validateConsistencyGroupSnapshot(formats strfmt.Registry) error {
-	if swag.IsZero(m.ConsistencyGroupSnapshot) { // not required
-		return nil
-	}
-
-	if m.ConsistencyGroupSnapshot != nil {
-		if err := m.ConsistencyGroupSnapshot.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("consistency_group_snapshot")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -180,23 +155,6 @@ func (m *NvmfNamespaceSnapshot) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *NvmfNamespaceSnapshot) validateNvmfNamespace(formats strfmt.Registry) error {
-	if swag.IsZero(m.NvmfNamespace) { // not required
-		return nil
-	}
-
-	if m.NvmfNamespace != nil {
-		if err := m.NvmfNamespace.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("nvmf_namespace")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *NvmfNamespaceSnapshot) validateNvmfSubsystem(formats strfmt.Registry) error {
 
 	if err := validate.Required("nvmf_subsystem", "body", m.NvmfSubsystem); err != nil {
@@ -228,15 +186,7 @@ func (m *NvmfNamespaceSnapshot) validateUniqueSize(formats strfmt.Registry) erro
 func (m *NvmfNamespaceSnapshot) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateConsistencyGroupSnapshot(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNvmfNamespace(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -247,20 +197,6 @@ func (m *NvmfNamespaceSnapshot) ContextValidate(ctx context.Context, formats str
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshot) contextValidateConsistencyGroupSnapshot(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.ConsistencyGroupSnapshot != nil {
-		if err := m.ConsistencyGroupSnapshot.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("consistency_group_snapshot")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -277,20 +213,6 @@ func (m *NvmfNamespaceSnapshot) contextValidateLabels(ctx context.Context, forma
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshot) contextValidateNvmfNamespace(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.NvmfNamespace != nil {
-		if err := m.NvmfNamespace.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("nvmf_namespace")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -321,281 +243,6 @@ func (m *NvmfNamespaceSnapshot) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NvmfNamespaceSnapshot) UnmarshalBinary(b []byte) error {
 	var res NvmfNamespaceSnapshot
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NvmfNamespaceSnapshotConsistencyGroupSnapshot nvmf namespace snapshot consistency group snapshot
-//
-// swagger:model NvmfNamespaceSnapshotConsistencyGroupSnapshot
-type NvmfNamespaceSnapshotConsistencyGroupSnapshot struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nvmf namespace snapshot consistency group snapshot
-func (m *NvmfNamespaceSnapshotConsistencyGroupSnapshot) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshotConsistencyGroupSnapshot) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistency_group_snapshot"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshotConsistencyGroupSnapshot) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistency_group_snapshot"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nvmf namespace snapshot consistency group snapshot based on context it is used
-func (m *NvmfNamespaceSnapshotConsistencyGroupSnapshot) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NvmfNamespaceSnapshotConsistencyGroupSnapshot) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NvmfNamespaceSnapshotConsistencyGroupSnapshot) UnmarshalBinary(b []byte) error {
-	var res NvmfNamespaceSnapshotConsistencyGroupSnapshot
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NvmfNamespaceSnapshotLabelsItems0 nvmf namespace snapshot labels items0
-//
-// swagger:model NvmfNamespaceSnapshotLabelsItems0
-type NvmfNamespaceSnapshotLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this nvmf namespace snapshot labels items0
-func (m *NvmfNamespaceSnapshotLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshotLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nvmf namespace snapshot labels items0 based on context it is used
-func (m *NvmfNamespaceSnapshotLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NvmfNamespaceSnapshotLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NvmfNamespaceSnapshotLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res NvmfNamespaceSnapshotLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NvmfNamespaceSnapshotNvmfNamespace nvmf namespace snapshot nvmf namespace
-//
-// swagger:model NvmfNamespaceSnapshotNvmfNamespace
-type NvmfNamespaceSnapshotNvmfNamespace struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nvmf namespace snapshot nvmf namespace
-func (m *NvmfNamespaceSnapshotNvmfNamespace) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshotNvmfNamespace) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("nvmf_namespace"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshotNvmfNamespace) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("nvmf_namespace"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nvmf namespace snapshot nvmf namespace based on context it is used
-func (m *NvmfNamespaceSnapshotNvmfNamespace) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NvmfNamespaceSnapshotNvmfNamespace) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NvmfNamespaceSnapshotNvmfNamespace) UnmarshalBinary(b []byte) error {
-	var res NvmfNamespaceSnapshotNvmfNamespace
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NvmfNamespaceSnapshotNvmfSubsystem nvmf namespace snapshot nvmf subsystem
-//
-// swagger:model NvmfNamespaceSnapshotNvmfSubsystem
-type NvmfNamespaceSnapshotNvmfSubsystem struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nvmf namespace snapshot nvmf subsystem
-func (m *NvmfNamespaceSnapshotNvmfSubsystem) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshotNvmfSubsystem) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("nvmf_subsystem"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NvmfNamespaceSnapshotNvmfSubsystem) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("nvmf_subsystem"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nvmf namespace snapshot nvmf subsystem based on context it is used
-func (m *NvmfNamespaceSnapshotNvmfSubsystem) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NvmfNamespaceSnapshotNvmfSubsystem) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NvmfNamespaceSnapshotNvmfSubsystem) UnmarshalBinary(b []byte) error {
-	var res NvmfNamespaceSnapshotNvmfSubsystem
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

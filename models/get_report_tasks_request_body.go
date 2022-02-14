@@ -13,6 +13,7 @@ import (
 )
 
 // GetReportTasksRequestBody get report tasks request body
+// Example: {"after":"reportTasks-id-string","before":"reportTasks-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"ReportTaskWhereInput[]","NOT":"ReportTaskWhereInput[]","OR":"ReportTaskWhereInput[]","createdAt":"string","createdAt_gt":"string","createdAt_gte":"string","createdAt_in":["string"],"createdAt_lt":"string","createdAt_lte":"string","createdAt_not":"string","createdAt_not_in":["string"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","internal":false,"internal_not":false,"name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","plan_id":"string","plan_id_contains":"string","plan_id_ends_with":"string","plan_id_gt":"string","plan_id_gte":"string","plan_id_in":["string"],"plan_id_lt":"string","plan_id_lte":"string","plan_id_not":"string","plan_id_not_contains":"string","plan_id_not_ends_with":"string","plan_id_not_in":["string"],"plan_id_not_starts_with":"string","plan_id_starts_with":"string","status":"EXECUTING","status_in":["EXECUTING"],"status_not":"EXECUTING","status_not_in":["EXECUTING"],"template":"ReportTemplateWhereInput"}}
 //
 // swagger:model GetReportTasksRequestBody
 type GetReportTasksRequestBody struct {
@@ -24,16 +25,16 @@ type GetReportTasksRequestBody struct {
 	Before *string `json:"before,omitempty"`
 
 	// first
-	First *float64 `json:"first,omitempty"`
+	First *int32 `json:"first,omitempty"`
 
 	// last
-	Last *float64 `json:"last,omitempty"`
+	Last *int32 `json:"last,omitempty"`
 
 	// order by
 	OrderBy interface{} `json:"orderBy,omitempty"`
 
 	// skip
-	Skip *float64 `json:"skip,omitempty"`
+	Skip *int32 `json:"skip,omitempty"`
 
 	// where
 	Where interface{} `json:"where,omitempty"`

@@ -29,7 +29,7 @@ type VMVlanCreationParams struct {
 
 	// vlan id
 	// Required: true
-	VlanID *float64 `json:"vlan_id"`
+	VlanID *int32 `json:"vlan_id"`
 }
 
 // Validate validates this Vm vlan creation params

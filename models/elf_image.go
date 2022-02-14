@@ -21,8 +21,10 @@ import (
 type ElfImage struct {
 
 	// cluster
-	// Required: true
-	Cluster *ElfImageCluster `json:"cluster"`
+	Cluster interface{} `json:"cluster,omitempty"`
+
+	// content library image
+	ContentLibraryImage interface{} `json:"content_library_image,omitempty"`
 
 	// description
 	// Required: true
@@ -36,7 +38,7 @@ type ElfImage struct {
 	ID *string `json:"id"`
 
 	// labels
-	Labels []*ElfImageLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local created at
 	// Required: true
@@ -59,25 +61,21 @@ type ElfImage struct {
 	Size *float64 `json:"size"`
 
 	// upload task
-	UploadTask *ElfImageUploadTask `json:"upload_task,omitempty"`
+	UploadTask interface{} `json:"upload_task,omitempty"`
 
 	// vm disks
-	VMDisks []*ElfImageVMDisksItems0 `json:"vm_disks,omitempty"`
+	VMDisks []*NestedVMDisk `json:"vm_disks,omitempty"`
 
 	// vm snapshots
-	VMSnapshots []*ElfImageVMSnapshotsItems0 `json:"vm_snapshots,omitempty"`
+	VMSnapshots []*NestedVMSnapshot `json:"vm_snapshots,omitempty"`
 
 	// vm templates
-	VMTemplates []*ElfImageVMTemplatesItems0 `json:"vm_templates,omitempty"`
+	VMTemplates []*NestedVMTemplate `json:"vm_templates,omitempty"`
 }
 
 // Validate validates this elf image
 func (m *ElfImage) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateCluster(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
@@ -111,10 +109,6 @@ func (m *ElfImage) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateUploadTask(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateVMDisks(formats); err != nil {
 		res = append(res, err)
 	}
@@ -130,24 +124,6 @@ func (m *ElfImage) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ElfImage) validateCluster(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
-		return err
-	}
-
-	if m.Cluster != nil {
-		if err := m.Cluster.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -238,23 +214,6 @@ func (m *ElfImage) validateSize(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ElfImage) validateUploadTask(formats strfmt.Registry) error {
-	if swag.IsZero(m.UploadTask) { // not required
-		return nil
-	}
-
-	if m.UploadTask != nil {
-		if err := m.UploadTask.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("upload_task")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *ElfImage) validateVMDisks(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMDisks) { // not required
 		return nil
@@ -331,15 +290,7 @@ func (m *ElfImage) validateVMTemplates(formats strfmt.Registry) error {
 func (m *ElfImage) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateCluster(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateUploadTask(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -361,20 +312,6 @@ func (m *ElfImage) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
-func (m *ElfImage) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Cluster != nil {
-		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *ElfImage) contextValidateLabels(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Labels); i++ {
@@ -388,20 +325,6 @@ func (m *ElfImage) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ElfImage) contextValidateUploadTask(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.UploadTask != nil {
-		if err := m.UploadTask.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("upload_task")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -472,393 +395,6 @@ func (m *ElfImage) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ElfImage) UnmarshalBinary(b []byte) error {
 	var res ElfImage
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ElfImageCluster elf image cluster
-//
-// swagger:model ElfImageCluster
-type ElfImageCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this elf image cluster
-func (m *ElfImageCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfImageCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ElfImageCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this elf image cluster based on context it is used
-func (m *ElfImageCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ElfImageCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ElfImageCluster) UnmarshalBinary(b []byte) error {
-	var res ElfImageCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ElfImageLabelsItems0 elf image labels items0
-//
-// swagger:model ElfImageLabelsItems0
-type ElfImageLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this elf image labels items0
-func (m *ElfImageLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfImageLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this elf image labels items0 based on context it is used
-func (m *ElfImageLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ElfImageLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ElfImageLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res ElfImageLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ElfImageUploadTask elf image upload task
-//
-// swagger:model ElfImageUploadTask
-type ElfImageUploadTask struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this elf image upload task
-func (m *ElfImageUploadTask) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfImageUploadTask) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("upload_task"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this elf image upload task based on context it is used
-func (m *ElfImageUploadTask) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ElfImageUploadTask) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ElfImageUploadTask) UnmarshalBinary(b []byte) error {
-	var res ElfImageUploadTask
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ElfImageVMDisksItems0 elf image VM disks items0
-//
-// swagger:model ElfImageVMDisksItems0
-type ElfImageVMDisksItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this elf image VM disks items0
-func (m *ElfImageVMDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfImageVMDisksItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this elf image VM disks items0 based on context it is used
-func (m *ElfImageVMDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ElfImageVMDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ElfImageVMDisksItems0) UnmarshalBinary(b []byte) error {
-	var res ElfImageVMDisksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ElfImageVMSnapshotsItems0 elf image VM snapshots items0
-//
-// swagger:model ElfImageVMSnapshotsItems0
-type ElfImageVMSnapshotsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this elf image VM snapshots items0
-func (m *ElfImageVMSnapshotsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfImageVMSnapshotsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ElfImageVMSnapshotsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this elf image VM snapshots items0 based on context it is used
-func (m *ElfImageVMSnapshotsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ElfImageVMSnapshotsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ElfImageVMSnapshotsItems0) UnmarshalBinary(b []byte) error {
-	var res ElfImageVMSnapshotsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ElfImageVMTemplatesItems0 elf image VM templates items0
-//
-// swagger:model ElfImageVMTemplatesItems0
-type ElfImageVMTemplatesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this elf image VM templates items0
-func (m *ElfImageVMTemplatesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfImageVMTemplatesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ElfImageVMTemplatesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this elf image VM templates items0 based on context it is used
-func (m *ElfImageVMTemplatesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ElfImageVMTemplatesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ElfImageVMTemplatesItems0) UnmarshalBinary(b []byte) error {
-	var res ElfImageVMTemplatesItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

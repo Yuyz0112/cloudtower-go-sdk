@@ -28,14 +28,14 @@ type PmemDimm struct {
 	DeviceLocator *string `json:"device_locator"`
 
 	// disk
-	Disk *PmemDimmDisk `json:"disk,omitempty"`
+	Disk interface{} `json:"disk,omitempty"`
 
 	// health status
 	HealthStatus interface{} `json:"health_status,omitempty"`
 
 	// host
 	// Required: true
-	Host *PmemDimmHost `json:"host"`
+	Host *NestedHost `json:"host"`
 
 	// id
 	// Required: true
@@ -50,14 +50,14 @@ type PmemDimm struct {
 
 	// numa node
 	// Required: true
-	NumaNode *float64 `json:"numa_node"`
+	NumaNode *int32 `json:"numa_node"`
 
 	// part number
 	// Required: true
 	PartNumber *string `json:"part_number"`
 
 	// remaining life percent
-	RemainingLifePercent *float64 `json:"remaining_life_percent,omitempty"`
+	RemainingLifePercent *int32 `json:"remaining_life_percent,omitempty"`
 
 	// version
 	// Required: true
@@ -73,10 +73,6 @@ func (m *PmemDimm) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDeviceLocator(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDisk(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -123,23 +119,6 @@ func (m *PmemDimm) validateDeviceLocator(formats strfmt.Registry) error {
 
 	if err := validate.Required("device_locator", "body", m.DeviceLocator); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *PmemDimm) validateDisk(formats strfmt.Registry) error {
-	if swag.IsZero(m.Disk) { // not required
-		return nil
-	}
-
-	if m.Disk != nil {
-		if err := m.Disk.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("disk")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -212,10 +191,6 @@ func (m *PmemDimm) validateVersion(formats strfmt.Registry) error {
 func (m *PmemDimm) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateDisk(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateHost(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -223,20 +198,6 @@ func (m *PmemDimm) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *PmemDimm) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Disk != nil {
-		if err := m.Disk.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("disk")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -265,152 +226,6 @@ func (m *PmemDimm) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *PmemDimm) UnmarshalBinary(b []byte) error {
 	var res PmemDimm
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// PmemDimmDisk pmem dimm disk
-//
-// swagger:model PmemDimmDisk
-type PmemDimmDisk struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this pmem dimm disk
-func (m *PmemDimmDisk) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *PmemDimmDisk) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("disk"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PmemDimmDisk) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("disk"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this pmem dimm disk based on context it is used
-func (m *PmemDimmDisk) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *PmemDimmDisk) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *PmemDimmDisk) UnmarshalBinary(b []byte) error {
-	var res PmemDimmDisk
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// PmemDimmHost pmem dimm host
-//
-// swagger:model PmemDimmHost
-type PmemDimmHost struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this pmem dimm host
-func (m *PmemDimmHost) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *PmemDimmHost) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PmemDimmHost) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this pmem dimm host based on context it is used
-func (m *PmemDimmHost) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *PmemDimmHost) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *PmemDimmHost) UnmarshalBinary(b []byte) error {
-	var res PmemDimmHost
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

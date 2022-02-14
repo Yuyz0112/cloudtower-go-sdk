@@ -21,7 +21,7 @@ type BrickTopoConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *BrickTopoConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateBrickTopo `json:"aggregate"`
 }
 
 // Validate validates this brick topo connection
@@ -95,62 +95,6 @@ func (m *BrickTopoConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *BrickTopoConnection) UnmarshalBinary(b []byte) error {
 	var res BrickTopoConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// BrickTopoConnectionAggregate brick topo connection aggregate
-//
-// swagger:model BrickTopoConnectionAggregate
-type BrickTopoConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this brick topo connection aggregate
-func (m *BrickTopoConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *BrickTopoConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this brick topo connection aggregate based on context it is used
-func (m *BrickTopoConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *BrickTopoConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *BrickTopoConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res BrickTopoConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

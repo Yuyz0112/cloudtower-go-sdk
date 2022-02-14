@@ -21,7 +21,7 @@ import (
 type Alert struct {
 
 	// alert rule
-	AlertRule *AlertAlertRule `json:"alert_rule,omitempty"`
+	AlertRule interface{} `json:"alert_rule,omitempty"`
 
 	// cause
 	// Required: true
@@ -29,17 +29,20 @@ type Alert struct {
 
 	// cluster
 	// Required: true
-	Cluster *AlertCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
+
+	// create time
+	CreateTime *string `json:"create_time,omitempty"`
 
 	// disk
-	Disk *AlertDisk `json:"disk,omitempty"`
+	Disk interface{} `json:"disk,omitempty"`
 
 	// ended
 	// Required: true
 	Ended *bool `json:"ended"`
 
 	// host
-	Host *AlertHost `json:"host,omitempty"`
+	Host interface{} `json:"host,omitempty"`
 
 	// id
 	// Required: true
@@ -94,16 +97,12 @@ type Alert struct {
 	Value *float64 `json:"value"`
 
 	// vms
-	Vms []*AlertVmsItems0 `json:"vms,omitempty"`
+	Vms []*NestedVM `json:"vms,omitempty"`
 }
 
 // Validate validates this alert
 func (m *Alert) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateAlertRule(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateCause(formats); err != nil {
 		res = append(res, err)
@@ -113,15 +112,7 @@ func (m *Alert) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDisk(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateEnded(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHost(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -187,23 +178,6 @@ func (m *Alert) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Alert) validateAlertRule(formats strfmt.Registry) error {
-	if swag.IsZero(m.AlertRule) { // not required
-		return nil
-	}
-
-	if m.AlertRule != nil {
-		if err := m.AlertRule.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("alert_rule")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *Alert) validateCause(formats strfmt.Registry) error {
 
 	if err := validate.Required("cause", "body", m.Cause); err != nil {
@@ -231,44 +205,10 @@ func (m *Alert) validateCluster(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Alert) validateDisk(formats strfmt.Registry) error {
-	if swag.IsZero(m.Disk) { // not required
-		return nil
-	}
-
-	if m.Disk != nil {
-		if err := m.Disk.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("disk")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *Alert) validateEnded(formats strfmt.Registry) error {
 
 	if err := validate.Required("ended", "body", m.Ended); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *Alert) validateHost(formats strfmt.Registry) error {
-	if swag.IsZero(m.Host) { // not required
-		return nil
-	}
-
-	if m.Host != nil {
-		if err := m.Host.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("host")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -419,19 +359,7 @@ func (m *Alert) validateVms(formats strfmt.Registry) error {
 func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAlertRule(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateDisk(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateHost(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -445,54 +373,12 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	return nil
 }
 
-func (m *Alert) contextValidateAlertRule(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.AlertRule != nil {
-		if err := m.AlertRule.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("alert_rule")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *Alert) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cluster != nil {
 		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cluster")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Alert) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Disk != nil {
-		if err := m.Disk.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("disk")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Alert) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Host != nil {
-		if err := m.Host.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("host")
 			}
 			return err
 		}
@@ -530,354 +416,6 @@ func (m *Alert) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Alert) UnmarshalBinary(b []byte) error {
 	var res Alert
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertAlertRule alert alert rule
-//
-// swagger:model AlertAlertRule
-type AlertAlertRule struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this alert alert rule
-func (m *AlertAlertRule) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertAlertRule) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("alert_rule"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert alert rule based on context it is used
-func (m *AlertAlertRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertAlertRule) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertAlertRule) UnmarshalBinary(b []byte) error {
-	var res AlertAlertRule
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertCluster alert cluster
-//
-// swagger:model AlertCluster
-type AlertCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this alert cluster
-func (m *AlertCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AlertCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert cluster based on context it is used
-func (m *AlertCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertCluster) UnmarshalBinary(b []byte) error {
-	var res AlertCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertDisk alert disk
-//
-// swagger:model AlertDisk
-type AlertDisk struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this alert disk
-func (m *AlertDisk) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertDisk) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("disk"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AlertDisk) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("disk"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert disk based on context it is used
-func (m *AlertDisk) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertDisk) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertDisk) UnmarshalBinary(b []byte) error {
-	var res AlertDisk
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertHost alert host
-//
-// swagger:model AlertHost
-type AlertHost struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this alert host
-func (m *AlertHost) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertHost) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AlertHost) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert host based on context it is used
-func (m *AlertHost) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertHost) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertHost) UnmarshalBinary(b []byte) error {
-	var res AlertHost
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertVmsItems0 alert vms items0
-//
-// swagger:model AlertVmsItems0
-type AlertVmsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this alert vms items0
-func (m *AlertVmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertVmsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AlertVmsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert vms items0 based on context it is used
-func (m *AlertVmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertVmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertVmsItems0) UnmarshalBinary(b []byte) error {
-	var res AlertVmsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

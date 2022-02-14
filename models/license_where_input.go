@@ -15,6 +15,7 @@ import (
 )
 
 // LicenseWhereInput license where input
+// Example: {"AND":"LicenseWhereInput[]","NOT":"LicenseWhereInput[]","OR":"LicenseWhereInput[]","expire_date":"string","expire_date_gt":"string","expire_date_gte":"string","expire_date_in":["string"],"expire_date_lt":"string","expire_date_lte":"string","expire_date_not":"string","expire_date_not_in":["string"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","license_serial":"string","license_serial_contains":"string","license_serial_ends_with":"string","license_serial_gt":"string","license_serial_gte":"string","license_serial_in":["string"],"license_serial_lt":"string","license_serial_lte":"string","license_serial_not":"string","license_serial_not_contains":"string","license_serial_not_ends_with":"string","license_serial_not_in":["string"],"license_serial_not_starts_with":"string","license_serial_starts_with":"string","maintenance_end_date":"string","maintenance_end_date_gt":"string","maintenance_end_date_gte":"string","maintenance_end_date_in":["string"],"maintenance_end_date_lt":"string","maintenance_end_date_lte":"string","maintenance_end_date_not":"string","maintenance_end_date_not_in":["string"],"maintenance_start_date":"string","maintenance_start_date_gt":"string","maintenance_start_date_gte":"string","maintenance_start_date_in":["string"],"maintenance_start_date_lt":"string","maintenance_start_date_lte":"string","maintenance_start_date_not":"string","maintenance_start_date_not_in":["string"],"max_chunk_num":0,"max_chunk_num_gt":0,"max_chunk_num_gte":0,"max_chunk_num_in":[0],"max_chunk_num_lt":0,"max_chunk_num_lte":0,"max_chunk_num_not":0,"max_chunk_num_not_in":[0],"max_cluster_num":0,"max_cluster_num_gt":0,"max_cluster_num_gte":0,"max_cluster_num_in":[0],"max_cluster_num_lt":0,"max_cluster_num_lte":0,"max_cluster_num_not":0,"max_cluster_num_not_in":[0],"sign_date":"string","sign_date_gt":"string","sign_date_gte":"string","sign_date_in":["string"],"sign_date_lt":"string","sign_date_lte":"string","sign_date_not":"string","sign_date_not_in":["string"],"software_edition":"COMMUNITY","software_edition_in":["COMMUNITY"],"software_edition_not":"COMMUNITY","software_edition_not_in":["COMMUNITY"],"type":"PERPETUAL","type_in":["PERPETUAL"],"type_not":"PERPETUAL","type_not_in":["PERPETUAL"]}
 //
 // swagger:model LicenseWhereInput
 type LicenseWhereInput struct {
@@ -185,52 +186,52 @@ type LicenseWhereInput struct {
 	MaintenanceStartDateNotIn []string `json:"maintenance_start_date_not_in,omitempty"`
 
 	// max chunk num
-	MaxChunkNum *float64 `json:"max_chunk_num,omitempty"`
+	MaxChunkNum *int32 `json:"max_chunk_num,omitempty"`
 
 	// max chunk num gt
-	MaxChunkNumGt *float64 `json:"max_chunk_num_gt,omitempty"`
+	MaxChunkNumGt *int32 `json:"max_chunk_num_gt,omitempty"`
 
 	// max chunk num gte
-	MaxChunkNumGte *float64 `json:"max_chunk_num_gte,omitempty"`
+	MaxChunkNumGte *int32 `json:"max_chunk_num_gte,omitempty"`
 
 	// max chunk num in
-	MaxChunkNumIn []float64 `json:"max_chunk_num_in,omitempty"`
+	MaxChunkNumIn []int32 `json:"max_chunk_num_in,omitempty"`
 
 	// max chunk num lt
-	MaxChunkNumLt *float64 `json:"max_chunk_num_lt,omitempty"`
+	MaxChunkNumLt *int32 `json:"max_chunk_num_lt,omitempty"`
 
 	// max chunk num lte
-	MaxChunkNumLte *float64 `json:"max_chunk_num_lte,omitempty"`
+	MaxChunkNumLte *int32 `json:"max_chunk_num_lte,omitempty"`
 
 	// max chunk num not
-	MaxChunkNumNot *float64 `json:"max_chunk_num_not,omitempty"`
+	MaxChunkNumNot *int32 `json:"max_chunk_num_not,omitempty"`
 
 	// max chunk num not in
-	MaxChunkNumNotIn []float64 `json:"max_chunk_num_not_in,omitempty"`
+	MaxChunkNumNotIn []int32 `json:"max_chunk_num_not_in,omitempty"`
 
 	// max cluster num
-	MaxClusterNum *float64 `json:"max_cluster_num,omitempty"`
+	MaxClusterNum *int32 `json:"max_cluster_num,omitempty"`
 
 	// max cluster num gt
-	MaxClusterNumGt *float64 `json:"max_cluster_num_gt,omitempty"`
+	MaxClusterNumGt *int32 `json:"max_cluster_num_gt,omitempty"`
 
 	// max cluster num gte
-	MaxClusterNumGte *float64 `json:"max_cluster_num_gte,omitempty"`
+	MaxClusterNumGte *int32 `json:"max_cluster_num_gte,omitempty"`
 
 	// max cluster num in
-	MaxClusterNumIn []float64 `json:"max_cluster_num_in,omitempty"`
+	MaxClusterNumIn []int32 `json:"max_cluster_num_in,omitempty"`
 
 	// max cluster num lt
-	MaxClusterNumLt *float64 `json:"max_cluster_num_lt,omitempty"`
+	MaxClusterNumLt *int32 `json:"max_cluster_num_lt,omitempty"`
 
 	// max cluster num lte
-	MaxClusterNumLte *float64 `json:"max_cluster_num_lte,omitempty"`
+	MaxClusterNumLte *int32 `json:"max_cluster_num_lte,omitempty"`
 
 	// max cluster num not
-	MaxClusterNumNot *float64 `json:"max_cluster_num_not,omitempty"`
+	MaxClusterNumNot *int32 `json:"max_cluster_num_not,omitempty"`
 
 	// max cluster num not in
-	MaxClusterNumNotIn []float64 `json:"max_cluster_num_not_in,omitempty"`
+	MaxClusterNumNotIn []int32 `json:"max_cluster_num_not_in,omitempty"`
 
 	// sign date
 	SignDate *string `json:"sign_date,omitempty"`

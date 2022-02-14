@@ -21,15 +21,15 @@ type IscsiConnection struct {
 
 	// client port
 	// Required: true
-	ClientPort *float64 `json:"client_port"`
+	ClientPort *int32 `json:"client_port"`
 
 	// cluster
 	// Required: true
-	Cluster *IscsiConnectionCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// host
 	// Required: true
-	Host *IscsiConnectionHost `json:"host"`
+	Host *NestedHost `json:"host"`
 
 	// id
 	// Required: true
@@ -40,10 +40,10 @@ type IscsiConnection struct {
 	InitiatorIP *string `json:"initiator_ip"`
 
 	// iscsi target
-	IscsiTarget *IscsiConnectionIscsiTarget `json:"iscsi_target,omitempty"`
+	IscsiTarget interface{} `json:"iscsi_target,omitempty"`
 
 	// nvmf subsystem
-	NvmfSubsystem *IscsiConnectionNvmfSubsystem `json:"nvmf_subsystem,omitempty"`
+	NvmfSubsystem interface{} `json:"nvmf_subsystem,omitempty"`
 
 	// type
 	// Required: true
@@ -71,14 +71,6 @@ func (m *IscsiConnection) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateInitiatorIP(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateIscsiTarget(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateNvmfSubsystem(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -155,40 +147,6 @@ func (m *IscsiConnection) validateInitiatorIP(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *IscsiConnection) validateIscsiTarget(formats strfmt.Registry) error {
-	if swag.IsZero(m.IscsiTarget) { // not required
-		return nil
-	}
-
-	if m.IscsiTarget != nil {
-		if err := m.IscsiTarget.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("iscsi_target")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IscsiConnection) validateNvmfSubsystem(formats strfmt.Registry) error {
-	if swag.IsZero(m.NvmfSubsystem) { // not required
-		return nil
-	}
-
-	if m.NvmfSubsystem != nil {
-		if err := m.NvmfSubsystem.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("nvmf_subsystem")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *IscsiConnection) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
@@ -220,14 +178,6 @@ func (m *IscsiConnection) ContextValidate(ctx context.Context, formats strfmt.Re
 	}
 
 	if err := m.contextValidateHost(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateIscsiTarget(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNvmfSubsystem(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -269,34 +219,6 @@ func (m *IscsiConnection) contextValidateHost(ctx context.Context, formats strfm
 	return nil
 }
 
-func (m *IscsiConnection) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.IscsiTarget != nil {
-		if err := m.IscsiTarget.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("iscsi_target")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IscsiConnection) contextValidateNvmfSubsystem(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.NvmfSubsystem != nil {
-		if err := m.NvmfSubsystem.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("nvmf_subsystem")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *IscsiConnection) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
@@ -322,298 +244,6 @@ func (m *IscsiConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *IscsiConnection) UnmarshalBinary(b []byte) error {
 	var res IscsiConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiConnectionCluster iscsi connection cluster
-//
-// swagger:model IscsiConnectionCluster
-type IscsiConnectionCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi connection cluster
-func (m *IscsiConnectionCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiConnectionCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiConnectionCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi connection cluster based on context it is used
-func (m *IscsiConnectionCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiConnectionCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiConnectionCluster) UnmarshalBinary(b []byte) error {
-	var res IscsiConnectionCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiConnectionHost iscsi connection host
-//
-// swagger:model IscsiConnectionHost
-type IscsiConnectionHost struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi connection host
-func (m *IscsiConnectionHost) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiConnectionHost) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiConnectionHost) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi connection host based on context it is used
-func (m *IscsiConnectionHost) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiConnectionHost) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiConnectionHost) UnmarshalBinary(b []byte) error {
-	var res IscsiConnectionHost
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiConnectionIscsiTarget iscsi connection iscsi target
-//
-// swagger:model IscsiConnectionIscsiTarget
-type IscsiConnectionIscsiTarget struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi connection iscsi target
-func (m *IscsiConnectionIscsiTarget) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiConnectionIscsiTarget) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("iscsi_target"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiConnectionIscsiTarget) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("iscsi_target"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi connection iscsi target based on context it is used
-func (m *IscsiConnectionIscsiTarget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiConnectionIscsiTarget) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiConnectionIscsiTarget) UnmarshalBinary(b []byte) error {
-	var res IscsiConnectionIscsiTarget
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiConnectionNvmfSubsystem iscsi connection nvmf subsystem
-//
-// swagger:model IscsiConnectionNvmfSubsystem
-type IscsiConnectionNvmfSubsystem struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi connection nvmf subsystem
-func (m *IscsiConnectionNvmfSubsystem) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiConnectionNvmfSubsystem) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("nvmf_subsystem"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiConnectionNvmfSubsystem) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("nvmf_subsystem"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi connection nvmf subsystem based on context it is used
-func (m *IscsiConnectionNvmfSubsystem) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiConnectionNvmfSubsystem) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiConnectionNvmfSubsystem) UnmarshalBinary(b []byte) error {
-	var res IscsiConnectionNvmfSubsystem
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

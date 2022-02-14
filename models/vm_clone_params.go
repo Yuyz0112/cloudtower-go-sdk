@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -20,14 +21,13 @@ import (
 type VMCloneParams struct {
 
 	// cluster id
-	// Required: true
-	ClusterID *string `json:"cluster_id"`
+	ClusterID string `json:"cluster_id,omitempty"`
 
 	// cpu cores
-	CPUCores float64 `json:"cpu_cores,omitempty"`
+	CPUCores int32 `json:"cpu_cores,omitempty"`
 
 	// cpu sockets
-	CPUSockets float64 `json:"cpu_sockets,omitempty"`
+	CPUSockets int32 `json:"cpu_sockets,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -57,7 +57,7 @@ type VMCloneParams struct {
 	MaxBandwidthPolicy VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
-	MaxIops float64 `json:"max_iops,omitempty"`
+	MaxIops int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
@@ -77,22 +77,18 @@ type VMCloneParams struct {
 	Status VMStatus `json:"status,omitempty"`
 
 	// vcpu
-	Vcpu float64 `json:"vcpu,omitempty"`
+	Vcpu int32 `json:"vcpu,omitempty"`
 
 	// vm disks
 	VMDisks *VMDiskParams `json:"vm_disks,omitempty"`
 
 	// vm nics
-	VMNics VMNicParams `json:"vm_nics,omitempty"`
+	VMNics []*VMNicParams `json:"vm_nics"`
 }
 
 // Validate validates this Vm clone params
 func (m *VMCloneParams) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateClusterID(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateFirmware(formats); err != nil {
 		res = append(res, err)
@@ -137,15 +133,6 @@ func (m *VMCloneParams) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *VMCloneParams) validateClusterID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster_id", "body", m.ClusterID); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -279,11 +266,20 @@ func (m *VMCloneParams) validateVMNics(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.VMNics.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_nics")
+	for i := 0; i < len(m.VMNics); i++ {
+		if swag.IsZero(m.VMNics[i]) { // not required
+			continue
 		}
-		return err
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -419,11 +415,17 @@ func (m *VMCloneParams) contextValidateVMDisks(ctx context.Context, formats strf
 
 func (m *VMCloneParams) contextValidateVMNics(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.VMNics.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("vm_nics")
+	for i := 0; i < len(m.VMNics); i++ {
+
+		if m.VMNics[i] != nil {
+			if err := m.VMNics[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("vm_nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
 		}
-		return err
+
 	}
 
 	return nil

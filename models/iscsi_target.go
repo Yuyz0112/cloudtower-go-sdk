@@ -59,7 +59,7 @@ type IscsiTarget struct {
 
 	// cluster
 	// Required: true
-	Cluster *IscsiTargetCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// description
 	// Required: true
@@ -77,7 +77,7 @@ type IscsiTarget struct {
 	ID *string `json:"id"`
 
 	// initiator chaps
-	InitiatorChaps []*IscsiTargetInitiatorChapsItems0 `json:"initiator_chaps,omitempty"`
+	InitiatorChaps []*NestedInitiatorChap `json:"initiator_chaps,omitempty"`
 
 	// internal
 	// Required: true
@@ -126,14 +126,14 @@ type IscsiTarget struct {
 	IqnWhitelist *string `json:"iqn_whitelist"`
 
 	// labels
-	Labels []*IscsiTargetLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local id
 	// Required: true
 	LocalID *string `json:"local_id"`
 
 	// luns
-	Luns []*IscsiTargetLunsItems0 `json:"luns,omitempty"`
+	Luns []*NestedIscsiLun `json:"luns,omitempty"`
 
 	// name
 	// Required: true
@@ -141,11 +141,11 @@ type IscsiTarget struct {
 
 	// replica num
 	// Required: true
-	ReplicaNum *float64 `json:"replica_num"`
+	ReplicaNum *int32 `json:"replica_num"`
 
 	// stripe num
 	// Required: true
-	StripeNum *float64 `json:"stripe_num"`
+	StripeNum *int32 `json:"stripe_num"`
 
 	// stripe size
 	// Required: true
@@ -559,298 +559,6 @@ func (m *IscsiTarget) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *IscsiTarget) UnmarshalBinary(b []byte) error {
 	var res IscsiTarget
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiTargetCluster iscsi target cluster
-//
-// swagger:model IscsiTargetCluster
-type IscsiTargetCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi target cluster
-func (m *IscsiTargetCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiTargetCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiTargetCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi target cluster based on context it is used
-func (m *IscsiTargetCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiTargetCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiTargetCluster) UnmarshalBinary(b []byte) error {
-	var res IscsiTargetCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiTargetInitiatorChapsItems0 iscsi target initiator chaps items0
-//
-// swagger:model IscsiTargetInitiatorChapsItems0
-type IscsiTargetInitiatorChapsItems0 struct {
-
-	// chap name
-	// Required: true
-	ChapName *string `json:"chap_name"`
-
-	// chap secret
-	// Required: true
-	ChapSecret *string `json:"chap_secret"`
-
-	// initiator iqn
-	// Required: true
-	InitiatorIqn *string `json:"initiator_iqn"`
-}
-
-// Validate validates this iscsi target initiator chaps items0
-func (m *IscsiTargetInitiatorChapsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateChapName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateChapSecret(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateInitiatorIqn(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiTargetInitiatorChapsItems0) validateChapName(formats strfmt.Registry) error {
-
-	if err := validate.Required("chap_name", "body", m.ChapName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiTargetInitiatorChapsItems0) validateChapSecret(formats strfmt.Registry) error {
-
-	if err := validate.Required("chap_secret", "body", m.ChapSecret); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiTargetInitiatorChapsItems0) validateInitiatorIqn(formats strfmt.Registry) error {
-
-	if err := validate.Required("initiator_iqn", "body", m.InitiatorIqn); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi target initiator chaps items0 based on context it is used
-func (m *IscsiTargetInitiatorChapsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiTargetInitiatorChapsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiTargetInitiatorChapsItems0) UnmarshalBinary(b []byte) error {
-	var res IscsiTargetInitiatorChapsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiTargetLabelsItems0 iscsi target labels items0
-//
-// swagger:model IscsiTargetLabelsItems0
-type IscsiTargetLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this iscsi target labels items0
-func (m *IscsiTargetLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiTargetLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi target labels items0 based on context it is used
-func (m *IscsiTargetLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiTargetLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiTargetLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res IscsiTargetLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiTargetLunsItems0 iscsi target luns items0
-//
-// swagger:model IscsiTargetLunsItems0
-type IscsiTargetLunsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi target luns items0
-func (m *IscsiTargetLunsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiTargetLunsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiTargetLunsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi target luns items0 based on context it is used
-func (m *IscsiTargetLunsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiTargetLunsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiTargetLunsItems0) UnmarshalBinary(b []byte) error {
-	var res IscsiTargetLunsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

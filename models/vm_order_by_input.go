@@ -308,6 +308,12 @@ const (
 	// VMOrderByInputVMToolsVersionDESC captures enum value "vm_tools_version_DESC"
 	VMOrderByInputVMToolsVersionDESC VMOrderByInput = "vm_tools_version_DESC"
 
+	// VMOrderByInputVMUsageASC captures enum value "vm_usage_ASC"
+	VMOrderByInputVMUsageASC VMOrderByInput = "vm_usage_ASC"
+
+	// VMOrderByInputVMUsageDESC captures enum value "vm_usage_DESC"
+	VMOrderByInputVMUsageDESC VMOrderByInput = "vm_usage_DESC"
+
 	// VMOrderByInputWinOptASC captures enum value "win_opt_ASC"
 	VMOrderByInputWinOptASC VMOrderByInput = "win_opt_ASC"
 
@@ -320,7 +326,7 @@ var vmOrderByInputEnum []interface{}
 
 func init() {
 	var res []VMOrderByInput
-	if err := json.Unmarshal([]byte(`["clock_offset_ASC","clock_offset_DESC","cpu_ASC","cpu_DESC","cpu_model_ASC","cpu_model_DESC","cpu_usage_ASC","cpu_usage_DESC","createdAt_ASC","createdAt_DESC","deleted_at_ASC","deleted_at_DESC","description_ASC","description_DESC","dns_servers_ASC","dns_servers_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","firmware_ASC","firmware_DESC","guest_cpu_model_ASC","guest_cpu_model_DESC","guest_os_type_ASC","guest_os_type_DESC","guest_size_usage_ASC","guest_size_usage_DESC","guest_used_size_ASC","guest_used_size_DESC","ha_ASC","ha_DESC","hostname_ASC","hostname_DESC","id_ASC","id_DESC","in_recycle_bin_ASC","in_recycle_bin_DESC","internal_ASC","internal_DESC","io_policy_ASC","io_policy_DESC","ips_ASC","ips_DESC","kernel_info_ASC","kernel_info_DESC","last_shutdown_time_ASC","last_shutdown_time_DESC","local_created_at_ASC","local_created_at_DESC","local_id_ASC","local_id_DESC","logical_size_bytes_ASC","logical_size_bytes_DESC","max_bandwidth_ASC","max_bandwidth_DESC","max_bandwidth_policy_ASC","max_bandwidth_policy_DESC","max_iops_ASC","max_iops_DESC","max_iops_policy_ASC","max_iops_policy_DESC","memory_ASC","memory_DESC","memory_usage_ASC","memory_usage_DESC","name_ASC","name_DESC","nested_virtualization_ASC","nested_virtualization_DESC","node_ip_ASC","node_ip_DESC","original_name_ASC","original_name_DESC","os_ASC","os_DESC","protected_ASC","protected_DESC","provisioned_size_ASC","provisioned_size_DESC","size_ASC","size_DESC","status_ASC","status_DESC","unique_size_ASC","unique_size_DESC","updatedAt_ASC","updatedAt_DESC","vcpu_ASC","vcpu_DESC","video_type_ASC","video_type_DESC","vm_tools_status_ASC","vm_tools_status_DESC","vm_tools_version_ASC","vm_tools_version_DESC","win_opt_ASC","win_opt_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["clock_offset_ASC","clock_offset_DESC","cpu_ASC","cpu_DESC","cpu_model_ASC","cpu_model_DESC","cpu_usage_ASC","cpu_usage_DESC","createdAt_ASC","createdAt_DESC","deleted_at_ASC","deleted_at_DESC","description_ASC","description_DESC","dns_servers_ASC","dns_servers_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","firmware_ASC","firmware_DESC","guest_cpu_model_ASC","guest_cpu_model_DESC","guest_os_type_ASC","guest_os_type_DESC","guest_size_usage_ASC","guest_size_usage_DESC","guest_used_size_ASC","guest_used_size_DESC","ha_ASC","ha_DESC","hostname_ASC","hostname_DESC","id_ASC","id_DESC","in_recycle_bin_ASC","in_recycle_bin_DESC","internal_ASC","internal_DESC","io_policy_ASC","io_policy_DESC","ips_ASC","ips_DESC","kernel_info_ASC","kernel_info_DESC","last_shutdown_time_ASC","last_shutdown_time_DESC","local_created_at_ASC","local_created_at_DESC","local_id_ASC","local_id_DESC","logical_size_bytes_ASC","logical_size_bytes_DESC","max_bandwidth_ASC","max_bandwidth_DESC","max_bandwidth_policy_ASC","max_bandwidth_policy_DESC","max_iops_ASC","max_iops_DESC","max_iops_policy_ASC","max_iops_policy_DESC","memory_ASC","memory_DESC","memory_usage_ASC","memory_usage_DESC","name_ASC","name_DESC","nested_virtualization_ASC","nested_virtualization_DESC","node_ip_ASC","node_ip_DESC","original_name_ASC","original_name_DESC","os_ASC","os_DESC","protected_ASC","protected_DESC","provisioned_size_ASC","provisioned_size_DESC","size_ASC","size_DESC","status_ASC","status_DESC","unique_size_ASC","unique_size_DESC","updatedAt_ASC","updatedAt_DESC","vcpu_ASC","vcpu_DESC","video_type_ASC","video_type_DESC","vm_tools_status_ASC","vm_tools_status_DESC","vm_tools_version_ASC","vm_tools_version_DESC","vm_usage_ASC","vm_usage_DESC","win_opt_ASC","win_opt_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

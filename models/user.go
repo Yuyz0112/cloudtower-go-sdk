@@ -27,6 +27,10 @@ type User struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// internal
+	// Required: true
+	Internal *bool `json:"internal"`
+
 	// ldap dn
 	LdapDn *string `json:"ldap_dn,omitempty"`
 
@@ -41,7 +45,7 @@ type User struct {
 	Role interface{} `json:"role,omitempty"`
 
 	// roles
-	Roles []*UserRolesItems0 `json:"roles,omitempty"`
+	Roles []*NestedUserRoleNext `json:"roles,omitempty"`
 
 	// source
 	// Required: true
@@ -57,6 +61,10 @@ func (m *User) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInternal(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,6 +93,15 @@ func (m *User) Validate(formats strfmt.Registry) error {
 func (m *User) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *User) validateInternal(formats strfmt.Registry) error {
+
+	if err := validate.Required("internal", "body", m.Internal); err != nil {
 		return err
 	}
 
@@ -216,79 +233,6 @@ func (m *User) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *User) UnmarshalBinary(b []byte) error {
 	var res User
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// UserRolesItems0 user roles items0
-//
-// swagger:model UserRolesItems0
-type UserRolesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this user roles items0
-func (m *UserRolesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UserRolesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserRolesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this user roles items0 based on context it is used
-func (m *UserRolesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *UserRolesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *UserRolesItems0) UnmarshalBinary(b []byte) error {
-	var res UserRolesItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

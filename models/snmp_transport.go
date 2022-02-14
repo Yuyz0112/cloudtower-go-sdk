@@ -27,7 +27,7 @@ type SnmpTransport struct {
 
 	// cluster
 	// Required: true
-	Cluster *SnmpTransportCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// community
 	Community *string `json:"community,omitempty"`
@@ -53,7 +53,7 @@ type SnmpTransport struct {
 
 	// port
 	// Required: true
-	Port *float64 `json:"port"`
+	Port *int32 `json:"port"`
 
 	// privacy pass phrase
 	PrivacyPassPhrase *string `json:"privacy_pass_phrase,omitempty"`
@@ -297,79 +297,6 @@ func (m *SnmpTransport) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *SnmpTransport) UnmarshalBinary(b []byte) error {
 	var res SnmpTransport
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// SnmpTransportCluster snmp transport cluster
-//
-// swagger:model SnmpTransportCluster
-type SnmpTransportCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this snmp transport cluster
-func (m *SnmpTransportCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *SnmpTransportCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SnmpTransportCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this snmp transport cluster based on context it is used
-func (m *SnmpTransportCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *SnmpTransportCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *SnmpTransportCluster) UnmarshalBinary(b []byte) error {
-	var res SnmpTransportCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -32,8 +32,14 @@ const (
 	// UploadResourceTypeCLUSTERIMAGEMETA captures enum value "CLUSTER_IMAGE_META"
 	UploadResourceTypeCLUSTERIMAGEMETA UploadResourceType = "CLUSTER_IMAGE_META"
 
+	// UploadResourceTypeCONTENTLIBRARYIMAGE captures enum value "CONTENT_LIBRARY_IMAGE"
+	UploadResourceTypeCONTENTLIBRARYIMAGE UploadResourceType = "CONTENT_LIBRARY_IMAGE"
+
 	// UploadResourceTypeELFIMAGE captures enum value "ELF_IMAGE"
 	UploadResourceTypeELFIMAGE UploadResourceType = "ELF_IMAGE"
+
+	// UploadResourceTypeEVEROUTEPACKAGE captures enum value "EVEROUTE_PACKAGE"
+	UploadResourceTypeEVEROUTEPACKAGE UploadResourceType = "EVEROUTE_PACKAGE"
 
 	// UploadResourceTypeMONITORIMAGE captures enum value "MONITOR_IMAGE"
 	UploadResourceTypeMONITORIMAGE UploadResourceType = "MONITOR_IMAGE"
@@ -47,7 +53,7 @@ var uploadResourceTypeEnum []interface{}
 
 func init() {
 	var res []UploadResourceType
-	if err := json.Unmarshal([]byte(`["CLUSTER_IMAGE","CLUSTER_IMAGE_META","ELF_IMAGE","MONITOR_IMAGE","SVT_IMAGE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["CLUSTER_IMAGE","CLUSTER_IMAGE_META","CONTENT_LIBRARY_IMAGE","ELF_IMAGE","EVEROUTE_PACKAGE","MONITOR_IMAGE","SVT_IMAGE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

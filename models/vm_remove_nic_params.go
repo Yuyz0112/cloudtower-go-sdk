@@ -153,7 +153,7 @@ type VMRemoveNicParamsData struct {
 
 	// nic index
 	// Required: true
-	NicIndex []float64 `json:"nic_index"`
+	NicIndex []int32 `json:"nic_index"`
 }
 
 // Validate validates this VM remove nic params data

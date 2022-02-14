@@ -29,7 +29,7 @@ type ViewCreationParams struct {
 
 	// time span
 	// Required: true
-	TimeSpan *float64 `json:"time_span"`
+	TimeSpan *int32 `json:"time_span"`
 
 	// time unit
 	// Required: true

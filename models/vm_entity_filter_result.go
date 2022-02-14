@@ -21,7 +21,7 @@ type VMEntityFilterResult struct {
 
 	// entity filter
 	// Required: true
-	EntityFilter *VMEntityFilterResultEntityFilter `json:"entityFilter"`
+	EntityFilter *NestedEntityFilter `json:"entityFilter"`
 
 	// id
 	// Required: true
@@ -33,7 +33,7 @@ type VMEntityFilterResult struct {
 
 	// vm
 	// Required: true
-	VM *VMEntityFilterResultVM `json:"vm"`
+	VM *NestedVM `json:"vm"`
 }
 
 // Validate validates this Vm entity filter result
@@ -173,152 +173,6 @@ func (m *VMEntityFilterResult) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMEntityFilterResult) UnmarshalBinary(b []byte) error {
 	var res VMEntityFilterResult
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMEntityFilterResultEntityFilter VM entity filter result entity filter
-//
-// swagger:model VMEntityFilterResultEntityFilter
-type VMEntityFilterResultEntityFilter struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM entity filter result entity filter
-func (m *VMEntityFilterResultEntityFilter) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMEntityFilterResultEntityFilter) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("entityFilter"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMEntityFilterResultEntityFilter) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("entityFilter"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM entity filter result entity filter based on context it is used
-func (m *VMEntityFilterResultEntityFilter) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMEntityFilterResultEntityFilter) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMEntityFilterResultEntityFilter) UnmarshalBinary(b []byte) error {
-	var res VMEntityFilterResultEntityFilter
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMEntityFilterResultVM VM entity filter result VM
-//
-// swagger:model VMEntityFilterResultVM
-type VMEntityFilterResultVM struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM entity filter result VM
-func (m *VMEntityFilterResultVM) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMEntityFilterResultVM) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMEntityFilterResultVM) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("vm"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM entity filter result VM based on context it is used
-func (m *VMEntityFilterResultVM) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMEntityFilterResultVM) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMEntityFilterResultVM) UnmarshalBinary(b []byte) error {
-	var res VMEntityFilterResultVM
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

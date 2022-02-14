@@ -156,7 +156,7 @@ type SnapshotPlanUpdationParamsData struct {
 	Exechm string `json:"exec_h_m,omitempty"`
 
 	// execute intervals
-	ExecuteIntervals []float64 `json:"execute_intervals"`
+	ExecuteIntervals []int32 `json:"execute_intervals"`
 
 	// execute plan type
 	ExecutePlanType SnapshotPlanExecuteType `json:"execute_plan_type,omitempty"`
@@ -165,7 +165,7 @@ type SnapshotPlanUpdationParamsData struct {
 	Name string `json:"name,omitempty"`
 
 	// remain snapshot num
-	RemainSnapshotNum float64 `json:"remain_snapshot_num,omitempty"`
+	RemainSnapshotNum int32 `json:"remain_snapshot_num,omitempty"`
 
 	// vm ids
 	VMIds []string `json:"vm_ids"`

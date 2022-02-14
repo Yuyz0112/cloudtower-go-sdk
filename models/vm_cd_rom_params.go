@@ -7,7 +7,6 @@ package models
 
 import (
 	"context"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -18,79 +17,25 @@ import (
 // VMCdRomParams Vm cd rom params
 //
 // swagger:model VmCdRomParams
-type VMCdRomParams []*VMCdRomParamsItems0
-
-// Validate validates this Vm cd rom params
-func (m VMCdRomParams) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	for i := 0; i < len(m); i++ {
-		if swag.IsZero(m[i]) { // not required
-			continue
-		}
-
-		if m[i] != nil {
-			if err := m[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName(strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-// ContextValidate validate this Vm cd rom params based on the context it is used
-func (m VMCdRomParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	for i := 0; i < len(m); i++ {
-
-		if m[i] != nil {
-			if err := m[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName(strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-// VMCdRomParamsItems0 VM cd rom params items0
-//
-// swagger:model VMCdRomParamsItems0
-type VMCdRomParamsItems0 struct {
+type VMCdRomParams struct {
 
 	// boot
 	// Required: true
-	Boot *float64 `json:"boot"`
+	Boot *int32 `json:"boot"`
 
 	// elf image id
 	ElfImageID string `json:"elf_image_id,omitempty"`
 
 	// index
 	// Required: true
-	Index *float64 `json:"index"`
+	Index *int32 `json:"index"`
 
 	// key
-	Key float64 `json:"key,omitempty"`
+	Key int32 `json:"key,omitempty"`
 }
 
-// Validate validates this VM cd rom params items0
-func (m *VMCdRomParamsItems0) Validate(formats strfmt.Registry) error {
+// Validate validates this Vm cd rom params
+func (m *VMCdRomParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBoot(formats); err != nil {
@@ -107,7 +52,7 @@ func (m *VMCdRomParamsItems0) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMCdRomParamsItems0) validateBoot(formats strfmt.Registry) error {
+func (m *VMCdRomParams) validateBoot(formats strfmt.Registry) error {
 
 	if err := validate.Required("boot", "body", m.Boot); err != nil {
 		return err
@@ -116,7 +61,7 @@ func (m *VMCdRomParamsItems0) validateBoot(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMCdRomParamsItems0) validateIndex(formats strfmt.Registry) error {
+func (m *VMCdRomParams) validateIndex(formats strfmt.Registry) error {
 
 	if err := validate.Required("index", "body", m.Index); err != nil {
 		return err
@@ -125,13 +70,13 @@ func (m *VMCdRomParamsItems0) validateIndex(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this VM cd rom params items0 based on context it is used
-func (m *VMCdRomParamsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this Vm cd rom params based on context it is used
+func (m *VMCdRomParams) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *VMCdRomParamsItems0) MarshalBinary() ([]byte, error) {
+func (m *VMCdRomParams) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -139,8 +84,8 @@ func (m *VMCdRomParamsItems0) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *VMCdRomParamsItems0) UnmarshalBinary(b []byte) error {
-	var res VMCdRomParamsItems0
+func (m *VMCdRomParams) UnmarshalBinary(b []byte) error {
+	var res VMCdRomParams
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

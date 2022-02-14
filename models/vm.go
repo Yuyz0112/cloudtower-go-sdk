@@ -20,16 +20,19 @@ import (
 // swagger:model Vm
 type VM struct {
 
+	// backup plans
+	BackupPlans []*NestedBackupPlan `json:"backup_plans,omitempty"`
+
 	// clock offset
 	// Required: true
 	ClockOffset *VMClockOffset `json:"clock_offset"`
 
 	// cluster
-	Cluster *VMCluster `json:"cluster,omitempty"`
+	Cluster interface{} `json:"cluster,omitempty"`
 
 	// cpu
 	// Required: true
-	CPU *VMCPU `json:"cpu"`
+	CPU *NestedCPU `json:"cpu"`
 
 	// cpu model
 	// Required: true
@@ -52,14 +55,14 @@ type VM struct {
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
 
 	// entity filter results
-	EntityFilterResults []*VMEntityFilterResultsItems0 `json:"entity_filter_results,omitempty"`
+	EntityFilterResults []*NestedVMEntityFilterResult `json:"entity_filter_results,omitempty"`
 
 	// firmware
 	// Required: true
 	Firmware *VMFirmware `json:"firmware"`
 
 	// folder
-	Folder *VMFolder `json:"folder,omitempty"`
+	Folder interface{} `json:"folder,omitempty"`
 
 	// guest cpu model
 	GuestCPUModel *string `json:"guest_cpu_model,omitempty"`
@@ -78,7 +81,7 @@ type VM struct {
 	Ha *bool `json:"ha"`
 
 	// host
-	Host *VMHost `json:"host,omitempty"`
+	Host interface{} `json:"host,omitempty"`
 
 	// hostname
 	Hostname *string `json:"hostname,omitempty"`
@@ -91,6 +94,9 @@ type VM struct {
 	// Required: true
 	InRecycleBin *bool `json:"in_recycle_bin"`
 
+	// installed backup service
+	InstalledBackupService interface{} `json:"installed_backup_service,omitempty"`
+
 	// internal
 	// Required: true
 	Internal *bool `json:"internal"`
@@ -102,11 +108,14 @@ type VM struct {
 	// Required: true
 	Ips *string `json:"ips"`
 
+	// isolation policy
+	IsolationPolicy interface{} `json:"isolation_policy,omitempty"`
+
 	// kernel info
 	KernelInfo *string `json:"kernel_info,omitempty"`
 
 	// labels
-	Labels []*VMLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// last shutdown time
 	LastShutdownTime *string `json:"last_shutdown_time,omitempty"`
@@ -128,7 +137,7 @@ type VM struct {
 	MaxBandwidthPolicy interface{} `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
-	MaxIops *float64 `json:"max_iops,omitempty"`
+	MaxIops *int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
 	MaxIopsPolicy interface{} `json:"max_iops_policy,omitempty"`
@@ -173,10 +182,10 @@ type VM struct {
 	Size *float64 `json:"size,omitempty"`
 
 	// snapshot plan
-	SnapshotPlan *VMSnapshotPlan `json:"snapshot_plan,omitempty"`
+	SnapshotPlan interface{} `json:"snapshot_plan,omitempty"`
 
 	// snapshots
-	Snapshots []*VMSnapshotsItems0 `json:"snapshots,omitempty"`
+	Snapshots []*NestedVMSnapshot `json:"snapshots,omitempty"`
 
 	// status
 	// Required: true
@@ -186,23 +195,23 @@ type VM struct {
 	UniqueSize *float64 `json:"unique_size,omitempty"`
 
 	// usb devices
-	UsbDevices []*VMUsbDevicesItems0 `json:"usb_devices,omitempty"`
+	UsbDevices []*NestedUsbDevice `json:"usb_devices,omitempty"`
 
 	// vcpu
 	// Required: true
-	Vcpu *float64 `json:"vcpu"`
+	Vcpu *int32 `json:"vcpu"`
 
 	// video type
 	VideoType interface{} `json:"video_type,omitempty"`
 
 	// vm disks
-	VMDisks []*VMVMDisksItems0 `json:"vm_disks,omitempty"`
+	VMDisks []*NestedVMDisk `json:"vm_disks,omitempty"`
 
 	// vm nics
-	VMNics []*VMVMNicsItems0 `json:"vm_nics,omitempty"`
+	VMNics []*NestedVMNic `json:"vm_nics,omitempty"`
 
 	// vm placement group
-	VMPlacementGroup []*VMVMPlacementGroupItems0 `json:"vm_placement_group,omitempty"`
+	VMPlacementGroup []*NestedVMPlacementGroup `json:"vm_placement_group,omitempty"`
 
 	// vm tools status
 	// Required: true
@@ -210,6 +219,9 @@ type VM struct {
 
 	// vm tools version
 	VMToolsVersion *string `json:"vm_tools_version,omitempty"`
+
+	// vm usage
+	VMUsage interface{} `json:"vm_usage,omitempty"`
 
 	// win opt
 	// Required: true
@@ -220,11 +232,11 @@ type VM struct {
 func (m *VM) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateClockOffset(formats); err != nil {
+	if err := m.validateBackupPlans(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateCluster(formats); err != nil {
+	if err := m.validateClockOffset(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -248,15 +260,7 @@ func (m *VM) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateFolder(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateHa(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHost(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -308,10 +312,6 @@ func (m *VM) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateSnapshotPlan(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateSnapshots(formats); err != nil {
 		res = append(res, err)
 	}
@@ -354,6 +354,30 @@ func (m *VM) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *VM) validateBackupPlans(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlans) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.BackupPlans); i++ {
+		if swag.IsZero(m.BackupPlans[i]) { // not required
+			continue
+		}
+
+		if m.BackupPlans[i] != nil {
+			if err := m.BackupPlans[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("backup_plans" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *VM) validateClockOffset(formats strfmt.Registry) error {
 
 	if err := validate.Required("clock_offset", "body", m.ClockOffset); err != nil {
@@ -368,23 +392,6 @@ func (m *VM) validateClockOffset(formats strfmt.Registry) error {
 		if err := m.ClockOffset.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clock_offset")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *VM) validateCluster(formats strfmt.Registry) error {
-	if swag.IsZero(m.Cluster) { // not required
-		return nil
-	}
-
-	if m.Cluster != nil {
-		if err := m.Cluster.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
 			}
 			return err
 		}
@@ -475,44 +482,10 @@ func (m *VM) validateFirmware(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VM) validateFolder(formats strfmt.Registry) error {
-	if swag.IsZero(m.Folder) { // not required
-		return nil
-	}
-
-	if m.Folder != nil {
-		if err := m.Folder.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("folder")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *VM) validateHa(formats strfmt.Registry) error {
 
 	if err := validate.Required("ha", "body", m.Ha); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *VM) validateHost(formats strfmt.Registry) error {
-	if swag.IsZero(m.Host) { // not required
-		return nil
-	}
-
-	if m.Host != nil {
-		if err := m.Host.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("host")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -636,23 +609,6 @@ func (m *VM) validateProtected(formats strfmt.Registry) error {
 
 	if err := validate.Required("protected", "body", m.Protected); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *VM) validateSnapshotPlan(formats strfmt.Registry) error {
-	if swag.IsZero(m.SnapshotPlan) { // not required
-		return nil
-	}
-
-	if m.SnapshotPlan != nil {
-		if err := m.SnapshotPlan.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("snapshot_plan")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -844,11 +800,11 @@ func (m *VM) validateWinOpt(formats strfmt.Registry) error {
 func (m *VM) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateClockOffset(ctx, formats); err != nil {
+	if err := m.contextValidateBackupPlans(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateCluster(ctx, formats); err != nil {
+	if err := m.contextValidateClockOffset(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -864,19 +820,7 @@ func (m *VM) ContextValidate(ctx context.Context, formats strfmt.Registry) error
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateFolder(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateHost(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSnapshotPlan(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -914,26 +858,30 @@ func (m *VM) ContextValidate(ctx context.Context, formats strfmt.Registry) error
 	return nil
 }
 
+func (m *VM) contextValidateBackupPlans(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.BackupPlans); i++ {
+
+		if m.BackupPlans[i] != nil {
+			if err := m.BackupPlans[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("backup_plans" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *VM) contextValidateClockOffset(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClockOffset != nil {
 		if err := m.ClockOffset.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("clock_offset")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *VM) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Cluster != nil {
-		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("cluster")
 			}
 			return err
 		}
@@ -988,34 +936,6 @@ func (m *VM) contextValidateFirmware(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
-func (m *VM) contextValidateFolder(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Folder != nil {
-		if err := m.Folder.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("folder")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *VM) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Host != nil {
-		if err := m.Host.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("host")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *VM) contextValidateLabels(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Labels); i++ {
@@ -1029,20 +949,6 @@ func (m *VM) contextValidateLabels(ctx context.Context, formats strfmt.Registry)
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *VM) contextValidateSnapshotPlan(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.SnapshotPlan != nil {
-		if err := m.SnapshotPlan.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("snapshot_plan")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -1177,814 +1083,6 @@ func (m *VM) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VM) UnmarshalBinary(b []byte) error {
 	var res VM
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMCPU VM CPU
-//
-// swagger:model VMCPU
-type VMCPU struct {
-
-	// cores
-	// Required: true
-	Cores *float64 `json:"cores"`
-
-	// sockets
-	// Required: true
-	Sockets *float64 `json:"sockets"`
-}
-
-// Validate validates this VM CPU
-func (m *VMCPU) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCores(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSockets(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMCPU) validateCores(formats strfmt.Registry) error {
-
-	if err := validate.Required("cpu"+"."+"cores", "body", m.Cores); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMCPU) validateSockets(formats strfmt.Registry) error {
-
-	if err := validate.Required("cpu"+"."+"sockets", "body", m.Sockets); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM CPU based on context it is used
-func (m *VMCPU) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMCPU) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMCPU) UnmarshalBinary(b []byte) error {
-	var res VMCPU
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMCluster VM cluster
-//
-// swagger:model VMCluster
-type VMCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM cluster
-func (m *VMCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM cluster based on context it is used
-func (m *VMCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMCluster) UnmarshalBinary(b []byte) error {
-	var res VMCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMEntityFilterResultsItems0 VM entity filter results items0
-//
-// swagger:model VMEntityFilterResultsItems0
-type VMEntityFilterResultsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this VM entity filter results items0
-func (m *VMEntityFilterResultsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMEntityFilterResultsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM entity filter results items0 based on context it is used
-func (m *VMEntityFilterResultsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMEntityFilterResultsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMEntityFilterResultsItems0) UnmarshalBinary(b []byte) error {
-	var res VMEntityFilterResultsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMFolder VM folder
-//
-// swagger:model VMFolder
-type VMFolder struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM folder
-func (m *VMFolder) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMFolder) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("folder"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMFolder) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("folder"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM folder based on context it is used
-func (m *VMFolder) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMFolder) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMFolder) UnmarshalBinary(b []byte) error {
-	var res VMFolder
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMHost VM host
-//
-// swagger:model VMHost
-type VMHost struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM host
-func (m *VMHost) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMHost) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMHost) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM host based on context it is used
-func (m *VMHost) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMHost) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMHost) UnmarshalBinary(b []byte) error {
-	var res VMHost
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMLabelsItems0 VM labels items0
-//
-// swagger:model VMLabelsItems0
-type VMLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this VM labels items0
-func (m *VMLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM labels items0 based on context it is used
-func (m *VMLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res VMLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMSnapshotPlan VM snapshot plan
-//
-// swagger:model VMSnapshotPlan
-type VMSnapshotPlan struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM snapshot plan
-func (m *VMSnapshotPlan) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMSnapshotPlan) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("snapshot_plan"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMSnapshotPlan) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("snapshot_plan"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM snapshot plan based on context it is used
-func (m *VMSnapshotPlan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMSnapshotPlan) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMSnapshotPlan) UnmarshalBinary(b []byte) error {
-	var res VMSnapshotPlan
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMSnapshotsItems0 VM snapshots items0
-//
-// swagger:model VMSnapshotsItems0
-type VMSnapshotsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM snapshots items0
-func (m *VMSnapshotsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMSnapshotsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMSnapshotsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM snapshots items0 based on context it is used
-func (m *VMSnapshotsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMSnapshotsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMSnapshotsItems0) UnmarshalBinary(b []byte) error {
-	var res VMSnapshotsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMUsbDevicesItems0 VM usb devices items0
-//
-// swagger:model VMUsbDevicesItems0
-type VMUsbDevicesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM usb devices items0
-func (m *VMUsbDevicesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMUsbDevicesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMUsbDevicesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM usb devices items0 based on context it is used
-func (m *VMUsbDevicesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMUsbDevicesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMUsbDevicesItems0) UnmarshalBinary(b []byte) error {
-	var res VMUsbDevicesItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMVMDisksItems0 VM VM disks items0
-//
-// swagger:model VMVMDisksItems0
-type VMVMDisksItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this VM VM disks items0
-func (m *VMVMDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMVMDisksItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM VM disks items0 based on context it is used
-func (m *VMVMDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMVMDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMVMDisksItems0) UnmarshalBinary(b []byte) error {
-	var res VMVMDisksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMVMNicsItems0 VM VM nics items0
-//
-// swagger:model VMVMNicsItems0
-type VMVMNicsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this VM VM nics items0
-func (m *VMVMNicsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMVMNicsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM VM nics items0 based on context it is used
-func (m *VMVMNicsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMVMNicsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMVMNicsItems0) UnmarshalBinary(b []byte) error {
-	var res VMVMNicsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMVMPlacementGroupItems0 VM VM placement group items0
-//
-// swagger:model VMVMPlacementGroupItems0
-type VMVMPlacementGroupItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM VM placement group items0
-func (m *VMVMPlacementGroupItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMVMPlacementGroupItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMVMPlacementGroupItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM VM placement group items0 based on context it is used
-func (m *VMVMPlacementGroupItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMVMPlacementGroupItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMVMPlacementGroupItems0) UnmarshalBinary(b []byte) error {
-	var res VMVMPlacementGroupItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

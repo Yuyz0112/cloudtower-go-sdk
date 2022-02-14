@@ -22,7 +22,7 @@ type VMVolume struct {
 
 	// cluster
 	// Required: true
-	Cluster *VMVolumeCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -42,7 +42,7 @@ type VMVolume struct {
 	ID *string `json:"id"`
 
 	// labels
-	Labels []*VMVolumeLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local created at
 	// Required: true
@@ -53,7 +53,7 @@ type VMVolume struct {
 	LocalID *string `json:"local_id"`
 
 	// lun
-	Lun *VMVolumeLun `json:"lun,omitempty"`
+	Lun interface{} `json:"lun,omitempty"`
 
 	// mounting
 	// Required: true
@@ -79,7 +79,7 @@ type VMVolume struct {
 	UniqueSize *float64 `json:"unique_size,omitempty"`
 
 	// vm disks
-	VMDisks []*VMVolumeVMDisksItems0 `json:"vm_disks,omitempty"`
+	VMDisks []*NestedVMDisk `json:"vm_disks,omitempty"`
 }
 
 // Validate validates this Vm volume
@@ -107,10 +107,6 @@ func (m *VMVolume) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLocalID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLun(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -235,23 +231,6 @@ func (m *VMVolume) validateLocalID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *VMVolume) validateLun(formats strfmt.Registry) error {
-	if swag.IsZero(m.Lun) { // not required
-		return nil
-	}
-
-	if m.Lun != nil {
-		if err := m.Lun.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("lun")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *VMVolume) validateMounting(formats strfmt.Registry) error {
 
 	if err := validate.Required("mounting", "body", m.Mounting); err != nil {
@@ -337,10 +316,6 @@ func (m *VMVolume) ContextValidate(ctx context.Context, formats strfmt.Registry)
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateLun(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateVMDisks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -397,20 +372,6 @@ func (m *VMVolume) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 	return nil
 }
 
-func (m *VMVolume) contextValidateLun(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Lun != nil {
-		if err := m.Lun.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("lun")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *VMVolume) contextValidateVMDisks(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.VMDisks); i++ {
@@ -440,264 +401,6 @@ func (m *VMVolume) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMVolume) UnmarshalBinary(b []byte) error {
 	var res VMVolume
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMVolumeCluster VM volume cluster
-//
-// swagger:model VMVolumeCluster
-type VMVolumeCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM volume cluster
-func (m *VMVolumeCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMVolumeCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMVolumeCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM volume cluster based on context it is used
-func (m *VMVolumeCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMVolumeCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMVolumeCluster) UnmarshalBinary(b []byte) error {
-	var res VMVolumeCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMVolumeLabelsItems0 VM volume labels items0
-//
-// swagger:model VMVolumeLabelsItems0
-type VMVolumeLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this VM volume labels items0
-func (m *VMVolumeLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMVolumeLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM volume labels items0 based on context it is used
-func (m *VMVolumeLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMVolumeLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMVolumeLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res VMVolumeLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMVolumeLun VM volume lun
-//
-// swagger:model VMVolumeLun
-type VMVolumeLun struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM volume lun
-func (m *VMVolumeLun) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMVolumeLun) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("lun"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMVolumeLun) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("lun"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM volume lun based on context it is used
-func (m *VMVolumeLun) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMVolumeLun) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMVolumeLun) UnmarshalBinary(b []byte) error {
-	var res VMVolumeLun
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMVolumeVMDisksItems0 VM volume VM disks items0
-//
-// swagger:model VMVolumeVMDisksItems0
-type VMVolumeVMDisksItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this VM volume VM disks items0
-func (m *VMVolumeVMDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMVolumeVMDisksItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM volume VM disks items0 based on context it is used
-func (m *VMVolumeVMDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMVolumeVMDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMVolumeVMDisksItems0) UnmarshalBinary(b []byte) error {
-	var res VMVolumeVMDisksItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

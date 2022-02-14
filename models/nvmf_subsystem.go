@@ -49,7 +49,7 @@ type NvmfSubsystem struct {
 
 	// cluster
 	// Required: true
-	Cluster *NvmfSubsystemCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// description
 	// Required: true
@@ -105,7 +105,7 @@ type NvmfSubsystem struct {
 	IPWhitelist *string `json:"ip_whitelist"`
 
 	// labels
-	Labels []*NvmfSubsystemLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local id
 	// Required: true
@@ -116,10 +116,10 @@ type NvmfSubsystem struct {
 	Name *string `json:"name"`
 
 	// namespace groups
-	NamespaceGroups []*NvmfSubsystemNamespaceGroupsItems0 `json:"namespace_groups,omitempty"`
+	NamespaceGroups []*NestedNamespaceGroup `json:"namespace_groups,omitempty"`
 
 	// namespaces
-	Namespaces []*NvmfSubsystemNamespacesItems0 `json:"namespaces,omitempty"`
+	Namespaces []*NestedNvmfNamespace `json:"namespaces,omitempty"`
 
 	// nqn name
 	// Required: true
@@ -135,11 +135,11 @@ type NvmfSubsystem struct {
 
 	// replica num
 	// Required: true
-	ReplicaNum *float64 `json:"replica_num"`
+	ReplicaNum *int32 `json:"replica_num"`
 
 	// stripe num
 	// Required: true
-	StripeNum *float64 `json:"stripe_num"`
+	StripeNum *int32 `json:"stripe_num"`
 
 	// stripe size
 	// Required: true
@@ -584,281 +584,6 @@ func (m *NvmfSubsystem) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NvmfSubsystem) UnmarshalBinary(b []byte) error {
 	var res NvmfSubsystem
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NvmfSubsystemCluster nvmf subsystem cluster
-//
-// swagger:model NvmfSubsystemCluster
-type NvmfSubsystemCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nvmf subsystem cluster
-func (m *NvmfSubsystemCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NvmfSubsystemCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NvmfSubsystemCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nvmf subsystem cluster based on context it is used
-func (m *NvmfSubsystemCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NvmfSubsystemCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NvmfSubsystemCluster) UnmarshalBinary(b []byte) error {
-	var res NvmfSubsystemCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NvmfSubsystemLabelsItems0 nvmf subsystem labels items0
-//
-// swagger:model NvmfSubsystemLabelsItems0
-type NvmfSubsystemLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this nvmf subsystem labels items0
-func (m *NvmfSubsystemLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NvmfSubsystemLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nvmf subsystem labels items0 based on context it is used
-func (m *NvmfSubsystemLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NvmfSubsystemLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NvmfSubsystemLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res NvmfSubsystemLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NvmfSubsystemNamespaceGroupsItems0 nvmf subsystem namespace groups items0
-//
-// swagger:model NvmfSubsystemNamespaceGroupsItems0
-type NvmfSubsystemNamespaceGroupsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nvmf subsystem namespace groups items0
-func (m *NvmfSubsystemNamespaceGroupsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NvmfSubsystemNamespaceGroupsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NvmfSubsystemNamespaceGroupsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nvmf subsystem namespace groups items0 based on context it is used
-func (m *NvmfSubsystemNamespaceGroupsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NvmfSubsystemNamespaceGroupsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NvmfSubsystemNamespaceGroupsItems0) UnmarshalBinary(b []byte) error {
-	var res NvmfSubsystemNamespaceGroupsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NvmfSubsystemNamespacesItems0 nvmf subsystem namespaces items0
-//
-// swagger:model NvmfSubsystemNamespacesItems0
-type NvmfSubsystemNamespacesItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nvmf subsystem namespaces items0
-func (m *NvmfSubsystemNamespacesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NvmfSubsystemNamespacesItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NvmfSubsystemNamespacesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nvmf subsystem namespaces items0 based on context it is used
-func (m *NvmfSubsystemNamespacesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NvmfSubsystemNamespacesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NvmfSubsystemNamespacesItems0) UnmarshalBinary(b []byte) error {
-	var res NvmfSubsystemNamespacesItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

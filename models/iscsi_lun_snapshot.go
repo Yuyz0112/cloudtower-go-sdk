@@ -21,7 +21,7 @@ import (
 type IscsiLunSnapshot struct {
 
 	// consistency group snapshot
-	ConsistencyGroupSnapshot *IscsiLunSnapshotConsistencyGroupSnapshot `json:"consistency_group_snapshot,omitempty"`
+	ConsistencyGroupSnapshot interface{} `json:"consistency_group_snapshot,omitempty"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
@@ -31,14 +31,14 @@ type IscsiLunSnapshot struct {
 	ID *string `json:"id"`
 
 	// iscsi lun
-	IscsiLun *IscsiLunSnapshotIscsiLun `json:"iscsi_lun,omitempty"`
+	IscsiLun interface{} `json:"iscsi_lun,omitempty"`
 
 	// iscsi target
 	// Required: true
-	IscsiTarget *IscsiLunSnapshotIscsiTarget `json:"iscsi_target"`
+	IscsiTarget *NestedIscsiTarget `json:"iscsi_target"`
 
 	// labels
-	Labels []*IscsiLunSnapshotLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local created at
 	// Required: true
@@ -61,15 +61,7 @@ type IscsiLunSnapshot struct {
 func (m *IscsiLunSnapshot) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateConsistencyGroupSnapshot(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateIscsiLun(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -103,44 +95,10 @@ func (m *IscsiLunSnapshot) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *IscsiLunSnapshot) validateConsistencyGroupSnapshot(formats strfmt.Registry) error {
-	if swag.IsZero(m.ConsistencyGroupSnapshot) { // not required
-		return nil
-	}
-
-	if m.ConsistencyGroupSnapshot != nil {
-		if err := m.ConsistencyGroupSnapshot.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("consistency_group_snapshot")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *IscsiLunSnapshot) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiLunSnapshot) validateIscsiLun(formats strfmt.Registry) error {
-	if swag.IsZero(m.IscsiLun) { // not required
-		return nil
-	}
-
-	if m.IscsiLun != nil {
-		if err := m.IscsiLun.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("iscsi_lun")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -228,14 +186,6 @@ func (m *IscsiLunSnapshot) validateUniqueSize(formats strfmt.Registry) error {
 func (m *IscsiLunSnapshot) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateConsistencyGroupSnapshot(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateIscsiLun(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateIscsiTarget(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -247,34 +197,6 @@ func (m *IscsiLunSnapshot) ContextValidate(ctx context.Context, formats strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *IscsiLunSnapshot) contextValidateConsistencyGroupSnapshot(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.ConsistencyGroupSnapshot != nil {
-		if err := m.ConsistencyGroupSnapshot.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("consistency_group_snapshot")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IscsiLunSnapshot) contextValidateIscsiLun(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.IscsiLun != nil {
-		if err := m.IscsiLun.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("iscsi_lun")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -321,281 +243,6 @@ func (m *IscsiLunSnapshot) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *IscsiLunSnapshot) UnmarshalBinary(b []byte) error {
 	var res IscsiLunSnapshot
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiLunSnapshotConsistencyGroupSnapshot iscsi lun snapshot consistency group snapshot
-//
-// swagger:model IscsiLunSnapshotConsistencyGroupSnapshot
-type IscsiLunSnapshotConsistencyGroupSnapshot struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi lun snapshot consistency group snapshot
-func (m *IscsiLunSnapshotConsistencyGroupSnapshot) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiLunSnapshotConsistencyGroupSnapshot) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistency_group_snapshot"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiLunSnapshotConsistencyGroupSnapshot) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("consistency_group_snapshot"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi lun snapshot consistency group snapshot based on context it is used
-func (m *IscsiLunSnapshotConsistencyGroupSnapshot) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiLunSnapshotConsistencyGroupSnapshot) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiLunSnapshotConsistencyGroupSnapshot) UnmarshalBinary(b []byte) error {
-	var res IscsiLunSnapshotConsistencyGroupSnapshot
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiLunSnapshotIscsiLun iscsi lun snapshot iscsi lun
-//
-// swagger:model IscsiLunSnapshotIscsiLun
-type IscsiLunSnapshotIscsiLun struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi lun snapshot iscsi lun
-func (m *IscsiLunSnapshotIscsiLun) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiLunSnapshotIscsiLun) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("iscsi_lun"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiLunSnapshotIscsiLun) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("iscsi_lun"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi lun snapshot iscsi lun based on context it is used
-func (m *IscsiLunSnapshotIscsiLun) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiLunSnapshotIscsiLun) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiLunSnapshotIscsiLun) UnmarshalBinary(b []byte) error {
-	var res IscsiLunSnapshotIscsiLun
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiLunSnapshotIscsiTarget iscsi lun snapshot iscsi target
-//
-// swagger:model IscsiLunSnapshotIscsiTarget
-type IscsiLunSnapshotIscsiTarget struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this iscsi lun snapshot iscsi target
-func (m *IscsiLunSnapshotIscsiTarget) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiLunSnapshotIscsiTarget) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("iscsi_target"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IscsiLunSnapshotIscsiTarget) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("iscsi_target"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi lun snapshot iscsi target based on context it is used
-func (m *IscsiLunSnapshotIscsiTarget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiLunSnapshotIscsiTarget) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiLunSnapshotIscsiTarget) UnmarshalBinary(b []byte) error {
-	var res IscsiLunSnapshotIscsiTarget
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// IscsiLunSnapshotLabelsItems0 iscsi lun snapshot labels items0
-//
-// swagger:model IscsiLunSnapshotLabelsItems0
-type IscsiLunSnapshotLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this iscsi lun snapshot labels items0
-func (m *IscsiLunSnapshotLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *IscsiLunSnapshotLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this iscsi lun snapshot labels items0 based on context it is used
-func (m *IscsiLunSnapshotLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *IscsiLunSnapshotLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *IscsiLunSnapshotLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res IscsiLunSnapshotLabelsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

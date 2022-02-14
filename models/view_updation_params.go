@@ -153,7 +153,7 @@ type ViewUpdationParamsData struct {
 	Name string `json:"name,omitempty"`
 
 	// time span
-	TimeSpan float64 `json:"time_span,omitempty"`
+	TimeSpan int32 `json:"time_span,omitempty"`
 
 	// time unit
 	TimeUnit TimeUnit `json:"time_unit,omitempty"`

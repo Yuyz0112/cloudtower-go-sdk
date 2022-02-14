@@ -21,7 +21,7 @@ type ClusterImage struct {
 
 	// cluster
 	// Required: true
-	Cluster *ClusterImageCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
@@ -46,9 +46,19 @@ type ClusterImage struct {
 	// Required: true
 	Size *float64 `json:"size"`
 
+	// upgrade from
+	// Required: true
+	UpgradeFrom []string `json:"upgrade_from"`
+
+	// upgrade tool version
+	UpgradeToolVersion *string `json:"upgrade_tool_version,omitempty"`
+
 	// version
 	// Required: true
 	Version *string `json:"version"`
+
+	// zbs version
+	ZbsVersion *string `json:"zbs_version,omitempty"`
 }
 
 // Validate validates this cluster image
@@ -76,6 +86,10 @@ func (m *ClusterImage) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSize(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpgradeFrom(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -152,6 +166,15 @@ func (m *ClusterImage) validateSize(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ClusterImage) validateUpgradeFrom(formats strfmt.Registry) error {
+
+	if err := validate.Required("upgrade_from", "body", m.UpgradeFrom); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ClusterImage) validateVersion(formats strfmt.Registry) error {
 
 	if err := validate.Required("version", "body", m.Version); err != nil {
@@ -200,79 +223,6 @@ func (m *ClusterImage) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ClusterImage) UnmarshalBinary(b []byte) error {
 	var res ClusterImage
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ClusterImageCluster cluster image cluster
-//
-// swagger:model ClusterImageCluster
-type ClusterImageCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this cluster image cluster
-func (m *ClusterImageCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ClusterImageCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ClusterImageCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this cluster image cluster based on context it is used
-func (m *ClusterImageCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ClusterImageCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ClusterImageCluster) UnmarshalBinary(b []byte) error {
-	var res ClusterImageCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

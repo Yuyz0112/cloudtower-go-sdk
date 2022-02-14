@@ -21,7 +21,7 @@ type ZoneConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ZoneConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateZone `json:"aggregate"`
 }
 
 // Validate validates this zone connection
@@ -95,62 +95,6 @@ func (m *ZoneConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ZoneConnection) UnmarshalBinary(b []byte) error {
 	var res ZoneConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ZoneConnectionAggregate zone connection aggregate
-//
-// swagger:model ZoneConnectionAggregate
-type ZoneConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this zone connection aggregate
-func (m *ZoneConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ZoneConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this zone connection aggregate based on context it is used
-func (m *ZoneConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ZoneConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ZoneConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ZoneConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

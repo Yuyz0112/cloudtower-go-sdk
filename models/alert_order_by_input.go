@@ -32,6 +32,12 @@ const (
 	// AlertOrderByInputCauseDESC captures enum value "cause_DESC"
 	AlertOrderByInputCauseDESC AlertOrderByInput = "cause_DESC"
 
+	// AlertOrderByInputCreateTimeASC captures enum value "create_time_ASC"
+	AlertOrderByInputCreateTimeASC AlertOrderByInput = "create_time_ASC"
+
+	// AlertOrderByInputCreateTimeDESC captures enum value "create_time_DESC"
+	AlertOrderByInputCreateTimeDESC AlertOrderByInput = "create_time_DESC"
+
 	// AlertOrderByInputCreatedAtASC captures enum value "createdAt_ASC"
 	AlertOrderByInputCreatedAtASC AlertOrderByInput = "createdAt_ASC"
 
@@ -134,7 +140,7 @@ var alertOrderByInputEnum []interface{}
 
 func init() {
 	var res []AlertOrderByInput
-	if err := json.Unmarshal([]byte(`["cause_ASC","cause_DESC","createdAt_ASC","createdAt_DESC","ended_ASC","ended_DESC","id_ASC","id_DESC","impact_ASC","impact_DESC","labels_ASC","labels_DESC","local_create_time_ASC","local_create_time_DESC","local_end_time_ASC","local_end_time_DESC","local_id_ASC","local_id_DESC","local_start_time_ASC","local_start_time_DESC","local_update_time_ASC","local_update_time_DESC","message_ASC","message_DESC","severity_ASC","severity_DESC","solution_ASC","solution_DESC","threshold_ASC","threshold_DESC","updatedAt_ASC","updatedAt_DESC","value_ASC","value_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["cause_ASC","cause_DESC","create_time_ASC","create_time_DESC","createdAt_ASC","createdAt_DESC","ended_ASC","ended_DESC","id_ASC","id_DESC","impact_ASC","impact_DESC","labels_ASC","labels_DESC","local_create_time_ASC","local_create_time_DESC","local_end_time_ASC","local_end_time_DESC","local_id_ASC","local_id_DESC","local_start_time_ASC","local_start_time_DESC","local_update_time_ASC","local_update_time_DESC","message_ASC","message_DESC","severity_ASC","severity_DESC","solution_ASC","solution_DESC","threshold_ASC","threshold_DESC","updatedAt_ASC","updatedAt_DESC","value_ASC","value_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

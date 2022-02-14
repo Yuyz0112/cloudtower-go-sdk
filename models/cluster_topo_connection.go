@@ -21,7 +21,7 @@ type ClusterTopoConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ClusterTopoConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateClusterTopo `json:"aggregate"`
 }
 
 // Validate validates this cluster topo connection
@@ -95,62 +95,6 @@ func (m *ClusterTopoConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ClusterTopoConnection) UnmarshalBinary(b []byte) error {
 	var res ClusterTopoConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ClusterTopoConnectionAggregate cluster topo connection aggregate
-//
-// swagger:model ClusterTopoConnectionAggregate
-type ClusterTopoConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this cluster topo connection aggregate
-func (m *ClusterTopoConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ClusterTopoConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this cluster topo connection aggregate based on context it is used
-func (m *ClusterTopoConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ClusterTopoConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ClusterTopoConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ClusterTopoConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

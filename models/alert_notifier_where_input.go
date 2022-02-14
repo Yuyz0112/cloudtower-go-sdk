@@ -15,6 +15,7 @@ import (
 )
 
 // AlertNotifierWhereInput alert notifier where input
+// Example: {"AND":"AlertNotifierWhereInput[]","NOT":"AlertNotifierWhereInput[]","OR":"AlertNotifierWhereInput[]","disabled":false,"disabled_not":false,"email_from":"string","email_from_contains":"string","email_from_ends_with":"string","email_from_gt":"string","email_from_gte":"string","email_from_in":["string"],"email_from_lt":"string","email_from_lte":"string","email_from_not":"string","email_from_not_contains":"string","email_from_not_ends_with":"string","email_from_not_in":["string"],"email_from_not_starts_with":"string","email_from_starts_with":"string","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","language_code":"EN_US","language_code_in":["EN_US"],"language_code_not":"EN_US","language_code_not_in":["EN_US"],"password":"string","password_contains":"string","password_ends_with":"string","password_gt":"string","password_gte":"string","password_in":["string"],"password_lt":"string","password_lte":"string","password_not":"string","password_not_contains":"string","password_not_ends_with":"string","password_not_in":["string"],"password_not_starts_with":"string","password_starts_with":"string","security_mode":"SSL","security_mode_in":["SSL"],"security_mode_not":"SSL","security_mode_not_in":["SSL"],"smtp_server_host":"string","smtp_server_host_contains":"string","smtp_server_host_ends_with":"string","smtp_server_host_gt":"string","smtp_server_host_gte":"string","smtp_server_host_in":["string"],"smtp_server_host_lt":"string","smtp_server_host_lte":"string","smtp_server_host_not":"string","smtp_server_host_not_contains":"string","smtp_server_host_not_ends_with":"string","smtp_server_host_not_in":["string"],"smtp_server_host_not_starts_with":"string","smtp_server_host_starts_with":"string","smtp_server_port":0,"smtp_server_port_gt":0,"smtp_server_port_gte":0,"smtp_server_port_in":[0],"smtp_server_port_lt":0,"smtp_server_port_lte":0,"smtp_server_port_not":0,"smtp_server_port_not_in":[0],"username":"string","username_contains":"string","username_ends_with":"string","username_gt":"string","username_gte":"string","username_in":["string"],"username_lt":"string","username_lte":"string","username_not":"string","username_not_contains":"string","username_not_ends_with":"string","username_not_in":["string"],"username_not_starts_with":"string","username_starts_with":"string"}
 //
 // swagger:model AlertNotifierWhereInput
 type AlertNotifierWhereInput struct {
@@ -227,28 +228,28 @@ type AlertNotifierWhereInput struct {
 	SMTPServerHostStartsWith *string `json:"smtp_server_host_starts_with,omitempty"`
 
 	// smtp server port
-	SMTPServerPort *float64 `json:"smtp_server_port,omitempty"`
+	SMTPServerPort *int32 `json:"smtp_server_port,omitempty"`
 
 	// smtp server port gt
-	SMTPServerPortGt *float64 `json:"smtp_server_port_gt,omitempty"`
+	SMTPServerPortGt *int32 `json:"smtp_server_port_gt,omitempty"`
 
 	// smtp server port gte
-	SMTPServerPortGte *float64 `json:"smtp_server_port_gte,omitempty"`
+	SMTPServerPortGte *int32 `json:"smtp_server_port_gte,omitempty"`
 
 	// smtp server port in
-	SMTPServerPortIn []float64 `json:"smtp_server_port_in,omitempty"`
+	SMTPServerPortIn []int32 `json:"smtp_server_port_in,omitempty"`
 
 	// smtp server port lt
-	SMTPServerPortLt *float64 `json:"smtp_server_port_lt,omitempty"`
+	SMTPServerPortLt *int32 `json:"smtp_server_port_lt,omitempty"`
 
 	// smtp server port lte
-	SMTPServerPortLte *float64 `json:"smtp_server_port_lte,omitempty"`
+	SMTPServerPortLte *int32 `json:"smtp_server_port_lte,omitempty"`
 
 	// smtp server port not
-	SMTPServerPortNot *float64 `json:"smtp_server_port_not,omitempty"`
+	SMTPServerPortNot *int32 `json:"smtp_server_port_not,omitempty"`
 
 	// smtp server port not in
-	SMTPServerPortNotIn []float64 `json:"smtp_server_port_not_in,omitempty"`
+	SMTPServerPortNotIn []int32 `json:"smtp_server_port_not_in,omitempty"`
 
 	// username
 	Username *string `json:"username,omitempty"`

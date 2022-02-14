@@ -21,7 +21,7 @@ type DatacenterConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *DatacenterConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateDatacenter `json:"aggregate"`
 }
 
 // Validate validates this datacenter connection
@@ -95,62 +95,6 @@ func (m *DatacenterConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *DatacenterConnection) UnmarshalBinary(b []byte) error {
 	var res DatacenterConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DatacenterConnectionAggregate datacenter connection aggregate
-//
-// swagger:model DatacenterConnectionAggregate
-type DatacenterConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this datacenter connection aggregate
-func (m *DatacenterConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DatacenterConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this datacenter connection aggregate based on context it is used
-func (m *DatacenterConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DatacenterConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DatacenterConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res DatacenterConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

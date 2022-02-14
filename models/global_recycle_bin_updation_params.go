@@ -19,20 +19,20 @@ import (
 // swagger:model GlobalRecycleBinUpdationParams
 type GlobalRecycleBinUpdationParams struct {
 
-	// enaled
+	// enabled
 	// Required: true
-	Enaled *bool `json:"enaled"`
+	Enabled *bool `json:"enabled"`
 
 	// retain
 	// Required: true
-	Retain *float64 `json:"retain"`
+	Retain *int32 `json:"retain"`
 }
 
 // Validate validates this global recycle bin updation params
 func (m *GlobalRecycleBinUpdationParams) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateEnaled(formats); err != nil {
+	if err := m.validateEnabled(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,9 +46,9 @@ func (m *GlobalRecycleBinUpdationParams) Validate(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *GlobalRecycleBinUpdationParams) validateEnaled(formats strfmt.Registry) error {
+func (m *GlobalRecycleBinUpdationParams) validateEnabled(formats strfmt.Registry) error {
 
-	if err := validate.Required("enaled", "body", m.Enaled); err != nil {
+	if err := validate.Required("enabled", "body", m.Enabled); err != nil {
 		return err
 	}
 

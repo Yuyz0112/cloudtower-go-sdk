@@ -21,7 +21,7 @@ type NvmfNamespaceUpdationParams struct {
 
 	// data
 	// Required: true
-	Data interface{} `json:"data"`
+	Data NvmfNamespaceUpdationParamsData `json:"data"`
 
 	// where
 	// Required: true

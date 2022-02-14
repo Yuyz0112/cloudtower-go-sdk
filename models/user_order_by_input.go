@@ -44,6 +44,12 @@ const (
 	// UserOrderByInputIDDESC captures enum value "id_DESC"
 	UserOrderByInputIDDESC UserOrderByInput = "id_DESC"
 
+	// UserOrderByInputInternalASC captures enum value "internal_ASC"
+	UserOrderByInputInternalASC UserOrderByInput = "internal_ASC"
+
+	// UserOrderByInputInternalDESC captures enum value "internal_DESC"
+	UserOrderByInputInternalDESC UserOrderByInput = "internal_DESC"
+
 	// UserOrderByInputLdapDnASC captures enum value "ldap_dn_ASC"
 	UserOrderByInputLdapDnASC UserOrderByInput = "ldap_dn_ASC"
 
@@ -98,7 +104,7 @@ var userOrderByInputEnum []interface{}
 
 func init() {
 	var res []UserOrderByInput
-	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","email_address_ASC","email_address_DESC","id_ASC","id_DESC","ldap_dn_ASC","ldap_dn_DESC","mobile_phone_ASC","mobile_phone_DESC","name_ASC","name_DESC","password_ASC","password_DESC","role_ASC","role_DESC","source_ASC","source_DESC","updatedAt_ASC","updatedAt_DESC","username_ASC","username_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","email_address_ASC","email_address_DESC","id_ASC","id_DESC","internal_ASC","internal_DESC","ldap_dn_ASC","ldap_dn_DESC","mobile_phone_ASC","mobile_phone_DESC","name_ASC","name_DESC","password_ASC","password_DESC","role_ASC","role_DESC","source_ASC","source_DESC","updatedAt_ASC","updatedAt_DESC","username_ASC","username_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

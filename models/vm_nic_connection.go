@@ -21,7 +21,7 @@ type VMNicConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *VMNicConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateVMNic `json:"aggregate"`
 }
 
 // Validate validates this Vm nic connection
@@ -95,62 +95,6 @@ func (m *VMNicConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMNicConnection) UnmarshalBinary(b []byte) error {
 	var res VMNicConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMNicConnectionAggregate VM nic connection aggregate
-//
-// swagger:model VMNicConnectionAggregate
-type VMNicConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this VM nic connection aggregate
-func (m *VMNicConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMNicConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM nic connection aggregate based on context it is used
-func (m *VMNicConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMNicConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMNicConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res VMNicConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

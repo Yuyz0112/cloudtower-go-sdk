@@ -32,6 +32,12 @@ const (
 	// ClusterSettingsOrderByInputCreatedAtDESC captures enum value "createdAt_DESC"
 	ClusterSettingsOrderByInputCreatedAtDESC ClusterSettingsOrderByInput = "createdAt_DESC"
 
+	// ClusterSettingsOrderByInputDefaultHaASC captures enum value "default_ha_ASC"
+	ClusterSettingsOrderByInputDefaultHaASC ClusterSettingsOrderByInput = "default_ha_ASC"
+
+	// ClusterSettingsOrderByInputDefaultHaDESC captures enum value "default_ha_DESC"
+	ClusterSettingsOrderByInputDefaultHaDESC ClusterSettingsOrderByInput = "default_ha_DESC"
+
 	// ClusterSettingsOrderByInputIDASC captures enum value "id_ASC"
 	ClusterSettingsOrderByInputIDASC ClusterSettingsOrderByInput = "id_ASC"
 
@@ -56,7 +62,7 @@ var clusterSettingsOrderByInputEnum []interface{}
 
 func init() {
 	var res []ClusterSettingsOrderByInput
-	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","id_ASC","id_DESC","updatedAt_ASC","updatedAt_DESC","vm_recycle_bin_ASC","vm_recycle_bin_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["createdAt_ASC","createdAt_DESC","default_ha_ASC","default_ha_DESC","id_ASC","id_DESC","updatedAt_ASC","updatedAt_DESC","vm_recycle_bin_ASC","vm_recycle_bin_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

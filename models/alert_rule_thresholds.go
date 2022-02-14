@@ -25,7 +25,7 @@ type AlertRuleThresholds struct {
 
 	// value
 	// Required: true
-	Value *float64 `json:"value"`
+	Value *int32 `json:"value"`
 }
 
 // Validate validates this alert rule thresholds

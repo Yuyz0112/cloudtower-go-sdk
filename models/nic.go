@@ -31,7 +31,7 @@ type Nic struct {
 
 	// host
 	// Required: true
-	Host *NicHost `json:"host"`
+	Host *NestedHost `json:"host"`
 
 	// ibdev
 	Ibdev *string `json:"ibdev,omitempty"`
@@ -47,7 +47,7 @@ type Nic struct {
 	IsSriov *bool `json:"is_sriov,omitempty"`
 
 	// labels
-	Labels []*NicLabelsItems0 `json:"labels,omitempty"`
+	Labels []*NestedLabel `json:"labels,omitempty"`
 
 	// local id
 	// Required: true
@@ -58,14 +58,14 @@ type Nic struct {
 	MacAddress *string `json:"mac_address"`
 
 	// max vf num
-	MaxVfNum *float64 `json:"max_vf_num,omitempty"`
+	MaxVfNum *int32 `json:"max_vf_num,omitempty"`
 
 	// model
 	Model *string `json:"model,omitempty"`
 
 	// mtu
 	// Required: true
-	Mtu *float64 `json:"mtu"`
+	Mtu *int32 `json:"mtu"`
 
 	// name
 	// Required: true
@@ -92,7 +92,7 @@ type Nic struct {
 	SubnetMask *string `json:"subnet_mask,omitempty"`
 
 	// total vf num
-	TotalVfNum *float64 `json:"total_vf_num,omitempty"`
+	TotalVfNum *int32 `json:"total_vf_num,omitempty"`
 
 	// type
 	Type interface{} `json:"type,omitempty"`
@@ -102,10 +102,10 @@ type Nic struct {
 	Up *bool `json:"up"`
 
 	// used vf num
-	UsedVfNum *float64 `json:"used_vf_num,omitempty"`
+	UsedVfNum *int32 `json:"used_vf_num,omitempty"`
 
 	// vds
-	Vds *NicVds `json:"vds,omitempty"`
+	Vds interface{} `json:"vds,omitempty"`
 }
 
 // Validate validates this nic
@@ -149,10 +149,6 @@ func (m *Nic) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateUp(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateVds(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -276,23 +272,6 @@ func (m *Nic) validateUp(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Nic) validateVds(formats strfmt.Registry) error {
-	if swag.IsZero(m.Vds) { // not required
-		return nil
-	}
-
-	if m.Vds != nil {
-		if err := m.Vds.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vds")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this nic based on the context it is used
 func (m *Nic) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -302,10 +281,6 @@ func (m *Nic) ContextValidate(ctx context.Context, formats strfmt.Registry) erro
 	}
 
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateVds(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -347,20 +322,6 @@ func (m *Nic) contextValidateLabels(ctx context.Context, formats strfmt.Registry
 	return nil
 }
 
-func (m *Nic) contextValidateVds(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Vds != nil {
-		if err := m.Vds.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("vds")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // MarshalBinary interface implementation
 func (m *Nic) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -372,208 +333,6 @@ func (m *Nic) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Nic) UnmarshalBinary(b []byte) error {
 	var res Nic
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NicHost nic host
-//
-// swagger:model NicHost
-type NicHost struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nic host
-func (m *NicHost) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NicHost) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NicHost) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("host"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nic host based on context it is used
-func (m *NicHost) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NicHost) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NicHost) UnmarshalBinary(b []byte) error {
-	var res NicHost
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NicLabelsItems0 nic labels items0
-//
-// swagger:model NicLabelsItems0
-type NicLabelsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this nic labels items0
-func (m *NicLabelsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NicLabelsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nic labels items0 based on context it is used
-func (m *NicLabelsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NicLabelsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NicLabelsItems0) UnmarshalBinary(b []byte) error {
-	var res NicLabelsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NicVds nic vds
-//
-// swagger:model NicVds
-type NicVds struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this nic vds
-func (m *NicVds) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NicVds) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("vds"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NicVds) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("vds"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nic vds based on context it is used
-func (m *NicVds) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NicVds) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NicVds) UnmarshalBinary(b []byte) error {
-	var res NicVds
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

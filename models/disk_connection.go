@@ -21,7 +21,7 @@ type DiskConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *DiskConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateDisk `json:"aggregate"`
 }
 
 // Validate validates this disk connection
@@ -95,62 +95,6 @@ func (m *DiskConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *DiskConnection) UnmarshalBinary(b []byte) error {
 	var res DiskConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DiskConnectionAggregate disk connection aggregate
-//
-// swagger:model DiskConnectionAggregate
-type DiskConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this disk connection aggregate
-func (m *DiskConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiskConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this disk connection aggregate based on context it is used
-func (m *DiskConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DiskConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DiskConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res DiskConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

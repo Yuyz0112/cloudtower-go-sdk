@@ -21,7 +21,7 @@ type AlertRuleConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *AlertRuleConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateAlertRule `json:"aggregate"`
 }
 
 // Validate validates this alert rule connection
@@ -95,62 +95,6 @@ func (m *AlertRuleConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *AlertRuleConnection) UnmarshalBinary(b []byte) error {
 	var res AlertRuleConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertRuleConnectionAggregate alert rule connection aggregate
-//
-// swagger:model AlertRuleConnectionAggregate
-type AlertRuleConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this alert rule connection aggregate
-func (m *AlertRuleConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertRuleConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert rule connection aggregate based on context it is used
-func (m *AlertRuleConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertRuleConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertRuleConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res AlertRuleConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

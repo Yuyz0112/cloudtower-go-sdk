@@ -28,11 +28,11 @@ type DiscoveredHost struct {
 	Deployed *bool `json:"deployed,omitempty"`
 
 	// dimms
-	Dimms []*DiscoveredHostDimmsItems0 `json:"dimms,omitempty"`
+	Dimms []*NestedDiscoveredHostDimms `json:"dimms,omitempty"`
 
 	// disks
 	// Required: true
-	Disks []*DiscoveredHostDisksItems0 `json:"disks"`
+	Disks []*NestedDiscoveredHostDisk `json:"disks"`
 
 	// host ip
 	// Required: true
@@ -48,7 +48,7 @@ type DiscoveredHost struct {
 
 	// ifaces
 	// Required: true
-	Ifaces []*DiscoveredHostIfacesItems0 `json:"ifaces"`
+	Ifaces []*NestedDiscoveredHostIface `json:"ifaces"`
 
 	// ipmi ip
 	IpmiIP *string `json:"ipmi_ip,omitempty"`
@@ -56,9 +56,16 @@ type DiscoveredHost struct {
 	// is os in raid1
 	IsOsInRaid1 *bool `json:"is_os_in_raid1,omitempty"`
 
+	// product
+	Product *string `json:"product,omitempty"`
+
 	// serial
 	// Required: true
 	Serial *string `json:"serial"`
+
+	// sockets
+	// Required: true
+	Sockets *int32 `json:"sockets"`
 
 	// version
 	// Required: true
@@ -98,6 +105,10 @@ func (m *DiscoveredHost) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSerial(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSockets(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -230,6 +241,15 @@ func (m *DiscoveredHost) validateSerial(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *DiscoveredHost) validateSockets(formats strfmt.Registry) error {
+
+	if err := validate.Required("sockets", "body", m.Sockets); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *DiscoveredHost) validateVersion(formats strfmt.Registry) error {
 
 	if err := validate.Required("version", "body", m.Version); err != nil {
@@ -326,407 +346,6 @@ func (m *DiscoveredHost) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *DiscoveredHost) UnmarshalBinary(b []byte) error {
 	var res DiscoveredHost
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DiscoveredHostDimmsItems0 discovered host dimms items0
-//
-// swagger:model DiscoveredHostDimmsItems0
-type DiscoveredHostDimmsItems0 struct {
-
-	// dimm id
-	// Required: true
-	DimmID *string `json:"dimm_id"`
-
-	// fw version
-	// Required: true
-	FwVersion *string `json:"fw_version"`
-
-	// health status
-	// Required: true
-	HealthStatus *string `json:"health_status"`
-
-	// socket id
-	// Required: true
-	SocketID *string `json:"socket_id"`
-}
-
-// Validate validates this discovered host dimms items0
-func (m *DiscoveredHostDimmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateDimmID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateFwVersion(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateHealthStatus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSocketID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiscoveredHostDimmsItems0) validateDimmID(formats strfmt.Registry) error {
-
-	if err := validate.Required("dimm_id", "body", m.DimmID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostDimmsItems0) validateFwVersion(formats strfmt.Registry) error {
-
-	if err := validate.Required("fw_version", "body", m.FwVersion); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostDimmsItems0) validateHealthStatus(formats strfmt.Registry) error {
-
-	if err := validate.Required("health_status", "body", m.HealthStatus); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostDimmsItems0) validateSocketID(formats strfmt.Registry) error {
-
-	if err := validate.Required("socket_id", "body", m.SocketID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this discovered host dimms items0 based on context it is used
-func (m *DiscoveredHostDimmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DiscoveredHostDimmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DiscoveredHostDimmsItems0) UnmarshalBinary(b []byte) error {
-	var res DiscoveredHostDimmsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DiscoveredHostDisksItems0 discovered host disks items0
-//
-// swagger:model DiscoveredHostDisksItems0
-type DiscoveredHostDisksItems0 struct {
-
-	// dimm ids
-	DimmIds []string `json:"dimm_ids"`
-
-	// drive
-	// Required: true
-	Drive *string `json:"drive"`
-
-	// function
-	Function interface{} `json:"function,omitempty"`
-
-	// model
-	// Required: true
-	Model *string `json:"model"`
-
-	// numa node
-	NumaNode *float64 `json:"numa_node,omitempty"`
-
-	// persistent memory type
-	PersistentMemoryType *string `json:"persistent_memory_type,omitempty"`
-
-	// serial
-	// Required: true
-	Serial *string `json:"serial"`
-
-	// size
-	// Required: true
-	Size *float64 `json:"size"`
-
-	// type
-	// Required: true
-	Type *DiskType `json:"type"`
-}
-
-// Validate validates this discovered host disks items0
-func (m *DiscoveredHostDisksItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateDrive(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateModel(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSerial(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSize(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiscoveredHostDisksItems0) validateDrive(formats strfmt.Registry) error {
-
-	if err := validate.Required("drive", "body", m.Drive); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostDisksItems0) validateModel(formats strfmt.Registry) error {
-
-	if err := validate.Required("model", "body", m.Model); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostDisksItems0) validateSerial(formats strfmt.Registry) error {
-
-	if err := validate.Required("serial", "body", m.Serial); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostDisksItems0) validateSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("size", "body", m.Size); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostDisksItems0) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	if m.Type != nil {
-		if err := m.Type.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("type")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this discovered host disks items0 based on the context it is used
-func (m *DiscoveredHostDisksItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateType(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiscoveredHostDisksItems0) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Type != nil {
-		if err := m.Type.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("type")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DiscoveredHostDisksItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DiscoveredHostDisksItems0) UnmarshalBinary(b []byte) error {
-	var res DiscoveredHostDisksItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DiscoveredHostIfacesItems0 discovered host ifaces items0
-//
-// swagger:model DiscoveredHostIfacesItems0
-type DiscoveredHostIfacesItems0 struct {
-
-	// ipv4
-	IPV4 *string `json:"ipv4,omitempty"`
-
-	// ipv6
-	IPV6 *string `json:"ipv6,omitempty"`
-
-	// mac address
-	// Required: true
-	MacAddress *string `json:"mac_address"`
-
-	// mtu
-	// Required: true
-	Mtu *float64 `json:"mtu"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-
-	// pci slot name
-	PciSlotName *string `json:"pci_slot_name,omitempty"`
-
-	// rdma enabled
-	RdmaEnabled *bool `json:"rdma_enabled,omitempty"`
-
-	// speed
-	Speed *float64 `json:"speed,omitempty"`
-
-	// up
-	// Required: true
-	Up *bool `json:"up"`
-}
-
-// Validate validates this discovered host ifaces items0
-func (m *DiscoveredHostIfacesItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateMacAddress(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMtu(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUp(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DiscoveredHostIfacesItems0) validateMacAddress(formats strfmt.Registry) error {
-
-	if err := validate.Required("mac_address", "body", m.MacAddress); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostIfacesItems0) validateMtu(formats strfmt.Registry) error {
-
-	if err := validate.Required("mtu", "body", m.Mtu); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostIfacesItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DiscoveredHostIfacesItems0) validateUp(formats strfmt.Registry) error {
-
-	if err := validate.Required("up", "body", m.Up); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this discovered host ifaces items0 based on context it is used
-func (m *DiscoveredHostIfacesItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DiscoveredHostIfacesItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DiscoveredHostIfacesItems0) UnmarshalBinary(b []byte) error {
-	var res DiscoveredHostIfacesItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

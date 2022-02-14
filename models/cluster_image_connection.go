@@ -21,7 +21,7 @@ type ClusterImageConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ClusterImageConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateClusterImage `json:"aggregate"`
 }
 
 // Validate validates this cluster image connection
@@ -95,62 +95,6 @@ func (m *ClusterImageConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ClusterImageConnection) UnmarshalBinary(b []byte) error {
 	var res ClusterImageConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ClusterImageConnectionAggregate cluster image connection aggregate
-//
-// swagger:model ClusterImageConnectionAggregate
-type ClusterImageConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this cluster image connection aggregate
-func (m *ClusterImageConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ClusterImageConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this cluster image connection aggregate based on context it is used
-func (m *ClusterImageConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ClusterImageConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ClusterImageConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ClusterImageConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

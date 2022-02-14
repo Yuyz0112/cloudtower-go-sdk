@@ -21,7 +21,7 @@ type ElfDataStoreConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ElfDataStoreConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateElfDataStore `json:"aggregate"`
 }
 
 // Validate validates this elf data store connection
@@ -95,62 +95,6 @@ func (m *ElfDataStoreConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ElfDataStoreConnection) UnmarshalBinary(b []byte) error {
 	var res ElfDataStoreConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ElfDataStoreConnectionAggregate elf data store connection aggregate
-//
-// swagger:model ElfDataStoreConnectionAggregate
-type ElfDataStoreConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this elf data store connection aggregate
-func (m *ElfDataStoreConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ElfDataStoreConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this elf data store connection aggregate based on context it is used
-func (m *ElfDataStoreConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ElfDataStoreConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ElfDataStoreConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ElfDataStoreConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

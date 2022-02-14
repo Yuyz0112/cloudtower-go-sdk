@@ -13,6 +13,7 @@ import (
 )
 
 // GetNamespaceGroupsRequestBody get namespace groups request body
+// Example: {"after":"namespaceGroups-id-string","before":"namespaceGroups-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"NamespaceGroupWhereInput[]","NOT":"NamespaceGroupWhereInput[]","OR":"NamespaceGroupWhereInput[]","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","labels_every":"LabelWhereInput","labels_none":"LabelWhereInput","labels_some":"LabelWhereInput","local_create_time":"string","local_create_time_gt":"string","local_create_time_gte":"string","local_create_time_in":["string"],"local_create_time_lt":"string","local_create_time_lte":"string","local_create_time_not":"string","local_create_time_not_in":["string"],"local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","namespaces_every":"NvmfNamespaceWhereInput","namespaces_none":"NvmfNamespaceWhereInput","namespaces_some":"NvmfNamespaceWhereInput","nvmf_subsystem":"NvmfSubsystemWhereInput"}}
 //
 // swagger:model GetNamespaceGroupsRequestBody
 type GetNamespaceGroupsRequestBody struct {
@@ -24,16 +25,16 @@ type GetNamespaceGroupsRequestBody struct {
 	Before *string `json:"before,omitempty"`
 
 	// first
-	First *float64 `json:"first,omitempty"`
+	First *int32 `json:"first,omitempty"`
 
 	// last
-	Last *float64 `json:"last,omitempty"`
+	Last *int32 `json:"last,omitempty"`
 
 	// order by
 	OrderBy interface{} `json:"orderBy,omitempty"`
 
 	// skip
-	Skip *float64 `json:"skip,omitempty"`
+	Skip *int32 `json:"skip,omitempty"`
 
 	// where
 	Where interface{} `json:"where,omitempty"`

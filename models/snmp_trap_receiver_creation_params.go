@@ -55,7 +55,7 @@ type SnmpTrapReceiverCreationParams struct {
 
 	// port
 	// Required: true
-	Port *float64 `json:"port"`
+	Port *int32 `json:"port"`
 
 	// privacy pass phrase
 	PrivacyPassPhrase string `json:"privacy_pass_phrase,omitempty"`

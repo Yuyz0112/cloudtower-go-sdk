@@ -22,7 +22,7 @@ type AlertRule struct {
 
 	// cluster
 	// Required: true
-	Cluster *AlertRuleCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// customized
 	// Required: true
@@ -34,7 +34,7 @@ type AlertRule struct {
 
 	// global alert rule
 	// Required: true
-	GlobalAlertRule *AlertRuleGlobalAlertRule `json:"global_alert_rule"`
+	GlobalAlertRule *NestedGlobalAlertRule `json:"global_alert_rule"`
 
 	// id
 	// Required: true
@@ -46,7 +46,7 @@ type AlertRule struct {
 
 	// thresholds
 	// Required: true
-	Thresholds []*AlertRuleThresholdsItems0 `json:"thresholds"`
+	Thresholds []*NestedThresholds `json:"thresholds"`
 }
 
 // Validate validates this alert rule
@@ -263,195 +263,6 @@ func (m *AlertRule) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *AlertRule) UnmarshalBinary(b []byte) error {
 	var res AlertRule
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertRuleCluster alert rule cluster
-//
-// swagger:model AlertRuleCluster
-type AlertRuleCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this alert rule cluster
-func (m *AlertRuleCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertRuleCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AlertRuleCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert rule cluster based on context it is used
-func (m *AlertRuleCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertRuleCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertRuleCluster) UnmarshalBinary(b []byte) error {
-	var res AlertRuleCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertRuleGlobalAlertRule alert rule global alert rule
-//
-// swagger:model AlertRuleGlobalAlertRule
-type AlertRuleGlobalAlertRule struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this alert rule global alert rule
-func (m *AlertRuleGlobalAlertRule) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *AlertRuleGlobalAlertRule) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("global_alert_rule"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AlertRuleGlobalAlertRule) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("global_alert_rule"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this alert rule global alert rule based on context it is used
-func (m *AlertRuleGlobalAlertRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertRuleGlobalAlertRule) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertRuleGlobalAlertRule) UnmarshalBinary(b []byte) error {
-	var res AlertRuleGlobalAlertRule
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// AlertRuleThresholdsItems0 alert rule thresholds items0
-//
-// swagger:model AlertRuleThresholdsItems0
-type AlertRuleThresholdsItems0 struct {
-
-	// quantile
-	Quantile *float64 `json:"quantile,omitempty"`
-
-	// severity
-	Severity interface{} `json:"severity,omitempty"`
-
-	// value
-	Value *float64 `json:"value,omitempty"`
-}
-
-// Validate validates this alert rule thresholds items0
-func (m *AlertRuleThresholdsItems0) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this alert rule thresholds items0 based on context it is used
-func (m *AlertRuleThresholdsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *AlertRuleThresholdsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *AlertRuleThresholdsItems0) UnmarshalBinary(b []byte) error {
-	var res AlertRuleThresholdsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -22,7 +22,7 @@ type VMPlacementGroup struct {
 
 	// cluster
 	// Required: true
-	Cluster *VMPlacementGroupCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// description
 	// Required: true
@@ -60,7 +60,7 @@ type VMPlacementGroup struct {
 	VMHostMustEnabled *bool `json:"vm_host_must_enabled"`
 
 	// vm host must host uuids
-	VMHostMustHostUuids []*VMPlacementGroupVMHostMustHostUuidsItems0 `json:"vm_host_must_host_uuids,omitempty"`
+	VMHostMustHostUuids []*NestedHost `json:"vm_host_must_host_uuids,omitempty"`
 
 	// vm host must policy
 	// Required: true
@@ -71,7 +71,7 @@ type VMPlacementGroup struct {
 	VMHostPreferEnabled *bool `json:"vm_host_prefer_enabled"`
 
 	// vm host prefer host uuids
-	VMHostPreferHostUuids []*VMPlacementGroupVMHostPreferHostUuidsItems0 `json:"vm_host_prefer_host_uuids,omitempty"`
+	VMHostPreferHostUuids []*NestedHost `json:"vm_host_prefer_host_uuids,omitempty"`
 
 	// vm host prefer policy
 	// Required: true
@@ -86,7 +86,7 @@ type VMPlacementGroup struct {
 	VMVMPolicyEnabled *bool `json:"vm_vm_policy_enabled"`
 
 	// vms
-	Vms []*VMPlacementGroupVmsItems0 `json:"vms,omitempty"`
+	Vms []*NestedVM `json:"vms,omitempty"`
 }
 
 // Validate validates this Vm placement group
@@ -510,298 +510,6 @@ func (m *VMPlacementGroup) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMPlacementGroup) UnmarshalBinary(b []byte) error {
 	var res VMPlacementGroup
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMPlacementGroupCluster VM placement group cluster
-//
-// swagger:model VMPlacementGroupCluster
-type VMPlacementGroupCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM placement group cluster
-func (m *VMPlacementGroupCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMPlacementGroupCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMPlacementGroupCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM placement group cluster based on context it is used
-func (m *VMPlacementGroupCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMPlacementGroupCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMPlacementGroupCluster) UnmarshalBinary(b []byte) error {
-	var res VMPlacementGroupCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMPlacementGroupVMHostMustHostUuidsItems0 VM placement group VM host must host uuids items0
-//
-// swagger:model VMPlacementGroupVMHostMustHostUuidsItems0
-type VMPlacementGroupVMHostMustHostUuidsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM placement group VM host must host uuids items0
-func (m *VMPlacementGroupVMHostMustHostUuidsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMPlacementGroupVMHostMustHostUuidsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMPlacementGroupVMHostMustHostUuidsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM placement group VM host must host uuids items0 based on context it is used
-func (m *VMPlacementGroupVMHostMustHostUuidsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMPlacementGroupVMHostMustHostUuidsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMPlacementGroupVMHostMustHostUuidsItems0) UnmarshalBinary(b []byte) error {
-	var res VMPlacementGroupVMHostMustHostUuidsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMPlacementGroupVMHostPreferHostUuidsItems0 VM placement group VM host prefer host uuids items0
-//
-// swagger:model VMPlacementGroupVMHostPreferHostUuidsItems0
-type VMPlacementGroupVMHostPreferHostUuidsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM placement group VM host prefer host uuids items0
-func (m *VMPlacementGroupVMHostPreferHostUuidsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMPlacementGroupVMHostPreferHostUuidsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMPlacementGroupVMHostPreferHostUuidsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM placement group VM host prefer host uuids items0 based on context it is used
-func (m *VMPlacementGroupVMHostPreferHostUuidsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMPlacementGroupVMHostPreferHostUuidsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMPlacementGroupVMHostPreferHostUuidsItems0) UnmarshalBinary(b []byte) error {
-	var res VMPlacementGroupVMHostPreferHostUuidsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMPlacementGroupVmsItems0 VM placement group vms items0
-//
-// swagger:model VMPlacementGroupVmsItems0
-type VMPlacementGroupVmsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this VM placement group vms items0
-func (m *VMPlacementGroupVmsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMPlacementGroupVmsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *VMPlacementGroupVmsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM placement group vms items0 based on context it is used
-func (m *VMPlacementGroupVmsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMPlacementGroupVmsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMPlacementGroupVmsItems0) UnmarshalBinary(b []byte) error {
-	var res VMPlacementGroupVmsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

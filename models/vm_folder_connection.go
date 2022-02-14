@@ -21,7 +21,7 @@ type VMFolderConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *VMFolderConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateVMFolder `json:"aggregate"`
 }
 
 // Validate validates this Vm folder connection
@@ -95,62 +95,6 @@ func (m *VMFolderConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMFolderConnection) UnmarshalBinary(b []byte) error {
 	var res VMFolderConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMFolderConnectionAggregate VM folder connection aggregate
-//
-// swagger:model VMFolderConnectionAggregate
-type VMFolderConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this VM folder connection aggregate
-func (m *VMFolderConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMFolderConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM folder connection aggregate based on context it is used
-func (m *VMFolderConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMFolderConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMFolderConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res VMFolderConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

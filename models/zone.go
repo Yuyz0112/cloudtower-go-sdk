@@ -22,20 +22,20 @@ type Zone struct {
 
 	// cluster
 	// Required: true
-	Cluster *ZoneCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// datacenter
 	// Required: true
-	Datacenter *ZoneDatacenter `json:"datacenter"`
+	Datacenter *NestedDatacenter `json:"datacenter"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
 
 	// host num
-	HostNum *float64 `json:"host_num,omitempty"`
+	HostNum *int32 `json:"host_num,omitempty"`
 
 	// hosts
-	Hosts []*ZoneHostsItems0 `json:"hosts,omitempty"`
+	Hosts []*NestedHost `json:"hosts,omitempty"`
 
 	// id
 	// Required: true
@@ -49,10 +49,10 @@ type Zone struct {
 	LocalID *string `json:"local_id,omitempty"`
 
 	// provisioned cpu cores
-	ProvisionedCPUCores *float64 `json:"provisioned_cpu_cores,omitempty"`
+	ProvisionedCPUCores *int32 `json:"provisioned_cpu_cores,omitempty"`
 
 	// provisioned cpu cores for active vm
-	ProvisionedCPUCoresForActiveVM *float64 `json:"provisioned_cpu_cores_for_active_vm,omitempty"`
+	ProvisionedCPUCoresForActiveVM *int32 `json:"provisioned_cpu_cores_for_active_vm,omitempty"`
 
 	// provisioned data space
 	ProvisionedDataSpace *float64 `json:"provisioned_data_space,omitempty"`
@@ -61,19 +61,19 @@ type Zone struct {
 	ProvisionedMemoryBytes *float64 `json:"provisioned_memory_bytes,omitempty"`
 
 	// running vm num
-	RunningVMNum *float64 `json:"running_vm_num,omitempty"`
+	RunningVMNum *int32 `json:"running_vm_num,omitempty"`
 
 	// stopped vm num
-	StoppedVMNum *float64 `json:"stopped_vm_num,omitempty"`
+	StoppedVMNum *int32 `json:"stopped_vm_num,omitempty"`
 
 	// suspended vm num
-	SuspendedVMNum *float64 `json:"suspended_vm_num,omitempty"`
+	SuspendedVMNum *int32 `json:"suspended_vm_num,omitempty"`
 
 	// total cache capacity
 	TotalCacheCapacity *float64 `json:"total_cache_capacity,omitempty"`
 
 	// total cpu cores
-	TotalCPUCores *float64 `json:"total_cpu_cores,omitempty"`
+	TotalCPUCores *int32 `json:"total_cpu_cores,omitempty"`
 
 	// total cpu hz
 	TotalCPUHz *float64 `json:"total_cpu_hz,omitempty"`
@@ -91,7 +91,7 @@ type Zone struct {
 	ValidDataSpace *float64 `json:"valid_data_space,omitempty"`
 
 	// vm num
-	VMNum *float64 `json:"vm_num,omitempty"`
+	VMNum *int32 `json:"vm_num,omitempty"`
 }
 
 // Validate validates this zone
@@ -281,225 +281,6 @@ func (m *Zone) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Zone) UnmarshalBinary(b []byte) error {
 	var res Zone
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ZoneCluster zone cluster
-//
-// swagger:model ZoneCluster
-type ZoneCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this zone cluster
-func (m *ZoneCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ZoneCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ZoneCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this zone cluster based on context it is used
-func (m *ZoneCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ZoneCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ZoneCluster) UnmarshalBinary(b []byte) error {
-	var res ZoneCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ZoneDatacenter zone datacenter
-//
-// swagger:model ZoneDatacenter
-type ZoneDatacenter struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this zone datacenter
-func (m *ZoneDatacenter) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ZoneDatacenter) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("datacenter"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ZoneDatacenter) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("datacenter"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this zone datacenter based on context it is used
-func (m *ZoneDatacenter) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ZoneDatacenter) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ZoneDatacenter) UnmarshalBinary(b []byte) error {
-	var res ZoneDatacenter
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ZoneHostsItems0 zone hosts items0
-//
-// swagger:model ZoneHostsItems0
-type ZoneHostsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this zone hosts items0
-func (m *ZoneHostsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ZoneHostsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ZoneHostsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this zone hosts items0 based on context it is used
-func (m *ZoneHostsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ZoneHostsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ZoneHostsItems0) UnmarshalBinary(b []byte) error {
-	var res ZoneHostsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

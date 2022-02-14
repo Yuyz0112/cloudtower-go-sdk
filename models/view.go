@@ -22,13 +22,13 @@ type View struct {
 
 	// cluster
 	// Required: true
-	Cluster *ViewCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// entity async status
 	EntityAsyncStatus interface{} `json:"entityAsyncStatus,omitempty"`
 
 	// graphs
-	Graphs []*ViewGraphsItems0 `json:"graphs,omitempty"`
+	Graphs []*NestedGraph `json:"graphs,omitempty"`
 
 	// id
 	// Required: true
@@ -44,7 +44,7 @@ type View struct {
 
 	// time span
 	// Required: true
-	TimeSpan *float64 `json:"time_span"`
+	TimeSpan *int32 `json:"time_span"`
 
 	// time unit
 	// Required: true
@@ -268,135 +268,6 @@ func (m *View) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *View) UnmarshalBinary(b []byte) error {
 	var res View
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ViewCluster view cluster
-//
-// swagger:model ViewCluster
-type ViewCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this view cluster
-func (m *ViewCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ViewCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ViewCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this view cluster based on context it is used
-func (m *ViewCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ViewCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ViewCluster) UnmarshalBinary(b []byte) error {
-	var res ViewCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ViewGraphsItems0 view graphs items0
-//
-// swagger:model ViewGraphsItems0
-type ViewGraphsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-}
-
-// Validate validates this view graphs items0
-func (m *ViewGraphsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ViewGraphsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this view graphs items0 based on context it is used
-func (m *ViewGraphsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ViewGraphsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ViewGraphsItems0) UnmarshalBinary(b []byte) error {
-	var res ViewGraphsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

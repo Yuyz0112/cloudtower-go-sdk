@@ -21,7 +21,7 @@ type NicConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *NicConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateNic `json:"aggregate"`
 }
 
 // Validate validates this nic connection
@@ -95,62 +95,6 @@ func (m *NicConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *NicConnection) UnmarshalBinary(b []byte) error {
 	var res NicConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// NicConnectionAggregate nic connection aggregate
-//
-// swagger:model NicConnectionAggregate
-type NicConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this nic connection aggregate
-func (m *NicConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *NicConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this nic connection aggregate based on context it is used
-func (m *NicConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *NicConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *NicConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res NicConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

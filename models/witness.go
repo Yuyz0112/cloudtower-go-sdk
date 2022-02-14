@@ -21,7 +21,7 @@ type Witness struct {
 
 	// cluster
 	// Required: true
-	Cluster *WitnessCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
 
 	// cpu hz per core
 	// Required: true
@@ -52,7 +52,7 @@ type Witness struct {
 
 	// total cpu cores
 	// Required: true
-	TotalCPUCores *float64 `json:"total_cpu_cores"`
+	TotalCPUCores *int32 `json:"total_cpu_cores"`
 
 	// total cpu hz
 	// Required: true
@@ -251,79 +251,6 @@ func (m *Witness) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Witness) UnmarshalBinary(b []byte) error {
 	var res Witness
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// WitnessCluster witness cluster
-//
-// swagger:model WitnessCluster
-type WitnessCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this witness cluster
-func (m *WitnessCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *WitnessCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WitnessCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this witness cluster based on context it is used
-func (m *WitnessCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *WitnessCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *WitnessCluster) UnmarshalBinary(b []byte) error {
-	var res WitnessCluster
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -15,6 +15,7 @@ import (
 )
 
 // NvmfNamespaceWhereInput nvmf namespace where input
+// Example: {"AND":"NvmfNamespaceWhereInput[]","NOT":"NvmfNamespaceWhereInput[]","OR":"NvmfNamespaceWhereInput[]","assigned_size":0,"assigned_size_gt":0,"assigned_size_gte":0,"assigned_size_in":[0],"assigned_size_lt":0,"assigned_size_lte":0,"assigned_size_not":0,"assigned_size_not_in":[0],"bps":0,"bps_gt":0,"bps_gte":0,"bps_in":[0],"bps_lt":0,"bps_lte":0,"bps_max":0,"bps_max_gt":0,"bps_max_gte":0,"bps_max_in":[0],"bps_max_length":0,"bps_max_length_gt":0,"bps_max_length_gte":0,"bps_max_length_in":[0],"bps_max_length_lt":0,"bps_max_length_lte":0,"bps_max_length_not":0,"bps_max_length_not_in":[0],"bps_max_lt":0,"bps_max_lte":0,"bps_max_not":0,"bps_max_not_in":[0],"bps_not":0,"bps_not_in":[0],"bps_rd":0,"bps_rd_gt":0,"bps_rd_gte":0,"bps_rd_in":[0],"bps_rd_lt":0,"bps_rd_lte":0,"bps_rd_max":0,"bps_rd_max_gt":0,"bps_rd_max_gte":0,"bps_rd_max_in":[0],"bps_rd_max_length":0,"bps_rd_max_length_gt":0,"bps_rd_max_length_gte":0,"bps_rd_max_length_in":[0],"bps_rd_max_length_lt":0,"bps_rd_max_length_lte":0,"bps_rd_max_length_not":0,"bps_rd_max_length_not_in":[0],"bps_rd_max_lt":0,"bps_rd_max_lte":0,"bps_rd_max_not":0,"bps_rd_max_not_in":[0],"bps_rd_not":0,"bps_rd_not_in":[0],"bps_wr":0,"bps_wr_gt":0,"bps_wr_gte":0,"bps_wr_in":[0],"bps_wr_lt":0,"bps_wr_lte":0,"bps_wr_max":0,"bps_wr_max_gt":0,"bps_wr_max_gte":0,"bps_wr_max_in":[0],"bps_wr_max_length":0,"bps_wr_max_length_gt":0,"bps_wr_max_length_gte":0,"bps_wr_max_length_in":[0],"bps_wr_max_length_lt":0,"bps_wr_max_length_lte":0,"bps_wr_max_length_not":0,"bps_wr_max_length_not_in":[0],"bps_wr_max_lt":0,"bps_wr_max_lte":0,"bps_wr_max_not":0,"bps_wr_max_not_in":[0],"bps_wr_not":0,"bps_wr_not_in":[0],"consistency_group":"ConsistencyGroupWhereInput","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","io_size":0,"io_size_gt":0,"io_size_gte":0,"io_size_in":[0],"io_size_lt":0,"io_size_lte":0,"io_size_not":0,"io_size_not_in":[0],"iops":0,"iops_gt":0,"iops_gte":0,"iops_in":[0],"iops_lt":0,"iops_lte":0,"iops_max":0,"iops_max_gt":0,"iops_max_gte":0,"iops_max_in":[0],"iops_max_length":0,"iops_max_length_gt":0,"iops_max_length_gte":0,"iops_max_length_in":[0],"iops_max_length_lt":0,"iops_max_length_lte":0,"iops_max_length_not":0,"iops_max_length_not_in":[0],"iops_max_lt":0,"iops_max_lte":0,"iops_max_not":0,"iops_max_not_in":[0],"iops_not":0,"iops_not_in":[0],"iops_rd":0,"iops_rd_gt":0,"iops_rd_gte":0,"iops_rd_in":[0],"iops_rd_lt":0,"iops_rd_lte":0,"iops_rd_max":0,"iops_rd_max_gt":0,"iops_rd_max_gte":0,"iops_rd_max_in":[0],"iops_rd_max_length":0,"iops_rd_max_length_gt":0,"iops_rd_max_length_gte":0,"iops_rd_max_length_in":[0],"iops_rd_max_length_lt":0,"iops_rd_max_length_lte":0,"iops_rd_max_length_not":0,"iops_rd_max_length_not_in":[0],"iops_rd_max_lt":0,"iops_rd_max_lte":0,"iops_rd_max_not":0,"iops_rd_max_not_in":[0],"iops_rd_not":0,"iops_rd_not_in":[0],"iops_wr":0,"iops_wr_gt":0,"iops_wr_gte":0,"iops_wr_in":[0],"iops_wr_lt":0,"iops_wr_lte":0,"iops_wr_max":0,"iops_wr_max_gt":0,"iops_wr_max_gte":0,"iops_wr_max_in":[0],"iops_wr_max_length":0,"iops_wr_max_length_gt":0,"iops_wr_max_length_gte":0,"iops_wr_max_length_in":[0],"iops_wr_max_length_lt":0,"iops_wr_max_length_lte":0,"iops_wr_max_length_not":0,"iops_wr_max_length_not_in":[0],"iops_wr_max_lt":0,"iops_wr_max_lte":0,"iops_wr_max_not":0,"iops_wr_max_not_in":[0],"iops_wr_not":0,"iops_wr_not_in":[0],"is_shared":false,"is_shared_not":false,"labels_every":"LabelWhereInput","labels_none":"LabelWhereInput","labels_some":"LabelWhereInput","local_created_at":"string","local_created_at_gt":"string","local_created_at_gte":"string","local_created_at_in":["string"],"local_created_at_lt":"string","local_created_at_lte":"string","local_created_at_not":"string","local_created_at_not_in":["string"],"local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","namespace_group":"NamespaceGroupWhereInput","namespace_id":0,"namespace_id_gt":0,"namespace_id_gte":0,"namespace_id_in":[0],"namespace_id_lt":0,"namespace_id_lte":0,"namespace_id_not":0,"namespace_id_not_in":[0],"nqn_whitelist":"string","nqn_whitelist_contains":"string","nqn_whitelist_ends_with":"string","nqn_whitelist_gt":"string","nqn_whitelist_gte":"string","nqn_whitelist_in":["string"],"nqn_whitelist_lt":"string","nqn_whitelist_lte":"string","nqn_whitelist_not":"string","nqn_whitelist_not_contains":"string","nqn_whitelist_not_ends_with":"string","nqn_whitelist_not_in":["string"],"nqn_whitelist_not_starts_with":"string","nqn_whitelist_starts_with":"string","nvmf_subsystem":"NvmfSubsystemWhereInput","replica_num":0,"replica_num_gt":0,"replica_num_gte":0,"replica_num_in":[0],"replica_num_lt":0,"replica_num_lte":0,"replica_num_not":0,"replica_num_not_in":[0],"shared_size":0,"shared_size_gt":0,"shared_size_gte":0,"shared_size_in":[0],"shared_size_lt":0,"shared_size_lte":0,"shared_size_not":0,"shared_size_not_in":[0],"snapshot_num":0,"snapshot_num_gt":0,"snapshot_num_gte":0,"snapshot_num_in":[0],"snapshot_num_lt":0,"snapshot_num_lte":0,"snapshot_num_not":0,"snapshot_num_not_in":[0],"stripe_num":0,"stripe_num_gt":0,"stripe_num_gte":0,"stripe_num_in":[0],"stripe_num_lt":0,"stripe_num_lte":0,"stripe_num_not":0,"stripe_num_not_in":[0],"stripe_size":0,"stripe_size_gt":0,"stripe_size_gte":0,"stripe_size_in":[0],"stripe_size_lt":0,"stripe_size_lte":0,"stripe_size_not":0,"stripe_size_not_in":[0],"thin_provision":false,"thin_provision_not":false,"unique_size":0,"unique_size_gt":0,"unique_size_gte":0,"unique_size_in":[0],"unique_size_lt":0,"unique_size_lte":0,"unique_size_not":0,"unique_size_not_in":[0],"zbs_volume_id":"string","zbs_volume_id_contains":"string","zbs_volume_id_ends_with":"string","zbs_volume_id_gt":"string","zbs_volume_id_gte":"string","zbs_volume_id_in":["string"],"zbs_volume_id_lt":"string","zbs_volume_id_lte":"string","zbs_volume_id_not":"string","zbs_volume_id_not_contains":"string","zbs_volume_id_not_ends_with":"string","zbs_volume_id_not_in":["string"],"zbs_volume_id_not_starts_with":"string","zbs_volume_id_starts_with":"string"}
 //
 // swagger:model NvmfNamespaceWhereInput
 type NvmfNamespaceWhereInput struct {
@@ -692,28 +693,28 @@ type NvmfNamespaceWhereInput struct {
 	NamespaceGroup interface{} `json:"namespace_group,omitempty"`
 
 	// namespace id
-	NamespaceID *float64 `json:"namespace_id,omitempty"`
+	NamespaceID *int32 `json:"namespace_id,omitempty"`
 
 	// namespace id gt
-	NamespaceIDGt *float64 `json:"namespace_id_gt,omitempty"`
+	NamespaceIDGt *int32 `json:"namespace_id_gt,omitempty"`
 
 	// namespace id gte
-	NamespaceIDGte *float64 `json:"namespace_id_gte,omitempty"`
+	NamespaceIDGte *int32 `json:"namespace_id_gte,omitempty"`
 
 	// namespace id in
-	NamespaceIDIn []float64 `json:"namespace_id_in,omitempty"`
+	NamespaceIDIn []int32 `json:"namespace_id_in,omitempty"`
 
 	// namespace id lt
-	NamespaceIDLt *float64 `json:"namespace_id_lt,omitempty"`
+	NamespaceIDLt *int32 `json:"namespace_id_lt,omitempty"`
 
 	// namespace id lte
-	NamespaceIDLte *float64 `json:"namespace_id_lte,omitempty"`
+	NamespaceIDLte *int32 `json:"namespace_id_lte,omitempty"`
 
 	// namespace id not
-	NamespaceIDNot *float64 `json:"namespace_id_not,omitempty"`
+	NamespaceIDNot *int32 `json:"namespace_id_not,omitempty"`
 
 	// namespace id not in
-	NamespaceIDNotIn []float64 `json:"namespace_id_not_in,omitempty"`
+	NamespaceIDNotIn []int32 `json:"namespace_id_not_in,omitempty"`
 
 	// nqn whitelist
 	NqnWhitelist *string `json:"nqn_whitelist,omitempty"`
@@ -761,28 +762,28 @@ type NvmfNamespaceWhereInput struct {
 	NvmfSubsystem interface{} `json:"nvmf_subsystem,omitempty"`
 
 	// replica num
-	ReplicaNum *float64 `json:"replica_num,omitempty"`
+	ReplicaNum *int32 `json:"replica_num,omitempty"`
 
 	// replica num gt
-	ReplicaNumGt *float64 `json:"replica_num_gt,omitempty"`
+	ReplicaNumGt *int32 `json:"replica_num_gt,omitempty"`
 
 	// replica num gte
-	ReplicaNumGte *float64 `json:"replica_num_gte,omitempty"`
+	ReplicaNumGte *int32 `json:"replica_num_gte,omitempty"`
 
 	// replica num in
-	ReplicaNumIn []float64 `json:"replica_num_in,omitempty"`
+	ReplicaNumIn []int32 `json:"replica_num_in,omitempty"`
 
 	// replica num lt
-	ReplicaNumLt *float64 `json:"replica_num_lt,omitempty"`
+	ReplicaNumLt *int32 `json:"replica_num_lt,omitempty"`
 
 	// replica num lte
-	ReplicaNumLte *float64 `json:"replica_num_lte,omitempty"`
+	ReplicaNumLte *int32 `json:"replica_num_lte,omitempty"`
 
 	// replica num not
-	ReplicaNumNot *float64 `json:"replica_num_not,omitempty"`
+	ReplicaNumNot *int32 `json:"replica_num_not,omitempty"`
 
 	// replica num not in
-	ReplicaNumNotIn []float64 `json:"replica_num_not_in,omitempty"`
+	ReplicaNumNotIn []int32 `json:"replica_num_not_in,omitempty"`
 
 	// shared size
 	SharedSize *float64 `json:"shared_size,omitempty"`
@@ -809,52 +810,52 @@ type NvmfNamespaceWhereInput struct {
 	SharedSizeNotIn []float64 `json:"shared_size_not_in,omitempty"`
 
 	// snapshot num
-	SnapshotNum *float64 `json:"snapshot_num,omitempty"`
+	SnapshotNum *int32 `json:"snapshot_num,omitempty"`
 
 	// snapshot num gt
-	SnapshotNumGt *float64 `json:"snapshot_num_gt,omitempty"`
+	SnapshotNumGt *int32 `json:"snapshot_num_gt,omitempty"`
 
 	// snapshot num gte
-	SnapshotNumGte *float64 `json:"snapshot_num_gte,omitempty"`
+	SnapshotNumGte *int32 `json:"snapshot_num_gte,omitempty"`
 
 	// snapshot num in
-	SnapshotNumIn []float64 `json:"snapshot_num_in,omitempty"`
+	SnapshotNumIn []int32 `json:"snapshot_num_in,omitempty"`
 
 	// snapshot num lt
-	SnapshotNumLt *float64 `json:"snapshot_num_lt,omitempty"`
+	SnapshotNumLt *int32 `json:"snapshot_num_lt,omitempty"`
 
 	// snapshot num lte
-	SnapshotNumLte *float64 `json:"snapshot_num_lte,omitempty"`
+	SnapshotNumLte *int32 `json:"snapshot_num_lte,omitempty"`
 
 	// snapshot num not
-	SnapshotNumNot *float64 `json:"snapshot_num_not,omitempty"`
+	SnapshotNumNot *int32 `json:"snapshot_num_not,omitempty"`
 
 	// snapshot num not in
-	SnapshotNumNotIn []float64 `json:"snapshot_num_not_in,omitempty"`
+	SnapshotNumNotIn []int32 `json:"snapshot_num_not_in,omitempty"`
 
 	// stripe num
-	StripeNum *float64 `json:"stripe_num,omitempty"`
+	StripeNum *int32 `json:"stripe_num,omitempty"`
 
 	// stripe num gt
-	StripeNumGt *float64 `json:"stripe_num_gt,omitempty"`
+	StripeNumGt *int32 `json:"stripe_num_gt,omitempty"`
 
 	// stripe num gte
-	StripeNumGte *float64 `json:"stripe_num_gte,omitempty"`
+	StripeNumGte *int32 `json:"stripe_num_gte,omitempty"`
 
 	// stripe num in
-	StripeNumIn []float64 `json:"stripe_num_in,omitempty"`
+	StripeNumIn []int32 `json:"stripe_num_in,omitempty"`
 
 	// stripe num lt
-	StripeNumLt *float64 `json:"stripe_num_lt,omitempty"`
+	StripeNumLt *int32 `json:"stripe_num_lt,omitempty"`
 
 	// stripe num lte
-	StripeNumLte *float64 `json:"stripe_num_lte,omitempty"`
+	StripeNumLte *int32 `json:"stripe_num_lte,omitempty"`
 
 	// stripe num not
-	StripeNumNot *float64 `json:"stripe_num_not,omitempty"`
+	StripeNumNot *int32 `json:"stripe_num_not,omitempty"`
 
 	// stripe num not in
-	StripeNumNotIn []float64 `json:"stripe_num_not_in,omitempty"`
+	StripeNumNotIn []int32 `json:"stripe_num_not_in,omitempty"`
 
 	// stripe size
 	StripeSize *float64 `json:"stripe_size,omitempty"`

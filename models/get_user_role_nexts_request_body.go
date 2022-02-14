@@ -13,6 +13,7 @@ import (
 )
 
 // GetUserRoleNextsRequestBody get user role nexts request body
+// Example: {"after":"userRoleNexts-id-string","before":"userRoleNexts-id-string","first":0,"last":0,"orderBy":"createdAt_ASC","skip":0,"where":{"AND":"UserRoleNextWhereInput[]","NOT":"UserRoleNextWhereInput[]","OR":"UserRoleNextWhereInput[]","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","platform":"MANAGEMENT","platform_in":["MANAGEMENT"],"platform_not":"MANAGEMENT","platform_not_in":["MANAGEMENT"],"preset":"ADMIN","preset_in":["ADMIN"],"preset_not":"ADMIN","preset_not_in":["ADMIN"],"users_every":"UserWhereInput","users_none":"UserWhereInput","users_some":"UserWhereInput"}}
 //
 // swagger:model GetUserRoleNextsRequestBody
 type GetUserRoleNextsRequestBody struct {
@@ -24,16 +25,16 @@ type GetUserRoleNextsRequestBody struct {
 	Before *string `json:"before,omitempty"`
 
 	// first
-	First *float64 `json:"first,omitempty"`
+	First *int32 `json:"first,omitempty"`
 
 	// last
-	Last *float64 `json:"last,omitempty"`
+	Last *int32 `json:"last,omitempty"`
 
 	// order by
 	OrderBy interface{} `json:"orderBy,omitempty"`
 
 	// skip
-	Skip *float64 `json:"skip,omitempty"`
+	Skip *int32 `json:"skip,omitempty"`
 
 	// where
 	Where interface{} `json:"where,omitempty"`

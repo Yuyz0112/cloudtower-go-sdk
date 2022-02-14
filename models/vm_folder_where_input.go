@@ -15,6 +15,7 @@ import (
 )
 
 // VMFolderWhereInput Vm folder where input
+// Example: {"AND":"VmFolderWhereInput[]","NOT":"VmFolderWhereInput[]","OR":"VmFolderWhereInput[]","cluster":"ClusterWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","vm_num":0,"vm_num_gt":0,"vm_num_gte":0,"vm_num_in":[0],"vm_num_lt":0,"vm_num_lte":0,"vm_num_not":0,"vm_num_not_in":[0],"vms_every":"VmWhereInput","vms_none":"VmWhereInput","vms_some":"VmWhereInput"}
 //
 // swagger:model VmFolderWhereInput
 type VMFolderWhereInput struct {
@@ -158,28 +159,28 @@ type VMFolderWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// vm num
-	VMNum *float64 `json:"vm_num,omitempty"`
+	VMNum *int32 `json:"vm_num,omitempty"`
 
 	// vm num gt
-	VMNumGt *float64 `json:"vm_num_gt,omitempty"`
+	VMNumGt *int32 `json:"vm_num_gt,omitempty"`
 
 	// vm num gte
-	VMNumGte *float64 `json:"vm_num_gte,omitempty"`
+	VMNumGte *int32 `json:"vm_num_gte,omitempty"`
 
 	// vm num in
-	VMNumIn []float64 `json:"vm_num_in,omitempty"`
+	VMNumIn []int32 `json:"vm_num_in,omitempty"`
 
 	// vm num lt
-	VMNumLt *float64 `json:"vm_num_lt,omitempty"`
+	VMNumLt *int32 `json:"vm_num_lt,omitempty"`
 
 	// vm num lte
-	VMNumLte *float64 `json:"vm_num_lte,omitempty"`
+	VMNumLte *int32 `json:"vm_num_lte,omitempty"`
 
 	// vm num not
-	VMNumNot *float64 `json:"vm_num_not,omitempty"`
+	VMNumNot *int32 `json:"vm_num_not,omitempty"`
 
 	// vm num not in
-	VMNumNotIn []float64 `json:"vm_num_not_in,omitempty"`
+	VMNumNotIn []int32 `json:"vm_num_not_in,omitempty"`
 
 	// vms every
 	VmsEvery interface{} `json:"vms_every,omitempty"`

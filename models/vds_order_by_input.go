@@ -91,6 +91,12 @@ const (
 
 	// VdsOrderByInputVlansNumDESC captures enum value "vlans_num_DESC"
 	VdsOrderByInputVlansNumDESC VdsOrderByInput = "vlans_num_DESC"
+
+	// VdsOrderByInputWorkModeASC captures enum value "work_mode_ASC"
+	VdsOrderByInputWorkModeASC VdsOrderByInput = "work_mode_ASC"
+
+	// VdsOrderByInputWorkModeDESC captures enum value "work_mode_DESC"
+	VdsOrderByInputWorkModeDESC VdsOrderByInput = "work_mode_DESC"
 )
 
 // for schema
@@ -98,7 +104,7 @@ var vdsOrderByInputEnum []interface{}
 
 func init() {
 	var res []VdsOrderByInput
-	if err := json.Unmarshal([]byte(`["bond_mode_ASC","bond_mode_DESC","createdAt_ASC","createdAt_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","id_ASC","id_DESC","internal_ASC","internal_DESC","local_id_ASC","local_id_DESC","name_ASC","name_DESC","ovsbr_name_ASC","ovsbr_name_DESC","type_ASC","type_DESC","updatedAt_ASC","updatedAt_DESC","vlans_num_ASC","vlans_num_DESC"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["bond_mode_ASC","bond_mode_DESC","createdAt_ASC","createdAt_DESC","entityAsyncStatus_ASC","entityAsyncStatus_DESC","id_ASC","id_DESC","internal_ASC","internal_DESC","local_id_ASC","local_id_DESC","name_ASC","name_DESC","ovsbr_name_ASC","ovsbr_name_DESC","type_ASC","type_DESC","updatedAt_ASC","updatedAt_DESC","vlans_num_ASC","vlans_num_DESC","work_mode_ASC","work_mode_DESC"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

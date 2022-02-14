@@ -22,10 +22,14 @@ type LogCollection struct {
 
 	// cluster
 	// Required: true
-	Cluster *LogCollectionCluster `json:"cluster"`
+	Cluster *NestedCluster `json:"cluster"`
+
+	// groups
+	// Required: true
+	Groups []string `json:"groups"`
 
 	// hosts
-	Hosts []*LogCollectionHostsItems0 `json:"hosts,omitempty"`
+	Hosts []*NestedHost `json:"hosts,omitempty"`
 
 	// id
 	// Required: true
@@ -55,6 +59,10 @@ type LogCollection struct {
 	// Required: true
 	Progress *float64 `json:"progress"`
 
+	// services
+	// Required: true
+	Services []string `json:"services"`
+
 	// size
 	// Required: true
 	Size *float64 `json:"size"`
@@ -66,6 +74,9 @@ type LogCollection struct {
 	// status
 	// Required: true
 	Status *LogCollectionStatus `json:"status"`
+
+	// witness
+	Witness interface{} `json:"witness,omitempty"`
 }
 
 // Validate validates this log collection
@@ -73,6 +84,10 @@ func (m *LogCollection) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGroups(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -108,6 +123,10 @@ func (m *LogCollection) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateServices(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
@@ -139,6 +158,15 @@ func (m *LogCollection) validateCluster(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *LogCollection) validateGroups(formats strfmt.Registry) error {
+
+	if err := validate.Required("groups", "body", m.Groups); err != nil {
+		return err
 	}
 
 	return nil
@@ -225,6 +253,15 @@ func (m *LogCollection) validatePath(formats strfmt.Registry) error {
 func (m *LogCollection) validateProgress(formats strfmt.Registry) error {
 
 	if err := validate.Required("progress", "body", m.Progress); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *LogCollection) validateServices(formats strfmt.Registry) error {
+
+	if err := validate.Required("services", "body", m.Services); err != nil {
 		return err
 	}
 
@@ -350,152 +387,6 @@ func (m *LogCollection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *LogCollection) UnmarshalBinary(b []byte) error {
 	var res LogCollection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LogCollectionCluster log collection cluster
-//
-// swagger:model LogCollectionCluster
-type LogCollectionCluster struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this log collection cluster
-func (m *LogCollectionCluster) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LogCollectionCluster) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LogCollectionCluster) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("cluster"+"."+"name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this log collection cluster based on context it is used
-func (m *LogCollectionCluster) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LogCollectionCluster) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LogCollectionCluster) UnmarshalBinary(b []byte) error {
-	var res LogCollectionCluster
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// LogCollectionHostsItems0 log collection hosts items0
-//
-// swagger:model LogCollectionHostsItems0
-type LogCollectionHostsItems0 struct {
-
-	// id
-	// Required: true
-	ID *string `json:"id"`
-
-	// name
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this log collection hosts items0
-func (m *LogCollectionHostsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *LogCollectionHostsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *LogCollectionHostsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this log collection hosts items0 based on context it is used
-func (m *LogCollectionHostsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *LogCollectionHostsItems0) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *LogCollectionHostsItems0) UnmarshalBinary(b []byte) error {
-	var res LogCollectionHostsItems0
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

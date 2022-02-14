@@ -15,6 +15,7 @@ import (
 )
 
 // VdsWhereInput vds where input
+// Example: {"AND":"VdsWhereInput[]","NOT":"VdsWhereInput[]","OR":"VdsWhereInput[]","bond_mode":"string","bond_mode_contains":"string","bond_mode_ends_with":"string","bond_mode_gt":"string","bond_mode_gte":"string","bond_mode_in":["string"],"bond_mode_lt":"string","bond_mode_lte":"string","bond_mode_not":"string","bond_mode_not_contains":"string","bond_mode_not_ends_with":"string","bond_mode_not_in":["string"],"bond_mode_not_starts_with":"string","bond_mode_starts_with":"string","cluster":"ClusterWhereInput","entityAsyncStatus":"CREATING","entityAsyncStatus_in":["CREATING"],"entityAsyncStatus_not":"CREATING","entityAsyncStatus_not_in":["CREATING"],"everoute_cluster":"EverouteClusterWhereInput","id":"string","id_contains":"string","id_ends_with":"string","id_gt":"string","id_gte":"string","id_in":["string"],"id_lt":"string","id_lte":"string","id_not":"string","id_not_contains":"string","id_not_ends_with":"string","id_not_in":["string"],"id_not_starts_with":"string","id_starts_with":"string","internal":false,"internal_not":false,"labels_every":"LabelWhereInput","labels_none":"LabelWhereInput","labels_some":"LabelWhereInput","local_id":"string","local_id_contains":"string","local_id_ends_with":"string","local_id_gt":"string","local_id_gte":"string","local_id_in":["string"],"local_id_lt":"string","local_id_lte":"string","local_id_not":"string","local_id_not_contains":"string","local_id_not_ends_with":"string","local_id_not_in":["string"],"local_id_not_starts_with":"string","local_id_starts_with":"string","name":"string","name_contains":"string","name_ends_with":"string","name_gt":"string","name_gte":"string","name_in":["string"],"name_lt":"string","name_lte":"string","name_not":"string","name_not_contains":"string","name_not_ends_with":"string","name_not_in":["string"],"name_not_starts_with":"string","name_starts_with":"string","nics_every":"NicWhereInput","nics_none":"NicWhereInput","nics_some":"NicWhereInput","ovsbr_name":"string","ovsbr_name_contains":"string","ovsbr_name_ends_with":"string","ovsbr_name_gt":"string","ovsbr_name_gte":"string","ovsbr_name_in":["string"],"ovsbr_name_lt":"string","ovsbr_name_lte":"string","ovsbr_name_not":"string","ovsbr_name_not_contains":"string","ovsbr_name_not_ends_with":"string","ovsbr_name_not_in":["string"],"ovsbr_name_not_starts_with":"string","ovsbr_name_starts_with":"string","type":"ACCESS","type_in":["ACCESS"],"type_not":"ACCESS","type_not_in":["ACCESS"],"vlans_every":"VlanWhereInput","vlans_none":"VlanWhereInput","vlans_num":0,"vlans_num_gt":0,"vlans_num_gte":0,"vlans_num_in":[0],"vlans_num_lt":0,"vlans_num_lte":0,"vlans_num_not":0,"vlans_num_not_in":[0],"vlans_some":"VlanWhereInput","work_mode":"string","work_mode_contains":"string","work_mode_ends_with":"string","work_mode_gt":"string","work_mode_gte":"string","work_mode_in":["string"],"work_mode_lt":"string","work_mode_lte":"string","work_mode_not":"string","work_mode_not_contains":"string","work_mode_not_ends_with":"string","work_mode_not_in":["string"],"work_mode_not_starts_with":"string","work_mode_starts_with":"string"}
 //
 // swagger:model VdsWhereInput
 type VdsWhereInput struct {
@@ -84,6 +85,9 @@ type VdsWhereInput struct {
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
+
+	// everoute cluster
+	EverouteCluster interface{} `json:"everoute_cluster,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -296,31 +300,73 @@ type VdsWhereInput struct {
 	VlansNone interface{} `json:"vlans_none,omitempty"`
 
 	// vlans num
-	VlansNum *float64 `json:"vlans_num,omitempty"`
+	VlansNum *int32 `json:"vlans_num,omitempty"`
 
 	// vlans num gt
-	VlansNumGt *float64 `json:"vlans_num_gt,omitempty"`
+	VlansNumGt *int32 `json:"vlans_num_gt,omitempty"`
 
 	// vlans num gte
-	VlansNumGte *float64 `json:"vlans_num_gte,omitempty"`
+	VlansNumGte *int32 `json:"vlans_num_gte,omitempty"`
 
 	// vlans num in
-	VlansNumIn []float64 `json:"vlans_num_in,omitempty"`
+	VlansNumIn []int32 `json:"vlans_num_in,omitempty"`
 
 	// vlans num lt
-	VlansNumLt *float64 `json:"vlans_num_lt,omitempty"`
+	VlansNumLt *int32 `json:"vlans_num_lt,omitempty"`
 
 	// vlans num lte
-	VlansNumLte *float64 `json:"vlans_num_lte,omitempty"`
+	VlansNumLte *int32 `json:"vlans_num_lte,omitempty"`
 
 	// vlans num not
-	VlansNumNot *float64 `json:"vlans_num_not,omitempty"`
+	VlansNumNot *int32 `json:"vlans_num_not,omitempty"`
 
 	// vlans num not in
-	VlansNumNotIn []float64 `json:"vlans_num_not_in,omitempty"`
+	VlansNumNotIn []int32 `json:"vlans_num_not_in,omitempty"`
 
 	// vlans some
 	VlansSome interface{} `json:"vlans_some,omitempty"`
+
+	// work mode
+	WorkMode *string `json:"work_mode,omitempty"`
+
+	// work mode contains
+	WorkModeContains *string `json:"work_mode_contains,omitempty"`
+
+	// work mode ends with
+	WorkModeEndsWith *string `json:"work_mode_ends_with,omitempty"`
+
+	// work mode gt
+	WorkModeGt *string `json:"work_mode_gt,omitempty"`
+
+	// work mode gte
+	WorkModeGte *string `json:"work_mode_gte,omitempty"`
+
+	// work mode in
+	WorkModeIn []string `json:"work_mode_in,omitempty"`
+
+	// work mode lt
+	WorkModeLt *string `json:"work_mode_lt,omitempty"`
+
+	// work mode lte
+	WorkModeLte *string `json:"work_mode_lte,omitempty"`
+
+	// work mode not
+	WorkModeNot *string `json:"work_mode_not,omitempty"`
+
+	// work mode not contains
+	WorkModeNotContains *string `json:"work_mode_not_contains,omitempty"`
+
+	// work mode not ends with
+	WorkModeNotEndsWith *string `json:"work_mode_not_ends_with,omitempty"`
+
+	// work mode not in
+	WorkModeNotIn []string `json:"work_mode_not_in,omitempty"`
+
+	// work mode not starts with
+	WorkModeNotStartsWith *string `json:"work_mode_not_starts_with,omitempty"`
+
+	// work mode starts with
+	WorkModeStartsWith *string `json:"work_mode_starts_with,omitempty"`
 }
 
 // Validate validates this vds where input

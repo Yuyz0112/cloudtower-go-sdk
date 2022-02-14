@@ -21,7 +21,7 @@ type VMPlacementGroupConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *VMPlacementGroupConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateVMPlacementGroup `json:"aggregate"`
 }
 
 // Validate validates this Vm placement group connection
@@ -95,62 +95,6 @@ func (m *VMPlacementGroupConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *VMPlacementGroupConnection) UnmarshalBinary(b []byte) error {
 	var res VMPlacementGroupConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// VMPlacementGroupConnectionAggregate VM placement group connection aggregate
-//
-// swagger:model VMPlacementGroupConnectionAggregate
-type VMPlacementGroupConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this VM placement group connection aggregate
-func (m *VMPlacementGroupConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *VMPlacementGroupConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this VM placement group connection aggregate based on context it is used
-func (m *VMPlacementGroupConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *VMPlacementGroupConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *VMPlacementGroupConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res VMPlacementGroupConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -39,11 +39,11 @@ type License struct {
 
 	// max chunk num
 	// Required: true
-	MaxChunkNum *float64 `json:"max_chunk_num"`
+	MaxChunkNum *int32 `json:"max_chunk_num"`
 
 	// max cluster num
 	// Required: true
-	MaxClusterNum *float64 `json:"max_cluster_num"`
+	MaxClusterNum *int32 `json:"max_cluster_num"`
 
 	// sign date
 	// Required: true

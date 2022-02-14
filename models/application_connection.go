@@ -21,7 +21,7 @@ type ApplicationConnection struct {
 
 	// aggregate
 	// Required: true
-	Aggregate *ApplicationConnectionAggregate `json:"aggregate"`
+	Aggregate *NestedAggregateApplication `json:"aggregate"`
 }
 
 // Validate validates this application connection
@@ -95,62 +95,6 @@ func (m *ApplicationConnection) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *ApplicationConnection) UnmarshalBinary(b []byte) error {
 	var res ApplicationConnection
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// ApplicationConnectionAggregate application connection aggregate
-//
-// swagger:model ApplicationConnectionAggregate
-type ApplicationConnectionAggregate struct {
-
-	// count
-	// Required: true
-	Count *float64 `json:"count"`
-}
-
-// Validate validates this application connection aggregate
-func (m *ApplicationConnectionAggregate) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateCount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ApplicationConnectionAggregate) validateCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("aggregate"+"."+"count", "body", m.Count); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this application connection aggregate based on context it is used
-func (m *ApplicationConnectionAggregate) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *ApplicationConnectionAggregate) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *ApplicationConnectionAggregate) UnmarshalBinary(b []byte) error {
-	var res ApplicationConnectionAggregate
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
