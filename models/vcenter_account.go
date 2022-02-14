@@ -20,9 +20,7 @@ import (
 type VcenterAccount struct {
 
 	// cluster
-	Cluster struct {
-		NestedCluster
-	} `json:"cluster,omitempty"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// id
 	// Required: true
@@ -98,6 +96,17 @@ func (m *VcenterAccount) Validate(formats strfmt.Registry) error {
 func (m *VcenterAccount) validateCluster(formats strfmt.Registry) error {
 	if swag.IsZero(m.Cluster) { // not required
 		return nil
+	}
+
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -181,6 +190,17 @@ func (m *VcenterAccount) ContextValidate(ctx context.Context, formats strfmt.Reg
 }
 
 func (m *VcenterAccount) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

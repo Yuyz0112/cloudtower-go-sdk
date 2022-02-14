@@ -34,9 +34,7 @@ type NestedBackupPlanTimePoint struct {
 	Minute *int32 `json:"minute"`
 
 	// weekday
-	Weekday struct {
-		WeekdayTypeEnum
-	} `json:"weekday,omitempty"`
+	Weekday *WeekdayTypeEnum `json:"weekday,omitempty"`
 }
 
 // Validate validates this nested backup plan time point
@@ -84,6 +82,17 @@ func (m *NestedBackupPlanTimePoint) validateWeekday(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.Weekday != nil {
+		if err := m.Weekday.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("weekday")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("weekday")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -102,6 +111,17 @@ func (m *NestedBackupPlanTimePoint) ContextValidate(ctx context.Context, formats
 }
 
 func (m *NestedBackupPlanTimePoint) contextValidateWeekday(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Weekday != nil {
+		if err := m.Weekday.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("weekday")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("weekday")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

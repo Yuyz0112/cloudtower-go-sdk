@@ -44,9 +44,7 @@ type ElfDataStore struct {
 	IPWhitelist *string `json:"ip_whitelist"`
 
 	// iscsi target
-	IscsiTarget struct {
-		NestedIscsiTarget
-	} `json:"iscsi_target,omitempty"`
+	IscsiTarget *NestedIscsiTarget `json:"iscsi_target,omitempty"`
 
 	// local id
 	// Required: true
@@ -57,14 +55,10 @@ type ElfDataStore struct {
 	Name *string `json:"name"`
 
 	// nfs export
-	NfsExport struct {
-		NestedNfsExport
-	} `json:"nfs_export,omitempty"`
+	NfsExport *NestedNfsExport `json:"nfs_export,omitempty"`
 
 	// nvmf subsystem
-	NvmfSubsystem struct {
-		NestedNvmfSubsystem
-	} `json:"nvmf_subsystem,omitempty"`
+	NvmfSubsystem *NestedNvmfSubsystem `json:"nvmf_subsystem,omitempty"`
 
 	// replica num
 	// Required: true
@@ -215,6 +209,17 @@ func (m *ElfDataStore) validateIscsiTarget(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.IscsiTarget != nil {
+		if err := m.IscsiTarget.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -241,12 +246,34 @@ func (m *ElfDataStore) validateNfsExport(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NfsExport != nil {
+		if err := m.NfsExport.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_export")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_export")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ElfDataStore) validateNvmfSubsystem(formats strfmt.Registry) error {
 	if swag.IsZero(m.NvmfSubsystem) { // not required
 		return nil
+	}
+
+	if m.NvmfSubsystem != nil {
+		if err := m.NvmfSubsystem.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystem")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystem")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -342,15 +369,48 @@ func (m *ElfDataStore) contextValidateCluster(ctx context.Context, formats strfm
 
 func (m *ElfDataStore) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IscsiTarget != nil {
+		if err := m.IscsiTarget.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ElfDataStore) contextValidateNfsExport(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NfsExport != nil {
+		if err := m.NfsExport.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_export")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_export")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ElfDataStore) contextValidateNvmfSubsystem(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NvmfSubsystem != nil {
+		if err := m.NvmfSubsystem.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystem")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystem")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

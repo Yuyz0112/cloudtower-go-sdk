@@ -32,9 +32,7 @@ type ConsistencyGroup struct {
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -182,6 +180,17 @@ func (m *ConsistencyGroup) validateDescription(formats strfmt.Registry) error {
 func (m *ConsistencyGroup) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -381,6 +390,17 @@ func (m *ConsistencyGroup) contextValidateConsistencyGroupSnapshots(ctx context.
 }
 
 func (m *ConsistencyGroup) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

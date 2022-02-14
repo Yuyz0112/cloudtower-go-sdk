@@ -30,63 +30,43 @@ type EverouteClusterWhereInput struct {
 	OR []*EverouteClusterWhereInput `json:"OR,omitempty"`
 
 	// agent elf clusters every
-	AgentElfClustersEvery struct {
-		ClusterWhereInput
-	} `json:"agent_elf_clusters_every,omitempty"`
+	AgentElfClustersEvery *ClusterWhereInput `json:"agent_elf_clusters_every,omitempty"`
 
 	// agent elf clusters none
-	AgentElfClustersNone struct {
-		ClusterWhereInput
-	} `json:"agent_elf_clusters_none,omitempty"`
+	AgentElfClustersNone *ClusterWhereInput `json:"agent_elf_clusters_none,omitempty"`
 
 	// agent elf clusters some
-	AgentElfClustersSome struct {
-		ClusterWhereInput
-	} `json:"agent_elf_clusters_some,omitempty"`
+	AgentElfClustersSome *ClusterWhereInput `json:"agent_elf_clusters_some,omitempty"`
 
 	// agent elf vdses every
-	AgentElfVdsesEvery struct {
-		VdsWhereInput
-	} `json:"agent_elf_vdses_every,omitempty"`
+	AgentElfVdsesEvery *VdsWhereInput `json:"agent_elf_vdses_every,omitempty"`
 
 	// agent elf vdses none
-	AgentElfVdsesNone struct {
-		VdsWhereInput
-	} `json:"agent_elf_vdses_none,omitempty"`
+	AgentElfVdsesNone *VdsWhereInput `json:"agent_elf_vdses_none,omitempty"`
 
 	// agent elf vdses some
-	AgentElfVdsesSome struct {
-		VdsWhereInput
-	} `json:"agent_elf_vdses_some,omitempty"`
+	AgentElfVdsesSome *VdsWhereInput `json:"agent_elf_vdses_some,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
 
 	// global default action
-	GlobalDefaultAction struct {
-		GlobalPolicyAction
-	} `json:"global_default_action,omitempty"`
+	GlobalDefaultAction *GlobalPolicyAction `json:"global_default_action,omitempty"`
 
 	// global default action in
 	GlobalDefaultActionIn []GlobalPolicyAction `json:"global_default_action_in,omitempty"`
 
 	// global default action not
-	GlobalDefaultActionNot struct {
-		GlobalPolicyAction
-	} `json:"global_default_action_not,omitempty"`
+	GlobalDefaultActionNot *GlobalPolicyAction `json:"global_default_action_not,omitempty"`
 
 	// global default action not in
 	GlobalDefaultActionNotIn []GlobalPolicyAction `json:"global_default_action_not_in,omitempty"`
@@ -182,17 +162,13 @@ type EverouteClusterWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// phase
-	Phase struct {
-		EverouteClusterPhase
-	} `json:"phase,omitempty"`
+	Phase *EverouteClusterPhase `json:"phase,omitempty"`
 
 	// phase in
 	PhaseIn []EverouteClusterPhase `json:"phase_in,omitempty"`
 
 	// phase not
-	PhaseNot struct {
-		EverouteClusterPhase
-	} `json:"phase_not,omitempty"`
+	PhaseNot *EverouteClusterPhase `json:"phase_not,omitempty"`
 
 	// phase not in
 	PhaseNotIn []EverouteClusterPhase `json:"phase_not_in,omitempty"`
@@ -417,12 +393,34 @@ func (m *EverouteClusterWhereInput) validateAgentElfClustersEvery(formats strfmt
 		return nil
 	}
 
+	if m.AgentElfClustersEvery != nil {
+		if err := m.AgentElfClustersEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_clusters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_clusters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) validateAgentElfClustersNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.AgentElfClustersNone) { // not required
 		return nil
+	}
+
+	if m.AgentElfClustersNone != nil {
+		if err := m.AgentElfClustersNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_clusters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_clusters_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -433,12 +431,34 @@ func (m *EverouteClusterWhereInput) validateAgentElfClustersSome(formats strfmt.
 		return nil
 	}
 
+	if m.AgentElfClustersSome != nil {
+		if err := m.AgentElfClustersSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_clusters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_clusters_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) validateAgentElfVdsesEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.AgentElfVdsesEvery) { // not required
 		return nil
+	}
+
+	if m.AgentElfVdsesEvery != nil {
+		if err := m.AgentElfVdsesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_vdses_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_vdses_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -449,6 +469,17 @@ func (m *EverouteClusterWhereInput) validateAgentElfVdsesNone(formats strfmt.Reg
 		return nil
 	}
 
+	if m.AgentElfVdsesNone != nil {
+		if err := m.AgentElfVdsesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_vdses_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_vdses_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -457,12 +488,34 @@ func (m *EverouteClusterWhereInput) validateAgentElfVdsesSome(formats strfmt.Reg
 		return nil
 	}
 
+	if m.AgentElfVdsesSome != nil {
+		if err := m.AgentElfVdsesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_vdses_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_vdses_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -494,6 +547,17 @@ func (m *EverouteClusterWhereInput) validateEntityAsyncStatusNot(formats strfmt.
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -521,6 +585,17 @@ func (m *EverouteClusterWhereInput) validateEntityAsyncStatusNotIn(formats strfm
 func (m *EverouteClusterWhereInput) validateGlobalDefaultAction(formats strfmt.Registry) error {
 	if swag.IsZero(m.GlobalDefaultAction) { // not required
 		return nil
+	}
+
+	if m.GlobalDefaultAction != nil {
+		if err := m.GlobalDefaultAction.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("global_default_action")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_default_action")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -552,6 +627,17 @@ func (m *EverouteClusterWhereInput) validateGlobalDefaultActionNot(formats strfm
 		return nil
 	}
 
+	if m.GlobalDefaultActionNot != nil {
+		if err := m.GlobalDefaultActionNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("global_default_action_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_default_action_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -581,6 +667,17 @@ func (m *EverouteClusterWhereInput) validatePhase(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.Phase != nil {
+		if err := m.Phase.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -608,6 +705,17 @@ func (m *EverouteClusterWhereInput) validatePhaseIn(formats strfmt.Registry) err
 func (m *EverouteClusterWhereInput) validatePhaseNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.PhaseNot) { // not required
 		return nil
+	}
+
+	if m.PhaseNot != nil {
+		if err := m.PhaseNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -790,35 +898,112 @@ func (m *EverouteClusterWhereInput) contextValidateOR(ctx context.Context, forma
 
 func (m *EverouteClusterWhereInput) contextValidateAgentElfClustersEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AgentElfClustersEvery != nil {
+		if err := m.AgentElfClustersEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_clusters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_clusters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) contextValidateAgentElfClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AgentElfClustersNone != nil {
+		if err := m.AgentElfClustersNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_clusters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_clusters_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) contextValidateAgentElfClustersSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AgentElfClustersSome != nil {
+		if err := m.AgentElfClustersSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_clusters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_clusters_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) contextValidateAgentElfVdsesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AgentElfVdsesEvery != nil {
+		if err := m.AgentElfVdsesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_vdses_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_vdses_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) contextValidateAgentElfVdsesNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AgentElfVdsesNone != nil {
+		if err := m.AgentElfVdsesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_vdses_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_vdses_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) contextValidateAgentElfVdsesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AgentElfVdsesSome != nil {
+		if err := m.AgentElfVdsesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("agent_elf_vdses_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("agent_elf_vdses_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *EverouteClusterWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -843,6 +1028,17 @@ func (m *EverouteClusterWhereInput) contextValidateEntityAsyncStatusIn(ctx conte
 
 func (m *EverouteClusterWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -865,6 +1061,17 @@ func (m *EverouteClusterWhereInput) contextValidateEntityAsyncStatusNotIn(ctx co
 }
 
 func (m *EverouteClusterWhereInput) contextValidateGlobalDefaultAction(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GlobalDefaultAction != nil {
+		if err := m.GlobalDefaultAction.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("global_default_action")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_default_action")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -889,6 +1096,17 @@ func (m *EverouteClusterWhereInput) contextValidateGlobalDefaultActionIn(ctx con
 
 func (m *EverouteClusterWhereInput) contextValidateGlobalDefaultActionNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.GlobalDefaultActionNot != nil {
+		if err := m.GlobalDefaultActionNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("global_default_action_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_default_action_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -912,6 +1130,17 @@ func (m *EverouteClusterWhereInput) contextValidateGlobalDefaultActionNotIn(ctx 
 
 func (m *EverouteClusterWhereInput) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Phase != nil {
+		if err := m.Phase.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -934,6 +1163,17 @@ func (m *EverouteClusterWhereInput) contextValidatePhaseIn(ctx context.Context, 
 }
 
 func (m *EverouteClusterWhereInput) contextValidatePhaseNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PhaseNot != nil {
+		if err := m.PhaseNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

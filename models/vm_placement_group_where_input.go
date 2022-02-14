@@ -30,9 +30,7 @@ type VMPlacementGroupWhereInput struct {
 	OR []*VMPlacementGroupWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -83,17 +81,13 @@ type VMPlacementGroupWhereInput struct {
 	EnabledNot *bool `json:"enabled_not,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -279,19 +273,13 @@ type VMPlacementGroupWhereInput struct {
 	VMHostMustEnabledNot *bool `json:"vm_host_must_enabled_not,omitempty"`
 
 	// vm host must host uuids every
-	VMHostMustHostUuidsEvery struct {
-		HostWhereInput
-	} `json:"vm_host_must_host_uuids_every,omitempty"`
+	VMHostMustHostUuidsEvery *HostWhereInput `json:"vm_host_must_host_uuids_every,omitempty"`
 
 	// vm host must host uuids none
-	VMHostMustHostUuidsNone struct {
-		HostWhereInput
-	} `json:"vm_host_must_host_uuids_none,omitempty"`
+	VMHostMustHostUuidsNone *HostWhereInput `json:"vm_host_must_host_uuids_none,omitempty"`
 
 	// vm host must host uuids some
-	VMHostMustHostUuidsSome struct {
-		HostWhereInput
-	} `json:"vm_host_must_host_uuids_some,omitempty"`
+	VMHostMustHostUuidsSome *HostWhereInput `json:"vm_host_must_host_uuids_some,omitempty"`
 
 	// vm host must policy
 	VMHostMustPolicy *bool `json:"vm_host_must_policy,omitempty"`
@@ -306,19 +294,13 @@ type VMPlacementGroupWhereInput struct {
 	VMHostPreferEnabledNot *bool `json:"vm_host_prefer_enabled_not,omitempty"`
 
 	// vm host prefer host uuids every
-	VMHostPreferHostUuidsEvery struct {
-		HostWhereInput
-	} `json:"vm_host_prefer_host_uuids_every,omitempty"`
+	VMHostPreferHostUuidsEvery *HostWhereInput `json:"vm_host_prefer_host_uuids_every,omitempty"`
 
 	// vm host prefer host uuids none
-	VMHostPreferHostUuidsNone struct {
-		HostWhereInput
-	} `json:"vm_host_prefer_host_uuids_none,omitempty"`
+	VMHostPreferHostUuidsNone *HostWhereInput `json:"vm_host_prefer_host_uuids_none,omitempty"`
 
 	// vm host prefer host uuids some
-	VMHostPreferHostUuidsSome struct {
-		HostWhereInput
-	} `json:"vm_host_prefer_host_uuids_some,omitempty"`
+	VMHostPreferHostUuidsSome *HostWhereInput `json:"vm_host_prefer_host_uuids_some,omitempty"`
 
 	// vm host prefer policy
 	VMHostPreferPolicy *bool `json:"vm_host_prefer_policy,omitempty"`
@@ -327,9 +309,7 @@ type VMPlacementGroupWhereInput struct {
 	VMHostPreferPolicyNot *bool `json:"vm_host_prefer_policy_not,omitempty"`
 
 	// vm vm policy
-	VMVMPolicy struct {
-		VMVMPolicy
-	} `json:"vm_vm_policy,omitempty"`
+	VMVMPolicy *VMVMPolicy `json:"vm_vm_policy,omitempty"`
 
 	// vm vm policy enabled
 	VMVMPolicyEnabled *bool `json:"vm_vm_policy_enabled,omitempty"`
@@ -341,27 +321,19 @@ type VMPlacementGroupWhereInput struct {
 	VMVMPolicyIn []VMVMPolicy `json:"vm_vm_policy_in,omitempty"`
 
 	// vm vm policy not
-	VMVMPolicyNot struct {
-		VMVMPolicy
-	} `json:"vm_vm_policy_not,omitempty"`
+	VMVMPolicyNot *VMVMPolicy `json:"vm_vm_policy_not,omitempty"`
 
 	// vm vm policy not in
 	VMVMPolicyNotIn []VMVMPolicy `json:"vm_vm_policy_not_in,omitempty"`
 
 	// vms every
-	VmsEvery struct {
-		VMWhereInput
-	} `json:"vms_every,omitempty"`
+	VmsEvery *VMWhereInput `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone struct {
-		VMWhereInput
-	} `json:"vms_none,omitempty"`
+	VmsNone *VMWhereInput `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome struct {
-		VMWhereInput
-	} `json:"vms_some,omitempty"`
+	VmsSome *VMWhereInput `json:"vms_some,omitempty"`
 }
 
 // Validate validates this Vm placement group where input
@@ -541,12 +513,34 @@ func (m *VMPlacementGroupWhereInput) validateCluster(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -578,6 +572,17 @@ func (m *VMPlacementGroupWhereInput) validateEntityAsyncStatusNot(formats strfmt
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -607,12 +612,34 @@ func (m *VMPlacementGroupWhereInput) validateVMHostMustHostUuidsEvery(formats st
 		return nil
 	}
 
+	if m.VMHostMustHostUuidsEvery != nil {
+		if err := m.VMHostMustHostUuidsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_must_host_uuids_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_must_host_uuids_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) validateVMHostMustHostUuidsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMHostMustHostUuidsNone) { // not required
 		return nil
+	}
+
+	if m.VMHostMustHostUuidsNone != nil {
+		if err := m.VMHostMustHostUuidsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_must_host_uuids_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_must_host_uuids_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -623,12 +650,34 @@ func (m *VMPlacementGroupWhereInput) validateVMHostMustHostUuidsSome(formats str
 		return nil
 	}
 
+	if m.VMHostMustHostUuidsSome != nil {
+		if err := m.VMHostMustHostUuidsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_must_host_uuids_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_must_host_uuids_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) validateVMHostPreferHostUuidsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMHostPreferHostUuidsEvery) { // not required
 		return nil
+	}
+
+	if m.VMHostPreferHostUuidsEvery != nil {
+		if err := m.VMHostPreferHostUuidsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_prefer_host_uuids_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_prefer_host_uuids_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -639,6 +688,17 @@ func (m *VMPlacementGroupWhereInput) validateVMHostPreferHostUuidsNone(formats s
 		return nil
 	}
 
+	if m.VMHostPreferHostUuidsNone != nil {
+		if err := m.VMHostPreferHostUuidsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_prefer_host_uuids_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_prefer_host_uuids_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -647,12 +707,34 @@ func (m *VMPlacementGroupWhereInput) validateVMHostPreferHostUuidsSome(formats s
 		return nil
 	}
 
+	if m.VMHostPreferHostUuidsSome != nil {
+		if err := m.VMHostPreferHostUuidsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_prefer_host_uuids_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_prefer_host_uuids_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) validateVMVMPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMVMPolicy) { // not required
 		return nil
+	}
+
+	if m.VMVMPolicy != nil {
+		if err := m.VMVMPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_vm_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_vm_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -684,6 +766,17 @@ func (m *VMPlacementGroupWhereInput) validateVMVMPolicyNot(formats strfmt.Regist
 		return nil
 	}
 
+	if m.VMVMPolicyNot != nil {
+		if err := m.VMVMPolicyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_vm_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_vm_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -713,6 +806,17 @@ func (m *VMPlacementGroupWhereInput) validateVmsEvery(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -721,12 +825,34 @@ func (m *VMPlacementGroupWhereInput) validateVmsNone(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) validateVmsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsSome) { // not required
 		return nil
+	}
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -888,10 +1014,32 @@ func (m *VMPlacementGroupWhereInput) contextValidateOR(ctx context.Context, form
 
 func (m *VMPlacementGroupWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -916,6 +1064,17 @@ func (m *VMPlacementGroupWhereInput) contextValidateEntityAsyncStatusIn(ctx cont
 
 func (m *VMPlacementGroupWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -939,35 +1098,112 @@ func (m *VMPlacementGroupWhereInput) contextValidateEntityAsyncStatusNotIn(ctx c
 
 func (m *VMPlacementGroupWhereInput) contextValidateVMHostMustHostUuidsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMHostMustHostUuidsEvery != nil {
+		if err := m.VMHostMustHostUuidsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_must_host_uuids_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_must_host_uuids_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateVMHostMustHostUuidsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMHostMustHostUuidsNone != nil {
+		if err := m.VMHostMustHostUuidsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_must_host_uuids_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_must_host_uuids_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateVMHostMustHostUuidsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMHostMustHostUuidsSome != nil {
+		if err := m.VMHostMustHostUuidsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_must_host_uuids_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_must_host_uuids_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateVMHostPreferHostUuidsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMHostPreferHostUuidsEvery != nil {
+		if err := m.VMHostPreferHostUuidsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_prefer_host_uuids_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_prefer_host_uuids_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateVMHostPreferHostUuidsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMHostPreferHostUuidsNone != nil {
+		if err := m.VMHostPreferHostUuidsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_prefer_host_uuids_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_prefer_host_uuids_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateVMHostPreferHostUuidsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMHostPreferHostUuidsSome != nil {
+		if err := m.VMHostPreferHostUuidsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_host_prefer_host_uuids_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_host_prefer_host_uuids_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateVMVMPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMVMPolicy != nil {
+		if err := m.VMVMPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_vm_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_vm_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -992,6 +1228,17 @@ func (m *VMPlacementGroupWhereInput) contextValidateVMVMPolicyIn(ctx context.Con
 
 func (m *VMPlacementGroupWhereInput) contextValidateVMVMPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMVMPolicyNot != nil {
+		if err := m.VMVMPolicyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_vm_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_vm_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1015,15 +1262,48 @@ func (m *VMPlacementGroupWhereInput) contextValidateVMVMPolicyNotIn(ctx context.
 
 func (m *VMPlacementGroupWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMPlacementGroupWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

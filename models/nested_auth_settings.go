@@ -22,9 +22,7 @@ type NestedAuthSettings struct {
 	AccessList []string `json:"access_list,omitempty"`
 
 	// access mode
-	AccessMode struct {
-		AccessMode
-	} `json:"access_mode,omitempty"`
+	AccessMode *AccessMode `json:"access_mode,omitempty"`
 
 	// enable single session login
 	EnableSingleSessionLogin *bool `json:"enable_single_session_login,omitempty"`
@@ -36,9 +34,7 @@ type NestedAuthSettings struct {
 	LoginMissTimeThreshold *float64 `json:"login_miss_time_threshold,omitempty"`
 
 	// password complexity
-	PasswordComplexity struct {
-		PasswordComplexity
-	} `json:"password_complexity,omitempty"`
+	PasswordComplexity *PasswordComplexity `json:"password_complexity,omitempty"`
 
 	// password expire days
 	PasswordExpireDays *float64 `json:"password_expire_days,omitempty"`
@@ -70,12 +66,34 @@ func (m *NestedAuthSettings) validateAccessMode(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.AccessMode != nil {
+		if err := m.AccessMode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("access_mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("access_mode")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NestedAuthSettings) validatePasswordComplexity(formats strfmt.Registry) error {
 	if swag.IsZero(m.PasswordComplexity) { // not required
 		return nil
+	}
+
+	if m.PasswordComplexity != nil {
+		if err := m.PasswordComplexity.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_complexity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_complexity")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -101,10 +119,32 @@ func (m *NestedAuthSettings) ContextValidate(ctx context.Context, formats strfmt
 
 func (m *NestedAuthSettings) contextValidateAccessMode(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AccessMode != nil {
+		if err := m.AccessMode.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("access_mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("access_mode")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NestedAuthSettings) contextValidatePasswordComplexity(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PasswordComplexity != nil {
+		if err := m.PasswordComplexity.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_complexity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_complexity")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

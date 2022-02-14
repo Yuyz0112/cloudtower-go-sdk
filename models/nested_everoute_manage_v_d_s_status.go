@@ -24,9 +24,7 @@ type NestedEverouteManageVDSStatus struct {
 	Message *string `json:"message"`
 
 	// phase
-	Phase struct {
-		EverouteClusterPhase
-	} `json:"phase,omitempty"`
+	Phase *EverouteClusterPhase `json:"phase,omitempty"`
 
 	// reason
 	// Required: true
@@ -37,9 +35,7 @@ type NestedEverouteManageVDSStatus struct {
 	RetryCount *int32 `json:"retryCount"`
 
 	// vds
-	Vds struct {
-		NestedVds
-	} `json:"vds,omitempty"`
+	Vds *NestedVds `json:"vds,omitempty"`
 
 	// vds ID
 	// Required: true
@@ -94,6 +90,17 @@ func (m *NestedEverouteManageVDSStatus) validatePhase(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.Phase != nil {
+		if err := m.Phase.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -118,6 +125,17 @@ func (m *NestedEverouteManageVDSStatus) validateRetryCount(formats strfmt.Regist
 func (m *NestedEverouteManageVDSStatus) validateVds(formats strfmt.Registry) error {
 	if swag.IsZero(m.Vds) { // not required
 		return nil
+	}
+
+	if m.Vds != nil {
+		if err := m.Vds.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vds")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vds")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -152,10 +170,32 @@ func (m *NestedEverouteManageVDSStatus) ContextValidate(ctx context.Context, for
 
 func (m *NestedEverouteManageVDSStatus) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Phase != nil {
+		if err := m.Phase.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NestedEverouteManageVDSStatus) contextValidateVds(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Vds != nil {
+		if err := m.Vds.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vds")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vds")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

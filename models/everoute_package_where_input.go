@@ -30,17 +30,13 @@ type EveroutePackageWhereInput struct {
 	OR []*EveroutePackageWhereInput `json:"OR,omitempty"`
 
 	// arch
-	Arch struct {
-		Architecture
-	} `json:"arch,omitempty"`
+	Arch *Architecture `json:"arch,omitempty"`
 
 	// arch in
 	ArchIn []Architecture `json:"arch_in,omitempty"`
 
 	// arch not
-	ArchNot struct {
-		Architecture
-	} `json:"arch_not,omitempty"`
+	ArchNot *Architecture `json:"arch_not,omitempty"`
 
 	// arch not in
 	ArchNotIn []Architecture `json:"arch_not_in,omitempty"`
@@ -88,17 +84,13 @@ type EveroutePackageWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -415,6 +407,17 @@ func (m *EveroutePackageWhereInput) validateArch(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.Arch != nil {
+		if err := m.Arch.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("arch")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arch")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -442,6 +445,17 @@ func (m *EveroutePackageWhereInput) validateArchIn(formats strfmt.Registry) erro
 func (m *EveroutePackageWhereInput) validateArchNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.ArchNot) { // not required
 		return nil
+	}
+
+	if m.ArchNot != nil {
+		if err := m.ArchNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("arch_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arch_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -473,6 +487,17 @@ func (m *EveroutePackageWhereInput) validateEntityAsyncStatus(formats strfmt.Reg
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -500,6 +525,17 @@ func (m *EveroutePackageWhereInput) validateEntityAsyncStatusIn(formats strfmt.R
 func (m *EveroutePackageWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -642,6 +678,17 @@ func (m *EveroutePackageWhereInput) contextValidateOR(ctx context.Context, forma
 
 func (m *EveroutePackageWhereInput) contextValidateArch(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Arch != nil {
+		if err := m.Arch.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("arch")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arch")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -664,6 +711,17 @@ func (m *EveroutePackageWhereInput) contextValidateArchIn(ctx context.Context, f
 }
 
 func (m *EveroutePackageWhereInput) contextValidateArchNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ArchNot != nil {
+		if err := m.ArchNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("arch_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("arch_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -688,6 +746,17 @@ func (m *EveroutePackageWhereInput) contextValidateArchNotIn(ctx context.Context
 
 func (m *EveroutePackageWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -710,6 +779,17 @@ func (m *EveroutePackageWhereInput) contextValidateEntityAsyncStatusIn(ctx conte
 }
 
 func (m *EveroutePackageWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

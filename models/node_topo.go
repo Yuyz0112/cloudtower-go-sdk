@@ -20,18 +20,14 @@ import (
 type NodeTopo struct {
 
 	// brick topo
-	BrickTopo struct {
-		NestedBrickTopo
-	} `json:"brick_topo,omitempty"`
+	BrickTopo *NestedBrickTopo `json:"brick_topo,omitempty"`
 
 	// cluster
 	// Required: true
 	Cluster *NestedCluster `json:"cluster"`
 
 	// cluster topo
-	ClusterTopo struct {
-		NestedClusterTopo
-	} `json:"cluster_topo,omitempty"`
+	ClusterTopo *NestedClusterTopo `json:"cluster_topo,omitempty"`
 
 	// host
 	// Required: true
@@ -101,6 +97,17 @@ func (m *NodeTopo) validateBrickTopo(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.BrickTopo != nil {
+		if err := m.BrickTopo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("brick_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("brick_topo")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -127,6 +134,17 @@ func (m *NodeTopo) validateCluster(formats strfmt.Registry) error {
 func (m *NodeTopo) validateClusterTopo(formats strfmt.Registry) error {
 	if swag.IsZero(m.ClusterTopo) { // not required
 		return nil
+	}
+
+	if m.ClusterTopo != nil {
+		if err := m.ClusterTopo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster_topo")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -231,6 +249,17 @@ func (m *NodeTopo) ContextValidate(ctx context.Context, formats strfmt.Registry)
 
 func (m *NodeTopo) contextValidateBrickTopo(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BrickTopo != nil {
+		if err := m.BrickTopo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("brick_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("brick_topo")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -251,6 +280,17 @@ func (m *NodeTopo) contextValidateCluster(ctx context.Context, formats strfmt.Re
 }
 
 func (m *NodeTopo) contextValidateClusterTopo(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ClusterTopo != nil {
+		if err := m.ClusterTopo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster_topo")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

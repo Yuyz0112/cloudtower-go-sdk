@@ -66,9 +66,7 @@ type IscsiTarget struct {
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// external use
 	// Required: true
@@ -285,6 +283,17 @@ func (m *IscsiTarget) validateDescription(formats strfmt.Registry) error {
 func (m *IscsiTarget) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -523,6 +532,17 @@ func (m *IscsiTarget) contextValidateCluster(ctx context.Context, formats strfmt
 }
 
 func (m *IscsiTarget) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

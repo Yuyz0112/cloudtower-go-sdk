@@ -30,9 +30,7 @@ type NfsExportWhereInput struct {
 	OR []*NfsExportWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -77,17 +75,13 @@ type NfsExportWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -177,19 +171,13 @@ type NfsExportWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// inodes every
-	InodesEvery struct {
-		NfsInodeWhereInput
-	} `json:"inodes_every,omitempty"`
+	InodesEvery *NfsInodeWhereInput `json:"inodes_every,omitempty"`
 
 	// inodes none
-	InodesNone struct {
-		NfsInodeWhereInput
-	} `json:"inodes_none,omitempty"`
+	InodesNone *NfsInodeWhereInput `json:"inodes_none,omitempty"`
 
 	// inodes some
-	InodesSome struct {
-		NfsInodeWhereInput
-	} `json:"inodes_some,omitempty"`
+	InodesSome *NfsInodeWhereInput `json:"inodes_some,omitempty"`
 
 	// internal
 	Internal *bool `json:"internal,omitempty"`
@@ -240,19 +228,13 @@ type NfsExportWhereInput struct {
 	IPWhitelistStartsWith *string `json:"ip_whitelist_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -518,12 +500,34 @@ func (m *NfsExportWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NfsExportWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -555,6 +559,17 @@ func (m *NfsExportWhereInput) validateEntityAsyncStatusNot(formats strfmt.Regist
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -584,12 +599,34 @@ func (m *NfsExportWhereInput) validateInodesEvery(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.InodesEvery != nil {
+		if err := m.InodesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("inodes_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("inodes_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NfsExportWhereInput) validateInodesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.InodesNone) { // not required
 		return nil
+	}
+
+	if m.InodesNone != nil {
+		if err := m.InodesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("inodes_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("inodes_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -600,12 +637,34 @@ func (m *NfsExportWhereInput) validateInodesSome(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.InodesSome != nil {
+		if err := m.InodesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("inodes_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("inodes_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NfsExportWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsEvery) { // not required
 		return nil
+	}
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -616,12 +675,34 @@ func (m *NfsExportWhereInput) validateLabelsNone(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NfsExportWhereInput) validateLabelsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsSome) { // not required
 		return nil
+	}
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -755,10 +836,32 @@ func (m *NfsExportWhereInput) contextValidateOR(ctx context.Context, formats str
 
 func (m *NfsExportWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NfsExportWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -783,6 +886,17 @@ func (m *NfsExportWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Con
 
 func (m *NfsExportWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -806,30 +920,96 @@ func (m *NfsExportWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.
 
 func (m *NfsExportWhereInput) contextValidateInodesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.InodesEvery != nil {
+		if err := m.InodesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("inodes_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("inodes_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NfsExportWhereInput) contextValidateInodesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InodesNone != nil {
+		if err := m.InodesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("inodes_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("inodes_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *NfsExportWhereInput) contextValidateInodesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.InodesSome != nil {
+		if err := m.InodesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("inodes_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("inodes_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NfsExportWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *NfsExportWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NfsExportWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -30,17 +30,13 @@ type BackupLicenseWhereInput struct {
 	OR []*BackupLicenseWhereInput `json:"OR,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -202,33 +198,25 @@ type BackupLicenseWhereInput struct {
 	SignDateNotIn []string `json:"sign_date_not_in,omitempty"`
 
 	// software edition
-	SoftwareEdition struct {
-		SoftwareEdition
-	} `json:"software_edition,omitempty"`
+	SoftwareEdition *SoftwareEdition `json:"software_edition,omitempty"`
 
 	// software edition in
 	SoftwareEditionIn []SoftwareEdition `json:"software_edition_in,omitempty"`
 
 	// software edition not
-	SoftwareEditionNot struct {
-		SoftwareEdition
-	} `json:"software_edition_not,omitempty"`
+	SoftwareEditionNot *SoftwareEdition `json:"software_edition_not,omitempty"`
 
 	// software edition not in
 	SoftwareEditionNotIn []SoftwareEdition `json:"software_edition_not_in,omitempty"`
 
 	// type
-	Type struct {
-		LicenseType
-	} `json:"type,omitempty"`
+	Type *LicenseType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []LicenseType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		LicenseType
-	} `json:"type_not,omitempty"`
+	TypeNot *LicenseType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []LicenseType `json:"type_not_in,omitempty"`
@@ -387,6 +375,17 @@ func (m *BackupLicenseWhereInput) validateEntityAsyncStatus(formats strfmt.Regis
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -414,6 +413,17 @@ func (m *BackupLicenseWhereInput) validateEntityAsyncStatusIn(formats strfmt.Reg
 func (m *BackupLicenseWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -445,6 +455,17 @@ func (m *BackupLicenseWhereInput) validateSoftwareEdition(formats strfmt.Registr
 		return nil
 	}
 
+	if m.SoftwareEdition != nil {
+		if err := m.SoftwareEdition.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -472,6 +493,17 @@ func (m *BackupLicenseWhereInput) validateSoftwareEditionIn(formats strfmt.Regis
 func (m *BackupLicenseWhereInput) validateSoftwareEditionNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.SoftwareEditionNot) { // not required
 		return nil
+	}
+
+	if m.SoftwareEditionNot != nil {
+		if err := m.SoftwareEditionNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("software_edition_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -503,6 +535,17 @@ func (m *BackupLicenseWhereInput) validateType(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -530,6 +573,17 @@ func (m *BackupLicenseWhereInput) validateTypeIn(formats strfmt.Registry) error 
 func (m *BackupLicenseWhereInput) validateTypeNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.TypeNot) { // not required
 		return nil
+	}
+
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -688,6 +742,17 @@ func (m *BackupLicenseWhereInput) contextValidateOR(ctx context.Context, formats
 
 func (m *BackupLicenseWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -710,6 +775,17 @@ func (m *BackupLicenseWhereInput) contextValidateEntityAsyncStatusIn(ctx context
 }
 
 func (m *BackupLicenseWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -734,6 +810,17 @@ func (m *BackupLicenseWhereInput) contextValidateEntityAsyncStatusNotIn(ctx cont
 
 func (m *BackupLicenseWhereInput) contextValidateSoftwareEdition(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SoftwareEdition != nil {
+		if err := m.SoftwareEdition.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -756,6 +843,17 @@ func (m *BackupLicenseWhereInput) contextValidateSoftwareEditionIn(ctx context.C
 }
 
 func (m *BackupLicenseWhereInput) contextValidateSoftwareEditionNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SoftwareEditionNot != nil {
+		if err := m.SoftwareEditionNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("software_edition_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -780,6 +878,17 @@ func (m *BackupLicenseWhereInput) contextValidateSoftwareEditionNotIn(ctx contex
 
 func (m *BackupLicenseWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -802,6 +911,17 @@ func (m *BackupLicenseWhereInput) contextValidateTypeIn(ctx context.Context, for
 }
 
 func (m *BackupLicenseWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

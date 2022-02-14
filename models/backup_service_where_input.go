@@ -30,19 +30,13 @@ type BackupServiceWhereInput struct {
 	OR []*BackupServiceWhereInput `json:"OR,omitempty"`
 
 	// backup clusters every
-	BackupClustersEvery struct {
-		ClusterWhereInput
-	} `json:"backup_clusters_every,omitempty"`
+	BackupClustersEvery *ClusterWhereInput `json:"backup_clusters_every,omitempty"`
 
 	// backup clusters none
-	BackupClustersNone struct {
-		ClusterWhereInput
-	} `json:"backup_clusters_none,omitempty"`
+	BackupClustersNone *ClusterWhereInput `json:"backup_clusters_none,omitempty"`
 
 	// backup clusters some
-	BackupClustersSome struct {
-		ClusterWhereInput
-	} `json:"backup_clusters_some,omitempty"`
+	BackupClustersSome *ClusterWhereInput `json:"backup_clusters_some,omitempty"`
 
 	// backup network gateway
 	BackupNetworkGateway *string `json:"backup_network_gateway,omitempty"`
@@ -171,17 +165,13 @@ type BackupServiceWhereInput struct {
 	BackupNetworkSubnetMaskStartsWith *string `json:"backup_network_subnet_mask_starts_with,omitempty"`
 
 	// backup network type
-	BackupNetworkType struct {
-		BackupServiceNetworkType
-	} `json:"backup_network_type,omitempty"`
+	BackupNetworkType *BackupServiceNetworkType `json:"backup_network_type,omitempty"`
 
 	// backup network type in
 	BackupNetworkTypeIn []BackupServiceNetworkType `json:"backup_network_type_in,omitempty"`
 
 	// backup network type not
-	BackupNetworkTypeNot struct {
-		BackupServiceNetworkType
-	} `json:"backup_network_type_not,omitempty"`
+	BackupNetworkTypeNot *BackupServiceNetworkType `json:"backup_network_type_not,omitempty"`
 
 	// backup network type not in
 	BackupNetworkTypeNotIn []BackupServiceNetworkType `json:"backup_network_type_not_in,omitempty"`
@@ -229,24 +219,16 @@ type BackupServiceWhereInput struct {
 	BackupNetworkVlanStartsWith *string `json:"backup_network_vlan_starts_with,omitempty"`
 
 	// backup package
-	BackupPackage struct {
-		BackupPackageWhereInput
-	} `json:"backup_package,omitempty"`
+	BackupPackage *BackupPackageWhereInput `json:"backup_package,omitempty"`
 
 	// backup plans every
-	BackupPlansEvery struct {
-		BackupPlanWhereInput
-	} `json:"backup_plans_every,omitempty"`
+	BackupPlansEvery *BackupPlanWhereInput `json:"backup_plans_every,omitempty"`
 
 	// backup plans none
-	BackupPlansNone struct {
-		BackupPlanWhereInput
-	} `json:"backup_plans_none,omitempty"`
+	BackupPlansNone *BackupPlanWhereInput `json:"backup_plans_none,omitempty"`
 
 	// backup plans some
-	BackupPlansSome struct {
-		BackupPlanWhereInput
-	} `json:"backup_plans_some,omitempty"`
+	BackupPlansSome *BackupPlanWhereInput `json:"backup_plans_some,omitempty"`
 
 	// backup rd iops max
 	BackupRdIopsMax *float64 `json:"backup_rd_iops_max,omitempty"`
@@ -273,19 +255,13 @@ type BackupServiceWhereInput struct {
 	BackupRdIopsMaxNotIn []float64 `json:"backup_rd_iops_max_not_in,omitempty"`
 
 	// backup store repositories every
-	BackupStoreRepositoriesEvery struct {
-		BackupStoreRepositoryWhereInput
-	} `json:"backup_store_repositories_every,omitempty"`
+	BackupStoreRepositoriesEvery *BackupStoreRepositoryWhereInput `json:"backup_store_repositories_every,omitempty"`
 
 	// backup store repositories none
-	BackupStoreRepositoriesNone struct {
-		BackupStoreRepositoryWhereInput
-	} `json:"backup_store_repositories_none,omitempty"`
+	BackupStoreRepositoriesNone *BackupStoreRepositoryWhereInput `json:"backup_store_repositories_none,omitempty"`
 
 	// backup store repositories some
-	BackupStoreRepositoriesSome struct {
-		BackupStoreRepositoryWhereInput
-	} `json:"backup_store_repositories_some,omitempty"`
+	BackupStoreRepositoriesSome *BackupStoreRepositoryWhereInput `json:"backup_store_repositories_some,omitempty"`
 
 	// backup wr iops max
 	BackupWrIopsMax *float64 `json:"backup_wr_iops_max,omitempty"`
@@ -354,17 +330,13 @@ type BackupServiceWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -829,22 +801,16 @@ type BackupServiceWhereInput struct {
 	RetryIntervalNotIn []int32 `json:"retry_interval_not_in,omitempty"`
 
 	// running vm
-	RunningVM struct {
-		VMWhereInput
-	} `json:"running_vm,omitempty"`
+	RunningVM *VMWhereInput `json:"running_vm,omitempty"`
 
 	// status
-	Status struct {
-		BackupServiceStatus
-	} `json:"status,omitempty"`
+	Status *BackupServiceStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []BackupServiceStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		BackupServiceStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *BackupServiceStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []BackupServiceStatus `json:"status_not_in,omitempty"`
@@ -976,17 +942,13 @@ type BackupServiceWhereInput struct {
 	StorageNetworkSubnetMaskStartsWith *string `json:"storage_network_subnet_mask_starts_with,omitempty"`
 
 	// storage network type
-	StorageNetworkType struct {
-		BackupServiceNetworkType
-	} `json:"storage_network_type,omitempty"`
+	StorageNetworkType *BackupServiceNetworkType `json:"storage_network_type,omitempty"`
 
 	// storage network type in
 	StorageNetworkTypeIn []BackupServiceNetworkType `json:"storage_network_type_in,omitempty"`
 
 	// storage network type not
-	StorageNetworkTypeNot struct {
-		BackupServiceNetworkType
-	} `json:"storage_network_type_not,omitempty"`
+	StorageNetworkTypeNot *BackupServiceNetworkType `json:"storage_network_type_not,omitempty"`
 
 	// storage network type not in
 	StorageNetworkTypeNotIn []BackupServiceNetworkType `json:"storage_network_type_not_in,omitempty"`
@@ -1247,12 +1209,34 @@ func (m *BackupServiceWhereInput) validateBackupClustersEvery(formats strfmt.Reg
 		return nil
 	}
 
+	if m.BackupClustersEvery != nil {
+		if err := m.BackupClustersEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_clusters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_clusters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) validateBackupClustersNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupClustersNone) { // not required
 		return nil
+	}
+
+	if m.BackupClustersNone != nil {
+		if err := m.BackupClustersNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_clusters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_clusters_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1263,12 +1247,34 @@ func (m *BackupServiceWhereInput) validateBackupClustersSome(formats strfmt.Regi
 		return nil
 	}
 
+	if m.BackupClustersSome != nil {
+		if err := m.BackupClustersSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_clusters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_clusters_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) validateBackupNetworkType(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupNetworkType) { // not required
 		return nil
+	}
+
+	if m.BackupNetworkType != nil {
+		if err := m.BackupNetworkType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1300,6 +1306,17 @@ func (m *BackupServiceWhereInput) validateBackupNetworkTypeNot(formats strfmt.Re
 		return nil
 	}
 
+	if m.BackupNetworkTypeNot != nil {
+		if err := m.BackupNetworkTypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1329,12 +1346,34 @@ func (m *BackupServiceWhereInput) validateBackupPackage(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.BackupPackage != nil {
+		if err := m.BackupPackage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_package")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_package")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) validateBackupPlansEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupPlansEvery) { // not required
 		return nil
+	}
+
+	if m.BackupPlansEvery != nil {
+		if err := m.BackupPlansEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1345,12 +1384,34 @@ func (m *BackupServiceWhereInput) validateBackupPlansNone(formats strfmt.Registr
 		return nil
 	}
 
+	if m.BackupPlansNone != nil {
+		if err := m.BackupPlansNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) validateBackupPlansSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupPlansSome) { // not required
 		return nil
+	}
+
+	if m.BackupPlansSome != nil {
+		if err := m.BackupPlansSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1361,12 +1422,34 @@ func (m *BackupServiceWhereInput) validateBackupStoreRepositoriesEvery(formats s
 		return nil
 	}
 
+	if m.BackupStoreRepositoriesEvery != nil {
+		if err := m.BackupStoreRepositoriesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_store_repositories_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_store_repositories_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) validateBackupStoreRepositoriesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupStoreRepositoriesNone) { // not required
 		return nil
+	}
+
+	if m.BackupStoreRepositoriesNone != nil {
+		if err := m.BackupStoreRepositoriesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_store_repositories_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_store_repositories_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1377,12 +1460,34 @@ func (m *BackupServiceWhereInput) validateBackupStoreRepositoriesSome(formats st
 		return nil
 	}
 
+	if m.BackupStoreRepositoriesSome != nil {
+		if err := m.BackupStoreRepositoriesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_store_repositories_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_store_repositories_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1414,6 +1519,17 @@ func (m *BackupServiceWhereInput) validateEntityAsyncStatusNot(formats strfmt.Re
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1443,12 +1559,34 @@ func (m *BackupServiceWhereInput) validateRunningVM(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.RunningVM != nil {
+		if err := m.RunningVM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("running_vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("running_vm")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1480,6 +1618,17 @@ func (m *BackupServiceWhereInput) validateStatusNot(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1509,6 +1658,17 @@ func (m *BackupServiceWhereInput) validateStorageNetworkType(formats strfmt.Regi
 		return nil
 	}
 
+	if m.StorageNetworkType != nil {
+		if err := m.StorageNetworkType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1536,6 +1696,17 @@ func (m *BackupServiceWhereInput) validateStorageNetworkTypeIn(formats strfmt.Re
 func (m *BackupServiceWhereInput) validateStorageNetworkTypeNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.StorageNetworkTypeNot) { // not required
 		return nil
+	}
+
+	if m.StorageNetworkTypeNot != nil {
+		if err := m.StorageNetworkTypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1754,20 +1925,64 @@ func (m *BackupServiceWhereInput) contextValidateOR(ctx context.Context, formats
 
 func (m *BackupServiceWhereInput) contextValidateBackupClustersEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupClustersEvery != nil {
+		if err := m.BackupClustersEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_clusters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_clusters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupClustersNone != nil {
+		if err := m.BackupClustersNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_clusters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_clusters_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupClustersSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupClustersSome != nil {
+		if err := m.BackupClustersSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_clusters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_clusters_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupNetworkType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupNetworkType != nil {
+		if err := m.BackupNetworkType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1792,6 +2007,17 @@ func (m *BackupServiceWhereInput) contextValidateBackupNetworkTypeIn(ctx context
 
 func (m *BackupServiceWhereInput) contextValidateBackupNetworkTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupNetworkTypeNot != nil {
+		if err := m.BackupNetworkTypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1815,40 +2041,128 @@ func (m *BackupServiceWhereInput) contextValidateBackupNetworkTypeNotIn(ctx cont
 
 func (m *BackupServiceWhereInput) contextValidateBackupPackage(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupPackage != nil {
+		if err := m.BackupPackage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_package")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_package")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupPlansEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupPlansEvery != nil {
+		if err := m.BackupPlansEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupPlansNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupPlansNone != nil {
+		if err := m.BackupPlansNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupPlansSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupPlansSome != nil {
+		if err := m.BackupPlansSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupStoreRepositoriesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupStoreRepositoriesEvery != nil {
+		if err := m.BackupStoreRepositoriesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_store_repositories_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_store_repositories_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupStoreRepositoriesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupStoreRepositoriesNone != nil {
+		if err := m.BackupStoreRepositoriesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_store_repositories_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_store_repositories_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateBackupStoreRepositoriesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupStoreRepositoriesSome != nil {
+		if err := m.BackupStoreRepositoriesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_store_repositories_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_store_repositories_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1873,6 +2187,17 @@ func (m *BackupServiceWhereInput) contextValidateEntityAsyncStatusIn(ctx context
 
 func (m *BackupServiceWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1896,10 +2221,32 @@ func (m *BackupServiceWhereInput) contextValidateEntityAsyncStatusNotIn(ctx cont
 
 func (m *BackupServiceWhereInput) contextValidateRunningVM(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.RunningVM != nil {
+		if err := m.RunningVM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("running_vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("running_vm")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupServiceWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1924,6 +2271,17 @@ func (m *BackupServiceWhereInput) contextValidateStatusIn(ctx context.Context, f
 
 func (m *BackupServiceWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1947,6 +2305,17 @@ func (m *BackupServiceWhereInput) contextValidateStatusNotIn(ctx context.Context
 
 func (m *BackupServiceWhereInput) contextValidateStorageNetworkType(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StorageNetworkType != nil {
+		if err := m.StorageNetworkType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1969,6 +2338,17 @@ func (m *BackupServiceWhereInput) contextValidateStorageNetworkTypeIn(ctx contex
 }
 
 func (m *BackupServiceWhereInput) contextValidateStorageNetworkTypeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.StorageNetworkTypeNot != nil {
+		if err := m.StorageNetworkTypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

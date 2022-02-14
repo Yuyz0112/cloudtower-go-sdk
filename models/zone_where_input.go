@@ -30,14 +30,10 @@ type ZoneWhereInput struct {
 	OR []*ZoneWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// datacenter
-	Datacenter struct {
-		DatacenterWhereInput
-	} `json:"datacenter,omitempty"`
+	Datacenter *DatacenterWhereInput `json:"datacenter,omitempty"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
@@ -88,19 +84,13 @@ type ZoneWhereInput struct {
 	HostNumNotIn []int32 `json:"host_num_not_in,omitempty"`
 
 	// hosts every
-	HostsEvery struct {
-		HostWhereInput
-	} `json:"hosts_every,omitempty"`
+	HostsEvery *HostWhereInput `json:"hosts_every,omitempty"`
 
 	// hosts none
-	HostsNone struct {
-		HostWhereInput
-	} `json:"hosts_none,omitempty"`
+	HostsNone *HostWhereInput `json:"hosts_none,omitempty"`
 
 	// hosts some
-	HostsSome struct {
-		HostWhereInput
-	} `json:"hosts_some,omitempty"`
+	HostsSome *HostWhereInput `json:"hosts_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -678,12 +668,34 @@ func (m *ZoneWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ZoneWhereInput) validateDatacenter(formats strfmt.Registry) error {
 	if swag.IsZero(m.Datacenter) { // not required
 		return nil
+	}
+
+	if m.Datacenter != nil {
+		if err := m.Datacenter.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenter")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -694,6 +706,17 @@ func (m *ZoneWhereInput) validateHostsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.HostsEvery != nil {
+		if err := m.HostsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -702,12 +725,34 @@ func (m *ZoneWhereInput) validateHostsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.HostsNone != nil {
+		if err := m.HostsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ZoneWhereInput) validateHostsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.HostsSome) { // not required
 		return nil
+	}
+
+	if m.HostsSome != nil {
+		if err := m.HostsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -817,25 +862,80 @@ func (m *ZoneWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 
 func (m *ZoneWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ZoneWhereInput) contextValidateDatacenter(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Datacenter != nil {
+		if err := m.Datacenter.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenter")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *ZoneWhereInput) contextValidateHostsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HostsEvery != nil {
+		if err := m.HostsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ZoneWhereInput) contextValidateHostsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HostsNone != nil {
+		if err := m.HostsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ZoneWhereInput) contextValidateHostsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HostsSome != nil {
+		if err := m.HostsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

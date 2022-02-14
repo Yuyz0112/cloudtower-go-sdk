@@ -31,9 +31,7 @@ type Cluster struct {
 	AutoConverge *bool `json:"auto_converge,omitempty"`
 
 	// backup by service
-	BackupByService struct {
-		NestedBackupService
-	} `json:"backup_by_service,omitempty"`
+	BackupByService *NestedBackupService `json:"backup_by_service,omitempty"`
 
 	// connect state
 	// Required: true
@@ -52,23 +50,17 @@ type Cluster struct {
 	DisconnectedDate *string `json:"disconnected_date,omitempty"`
 
 	// disconnected reason
-	DisconnectedReason struct {
-		ClusterConnectorErrorCode
-	} `json:"disconnected_reason,omitempty"`
+	DisconnectedReason *ClusterConnectorErrorCode `json:"disconnected_reason,omitempty"`
 
 	// dns
 	// Required: true
 	DNS []string `json:"dns"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// everoute cluster
-	EverouteCluster struct {
-		NestedEverouteCluster
-	} `json:"everoute_cluster,omitempty"`
+	EverouteCluster *NestedEverouteCluster `json:"everoute_cluster,omitempty"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
@@ -86,9 +78,7 @@ type Cluster struct {
 	Hosts []*NestedHost `json:"hosts,omitempty"`
 
 	// hypervisor
-	Hypervisor struct {
-		Hypervisor
-	} `json:"hypervisor,omitempty"`
+	Hypervisor *Hypervisor `json:"hypervisor,omitempty"`
 
 	// id
 	// Required: true
@@ -117,9 +107,7 @@ type Cluster struct {
 	LicenseSignDate *string `json:"license_sign_date,omitempty"`
 
 	// license type
-	LicenseType struct {
-		LicenseType
-	} `json:"license_type,omitempty"`
+	LicenseType *LicenseType `json:"license_type,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -143,9 +131,7 @@ type Cluster struct {
 	MaxPhysicalDataCapacityPerNode *float64 `json:"max_physical_data_capacity_per_node,omitempty"`
 
 	// metro availability checklist
-	MetroAvailabilityChecklist struct {
-		NestedMetroAvailabilityChecklist
-	} `json:"metro_availability_checklist,omitempty"`
+	MetroAvailabilityChecklist *NestedMetroAvailabilityChecklist `json:"metro_availability_checklist,omitempty"`
 
 	// mgt gateway
 	MgtGateway *string `json:"mgt_gateway,omitempty"`
@@ -164,9 +150,7 @@ type Cluster struct {
 	Name *string `json:"name"`
 
 	// ntp mode
-	NtpMode struct {
-		NtpMode
-	} `json:"ntp_mode,omitempty"`
+	NtpMode *NtpMode `json:"ntp_mode,omitempty"`
 
 	// ntp servers
 	// Required: true
@@ -213,14 +197,10 @@ type Cluster struct {
 	RunningVMNum *int32 `json:"running_vm_num,omitempty"`
 
 	// settings
-	Settings struct {
-		NestedClusterSettings
-	} `json:"settings,omitempty"`
+	Settings *NestedClusterSettings `json:"settings,omitempty"`
 
 	// software edition
-	SoftwareEdition struct {
-		SoftwareEdition
-	} `json:"software_edition,omitempty"`
+	SoftwareEdition *SoftwareEdition `json:"software_edition,omitempty"`
 
 	// stopped vm num
 	StoppedVMNum *int32 `json:"stopped_vm_num,omitempty"`
@@ -273,9 +253,7 @@ type Cluster struct {
 	ValidDataSpace *float64 `json:"valid_data_space,omitempty"`
 
 	// vcenter account
-	VcenterAccount struct {
-		NestedVcenterAccount
-	} `json:"vcenterAccount,omitempty"`
+	VcenterAccount *NestedVcenterAccount `json:"vcenterAccount,omitempty"`
 
 	// vdses
 	Vdses []*NestedVds `json:"vdses,omitempty"`
@@ -300,9 +278,7 @@ type Cluster struct {
 	Vms []*NestedVM `json:"vms,omitempty"`
 
 	// witness
-	Witness struct {
-		NestedWitness
-	} `json:"witness,omitempty"`
+	Witness *NestedWitness `json:"witness,omitempty"`
 
 	// zones
 	Zones []*NestedZone `json:"zones,omitempty"`
@@ -505,6 +481,17 @@ func (m *Cluster) validateBackupByService(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.BackupByService != nil {
+		if err := m.BackupByService.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_by_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_by_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -589,6 +576,17 @@ func (m *Cluster) validateDisconnectedReason(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.DisconnectedReason != nil {
+		if err := m.DisconnectedReason.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disconnected_reason")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disconnected_reason")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -606,12 +604,34 @@ func (m *Cluster) validateEntityAsyncStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Cluster) validateEverouteCluster(formats strfmt.Registry) error {
 	if swag.IsZero(m.EverouteCluster) { // not required
 		return nil
+	}
+
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -646,6 +666,17 @@ func (m *Cluster) validateHosts(formats strfmt.Registry) error {
 func (m *Cluster) validateHypervisor(formats strfmt.Registry) error {
 	if swag.IsZero(m.Hypervisor) { // not required
 		return nil
+	}
+
+	if m.Hypervisor != nil {
+		if err := m.Hypervisor.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hypervisor")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hypervisor")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -700,12 +731,34 @@ func (m *Cluster) validateLicenseType(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LicenseType != nil {
+		if err := m.LicenseType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("license_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license_type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Cluster) validateMetroAvailabilityChecklist(formats strfmt.Registry) error {
 	if swag.IsZero(m.MetroAvailabilityChecklist) { // not required
 		return nil
+	}
+
+	if m.MetroAvailabilityChecklist != nil {
+		if err := m.MetroAvailabilityChecklist.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metro_availability_checklist")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metro_availability_checklist")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -723,6 +776,17 @@ func (m *Cluster) validateName(formats strfmt.Registry) error {
 func (m *Cluster) validateNtpMode(formats strfmt.Registry) error {
 	if swag.IsZero(m.NtpMode) { // not required
 		return nil
+	}
+
+	if m.NtpMode != nil {
+		if err := m.NtpMode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ntp_mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ntp_mode")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -751,12 +815,34 @@ func (m *Cluster) validateSettings(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Settings != nil {
+		if err := m.Settings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Cluster) validateSoftwareEdition(formats strfmt.Registry) error {
 	if swag.IsZero(m.SoftwareEdition) { // not required
 		return nil
+	}
+
+	if m.SoftwareEdition != nil {
+		if err := m.SoftwareEdition.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -798,6 +884,17 @@ func (m *Cluster) validateType(formats strfmt.Registry) error {
 func (m *Cluster) validateVcenterAccount(formats strfmt.Registry) error {
 	if swag.IsZero(m.VcenterAccount) { // not required
 		return nil
+	}
+
+	if m.VcenterAccount != nil {
+		if err := m.VcenterAccount.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vcenterAccount")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vcenterAccount")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -919,6 +1016,17 @@ func (m *Cluster) validateVms(formats strfmt.Registry) error {
 func (m *Cluster) validateWitness(formats strfmt.Registry) error {
 	if swag.IsZero(m.Witness) { // not required
 		return nil
+	}
+
+	if m.Witness != nil {
+		if err := m.Witness.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witness")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1098,6 +1206,17 @@ func (m *Cluster) contextValidateArchitecture(ctx context.Context, formats strfm
 
 func (m *Cluster) contextValidateBackupByService(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupByService != nil {
+		if err := m.BackupByService.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_by_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_by_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1159,15 +1278,48 @@ func (m *Cluster) contextValidateDatacenters(ctx context.Context, formats strfmt
 
 func (m *Cluster) contextValidateDisconnectedReason(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DisconnectedReason != nil {
+		if err := m.DisconnectedReason.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disconnected_reason")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disconnected_reason")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Cluster) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Cluster) contextValidateEverouteCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1194,6 +1346,17 @@ func (m *Cluster) contextValidateHosts(ctx context.Context, formats strfmt.Regis
 
 func (m *Cluster) contextValidateHypervisor(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Hypervisor != nil {
+		if err := m.Hypervisor.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hypervisor")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hypervisor")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1219,25 +1382,80 @@ func (m *Cluster) contextValidateLabels(ctx context.Context, formats strfmt.Regi
 
 func (m *Cluster) contextValidateLicenseType(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LicenseType != nil {
+		if err := m.LicenseType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("license_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license_type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Cluster) contextValidateMetroAvailabilityChecklist(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MetroAvailabilityChecklist != nil {
+		if err := m.MetroAvailabilityChecklist.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metro_availability_checklist")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metro_availability_checklist")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *Cluster) contextValidateNtpMode(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NtpMode != nil {
+		if err := m.NtpMode.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ntp_mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ntp_mode")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Cluster) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Settings != nil {
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Cluster) contextValidateSoftwareEdition(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SoftwareEdition != nil {
+		if err := m.SoftwareEdition.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("software_edition")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_edition")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1259,6 +1477,17 @@ func (m *Cluster) contextValidateType(ctx context.Context, formats strfmt.Regist
 }
 
 func (m *Cluster) contextValidateVcenterAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VcenterAccount != nil {
+		if err := m.VcenterAccount.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vcenterAccount")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vcenterAccount")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1344,6 +1573,17 @@ func (m *Cluster) contextValidateVms(ctx context.Context, formats strfmt.Registr
 }
 
 func (m *Cluster) contextValidateWitness(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Witness != nil {
+		if err := m.Witness.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witness")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -30,24 +30,16 @@ type NodeTopoWhereInput struct {
 	OR []*NodeTopoWhereInput `json:"OR,omitempty"`
 
 	// brick topo
-	BrickTopo struct {
-		BrickTopoWhereInput
-	} `json:"brick_topo,omitempty"`
+	BrickTopo *BrickTopoWhereInput `json:"brick_topo,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// cluster topo
-	ClusterTopo struct {
-		ClusterTopoWhereInput
-	} `json:"cluster_topo,omitempty"`
+	ClusterTopo *ClusterTopoWhereInput `json:"cluster_topo,omitempty"`
 
 	// host
-	Host struct {
-		HostWhereInput
-	} `json:"host,omitempty"`
+	Host *HostWhereInput `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -297,12 +289,34 @@ func (m *NodeTopoWhereInput) validateBrickTopo(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.BrickTopo != nil {
+		if err := m.BrickTopo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("brick_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("brick_topo")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NodeTopoWhereInput) validateCluster(formats strfmt.Registry) error {
 	if swag.IsZero(m.Cluster) { // not required
 		return nil
+	}
+
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -313,12 +327,34 @@ func (m *NodeTopoWhereInput) validateClusterTopo(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.ClusterTopo != nil {
+		if err := m.ClusterTopo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster_topo")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NodeTopoWhereInput) validateHost(formats strfmt.Registry) error {
 	if swag.IsZero(m.Host) { // not required
 		return nil
+	}
+
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -424,20 +460,64 @@ func (m *NodeTopoWhereInput) contextValidateOR(ctx context.Context, formats strf
 
 func (m *NodeTopoWhereInput) contextValidateBrickTopo(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BrickTopo != nil {
+		if err := m.BrickTopo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("brick_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("brick_topo")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NodeTopoWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *NodeTopoWhereInput) contextValidateClusterTopo(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ClusterTopo != nil {
+		if err := m.ClusterTopo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster_topo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster_topo")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NodeTopoWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

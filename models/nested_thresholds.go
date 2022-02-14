@@ -22,9 +22,7 @@ type NestedThresholds struct {
 	Quantile *int32 `json:"quantile,omitempty"`
 
 	// severity
-	Severity struct {
-		SeverityEnum
-	} `json:"severity,omitempty"`
+	Severity *SeverityEnum `json:"severity,omitempty"`
 
 	// value
 	Value *float64 `json:"value,omitempty"`
@@ -49,6 +47,17 @@ func (m *NestedThresholds) validateSeverity(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Severity != nil {
+		if err := m.Severity.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("severity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("severity")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -67,6 +76,17 @@ func (m *NestedThresholds) ContextValidate(ctx context.Context, formats strfmt.R
 }
 
 func (m *NestedThresholds) contextValidateSeverity(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Severity != nil {
+		if err := m.Severity.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("severity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("severity")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

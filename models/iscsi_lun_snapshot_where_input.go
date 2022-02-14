@@ -30,22 +30,16 @@ type IscsiLunSnapshotWhereInput struct {
 	OR []*IscsiLunSnapshotWhereInput `json:"OR,omitempty"`
 
 	// consistency group snapshot
-	ConsistencyGroupSnapshot struct {
-		ConsistencyGroupSnapshotWhereInput
-	} `json:"consistency_group_snapshot,omitempty"`
+	ConsistencyGroupSnapshot *ConsistencyGroupSnapshotWhereInput `json:"consistency_group_snapshot,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -93,29 +87,19 @@ type IscsiLunSnapshotWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// iscsi lun
-	IscsiLun struct {
-		IscsiLunWhereInput
-	} `json:"iscsi_lun,omitempty"`
+	IscsiLun *IscsiLunWhereInput `json:"iscsi_lun,omitempty"`
 
 	// iscsi target
-	IscsiTarget struct {
-		IscsiTargetWhereInput
-	} `json:"iscsi_target,omitempty"`
+	IscsiTarget *IscsiTargetWhereInput `json:"iscsi_target,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// local created at
 	LocalCreatedAt *string `json:"local_created_at,omitempty"`
@@ -395,12 +379,34 @@ func (m *IscsiLunSnapshotWhereInput) validateConsistencyGroupSnapshot(formats st
 		return nil
 	}
 
+	if m.ConsistencyGroupSnapshot != nil {
+		if err := m.ConsistencyGroupSnapshot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshot")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshot")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshotWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -432,6 +438,17 @@ func (m *IscsiLunSnapshotWhereInput) validateEntityAsyncStatusNot(formats strfmt
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -461,12 +478,34 @@ func (m *IscsiLunSnapshotWhereInput) validateIscsiLun(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.IscsiLun != nil {
+		if err := m.IscsiLun.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshotWhereInput) validateIscsiTarget(formats strfmt.Registry) error {
 	if swag.IsZero(m.IscsiTarget) { // not required
 		return nil
+	}
+
+	if m.IscsiTarget != nil {
+		if err := m.IscsiTarget.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -477,6 +516,17 @@ func (m *IscsiLunSnapshotWhereInput) validateLabelsEvery(formats strfmt.Registry
 		return nil
 	}
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -485,12 +535,34 @@ func (m *IscsiLunSnapshotWhereInput) validateLabelsNone(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshotWhereInput) validateLabelsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsSome) { // not required
 		return nil
+	}
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -620,10 +692,32 @@ func (m *IscsiLunSnapshotWhereInput) contextValidateOR(ctx context.Context, form
 
 func (m *IscsiLunSnapshotWhereInput) contextValidateConsistencyGroupSnapshot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistencyGroupSnapshot != nil {
+		if err := m.ConsistencyGroupSnapshot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshot")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshot")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshotWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -648,6 +742,17 @@ func (m *IscsiLunSnapshotWhereInput) contextValidateEntityAsyncStatusIn(ctx cont
 
 func (m *IscsiLunSnapshotWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -671,25 +776,80 @@ func (m *IscsiLunSnapshotWhereInput) contextValidateEntityAsyncStatusNotIn(ctx c
 
 func (m *IscsiLunSnapshotWhereInput) contextValidateIscsiLun(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IscsiLun != nil {
+		if err := m.IscsiLun.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshotWhereInput) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IscsiTarget != nil {
+		if err := m.IscsiTarget.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *IscsiLunSnapshotWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshotWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshotWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

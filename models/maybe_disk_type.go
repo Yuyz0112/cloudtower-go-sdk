@@ -17,41 +17,11 @@ import (
 //
 // swagger:model Maybe_DiskType_
 type MaybeDiskType struct {
-	DiskType
-}
-
-// UnmarshalJSON unmarshals this object from a JSON structure
-func (m *MaybeDiskType) UnmarshalJSON(raw []byte) error {
-	// AO0
-	var aO0 DiskType
-	if err := swag.ReadJSON(raw, &aO0); err != nil {
-		return err
-	}
-	m.DiskType = aO0
-
-	return nil
-}
-
-// MarshalJSON marshals this object to a JSON structure
-func (m MaybeDiskType) MarshalJSON() ([]byte, error) {
-	_parts := make([][]byte, 0, 1)
-
-	aO0, err := swag.WriteJSON(m.DiskType)
-	if err != nil {
-		return nil, err
-	}
-	_parts = append(_parts, aO0)
-	return swag.ConcatJSON(_parts...), nil
 }
 
 // Validate validates this maybe disk type
 func (m *MaybeDiskType) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	// validation for a type composition with DiskType
-	if err := m.DiskType.Validate(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
@@ -62,11 +32,6 @@ func (m *MaybeDiskType) Validate(formats strfmt.Registry) error {
 // ContextValidate validate this maybe disk type based on the context it is used
 func (m *MaybeDiskType) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
-
-	// validation for a type composition with DiskType
-	if err := m.DiskType.ContextValidate(ctx, formats); err != nil {
-		res = append(res, err)
-	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

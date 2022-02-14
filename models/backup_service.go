@@ -33,9 +33,7 @@ type BackupService struct {
 	BackupNetworkSubnetMask *string `json:"backup_network_subnet_mask,omitempty"`
 
 	// backup network type
-	BackupNetworkType struct {
-		BackupServiceNetworkType
-	} `json:"backup_network_type,omitempty"`
+	BackupNetworkType *BackupServiceNetworkType `json:"backup_network_type,omitempty"`
 
 	// backup network vlan
 	BackupNetworkVlan *string `json:"backup_network_vlan,omitempty"`
@@ -60,9 +58,7 @@ type BackupService struct {
 	Description *string `json:"description,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -110,14 +106,10 @@ type BackupService struct {
 	RetryInterval *int32 `json:"retry_interval,omitempty"`
 
 	// running vm
-	RunningVM struct {
-		NestedVM
-	} `json:"running_vm,omitempty"`
+	RunningVM *NestedVM `json:"running_vm,omitempty"`
 
 	// status
-	Status struct {
-		BackupServiceStatus
-	} `json:"status,omitempty"`
+	Status *BackupServiceStatus `json:"status,omitempty"`
 
 	// storage network gateway
 	StorageNetworkGateway *string `json:"storage_network_gateway,omitempty"`
@@ -129,9 +121,7 @@ type BackupService struct {
 	StorageNetworkSubnetMask *string `json:"storage_network_subnet_mask,omitempty"`
 
 	// storage network type
-	StorageNetworkType struct {
-		BackupServiceNetworkType
-	} `json:"storage_network_type,omitempty"`
+	StorageNetworkType *BackupServiceNetworkType `json:"storage_network_type,omitempty"`
 
 	// storage network vlan
 	StorageNetworkVlan *string `json:"storage_network_vlan,omitempty"`
@@ -230,6 +220,17 @@ func (m *BackupService) validateBackupNetworkType(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.BackupNetworkType != nil {
+		if err := m.BackupNetworkType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -310,6 +311,17 @@ func (m *BackupService) validateEntityAsyncStatus(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -371,6 +383,17 @@ func (m *BackupService) validateRunningVM(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.RunningVM != nil {
+		if err := m.RunningVM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("running_vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("running_vm")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -379,12 +402,34 @@ func (m *BackupService) validateStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupService) validateStorageNetworkType(formats strfmt.Registry) error {
 	if swag.IsZero(m.StorageNetworkType) { // not required
 		return nil
+	}
+
+	if m.StorageNetworkType != nil {
+		if err := m.StorageNetworkType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -462,6 +507,17 @@ func (m *BackupService) contextValidateBackupClusters(ctx context.Context, forma
 
 func (m *BackupService) contextValidateBackupNetworkType(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupNetworkType != nil {
+		if err := m.BackupNetworkType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_network_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_network_type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -523,6 +579,17 @@ func (m *BackupService) contextValidateBackupStoreRepositories(ctx context.Conte
 
 func (m *BackupService) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -548,15 +615,48 @@ func (m *BackupService) contextValidateNetworkStatus(ctx context.Context, format
 
 func (m *BackupService) contextValidateRunningVM(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.RunningVM != nil {
+		if err := m.RunningVM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("running_vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("running_vm")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupService) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupService) contextValidateStorageNetworkType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.StorageNetworkType != nil {
+		if err := m.StorageNetworkType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("storage_network_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("storage_network_type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

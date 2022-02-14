@@ -35,9 +35,7 @@ type User struct {
 	LdapDn *string `json:"ldap_dn,omitempty"`
 
 	// login info
-	LoginInfo struct {
-		NestedUserLoginInfo
-	} `json:"login_info,omitempty"`
+	LoginInfo *NestedUserLoginInfo `json:"login_info,omitempty"`
 
 	// mobile phone
 	MobilePhone *string `json:"mobile_phone,omitempty"`
@@ -50,17 +48,13 @@ type User struct {
 	PasswordExpired *bool `json:"password_expired,omitempty"`
 
 	// password recover qa
-	PasswordRecoverQa struct {
-		NestedPasswordRecoverQa
-	} `json:"password_recover_qa,omitempty"`
+	PasswordRecoverQa *NestedPasswordRecoverQa `json:"password_recover_qa,omitempty"`
 
 	// password updated at
 	PasswordUpdatedAt *string `json:"password_updated_at,omitempty"`
 
 	// role
-	Role struct {
-		UserRole
-	} `json:"role,omitempty"`
+	Role *UserRole `json:"role,omitempty"`
 
 	// roles
 	Roles []*NestedUserRoleNext `json:"roles,omitempty"`
@@ -143,6 +137,17 @@ func (m *User) validateLoginInfo(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LoginInfo != nil {
+		if err := m.LoginInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("login_info")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("login_info")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -160,12 +165,34 @@ func (m *User) validatePasswordRecoverQa(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.PasswordRecoverQa != nil {
+		if err := m.PasswordRecoverQa.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_recover_qa")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_recover_qa")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *User) validateRole(formats strfmt.Registry) error {
 	if swag.IsZero(m.Role) { // not required
 		return nil
+	}
+
+	if m.Role != nil {
+		if err := m.Role.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("role")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -262,15 +289,48 @@ func (m *User) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 
 func (m *User) contextValidateLoginInfo(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LoginInfo != nil {
+		if err := m.LoginInfo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("login_info")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("login_info")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *User) contextValidatePasswordRecoverQa(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.PasswordRecoverQa != nil {
+		if err := m.PasswordRecoverQa.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_recover_qa")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_recover_qa")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *User) contextValidateRole(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Role != nil {
+		if err := m.Role.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("role")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

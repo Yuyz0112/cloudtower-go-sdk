@@ -30,55 +30,37 @@ type GraphWhereInput struct {
 	OR []*GraphWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// disks every
-	DisksEvery struct {
-		DiskWhereInput
-	} `json:"disks_every,omitempty"`
+	DisksEvery *DiskWhereInput `json:"disks_every,omitempty"`
 
 	// disks none
-	DisksNone struct {
-		DiskWhereInput
-	} `json:"disks_none,omitempty"`
+	DisksNone *DiskWhereInput `json:"disks_none,omitempty"`
 
 	// disks some
-	DisksSome struct {
-		DiskWhereInput
-	} `json:"disks_some,omitempty"`
+	DisksSome *DiskWhereInput `json:"disks_some,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
 
 	// hosts every
-	HostsEvery struct {
-		HostWhereInput
-	} `json:"hosts_every,omitempty"`
+	HostsEvery *HostWhereInput `json:"hosts_every,omitempty"`
 
 	// hosts none
-	HostsNone struct {
-		HostWhereInput
-	} `json:"hosts_none,omitempty"`
+	HostsNone *HostWhereInput `json:"hosts_none,omitempty"`
 
 	// hosts some
-	HostsSome struct {
-		HostWhereInput
-	} `json:"hosts_some,omitempty"`
+	HostsSome *HostWhereInput `json:"hosts_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -165,19 +147,13 @@ type GraphWhereInput struct {
 	LocalIDStartsWith *string `json:"local_id_starts_with,omitempty"`
 
 	// luns every
-	LunsEvery struct {
-		IscsiLunWhereInput
-	} `json:"luns_every,omitempty"`
+	LunsEvery *IscsiLunWhereInput `json:"luns_every,omitempty"`
 
 	// luns none
-	LunsNone struct {
-		IscsiLunWhereInput
-	} `json:"luns_none,omitempty"`
+	LunsNone *IscsiLunWhereInput `json:"luns_none,omitempty"`
 
 	// luns some
-	LunsSome struct {
-		IscsiLunWhereInput
-	} `json:"luns_some,omitempty"`
+	LunsSome *IscsiLunWhereInput `json:"luns_some,omitempty"`
 
 	// metric count
 	MetricCount *int32 `json:"metric_count,omitempty"`
@@ -246,66 +222,46 @@ type GraphWhereInput struct {
 	MetricNameStartsWith *string `json:"metric_name_starts_with,omitempty"`
 
 	// metric type
-	MetricType struct {
-		MetricType
-	} `json:"metric_type,omitempty"`
+	MetricType *MetricType `json:"metric_type,omitempty"`
 
 	// metric type in
 	MetricTypeIn []MetricType `json:"metric_type_in,omitempty"`
 
 	// metric type not
-	MetricTypeNot struct {
-		MetricType
-	} `json:"metric_type_not,omitempty"`
+	MetricTypeNot *MetricType `json:"metric_type_not,omitempty"`
 
 	// metric type not in
 	MetricTypeNotIn []MetricType `json:"metric_type_not_in,omitempty"`
 
 	// namespaces every
-	NamespacesEvery struct {
-		NvmfNamespaceWhereInput
-	} `json:"namespaces_every,omitempty"`
+	NamespacesEvery *NvmfNamespaceWhereInput `json:"namespaces_every,omitempty"`
 
 	// namespaces none
-	NamespacesNone struct {
-		NvmfNamespaceWhereInput
-	} `json:"namespaces_none,omitempty"`
+	NamespacesNone *NvmfNamespaceWhereInput `json:"namespaces_none,omitempty"`
 
 	// namespaces some
-	NamespacesSome struct {
-		NvmfNamespaceWhereInput
-	} `json:"namespaces_some,omitempty"`
+	NamespacesSome *NvmfNamespaceWhereInput `json:"namespaces_some,omitempty"`
 
 	// network
-	Network struct {
-		NetworkType
-	} `json:"network,omitempty"`
+	Network *NetworkType `json:"network,omitempty"`
 
 	// network in
 	NetworkIn []NetworkType `json:"network_in,omitempty"`
 
 	// network not
-	NetworkNot struct {
-		NetworkType
-	} `json:"network_not,omitempty"`
+	NetworkNot *NetworkType `json:"network_not,omitempty"`
 
 	// network not in
 	NetworkNotIn []NetworkType `json:"network_not_in,omitempty"`
 
 	// nics every
-	NicsEvery struct {
-		NicWhereInput
-	} `json:"nics_every,omitempty"`
+	NicsEvery *NicWhereInput `json:"nics_every,omitempty"`
 
 	// nics none
-	NicsNone struct {
-		NicWhereInput
-	} `json:"nics_none,omitempty"`
+	NicsNone *NicWhereInput `json:"nics_none,omitempty"`
 
 	// nics some
-	NicsSome struct {
-		NicWhereInput
-	} `json:"nics_some,omitempty"`
+	NicsSome *NicWhereInput `json:"nics_some,omitempty"`
 
 	// resource type
 	ResourceType *string `json:"resource_type,omitempty"`
@@ -434,100 +390,64 @@ type GraphWhereInput struct {
 	TitleStartsWith *string `json:"title_starts_with,omitempty"`
 
 	// type
-	Type struct {
-		GraphType
-	} `json:"type,omitempty"`
+	Type *GraphType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []GraphType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		GraphType
-	} `json:"type_not,omitempty"`
+	TypeNot *GraphType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []GraphType `json:"type_not_in,omitempty"`
 
 	// view
-	View struct {
-		ViewWhereInput
-	} `json:"view,omitempty"`
+	View *ViewWhereInput `json:"view,omitempty"`
 
 	// vm nics every
-	VMNicsEvery struct {
-		VMNicWhereInput
-	} `json:"vmNics_every,omitempty"`
+	VMNicsEvery *VMNicWhereInput `json:"vmNics_every,omitempty"`
 
 	// vm nics none
-	VMNicsNone struct {
-		VMNicWhereInput
-	} `json:"vmNics_none,omitempty"`
+	VMNicsNone *VMNicWhereInput `json:"vmNics_none,omitempty"`
 
 	// vm nics some
-	VMNicsSome struct {
-		VMNicWhereInput
-	} `json:"vmNics_some,omitempty"`
+	VMNicsSome *VMNicWhereInput `json:"vmNics_some,omitempty"`
 
 	// vm volumes every
-	VMVolumesEvery struct {
-		VMVolumeWhereInput
-	} `json:"vmVolumes_every,omitempty"`
+	VMVolumesEvery *VMVolumeWhereInput `json:"vmVolumes_every,omitempty"`
 
 	// vm volumes none
-	VMVolumesNone struct {
-		VMVolumeWhereInput
-	} `json:"vmVolumes_none,omitempty"`
+	VMVolumesNone *VMVolumeWhereInput `json:"vmVolumes_none,omitempty"`
 
 	// vm volumes some
-	VMVolumesSome struct {
-		VMVolumeWhereInput
-	} `json:"vmVolumes_some,omitempty"`
+	VMVolumesSome *VMVolumeWhereInput `json:"vmVolumes_some,omitempty"`
 
 	// vms every
-	VmsEvery struct {
-		VMWhereInput
-	} `json:"vms_every,omitempty"`
+	VmsEvery *VMWhereInput `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone struct {
-		VMWhereInput
-	} `json:"vms_none,omitempty"`
+	VmsNone *VMWhereInput `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome struct {
-		VMWhereInput
-	} `json:"vms_some,omitempty"`
+	VmsSome *VMWhereInput `json:"vms_some,omitempty"`
 
 	// witnesses every
-	WitnessesEvery struct {
-		WitnessWhereInput
-	} `json:"witnesses_every,omitempty"`
+	WitnessesEvery *WitnessWhereInput `json:"witnesses_every,omitempty"`
 
 	// witnesses none
-	WitnessesNone struct {
-		WitnessWhereInput
-	} `json:"witnesses_none,omitempty"`
+	WitnessesNone *WitnessWhereInput `json:"witnesses_none,omitempty"`
 
 	// witnesses some
-	WitnessesSome struct {
-		WitnessWhereInput
-	} `json:"witnesses_some,omitempty"`
+	WitnessesSome *WitnessWhereInput `json:"witnesses_some,omitempty"`
 
 	// zones every
-	ZonesEvery struct {
-		ZoneWhereInput
-	} `json:"zones_every,omitempty"`
+	ZonesEvery *ZoneWhereInput `json:"zones_every,omitempty"`
 
 	// zones none
-	ZonesNone struct {
-		ZoneWhereInput
-	} `json:"zones_none,omitempty"`
+	ZonesNone *ZoneWhereInput `json:"zones_none,omitempty"`
 
 	// zones some
-	ZonesSome struct {
-		ZoneWhereInput
-	} `json:"zones_some,omitempty"`
+	ZonesSome *ZoneWhereInput `json:"zones_some,omitempty"`
 }
 
 // Validate validates this graph where input
@@ -827,12 +747,34 @@ func (m *GraphWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateDisksEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.DisksEvery) { // not required
 		return nil
+	}
+
+	if m.DisksEvery != nil {
+		if err := m.DisksEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -843,6 +785,17 @@ func (m *GraphWhereInput) validateDisksNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.DisksNone != nil {
+		if err := m.DisksNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -851,12 +804,34 @@ func (m *GraphWhereInput) validateDisksSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.DisksSome != nil {
+		if err := m.DisksSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -888,6 +863,17 @@ func (m *GraphWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) 
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -917,12 +903,34 @@ func (m *GraphWhereInput) validateHostsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.HostsEvery != nil {
+		if err := m.HostsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateHostsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.HostsNone) { // not required
 		return nil
+	}
+
+	if m.HostsNone != nil {
+		if err := m.HostsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -933,12 +941,34 @@ func (m *GraphWhereInput) validateHostsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.HostsSome != nil {
+		if err := m.HostsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateLunsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.LunsEvery) { // not required
 		return nil
+	}
+
+	if m.LunsEvery != nil {
+		if err := m.LunsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -949,6 +979,17 @@ func (m *GraphWhereInput) validateLunsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LunsNone != nil {
+		if err := m.LunsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -957,12 +998,34 @@ func (m *GraphWhereInput) validateLunsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LunsSome != nil {
+		if err := m.LunsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateMetricType(formats strfmt.Registry) error {
 	if swag.IsZero(m.MetricType) { // not required
 		return nil
+	}
+
+	if m.MetricType != nil {
+		if err := m.MetricType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metric_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -994,6 +1057,17 @@ func (m *GraphWhereInput) validateMetricTypeNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.MetricTypeNot != nil {
+		if err := m.MetricTypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metric_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1023,12 +1097,34 @@ func (m *GraphWhereInput) validateNamespacesEvery(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.NamespacesEvery != nil {
+		if err := m.NamespacesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespaces_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespaces_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateNamespacesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.NamespacesNone) { // not required
 		return nil
+	}
+
+	if m.NamespacesNone != nil {
+		if err := m.NamespacesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespaces_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespaces_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1039,12 +1135,34 @@ func (m *GraphWhereInput) validateNamespacesSome(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.NamespacesSome != nil {
+		if err := m.NamespacesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespaces_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespaces_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateNetwork(formats strfmt.Registry) error {
 	if swag.IsZero(m.Network) { // not required
 		return nil
+	}
+
+	if m.Network != nil {
+		if err := m.Network.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("network")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("network")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1076,6 +1194,17 @@ func (m *GraphWhereInput) validateNetworkNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NetworkNot != nil {
+		if err := m.NetworkNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("network_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("network_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1105,12 +1234,34 @@ func (m *GraphWhereInput) validateNicsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NicsEvery != nil {
+		if err := m.NicsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateNicsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.NicsNone) { // not required
 		return nil
+	}
+
+	if m.NicsNone != nil {
+		if err := m.NicsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1121,12 +1272,34 @@ func (m *GraphWhereInput) validateNicsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NicsSome != nil {
+		if err := m.NicsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1158,6 +1331,17 @@ func (m *GraphWhereInput) validateTypeNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1187,12 +1371,34 @@ func (m *GraphWhereInput) validateView(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.View != nil {
+		if err := m.View.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("view")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("view")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateVMNicsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMNicsEvery) { // not required
 		return nil
+	}
+
+	if m.VMNicsEvery != nil {
+		if err := m.VMNicsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmNics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmNics_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1203,12 +1409,34 @@ func (m *GraphWhereInput) validateVMNicsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VMNicsNone != nil {
+		if err := m.VMNicsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmNics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmNics_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateVMNicsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMNicsSome) { // not required
 		return nil
+	}
+
+	if m.VMNicsSome != nil {
+		if err := m.VMNicsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmNics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmNics_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1219,12 +1447,34 @@ func (m *GraphWhereInput) validateVMVolumesEvery(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.VMVolumesEvery != nil {
+		if err := m.VMVolumesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmVolumes_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmVolumes_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateVMVolumesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMVolumesNone) { // not required
 		return nil
+	}
+
+	if m.VMVolumesNone != nil {
+		if err := m.VMVolumesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmVolumes_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmVolumes_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1235,12 +1485,34 @@ func (m *GraphWhereInput) validateVMVolumesSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VMVolumesSome != nil {
+		if err := m.VMVolumesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmVolumes_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmVolumes_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateVmsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsEvery) { // not required
 		return nil
+	}
+
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1251,12 +1523,34 @@ func (m *GraphWhereInput) validateVmsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateVmsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsSome) { // not required
 		return nil
+	}
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1267,12 +1561,34 @@ func (m *GraphWhereInput) validateWitnessesEvery(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.WitnessesEvery != nil {
+		if err := m.WitnessesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witnesses_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witnesses_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateWitnessesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.WitnessesNone) { // not required
 		return nil
+	}
+
+	if m.WitnessesNone != nil {
+		if err := m.WitnessesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witnesses_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witnesses_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1283,12 +1599,34 @@ func (m *GraphWhereInput) validateWitnessesSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.WitnessesSome != nil {
+		if err := m.WitnessesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witnesses_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witnesses_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateZonesEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.ZonesEvery) { // not required
 		return nil
+	}
+
+	if m.ZonesEvery != nil {
+		if err := m.ZonesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zones_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zones_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1299,12 +1637,34 @@ func (m *GraphWhereInput) validateZonesNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.ZonesNone != nil {
+		if err := m.ZonesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zones_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zones_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) validateZonesSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.ZonesSome) { // not required
 		return nil
+	}
+
+	if m.ZonesSome != nil {
+		if err := m.ZonesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zones_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zones_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1586,25 +1946,80 @@ func (m *GraphWhereInput) contextValidateOR(ctx context.Context, formats strfmt.
 
 func (m *GraphWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateDisksEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DisksEvery != nil {
+		if err := m.DisksEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateDisksNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DisksNone != nil {
+		if err := m.DisksNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateDisksSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DisksSome != nil {
+		if err := m.DisksSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1629,6 +2044,17 @@ func (m *GraphWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Context
 
 func (m *GraphWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1652,35 +2078,112 @@ func (m *GraphWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.Cont
 
 func (m *GraphWhereInput) contextValidateHostsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HostsEvery != nil {
+		if err := m.HostsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateHostsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HostsNone != nil {
+		if err := m.HostsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateHostsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HostsSome != nil {
+		if err := m.HostsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateLunsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LunsEvery != nil {
+		if err := m.LunsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateLunsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LunsNone != nil {
+		if err := m.LunsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateLunsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LunsSome != nil {
+		if err := m.LunsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateMetricType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MetricType != nil {
+		if err := m.MetricType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metric_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1705,6 +2208,17 @@ func (m *GraphWhereInput) contextValidateMetricTypeIn(ctx context.Context, forma
 
 func (m *GraphWhereInput) contextValidateMetricTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MetricTypeNot != nil {
+		if err := m.MetricTypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metric_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metric_type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1728,20 +2242,64 @@ func (m *GraphWhereInput) contextValidateMetricTypeNotIn(ctx context.Context, fo
 
 func (m *GraphWhereInput) contextValidateNamespacesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NamespacesEvery != nil {
+		if err := m.NamespacesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespaces_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespaces_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateNamespacesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NamespacesNone != nil {
+		if err := m.NamespacesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespaces_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespaces_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateNamespacesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NamespacesSome != nil {
+		if err := m.NamespacesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespaces_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespaces_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateNetwork(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Network != nil {
+		if err := m.Network.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("network")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("network")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1766,6 +2324,17 @@ func (m *GraphWhereInput) contextValidateNetworkIn(ctx context.Context, formats 
 
 func (m *GraphWhereInput) contextValidateNetworkNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NetworkNot != nil {
+		if err := m.NetworkNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("network_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("network_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1789,20 +2358,64 @@ func (m *GraphWhereInput) contextValidateNetworkNotIn(ctx context.Context, forma
 
 func (m *GraphWhereInput) contextValidateNicsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NicsEvery != nil {
+		if err := m.NicsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateNicsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NicsNone != nil {
+		if err := m.NicsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateNicsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NicsSome != nil {
+		if err := m.NicsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1827,6 +2440,17 @@ func (m *GraphWhereInput) contextValidateTypeIn(ctx context.Context, formats str
 
 func (m *GraphWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1850,80 +2474,256 @@ func (m *GraphWhereInput) contextValidateTypeNotIn(ctx context.Context, formats 
 
 func (m *GraphWhereInput) contextValidateView(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.View != nil {
+		if err := m.View.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("view")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("view")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVMNicsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMNicsEvery != nil {
+		if err := m.VMNicsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmNics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmNics_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVMNicsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMNicsNone != nil {
+		if err := m.VMNicsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmNics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmNics_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVMNicsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMNicsSome != nil {
+		if err := m.VMNicsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmNics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmNics_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVMVolumesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMVolumesEvery != nil {
+		if err := m.VMVolumesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmVolumes_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmVolumes_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVMVolumesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMVolumesNone != nil {
+		if err := m.VMVolumesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmVolumes_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmVolumes_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVMVolumesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMVolumesSome != nil {
+		if err := m.VMVolumesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vmVolumes_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vmVolumes_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateWitnessesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.WitnessesEvery != nil {
+		if err := m.WitnessesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witnesses_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witnesses_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateWitnessesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.WitnessesNone != nil {
+		if err := m.WitnessesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witnesses_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witnesses_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateWitnessesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.WitnessesSome != nil {
+		if err := m.WitnessesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witnesses_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witnesses_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateZonesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ZonesEvery != nil {
+		if err := m.ZonesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zones_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zones_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateZonesNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ZonesNone != nil {
+		if err := m.ZonesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zones_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zones_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GraphWhereInput) contextValidateZonesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ZonesSome != nil {
+		if err := m.ZonesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zones_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zones_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -28,9 +28,7 @@ type VM struct {
 	ClockOffset *VMClockOffset `json:"clock_offset"`
 
 	// cluster
-	Cluster struct {
-		NestedCluster
-	} `json:"cluster,omitempty"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// cpu
 	// Required: true
@@ -54,9 +52,7 @@ type VM struct {
 	DNSServers *string `json:"dns_servers,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity filter results
 	EntityFilterResults []*NestedVMEntityFilterResult `json:"entity_filter_results,omitempty"`
@@ -66,17 +62,13 @@ type VM struct {
 	Firmware *VMFirmware `json:"firmware"`
 
 	// folder
-	Folder struct {
-		NestedVMFolder
-	} `json:"folder,omitempty"`
+	Folder *NestedVMFolder `json:"folder,omitempty"`
 
 	// guest cpu model
 	GuestCPUModel *string `json:"guest_cpu_model,omitempty"`
 
 	// guest os type
-	GuestOsType struct {
-		VMGuestsOperationSystem
-	} `json:"guest_os_type,omitempty"`
+	GuestOsType *VMGuestsOperationSystem `json:"guest_os_type,omitempty"`
 
 	// guest size usage
 	GuestSizeUsage *float64 `json:"guest_size_usage,omitempty"`
@@ -89,9 +81,7 @@ type VM struct {
 	Ha *bool `json:"ha"`
 
 	// host
-	Host struct {
-		NestedHost
-	} `json:"host,omitempty"`
+	Host *NestedHost `json:"host,omitempty"`
 
 	// hostname
 	Hostname *string `json:"hostname,omitempty"`
@@ -105,27 +95,21 @@ type VM struct {
 	InRecycleBin *bool `json:"in_recycle_bin"`
 
 	// installed backup service
-	InstalledBackupService struct {
-		NestedBackupService
-	} `json:"installed_backup_service,omitempty"`
+	InstalledBackupService *NestedBackupService `json:"installed_backup_service,omitempty"`
 
 	// internal
 	// Required: true
 	Internal *bool `json:"internal"`
 
 	// io policy
-	IoPolicy struct {
-		VMDiskIoPolicy
-	} `json:"io_policy,omitempty"`
+	IoPolicy *VMDiskIoPolicy `json:"io_policy,omitempty"`
 
 	// ips
 	// Required: true
 	Ips *string `json:"ips"`
 
 	// isolation policy
-	IsolationPolicy struct {
-		NestedIsolationPolicy
-	} `json:"isolation_policy,omitempty"`
+	IsolationPolicy *NestedIsolationPolicy `json:"isolation_policy,omitempty"`
 
 	// kernel info
 	KernelInfo *string `json:"kernel_info,omitempty"`
@@ -150,17 +134,13 @@ type VM struct {
 	MaxBandwidth *float64 `json:"max_bandwidth,omitempty"`
 
 	// max bandwidth policy
-	MaxBandwidthPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_bandwidth_policy,omitempty"`
+	MaxBandwidthPolicy *VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
 	MaxIops *int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
-	MaxIopsPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_iops_policy,omitempty"`
+	MaxIopsPolicy *VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
 
 	// memory
 	// Required: true
@@ -202,9 +182,7 @@ type VM struct {
 	Size *float64 `json:"size,omitempty"`
 
 	// snapshot plan
-	SnapshotPlan struct {
-		NestedSnapshotPlan
-	} `json:"snapshot_plan,omitempty"`
+	SnapshotPlan *NestedSnapshotPlan `json:"snapshot_plan,omitempty"`
 
 	// snapshots
 	Snapshots []*NestedVMSnapshot `json:"snapshots,omitempty"`
@@ -224,9 +202,7 @@ type VM struct {
 	Vcpu *int32 `json:"vcpu"`
 
 	// video type
-	VideoType struct {
-		VMVideoType
-	} `json:"video_type,omitempty"`
+	VideoType *VMVideoType `json:"video_type,omitempty"`
 
 	// vm disks
 	VMDisks []*NestedVMDisk `json:"vm_disks,omitempty"`
@@ -245,9 +221,7 @@ type VM struct {
 	VMToolsVersion *string `json:"vm_tools_version,omitempty"`
 
 	// vm usage
-	VMUsage struct {
-		VMUsage
-	} `json:"vm_usage,omitempty"`
+	VMUsage *VMUsage `json:"vm_usage,omitempty"`
 
 	// win opt
 	// Required: true
@@ -487,6 +461,17 @@ func (m *VM) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -531,6 +516,17 @@ func (m *VM) validateDescription(formats strfmt.Registry) error {
 func (m *VM) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -591,12 +587,34 @@ func (m *VM) validateFolder(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Folder != nil {
+		if err := m.Folder.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("folder")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("folder")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VM) validateGuestOsType(formats strfmt.Registry) error {
 	if swag.IsZero(m.GuestOsType) { // not required
 		return nil
+	}
+
+	if m.GuestOsType != nil {
+		if err := m.GuestOsType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("guest_os_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("guest_os_type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -614,6 +632,17 @@ func (m *VM) validateHa(formats strfmt.Registry) error {
 func (m *VM) validateHost(formats strfmt.Registry) error {
 	if swag.IsZero(m.Host) { // not required
 		return nil
+	}
+
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -642,6 +671,17 @@ func (m *VM) validateInstalledBackupService(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.InstalledBackupService != nil {
+		if err := m.InstalledBackupService.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installed_backup_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installed_backup_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -659,6 +699,17 @@ func (m *VM) validateIoPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.IoPolicy != nil {
+		if err := m.IoPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -674,6 +725,17 @@ func (m *VM) validateIps(formats strfmt.Registry) error {
 func (m *VM) validateIsolationPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.IsolationPolicy) { // not required
 		return nil
+	}
+
+	if m.IsolationPolicy != nil {
+		if err := m.IsolationPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("isolation_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("isolation_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -719,12 +781,34 @@ func (m *VM) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VM) validateMaxIopsPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxIopsPolicy) { // not required
 		return nil
+	}
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -787,6 +871,17 @@ func (m *VM) validateProtected(formats strfmt.Registry) error {
 func (m *VM) validateSnapshotPlan(formats strfmt.Registry) error {
 	if swag.IsZero(m.SnapshotPlan) { // not required
 		return nil
+	}
+
+	if m.SnapshotPlan != nil {
+		if err := m.SnapshotPlan.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_plan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_plan")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -880,6 +975,17 @@ func (m *VM) validateVcpu(formats strfmt.Registry) error {
 func (m *VM) validateVideoType(formats strfmt.Registry) error {
 	if swag.IsZero(m.VideoType) { // not required
 		return nil
+	}
+
+	if m.VideoType != nil {
+		if err := m.VideoType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("video_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("video_type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -990,6 +1096,17 @@ func (m *VM) validateVMToolsStatus(formats strfmt.Registry) error {
 func (m *VM) validateVMUsage(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMUsage) { // not required
 		return nil
+	}
+
+	if m.VMUsage != nil {
+		if err := m.VMUsage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_usage")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_usage")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1156,6 +1273,17 @@ func (m *VM) contextValidateClockOffset(ctx context.Context, formats strfmt.Regi
 
 func (m *VM) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1176,6 +1304,17 @@ func (m *VM) contextValidateCPU(ctx context.Context, formats strfmt.Registry) er
 }
 
 func (m *VM) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1218,30 +1357,96 @@ func (m *VM) contextValidateFirmware(ctx context.Context, formats strfmt.Registr
 
 func (m *VM) contextValidateFolder(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Folder != nil {
+		if err := m.Folder.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("folder")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("folder")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VM) contextValidateGuestOsType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GuestOsType != nil {
+		if err := m.GuestOsType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("guest_os_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("guest_os_type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VM) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VM) contextValidateInstalledBackupService(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InstalledBackupService != nil {
+		if err := m.InstalledBackupService.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installed_backup_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installed_backup_service")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VM) contextValidateIoPolicy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IoPolicy != nil {
+		if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VM) contextValidateIsolationPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IsolationPolicy != nil {
+		if err := m.IsolationPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("isolation_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("isolation_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1268,15 +1473,48 @@ func (m *VM) contextValidateLabels(ctx context.Context, formats strfmt.Registry)
 
 func (m *VM) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VM) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VM) contextValidateSnapshotPlan(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SnapshotPlan != nil {
+		if err := m.SnapshotPlan.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_plan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_plan")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1338,6 +1576,17 @@ func (m *VM) contextValidateUsbDevices(ctx context.Context, formats strfmt.Regis
 }
 
 func (m *VM) contextValidateVideoType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VideoType != nil {
+		if err := m.VideoType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("video_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("video_type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1419,6 +1668,17 @@ func (m *VM) contextValidateVMToolsStatus(ctx context.Context, formats strfmt.Re
 }
 
 func (m *VM) contextValidateVMUsage(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMUsage != nil {
+		if err := m.VMUsage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_usage")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_usage")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

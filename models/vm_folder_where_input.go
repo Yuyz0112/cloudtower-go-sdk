@@ -30,9 +30,7 @@ type VMFolderWhereInput struct {
 	OR []*VMFolderWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -185,19 +183,13 @@ type VMFolderWhereInput struct {
 	VMNumNotIn []int32 `json:"vm_num_not_in,omitempty"`
 
 	// vms every
-	VmsEvery struct {
-		VMWhereInput
-	} `json:"vms_every,omitempty"`
+	VmsEvery *VMWhereInput `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone struct {
-		VMWhereInput
-	} `json:"vms_none,omitempty"`
+	VmsNone *VMWhereInput `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome struct {
-		VMWhereInput
-	} `json:"vms_some,omitempty"`
+	VmsSome *VMWhereInput `json:"vms_some,omitempty"`
 }
 
 // Validate validates this Vm folder where input
@@ -321,12 +313,34 @@ func (m *VMFolderWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMFolderWhereInput) validateVmsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsEvery) { // not required
 		return nil
+	}
+
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -337,12 +351,34 @@ func (m *VMFolderWhereInput) validateVmsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMFolderWhereInput) validateVmsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsSome) { // not required
 		return nil
+	}
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -448,20 +484,64 @@ func (m *VMFolderWhereInput) contextValidateOR(ctx context.Context, formats strf
 
 func (m *VMFolderWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMFolderWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VMFolderWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMFolderWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

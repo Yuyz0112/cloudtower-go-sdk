@@ -54,14 +54,10 @@ type IscsiConnectionWhereInput struct {
 	ClientPortNotIn []int32 `json:"client_port_not_in,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// host
-	Host struct {
-		HostWhereInput
-	} `json:"host,omitempty"`
+	Host *HostWhereInput `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -148,27 +144,19 @@ type IscsiConnectionWhereInput struct {
 	InitiatorIPStartsWith *string `json:"initiator_ip_starts_with,omitempty"`
 
 	// iscsi target
-	IscsiTarget struct {
-		IscsiTargetWhereInput
-	} `json:"iscsi_target,omitempty"`
+	IscsiTarget *IscsiTargetWhereInput `json:"iscsi_target,omitempty"`
 
 	// nvmf subsystem
-	NvmfSubsystem struct {
-		NvmfSubsystemWhereInput
-	} `json:"nvmf_subsystem,omitempty"`
+	NvmfSubsystem *NvmfSubsystemWhereInput `json:"nvmf_subsystem,omitempty"`
 
 	// type
-	Type struct {
-		StoreConnectionType
-	} `json:"type,omitempty"`
+	Type *StoreConnectionType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []StoreConnectionType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		StoreConnectionType
-	} `json:"type_not,omitempty"`
+	TypeNot *StoreConnectionType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []StoreConnectionType `json:"type_not_in,omitempty"`
@@ -311,12 +299,34 @@ func (m *IscsiConnectionWhereInput) validateCluster(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiConnectionWhereInput) validateHost(formats strfmt.Registry) error {
 	if swag.IsZero(m.Host) { // not required
 		return nil
+	}
+
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -327,6 +337,17 @@ func (m *IscsiConnectionWhereInput) validateIscsiTarget(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.IscsiTarget != nil {
+		if err := m.IscsiTarget.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -335,12 +356,34 @@ func (m *IscsiConnectionWhereInput) validateNvmfSubsystem(formats strfmt.Registr
 		return nil
 	}
 
+	if m.NvmfSubsystem != nil {
+		if err := m.NvmfSubsystem.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystem")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystem")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiConnectionWhereInput) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -370,6 +413,17 @@ func (m *IscsiConnectionWhereInput) validateTypeIn(formats strfmt.Registry) erro
 func (m *IscsiConnectionWhereInput) validateTypeNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.TypeNot) { // not required
 		return nil
+	}
+
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -512,25 +566,80 @@ func (m *IscsiConnectionWhereInput) contextValidateOR(ctx context.Context, forma
 
 func (m *IscsiConnectionWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiConnectionWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *IscsiConnectionWhereInput) contextValidateIscsiTarget(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IscsiTarget != nil {
+		if err := m.IscsiTarget.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_target")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_target")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiConnectionWhereInput) contextValidateNvmfSubsystem(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NvmfSubsystem != nil {
+		if err := m.NvmfSubsystem.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystem")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystem")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiConnectionWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -554,6 +663,17 @@ func (m *IscsiConnectionWhereInput) contextValidateTypeIn(ctx context.Context, f
 }
 
 func (m *IscsiConnectionWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

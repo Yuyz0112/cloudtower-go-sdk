@@ -25,9 +25,7 @@ type Task struct {
 	Args interface{} `json:"args"`
 
 	// cluster
-	Cluster struct {
-		NestedCluster
-	} `json:"cluster,omitempty"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// description
 	// Required: true
@@ -92,9 +90,7 @@ type Task struct {
 	Steps []*NestedStep `json:"steps"`
 
 	// user
-	User struct {
-		NestedUser
-	} `json:"user,omitempty"`
+	User *NestedUser `json:"user,omitempty"`
 }
 
 // Validate validates this task
@@ -163,6 +159,17 @@ func (m *Task) validateArgs(formats strfmt.Registry) error {
 func (m *Task) validateCluster(formats strfmt.Registry) error {
 	if swag.IsZero(m.Cluster) { // not required
 		return nil
+	}
+
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -278,6 +285,17 @@ func (m *Task) validateUser(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.User != nil {
+		if err := m.User.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -308,6 +326,17 @@ func (m *Task) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 }
 
 func (m *Task) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -349,6 +378,17 @@ func (m *Task) contextValidateSteps(ctx context.Context, formats strfmt.Registry
 }
 
 func (m *Task) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.User != nil {
+		if err := m.User.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

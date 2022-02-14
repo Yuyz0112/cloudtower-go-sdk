@@ -27,9 +27,7 @@ type SnapshotPlanTask struct {
 	EndTime *string `json:"end_time,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -43,9 +41,7 @@ type SnapshotPlanTask struct {
 	LocalID *string `json:"local_id"`
 
 	// snapshot group
-	SnapshotGroup struct {
-		NestedSnapshotGroup
-	} `json:"snapshotGroup,omitempty"`
+	SnapshotGroup *NestedSnapshotGroup `json:"snapshotGroup,omitempty"`
 
 	// snapshot plan
 	// Required: true
@@ -135,6 +131,17 @@ func (m *SnapshotPlanTask) validateEntityAsyncStatus(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -159,6 +166,17 @@ func (m *SnapshotPlanTask) validateLocalID(formats strfmt.Registry) error {
 func (m *SnapshotPlanTask) validateSnapshotGroup(formats strfmt.Registry) error {
 	if swag.IsZero(m.SnapshotGroup) { // not required
 		return nil
+	}
+
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshotGroup")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotGroup")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -293,10 +311,32 @@ func (m *SnapshotPlanTask) contextValidateCluster(ctx context.Context, formats s
 
 func (m *SnapshotPlanTask) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanTask) contextValidateSnapshotGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshotGroup")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotGroup")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

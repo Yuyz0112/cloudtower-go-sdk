@@ -36,9 +36,7 @@ type NestedTemplateNic struct {
 	Mirror *bool `json:"mirror,omitempty"`
 
 	// model
-	Model struct {
-		VMNicModel
-	} `json:"model,omitempty"`
+	Model *VMNicModel `json:"model,omitempty"`
 
 	// vlan
 	// Required: true
@@ -79,6 +77,17 @@ func (m *NestedTemplateNic) validateIndex(formats strfmt.Registry) error {
 func (m *NestedTemplateNic) validateModel(formats strfmt.Registry) error {
 	if swag.IsZero(m.Model) { // not required
 		return nil
+	}
+
+	if m.Model != nil {
+		if err := m.Model.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("model")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("model")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -123,6 +132,17 @@ func (m *NestedTemplateNic) ContextValidate(ctx context.Context, formats strfmt.
 }
 
 func (m *NestedTemplateNic) contextValidateModel(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Model != nil {
+		if err := m.Model.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("model")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("model")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -30,17 +30,13 @@ type DiskWhereInput struct {
 	OR []*DiskWhereInput `json:"OR,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -88,33 +84,25 @@ type DiskWhereInput struct {
 	FirmwareStartsWith *string `json:"firmware_starts_with,omitempty"`
 
 	// function
-	Function struct {
-		DiskFunction
-	} `json:"function,omitempty"`
+	Function *DiskFunction `json:"function,omitempty"`
 
 	// function in
 	FunctionIn []DiskFunction `json:"function_in,omitempty"`
 
 	// function not
-	FunctionNot struct {
-		DiskFunction
-	} `json:"function_not,omitempty"`
+	FunctionNot *DiskFunction `json:"function_not,omitempty"`
 
 	// function not in
 	FunctionNotIn []DiskFunction `json:"function_not_in,omitempty"`
 
 	// health status
-	HealthStatus struct {
-		DiskHealthStatus
-	} `json:"health_status,omitempty"`
+	HealthStatus *DiskHealthStatus `json:"health_status,omitempty"`
 
 	// health status in
 	HealthStatusIn []DiskHealthStatus `json:"health_status_in,omitempty"`
 
 	// health status not
-	HealthStatusNot struct {
-		DiskHealthStatus
-	} `json:"health_status_not,omitempty"`
+	HealthStatusNot *DiskHealthStatus `json:"health_status_not,omitempty"`
 
 	// health status not in
 	HealthStatusNotIn []DiskHealthStatus `json:"health_status_not_in,omitempty"`
@@ -126,9 +114,7 @@ type DiskWhereInput struct {
 	HealthyNot *bool `json:"healthy_not,omitempty"`
 
 	// host
-	Host struct {
-		HostWhereInput
-	} `json:"host,omitempty"`
+	Host *HostWhereInput `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -173,19 +159,13 @@ type DiskWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -458,32 +438,22 @@ type DiskWhereInput struct {
 	PhysicalSlotOnBrickNotIn []int32 `json:"physical_slot_on_brick_not_in,omitempty"`
 
 	// pmem dimms every
-	PmemDimmsEvery struct {
-		PmemDimmWhereInput
-	} `json:"pmem_dimms_every,omitempty"`
+	PmemDimmsEvery *PmemDimmWhereInput `json:"pmem_dimms_every,omitempty"`
 
 	// pmem dimms none
-	PmemDimmsNone struct {
-		PmemDimmWhereInput
-	} `json:"pmem_dimms_none,omitempty"`
+	PmemDimmsNone *PmemDimmWhereInput `json:"pmem_dimms_none,omitempty"`
 
 	// pmem dimms some
-	PmemDimmsSome struct {
-		PmemDimmWhereInput
-	} `json:"pmem_dimms_some,omitempty"`
+	PmemDimmsSome *PmemDimmWhereInput `json:"pmem_dimms_some,omitempty"`
 
 	// recommended usage
-	RecommendedUsage struct {
-		DiskUsage
-	} `json:"recommended_usage,omitempty"`
+	RecommendedUsage *DiskUsage `json:"recommended_usage,omitempty"`
 
 	// recommended usage in
 	RecommendedUsageIn []DiskUsage `json:"recommended_usage_in,omitempty"`
 
 	// recommended usage not
-	RecommendedUsageNot struct {
-		DiskUsage
-	} `json:"recommended_usage_not,omitempty"`
+	RecommendedUsageNot *DiskUsage `json:"recommended_usage_not,omitempty"`
 
 	// recommended usage not in
 	RecommendedUsageNotIn []DiskUsage `json:"recommended_usage_not_in,omitempty"`
@@ -579,49 +549,37 @@ type DiskWhereInput struct {
 	SizeNotIn []float64 `json:"size_not_in,omitempty"`
 
 	// type
-	Type struct {
-		DiskType
-	} `json:"type,omitempty"`
+	Type *DiskType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []DiskType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		DiskType
-	} `json:"type_not,omitempty"`
+	TypeNot *DiskType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []DiskType `json:"type_not_in,omitempty"`
 
 	// usage
-	Usage struct {
-		DiskUsage
-	} `json:"usage,omitempty"`
+	Usage *DiskUsage `json:"usage,omitempty"`
 
 	// usage in
 	UsageIn []DiskUsage `json:"usage_in,omitempty"`
 
 	// usage not
-	UsageNot struct {
-		DiskUsage
-	} `json:"usage_not,omitempty"`
+	UsageNot *DiskUsage `json:"usage_not,omitempty"`
 
 	// usage not in
 	UsageNotIn []DiskUsage `json:"usage_not_in,omitempty"`
 
 	// usage status
-	UsageStatus struct {
-		DiskUsageStatus
-	} `json:"usage_status,omitempty"`
+	UsageStatus *DiskUsageStatus `json:"usage_status,omitempty"`
 
 	// usage status in
 	UsageStatusIn []DiskUsageStatus `json:"usage_status_in,omitempty"`
 
 	// usage status not
-	UsageStatusNot struct {
-		DiskUsageStatus
-	} `json:"usage_status_not,omitempty"`
+	UsageStatusNot *DiskUsageStatus `json:"usage_status_not,omitempty"`
 
 	// usage status not in
 	UsageStatusNotIn []DiskUsageStatus `json:"usage_status_not_in,omitempty"`
@@ -872,6 +830,17 @@ func (m *DiskWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -899,6 +868,17 @@ func (m *DiskWhereInput) validateEntityAsyncStatusIn(formats strfmt.Registry) er
 func (m *DiskWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -930,6 +910,17 @@ func (m *DiskWhereInput) validateFunction(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Function != nil {
+		if err := m.Function.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("function")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("function")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -957,6 +948,17 @@ func (m *DiskWhereInput) validateFunctionIn(formats strfmt.Registry) error {
 func (m *DiskWhereInput) validateFunctionNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.FunctionNot) { // not required
 		return nil
+	}
+
+	if m.FunctionNot != nil {
+		if err := m.FunctionNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("function_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("function_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -988,6 +990,17 @@ func (m *DiskWhereInput) validateHealthStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.HealthStatus != nil {
+		if err := m.HealthStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1015,6 +1028,17 @@ func (m *DiskWhereInput) validateHealthStatusIn(formats strfmt.Registry) error {
 func (m *DiskWhereInput) validateHealthStatusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.HealthStatusNot) { // not required
 		return nil
+	}
+
+	if m.HealthStatusNot != nil {
+		if err := m.HealthStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1046,12 +1070,34 @@ func (m *DiskWhereInput) validateHost(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DiskWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsEvery) { // not required
 		return nil
+	}
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1062,12 +1108,34 @@ func (m *DiskWhereInput) validateLabelsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DiskWhereInput) validateLabelsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsSome) { // not required
 		return nil
+	}
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1078,12 +1146,34 @@ func (m *DiskWhereInput) validatePmemDimmsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.PmemDimmsEvery != nil {
+		if err := m.PmemDimmsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("pmem_dimms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pmem_dimms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DiskWhereInput) validatePmemDimmsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.PmemDimmsNone) { // not required
 		return nil
+	}
+
+	if m.PmemDimmsNone != nil {
+		if err := m.PmemDimmsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("pmem_dimms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pmem_dimms_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1094,12 +1184,34 @@ func (m *DiskWhereInput) validatePmemDimmsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.PmemDimmsSome != nil {
+		if err := m.PmemDimmsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("pmem_dimms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pmem_dimms_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DiskWhereInput) validateRecommendedUsage(formats strfmt.Registry) error {
 	if swag.IsZero(m.RecommendedUsage) { // not required
 		return nil
+	}
+
+	if m.RecommendedUsage != nil {
+		if err := m.RecommendedUsage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("recommended_usage")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("recommended_usage")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1131,6 +1243,17 @@ func (m *DiskWhereInput) validateRecommendedUsageNot(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.RecommendedUsageNot != nil {
+		if err := m.RecommendedUsageNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("recommended_usage_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("recommended_usage_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1158,6 +1281,17 @@ func (m *DiskWhereInput) validateRecommendedUsageNotIn(formats strfmt.Registry) 
 func (m *DiskWhereInput) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1189,6 +1323,17 @@ func (m *DiskWhereInput) validateTypeNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1216,6 +1361,17 @@ func (m *DiskWhereInput) validateTypeNotIn(formats strfmt.Registry) error {
 func (m *DiskWhereInput) validateUsage(formats strfmt.Registry) error {
 	if swag.IsZero(m.Usage) { // not required
 		return nil
+	}
+
+	if m.Usage != nil {
+		if err := m.Usage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("usage")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1247,6 +1403,17 @@ func (m *DiskWhereInput) validateUsageNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.UsageNot != nil {
+		if err := m.UsageNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("usage_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1276,6 +1443,17 @@ func (m *DiskWhereInput) validateUsageStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.UsageStatus != nil {
+		if err := m.UsageStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("usage_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage_status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1303,6 +1481,17 @@ func (m *DiskWhereInput) validateUsageStatusIn(formats strfmt.Registry) error {
 func (m *DiskWhereInput) validateUsageStatusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.UsageStatusNot) { // not required
 		return nil
+	}
+
+	if m.UsageStatusNot != nil {
+		if err := m.UsageStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("usage_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage_status_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1553,6 +1742,17 @@ func (m *DiskWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 
 func (m *DiskWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1575,6 +1775,17 @@ func (m *DiskWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Context,
 }
 
 func (m *DiskWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1599,6 +1810,17 @@ func (m *DiskWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.Conte
 
 func (m *DiskWhereInput) contextValidateFunction(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Function != nil {
+		if err := m.Function.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("function")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("function")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1621,6 +1843,17 @@ func (m *DiskWhereInput) contextValidateFunctionIn(ctx context.Context, formats 
 }
 
 func (m *DiskWhereInput) contextValidateFunctionNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.FunctionNot != nil {
+		if err := m.FunctionNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("function_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("function_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1645,6 +1878,17 @@ func (m *DiskWhereInput) contextValidateFunctionNotIn(ctx context.Context, forma
 
 func (m *DiskWhereInput) contextValidateHealthStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HealthStatus != nil {
+		if err := m.HealthStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1667,6 +1911,17 @@ func (m *DiskWhereInput) contextValidateHealthStatusIn(ctx context.Context, form
 }
 
 func (m *DiskWhereInput) contextValidateHealthStatusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HealthStatusNot != nil {
+		if err := m.HealthStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1691,40 +1946,128 @@ func (m *DiskWhereInput) contextValidateHealthStatusNotIn(ctx context.Context, f
 
 func (m *DiskWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DiskWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *DiskWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DiskWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *DiskWhereInput) contextValidatePmemDimmsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.PmemDimmsEvery != nil {
+		if err := m.PmemDimmsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("pmem_dimms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pmem_dimms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DiskWhereInput) contextValidatePmemDimmsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PmemDimmsNone != nil {
+		if err := m.PmemDimmsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("pmem_dimms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pmem_dimms_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *DiskWhereInput) contextValidatePmemDimmsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.PmemDimmsSome != nil {
+		if err := m.PmemDimmsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("pmem_dimms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pmem_dimms_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DiskWhereInput) contextValidateRecommendedUsage(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RecommendedUsage != nil {
+		if err := m.RecommendedUsage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("recommended_usage")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("recommended_usage")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1749,6 +2092,17 @@ func (m *DiskWhereInput) contextValidateRecommendedUsageIn(ctx context.Context, 
 
 func (m *DiskWhereInput) contextValidateRecommendedUsageNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.RecommendedUsageNot != nil {
+		if err := m.RecommendedUsageNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("recommended_usage_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("recommended_usage_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1771,6 +2125,17 @@ func (m *DiskWhereInput) contextValidateRecommendedUsageNotIn(ctx context.Contex
 }
 
 func (m *DiskWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1795,6 +2160,17 @@ func (m *DiskWhereInput) contextValidateTypeIn(ctx context.Context, formats strf
 
 func (m *DiskWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1817,6 +2193,17 @@ func (m *DiskWhereInput) contextValidateTypeNotIn(ctx context.Context, formats s
 }
 
 func (m *DiskWhereInput) contextValidateUsage(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Usage != nil {
+		if err := m.Usage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("usage")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1841,6 +2228,17 @@ func (m *DiskWhereInput) contextValidateUsageIn(ctx context.Context, formats str
 
 func (m *DiskWhereInput) contextValidateUsageNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.UsageNot != nil {
+		if err := m.UsageNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("usage_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1864,6 +2262,17 @@ func (m *DiskWhereInput) contextValidateUsageNotIn(ctx context.Context, formats 
 
 func (m *DiskWhereInput) contextValidateUsageStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.UsageStatus != nil {
+		if err := m.UsageStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("usage_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage_status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1886,6 +2295,17 @@ func (m *DiskWhereInput) contextValidateUsageStatusIn(ctx context.Context, forma
 }
 
 func (m *DiskWhereInput) contextValidateUsageStatusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UsageStatusNot != nil {
+		if err := m.UsageStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("usage_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("usage_status_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

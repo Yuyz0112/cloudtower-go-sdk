@@ -144,17 +144,13 @@ type UploadTaskWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// resource type
-	ResourceType struct {
-		UploadResourceType
-	} `json:"resource_type,omitempty"`
+	ResourceType *UploadResourceType `json:"resource_type,omitempty"`
 
 	// resource type in
 	ResourceTypeIn []UploadResourceType `json:"resource_type_in,omitempty"`
 
 	// resource type not
-	ResourceTypeNot struct {
-		UploadResourceType
-	} `json:"resource_type_not,omitempty"`
+	ResourceTypeNot *UploadResourceType `json:"resource_type_not,omitempty"`
 
 	// resource type not in
 	ResourceTypeNotIn []UploadResourceType `json:"resource_type_not_in,omitempty"`
@@ -208,17 +204,13 @@ type UploadTaskWhereInput struct {
 	StartedAtNotIn []string `json:"started_at_not_in,omitempty"`
 
 	// status
-	Status struct {
-		UploadTaskStatus
-	} `json:"status,omitempty"`
+	Status *UploadTaskStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []UploadTaskStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		UploadTaskStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *UploadTaskStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []UploadTaskStatus `json:"status_not_in,omitempty"`
@@ -385,6 +377,17 @@ func (m *UploadTaskWhereInput) validateResourceType(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.ResourceType != nil {
+		if err := m.ResourceType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resource_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -412,6 +415,17 @@ func (m *UploadTaskWhereInput) validateResourceTypeIn(formats strfmt.Registry) e
 func (m *UploadTaskWhereInput) validateResourceTypeNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.ResourceTypeNot) { // not required
 		return nil
+	}
+
+	if m.ResourceTypeNot != nil {
+		if err := m.ResourceTypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resource_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -443,6 +457,17 @@ func (m *UploadTaskWhereInput) validateStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -470,6 +495,17 @@ func (m *UploadTaskWhereInput) validateStatusIn(formats strfmt.Registry) error {
 func (m *UploadTaskWhereInput) validateStatusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.StatusNot) { // not required
 		return nil
+	}
+
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -612,6 +648,17 @@ func (m *UploadTaskWhereInput) contextValidateOR(ctx context.Context, formats st
 
 func (m *UploadTaskWhereInput) contextValidateResourceType(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ResourceType != nil {
+		if err := m.ResourceType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resource_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -634,6 +681,17 @@ func (m *UploadTaskWhereInput) contextValidateResourceTypeIn(ctx context.Context
 }
 
 func (m *UploadTaskWhereInput) contextValidateResourceTypeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ResourceTypeNot != nil {
+		if err := m.ResourceTypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resource_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resource_type_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -658,6 +716,17 @@ func (m *UploadTaskWhereInput) contextValidateResourceTypeNotIn(ctx context.Cont
 
 func (m *UploadTaskWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -680,6 +749,17 @@ func (m *UploadTaskWhereInput) contextValidateStatusIn(ctx context.Context, form
 }
 
 func (m *UploadTaskWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

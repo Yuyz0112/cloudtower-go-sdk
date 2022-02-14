@@ -65,14 +65,10 @@ type IscsiLun struct {
 	BpsWrMaxLength *float64 `json:"bps_wr_max_length"`
 
 	// consistency group
-	ConsistencyGroup struct {
-		NestedConsistencyGroup
-	} `json:"consistency_group,omitempty"`
+	ConsistencyGroup *NestedConsistencyGroup `json:"consistency_group,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -440,12 +436,34 @@ func (m *IscsiLun) validateConsistencyGroup(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.ConsistencyGroup != nil {
+		if err := m.ConsistencyGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLun) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -732,10 +750,32 @@ func (m *IscsiLun) ContextValidate(ctx context.Context, formats strfmt.Registry)
 
 func (m *IscsiLun) contextValidateConsistencyGroup(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistencyGroup != nil {
+		if err := m.ConsistencyGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLun) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

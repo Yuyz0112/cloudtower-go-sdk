@@ -72,9 +72,7 @@ type SystemAuditLogWhereInput struct {
 	ActionStartsWith *string `json:"action_starts_with,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// finished at
 	FinishedAt *string `json:"finished_at,omitempty"`
@@ -293,17 +291,13 @@ type SystemAuditLogWhereInput struct {
 	ResourceIDStartsWith *string `json:"resource_id_starts_with,omitempty"`
 
 	// status
-	Status struct {
-		UserAuditLogStatus
-	} `json:"status,omitempty"`
+	Status *UserAuditLogStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []UserAuditLogStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		UserAuditLogStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *UserAuditLogStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []UserAuditLogStatus `json:"status_not_in,omitempty"`
@@ -434,12 +428,34 @@ func (m *SystemAuditLogWhereInput) validateCluster(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SystemAuditLogWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -469,6 +485,17 @@ func (m *SystemAuditLogWhereInput) validateStatusIn(formats strfmt.Registry) err
 func (m *SystemAuditLogWhereInput) validateStatusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.StatusNot) { // not required
 		return nil
+	}
+
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -599,10 +626,32 @@ func (m *SystemAuditLogWhereInput) contextValidateOR(ctx context.Context, format
 
 func (m *SystemAuditLogWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SystemAuditLogWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -626,6 +675,17 @@ func (m *SystemAuditLogWhereInput) contextValidateStatusIn(ctx context.Context, 
 }
 
 func (m *SystemAuditLogWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

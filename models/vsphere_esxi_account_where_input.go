@@ -30,9 +30,7 @@ type VsphereEsxiAccountWhereInput struct {
 	OR []*VsphereEsxiAccountWhereInput `json:"OR,omitempty"`
 
 	// host
-	Host struct {
-		HostWhereInput
-	} `json:"host,omitempty"`
+	Host *HostWhereInput `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -384,6 +382,17 @@ func (m *VsphereEsxiAccountWhereInput) validateHost(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -474,6 +483,17 @@ func (m *VsphereEsxiAccountWhereInput) contextValidateOR(ctx context.Context, fo
 }
 
 func (m *VsphereEsxiAccountWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

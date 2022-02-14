@@ -30,39 +30,25 @@ type BackupStoreRepositoryWhereInput struct {
 	OR []*BackupStoreRepositoryWhereInput `json:"OR,omitempty"`
 
 	// backup plans every
-	BackupPlansEvery struct {
-		BackupPlanWhereInput
-	} `json:"backup_plans_every,omitempty"`
+	BackupPlansEvery *BackupPlanWhereInput `json:"backup_plans_every,omitempty"`
 
 	// backup plans none
-	BackupPlansNone struct {
-		BackupPlanWhereInput
-	} `json:"backup_plans_none,omitempty"`
+	BackupPlansNone *BackupPlanWhereInput `json:"backup_plans_none,omitempty"`
 
 	// backup plans some
-	BackupPlansSome struct {
-		BackupPlanWhereInput
-	} `json:"backup_plans_some,omitempty"`
+	BackupPlansSome *BackupPlanWhereInput `json:"backup_plans_some,omitempty"`
 
 	// backup restore points every
-	BackupRestorePointsEvery struct {
-		BackupRestorePointWhereInput
-	} `json:"backup_restore_points_every,omitempty"`
+	BackupRestorePointsEvery *BackupRestorePointWhereInput `json:"backup_restore_points_every,omitempty"`
 
 	// backup restore points none
-	BackupRestorePointsNone struct {
-		BackupRestorePointWhereInput
-	} `json:"backup_restore_points_none,omitempty"`
+	BackupRestorePointsNone *BackupRestorePointWhereInput `json:"backup_restore_points_none,omitempty"`
 
 	// backup restore points some
-	BackupRestorePointsSome struct {
-		BackupRestorePointWhereInput
-	} `json:"backup_restore_points_some,omitempty"`
+	BackupRestorePointsSome *BackupRestorePointWhereInput `json:"backup_restore_points_some,omitempty"`
 
 	// backup service
-	BackupService struct {
-		BackupServiceWhereInput
-	} `json:"backup_service,omitempty"`
+	BackupService *BackupServiceWhereInput `json:"backup_service,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -107,17 +93,13 @@ type BackupStoreRepositoryWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -546,17 +528,13 @@ type BackupStoreRepositoryWhereInput struct {
 	ResourceVersionNotIn []int32 `json:"resource_version_not_in,omitempty"`
 
 	// status
-	Status struct {
-		BackupStoreStatus
-	} `json:"status,omitempty"`
+	Status *BackupStoreStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []BackupStoreStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		BackupStoreStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *BackupStoreStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []BackupStoreStatus `json:"status_not_in,omitempty"`
@@ -586,17 +564,13 @@ type BackupStoreRepositoryWhereInput struct {
 	TotalCapacityNotIn []float64 `json:"total_capacity_not_in,omitempty"`
 
 	// type
-	Type struct {
-		BackupStoreType
-	} `json:"type,omitempty"`
+	Type *BackupStoreType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []BackupStoreType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		BackupStoreType
-	} `json:"type_not,omitempty"`
+	TypeNot *BackupStoreType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []BackupStoreType `json:"type_not_in,omitempty"`
@@ -831,12 +805,34 @@ func (m *BackupStoreRepositoryWhereInput) validateBackupPlansEvery(formats strfm
 		return nil
 	}
 
+	if m.BackupPlansEvery != nil {
+		if err := m.BackupPlansEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) validateBackupPlansNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupPlansNone) { // not required
 		return nil
+	}
+
+	if m.BackupPlansNone != nil {
+		if err := m.BackupPlansNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -847,12 +843,34 @@ func (m *BackupStoreRepositoryWhereInput) validateBackupPlansSome(formats strfmt
 		return nil
 	}
 
+	if m.BackupPlansSome != nil {
+		if err := m.BackupPlansSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) validateBackupRestorePointsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupRestorePointsEvery) { // not required
 		return nil
+	}
+
+	if m.BackupRestorePointsEvery != nil {
+		if err := m.BackupRestorePointsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -863,12 +881,34 @@ func (m *BackupStoreRepositoryWhereInput) validateBackupRestorePointsNone(format
 		return nil
 	}
 
+	if m.BackupRestorePointsNone != nil {
+		if err := m.BackupRestorePointsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) validateBackupRestorePointsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupRestorePointsSome) { // not required
 		return nil
+	}
+
+	if m.BackupRestorePointsSome != nil {
+		if err := m.BackupRestorePointsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -879,12 +919,34 @@ func (m *BackupStoreRepositoryWhereInput) validateBackupService(formats strfmt.R
 		return nil
 	}
 
+	if m.BackupService != nil {
+		if err := m.BackupService.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -916,6 +978,17 @@ func (m *BackupStoreRepositoryWhereInput) validateEntityAsyncStatusNot(formats s
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -943,6 +1016,17 @@ func (m *BackupStoreRepositoryWhereInput) validateEntityAsyncStatusNotIn(formats
 func (m *BackupStoreRepositoryWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -974,6 +1058,17 @@ func (m *BackupStoreRepositoryWhereInput) validateStatusNot(formats strfmt.Regis
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1003,6 +1098,17 @@ func (m *BackupStoreRepositoryWhereInput) validateType(formats strfmt.Registry) 
 		return nil
 	}
 
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1030,6 +1136,17 @@ func (m *BackupStoreRepositoryWhereInput) validateTypeIn(formats strfmt.Registry
 func (m *BackupStoreRepositoryWhereInput) validateTypeNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.TypeNot) { // not required
 		return nil
+	}
+
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1216,40 +1333,128 @@ func (m *BackupStoreRepositoryWhereInput) contextValidateOR(ctx context.Context,
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateBackupPlansEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupPlansEvery != nil {
+		if err := m.BackupPlansEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateBackupPlansNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupPlansNone != nil {
+		if err := m.BackupPlansNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateBackupPlansSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupPlansSome != nil {
+		if err := m.BackupPlansSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plans_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateBackupRestorePointsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupRestorePointsEvery != nil {
+		if err := m.BackupRestorePointsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateBackupRestorePointsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupRestorePointsNone != nil {
+		if err := m.BackupRestorePointsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateBackupRestorePointsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupRestorePointsSome != nil {
+		if err := m.BackupRestorePointsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateBackupService(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupService != nil {
+		if err := m.BackupService.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1274,6 +1479,17 @@ func (m *BackupStoreRepositoryWhereInput) contextValidateEntityAsyncStatusIn(ctx
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1296,6 +1512,17 @@ func (m *BackupStoreRepositoryWhereInput) contextValidateEntityAsyncStatusNotIn(
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1320,6 +1547,17 @@ func (m *BackupStoreRepositoryWhereInput) contextValidateStatusIn(ctx context.Co
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1343,6 +1581,17 @@ func (m *BackupStoreRepositoryWhereInput) contextValidateStatusNotIn(ctx context
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1365,6 +1614,17 @@ func (m *BackupStoreRepositoryWhereInput) contextValidateTypeIn(ctx context.Cont
 }
 
 func (m *BackupStoreRepositoryWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -34,9 +34,7 @@ type NestedStep struct {
 	Total *float64 `json:"total,omitempty"`
 
 	// unit
-	Unit struct {
-		StepUnit
-	} `json:"unit,omitempty"`
+	Unit *StepUnit `json:"unit,omitempty"`
 }
 
 // Validate validates this nested step
@@ -58,6 +56,17 @@ func (m *NestedStep) validateUnit(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Unit != nil {
+		if err := m.Unit.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("unit")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -76,6 +85,17 @@ func (m *NestedStep) ContextValidate(ctx context.Context, formats strfmt.Registr
 }
 
 func (m *NestedStep) contextValidateUnit(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Unit != nil {
+		if err := m.Unit.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("unit")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

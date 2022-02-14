@@ -120,17 +120,13 @@ type AlertNotifierWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// language code
-	LanguageCode struct {
-		NotifierLanguageCode
-	} `json:"language_code,omitempty"`
+	LanguageCode *NotifierLanguageCode `json:"language_code,omitempty"`
 
 	// language code in
 	LanguageCodeIn []NotifierLanguageCode `json:"language_code_in,omitempty"`
 
 	// language code not
-	LanguageCodeNot struct {
-		NotifierLanguageCode
-	} `json:"language_code_not,omitempty"`
+	LanguageCodeNot *NotifierLanguageCode `json:"language_code_not,omitempty"`
 
 	// language code not in
 	LanguageCodeNotIn []NotifierLanguageCode `json:"language_code_not_in,omitempty"`
@@ -178,17 +174,13 @@ type AlertNotifierWhereInput struct {
 	PasswordStartsWith *string `json:"password_starts_with,omitempty"`
 
 	// security mode
-	SecurityMode struct {
-		NotifierSecurityMode
-	} `json:"security_mode,omitempty"`
+	SecurityMode *NotifierSecurityMode `json:"security_mode,omitempty"`
 
 	// security mode in
 	SecurityModeIn []NotifierSecurityMode `json:"security_mode_in,omitempty"`
 
 	// security mode not
-	SecurityModeNot struct {
-		NotifierSecurityMode
-	} `json:"security_mode_not,omitempty"`
+	SecurityModeNot *NotifierSecurityMode `json:"security_mode_not,omitempty"`
 
 	// security mode not in
 	SecurityModeNotIn []NotifierSecurityMode `json:"security_mode_not_in,omitempty"`
@@ -439,6 +431,17 @@ func (m *AlertNotifierWhereInput) validateLanguageCode(formats strfmt.Registry) 
 		return nil
 	}
 
+	if m.LanguageCode != nil {
+		if err := m.LanguageCode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -466,6 +469,17 @@ func (m *AlertNotifierWhereInput) validateLanguageCodeIn(formats strfmt.Registry
 func (m *AlertNotifierWhereInput) validateLanguageCodeNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.LanguageCodeNot) { // not required
 		return nil
+	}
+
+	if m.LanguageCodeNot != nil {
+		if err := m.LanguageCodeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -497,6 +511,17 @@ func (m *AlertNotifierWhereInput) validateSecurityMode(formats strfmt.Registry) 
 		return nil
 	}
 
+	if m.SecurityMode != nil {
+		if err := m.SecurityMode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_mode")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -524,6 +549,17 @@ func (m *AlertNotifierWhereInput) validateSecurityModeIn(formats strfmt.Registry
 func (m *AlertNotifierWhereInput) validateSecurityModeNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.SecurityModeNot) { // not required
 		return nil
+	}
+
+	if m.SecurityModeNot != nil {
+		if err := m.SecurityModeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_mode_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_mode_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -666,6 +702,17 @@ func (m *AlertNotifierWhereInput) contextValidateOR(ctx context.Context, formats
 
 func (m *AlertNotifierWhereInput) contextValidateLanguageCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LanguageCode != nil {
+		if err := m.LanguageCode.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -688,6 +735,17 @@ func (m *AlertNotifierWhereInput) contextValidateLanguageCodeIn(ctx context.Cont
 }
 
 func (m *AlertNotifierWhereInput) contextValidateLanguageCodeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LanguageCodeNot != nil {
+		if err := m.LanguageCodeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -712,6 +770,17 @@ func (m *AlertNotifierWhereInput) contextValidateLanguageCodeNotIn(ctx context.C
 
 func (m *AlertNotifierWhereInput) contextValidateSecurityMode(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SecurityMode != nil {
+		if err := m.SecurityMode.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_mode")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -734,6 +803,17 @@ func (m *AlertNotifierWhereInput) contextValidateSecurityModeIn(ctx context.Cont
 }
 
 func (m *AlertNotifierWhereInput) contextValidateSecurityModeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SecurityModeNot != nil {
+		if err := m.SecurityModeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_mode_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_mode_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

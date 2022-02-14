@@ -30,9 +30,7 @@ type TaskWhereInput struct {
 	OR []*TaskWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -545,25 +543,19 @@ type TaskWhereInput struct {
 	StartedAtNotIn []string `json:"started_at_not_in,omitempty"`
 
 	// status
-	Status struct {
-		TaskStatus
-	} `json:"status,omitempty"`
+	Status *TaskStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []TaskStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		TaskStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *TaskStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []TaskStatus `json:"status_not_in,omitempty"`
 
 	// user
-	User struct {
-		UserWhereInput
-	} `json:"user,omitempty"`
+	User *UserWhereInput `json:"user,omitempty"`
 }
 
 // Validate validates this task where input
@@ -695,12 +687,34 @@ func (m *TaskWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *TaskWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -732,6 +746,17 @@ func (m *TaskWhereInput) validateStatusNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -759,6 +784,17 @@ func (m *TaskWhereInput) validateStatusNotIn(formats strfmt.Registry) error {
 func (m *TaskWhereInput) validateUser(formats strfmt.Registry) error {
 	if swag.IsZero(m.User) { // not required
 		return nil
+	}
+
+	if m.User != nil {
+		if err := m.User.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -872,10 +908,32 @@ func (m *TaskWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 
 func (m *TaskWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *TaskWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -900,6 +958,17 @@ func (m *TaskWhereInput) contextValidateStatusIn(ctx context.Context, formats st
 
 func (m *TaskWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -922,6 +991,17 @@ func (m *TaskWhereInput) contextValidateStatusNotIn(ctx context.Context, formats
 }
 
 func (m *TaskWhereInput) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.User != nil {
+		if err := m.User.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

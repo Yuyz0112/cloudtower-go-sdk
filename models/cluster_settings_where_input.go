@@ -30,9 +30,7 @@ type ClusterSettingsWhereInput struct {
 	OR []*ClusterSettingsWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// default ha
 	DefaultHa *bool `json:"default_ha,omitempty"`
@@ -192,6 +190,17 @@ func (m *ClusterSettingsWhereInput) validateCluster(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -282,6 +291,17 @@ func (m *ClusterSettingsWhereInput) contextValidateOR(ctx context.Context, forma
 }
 
 func (m *ClusterSettingsWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

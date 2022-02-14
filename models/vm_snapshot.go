@@ -45,9 +45,7 @@ type VMSnapshot struct {
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// firmware
 	// Required: true
@@ -62,9 +60,7 @@ type VMSnapshot struct {
 	ID *string `json:"id"`
 
 	// io policy
-	IoPolicy struct {
-		VMDiskIoPolicy
-	} `json:"io_policy,omitempty"`
+	IoPolicy *VMDiskIoPolicy `json:"io_policy,omitempty"`
 
 	// labels
 	Labels []*NestedLabel `json:"labels,omitempty"`
@@ -80,17 +76,13 @@ type VMSnapshot struct {
 	MaxBandwidth *float64 `json:"max_bandwidth,omitempty"`
 
 	// max bandwidth policy
-	MaxBandwidthPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_bandwidth_policy,omitempty"`
+	MaxBandwidthPolicy *VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
 	MaxIops *int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
-	MaxIopsPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_iops_policy,omitempty"`
+	MaxIopsPolicy *VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
 
 	// memory
 	// Required: true
@@ -105,18 +97,14 @@ type VMSnapshot struct {
 	Size *float64 `json:"size"`
 
 	// snapshot group
-	SnapshotGroup struct {
-		NestedSnapshotGroup
-	} `json:"snapshot_group,omitempty"`
+	SnapshotGroup *NestedSnapshotGroup `json:"snapshot_group,omitempty"`
 
 	// vcpu
 	// Required: true
 	Vcpu *int32 `json:"vcpu"`
 
 	// vm
-	VM struct {
-		NestedVM
-	} `json:"vm,omitempty"`
+	VM *NestedVM `json:"vm,omitempty"`
 
 	// vm disks
 	VMDisks []*NestedFrozenDisks `json:"vm_disks,omitempty"`
@@ -346,6 +334,17 @@ func (m *VMSnapshot) validateEntityAsyncStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -396,6 +395,17 @@ func (m *VMSnapshot) validateIoPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.IoPolicy != nil {
+		if err := m.IoPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -439,12 +449,34 @@ func (m *VMSnapshot) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshot) validateMaxIopsPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxIopsPolicy) { // not required
 		return nil
+	}
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -482,6 +514,17 @@ func (m *VMSnapshot) validateSnapshotGroup(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -497,6 +540,17 @@ func (m *VMSnapshot) validateVcpu(formats strfmt.Registry) error {
 func (m *VMSnapshot) validateVM(formats strfmt.Registry) error {
 	if swag.IsZero(m.VM) { // not required
 		return nil
+	}
+
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -695,6 +749,17 @@ func (m *VMSnapshot) contextValidateCPU(ctx context.Context, formats strfmt.Regi
 
 func (m *VMSnapshot) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -715,6 +780,17 @@ func (m *VMSnapshot) contextValidateFirmware(ctx context.Context, formats strfmt
 }
 
 func (m *VMSnapshot) contextValidateIoPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IoPolicy != nil {
+		if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -741,20 +817,64 @@ func (m *VMSnapshot) contextValidateLabels(ctx context.Context, formats strfmt.R
 
 func (m *VMSnapshot) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshot) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VMSnapshot) contextValidateSnapshotGroup(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshot) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

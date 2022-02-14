@@ -21,9 +21,7 @@ import (
 type Alert struct {
 
 	// alert rule
-	AlertRule struct {
-		NestedAlertRule
-	} `json:"alert_rule,omitempty"`
+	AlertRule *NestedAlertRule `json:"alert_rule,omitempty"`
 
 	// cause
 	// Required: true
@@ -37,18 +35,14 @@ type Alert struct {
 	CreateTime *string `json:"create_time,omitempty"`
 
 	// disk
-	Disk struct {
-		NestedDisk
-	} `json:"disk,omitempty"`
+	Disk *NestedDisk `json:"disk,omitempty"`
 
 	// ended
 	// Required: true
 	Ended *bool `json:"ended"`
 
 	// host
-	Host struct {
-		NestedHost
-	} `json:"host,omitempty"`
+	Host *NestedHost `json:"host,omitempty"`
 
 	// id
 	// Required: true
@@ -201,6 +195,17 @@ func (m *Alert) validateAlertRule(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.AlertRule != nil {
+		if err := m.AlertRule.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rule")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -238,6 +243,17 @@ func (m *Alert) validateDisk(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Disk != nil {
+		if err := m.Disk.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -253,6 +269,17 @@ func (m *Alert) validateEnded(formats strfmt.Registry) error {
 func (m *Alert) validateHost(formats strfmt.Registry) error {
 	if swag.IsZero(m.Host) { // not required
 		return nil
+	}
+
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -433,6 +460,17 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 
 func (m *Alert) contextValidateAlertRule(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AlertRule != nil {
+		if err := m.AlertRule.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rule")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -454,10 +492,32 @@ func (m *Alert) contextValidateCluster(ctx context.Context, formats strfmt.Regis
 
 func (m *Alert) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Disk != nil {
+		if err := m.Disk.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Alert) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

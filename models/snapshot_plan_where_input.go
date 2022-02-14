@@ -78,9 +78,7 @@ type SnapshotPlanWhereInput struct {
 	AutoExecuteNumNotIn []int32 `json:"auto_execute_num_not_in,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -149,51 +147,37 @@ type SnapshotPlanWhereInput struct {
 	EndTimeNotIn []string `json:"end_time_not_in,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
 
 	// execute plan type
-	ExecutePlanType struct {
-		SnapshotPlanExecuteType
-	} `json:"execute_plan_type,omitempty"`
+	ExecutePlanType *SnapshotPlanExecuteType `json:"execute_plan_type,omitempty"`
 
 	// execute plan type in
 	ExecutePlanTypeIn []SnapshotPlanExecuteType `json:"execute_plan_type_in,omitempty"`
 
 	// execute plan type not
-	ExecutePlanTypeNot struct {
-		SnapshotPlanExecuteType
-	} `json:"execute_plan_type_not,omitempty"`
+	ExecutePlanTypeNot *SnapshotPlanExecuteType `json:"execute_plan_type_not,omitempty"`
 
 	// execute plan type not in
 	ExecutePlanTypeNotIn []SnapshotPlanExecuteType `json:"execute_plan_type_not_in,omitempty"`
 
 	// execution tasks every
-	ExecutionTasksEvery struct {
-		SnapshotPlanTaskWhereInput
-	} `json:"execution_tasks_every,omitempty"`
+	ExecutionTasksEvery *SnapshotPlanTaskWhereInput `json:"execution_tasks_every,omitempty"`
 
 	// execution tasks none
-	ExecutionTasksNone struct {
-		SnapshotPlanTaskWhereInput
-	} `json:"execution_tasks_none,omitempty"`
+	ExecutionTasksNone *SnapshotPlanTaskWhereInput `json:"execution_tasks_none,omitempty"`
 
 	// execution tasks some
-	ExecutionTasksSome struct {
-		SnapshotPlanTaskWhereInput
-	} `json:"execution_tasks_some,omitempty"`
+	ExecutionTasksSome *SnapshotPlanTaskWhereInput `json:"execution_tasks_some,omitempty"`
 
 	// healthy
 	Healthy *bool `json:"healthy,omitempty"`
@@ -268,17 +252,13 @@ type SnapshotPlanWhereInput struct {
 	LastExecuteEndTimeNotIn []string `json:"last_execute_end_time_not_in,omitempty"`
 
 	// last execute status
-	LastExecuteStatus struct {
-		SnapshotPlanExecuteStatus
-	} `json:"last_execute_status,omitempty"`
+	LastExecuteStatus *SnapshotPlanExecuteStatus `json:"last_execute_status,omitempty"`
 
 	// last execute status in
 	LastExecuteStatusIn []SnapshotPlanExecuteStatus `json:"last_execute_status_in,omitempty"`
 
 	// last execute status not
-	LastExecuteStatusNot struct {
-		SnapshotPlanExecuteStatus
-	} `json:"last_execute_status_not,omitempty"`
+	LastExecuteStatusNot *SnapshotPlanExecuteStatus `json:"last_execute_status_not,omitempty"`
 
 	// last execute status not in
 	LastExecuteStatusNotIn []SnapshotPlanExecuteStatus `json:"last_execute_status_not_in,omitempty"`
@@ -614,35 +594,25 @@ type SnapshotPlanWhereInput struct {
 	StartTimeNotIn []string `json:"start_time_not_in,omitempty"`
 
 	// status
-	Status struct {
-		SnapshotPlanStatus
-	} `json:"status,omitempty"`
+	Status *SnapshotPlanStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []SnapshotPlanStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		SnapshotPlanStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *SnapshotPlanStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []SnapshotPlanStatus `json:"status_not_in,omitempty"`
 
 	// vms every
-	VmsEvery struct {
-		VMWhereInput
-	} `json:"vms_every,omitempty"`
+	VmsEvery *VMWhereInput `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone struct {
-		VMWhereInput
-	} `json:"vms_none,omitempty"`
+	VmsNone *VMWhereInput `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome struct {
-		VMWhereInput
-	} `json:"vms_some,omitempty"`
+	VmsSome *VMWhereInput `json:"vms_some,omitempty"`
 }
 
 // Validate validates this snapshot plan where input
@@ -842,12 +812,34 @@ func (m *SnapshotPlanWhereInput) validateCluster(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -879,6 +871,17 @@ func (m *SnapshotPlanWhereInput) validateEntityAsyncStatusNot(formats strfmt.Reg
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -906,6 +909,17 @@ func (m *SnapshotPlanWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.R
 func (m *SnapshotPlanWhereInput) validateExecutePlanType(formats strfmt.Registry) error {
 	if swag.IsZero(m.ExecutePlanType) { // not required
 		return nil
+	}
+
+	if m.ExecutePlanType != nil {
+		if err := m.ExecutePlanType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execute_plan_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execute_plan_type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -937,6 +951,17 @@ func (m *SnapshotPlanWhereInput) validateExecutePlanTypeNot(formats strfmt.Regis
 		return nil
 	}
 
+	if m.ExecutePlanTypeNot != nil {
+		if err := m.ExecutePlanTypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execute_plan_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execute_plan_type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -966,12 +991,34 @@ func (m *SnapshotPlanWhereInput) validateExecutionTasksEvery(formats strfmt.Regi
 		return nil
 	}
 
+	if m.ExecutionTasksEvery != nil {
+		if err := m.ExecutionTasksEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execution_tasks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execution_tasks_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) validateExecutionTasksNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.ExecutionTasksNone) { // not required
 		return nil
+	}
+
+	if m.ExecutionTasksNone != nil {
+		if err := m.ExecutionTasksNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execution_tasks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execution_tasks_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -982,12 +1029,34 @@ func (m *SnapshotPlanWhereInput) validateExecutionTasksSome(formats strfmt.Regis
 		return nil
 	}
 
+	if m.ExecutionTasksSome != nil {
+		if err := m.ExecutionTasksSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execution_tasks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execution_tasks_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) validateLastExecuteStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.LastExecuteStatus) { // not required
 		return nil
+	}
+
+	if m.LastExecuteStatus != nil {
+		if err := m.LastExecuteStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_execute_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1019,6 +1088,17 @@ func (m *SnapshotPlanWhereInput) validateLastExecuteStatusNot(formats strfmt.Reg
 		return nil
 	}
 
+	if m.LastExecuteStatusNot != nil {
+		if err := m.LastExecuteStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_execute_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1046,6 +1126,17 @@ func (m *SnapshotPlanWhereInput) validateLastExecuteStatusNotIn(formats strfmt.R
 func (m *SnapshotPlanWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1077,6 +1168,17 @@ func (m *SnapshotPlanWhereInput) validateStatusNot(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1106,6 +1208,17 @@ func (m *SnapshotPlanWhereInput) validateVmsEvery(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1114,12 +1227,34 @@ func (m *SnapshotPlanWhereInput) validateVmsNone(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) validateVmsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsSome) { // not required
 		return nil
+	}
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1301,10 +1436,32 @@ func (m *SnapshotPlanWhereInput) contextValidateOR(ctx context.Context, formats 
 
 func (m *SnapshotPlanWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1329,6 +1486,17 @@ func (m *SnapshotPlanWhereInput) contextValidateEntityAsyncStatusIn(ctx context.
 
 func (m *SnapshotPlanWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1351,6 +1519,17 @@ func (m *SnapshotPlanWhereInput) contextValidateEntityAsyncStatusNotIn(ctx conte
 }
 
 func (m *SnapshotPlanWhereInput) contextValidateExecutePlanType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ExecutePlanType != nil {
+		if err := m.ExecutePlanType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execute_plan_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execute_plan_type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1375,6 +1554,17 @@ func (m *SnapshotPlanWhereInput) contextValidateExecutePlanTypeIn(ctx context.Co
 
 func (m *SnapshotPlanWhereInput) contextValidateExecutePlanTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ExecutePlanTypeNot != nil {
+		if err := m.ExecutePlanTypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execute_plan_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execute_plan_type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1398,20 +1588,64 @@ func (m *SnapshotPlanWhereInput) contextValidateExecutePlanTypeNotIn(ctx context
 
 func (m *SnapshotPlanWhereInput) contextValidateExecutionTasksEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ExecutionTasksEvery != nil {
+		if err := m.ExecutionTasksEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execution_tasks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execution_tasks_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) contextValidateExecutionTasksNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ExecutionTasksNone != nil {
+		if err := m.ExecutionTasksNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execution_tasks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execution_tasks_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) contextValidateExecutionTasksSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ExecutionTasksSome != nil {
+		if err := m.ExecutionTasksSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("execution_tasks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("execution_tasks_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) contextValidateLastExecuteStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LastExecuteStatus != nil {
+		if err := m.LastExecuteStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_execute_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1436,6 +1670,17 @@ func (m *SnapshotPlanWhereInput) contextValidateLastExecuteStatusIn(ctx context.
 
 func (m *SnapshotPlanWhereInput) contextValidateLastExecuteStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LastExecuteStatusNot != nil {
+		if err := m.LastExecuteStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_execute_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1458,6 +1703,17 @@ func (m *SnapshotPlanWhereInput) contextValidateLastExecuteStatusNotIn(ctx conte
 }
 
 func (m *SnapshotPlanWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1482,6 +1738,17 @@ func (m *SnapshotPlanWhereInput) contextValidateStatusIn(ctx context.Context, fo
 
 func (m *SnapshotPlanWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1505,15 +1772,48 @@ func (m *SnapshotPlanWhereInput) contextValidateStatusNotIn(ctx context.Context,
 
 func (m *SnapshotPlanWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

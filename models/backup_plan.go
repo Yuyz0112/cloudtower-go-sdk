@@ -21,9 +21,7 @@ import (
 type BackupPlan struct {
 
 	// backup delay option
-	BackupDelayOption struct {
-		BackupPlanDelayOption
-	} `json:"backup_delay_option,omitempty"`
+	BackupDelayOption *BackupPlanDelayOption `json:"backup_delay_option,omitempty"`
 
 	// backup plan executions
 	BackupPlanExecutions []*NestedBackupPlanExecution `json:"backup_plan_executions,omitempty"`
@@ -49,9 +47,7 @@ type BackupPlan struct {
 	Compression *bool `json:"compression,omitempty"`
 
 	// delete strategy
-	DeleteStrategy struct {
-		BackupPlanDeleteStrategy
-	} `json:"delete_strategy,omitempty"`
+	DeleteStrategy *BackupPlanDeleteStrategy `json:"delete_strategy,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -61,9 +57,7 @@ type BackupPlan struct {
 	EnableWindow *bool `json:"enable_window"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// full interval
 	// Required: true
@@ -93,9 +87,7 @@ type BackupPlan struct {
 	IncrementalWeekdays []WeekdayTypeEnum `json:"incremental_weekdays,omitempty"`
 
 	// keep policy
-	KeepPolicy struct {
-		BackupPlanKeepPolicy
-	} `json:"keep_policy,omitempty"`
+	KeepPolicy *BackupPlanKeepPolicy `json:"keep_policy,omitempty"`
 
 	// keep policy value
 	KeepPolicyValue *int32 `json:"keep_policy_value,omitempty"`
@@ -127,9 +119,7 @@ type BackupPlan struct {
 	NextExecuteTime *string `json:"next_execute_time,omitempty"`
 
 	// phase
-	Phase struct {
-		BackupPlanPhase
-	} `json:"phase,omitempty"`
+	Phase *BackupPlanPhase `json:"phase,omitempty"`
 
 	// status
 	// Required: true
@@ -244,6 +234,17 @@ func (m *BackupPlan) validateBackupDelayOption(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.BackupDelayOption != nil {
+		if err := m.BackupDelayOption.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_delay_option")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -344,6 +345,17 @@ func (m *BackupPlan) validateDeleteStrategy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.DeleteStrategy != nil {
+		if err := m.DeleteStrategy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("delete_strategy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -359,6 +371,17 @@ func (m *BackupPlan) validateEnableWindow(formats strfmt.Registry) error {
 func (m *BackupPlan) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -503,6 +526,17 @@ func (m *BackupPlan) validateKeepPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.KeepPolicy != nil {
+		if err := m.KeepPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("keep_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -542,6 +576,17 @@ func (m *BackupPlan) validateName(formats strfmt.Registry) error {
 func (m *BackupPlan) validatePhase(formats strfmt.Registry) error {
 	if swag.IsZero(m.Phase) { // not required
 		return nil
+	}
+
+	if m.Phase != nil {
+		if err := m.Phase.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -677,6 +722,17 @@ func (m *BackupPlan) ContextValidate(ctx context.Context, formats strfmt.Registr
 
 func (m *BackupPlan) contextValidateBackupDelayOption(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupDelayOption != nil {
+		if err := m.BackupDelayOption.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_delay_option")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -754,10 +810,32 @@ func (m *BackupPlan) contextValidateBackupStoreRepository(ctx context.Context, f
 
 func (m *BackupPlan) contextValidateDeleteStrategy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DeleteStrategy != nil {
+		if err := m.DeleteStrategy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("delete_strategy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlan) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -850,6 +928,17 @@ func (m *BackupPlan) contextValidateIncrementalWeekdays(ctx context.Context, for
 
 func (m *BackupPlan) contextValidateKeepPolicy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.KeepPolicy != nil {
+		if err := m.KeepPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("keep_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -870,6 +959,17 @@ func (m *BackupPlan) contextValidateLastExecuteStatus(ctx context.Context, forma
 }
 
 func (m *BackupPlan) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Phase != nil {
+		if err := m.Phase.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

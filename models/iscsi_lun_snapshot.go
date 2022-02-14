@@ -21,23 +21,17 @@ import (
 type IscsiLunSnapshot struct {
 
 	// consistency group snapshot
-	ConsistencyGroupSnapshot struct {
-		NestedConsistencyGroupSnapshot
-	} `json:"consistency_group_snapshot,omitempty"`
+	ConsistencyGroupSnapshot *NestedConsistencyGroupSnapshot `json:"consistency_group_snapshot,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
 	ID *string `json:"id"`
 
 	// iscsi lun
-	IscsiLun struct {
-		NestedIscsiLun
-	} `json:"iscsi_lun,omitempty"`
+	IscsiLun *NestedIscsiLun `json:"iscsi_lun,omitempty"`
 
 	// iscsi target
 	// Required: true
@@ -118,12 +112,34 @@ func (m *IscsiLunSnapshot) validateConsistencyGroupSnapshot(formats strfmt.Regis
 		return nil
 	}
 
+	if m.ConsistencyGroupSnapshot != nil {
+		if err := m.ConsistencyGroupSnapshot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshot")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshot")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshot) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -141,6 +157,17 @@ func (m *IscsiLunSnapshot) validateID(formats strfmt.Registry) error {
 func (m *IscsiLunSnapshot) validateIscsiLun(formats strfmt.Registry) error {
 	if swag.IsZero(m.IscsiLun) { // not required
 		return nil
+	}
+
+	if m.IscsiLun != nil {
+		if err := m.IscsiLun.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -260,15 +287,48 @@ func (m *IscsiLunSnapshot) ContextValidate(ctx context.Context, formats strfmt.R
 
 func (m *IscsiLunSnapshot) contextValidateConsistencyGroupSnapshot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistencyGroupSnapshot != nil {
+		if err := m.ConsistencyGroupSnapshot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshot")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshot")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshot) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiLunSnapshot) contextValidateIscsiLun(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IscsiLun != nil {
+		if err := m.IscsiLun.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

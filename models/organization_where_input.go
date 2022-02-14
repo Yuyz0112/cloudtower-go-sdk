@@ -30,19 +30,13 @@ type OrganizationWhereInput struct {
 	OR []*OrganizationWhereInput `json:"OR,omitempty"`
 
 	// datacenters every
-	DatacentersEvery struct {
-		DatacenterWhereInput
-	} `json:"datacenters_every,omitempty"`
+	DatacentersEvery *DatacenterWhereInput `json:"datacenters_every,omitempty"`
 
 	// datacenters none
-	DatacentersNone struct {
-		DatacenterWhereInput
-	} `json:"datacenters_none,omitempty"`
+	DatacentersNone *DatacenterWhereInput `json:"datacenters_none,omitempty"`
 
 	// datacenters some
-	DatacentersSome struct {
-		DatacenterWhereInput
-	} `json:"datacenters_some,omitempty"`
+	DatacentersSome *DatacenterWhereInput `json:"datacenters_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -246,6 +240,17 @@ func (m *OrganizationWhereInput) validateDatacentersEvery(formats strfmt.Registr
 		return nil
 	}
 
+	if m.DatacentersEvery != nil {
+		if err := m.DatacentersEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -254,12 +259,34 @@ func (m *OrganizationWhereInput) validateDatacentersNone(formats strfmt.Registry
 		return nil
 	}
 
+	if m.DatacentersNone != nil {
+		if err := m.DatacentersNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *OrganizationWhereInput) validateDatacentersSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.DatacentersSome) { // not required
 		return nil
+	}
+
+	if m.DatacentersSome != nil {
+		if err := m.DatacentersSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -361,15 +388,48 @@ func (m *OrganizationWhereInput) contextValidateOR(ctx context.Context, formats 
 
 func (m *OrganizationWhereInput) contextValidateDatacentersEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DatacentersEvery != nil {
+		if err := m.DatacentersEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *OrganizationWhereInput) contextValidateDatacentersNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DatacentersNone != nil {
+		if err := m.DatacentersNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *OrganizationWhereInput) contextValidateDatacentersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DatacentersSome != nil {
+		if err := m.DatacentersSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

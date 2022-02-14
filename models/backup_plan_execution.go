@@ -21,9 +21,7 @@ import (
 type BackupPlanExecution struct {
 
 	// backup plan
-	BackupPlan struct {
-		NestedBackupPlan
-	} `json:"backup_plan,omitempty"`
+	BackupPlan *NestedBackupPlan `json:"backup_plan,omitempty"`
 
 	// backup restore points
 	BackupRestorePoints []*NestedBackupRestorePoint `json:"backup_restore_points,omitempty"`
@@ -35,9 +33,7 @@ type BackupPlanExecution struct {
 	Duration *int32 `json:"duration,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// executed at
 	ExecutedAt *string `json:"executed_at,omitempty"`
@@ -59,9 +55,7 @@ type BackupPlanExecution struct {
 	Method *BackupExecutionMethod `json:"method"`
 
 	// state
-	State struct {
-		BackupPlanExecutionState
-	} `json:"state,omitempty"`
+	State *BackupPlanExecutionState `json:"state,omitempty"`
 
 	// status
 	// Required: true
@@ -137,6 +131,17 @@ func (m *BackupPlanExecution) validateBackupPlan(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.BackupPlan != nil {
+		if err := m.BackupPlan.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -197,6 +202,17 @@ func (m *BackupPlanExecution) validateEntityAsyncStatus(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -254,6 +270,17 @@ func (m *BackupPlanExecution) validateMethod(formats strfmt.Registry) error {
 func (m *BackupPlanExecution) validateState(formats strfmt.Registry) error {
 	if swag.IsZero(m.State) { // not required
 		return nil
+	}
+
+	if m.State != nil {
+		if err := m.State.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("state")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -351,6 +378,17 @@ func (m *BackupPlanExecution) ContextValidate(ctx context.Context, formats strfm
 
 func (m *BackupPlanExecution) contextValidateBackupPlan(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupPlan != nil {
+		if err := m.BackupPlan.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -396,6 +434,17 @@ func (m *BackupPlanExecution) contextValidateBackupTargetExecutions(ctx context.
 
 func (m *BackupPlanExecution) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -416,6 +465,17 @@ func (m *BackupPlanExecution) contextValidateMethod(ctx context.Context, formats
 }
 
 func (m *BackupPlanExecution) contextValidateState(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.State != nil {
+		if err := m.State.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("state")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("state")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

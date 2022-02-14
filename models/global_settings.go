@@ -20,9 +20,7 @@ import (
 type GlobalSettings struct {
 
 	// auth
-	Auth struct {
-		NestedAuthSettings
-	} `json:"auth,omitempty"`
+	Auth *NestedAuthSettings `json:"auth,omitempty"`
 
 	// id
 	// Required: true
@@ -58,6 +56,17 @@ func (m *GlobalSettings) Validate(formats strfmt.Registry) error {
 func (m *GlobalSettings) validateAuth(formats strfmt.Registry) error {
 	if swag.IsZero(m.Auth) { // not required
 		return nil
+	}
+
+	if m.Auth != nil {
+		if err := m.Auth.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -111,6 +120,17 @@ func (m *GlobalSettings) ContextValidate(ctx context.Context, formats strfmt.Reg
 }
 
 func (m *GlobalSettings) contextValidateAuth(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Auth != nil {
+		if err := m.Auth.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

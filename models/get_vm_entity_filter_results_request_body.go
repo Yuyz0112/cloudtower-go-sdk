@@ -32,17 +32,13 @@ type GetVMEntityFilterResultsRequestBody struct {
 	Last *int32 `json:"last,omitempty"`
 
 	// order by
-	OrderBy struct {
-		VMEntityFilterResultOrderByInput
-	} `json:"orderBy,omitempty"`
+	OrderBy *VMEntityFilterResultOrderByInput `json:"orderBy,omitempty"`
 
 	// skip
 	Skip *int32 `json:"skip,omitempty"`
 
 	// where
-	Where struct {
-		VMEntityFilterResultWhereInput
-	} `json:"where,omitempty"`
+	Where *VMEntityFilterResultWhereInput `json:"where,omitempty"`
 }
 
 // Validate validates this get Vm entity filter results request body
@@ -68,12 +64,34 @@ func (m *GetVMEntityFilterResultsRequestBody) validateOrderBy(formats strfmt.Reg
 		return nil
 	}
 
+	if m.OrderBy != nil {
+		if err := m.OrderBy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("orderBy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("orderBy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GetVMEntityFilterResultsRequestBody) validateWhere(formats strfmt.Registry) error {
 	if swag.IsZero(m.Where) { // not required
 		return nil
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -99,10 +117,32 @@ func (m *GetVMEntityFilterResultsRequestBody) ContextValidate(ctx context.Contex
 
 func (m *GetVMEntityFilterResultsRequestBody) contextValidateOrderBy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.OrderBy != nil {
+		if err := m.OrderBy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("orderBy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("orderBy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GetVMEntityFilterResultsRequestBody) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

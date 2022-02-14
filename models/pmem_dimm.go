@@ -28,14 +28,10 @@ type PmemDimm struct {
 	DeviceLocator *string `json:"device_locator"`
 
 	// disk
-	Disk struct {
-		NestedDisk
-	} `json:"disk,omitempty"`
+	Disk *NestedDisk `json:"disk,omitempty"`
 
 	// health status
-	HealthStatus struct {
-		DiskHealthStatus
-	} `json:"health_status,omitempty"`
+	HealthStatus *DiskHealthStatus `json:"health_status,omitempty"`
 
 	// host
 	// Required: true
@@ -141,12 +137,34 @@ func (m *PmemDimm) validateDisk(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Disk != nil {
+		if err := m.Disk.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *PmemDimm) validateHealthStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.HealthStatus) { // not required
 		return nil
+	}
+
+	if m.HealthStatus != nil {
+		if err := m.HealthStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -241,10 +259,32 @@ func (m *PmemDimm) ContextValidate(ctx context.Context, formats strfmt.Registry)
 
 func (m *PmemDimm) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Disk != nil {
+		if err := m.Disk.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *PmemDimm) contextValidateHealthStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HealthStatus != nil {
+		if err := m.HealthStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -24,9 +24,7 @@ type SystemAuditLog struct {
 	Action *string `json:"action"`
 
 	// cluster
-	Cluster struct {
-		NestedCluster
-	} `json:"cluster,omitempty"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// finished at
 	FinishedAt *string `json:"finished_at,omitempty"`
@@ -50,9 +48,7 @@ type SystemAuditLog struct {
 	ResourceID *string `json:"resource_id,omitempty"`
 
 	// status
-	Status struct {
-		UserAuditLogStatus
-	} `json:"status,omitempty"`
+	Status *UserAuditLogStatus `json:"status,omitempty"`
 }
 
 // Validate validates this system audit log
@@ -103,6 +99,17 @@ func (m *SystemAuditLog) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -138,6 +145,17 @@ func (m *SystemAuditLog) validateStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -161,10 +179,32 @@ func (m *SystemAuditLog) ContextValidate(ctx context.Context, formats strfmt.Reg
 
 func (m *SystemAuditLog) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SystemAuditLog) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

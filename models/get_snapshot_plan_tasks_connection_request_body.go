@@ -32,17 +32,13 @@ type GetSnapshotPlanTasksConnectionRequestBody struct {
 	Last *int32 `json:"last,omitempty"`
 
 	// order by
-	OrderBy struct {
-		SnapshotPlanTaskOrderByInput
-	} `json:"orderBy,omitempty"`
+	OrderBy *SnapshotPlanTaskOrderByInput `json:"orderBy,omitempty"`
 
 	// skip
 	Skip *int32 `json:"skip,omitempty"`
 
 	// where
-	Where struct {
-		SnapshotPlanTaskWhereInput
-	} `json:"where,omitempty"`
+	Where *SnapshotPlanTaskWhereInput `json:"where,omitempty"`
 }
 
 // Validate validates this get snapshot plan tasks connection request body
@@ -68,12 +64,34 @@ func (m *GetSnapshotPlanTasksConnectionRequestBody) validateOrderBy(formats strf
 		return nil
 	}
 
+	if m.OrderBy != nil {
+		if err := m.OrderBy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("orderBy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("orderBy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GetSnapshotPlanTasksConnectionRequestBody) validateWhere(formats strfmt.Registry) error {
 	if swag.IsZero(m.Where) { // not required
 		return nil
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -99,10 +117,32 @@ func (m *GetSnapshotPlanTasksConnectionRequestBody) ContextValidate(ctx context.
 
 func (m *GetSnapshotPlanTasksConnectionRequestBody) contextValidateOrderBy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.OrderBy != nil {
+		if err := m.OrderBy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("orderBy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("orderBy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GetSnapshotPlanTasksConnectionRequestBody) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

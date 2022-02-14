@@ -29,14 +29,10 @@ type Vds struct {
 	Cluster *NestedCluster `json:"cluster"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// everoute cluster
-	EverouteCluster struct {
-		NestedEverouteCluster
-	} `json:"everoute_cluster,omitempty"`
+	EverouteCluster *NestedEverouteCluster `json:"everoute_cluster,omitempty"`
 
 	// id
 	// Required: true
@@ -179,12 +175,34 @@ func (m *Vds) validateEntityAsyncStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Vds) validateEverouteCluster(formats strfmt.Registry) error {
 	if swag.IsZero(m.EverouteCluster) { // not required
 		return nil
+	}
+
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -402,10 +420,32 @@ func (m *Vds) contextValidateCluster(ctx context.Context, formats strfmt.Registr
 
 func (m *Vds) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Vds) contextValidateEverouteCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

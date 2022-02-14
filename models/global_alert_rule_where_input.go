@@ -30,19 +30,13 @@ type GlobalAlertRuleWhereInput struct {
 	OR []*GlobalAlertRuleWhereInput `json:"OR,omitempty"`
 
 	// alert rules every
-	AlertRulesEvery struct {
-		AlertRuleWhereInput
-	} `json:"alert_rules_every,omitempty"`
+	AlertRulesEvery *AlertRuleWhereInput `json:"alert_rules_every,omitempty"`
 
 	// alert rules none
-	AlertRulesNone struct {
-		AlertRuleWhereInput
-	} `json:"alert_rules_none,omitempty"`
+	AlertRulesNone *AlertRuleWhereInput `json:"alert_rules_none,omitempty"`
 
 	// alert rules some
-	AlertRulesSome struct {
-		AlertRuleWhereInput
-	} `json:"alert_rules_some,omitempty"`
+	AlertRulesSome *AlertRuleWhereInput `json:"alert_rules_some,omitempty"`
 
 	// boolean
 	Boolean *bool `json:"boolean,omitempty"`
@@ -267,17 +261,13 @@ type GlobalAlertRuleWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// object
-	Object struct {
-		AlertRuleObject
-	} `json:"object,omitempty"`
+	Object *AlertRuleObject `json:"object,omitempty"`
 
 	// object in
 	ObjectIn []AlertRuleObject `json:"object_in,omitempty"`
 
 	// object not
-	ObjectNot struct {
-		AlertRuleObject
-	} `json:"object_not,omitempty"`
+	ObjectNot *AlertRuleObject `json:"object_not,omitempty"`
 
 	// object not in
 	ObjectNotIn []AlertRuleObject `json:"object_not_in,omitempty"`
@@ -367,17 +357,13 @@ type GlobalAlertRuleWhereInput struct {
 	SolutionStartsWith *string `json:"solution_starts_with,omitempty"`
 
 	// unit
-	Unit struct {
-		AlertRuleUnit
-	} `json:"unit,omitempty"`
+	Unit *AlertRuleUnit `json:"unit,omitempty"`
 
 	// unit in
 	UnitIn []AlertRuleUnit `json:"unit_in,omitempty"`
 
 	// unit not
-	UnitNot struct {
-		AlertRuleUnit
-	} `json:"unit_not,omitempty"`
+	UnitNot *AlertRuleUnit `json:"unit_not,omitempty"`
 
 	// unit not in
 	UnitNotIn []AlertRuleUnit `json:"unit_not_in,omitempty"`
@@ -532,12 +518,34 @@ func (m *GlobalAlertRuleWhereInput) validateAlertRulesEvery(formats strfmt.Regis
 		return nil
 	}
 
+	if m.AlertRulesEvery != nil {
+		if err := m.AlertRulesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rules_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rules_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GlobalAlertRuleWhereInput) validateAlertRulesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.AlertRulesNone) { // not required
 		return nil
+	}
+
+	if m.AlertRulesNone != nil {
+		if err := m.AlertRulesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rules_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rules_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -548,12 +556,34 @@ func (m *GlobalAlertRuleWhereInput) validateAlertRulesSome(formats strfmt.Regist
 		return nil
 	}
 
+	if m.AlertRulesSome != nil {
+		if err := m.AlertRulesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rules_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rules_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GlobalAlertRuleWhereInput) validateObject(formats strfmt.Registry) error {
 	if swag.IsZero(m.Object) { // not required
 		return nil
+	}
+
+	if m.Object != nil {
+		if err := m.Object.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("object")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("object")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -585,6 +615,17 @@ func (m *GlobalAlertRuleWhereInput) validateObjectNot(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.ObjectNot != nil {
+		if err := m.ObjectNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("object_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("object_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -614,6 +655,17 @@ func (m *GlobalAlertRuleWhereInput) validateUnit(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.Unit != nil {
+		if err := m.Unit.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("unit")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -641,6 +693,17 @@ func (m *GlobalAlertRuleWhereInput) validateUnitIn(formats strfmt.Registry) erro
 func (m *GlobalAlertRuleWhereInput) validateUnitNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.UnitNot) { // not required
 		return nil
+	}
+
+	if m.UnitNot != nil {
+		if err := m.UnitNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("unit_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("unit_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -795,20 +858,64 @@ func (m *GlobalAlertRuleWhereInput) contextValidateOR(ctx context.Context, forma
 
 func (m *GlobalAlertRuleWhereInput) contextValidateAlertRulesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AlertRulesEvery != nil {
+		if err := m.AlertRulesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rules_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rules_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GlobalAlertRuleWhereInput) contextValidateAlertRulesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AlertRulesNone != nil {
+		if err := m.AlertRulesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rules_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rules_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *GlobalAlertRuleWhereInput) contextValidateAlertRulesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AlertRulesSome != nil {
+		if err := m.AlertRulesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rules_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rules_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GlobalAlertRuleWhereInput) contextValidateObject(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Object != nil {
+		if err := m.Object.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("object")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("object")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -833,6 +940,17 @@ func (m *GlobalAlertRuleWhereInput) contextValidateObjectIn(ctx context.Context,
 
 func (m *GlobalAlertRuleWhereInput) contextValidateObjectNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ObjectNot != nil {
+		if err := m.ObjectNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("object_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("object_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -856,6 +974,17 @@ func (m *GlobalAlertRuleWhereInput) contextValidateObjectNotIn(ctx context.Conte
 
 func (m *GlobalAlertRuleWhereInput) contextValidateUnit(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Unit != nil {
+		if err := m.Unit.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("unit")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -878,6 +1007,17 @@ func (m *GlobalAlertRuleWhereInput) contextValidateUnitIn(ctx context.Context, f
 }
 
 func (m *GlobalAlertRuleWhereInput) contextValidateUnitNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UnitNot != nil {
+		if err := m.UnitNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("unit_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("unit_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

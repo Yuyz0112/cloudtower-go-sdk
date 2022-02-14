@@ -72,9 +72,7 @@ type DeployWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// license
-	License struct {
-		LicenseWhereInput
-	} `json:"license,omitempty"`
+	License *LicenseWhereInput `json:"license,omitempty"`
 
 	// version
 	Version *string `json:"version,omitempty"`
@@ -228,6 +226,17 @@ func (m *DeployWhereInput) validateLicense(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.License != nil {
+		if err := m.License.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("license")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -318,6 +327,17 @@ func (m *DeployWhereInput) contextValidateOR(ctx context.Context, formats strfmt
 }
 
 func (m *DeployWhereInput) contextValidateLicense(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.License != nil {
+		if err := m.License.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("license")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("license")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

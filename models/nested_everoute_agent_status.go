@@ -20,9 +20,7 @@ import (
 type NestedEverouteAgentStatus struct {
 
 	// host
-	Host struct {
-		NestedHost
-	} `json:"host,omitempty"`
+	Host *NestedHost `json:"host,omitempty"`
 
 	// host ID
 	// Required: true
@@ -41,9 +39,7 @@ type NestedEverouteAgentStatus struct {
 	Message *string `json:"message"`
 
 	// phase
-	Phase struct {
-		EverouteClusterPhase
-	} `json:"phase,omitempty"`
+	Phase *EverouteClusterPhase `json:"phase,omitempty"`
 
 	// reason
 	// Required: true
@@ -93,6 +89,17 @@ func (m *NestedEverouteAgentStatus) validateHost(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -137,6 +144,17 @@ func (m *NestedEverouteAgentStatus) validatePhase(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.Phase != nil {
+		if err := m.Phase.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -169,10 +187,32 @@ func (m *NestedEverouteAgentStatus) ContextValidate(ctx context.Context, formats
 
 func (m *NestedEverouteAgentStatus) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NestedEverouteAgentStatus) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Phase != nil {
+		if err := m.Phase.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

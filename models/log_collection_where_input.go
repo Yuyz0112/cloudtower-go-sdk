@@ -30,24 +30,16 @@ type LogCollectionWhereInput struct {
 	OR []*LogCollectionWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// hosts every
-	HostsEvery struct {
-		HostWhereInput
-	} `json:"hosts_every,omitempty"`
+	HostsEvery *HostWhereInput `json:"hosts_every,omitempty"`
 
 	// hosts none
-	HostsNone struct {
-		HostWhereInput
-	} `json:"hosts_none,omitempty"`
+	HostsNone *HostWhereInput `json:"hosts_none,omitempty"`
 
 	// hosts some
-	HostsSome struct {
-		HostWhereInput
-	} `json:"hosts_some,omitempty"`
+	HostsSome *HostWhereInput `json:"hosts_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -338,25 +330,19 @@ type LogCollectionWhereInput struct {
 	StartedAtNotIn []string `json:"started_at_not_in,omitempty"`
 
 	// status
-	Status struct {
-		LogCollectionStatus
-	} `json:"status,omitempty"`
+	Status *LogCollectionStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []LogCollectionStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		LogCollectionStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *LogCollectionStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []LogCollectionStatus `json:"status_not_in,omitempty"`
 
 	// witness
-	Witness struct {
-		WitnessWhereInput
-	} `json:"witness,omitempty"`
+	Witness *WitnessWhereInput `json:"witness,omitempty"`
 }
 
 // Validate validates this log collection where input
@@ -500,12 +486,34 @@ func (m *LogCollectionWhereInput) validateCluster(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LogCollectionWhereInput) validateHostsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.HostsEvery) { // not required
 		return nil
+	}
+
+	if m.HostsEvery != nil {
+		if err := m.HostsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -516,6 +524,17 @@ func (m *LogCollectionWhereInput) validateHostsNone(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.HostsNone != nil {
+		if err := m.HostsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -524,12 +543,34 @@ func (m *LogCollectionWhereInput) validateHostsSome(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.HostsSome != nil {
+		if err := m.HostsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LogCollectionWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -561,6 +602,17 @@ func (m *LogCollectionWhereInput) validateStatusNot(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -588,6 +640,17 @@ func (m *LogCollectionWhereInput) validateStatusNotIn(formats strfmt.Registry) e
 func (m *LogCollectionWhereInput) validateWitness(formats strfmt.Registry) error {
 	if swag.IsZero(m.Witness) { // not required
 		return nil
+	}
+
+	if m.Witness != nil {
+		if err := m.Witness.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witness")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -713,25 +776,80 @@ func (m *LogCollectionWhereInput) contextValidateOR(ctx context.Context, formats
 
 func (m *LogCollectionWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LogCollectionWhereInput) contextValidateHostsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HostsEvery != nil {
+		if err := m.HostsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LogCollectionWhereInput) contextValidateHostsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HostsNone != nil {
+		if err := m.HostsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LogCollectionWhereInput) contextValidateHostsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HostsSome != nil {
+		if err := m.HostsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LogCollectionWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -756,6 +874,17 @@ func (m *LogCollectionWhereInput) contextValidateStatusIn(ctx context.Context, f
 
 func (m *LogCollectionWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -778,6 +907,17 @@ func (m *LogCollectionWhereInput) contextValidateStatusNotIn(ctx context.Context
 }
 
 func (m *LogCollectionWhereInput) contextValidateWitness(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Witness != nil {
+		if err := m.Witness.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witness")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -186,25 +186,19 @@ type ReportTaskWhereInput struct {
 	PlanIDStartsWith *string `json:"plan_id_starts_with,omitempty"`
 
 	// status
-	Status struct {
-		TaskStatus
-	} `json:"status,omitempty"`
+	Status *TaskStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []TaskStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		TaskStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *TaskStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []TaskStatus `json:"status_not_in,omitempty"`
 
 	// template
-	Template struct {
-		ReportTemplateWhereInput
-	} `json:"template,omitempty"`
+	Template *ReportTemplateWhereInput `json:"template,omitempty"`
 }
 
 // Validate validates this report task where input
@@ -332,6 +326,17 @@ func (m *ReportTaskWhereInput) validateStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -361,6 +366,17 @@ func (m *ReportTaskWhereInput) validateStatusNot(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -388,6 +404,17 @@ func (m *ReportTaskWhereInput) validateStatusNotIn(formats strfmt.Registry) erro
 func (m *ReportTaskWhereInput) validateTemplate(formats strfmt.Registry) error {
 	if swag.IsZero(m.Template) { // not required
 		return nil
+	}
+
+	if m.Template != nil {
+		if err := m.Template.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("template")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("template")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -497,6 +524,17 @@ func (m *ReportTaskWhereInput) contextValidateOR(ctx context.Context, formats st
 
 func (m *ReportTaskWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -520,6 +558,17 @@ func (m *ReportTaskWhereInput) contextValidateStatusIn(ctx context.Context, form
 
 func (m *ReportTaskWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -542,6 +591,17 @@ func (m *ReportTaskWhereInput) contextValidateStatusNotIn(ctx context.Context, f
 }
 
 func (m *ReportTaskWhereInput) contextValidateTemplate(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Template != nil {
+		if err := m.Template.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("template")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("template")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

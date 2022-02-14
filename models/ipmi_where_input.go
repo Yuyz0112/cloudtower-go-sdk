@@ -30,9 +30,7 @@ type IpmiWhereInput struct {
 	OR []*IpmiWhereInput `json:"OR,omitempty"`
 
 	// host
-	Host struct {
-		HostWhereInput
-	} `json:"host,omitempty"`
+	Host *HostWhereInput `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -318,6 +316,17 @@ func (m *IpmiWhereInput) validateHost(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -408,6 +417,17 @@ func (m *IpmiWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 }
 
 func (m *IpmiWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

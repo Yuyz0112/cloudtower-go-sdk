@@ -24,14 +24,10 @@ type ConsistencyGroupSnapshot struct {
 	IscsiLunSnapshots []*NestedIscsiLunSnapshot `json:"Iscsi_lun_snapshots,omitempty"`
 
 	// consistency group
-	ConsistencyGroup struct {
-		NestedConsistencyGroup
-	} `json:"consistency_group,omitempty"`
+	ConsistencyGroup *NestedConsistencyGroup `json:"consistency_group,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -141,12 +137,34 @@ func (m *ConsistencyGroupSnapshot) validateConsistencyGroup(formats strfmt.Regis
 		return nil
 	}
 
+	if m.ConsistencyGroup != nil {
+		if err := m.ConsistencyGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ConsistencyGroupSnapshot) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -301,10 +319,32 @@ func (m *ConsistencyGroupSnapshot) contextValidateIscsiLunSnapshots(ctx context.
 
 func (m *ConsistencyGroupSnapshot) contextValidateConsistencyGroup(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistencyGroup != nil {
+		if err := m.ConsistencyGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ConsistencyGroupSnapshot) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

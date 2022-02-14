@@ -27,17 +27,13 @@ type BackupStoreRepository struct {
 	BackupRestorePoints []*NestedBackupRestorePoint `json:"backup_restore_points,omitempty"`
 
 	// backup service
-	BackupService struct {
-		NestedBackupService
-	} `json:"backup_service,omitempty"`
+	BackupService *NestedBackupService `json:"backup_service,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -198,12 +194,34 @@ func (m *BackupStoreRepository) validateBackupService(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.BackupService != nil {
+		if err := m.BackupService.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepository) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -369,10 +387,32 @@ func (m *BackupStoreRepository) contextValidateBackupRestorePoints(ctx context.C
 
 func (m *BackupStoreRepository) contextValidateBackupService(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupService != nil {
+		if err := m.BackupService.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupStoreRepository) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

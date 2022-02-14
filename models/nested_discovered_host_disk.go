@@ -27,9 +27,7 @@ type NestedDiscoveredHostDisk struct {
 	Drive *string `json:"drive"`
 
 	// function
-	Function struct {
-		DiskFunction
-	} `json:"function,omitempty"`
+	Function *DiskFunction `json:"function,omitempty"`
 
 	// model
 	// Required: true
@@ -100,6 +98,17 @@ func (m *NestedDiscoveredHostDisk) validateDrive(formats strfmt.Registry) error 
 func (m *NestedDiscoveredHostDisk) validateFunction(formats strfmt.Registry) error {
 	if swag.IsZero(m.Function) { // not required
 		return nil
+	}
+
+	if m.Function != nil {
+		if err := m.Function.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("function")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("function")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -175,6 +184,17 @@ func (m *NestedDiscoveredHostDisk) ContextValidate(ctx context.Context, formats 
 }
 
 func (m *NestedDiscoveredHostDisk) contextValidateFunction(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Function != nil {
+		if err := m.Function.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("function")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("function")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

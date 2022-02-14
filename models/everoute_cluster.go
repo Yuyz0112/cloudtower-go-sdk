@@ -35,18 +35,14 @@ type EverouteCluster struct {
 	ControllerTemplate *NestedEverouteControllerTemplate `json:"controller_template"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// global default action
 	// Required: true
 	GlobalDefaultAction *GlobalPolicyAction `json:"global_default_action"`
 
 	// global whitelist
-	GlobalWhitelist struct {
-		NestedEverouteClusterWhitelist
-	} `json:"global_whitelist,omitempty"`
+	GlobalWhitelist *NestedEverouteClusterWhitelist `json:"global_whitelist,omitempty"`
 
 	// id
 	// Required: true
@@ -60,9 +56,7 @@ type EverouteCluster struct {
 	Name *string `json:"name"`
 
 	// phase
-	Phase struct {
-		EverouteClusterPhase
-	} `json:"phase,omitempty"`
+	Phase *EverouteClusterPhase `json:"phase,omitempty"`
 
 	// status
 	// Required: true
@@ -235,6 +229,17 @@ func (m *EverouteCluster) validateEntityAsyncStatus(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -267,6 +272,17 @@ func (m *EverouteCluster) validateGlobalWhitelist(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.GlobalWhitelist != nil {
+		if err := m.GlobalWhitelist.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("global_whitelist")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_whitelist")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -291,6 +307,17 @@ func (m *EverouteCluster) validateName(formats strfmt.Registry) error {
 func (m *EverouteCluster) validatePhase(formats strfmt.Registry) error {
 	if swag.IsZero(m.Phase) { // not required
 		return nil
+	}
+
+	if m.Phase != nil {
+		if err := m.Phase.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -449,6 +476,17 @@ func (m *EverouteCluster) contextValidateControllerTemplate(ctx context.Context,
 
 func (m *EverouteCluster) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -470,10 +508,32 @@ func (m *EverouteCluster) contextValidateGlobalDefaultAction(ctx context.Context
 
 func (m *EverouteCluster) contextValidateGlobalWhitelist(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.GlobalWhitelist != nil {
+		if err := m.GlobalWhitelist.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("global_whitelist")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_whitelist")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *EverouteCluster) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Phase != nil {
+		if err := m.Phase.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

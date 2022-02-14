@@ -24,9 +24,7 @@ type UserAuditLog struct {
 	Action *string `json:"action"`
 
 	// cluster
-	Cluster struct {
-		NestedCluster
-	} `json:"cluster,omitempty"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// created at
 	// Required: true
@@ -54,14 +52,10 @@ type UserAuditLog struct {
 	ResourceType *string `json:"resource_type,omitempty"`
 
 	// status
-	Status struct {
-		UserAuditLogStatus
-	} `json:"status,omitempty"`
+	Status *UserAuditLogStatus `json:"status,omitempty"`
 
 	// user
-	User struct {
-		NestedUser
-	} `json:"user,omitempty"`
+	User *NestedUser `json:"user,omitempty"`
 }
 
 // Validate validates this user audit log
@@ -120,6 +114,17 @@ func (m *UserAuditLog) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -164,12 +169,34 @@ func (m *UserAuditLog) validateStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserAuditLog) validateUser(formats strfmt.Registry) error {
 	if swag.IsZero(m.User) { // not required
 		return nil
+	}
+
+	if m.User != nil {
+		if err := m.User.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -199,15 +226,48 @@ func (m *UserAuditLog) ContextValidate(ctx context.Context, formats strfmt.Regis
 
 func (m *UserAuditLog) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserAuditLog) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserAuditLog) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.User != nil {
+		if err := m.User.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

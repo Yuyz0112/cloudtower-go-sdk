@@ -30,9 +30,7 @@ type AlertRuleWhereInput struct {
 	OR []*AlertRuleWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// customized
 	Customized *bool `json:"customized,omitempty"`
@@ -47,9 +45,7 @@ type AlertRuleWhereInput struct {
 	DisabledNot *bool `json:"disabled_not,omitempty"`
 
 	// global alert rule
-	GlobalAlertRule struct {
-		GlobalAlertRuleWhereInput
-	} `json:"global_alert_rule,omitempty"`
+	GlobalAlertRule *GlobalAlertRuleWhereInput `json:"global_alert_rule,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -249,12 +245,34 @@ func (m *AlertRuleWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertRuleWhereInput) validateGlobalAlertRule(formats strfmt.Registry) error {
 	if swag.IsZero(m.GlobalAlertRule) { // not required
 		return nil
+	}
+
+	if m.GlobalAlertRule != nil {
+		if err := m.GlobalAlertRule.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("global_alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_alert_rule")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -352,10 +370,32 @@ func (m *AlertRuleWhereInput) contextValidateOR(ctx context.Context, formats str
 
 func (m *AlertRuleWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertRuleWhereInput) contextValidateGlobalAlertRule(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GlobalAlertRule != nil {
+		if err := m.GlobalAlertRule.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("global_alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("global_alert_rule")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

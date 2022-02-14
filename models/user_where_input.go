@@ -162,9 +162,7 @@ type UserWhereInput struct {
 	LdapDnStartsWith *string `json:"ldap_dn_starts_with,omitempty"`
 
 	// login info
-	LoginInfo struct {
-		UserLoginInfoWhereInput
-	} `json:"login_info,omitempty"`
+	LoginInfo *UserLoginInfoWhereInput `json:"login_info,omitempty"`
 
 	// mobile phone
 	MobilePhone *string `json:"mobile_phone,omitempty"`
@@ -323,48 +321,34 @@ type UserWhereInput struct {
 	PasswordUpdatedAtNotIn []string `json:"password_updated_at_not_in,omitempty"`
 
 	// role
-	Role struct {
-		UserRole
-	} `json:"role,omitempty"`
+	Role *UserRole `json:"role,omitempty"`
 
 	// role in
 	RoleIn []UserRole `json:"role_in,omitempty"`
 
 	// role not
-	RoleNot struct {
-		UserRole
-	} `json:"role_not,omitempty"`
+	RoleNot *UserRole `json:"role_not,omitempty"`
 
 	// role not in
 	RoleNotIn []UserRole `json:"role_not_in,omitempty"`
 
 	// roles every
-	RolesEvery struct {
-		UserRoleNextWhereInput
-	} `json:"roles_every,omitempty"`
+	RolesEvery *UserRoleNextWhereInput `json:"roles_every,omitempty"`
 
 	// roles none
-	RolesNone struct {
-		UserRoleNextWhereInput
-	} `json:"roles_none,omitempty"`
+	RolesNone *UserRoleNextWhereInput `json:"roles_none,omitempty"`
 
 	// roles some
-	RolesSome struct {
-		UserRoleNextWhereInput
-	} `json:"roles_some,omitempty"`
+	RolesSome *UserRoleNextWhereInput `json:"roles_some,omitempty"`
 
 	// source
-	Source struct {
-		UserSource
-	} `json:"source,omitempty"`
+	Source *UserSource `json:"source,omitempty"`
 
 	// source in
 	SourceIn []UserSource `json:"source_in,omitempty"`
 
 	// source not
-	SourceNot struct {
-		UserSource
-	} `json:"source_not,omitempty"`
+	SourceNot *UserSource `json:"source_not,omitempty"`
 
 	// source not in
 	SourceNotIn []UserSource `json:"source_not_in,omitempty"`
@@ -565,12 +549,34 @@ func (m *UserWhereInput) validateLoginInfo(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LoginInfo != nil {
+		if err := m.LoginInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("login_info")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("login_info")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserWhereInput) validateRole(formats strfmt.Registry) error {
 	if swag.IsZero(m.Role) { // not required
 		return nil
+	}
+
+	if m.Role != nil {
+		if err := m.Role.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("role")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -602,6 +608,17 @@ func (m *UserWhereInput) validateRoleNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.RoleNot != nil {
+		if err := m.RoleNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("role_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -631,12 +648,34 @@ func (m *UserWhereInput) validateRolesEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.RolesEvery != nil {
+		if err := m.RolesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("roles_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("roles_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserWhereInput) validateRolesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.RolesNone) { // not required
 		return nil
+	}
+
+	if m.RolesNone != nil {
+		if err := m.RolesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("roles_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("roles_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -647,12 +686,34 @@ func (m *UserWhereInput) validateRolesSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.RolesSome != nil {
+		if err := m.RolesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("roles_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("roles_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserWhereInput) validateSource(formats strfmt.Registry) error {
 	if swag.IsZero(m.Source) { // not required
 		return nil
+	}
+
+	if m.Source != nil {
+		if err := m.Source.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("source")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -682,6 +743,17 @@ func (m *UserWhereInput) validateSourceIn(formats strfmt.Registry) error {
 func (m *UserWhereInput) validateSourceNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.SourceNot) { // not required
 		return nil
+	}
+
+	if m.SourceNot != nil {
+		if err := m.SourceNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("source_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -840,10 +912,32 @@ func (m *UserWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 
 func (m *UserWhereInput) contextValidateLoginInfo(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LoginInfo != nil {
+		if err := m.LoginInfo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("login_info")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("login_info")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserWhereInput) contextValidateRole(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Role != nil {
+		if err := m.Role.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("role")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -868,6 +962,17 @@ func (m *UserWhereInput) contextValidateRoleIn(ctx context.Context, formats strf
 
 func (m *UserWhereInput) contextValidateRoleNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.RoleNot != nil {
+		if err := m.RoleNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("role_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("role_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -891,20 +996,64 @@ func (m *UserWhereInput) contextValidateRoleNotIn(ctx context.Context, formats s
 
 func (m *UserWhereInput) contextValidateRolesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.RolesEvery != nil {
+		if err := m.RolesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("roles_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("roles_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserWhereInput) contextValidateRolesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RolesNone != nil {
+		if err := m.RolesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("roles_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("roles_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *UserWhereInput) contextValidateRolesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.RolesSome != nil {
+		if err := m.RolesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("roles_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("roles_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserWhereInput) contextValidateSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Source != nil {
+		if err := m.Source.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("source")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -928,6 +1077,17 @@ func (m *UserWhereInput) contextValidateSourceIn(ctx context.Context, formats st
 }
 
 func (m *UserWhereInput) contextValidateSourceNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SourceNot != nil {
+		if err := m.SourceNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("source_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

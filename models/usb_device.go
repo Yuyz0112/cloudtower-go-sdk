@@ -64,9 +64,7 @@ type UsbDevice struct {
 	UsbType *string `json:"usb_type"`
 
 	// vm
-	VM struct {
-		NestedVM
-	} `json:"vm,omitempty"`
+	VM *NestedVM `json:"vm,omitempty"`
 }
 
 // Validate validates this usb device
@@ -257,6 +255,17 @@ func (m *UsbDevice) validateVM(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -315,6 +324,17 @@ func (m *UsbDevice) contextValidateStatus(ctx context.Context, formats strfmt.Re
 }
 
 func (m *UsbDevice) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

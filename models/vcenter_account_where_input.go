@@ -30,9 +30,7 @@ type VcenterAccountWhereInput struct {
 	OR []*VcenterAccountWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -384,6 +382,17 @@ func (m *VcenterAccountWhereInput) validateCluster(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -474,6 +483,17 @@ func (m *VcenterAccountWhereInput) contextValidateOR(ctx context.Context, format
 }
 
 func (m *VcenterAccountWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

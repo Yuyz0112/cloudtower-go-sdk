@@ -21,17 +21,13 @@ import (
 type Graph struct {
 
 	// cluster
-	Cluster struct {
-		NestedCluster
-	} `json:"cluster,omitempty"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// disks
 	Disks []*NestedDisk `json:"disks,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// hosts
 	Hosts []*NestedHost `json:"hosts,omitempty"`
@@ -67,9 +63,7 @@ type Graph struct {
 	Namespaces []*NestedNvmfNamespace `json:"namespaces,omitempty"`
 
 	// network
-	Network struct {
-		NetworkType
-	} `json:"network,omitempty"`
+	Network *NetworkType `json:"network,omitempty"`
 
 	// nics
 	Nics []*NestedNic `json:"nics,omitempty"`
@@ -224,6 +218,17 @@ func (m *Graph) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -256,6 +261,17 @@ func (m *Graph) validateDisks(formats strfmt.Registry) error {
 func (m *Graph) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -411,6 +427,17 @@ func (m *Graph) validateNamespaces(formats strfmt.Registry) error {
 func (m *Graph) validateNetwork(formats strfmt.Registry) error {
 	if swag.IsZero(m.Network) { // not required
 		return nil
+	}
+
+	if m.Network != nil {
+		if err := m.Network.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("network")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("network")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -719,6 +746,17 @@ func (m *Graph) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 
 func (m *Graph) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -743,6 +781,17 @@ func (m *Graph) contextValidateDisks(ctx context.Context, formats strfmt.Registr
 }
 
 func (m *Graph) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -824,6 +873,17 @@ func (m *Graph) contextValidateNamespaces(ctx context.Context, formats strfmt.Re
 }
 
 func (m *Graph) contextValidateNetwork(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Network != nil {
+		if err := m.Network.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("network")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("network")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

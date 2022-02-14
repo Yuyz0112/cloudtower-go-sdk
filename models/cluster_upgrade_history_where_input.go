@@ -30,9 +30,7 @@ type ClusterUpgradeHistoryWhereInput struct {
 	OR []*ClusterUpgradeHistoryWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// date
 	Date *string `json:"date,omitempty"`
@@ -378,6 +376,17 @@ func (m *ClusterUpgradeHistoryWhereInput) validateCluster(formats strfmt.Registr
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -468,6 +477,17 @@ func (m *ClusterUpgradeHistoryWhereInput) contextValidateOR(ctx context.Context,
 }
 
 func (m *ClusterUpgradeHistoryWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

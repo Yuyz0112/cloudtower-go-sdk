@@ -30,9 +30,7 @@ type SnapshotPlanTaskWhereInput struct {
 	OR []*SnapshotPlanTaskWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// end time
 	EndTime *string `json:"end_time,omitempty"`
@@ -59,17 +57,13 @@ type SnapshotPlanTaskWhereInput struct {
 	EndTimeNotIn []string `json:"end_time_not_in,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -165,14 +159,10 @@ type SnapshotPlanTaskWhereInput struct {
 	LocalIDStartsWith *string `json:"local_id_starts_with,omitempty"`
 
 	// snapshot group
-	SnapshotGroup struct {
-		SnapshotGroupWhereInput
-	} `json:"snapshotGroup,omitempty"`
+	SnapshotGroup *SnapshotGroupWhereInput `json:"snapshotGroup,omitempty"`
 
 	// snapshot plan
-	SnapshotPlan struct {
-		SnapshotPlanWhereInput
-	} `json:"snapshotPlan,omitempty"`
+	SnapshotPlan *SnapshotPlanWhereInput `json:"snapshotPlan,omitempty"`
 
 	// start time
 	StartTime *string `json:"start_time,omitempty"`
@@ -199,33 +189,25 @@ type SnapshotPlanTaskWhereInput struct {
 	StartTimeNotIn []string `json:"start_time_not_in,omitempty"`
 
 	// status
-	Status struct {
-		SnapshotPlanExecuteStatus
-	} `json:"status,omitempty"`
+	Status *SnapshotPlanExecuteStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []SnapshotPlanExecuteStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		SnapshotPlanExecuteStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *SnapshotPlanExecuteStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []SnapshotPlanExecuteStatus `json:"status_not_in,omitempty"`
 
 	// type
-	Type struct {
-		SnapshotPlanTaskType
-	} `json:"type,omitempty"`
+	Type *SnapshotPlanTaskType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []SnapshotPlanTaskType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		SnapshotPlanTaskType
-	} `json:"type_not,omitempty"`
+	TypeNot *SnapshotPlanTaskType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []SnapshotPlanTaskType `json:"type_not_in,omitempty"`
@@ -396,12 +378,34 @@ func (m *SnapshotPlanTaskWhereInput) validateCluster(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanTaskWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -433,6 +437,17 @@ func (m *SnapshotPlanTaskWhereInput) validateEntityAsyncStatusNot(formats strfmt
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -462,6 +477,17 @@ func (m *SnapshotPlanTaskWhereInput) validateSnapshotGroup(formats strfmt.Regist
 		return nil
 	}
 
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshotGroup")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotGroup")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -470,12 +496,34 @@ func (m *SnapshotPlanTaskWhereInput) validateSnapshotPlan(formats strfmt.Registr
 		return nil
 	}
 
+	if m.SnapshotPlan != nil {
+		if err := m.SnapshotPlan.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshotPlan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotPlan")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanTaskWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -507,6 +555,17 @@ func (m *SnapshotPlanTaskWhereInput) validateStatusNot(formats strfmt.Registry) 
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -536,6 +595,17 @@ func (m *SnapshotPlanTaskWhereInput) validateType(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -563,6 +633,17 @@ func (m *SnapshotPlanTaskWhereInput) validateTypeIn(formats strfmt.Registry) err
 func (m *SnapshotPlanTaskWhereInput) validateTypeNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.TypeNot) { // not required
 		return nil
+	}
+
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -733,10 +814,32 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateOR(ctx context.Context, form
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -761,6 +864,17 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateEntityAsyncStatusIn(ctx cont
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -784,15 +898,48 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateEntityAsyncStatusNotIn(ctx c
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateSnapshotGroup(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshotGroup")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotGroup")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateSnapshotPlan(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SnapshotPlan != nil {
+		if err := m.SnapshotPlan.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshotPlan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshotPlan")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -817,6 +964,17 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateStatusIn(ctx context.Context
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -840,6 +998,17 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateStatusNotIn(ctx context.Cont
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -862,6 +1031,17 @@ func (m *SnapshotPlanTaskWhereInput) contextValidateTypeIn(ctx context.Context, 
 }
 
 func (m *SnapshotPlanTaskWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

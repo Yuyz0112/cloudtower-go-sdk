@@ -56,9 +56,7 @@ type GlobalAlertRule struct {
 	Name *string `json:"name"`
 
 	// object
-	Object struct {
-		AlertRuleObject
-	} `json:"object,omitempty"`
+	Object *AlertRuleObject `json:"object,omitempty"`
 
 	// operator
 	// Required: true
@@ -264,6 +262,17 @@ func (m *GlobalAlertRule) validateObject(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Object != nil {
+		if err := m.Object.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("object")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("object")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -407,6 +416,17 @@ func (m *GlobalAlertRule) contextValidateDefaultThresholds(ctx context.Context, 
 }
 
 func (m *GlobalAlertRule) contextValidateObject(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Object != nil {
+		if err := m.Object.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("object")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("object")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

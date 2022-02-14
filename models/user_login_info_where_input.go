@@ -144,9 +144,7 @@ type UserLoginInfoWhereInput struct {
 	MissedAtNotIn []string `json:"missed_at_not_in,omitempty"`
 
 	// user
-	User struct {
-		UserWhereInput
-	} `json:"user,omitempty"`
+	User *UserWhereInput `json:"user,omitempty"`
 }
 
 // Validate validates this user login info where input
@@ -258,6 +256,17 @@ func (m *UserLoginInfoWhereInput) validateUser(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.User != nil {
+		if err := m.User.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -348,6 +357,17 @@ func (m *UserLoginInfoWhereInput) contextValidateOR(ctx context.Context, formats
 }
 
 func (m *UserLoginInfoWhereInput) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.User != nil {
+		if err := m.User.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

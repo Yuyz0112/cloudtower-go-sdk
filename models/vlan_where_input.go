@@ -30,17 +30,13 @@ type VlanWhereInput struct {
 	OR []*VlanWhereInput `json:"OR,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -172,19 +168,13 @@ type VlanWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -313,25 +303,19 @@ type VlanWhereInput struct {
 	SubnetmaskStartsWith *string `json:"subnetmask_starts_with,omitempty"`
 
 	// type
-	Type struct {
-		NetworkType
-	} `json:"type,omitempty"`
+	Type *NetworkType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []NetworkType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		NetworkType
-	} `json:"type_not,omitempty"`
+	TypeNot *NetworkType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []NetworkType `json:"type_not_in,omitempty"`
 
 	// vds
-	Vds struct {
-		VdsWhereInput
-	} `json:"vds,omitempty"`
+	Vds *VdsWhereInput `json:"vds,omitempty"`
 
 	// vlan id
 	VlanID *int32 `json:"vlan_id,omitempty"`
@@ -358,19 +342,13 @@ type VlanWhereInput struct {
 	VlanIDNotIn []int32 `json:"vlan_id_not_in,omitempty"`
 
 	// vm nics every
-	VMNicsEvery struct {
-		VMNicWhereInput
-	} `json:"vm_nics_every,omitempty"`
+	VMNicsEvery *VMNicWhereInput `json:"vm_nics_every,omitempty"`
 
 	// vm nics none
-	VMNicsNone struct {
-		VMNicWhereInput
-	} `json:"vm_nics_none,omitempty"`
+	VMNicsNone *VMNicWhereInput `json:"vm_nics_none,omitempty"`
 
 	// vm nics some
-	VMNicsSome struct {
-		VMNicWhereInput
-	} `json:"vm_nics_some,omitempty"`
+	VMNicsSome *VMNicWhereInput `json:"vm_nics_some,omitempty"`
 }
 
 // Validate validates this vlan where input
@@ -538,6 +516,17 @@ func (m *VlanWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -565,6 +554,17 @@ func (m *VlanWhereInput) validateEntityAsyncStatusIn(formats strfmt.Registry) er
 func (m *VlanWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatusNot) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -596,12 +596,34 @@ func (m *VlanWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VlanWhereInput) validateLabelsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsNone) { // not required
 		return nil
+	}
+
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -612,12 +634,34 @@ func (m *VlanWhereInput) validateLabelsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VlanWhereInput) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -649,6 +693,17 @@ func (m *VlanWhereInput) validateTypeNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -678,12 +733,34 @@ func (m *VlanWhereInput) validateVds(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Vds != nil {
+		if err := m.Vds.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vds")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vds")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VlanWhereInput) validateVMNicsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMNicsEvery) { // not required
 		return nil
+	}
+
+	if m.VMNicsEvery != nil {
+		if err := m.VMNicsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_nics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_nics_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -694,12 +771,34 @@ func (m *VlanWhereInput) validateVMNicsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VMNicsNone != nil {
+		if err := m.VMNicsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_nics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_nics_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VlanWhereInput) validateVMNicsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMNicsSome) { // not required
 		return nil
+	}
+
+	if m.VMNicsSome != nil {
+		if err := m.VMNicsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_nics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_nics_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -849,6 +948,17 @@ func (m *VlanWhereInput) contextValidateOR(ctx context.Context, formats strfmt.R
 
 func (m *VlanWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -871,6 +981,17 @@ func (m *VlanWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Context,
 }
 
 func (m *VlanWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -895,20 +1016,64 @@ func (m *VlanWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.Conte
 
 func (m *VlanWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VlanWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VlanWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VlanWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -933,6 +1098,17 @@ func (m *VlanWhereInput) contextValidateTypeIn(ctx context.Context, formats strf
 
 func (m *VlanWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -956,20 +1132,64 @@ func (m *VlanWhereInput) contextValidateTypeNotIn(ctx context.Context, formats s
 
 func (m *VlanWhereInput) contextValidateVds(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Vds != nil {
+		if err := m.Vds.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vds")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vds")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VlanWhereInput) contextValidateVMNicsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMNicsEvery != nil {
+		if err := m.VMNicsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_nics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_nics_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VlanWhereInput) contextValidateVMNicsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMNicsNone != nil {
+		if err := m.VMNicsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_nics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_nics_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VlanWhereInput) contextValidateVMNicsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMNicsSome != nil {
+		if err := m.VMNicsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_nics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_nics_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

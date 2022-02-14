@@ -30,9 +30,7 @@ type VMEntityFilterResultWhereInput struct {
 	OR []*VMEntityFilterResultWhereInput `json:"OR,omitempty"`
 
 	// entity filter
-	EntityFilter struct {
-		EntityFilterWhereInput
-	} `json:"entityFilter,omitempty"`
+	EntityFilter *EntityFilterWhereInput `json:"entityFilter,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -77,9 +75,7 @@ type VMEntityFilterResultWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// vm
-	VM struct {
-		VMWhereInput
-	} `json:"vm,omitempty"`
+	VM *VMWhereInput `json:"vm,omitempty"`
 }
 
 // Validate validates this Vm entity filter result where input
@@ -195,12 +191,34 @@ func (m *VMEntityFilterResultWhereInput) validateEntityFilter(formats strfmt.Reg
 		return nil
 	}
 
+	if m.EntityFilter != nil {
+		if err := m.EntityFilter.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityFilter")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMEntityFilterResultWhereInput) validateVM(formats strfmt.Registry) error {
 	if swag.IsZero(m.VM) { // not required
 		return nil
+	}
+
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -298,10 +316,32 @@ func (m *VMEntityFilterResultWhereInput) contextValidateOR(ctx context.Context, 
 
 func (m *VMEntityFilterResultWhereInput) contextValidateEntityFilter(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityFilter != nil {
+		if err := m.EntityFilter.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityFilter")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMEntityFilterResultWhereInput) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -24,14 +24,10 @@ type BackupTargetExecution struct {
 	BackupGroup *string `json:"backup_group"`
 
 	// backup plan execution
-	BackupPlanExecution struct {
-		NestedBackupPlanExecution
-	} `json:"backup_plan_execution,omitempty"`
+	BackupPlanExecution *NestedBackupPlanExecution `json:"backup_plan_execution,omitempty"`
 
 	// backup restore point
-	BackupRestorePoint struct {
-		NestedBackupRestorePoint
-	} `json:"backup_restore_point,omitempty"`
+	BackupRestorePoint *NestedBackupRestorePoint `json:"backup_restore_point,omitempty"`
 
 	// cluster local id
 	ClusterLocalID *string `json:"cluster_local_id,omitempty"`
@@ -40,9 +36,7 @@ type BackupTargetExecution struct {
 	Duration *int32 `json:"duration,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// executed at
 	// Required: true
@@ -64,9 +58,7 @@ type BackupTargetExecution struct {
 	ReadBytes *float64 `json:"read_bytes,omitempty"`
 
 	// status
-	Status struct {
-		BackupExecutionStatus
-	} `json:"status,omitempty"`
+	Status *BackupExecutionStatus `json:"status,omitempty"`
 
 	// total bytes
 	TotalBytes *float64 `json:"total_bytes,omitempty"`
@@ -76,9 +68,7 @@ type BackupTargetExecution struct {
 	Type *BackupExecutionType `json:"type"`
 
 	// vm
-	VM struct {
-		NestedVM
-	} `json:"vm,omitempty"`
+	VM *NestedVM `json:"vm,omitempty"`
 
 	// vm local id
 	VMLocalID *string `json:"vm_local_id,omitempty"`
@@ -155,6 +145,17 @@ func (m *BackupTargetExecution) validateBackupPlanExecution(formats strfmt.Regis
 		return nil
 	}
 
+	if m.BackupPlanExecution != nil {
+		if err := m.BackupPlanExecution.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan_execution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan_execution")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -163,12 +164,34 @@ func (m *BackupTargetExecution) validateBackupRestorePoint(formats strfmt.Regist
 		return nil
 	}
 
+	if m.BackupRestorePoint != nil {
+		if err := m.BackupRestorePoint.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_point")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_point")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupTargetExecution) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -215,6 +238,17 @@ func (m *BackupTargetExecution) validateStatus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -245,6 +279,17 @@ func (m *BackupTargetExecution) validateType(formats strfmt.Registry) error {
 func (m *BackupTargetExecution) validateVM(formats strfmt.Registry) error {
 	if swag.IsZero(m.VM) { // not required
 		return nil
+	}
+
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -286,20 +331,64 @@ func (m *BackupTargetExecution) ContextValidate(ctx context.Context, formats str
 
 func (m *BackupTargetExecution) contextValidateBackupPlanExecution(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupPlanExecution != nil {
+		if err := m.BackupPlanExecution.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan_execution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan_execution")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupTargetExecution) contextValidateBackupRestorePoint(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupRestorePoint != nil {
+		if err := m.BackupRestorePoint.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_point")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_point")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupTargetExecution) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupTargetExecution) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -321,6 +410,17 @@ func (m *BackupTargetExecution) contextValidateType(ctx context.Context, formats
 }
 
 func (m *BackupTargetExecution) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

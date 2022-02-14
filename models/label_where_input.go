@@ -54,19 +54,13 @@ type LabelWhereInput struct {
 	ClusterNumNotIn []int32 `json:"cluster_num_not_in,omitempty"`
 
 	// clusters every
-	ClustersEvery struct {
-		ClusterWhereInput
-	} `json:"clusters_every,omitempty"`
+	ClustersEvery *ClusterWhereInput `json:"clusters_every,omitempty"`
 
 	// clusters none
-	ClustersNone struct {
-		ClusterWhereInput
-	} `json:"clusters_none,omitempty"`
+	ClustersNone *ClusterWhereInput `json:"clusters_none,omitempty"`
 
 	// clusters some
-	ClustersSome struct {
-		ClusterWhereInput
-	} `json:"clusters_some,omitempty"`
+	ClustersSome *ClusterWhereInput `json:"clusters_some,omitempty"`
 
 	// consistency group num
 	ConsistencyGroupNum *int32 `json:"consistency_group_num,omitempty"`
@@ -117,34 +111,22 @@ type LabelWhereInput struct {
 	ConsistencyGroupSnapshotNumNotIn []int32 `json:"consistency_group_snapshot_num_not_in,omitempty"`
 
 	// consistency group snapshots every
-	ConsistencyGroupSnapshotsEvery struct {
-		ConsistencyGroupSnapshotWhereInput
-	} `json:"consistency_group_snapshots_every,omitempty"`
+	ConsistencyGroupSnapshotsEvery *ConsistencyGroupSnapshotWhereInput `json:"consistency_group_snapshots_every,omitempty"`
 
 	// consistency group snapshots none
-	ConsistencyGroupSnapshotsNone struct {
-		ConsistencyGroupSnapshotWhereInput
-	} `json:"consistency_group_snapshots_none,omitempty"`
+	ConsistencyGroupSnapshotsNone *ConsistencyGroupSnapshotWhereInput `json:"consistency_group_snapshots_none,omitempty"`
 
 	// consistency group snapshots some
-	ConsistencyGroupSnapshotsSome struct {
-		ConsistencyGroupSnapshotWhereInput
-	} `json:"consistency_group_snapshots_some,omitempty"`
+	ConsistencyGroupSnapshotsSome *ConsistencyGroupSnapshotWhereInput `json:"consistency_group_snapshots_some,omitempty"`
 
 	// consistency groups every
-	ConsistencyGroupsEvery struct {
-		ConsistencyGroupWhereInput
-	} `json:"consistency_groups_every,omitempty"`
+	ConsistencyGroupsEvery *ConsistencyGroupWhereInput `json:"consistency_groups_every,omitempty"`
 
 	// consistency groups none
-	ConsistencyGroupsNone struct {
-		ConsistencyGroupWhereInput
-	} `json:"consistency_groups_none,omitempty"`
+	ConsistencyGroupsNone *ConsistencyGroupWhereInput `json:"consistency_groups_none,omitempty"`
 
 	// consistency groups some
-	ConsistencyGroupsSome struct {
-		ConsistencyGroupWhereInput
-	} `json:"consistency_groups_some,omitempty"`
+	ConsistencyGroupsSome *ConsistencyGroupWhereInput `json:"consistency_groups_some,omitempty"`
 
 	// content library image num
 	ContentLibraryImageNum *int32 `json:"content_library_image_num,omitempty"`
@@ -171,19 +153,13 @@ type LabelWhereInput struct {
 	ContentLibraryImageNumNotIn []int32 `json:"content_library_image_num_not_in,omitempty"`
 
 	// content library images every
-	ContentLibraryImagesEvery struct {
-		ContentLibraryImageWhereInput
-	} `json:"content_library_images_every,omitempty"`
+	ContentLibraryImagesEvery *ContentLibraryImageWhereInput `json:"content_library_images_every,omitempty"`
 
 	// content library images none
-	ContentLibraryImagesNone struct {
-		ContentLibraryImageWhereInput
-	} `json:"content_library_images_none,omitempty"`
+	ContentLibraryImagesNone *ContentLibraryImageWhereInput `json:"content_library_images_none,omitempty"`
 
 	// content library images some
-	ContentLibraryImagesSome struct {
-		ContentLibraryImageWhereInput
-	} `json:"content_library_images_some,omitempty"`
+	ContentLibraryImagesSome *ContentLibraryImageWhereInput `json:"content_library_images_some,omitempty"`
 
 	// content library vm template num
 	ContentLibraryVMTemplateNum *int32 `json:"content_library_vm_template_num,omitempty"`
@@ -210,19 +186,13 @@ type LabelWhereInput struct {
 	ContentLibraryVMTemplateNumNotIn []int32 `json:"content_library_vm_template_num_not_in,omitempty"`
 
 	// content library vm templates every
-	ContentLibraryVMTemplatesEvery struct {
-		ContentLibraryVMTemplateWhereInput
-	} `json:"content_library_vm_templates_every,omitempty"`
+	ContentLibraryVMTemplatesEvery *ContentLibraryVMTemplateWhereInput `json:"content_library_vm_templates_every,omitempty"`
 
 	// content library vm templates none
-	ContentLibraryVMTemplatesNone struct {
-		ContentLibraryVMTemplateWhereInput
-	} `json:"content_library_vm_templates_none,omitempty"`
+	ContentLibraryVMTemplatesNone *ContentLibraryVMTemplateWhereInput `json:"content_library_vm_templates_none,omitempty"`
 
 	// content library vm templates some
-	ContentLibraryVMTemplatesSome struct {
-		ContentLibraryVMTemplateWhereInput
-	} `json:"content_library_vm_templates_some,omitempty"`
+	ContentLibraryVMTemplatesSome *ContentLibraryVMTemplateWhereInput `json:"content_library_vm_templates_some,omitempty"`
 
 	// created at
 	CreatedAt *string `json:"createdAt,omitempty"`
@@ -273,19 +243,13 @@ type LabelWhereInput struct {
 	DatacenterNumNotIn []int32 `json:"datacenter_num_not_in,omitempty"`
 
 	// datacenters every
-	DatacentersEvery struct {
-		DatacenterWhereInput
-	} `json:"datacenters_every,omitempty"`
+	DatacentersEvery *DatacenterWhereInput `json:"datacenters_every,omitempty"`
 
 	// datacenters none
-	DatacentersNone struct {
-		DatacenterWhereInput
-	} `json:"datacenters_none,omitempty"`
+	DatacentersNone *DatacenterWhereInput `json:"datacenters_none,omitempty"`
 
 	// datacenters some
-	DatacentersSome struct {
-		DatacenterWhereInput
-	} `json:"datacenters_some,omitempty"`
+	DatacentersSome *DatacenterWhereInput `json:"datacenters_some,omitempty"`
 
 	// disk num
 	DiskNum *int32 `json:"disk_num,omitempty"`
@@ -312,19 +276,13 @@ type LabelWhereInput struct {
 	DiskNumNotIn []int32 `json:"disk_num_not_in,omitempty"`
 
 	// disks every
-	DisksEvery struct {
-		DiskWhereInput
-	} `json:"disks_every,omitempty"`
+	DisksEvery *DiskWhereInput `json:"disks_every,omitempty"`
 
 	// disks none
-	DisksNone struct {
-		DiskWhereInput
-	} `json:"disks_none,omitempty"`
+	DisksNone *DiskWhereInput `json:"disks_none,omitempty"`
 
 	// disks some
-	DisksSome struct {
-		DiskWhereInput
-	} `json:"disks_some,omitempty"`
+	DisksSome *DiskWhereInput `json:"disks_some,omitempty"`
 
 	// elf image num
 	ElfImageNum *int32 `json:"elf_image_num,omitempty"`
@@ -351,19 +309,13 @@ type LabelWhereInput struct {
 	ElfImageNumNotIn []int32 `json:"elf_image_num_not_in,omitempty"`
 
 	// elf images every
-	ElfImagesEvery struct {
-		ElfImageWhereInput
-	} `json:"elf_images_every,omitempty"`
+	ElfImagesEvery *ElfImageWhereInput `json:"elf_images_every,omitempty"`
 
 	// elf images none
-	ElfImagesNone struct {
-		ElfImageWhereInput
-	} `json:"elf_images_none,omitempty"`
+	ElfImagesNone *ElfImageWhereInput `json:"elf_images_none,omitempty"`
 
 	// elf images some
-	ElfImagesSome struct {
-		ElfImageWhereInput
-	} `json:"elf_images_some,omitempty"`
+	ElfImagesSome *ElfImageWhereInput `json:"elf_images_some,omitempty"`
 
 	// host num
 	HostNum *int32 `json:"host_num,omitempty"`
@@ -390,19 +342,13 @@ type LabelWhereInput struct {
 	HostNumNotIn []int32 `json:"host_num_not_in,omitempty"`
 
 	// hosts every
-	HostsEvery struct {
-		HostWhereInput
-	} `json:"hosts_every,omitempty"`
+	HostsEvery *HostWhereInput `json:"hosts_every,omitempty"`
 
 	// hosts none
-	HostsNone struct {
-		HostWhereInput
-	} `json:"hosts_none,omitempty"`
+	HostsNone *HostWhereInput `json:"hosts_none,omitempty"`
 
 	// hosts some
-	HostsSome struct {
-		HostWhereInput
-	} `json:"hosts_some,omitempty"`
+	HostsSome *HostWhereInput `json:"hosts_some,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -495,34 +441,22 @@ type LabelWhereInput struct {
 	IscsiLunSnapshotNumNotIn []int32 `json:"iscsi_lun_snapshot_num_not_in,omitempty"`
 
 	// iscsi lun snapshots every
-	IscsiLunSnapshotsEvery struct {
-		IscsiLunSnapshotWhereInput
-	} `json:"iscsi_lun_snapshots_every,omitempty"`
+	IscsiLunSnapshotsEvery *IscsiLunSnapshotWhereInput `json:"iscsi_lun_snapshots_every,omitempty"`
 
 	// iscsi lun snapshots none
-	IscsiLunSnapshotsNone struct {
-		IscsiLunSnapshotWhereInput
-	} `json:"iscsi_lun_snapshots_none,omitempty"`
+	IscsiLunSnapshotsNone *IscsiLunSnapshotWhereInput `json:"iscsi_lun_snapshots_none,omitempty"`
 
 	// iscsi lun snapshots some
-	IscsiLunSnapshotsSome struct {
-		IscsiLunSnapshotWhereInput
-	} `json:"iscsi_lun_snapshots_some,omitempty"`
+	IscsiLunSnapshotsSome *IscsiLunSnapshotWhereInput `json:"iscsi_lun_snapshots_some,omitempty"`
 
 	// iscsi luns every
-	IscsiLunsEvery struct {
-		IscsiLunWhereInput
-	} `json:"iscsi_luns_every,omitempty"`
+	IscsiLunsEvery *IscsiLunWhereInput `json:"iscsi_luns_every,omitempty"`
 
 	// iscsi luns none
-	IscsiLunsNone struct {
-		IscsiLunWhereInput
-	} `json:"iscsi_luns_none,omitempty"`
+	IscsiLunsNone *IscsiLunWhereInput `json:"iscsi_luns_none,omitempty"`
 
 	// iscsi luns some
-	IscsiLunsSome struct {
-		IscsiLunWhereInput
-	} `json:"iscsi_luns_some,omitempty"`
+	IscsiLunsSome *IscsiLunWhereInput `json:"iscsi_luns_some,omitempty"`
 
 	// iscsi target num
 	IscsiTargetNum *int32 `json:"iscsi_target_num,omitempty"`
@@ -549,34 +483,22 @@ type LabelWhereInput struct {
 	IscsiTargetNumNotIn []int32 `json:"iscsi_target_num_not_in,omitempty"`
 
 	// iscsi targets every
-	IscsiTargetsEvery struct {
-		IscsiTargetWhereInput
-	} `json:"iscsi_targets_every,omitempty"`
+	IscsiTargetsEvery *IscsiTargetWhereInput `json:"iscsi_targets_every,omitempty"`
 
 	// iscsi targets none
-	IscsiTargetsNone struct {
-		IscsiTargetWhereInput
-	} `json:"iscsi_targets_none,omitempty"`
+	IscsiTargetsNone *IscsiTargetWhereInput `json:"iscsi_targets_none,omitempty"`
 
 	// iscsi targets some
-	IscsiTargetsSome struct {
-		IscsiTargetWhereInput
-	} `json:"iscsi_targets_some,omitempty"`
+	IscsiTargetsSome *IscsiTargetWhereInput `json:"iscsi_targets_some,omitempty"`
 
 	// isolation policies every
-	IsolationPoliciesEvery struct {
-		IsolationPolicyWhereInput
-	} `json:"isolation_policies_every,omitempty"`
+	IsolationPoliciesEvery *IsolationPolicyWhereInput `json:"isolation_policies_every,omitempty"`
 
 	// isolation policies none
-	IsolationPoliciesNone struct {
-		IsolationPolicyWhereInput
-	} `json:"isolation_policies_none,omitempty"`
+	IsolationPoliciesNone *IsolationPolicyWhereInput `json:"isolation_policies_none,omitempty"`
 
 	// isolation policies some
-	IsolationPoliciesSome struct {
-		IsolationPolicyWhereInput
-	} `json:"isolation_policies_some,omitempty"`
+	IsolationPoliciesSome *IsolationPolicyWhereInput `json:"isolation_policies_some,omitempty"`
 
 	// isolation policy num
 	IsolationPolicyNum *int32 `json:"isolation_policy_num,omitempty"`
@@ -669,19 +591,13 @@ type LabelWhereInput struct {
 	NamespaceGroupNumNotIn []int32 `json:"namespace_group_num_not_in,omitempty"`
 
 	// namespace groups every
-	NamespaceGroupsEvery struct {
-		NamespaceGroupWhereInput
-	} `json:"namespace_groups_every,omitempty"`
+	NamespaceGroupsEvery *NamespaceGroupWhereInput `json:"namespace_groups_every,omitempty"`
 
 	// namespace groups none
-	NamespaceGroupsNone struct {
-		NamespaceGroupWhereInput
-	} `json:"namespace_groups_none,omitempty"`
+	NamespaceGroupsNone *NamespaceGroupWhereInput `json:"namespace_groups_none,omitempty"`
 
 	// namespace groups some
-	NamespaceGroupsSome struct {
-		NamespaceGroupWhereInput
-	} `json:"namespace_groups_some,omitempty"`
+	NamespaceGroupsSome *NamespaceGroupWhereInput `json:"namespace_groups_some,omitempty"`
 
 	// nfs export num
 	NfsExportNum *int32 `json:"nfs_export_num,omitempty"`
@@ -708,19 +624,13 @@ type LabelWhereInput struct {
 	NfsExportNumNotIn []int32 `json:"nfs_export_num_not_in,omitempty"`
 
 	// nfs exports every
-	NfsExportsEvery struct {
-		NfsExportWhereInput
-	} `json:"nfs_exports_every,omitempty"`
+	NfsExportsEvery *NfsExportWhereInput `json:"nfs_exports_every,omitempty"`
 
 	// nfs exports none
-	NfsExportsNone struct {
-		NfsExportWhereInput
-	} `json:"nfs_exports_none,omitempty"`
+	NfsExportsNone *NfsExportWhereInput `json:"nfs_exports_none,omitempty"`
 
 	// nfs exports some
-	NfsExportsSome struct {
-		NfsExportWhereInput
-	} `json:"nfs_exports_some,omitempty"`
+	NfsExportsSome *NfsExportWhereInput `json:"nfs_exports_some,omitempty"`
 
 	// nfs inode num
 	NfsInodeNum *int32 `json:"nfs_inode_num,omitempty"`
@@ -747,19 +657,13 @@ type LabelWhereInput struct {
 	NfsInodeNumNotIn []int32 `json:"nfs_inode_num_not_in,omitempty"`
 
 	// nfs inodes every
-	NfsInodesEvery struct {
-		NfsInodeWhereInput
-	} `json:"nfs_inodes_every,omitempty"`
+	NfsInodesEvery *NfsInodeWhereInput `json:"nfs_inodes_every,omitempty"`
 
 	// nfs inodes none
-	NfsInodesNone struct {
-		NfsInodeWhereInput
-	} `json:"nfs_inodes_none,omitempty"`
+	NfsInodesNone *NfsInodeWhereInput `json:"nfs_inodes_none,omitempty"`
 
 	// nfs inodes some
-	NfsInodesSome struct {
-		NfsInodeWhereInput
-	} `json:"nfs_inodes_some,omitempty"`
+	NfsInodesSome *NfsInodeWhereInput `json:"nfs_inodes_some,omitempty"`
 
 	// nic num
 	NicNum *int32 `json:"nic_num,omitempty"`
@@ -786,19 +690,13 @@ type LabelWhereInput struct {
 	NicNumNotIn []int32 `json:"nic_num_not_in,omitempty"`
 
 	// nics every
-	NicsEvery struct {
-		NicWhereInput
-	} `json:"nics_every,omitempty"`
+	NicsEvery *NicWhereInput `json:"nics_every,omitempty"`
 
 	// nics none
-	NicsNone struct {
-		NicWhereInput
-	} `json:"nics_none,omitempty"`
+	NicsNone *NicWhereInput `json:"nics_none,omitempty"`
 
 	// nics some
-	NicsSome struct {
-		NicWhereInput
-	} `json:"nics_some,omitempty"`
+	NicsSome *NicWhereInput `json:"nics_some,omitempty"`
 
 	// nvmf namespace num
 	NvmfNamespaceNum *int32 `json:"nvmf_namespace_num,omitempty"`
@@ -849,34 +747,22 @@ type LabelWhereInput struct {
 	NvmfNamespaceSnapshotNumNotIn []int32 `json:"nvmf_namespace_snapshot_num_not_in,omitempty"`
 
 	// nvmf namespace snapshots every
-	NvmfNamespaceSnapshotsEvery struct {
-		NvmfNamespaceSnapshotWhereInput
-	} `json:"nvmf_namespace_snapshots_every,omitempty"`
+	NvmfNamespaceSnapshotsEvery *NvmfNamespaceSnapshotWhereInput `json:"nvmf_namespace_snapshots_every,omitempty"`
 
 	// nvmf namespace snapshots none
-	NvmfNamespaceSnapshotsNone struct {
-		NvmfNamespaceSnapshotWhereInput
-	} `json:"nvmf_namespace_snapshots_none,omitempty"`
+	NvmfNamespaceSnapshotsNone *NvmfNamespaceSnapshotWhereInput `json:"nvmf_namespace_snapshots_none,omitempty"`
 
 	// nvmf namespace snapshots some
-	NvmfNamespaceSnapshotsSome struct {
-		NvmfNamespaceSnapshotWhereInput
-	} `json:"nvmf_namespace_snapshots_some,omitempty"`
+	NvmfNamespaceSnapshotsSome *NvmfNamespaceSnapshotWhereInput `json:"nvmf_namespace_snapshots_some,omitempty"`
 
 	// nvmf namespaces every
-	NvmfNamespacesEvery struct {
-		NvmfNamespaceWhereInput
-	} `json:"nvmf_namespaces_every,omitempty"`
+	NvmfNamespacesEvery *NvmfNamespaceWhereInput `json:"nvmf_namespaces_every,omitempty"`
 
 	// nvmf namespaces none
-	NvmfNamespacesNone struct {
-		NvmfNamespaceWhereInput
-	} `json:"nvmf_namespaces_none,omitempty"`
+	NvmfNamespacesNone *NvmfNamespaceWhereInput `json:"nvmf_namespaces_none,omitempty"`
 
 	// nvmf namespaces some
-	NvmfNamespacesSome struct {
-		NvmfNamespaceWhereInput
-	} `json:"nvmf_namespaces_some,omitempty"`
+	NvmfNamespacesSome *NvmfNamespaceWhereInput `json:"nvmf_namespaces_some,omitempty"`
 
 	// nvmf subsystem num
 	NvmfSubsystemNum *int32 `json:"nvmf_subsystem_num,omitempty"`
@@ -903,34 +789,22 @@ type LabelWhereInput struct {
 	NvmfSubsystemNumNotIn []int32 `json:"nvmf_subsystem_num_not_in,omitempty"`
 
 	// nvmf subsystems every
-	NvmfSubsystemsEvery struct {
-		NvmfSubsystemWhereInput
-	} `json:"nvmf_subsystems_every,omitempty"`
+	NvmfSubsystemsEvery *NvmfSubsystemWhereInput `json:"nvmf_subsystems_every,omitempty"`
 
 	// nvmf subsystems none
-	NvmfSubsystemsNone struct {
-		NvmfSubsystemWhereInput
-	} `json:"nvmf_subsystems_none,omitempty"`
+	NvmfSubsystemsNone *NvmfSubsystemWhereInput `json:"nvmf_subsystems_none,omitempty"`
 
 	// nvmf subsystems some
-	NvmfSubsystemsSome struct {
-		NvmfSubsystemWhereInput
-	} `json:"nvmf_subsystems_some,omitempty"`
+	NvmfSubsystemsSome *NvmfSubsystemWhereInput `json:"nvmf_subsystems_some,omitempty"`
 
 	// security policies every
-	SecurityPoliciesEvery struct {
-		SecurityPolicyWhereInput
-	} `json:"security_policies_every,omitempty"`
+	SecurityPoliciesEvery *SecurityPolicyWhereInput `json:"security_policies_every,omitempty"`
 
 	// security policies none
-	SecurityPoliciesNone struct {
-		SecurityPolicyWhereInput
-	} `json:"security_policies_none,omitempty"`
+	SecurityPoliciesNone *SecurityPolicyWhereInput `json:"security_policies_none,omitempty"`
 
 	// security policies some
-	SecurityPoliciesSome struct {
-		SecurityPolicyWhereInput
-	} `json:"security_policies_some,omitempty"`
+	SecurityPoliciesSome *SecurityPolicyWhereInput `json:"security_policies_some,omitempty"`
 
 	// security policy num
 	SecurityPolicyNum *int32 `json:"security_policy_num,omitempty"`
@@ -1071,34 +945,22 @@ type LabelWhereInput struct {
 	VdsNumNotIn []int32 `json:"vds_num_not_in,omitempty"`
 
 	// vdses every
-	VdsesEvery struct {
-		VdsWhereInput
-	} `json:"vdses_every,omitempty"`
+	VdsesEvery *VdsWhereInput `json:"vdses_every,omitempty"`
 
 	// vdses none
-	VdsesNone struct {
-		VdsWhereInput
-	} `json:"vdses_none,omitempty"`
+	VdsesNone *VdsWhereInput `json:"vdses_none,omitempty"`
 
 	// vdses some
-	VdsesSome struct {
-		VdsWhereInput
-	} `json:"vdses_some,omitempty"`
+	VdsesSome *VdsWhereInput `json:"vdses_some,omitempty"`
 
 	// vlans every
-	VlansEvery struct {
-		VlanWhereInput
-	} `json:"vlans_every,omitempty"`
+	VlansEvery *VlanWhereInput `json:"vlans_every,omitempty"`
 
 	// vlans none
-	VlansNone struct {
-		VlanWhereInput
-	} `json:"vlans_none,omitempty"`
+	VlansNone *VlanWhereInput `json:"vlans_none,omitempty"`
 
 	// vlans some
-	VlansSome struct {
-		VlanWhereInput
-	} `json:"vlans_some,omitempty"`
+	VlansSome *VlanWhereInput `json:"vlans_some,omitempty"`
 
 	// vm num
 	VMNum *int32 `json:"vm_num,omitempty"`
@@ -1149,19 +1011,13 @@ type LabelWhereInput struct {
 	VMSnapshotNumNotIn []int32 `json:"vm_snapshot_num_not_in,omitempty"`
 
 	// vm snapshots every
-	VMSnapshotsEvery struct {
-		VMSnapshotWhereInput
-	} `json:"vm_snapshots_every,omitempty"`
+	VMSnapshotsEvery *VMSnapshotWhereInput `json:"vm_snapshots_every,omitempty"`
 
 	// vm snapshots none
-	VMSnapshotsNone struct {
-		VMSnapshotWhereInput
-	} `json:"vm_snapshots_none,omitempty"`
+	VMSnapshotsNone *VMSnapshotWhereInput `json:"vm_snapshots_none,omitempty"`
 
 	// vm snapshots some
-	VMSnapshotsSome struct {
-		VMSnapshotWhereInput
-	} `json:"vm_snapshots_some,omitempty"`
+	VMSnapshotsSome *VMSnapshotWhereInput `json:"vm_snapshots_some,omitempty"`
 
 	// vm template num
 	VMTemplateNum *int32 `json:"vm_template_num,omitempty"`
@@ -1188,19 +1044,13 @@ type LabelWhereInput struct {
 	VMTemplateNumNotIn []int32 `json:"vm_template_num_not_in,omitempty"`
 
 	// vm templates every
-	VMTemplatesEvery struct {
-		VMTemplateWhereInput
-	} `json:"vm_templates_every,omitempty"`
+	VMTemplatesEvery *VMTemplateWhereInput `json:"vm_templates_every,omitempty"`
 
 	// vm templates none
-	VMTemplatesNone struct {
-		VMTemplateWhereInput
-	} `json:"vm_templates_none,omitempty"`
+	VMTemplatesNone *VMTemplateWhereInput `json:"vm_templates_none,omitempty"`
 
 	// vm templates some
-	VMTemplatesSome struct {
-		VMTemplateWhereInput
-	} `json:"vm_templates_some,omitempty"`
+	VMTemplatesSome *VMTemplateWhereInput `json:"vm_templates_some,omitempty"`
 
 	// vm vlan num
 	VMVlanNum *int32 `json:"vm_vlan_num,omitempty"`
@@ -1251,34 +1101,22 @@ type LabelWhereInput struct {
 	VMVolumeNumNotIn []int32 `json:"vm_volume_num_not_in,omitempty"`
 
 	// vm volumes every
-	VMVolumesEvery struct {
-		VMVolumeWhereInput
-	} `json:"vm_volumes_every,omitempty"`
+	VMVolumesEvery *VMVolumeWhereInput `json:"vm_volumes_every,omitempty"`
 
 	// vm volumes none
-	VMVolumesNone struct {
-		VMVolumeWhereInput
-	} `json:"vm_volumes_none,omitempty"`
+	VMVolumesNone *VMVolumeWhereInput `json:"vm_volumes_none,omitempty"`
 
 	// vm volumes some
-	VMVolumesSome struct {
-		VMVolumeWhereInput
-	} `json:"vm_volumes_some,omitempty"`
+	VMVolumesSome *VMVolumeWhereInput `json:"vm_volumes_some,omitempty"`
 
 	// vms every
-	VmsEvery struct {
-		VMWhereInput
-	} `json:"vms_every,omitempty"`
+	VmsEvery *VMWhereInput `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone struct {
-		VMWhereInput
-	} `json:"vms_none,omitempty"`
+	VmsNone *VMWhereInput `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome struct {
-		VMWhereInput
-	} `json:"vms_some,omitempty"`
+	VmsSome *VMWhereInput `json:"vms_some,omitempty"`
 }
 
 // Validate validates this label where input
@@ -1710,12 +1548,34 @@ func (m *LabelWhereInput) validateClustersEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.ClustersEvery != nil {
+		if err := m.ClustersEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateClustersNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.ClustersNone) { // not required
 		return nil
+	}
+
+	if m.ClustersNone != nil {
+		if err := m.ClustersNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1726,12 +1586,34 @@ func (m *LabelWhereInput) validateClustersSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.ClustersSome != nil {
+		if err := m.ClustersSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateConsistencyGroupSnapshotsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.ConsistencyGroupSnapshotsEvery) { // not required
 		return nil
+	}
+
+	if m.ConsistencyGroupSnapshotsEvery != nil {
+		if err := m.ConsistencyGroupSnapshotsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshots_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshots_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1742,12 +1624,34 @@ func (m *LabelWhereInput) validateConsistencyGroupSnapshotsNone(formats strfmt.R
 		return nil
 	}
 
+	if m.ConsistencyGroupSnapshotsNone != nil {
+		if err := m.ConsistencyGroupSnapshotsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshots_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshots_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateConsistencyGroupSnapshotsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.ConsistencyGroupSnapshotsSome) { // not required
 		return nil
+	}
+
+	if m.ConsistencyGroupSnapshotsSome != nil {
+		if err := m.ConsistencyGroupSnapshotsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshots_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshots_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1758,12 +1662,34 @@ func (m *LabelWhereInput) validateConsistencyGroupsEvery(formats strfmt.Registry
 		return nil
 	}
 
+	if m.ConsistencyGroupsEvery != nil {
+		if err := m.ConsistencyGroupsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_groups_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_groups_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateConsistencyGroupsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.ConsistencyGroupsNone) { // not required
 		return nil
+	}
+
+	if m.ConsistencyGroupsNone != nil {
+		if err := m.ConsistencyGroupsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_groups_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_groups_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1774,12 +1700,34 @@ func (m *LabelWhereInput) validateConsistencyGroupsSome(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.ConsistencyGroupsSome != nil {
+		if err := m.ConsistencyGroupsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_groups_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_groups_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateContentLibraryImagesEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.ContentLibraryImagesEvery) { // not required
 		return nil
+	}
+
+	if m.ContentLibraryImagesEvery != nil {
+		if err := m.ContentLibraryImagesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_images_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_images_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1790,12 +1738,34 @@ func (m *LabelWhereInput) validateContentLibraryImagesNone(formats strfmt.Regist
 		return nil
 	}
 
+	if m.ContentLibraryImagesNone != nil {
+		if err := m.ContentLibraryImagesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_images_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_images_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateContentLibraryImagesSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.ContentLibraryImagesSome) { // not required
 		return nil
+	}
+
+	if m.ContentLibraryImagesSome != nil {
+		if err := m.ContentLibraryImagesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_images_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_images_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1806,12 +1776,34 @@ func (m *LabelWhereInput) validateContentLibraryVMTemplatesEvery(formats strfmt.
 		return nil
 	}
 
+	if m.ContentLibraryVMTemplatesEvery != nil {
+		if err := m.ContentLibraryVMTemplatesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_vm_templates_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_vm_templates_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateContentLibraryVMTemplatesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.ContentLibraryVMTemplatesNone) { // not required
 		return nil
+	}
+
+	if m.ContentLibraryVMTemplatesNone != nil {
+		if err := m.ContentLibraryVMTemplatesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_vm_templates_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_vm_templates_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1822,12 +1814,34 @@ func (m *LabelWhereInput) validateContentLibraryVMTemplatesSome(formats strfmt.R
 		return nil
 	}
 
+	if m.ContentLibraryVMTemplatesSome != nil {
+		if err := m.ContentLibraryVMTemplatesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_vm_templates_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_vm_templates_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateDatacentersEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.DatacentersEvery) { // not required
 		return nil
+	}
+
+	if m.DatacentersEvery != nil {
+		if err := m.DatacentersEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1838,12 +1852,34 @@ func (m *LabelWhereInput) validateDatacentersNone(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.DatacentersNone != nil {
+		if err := m.DatacentersNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateDatacentersSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.DatacentersSome) { // not required
 		return nil
+	}
+
+	if m.DatacentersSome != nil {
+		if err := m.DatacentersSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1854,12 +1890,34 @@ func (m *LabelWhereInput) validateDisksEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.DisksEvery != nil {
+		if err := m.DisksEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateDisksNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.DisksNone) { // not required
 		return nil
+	}
+
+	if m.DisksNone != nil {
+		if err := m.DisksNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1870,12 +1928,34 @@ func (m *LabelWhereInput) validateDisksSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.DisksSome != nil {
+		if err := m.DisksSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateElfImagesEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.ElfImagesEvery) { // not required
 		return nil
+	}
+
+	if m.ElfImagesEvery != nil {
+		if err := m.ElfImagesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_images_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_images_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1886,12 +1966,34 @@ func (m *LabelWhereInput) validateElfImagesNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.ElfImagesNone != nil {
+		if err := m.ElfImagesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_images_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_images_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateElfImagesSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.ElfImagesSome) { // not required
 		return nil
+	}
+
+	if m.ElfImagesSome != nil {
+		if err := m.ElfImagesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_images_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_images_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1902,12 +2004,34 @@ func (m *LabelWhereInput) validateHostsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.HostsEvery != nil {
+		if err := m.HostsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateHostsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.HostsNone) { // not required
 		return nil
+	}
+
+	if m.HostsNone != nil {
+		if err := m.HostsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1918,12 +2042,34 @@ func (m *LabelWhereInput) validateHostsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.HostsSome != nil {
+		if err := m.HostsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateIscsiLunSnapshotsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.IscsiLunSnapshotsEvery) { // not required
 		return nil
+	}
+
+	if m.IscsiLunSnapshotsEvery != nil {
+		if err := m.IscsiLunSnapshotsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun_snapshots_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun_snapshots_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1934,12 +2080,34 @@ func (m *LabelWhereInput) validateIscsiLunSnapshotsNone(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.IscsiLunSnapshotsNone != nil {
+		if err := m.IscsiLunSnapshotsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun_snapshots_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun_snapshots_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateIscsiLunSnapshotsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.IscsiLunSnapshotsSome) { // not required
 		return nil
+	}
+
+	if m.IscsiLunSnapshotsSome != nil {
+		if err := m.IscsiLunSnapshotsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun_snapshots_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun_snapshots_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1950,12 +2118,34 @@ func (m *LabelWhereInput) validateIscsiLunsEvery(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.IscsiLunsEvery != nil {
+		if err := m.IscsiLunsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_luns_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_luns_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateIscsiLunsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.IscsiLunsNone) { // not required
 		return nil
+	}
+
+	if m.IscsiLunsNone != nil {
+		if err := m.IscsiLunsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_luns_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_luns_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1966,12 +2156,34 @@ func (m *LabelWhereInput) validateIscsiLunsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.IscsiLunsSome != nil {
+		if err := m.IscsiLunsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_luns_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_luns_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateIscsiTargetsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.IscsiTargetsEvery) { // not required
 		return nil
+	}
+
+	if m.IscsiTargetsEvery != nil {
+		if err := m.IscsiTargetsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_targets_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_targets_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1982,12 +2194,34 @@ func (m *LabelWhereInput) validateIscsiTargetsNone(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.IscsiTargetsNone != nil {
+		if err := m.IscsiTargetsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_targets_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_targets_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateIscsiTargetsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.IscsiTargetsSome) { // not required
 		return nil
+	}
+
+	if m.IscsiTargetsSome != nil {
+		if err := m.IscsiTargetsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_targets_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_targets_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1998,12 +2232,34 @@ func (m *LabelWhereInput) validateIsolationPoliciesEvery(formats strfmt.Registry
 		return nil
 	}
 
+	if m.IsolationPoliciesEvery != nil {
+		if err := m.IsolationPoliciesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("isolation_policies_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("isolation_policies_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateIsolationPoliciesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.IsolationPoliciesNone) { // not required
 		return nil
+	}
+
+	if m.IsolationPoliciesNone != nil {
+		if err := m.IsolationPoliciesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("isolation_policies_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("isolation_policies_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2014,12 +2270,34 @@ func (m *LabelWhereInput) validateIsolationPoliciesSome(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.IsolationPoliciesSome != nil {
+		if err := m.IsolationPoliciesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("isolation_policies_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("isolation_policies_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNamespaceGroupsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.NamespaceGroupsEvery) { // not required
 		return nil
+	}
+
+	if m.NamespaceGroupsEvery != nil {
+		if err := m.NamespaceGroupsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespace_groups_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespace_groups_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2030,12 +2308,34 @@ func (m *LabelWhereInput) validateNamespaceGroupsNone(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.NamespaceGroupsNone != nil {
+		if err := m.NamespaceGroupsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespace_groups_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespace_groups_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNamespaceGroupsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.NamespaceGroupsSome) { // not required
 		return nil
+	}
+
+	if m.NamespaceGroupsSome != nil {
+		if err := m.NamespaceGroupsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespace_groups_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespace_groups_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2046,12 +2346,34 @@ func (m *LabelWhereInput) validateNfsExportsEvery(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.NfsExportsEvery != nil {
+		if err := m.NfsExportsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_exports_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_exports_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNfsExportsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.NfsExportsNone) { // not required
 		return nil
+	}
+
+	if m.NfsExportsNone != nil {
+		if err := m.NfsExportsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_exports_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_exports_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2062,12 +2384,34 @@ func (m *LabelWhereInput) validateNfsExportsSome(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.NfsExportsSome != nil {
+		if err := m.NfsExportsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_exports_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_exports_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNfsInodesEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.NfsInodesEvery) { // not required
 		return nil
+	}
+
+	if m.NfsInodesEvery != nil {
+		if err := m.NfsInodesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_inodes_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_inodes_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2078,12 +2422,34 @@ func (m *LabelWhereInput) validateNfsInodesNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NfsInodesNone != nil {
+		if err := m.NfsInodesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_inodes_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_inodes_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNfsInodesSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.NfsInodesSome) { // not required
 		return nil
+	}
+
+	if m.NfsInodesSome != nil {
+		if err := m.NfsInodesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_inodes_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_inodes_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2094,12 +2460,34 @@ func (m *LabelWhereInput) validateNicsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NicsEvery != nil {
+		if err := m.NicsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNicsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.NicsNone) { // not required
 		return nil
+	}
+
+	if m.NicsNone != nil {
+		if err := m.NicsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2110,12 +2498,34 @@ func (m *LabelWhereInput) validateNicsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NicsSome != nil {
+		if err := m.NicsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNvmfNamespaceSnapshotsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.NvmfNamespaceSnapshotsEvery) { // not required
 		return nil
+	}
+
+	if m.NvmfNamespaceSnapshotsEvery != nil {
+		if err := m.NvmfNamespaceSnapshotsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespace_snapshots_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespace_snapshots_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2126,12 +2536,34 @@ func (m *LabelWhereInput) validateNvmfNamespaceSnapshotsNone(formats strfmt.Regi
 		return nil
 	}
 
+	if m.NvmfNamespaceSnapshotsNone != nil {
+		if err := m.NvmfNamespaceSnapshotsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespace_snapshots_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespace_snapshots_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNvmfNamespaceSnapshotsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.NvmfNamespaceSnapshotsSome) { // not required
 		return nil
+	}
+
+	if m.NvmfNamespaceSnapshotsSome != nil {
+		if err := m.NvmfNamespaceSnapshotsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespace_snapshots_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespace_snapshots_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2142,12 +2574,34 @@ func (m *LabelWhereInput) validateNvmfNamespacesEvery(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.NvmfNamespacesEvery != nil {
+		if err := m.NvmfNamespacesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespaces_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespaces_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNvmfNamespacesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.NvmfNamespacesNone) { // not required
 		return nil
+	}
+
+	if m.NvmfNamespacesNone != nil {
+		if err := m.NvmfNamespacesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespaces_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespaces_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2158,12 +2612,34 @@ func (m *LabelWhereInput) validateNvmfNamespacesSome(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.NvmfNamespacesSome != nil {
+		if err := m.NvmfNamespacesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespaces_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespaces_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNvmfSubsystemsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.NvmfSubsystemsEvery) { // not required
 		return nil
+	}
+
+	if m.NvmfSubsystemsEvery != nil {
+		if err := m.NvmfSubsystemsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystems_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystems_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2174,12 +2650,34 @@ func (m *LabelWhereInput) validateNvmfSubsystemsNone(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.NvmfSubsystemsNone != nil {
+		if err := m.NvmfSubsystemsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystems_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystems_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateNvmfSubsystemsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.NvmfSubsystemsSome) { // not required
 		return nil
+	}
+
+	if m.NvmfSubsystemsSome != nil {
+		if err := m.NvmfSubsystemsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystems_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystems_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2190,12 +2688,34 @@ func (m *LabelWhereInput) validateSecurityPoliciesEvery(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.SecurityPoliciesEvery != nil {
+		if err := m.SecurityPoliciesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_policies_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_policies_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateSecurityPoliciesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.SecurityPoliciesNone) { // not required
 		return nil
+	}
+
+	if m.SecurityPoliciesNone != nil {
+		if err := m.SecurityPoliciesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_policies_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_policies_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2206,12 +2726,34 @@ func (m *LabelWhereInput) validateSecurityPoliciesSome(formats strfmt.Registry) 
 		return nil
 	}
 
+	if m.SecurityPoliciesSome != nil {
+		if err := m.SecurityPoliciesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_policies_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_policies_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVdsesEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.VdsesEvery) { // not required
 		return nil
+	}
+
+	if m.VdsesEvery != nil {
+		if err := m.VdsesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vdses_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vdses_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2222,12 +2764,34 @@ func (m *LabelWhereInput) validateVdsesNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VdsesNone != nil {
+		if err := m.VdsesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vdses_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vdses_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVdsesSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VdsesSome) { // not required
 		return nil
+	}
+
+	if m.VdsesSome != nil {
+		if err := m.VdsesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vdses_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vdses_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2238,12 +2802,34 @@ func (m *LabelWhereInput) validateVlansEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VlansEvery != nil {
+		if err := m.VlansEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVlansNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.VlansNone) { // not required
 		return nil
+	}
+
+	if m.VlansNone != nil {
+		if err := m.VlansNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2254,12 +2840,34 @@ func (m *LabelWhereInput) validateVlansSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VlansSome != nil {
+		if err := m.VlansSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVMSnapshotsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMSnapshotsEvery) { // not required
 		return nil
+	}
+
+	if m.VMSnapshotsEvery != nil {
+		if err := m.VMSnapshotsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_snapshots_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_snapshots_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2270,12 +2878,34 @@ func (m *LabelWhereInput) validateVMSnapshotsNone(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.VMSnapshotsNone != nil {
+		if err := m.VMSnapshotsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_snapshots_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_snapshots_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVMSnapshotsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMSnapshotsSome) { // not required
 		return nil
+	}
+
+	if m.VMSnapshotsSome != nil {
+		if err := m.VMSnapshotsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_snapshots_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_snapshots_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2286,12 +2916,34 @@ func (m *LabelWhereInput) validateVMTemplatesEvery(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.VMTemplatesEvery != nil {
+		if err := m.VMTemplatesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_templates_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_templates_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVMTemplatesNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMTemplatesNone) { // not required
 		return nil
+	}
+
+	if m.VMTemplatesNone != nil {
+		if err := m.VMTemplatesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_templates_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_templates_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2302,12 +2954,34 @@ func (m *LabelWhereInput) validateVMTemplatesSome(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.VMTemplatesSome != nil {
+		if err := m.VMTemplatesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_templates_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_templates_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVMVolumesEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMVolumesEvery) { // not required
 		return nil
+	}
+
+	if m.VMVolumesEvery != nil {
+		if err := m.VMVolumesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volumes_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volumes_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2318,12 +2992,34 @@ func (m *LabelWhereInput) validateVMVolumesNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VMVolumesNone != nil {
+		if err := m.VMVolumesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volumes_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volumes_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVMVolumesSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMVolumesSome) { // not required
 		return nil
+	}
+
+	if m.VMVolumesSome != nil {
+		if err := m.VMVolumesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volumes_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volumes_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2334,6 +3030,17 @@ func (m *LabelWhereInput) validateVmsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2342,12 +3049,34 @@ func (m *LabelWhereInput) validateVmsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) validateVmsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsSome) { // not required
 		return nil
+	}
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -2761,405 +3490,1296 @@ func (m *LabelWhereInput) contextValidateOR(ctx context.Context, formats strfmt.
 
 func (m *LabelWhereInput) contextValidateClustersEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ClustersEvery != nil {
+		if err := m.ClustersEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ClustersNone != nil {
+		if err := m.ClustersNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateClustersSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ClustersSome != nil {
+		if err := m.ClustersSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateConsistencyGroupSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ConsistencyGroupSnapshotsEvery != nil {
+		if err := m.ConsistencyGroupSnapshotsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshots_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshots_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateConsistencyGroupSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistencyGroupSnapshotsNone != nil {
+		if err := m.ConsistencyGroupSnapshotsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshots_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshots_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateConsistencyGroupSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ConsistencyGroupSnapshotsSome != nil {
+		if err := m.ConsistencyGroupSnapshotsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group_snapshots_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group_snapshots_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateConsistencyGroupsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistencyGroupsEvery != nil {
+		if err := m.ConsistencyGroupsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_groups_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_groups_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateConsistencyGroupsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ConsistencyGroupsNone != nil {
+		if err := m.ConsistencyGroupsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_groups_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_groups_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateConsistencyGroupsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistencyGroupsSome != nil {
+		if err := m.ConsistencyGroupsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_groups_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_groups_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateContentLibraryImagesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ContentLibraryImagesEvery != nil {
+		if err := m.ContentLibraryImagesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_images_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_images_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateContentLibraryImagesNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ContentLibraryImagesNone != nil {
+		if err := m.ContentLibraryImagesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_images_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_images_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateContentLibraryImagesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ContentLibraryImagesSome != nil {
+		if err := m.ContentLibraryImagesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_images_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_images_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateContentLibraryVMTemplatesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ContentLibraryVMTemplatesEvery != nil {
+		if err := m.ContentLibraryVMTemplatesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_vm_templates_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_vm_templates_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateContentLibraryVMTemplatesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ContentLibraryVMTemplatesNone != nil {
+		if err := m.ContentLibraryVMTemplatesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_vm_templates_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_vm_templates_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateContentLibraryVMTemplatesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ContentLibraryVMTemplatesSome != nil {
+		if err := m.ContentLibraryVMTemplatesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_vm_templates_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_vm_templates_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateDatacentersEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DatacentersEvery != nil {
+		if err := m.DatacentersEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateDatacentersNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DatacentersNone != nil {
+		if err := m.DatacentersNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateDatacentersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DatacentersSome != nil {
+		if err := m.DatacentersSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("datacenters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("datacenters_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateDisksEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DisksEvery != nil {
+		if err := m.DisksEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateDisksNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DisksNone != nil {
+		if err := m.DisksNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateDisksSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DisksSome != nil {
+		if err := m.DisksSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disks_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateElfImagesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ElfImagesEvery != nil {
+		if err := m.ElfImagesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_images_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_images_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateElfImagesNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ElfImagesNone != nil {
+		if err := m.ElfImagesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_images_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_images_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateElfImagesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ElfImagesSome != nil {
+		if err := m.ElfImagesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_images_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_images_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateHostsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HostsEvery != nil {
+		if err := m.HostsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateHostsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HostsNone != nil {
+		if err := m.HostsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateHostsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HostsSome != nil {
+		if err := m.HostsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("hosts_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("hosts_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiLunSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IscsiLunSnapshotsEvery != nil {
+		if err := m.IscsiLunSnapshotsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun_snapshots_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun_snapshots_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiLunSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IscsiLunSnapshotsNone != nil {
+		if err := m.IscsiLunSnapshotsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun_snapshots_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun_snapshots_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiLunSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IscsiLunSnapshotsSome != nil {
+		if err := m.IscsiLunSnapshotsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_lun_snapshots_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_lun_snapshots_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiLunsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IscsiLunsEvery != nil {
+		if err := m.IscsiLunsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_luns_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_luns_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiLunsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IscsiLunsNone != nil {
+		if err := m.IscsiLunsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_luns_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_luns_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiLunsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IscsiLunsSome != nil {
+		if err := m.IscsiLunsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_luns_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_luns_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiTargetsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IscsiTargetsEvery != nil {
+		if err := m.IscsiTargetsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_targets_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_targets_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiTargetsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IscsiTargetsNone != nil {
+		if err := m.IscsiTargetsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_targets_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_targets_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIscsiTargetsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IscsiTargetsSome != nil {
+		if err := m.IscsiTargetsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("iscsi_targets_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("iscsi_targets_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIsolationPoliciesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IsolationPoliciesEvery != nil {
+		if err := m.IsolationPoliciesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("isolation_policies_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("isolation_policies_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIsolationPoliciesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IsolationPoliciesNone != nil {
+		if err := m.IsolationPoliciesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("isolation_policies_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("isolation_policies_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateIsolationPoliciesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IsolationPoliciesSome != nil {
+		if err := m.IsolationPoliciesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("isolation_policies_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("isolation_policies_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNamespaceGroupsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NamespaceGroupsEvery != nil {
+		if err := m.NamespaceGroupsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespace_groups_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespace_groups_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNamespaceGroupsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NamespaceGroupsNone != nil {
+		if err := m.NamespaceGroupsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespace_groups_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespace_groups_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNamespaceGroupsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NamespaceGroupsSome != nil {
+		if err := m.NamespaceGroupsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespace_groups_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespace_groups_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNfsExportsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NfsExportsEvery != nil {
+		if err := m.NfsExportsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_exports_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_exports_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNfsExportsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NfsExportsNone != nil {
+		if err := m.NfsExportsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_exports_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_exports_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNfsExportsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NfsExportsSome != nil {
+		if err := m.NfsExportsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_exports_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_exports_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNfsInodesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NfsInodesEvery != nil {
+		if err := m.NfsInodesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_inodes_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_inodes_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNfsInodesNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NfsInodesNone != nil {
+		if err := m.NfsInodesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_inodes_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_inodes_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNfsInodesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NfsInodesSome != nil {
+		if err := m.NfsInodesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nfs_inodes_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nfs_inodes_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNicsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NicsEvery != nil {
+		if err := m.NicsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNicsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NicsNone != nil {
+		if err := m.NicsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNicsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NicsSome != nil {
+		if err := m.NicsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfNamespaceSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NvmfNamespaceSnapshotsEvery != nil {
+		if err := m.NvmfNamespaceSnapshotsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespace_snapshots_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespace_snapshots_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfNamespaceSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NvmfNamespaceSnapshotsNone != nil {
+		if err := m.NvmfNamespaceSnapshotsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespace_snapshots_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespace_snapshots_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfNamespaceSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NvmfNamespaceSnapshotsSome != nil {
+		if err := m.NvmfNamespaceSnapshotsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespace_snapshots_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespace_snapshots_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfNamespacesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NvmfNamespacesEvery != nil {
+		if err := m.NvmfNamespacesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespaces_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespaces_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfNamespacesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NvmfNamespacesNone != nil {
+		if err := m.NvmfNamespacesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespaces_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespaces_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfNamespacesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NvmfNamespacesSome != nil {
+		if err := m.NvmfNamespacesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_namespaces_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_namespaces_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfSubsystemsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NvmfSubsystemsEvery != nil {
+		if err := m.NvmfSubsystemsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystems_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystems_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfSubsystemsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NvmfSubsystemsNone != nil {
+		if err := m.NvmfSubsystemsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystems_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystems_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateNvmfSubsystemsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NvmfSubsystemsSome != nil {
+		if err := m.NvmfSubsystemsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nvmf_subsystems_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nvmf_subsystems_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateSecurityPoliciesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SecurityPoliciesEvery != nil {
+		if err := m.SecurityPoliciesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_policies_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_policies_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateSecurityPoliciesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SecurityPoliciesNone != nil {
+		if err := m.SecurityPoliciesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_policies_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_policies_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateSecurityPoliciesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SecurityPoliciesSome != nil {
+		if err := m.SecurityPoliciesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_policies_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_policies_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVdsesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VdsesEvery != nil {
+		if err := m.VdsesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vdses_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vdses_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVdsesNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VdsesNone != nil {
+		if err := m.VdsesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vdses_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vdses_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVdsesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VdsesSome != nil {
+		if err := m.VdsesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vdses_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vdses_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVlansEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VlansEvery != nil {
+		if err := m.VlansEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVlansNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VlansNone != nil {
+		if err := m.VlansNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVlansSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VlansSome != nil {
+		if err := m.VlansSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMSnapshotsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMSnapshotsEvery != nil {
+		if err := m.VMSnapshotsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_snapshots_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_snapshots_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMSnapshotsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMSnapshotsNone != nil {
+		if err := m.VMSnapshotsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_snapshots_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_snapshots_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMSnapshotsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMSnapshotsSome != nil {
+		if err := m.VMSnapshotsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_snapshots_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_snapshots_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMTemplatesEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMTemplatesEvery != nil {
+		if err := m.VMTemplatesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_templates_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_templates_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMTemplatesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMTemplatesNone != nil {
+		if err := m.VMTemplatesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_templates_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_templates_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMTemplatesSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMTemplatesSome != nil {
+		if err := m.VMTemplatesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_templates_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_templates_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMVolumesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMVolumesEvery != nil {
+		if err := m.VMVolumesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volumes_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volumes_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMVolumesNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMVolumesNone != nil {
+		if err := m.VMVolumesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volumes_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volumes_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVMVolumesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMVolumesSome != nil {
+		if err := m.VMVolumesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volumes_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volumes_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *LabelWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

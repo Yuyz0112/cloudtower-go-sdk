@@ -72,25 +72,19 @@ type SnmpTrapReceiverWhereInput struct {
 	AuthPassPhraseStartsWith *string `json:"auth_pass_phrase_starts_with,omitempty"`
 
 	// auth protocol
-	AuthProtocol struct {
-		SnmpAuthProtocol
-	} `json:"auth_protocol,omitempty"`
+	AuthProtocol *SnmpAuthProtocol `json:"auth_protocol,omitempty"`
 
 	// auth protocol in
 	AuthProtocolIn []SnmpAuthProtocol `json:"auth_protocol_in,omitempty"`
 
 	// auth protocol not
-	AuthProtocolNot struct {
-		SnmpAuthProtocol
-	} `json:"auth_protocol_not,omitempty"`
+	AuthProtocolNot *SnmpAuthProtocol `json:"auth_protocol_not,omitempty"`
 
 	// auth protocol not in
 	AuthProtocolNotIn []SnmpAuthProtocol `json:"auth_protocol_not_in,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// community
 	Community *string `json:"community,omitempty"`
@@ -183,17 +177,13 @@ type SnmpTrapReceiverWhereInput struct {
 	EngineIDStartsWith *string `json:"engine_id_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -289,17 +279,13 @@ type SnmpTrapReceiverWhereInput struct {
 	InformNot *bool `json:"inform_not,omitempty"`
 
 	// language code
-	LanguageCode struct {
-		SnmpLanguageCode
-	} `json:"language_code,omitempty"`
+	LanguageCode *SnmpLanguageCode `json:"language_code,omitempty"`
 
 	// language code in
 	LanguageCodeIn []SnmpLanguageCode `json:"language_code_in,omitempty"`
 
 	// language code not
-	LanguageCodeNot struct {
-		SnmpLanguageCode
-	} `json:"language_code_not,omitempty"`
+	LanguageCodeNot *SnmpLanguageCode `json:"language_code_not,omitempty"`
 
 	// language code not in
 	LanguageCodeNotIn []SnmpLanguageCode `json:"language_code_not_in,omitempty"`
@@ -455,33 +441,25 @@ type SnmpTrapReceiverWhereInput struct {
 	PrivacyPassPhraseStartsWith *string `json:"privacy_pass_phrase_starts_with,omitempty"`
 
 	// privacy protocol
-	PrivacyProtocol struct {
-		SnmpPrivacyProtocol
-	} `json:"privacy_protocol,omitempty"`
+	PrivacyProtocol *SnmpPrivacyProtocol `json:"privacy_protocol,omitempty"`
 
 	// privacy protocol in
 	PrivacyProtocolIn []SnmpPrivacyProtocol `json:"privacy_protocol_in,omitempty"`
 
 	// privacy protocol not
-	PrivacyProtocolNot struct {
-		SnmpPrivacyProtocol
-	} `json:"privacy_protocol_not,omitempty"`
+	PrivacyProtocolNot *SnmpPrivacyProtocol `json:"privacy_protocol_not,omitempty"`
 
 	// privacy protocol not in
 	PrivacyProtocolNotIn []SnmpPrivacyProtocol `json:"privacy_protocol_not_in,omitempty"`
 
 	// protocol
-	Protocol struct {
-		SnmpProtocol
-	} `json:"protocol,omitempty"`
+	Protocol *SnmpProtocol `json:"protocol,omitempty"`
 
 	// protocol in
 	ProtocolIn []SnmpProtocol `json:"protocol_in,omitempty"`
 
 	// protocol not
-	ProtocolNot struct {
-		SnmpProtocol
-	} `json:"protocol_not,omitempty"`
+	ProtocolNot *SnmpProtocol `json:"protocol_not,omitempty"`
 
 	// protocol not in
 	ProtocolNotIn []SnmpProtocol `json:"protocol_not_in,omitempty"`
@@ -529,17 +507,13 @@ type SnmpTrapReceiverWhereInput struct {
 	UsernameStartsWith *string `json:"username_starts_with,omitempty"`
 
 	// version
-	Version struct {
-		SnmpVersion
-	} `json:"version,omitempty"`
+	Version *SnmpVersion `json:"version,omitempty"`
 
 	// version in
 	VersionIn []SnmpVersion `json:"version_in,omitempty"`
 
 	// version not
-	VersionNot struct {
-		SnmpVersion
-	} `json:"version_not,omitempty"`
+	VersionNot *SnmpVersion `json:"version_not,omitempty"`
 
 	// version not in
 	VersionNotIn []SnmpVersion `json:"version_not_in,omitempty"`
@@ -750,6 +724,17 @@ func (m *SnmpTrapReceiverWhereInput) validateAuthProtocol(formats strfmt.Registr
 		return nil
 	}
 
+	if m.AuthProtocol != nil {
+		if err := m.AuthProtocol.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth_protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -777,6 +762,17 @@ func (m *SnmpTrapReceiverWhereInput) validateAuthProtocolIn(formats strfmt.Regis
 func (m *SnmpTrapReceiverWhereInput) validateAuthProtocolNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.AuthProtocolNot) { // not required
 		return nil
+	}
+
+	if m.AuthProtocolNot != nil {
+		if err := m.AuthProtocolNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth_protocol_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -808,12 +804,34 @@ func (m *SnmpTrapReceiverWhereInput) validateCluster(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnmpTrapReceiverWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -845,6 +863,17 @@ func (m *SnmpTrapReceiverWhereInput) validateEntityAsyncStatusNot(formats strfmt
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -872,6 +901,17 @@ func (m *SnmpTrapReceiverWhereInput) validateEntityAsyncStatusNotIn(formats strf
 func (m *SnmpTrapReceiverWhereInput) validateLanguageCode(formats strfmt.Registry) error {
 	if swag.IsZero(m.LanguageCode) { // not required
 		return nil
+	}
+
+	if m.LanguageCode != nil {
+		if err := m.LanguageCode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -903,6 +943,17 @@ func (m *SnmpTrapReceiverWhereInput) validateLanguageCodeNot(formats strfmt.Regi
 		return nil
 	}
 
+	if m.LanguageCodeNot != nil {
+		if err := m.LanguageCodeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -930,6 +981,17 @@ func (m *SnmpTrapReceiverWhereInput) validateLanguageCodeNotIn(formats strfmt.Re
 func (m *SnmpTrapReceiverWhereInput) validatePrivacyProtocol(formats strfmt.Registry) error {
 	if swag.IsZero(m.PrivacyProtocol) { // not required
 		return nil
+	}
+
+	if m.PrivacyProtocol != nil {
+		if err := m.PrivacyProtocol.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("privacy_protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -961,6 +1023,17 @@ func (m *SnmpTrapReceiverWhereInput) validatePrivacyProtocolNot(formats strfmt.R
 		return nil
 	}
 
+	if m.PrivacyProtocolNot != nil {
+		if err := m.PrivacyProtocolNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("privacy_protocol_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -988,6 +1061,17 @@ func (m *SnmpTrapReceiverWhereInput) validatePrivacyProtocolNotIn(formats strfmt
 func (m *SnmpTrapReceiverWhereInput) validateProtocol(formats strfmt.Registry) error {
 	if swag.IsZero(m.Protocol) { // not required
 		return nil
+	}
+
+	if m.Protocol != nil {
+		if err := m.Protocol.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1019,6 +1103,17 @@ func (m *SnmpTrapReceiverWhereInput) validateProtocolNot(formats strfmt.Registry
 		return nil
 	}
 
+	if m.ProtocolNot != nil {
+		if err := m.ProtocolNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("protocol_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1048,6 +1143,17 @@ func (m *SnmpTrapReceiverWhereInput) validateVersion(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.Version != nil {
+		if err := m.Version.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("version")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1075,6 +1181,17 @@ func (m *SnmpTrapReceiverWhereInput) validateVersionIn(formats strfmt.Registry) 
 func (m *SnmpTrapReceiverWhereInput) validateVersionNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.VersionNot) { // not required
 		return nil
+	}
+
+	if m.VersionNot != nil {
+		if err := m.VersionNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("version_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1285,6 +1402,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateOR(ctx context.Context, form
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateAuthProtocol(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AuthProtocol != nil {
+		if err := m.AuthProtocol.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth_protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1307,6 +1435,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateAuthProtocolIn(ctx context.C
 }
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateAuthProtocolNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AuthProtocolNot != nil {
+		if err := m.AuthProtocolNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth_protocol_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1331,10 +1470,32 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateAuthProtocolNotIn(ctx contex
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1359,6 +1520,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateEntityAsyncStatusIn(ctx cont
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1381,6 +1553,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateEntityAsyncStatusNotIn(ctx c
 }
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateLanguageCode(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LanguageCode != nil {
+		if err := m.LanguageCode.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1405,6 +1588,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateLanguageCodeIn(ctx context.C
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateLanguageCodeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LanguageCodeNot != nil {
+		if err := m.LanguageCodeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1427,6 +1621,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateLanguageCodeNotIn(ctx contex
 }
 
 func (m *SnmpTrapReceiverWhereInput) contextValidatePrivacyProtocol(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PrivacyProtocol != nil {
+		if err := m.PrivacyProtocol.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("privacy_protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1451,6 +1656,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidatePrivacyProtocolIn(ctx contex
 
 func (m *SnmpTrapReceiverWhereInput) contextValidatePrivacyProtocolNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.PrivacyProtocolNot != nil {
+		if err := m.PrivacyProtocolNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("privacy_protocol_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1473,6 +1689,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidatePrivacyProtocolNotIn(ctx con
 }
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateProtocol(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Protocol != nil {
+		if err := m.Protocol.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1497,6 +1724,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateProtocolIn(ctx context.Conte
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateProtocolNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ProtocolNot != nil {
+		if err := m.ProtocolNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("protocol_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("protocol_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1520,6 +1758,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateProtocolNotIn(ctx context.Co
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Version != nil {
+		if err := m.Version.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("version")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1542,6 +1791,17 @@ func (m *SnmpTrapReceiverWhereInput) contextValidateVersionIn(ctx context.Contex
 }
 
 func (m *SnmpTrapReceiverWhereInput) contextValidateVersionNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VersionNot != nil {
+		if err := m.VersionNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("version_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("version_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

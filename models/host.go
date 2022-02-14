@@ -48,9 +48,7 @@ type Host struct {
 	CPUFanSpeed []float64 `json:"cpu_fan_speed"`
 
 	// cpu fan speed unit
-	CPUFanSpeedUnit struct {
-		CPUFanSpeedUnit
-	} `json:"cpu_fan_speed_unit,omitempty"`
+	CPUFanSpeedUnit *CPUFanSpeedUnit `json:"cpu_fan_speed_unit,omitempty"`
 
 	// cpu hz per core
 	// Required: true
@@ -87,9 +85,7 @@ type Host struct {
 	ID *string `json:"id"`
 
 	// ipmi
-	Ipmi struct {
-		NestedIpmi
-	} `json:"ipmi,omitempty"`
+	Ipmi *NestedIpmi `json:"ipmi,omitempty"`
 
 	// is os in raid1
 	IsOsInRaid1 *bool `json:"is_os_in_raid1,omitempty"`
@@ -247,17 +243,13 @@ type Host struct {
 	Vms []*NestedVM `json:"vms,omitempty"`
 
 	// vsphere esxi account
-	VsphereEsxiAccount struct {
-		NestedVsphereEsxiAccount
-	} `json:"vsphereEsxiAccount,omitempty"`
+	VsphereEsxiAccount *NestedVsphereEsxiAccount `json:"vsphereEsxiAccount,omitempty"`
 
 	// with faster ssd as cache
 	WithFasterSsdAsCache *bool `json:"with_faster_ssd_as_cache,omitempty"`
 
 	// zone
-	Zone struct {
-		NestedZone
-	} `json:"zone,omitempty"`
+	Zone *NestedZone `json:"zone,omitempty"`
 }
 
 // Validate validates this host
@@ -524,6 +516,17 @@ func (m *Host) validateCPUFanSpeedUnit(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.CPUFanSpeedUnit != nil {
+		if err := m.CPUFanSpeedUnit.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cpu_fan_speed_unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cpu_fan_speed_unit")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -619,6 +622,17 @@ func (m *Host) validateID(formats strfmt.Registry) error {
 func (m *Host) validateIpmi(formats strfmt.Registry) error {
 	if swag.IsZero(m.Ipmi) { // not required
 		return nil
+	}
+
+	if m.Ipmi != nil {
+		if err := m.Ipmi.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ipmi")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ipmi")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -996,12 +1010,34 @@ func (m *Host) validateVsphereEsxiAccount(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VsphereEsxiAccount != nil {
+		if err := m.VsphereEsxiAccount.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vsphereEsxiAccount")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vsphereEsxiAccount")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Host) validateZone(formats strfmt.Registry) error {
 	if swag.IsZero(m.Zone) { // not required
 		return nil
+	}
+
+	if m.Zone != nil {
+		if err := m.Zone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zone")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1087,6 +1123,17 @@ func (m *Host) contextValidateCluster(ctx context.Context, formats strfmt.Regist
 
 func (m *Host) contextValidateCPUFanSpeedUnit(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.CPUFanSpeedUnit != nil {
+		if err := m.CPUFanSpeedUnit.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cpu_fan_speed_unit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cpu_fan_speed_unit")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1111,6 +1158,17 @@ func (m *Host) contextValidateDisks(ctx context.Context, formats strfmt.Registry
 }
 
 func (m *Host) contextValidateIpmi(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Ipmi != nil {
+		if err := m.Ipmi.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ipmi")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ipmi")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1249,10 +1307,32 @@ func (m *Host) contextValidateVms(ctx context.Context, formats strfmt.Registry) 
 
 func (m *Host) contextValidateVsphereEsxiAccount(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VsphereEsxiAccount != nil {
+		if err := m.VsphereEsxiAccount.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vsphereEsxiAccount")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vsphereEsxiAccount")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Host) contextValidateZone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Zone != nil {
+		if err := m.Zone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zone")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

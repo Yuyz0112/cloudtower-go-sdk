@@ -32,17 +32,13 @@ type GetNodeTopoesRequestBody struct {
 	Last *int32 `json:"last,omitempty"`
 
 	// order by
-	OrderBy struct {
-		NodeTopoOrderByInput
-	} `json:"orderBy,omitempty"`
+	OrderBy *NodeTopoOrderByInput `json:"orderBy,omitempty"`
 
 	// skip
 	Skip *int32 `json:"skip,omitempty"`
 
 	// where
-	Where struct {
-		NodeTopoWhereInput
-	} `json:"where,omitempty"`
+	Where *NodeTopoWhereInput `json:"where,omitempty"`
 }
 
 // Validate validates this get node topoes request body
@@ -68,12 +64,34 @@ func (m *GetNodeTopoesRequestBody) validateOrderBy(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.OrderBy != nil {
+		if err := m.OrderBy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("orderBy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("orderBy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GetNodeTopoesRequestBody) validateWhere(formats strfmt.Registry) error {
 	if swag.IsZero(m.Where) { // not required
 		return nil
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -99,10 +117,32 @@ func (m *GetNodeTopoesRequestBody) ContextValidate(ctx context.Context, formats 
 
 func (m *GetNodeTopoesRequestBody) contextValidateOrderBy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.OrderBy != nil {
+		if err := m.OrderBy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("orderBy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("orderBy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GetNodeTopoesRequestBody) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

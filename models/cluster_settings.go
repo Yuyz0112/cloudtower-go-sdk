@@ -31,9 +31,7 @@ type ClusterSettings struct {
 	ID *string `json:"id"`
 
 	// vm recycle bin
-	VMRecycleBin struct {
-		NestedVMRecycleBin
-	} `json:"vm_recycle_bin,omitempty"`
+	VMRecycleBin *NestedVMRecycleBin `json:"vm_recycle_bin,omitempty"`
 }
 
 // Validate validates this cluster settings
@@ -92,6 +90,17 @@ func (m *ClusterSettings) validateVMRecycleBin(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VMRecycleBin != nil {
+		if err := m.VMRecycleBin.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_recycle_bin")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_recycle_bin")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -130,6 +139,17 @@ func (m *ClusterSettings) contextValidateCluster(ctx context.Context, formats st
 }
 
 func (m *ClusterSettings) contextValidateVMRecycleBin(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMRecycleBin != nil {
+		if err := m.VMRecycleBin.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_recycle_bin")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_recycle_bin")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

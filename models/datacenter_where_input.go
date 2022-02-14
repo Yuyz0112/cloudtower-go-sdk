@@ -54,19 +54,13 @@ type DatacenterWhereInput struct {
 	ClusterNumNotIn []int32 `json:"cluster_num_not_in,omitempty"`
 
 	// clusters every
-	ClustersEvery struct {
-		ClusterWhereInput
-	} `json:"clusters_every,omitempty"`
+	ClustersEvery *ClusterWhereInput `json:"clusters_every,omitempty"`
 
 	// clusters none
-	ClustersNone struct {
-		ClusterWhereInput
-	} `json:"clusters_none,omitempty"`
+	ClustersNone *ClusterWhereInput `json:"clusters_none,omitempty"`
 
 	// clusters some
-	ClustersSome struct {
-		ClusterWhereInput
-	} `json:"clusters_some,omitempty"`
+	ClustersSome *ClusterWhereInput `json:"clusters_some,omitempty"`
 
 	// failure data space
 	FailureDataSpace *float64 `json:"failure_data_space,omitempty"`
@@ -159,19 +153,13 @@ type DatacenterWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// name
 	Name *string `json:"name,omitempty"`
@@ -216,9 +204,7 @@ type DatacenterWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// organization
-	Organization struct {
-		OrganizationWhereInput
-	} `json:"organization,omitempty"`
+	Organization *OrganizationWhereInput `json:"organization,omitempty"`
 
 	// total cpu hz
 	TotalCPUHz *float64 `json:"total_cpu_hz,omitempty"`
@@ -522,12 +508,34 @@ func (m *DatacenterWhereInput) validateClustersEvery(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.ClustersEvery != nil {
+		if err := m.ClustersEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DatacenterWhereInput) validateClustersNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.ClustersNone) { // not required
 		return nil
+	}
+
+	if m.ClustersNone != nil {
+		if err := m.ClustersNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -538,12 +546,34 @@ func (m *DatacenterWhereInput) validateClustersSome(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.ClustersSome != nil {
+		if err := m.ClustersSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DatacenterWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsEvery) { // not required
 		return nil
+	}
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -554,6 +584,17 @@ func (m *DatacenterWhereInput) validateLabelsNone(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -562,12 +603,34 @@ func (m *DatacenterWhereInput) validateLabelsSome(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DatacenterWhereInput) validateOrganization(formats strfmt.Registry) error {
 	if swag.IsZero(m.Organization) { // not required
 		return nil
+	}
+
+	if m.Organization != nil {
+		if err := m.Organization.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("organization")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("organization")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -685,35 +748,112 @@ func (m *DatacenterWhereInput) contextValidateOR(ctx context.Context, formats st
 
 func (m *DatacenterWhereInput) contextValidateClustersEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ClustersEvery != nil {
+		if err := m.ClustersEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DatacenterWhereInput) contextValidateClustersNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ClustersNone != nil {
+		if err := m.ClustersNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *DatacenterWhereInput) contextValidateClustersSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ClustersSome != nil {
+		if err := m.ClustersSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clusters_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clusters_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DatacenterWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *DatacenterWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DatacenterWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *DatacenterWhereInput) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Organization != nil {
+		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("organization")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("organization")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

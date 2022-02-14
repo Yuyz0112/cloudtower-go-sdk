@@ -65,9 +65,7 @@ type Application struct {
 	Version *string `json:"version"`
 
 	// vm
-	VM struct {
-		NestedVM
-	} `json:"vm,omitempty"`
+	VM *NestedVM `json:"vm,omitempty"`
 
 	// volume size
 	// Required: true
@@ -255,6 +253,17 @@ func (m *Application) validateVM(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -342,6 +351,17 @@ func (m *Application) contextValidateType(ctx context.Context, formats strfmt.Re
 }
 
 func (m *Application) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

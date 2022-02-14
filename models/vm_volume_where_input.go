@@ -30,9 +30,7 @@ type VMVolumeWhereInput struct {
 	OR []*VMVolumeWhereInput `json:"OR,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -77,17 +75,13 @@ type VMVolumeWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// elf storage policy
-	ElfStoragePolicy struct {
-		VMVolumeElfStoragePolicyType
-	} `json:"elf_storage_policy,omitempty"`
+	ElfStoragePolicy *VMVolumeElfStoragePolicyType `json:"elf_storage_policy,omitempty"`
 
 	// elf storage policy in
 	ElfStoragePolicyIn []VMVolumeElfStoragePolicyType `json:"elf_storage_policy_in,omitempty"`
 
 	// elf storage policy not
-	ElfStoragePolicyNot struct {
-		VMVolumeElfStoragePolicyType
-	} `json:"elf_storage_policy_not,omitempty"`
+	ElfStoragePolicyNot *VMVolumeElfStoragePolicyType `json:"elf_storage_policy_not,omitempty"`
 
 	// elf storage policy not in
 	ElfStoragePolicyNotIn []VMVolumeElfStoragePolicyType `json:"elf_storage_policy_not_in,omitempty"`
@@ -183,19 +177,13 @@ type VMVolumeWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// local created at
 	LocalCreatedAt *string `json:"local_created_at,omitempty"`
@@ -264,9 +252,7 @@ type VMVolumeWhereInput struct {
 	LocalIDStartsWith *string `json:"local_id_starts_with,omitempty"`
 
 	// lun
-	Lun struct {
-		IscsiLunWhereInput
-	} `json:"lun,omitempty"`
+	Lun *IscsiLunWhereInput `json:"lun,omitempty"`
 
 	// mounting
 	Mounting *bool `json:"mounting,omitempty"`
@@ -413,19 +399,13 @@ type VMVolumeWhereInput struct {
 	UniqueSizeNotIn []float64 `json:"unique_size_not_in,omitempty"`
 
 	// vm disks every
-	VMDisksEvery struct {
-		VMDiskWhereInput
-	} `json:"vm_disks_every,omitempty"`
+	VMDisksEvery *VMDiskWhereInput `json:"vm_disks_every,omitempty"`
 
 	// vm disks none
-	VMDisksNone struct {
-		VMDiskWhereInput
-	} `json:"vm_disks_none,omitempty"`
+	VMDisksNone *VMDiskWhereInput `json:"vm_disks_none,omitempty"`
 
 	// vm disks some
-	VMDisksSome struct {
-		VMDiskWhereInput
-	} `json:"vm_disks_some,omitempty"`
+	VMDisksSome *VMDiskWhereInput `json:"vm_disks_some,omitempty"`
 }
 
 // Validate validates this Vm volume where input
@@ -581,12 +561,34 @@ func (m *VMVolumeWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) validateElfStoragePolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.ElfStoragePolicy) { // not required
 		return nil
+	}
+
+	if m.ElfStoragePolicy != nil {
+		if err := m.ElfStoragePolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_storage_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_storage_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -618,6 +620,17 @@ func (m *VMVolumeWhereInput) validateElfStoragePolicyNot(formats strfmt.Registry
 		return nil
 	}
 
+	if m.ElfStoragePolicyNot != nil {
+		if err := m.ElfStoragePolicyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_storage_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_storage_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -647,12 +660,34 @@ func (m *VMVolumeWhereInput) validateLabelsEvery(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) validateLabelsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsNone) { // not required
 		return nil
+	}
+
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -663,12 +698,34 @@ func (m *VMVolumeWhereInput) validateLabelsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) validateLun(formats strfmt.Registry) error {
 	if swag.IsZero(m.Lun) { // not required
 		return nil
+	}
+
+	if m.Lun != nil {
+		if err := m.Lun.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lun")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("lun")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -679,6 +736,17 @@ func (m *VMVolumeWhereInput) validateVMDisksEvery(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.VMDisksEvery != nil {
+		if err := m.VMDisksEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_disks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_disks_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -687,12 +755,34 @@ func (m *VMVolumeWhereInput) validateVMDisksNone(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.VMDisksNone != nil {
+		if err := m.VMDisksNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_disks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_disks_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) validateVMDisksSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMDisksSome) { // not required
 		return nil
+	}
+
+	if m.VMDisksSome != nil {
+		if err := m.VMDisksSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_disks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_disks_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -830,10 +920,32 @@ func (m *VMVolumeWhereInput) contextValidateOR(ctx context.Context, formats strf
 
 func (m *VMVolumeWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) contextValidateElfStoragePolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ElfStoragePolicy != nil {
+		if err := m.ElfStoragePolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_storage_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_storage_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -858,6 +970,17 @@ func (m *VMVolumeWhereInput) contextValidateElfStoragePolicyIn(ctx context.Conte
 
 func (m *VMVolumeWhereInput) contextValidateElfStoragePolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ElfStoragePolicyNot != nil {
+		if err := m.ElfStoragePolicyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_storage_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_storage_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -881,35 +1004,112 @@ func (m *VMVolumeWhereInput) contextValidateElfStoragePolicyNotIn(ctx context.Co
 
 func (m *VMVolumeWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VMVolumeWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) contextValidateLun(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Lun != nil {
+		if err := m.Lun.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lun")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("lun")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VMVolumeWhereInput) contextValidateVMDisksEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMDisksEvery != nil {
+		if err := m.VMDisksEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_disks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_disks_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) contextValidateVMDisksNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VMDisksNone != nil {
+		if err := m.VMDisksNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_disks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_disks_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMVolumeWhereInput) contextValidateVMDisksSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMDisksSome != nil {
+		if err := m.VMDisksSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_disks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_disks_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

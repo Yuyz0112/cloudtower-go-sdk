@@ -53,9 +53,7 @@ type VMVolume struct {
 	LocalID *string `json:"local_id"`
 
 	// lun
-	Lun struct {
-		NestedIscsiLun
-	} `json:"lun,omitempty"`
+	Lun *NestedIscsiLun `json:"lun,omitempty"`
 
 	// mounting
 	// Required: true
@@ -248,6 +246,17 @@ func (m *VMVolume) validateLun(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Lun != nil {
+		if err := m.Lun.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lun")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("lun")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -405,6 +414,17 @@ func (m *VMVolume) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 }
 
 func (m *VMVolume) contextValidateLun(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Lun != nil {
+		if err := m.Lun.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lun")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("lun")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

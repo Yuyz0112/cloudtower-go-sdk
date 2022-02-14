@@ -30,38 +30,28 @@ type VMSnapshotWhereInput struct {
 	OR []*VMSnapshotWhereInput `json:"OR,omitempty"`
 
 	// clock offset
-	ClockOffset struct {
-		VMClockOffset
-	} `json:"clock_offset,omitempty"`
+	ClockOffset *VMClockOffset `json:"clock_offset,omitempty"`
 
 	// clock offset in
 	ClockOffsetIn []VMClockOffset `json:"clock_offset_in,omitempty"`
 
 	// clock offset not
-	ClockOffsetNot struct {
-		VMClockOffset
-	} `json:"clock_offset_not,omitempty"`
+	ClockOffsetNot *VMClockOffset `json:"clock_offset_not,omitempty"`
 
 	// clock offset not in
 	ClockOffsetNotIn []VMClockOffset `json:"clock_offset_not_in,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// consistent type
-	ConsistentType struct {
-		ConsistentType
-	} `json:"consistent_type,omitempty"`
+	ConsistentType *ConsistentType `json:"consistent_type,omitempty"`
 
 	// consistent type in
 	ConsistentTypeIn []ConsistentType `json:"consistent_type_in,omitempty"`
 
 	// consistent type not
-	ConsistentTypeNot struct {
-		ConsistentType
-	} `json:"consistent_type_not,omitempty"`
+	ConsistentTypeNot *ConsistentType `json:"consistent_type_not,omitempty"`
 
 	// consistent type not in
 	ConsistentTypeNotIn []ConsistentType `json:"consistent_type_not_in,omitempty"`
@@ -151,33 +141,25 @@ type VMSnapshotWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
 
 	// firmware
-	Firmware struct {
-		VMFirmware
-	} `json:"firmware,omitempty"`
+	Firmware *VMFirmware `json:"firmware,omitempty"`
 
 	// firmware in
 	FirmwareIn []VMFirmware `json:"firmware_in,omitempty"`
 
 	// firmware not
-	FirmwareNot struct {
-		VMFirmware
-	} `json:"firmware_not,omitempty"`
+	FirmwareNot *VMFirmware `json:"firmware_not,omitempty"`
 
 	// firmware not in
 	FirmwareNotIn []VMFirmware `json:"firmware_not_in,omitempty"`
@@ -231,35 +213,25 @@ type VMSnapshotWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// io policy
-	IoPolicy struct {
-		VMDiskIoPolicy
-	} `json:"io_policy,omitempty"`
+	IoPolicy *VMDiskIoPolicy `json:"io_policy,omitempty"`
 
 	// io policy in
 	IoPolicyIn []VMDiskIoPolicy `json:"io_policy_in,omitempty"`
 
 	// io policy not
-	IoPolicyNot struct {
-		VMDiskIoPolicy
-	} `json:"io_policy_not,omitempty"`
+	IoPolicyNot *VMDiskIoPolicy `json:"io_policy_not,omitempty"`
 
 	// io policy not in
 	IoPolicyNotIn []VMDiskIoPolicy `json:"io_policy_not_in,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// local created at
 	LocalCreatedAt *string `json:"local_created_at,omitempty"`
@@ -352,17 +324,13 @@ type VMSnapshotWhereInput struct {
 	MaxBandwidthNotIn []float64 `json:"max_bandwidth_not_in,omitempty"`
 
 	// max bandwidth policy
-	MaxBandwidthPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_bandwidth_policy,omitempty"`
+	MaxBandwidthPolicy *VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max bandwidth policy in
 	MaxBandwidthPolicyIn []VMDiskIoRestrictType `json:"max_bandwidth_policy_in,omitempty"`
 
 	// max bandwidth policy not
-	MaxBandwidthPolicyNot struct {
-		VMDiskIoRestrictType
-	} `json:"max_bandwidth_policy_not,omitempty"`
+	MaxBandwidthPolicyNot *VMDiskIoRestrictType `json:"max_bandwidth_policy_not,omitempty"`
 
 	// max bandwidth policy not in
 	MaxBandwidthPolicyNotIn []VMDiskIoRestrictType `json:"max_bandwidth_policy_not_in,omitempty"`
@@ -392,17 +360,13 @@ type VMSnapshotWhereInput struct {
 	MaxIopsNotIn []int32 `json:"max_iops_not_in,omitempty"`
 
 	// max iops policy
-	MaxIopsPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_iops_policy,omitempty"`
+	MaxIopsPolicy *VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
 
 	// max iops policy in
 	MaxIopsPolicyIn []VMDiskIoRestrictType `json:"max_iops_policy_in,omitempty"`
 
 	// max iops policy not
-	MaxIopsPolicyNot struct {
-		VMDiskIoRestrictType
-	} `json:"max_iops_policy_not,omitempty"`
+	MaxIopsPolicyNot *VMDiskIoRestrictType `json:"max_iops_policy_not,omitempty"`
 
 	// max iops policy not in
 	MaxIopsPolicyNotIn []VMDiskIoRestrictType `json:"max_iops_policy_not_in,omitempty"`
@@ -498,9 +462,7 @@ type VMSnapshotWhereInput struct {
 	SizeNotIn []float64 `json:"size_not_in,omitempty"`
 
 	// snapshot group
-	SnapshotGroup struct {
-		SnapshotGroupWhereInput
-	} `json:"snapshot_group,omitempty"`
+	SnapshotGroup *SnapshotGroupWhereInput `json:"snapshot_group,omitempty"`
 
 	// vcpu
 	Vcpu *int32 `json:"vcpu,omitempty"`
@@ -527,9 +489,7 @@ type VMSnapshotWhereInput struct {
 	VcpuNotIn []int32 `json:"vcpu_not_in,omitempty"`
 
 	// vm
-	VM struct {
-		VMWhereInput
-	} `json:"vm,omitempty"`
+	VM *VMWhereInput `json:"vm,omitempty"`
 
 	// win opt
 	WinOpt *bool `json:"win_opt,omitempty"`
@@ -779,6 +739,17 @@ func (m *VMSnapshotWhereInput) validateClockOffset(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.ClockOffset != nil {
+		if err := m.ClockOffset.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clock_offset")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clock_offset")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -806,6 +777,17 @@ func (m *VMSnapshotWhereInput) validateClockOffsetIn(formats strfmt.Registry) er
 func (m *VMSnapshotWhereInput) validateClockOffsetNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.ClockOffsetNot) { // not required
 		return nil
+	}
+
+	if m.ClockOffsetNot != nil {
+		if err := m.ClockOffsetNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clock_offset_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clock_offset_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -837,12 +819,34 @@ func (m *VMSnapshotWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) validateConsistentType(formats strfmt.Registry) error {
 	if swag.IsZero(m.ConsistentType) { // not required
 		return nil
+	}
+
+	if m.ConsistentType != nil {
+		if err := m.ConsistentType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistent_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistent_type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -874,6 +878,17 @@ func (m *VMSnapshotWhereInput) validateConsistentTypeNot(formats strfmt.Registry
 		return nil
 	}
 
+	if m.ConsistentTypeNot != nil {
+		if err := m.ConsistentTypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistent_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistent_type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -901,6 +916,17 @@ func (m *VMSnapshotWhereInput) validateConsistentTypeNotIn(formats strfmt.Regist
 func (m *VMSnapshotWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -932,6 +958,17 @@ func (m *VMSnapshotWhereInput) validateEntityAsyncStatusNot(formats strfmt.Regis
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -959,6 +996,17 @@ func (m *VMSnapshotWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.Reg
 func (m *VMSnapshotWhereInput) validateFirmware(formats strfmt.Registry) error {
 	if swag.IsZero(m.Firmware) { // not required
 		return nil
+	}
+
+	if m.Firmware != nil {
+		if err := m.Firmware.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("firmware")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firmware")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -990,6 +1038,17 @@ func (m *VMSnapshotWhereInput) validateFirmwareNot(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.FirmwareNot != nil {
+		if err := m.FirmwareNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("firmware_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firmware_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1017,6 +1076,17 @@ func (m *VMSnapshotWhereInput) validateFirmwareNotIn(formats strfmt.Registry) er
 func (m *VMSnapshotWhereInput) validateIoPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.IoPolicy) { // not required
 		return nil
+	}
+
+	if m.IoPolicy != nil {
+		if err := m.IoPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1048,6 +1118,17 @@ func (m *VMSnapshotWhereInput) validateIoPolicyNot(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.IoPolicyNot != nil {
+		if err := m.IoPolicyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1077,12 +1158,34 @@ func (m *VMSnapshotWhereInput) validateLabelsEvery(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) validateLabelsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsNone) { // not required
 		return nil
+	}
+
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1093,12 +1196,34 @@ func (m *VMSnapshotWhereInput) validateLabelsSome(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
 		return nil
+	}
+
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1130,6 +1255,17 @@ func (m *VMSnapshotWhereInput) validateMaxBandwidthPolicyNot(formats strfmt.Regi
 		return nil
 	}
 
+	if m.MaxBandwidthPolicyNot != nil {
+		if err := m.MaxBandwidthPolicyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1157,6 +1293,17 @@ func (m *VMSnapshotWhereInput) validateMaxBandwidthPolicyNotIn(formats strfmt.Re
 func (m *VMSnapshotWhereInput) validateMaxIopsPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxIopsPolicy) { // not required
 		return nil
+	}
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1188,6 +1335,17 @@ func (m *VMSnapshotWhereInput) validateMaxIopsPolicyNot(formats strfmt.Registry)
 		return nil
 	}
 
+	if m.MaxIopsPolicyNot != nil {
+		if err := m.MaxIopsPolicyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1217,12 +1375,34 @@ func (m *VMSnapshotWhereInput) validateSnapshotGroup(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) validateVM(formats strfmt.Registry) error {
 	if swag.IsZero(m.VM) { // not required
 		return nil
+	}
+
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1448,6 +1628,17 @@ func (m *VMSnapshotWhereInput) contextValidateOR(ctx context.Context, formats st
 
 func (m *VMSnapshotWhereInput) contextValidateClockOffset(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ClockOffset != nil {
+		if err := m.ClockOffset.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clock_offset")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clock_offset")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1470,6 +1661,17 @@ func (m *VMSnapshotWhereInput) contextValidateClockOffsetIn(ctx context.Context,
 }
 
 func (m *VMSnapshotWhereInput) contextValidateClockOffsetNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ClockOffsetNot != nil {
+		if err := m.ClockOffsetNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("clock_offset_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("clock_offset_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1494,10 +1696,32 @@ func (m *VMSnapshotWhereInput) contextValidateClockOffsetNotIn(ctx context.Conte
 
 func (m *VMSnapshotWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) contextValidateConsistentType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ConsistentType != nil {
+		if err := m.ConsistentType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistent_type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistent_type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1522,6 +1746,17 @@ func (m *VMSnapshotWhereInput) contextValidateConsistentTypeIn(ctx context.Conte
 
 func (m *VMSnapshotWhereInput) contextValidateConsistentTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistentTypeNot != nil {
+		if err := m.ConsistentTypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistent_type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistent_type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1544,6 +1779,17 @@ func (m *VMSnapshotWhereInput) contextValidateConsistentTypeNotIn(ctx context.Co
 }
 
 func (m *VMSnapshotWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1568,6 +1814,17 @@ func (m *VMSnapshotWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Co
 
 func (m *VMSnapshotWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1590,6 +1847,17 @@ func (m *VMSnapshotWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context
 }
 
 func (m *VMSnapshotWhereInput) contextValidateFirmware(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Firmware != nil {
+		if err := m.Firmware.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("firmware")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firmware")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1614,6 +1882,17 @@ func (m *VMSnapshotWhereInput) contextValidateFirmwareIn(ctx context.Context, fo
 
 func (m *VMSnapshotWhereInput) contextValidateFirmwareNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.FirmwareNot != nil {
+		if err := m.FirmwareNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("firmware_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firmware_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1636,6 +1915,17 @@ func (m *VMSnapshotWhereInput) contextValidateFirmwareNotIn(ctx context.Context,
 }
 
 func (m *VMSnapshotWhereInput) contextValidateIoPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IoPolicy != nil {
+		if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1660,6 +1950,17 @@ func (m *VMSnapshotWhereInput) contextValidateIoPolicyIn(ctx context.Context, fo
 
 func (m *VMSnapshotWhereInput) contextValidateIoPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IoPolicyNot != nil {
+		if err := m.IoPolicyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1683,20 +1984,64 @@ func (m *VMSnapshotWhereInput) contextValidateIoPolicyNotIn(ctx context.Context,
 
 func (m *VMSnapshotWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1721,6 +2066,17 @@ func (m *VMSnapshotWhereInput) contextValidateMaxBandwidthPolicyIn(ctx context.C
 
 func (m *VMSnapshotWhereInput) contextValidateMaxBandwidthPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxBandwidthPolicyNot != nil {
+		if err := m.MaxBandwidthPolicyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1743,6 +2099,17 @@ func (m *VMSnapshotWhereInput) contextValidateMaxBandwidthPolicyNotIn(ctx contex
 }
 
 func (m *VMSnapshotWhereInput) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1767,6 +2134,17 @@ func (m *VMSnapshotWhereInput) contextValidateMaxIopsPolicyIn(ctx context.Contex
 
 func (m *VMSnapshotWhereInput) contextValidateMaxIopsPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxIopsPolicyNot != nil {
+		if err := m.MaxIopsPolicyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1790,10 +2168,32 @@ func (m *VMSnapshotWhereInput) contextValidateMaxIopsPolicyNotIn(ctx context.Con
 
 func (m *VMSnapshotWhereInput) contextValidateSnapshotGroup(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMSnapshotWhereInput) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

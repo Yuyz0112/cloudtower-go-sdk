@@ -37,9 +37,7 @@ type UserRoleNext struct {
 	Platform *UserRolePlatform `json:"platform"`
 
 	// preset
-	Preset struct {
-		UserRolePreset
-	} `json:"preset,omitempty"`
+	Preset *UserRolePreset `json:"preset,omitempty"`
 
 	// users
 	Users []*NestedUser `json:"users,omitempty"`
@@ -135,6 +133,17 @@ func (m *UserRoleNext) validatePreset(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Preset != nil {
+		if err := m.Preset.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("preset")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -203,6 +212,17 @@ func (m *UserRoleNext) contextValidatePlatform(ctx context.Context, formats strf
 }
 
 func (m *UserRoleNext) contextValidatePreset(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Preset != nil {
+		if err := m.Preset.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("preset")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

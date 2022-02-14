@@ -54,17 +54,13 @@ type VMDiskWhereInput struct {
 	BootNotIn []int32 `json:"boot_not_in,omitempty"`
 
 	// bus
-	Bus struct {
-		Bus
-	} `json:"bus,omitempty"`
+	Bus *Bus `json:"bus,omitempty"`
 
 	// bus in
 	BusIn []Bus `json:"bus_in,omitempty"`
 
 	// bus not
-	BusNot struct {
-		Bus
-	} `json:"bus_not,omitempty"`
+	BusNot *Bus `json:"bus_not,omitempty"`
 
 	// bus not in
 	BusNotIn []Bus `json:"bus_not_in,omitempty"`
@@ -202,9 +198,7 @@ type VMDiskWhereInput struct {
 	DisabledNot *bool `json:"disabled_not,omitempty"`
 
 	// elf image
-	ElfImage struct {
-		ElfImageWhereInput
-	} `json:"elf_image,omitempty"`
+	ElfImage *ElfImageWhereInput `json:"elf_image,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -297,17 +291,13 @@ type VMDiskWhereInput struct {
 	MaxBandwidthNotIn []float64 `json:"max_bandwidth_not_in,omitempty"`
 
 	// max bandwidth policy
-	MaxBandwidthPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_bandwidth_policy,omitempty"`
+	MaxBandwidthPolicy *VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max bandwidth policy in
 	MaxBandwidthPolicyIn []VMDiskIoRestrictType `json:"max_bandwidth_policy_in,omitempty"`
 
 	// max bandwidth policy not
-	MaxBandwidthPolicyNot struct {
-		VMDiskIoRestrictType
-	} `json:"max_bandwidth_policy_not,omitempty"`
+	MaxBandwidthPolicyNot *VMDiskIoRestrictType `json:"max_bandwidth_policy_not,omitempty"`
 
 	// max bandwidth policy not in
 	MaxBandwidthPolicyNotIn []VMDiskIoRestrictType `json:"max_bandwidth_policy_not_in,omitempty"`
@@ -337,17 +327,13 @@ type VMDiskWhereInput struct {
 	MaxIopsNotIn []int32 `json:"max_iops_not_in,omitempty"`
 
 	// max iops policy
-	MaxIopsPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_iops_policy,omitempty"`
+	MaxIopsPolicy *VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
 
 	// max iops policy in
 	MaxIopsPolicyIn []VMDiskIoRestrictType `json:"max_iops_policy_in,omitempty"`
 
 	// max iops policy not
-	MaxIopsPolicyNot struct {
-		VMDiskIoRestrictType
-	} `json:"max_iops_policy_not,omitempty"`
+	MaxIopsPolicyNot *VMDiskIoRestrictType `json:"max_iops_policy_not,omitempty"`
 
 	// max iops policy not in
 	MaxIopsPolicyNotIn []VMDiskIoRestrictType `json:"max_iops_policy_not_in,omitempty"`
@@ -395,22 +381,16 @@ type VMDiskWhereInput struct {
 	SerialStartsWith *string `json:"serial_starts_with,omitempty"`
 
 	// svt image
-	SvtImage struct {
-		SvtImageWhereInput
-	} `json:"svt_image,omitempty"`
+	SvtImage *SvtImageWhereInput `json:"svt_image,omitempty"`
 
 	// type
-	Type struct {
-		VMDiskType
-	} `json:"type,omitempty"`
+	Type *VMDiskType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []VMDiskType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		VMDiskType
-	} `json:"type_not,omitempty"`
+	TypeNot *VMDiskType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []VMDiskType `json:"type_not_in,omitempty"`
@@ -542,14 +522,10 @@ type VMDiskWhereInput struct {
 	UnsafeProvisionStartsWith *string `json:"unsafe_provision_starts_with,omitempty"`
 
 	// vm
-	VM struct {
-		VMWhereInput
-	} `json:"vm,omitempty"`
+	VM *VMWhereInput `json:"vm,omitempty"`
 
 	// vm volume
-	VMVolume struct {
-		VMVolumeWhereInput
-	} `json:"vm_volume,omitempty"`
+	VMVolume *VMVolumeWhereInput `json:"vm_volume,omitempty"`
 }
 
 // Validate validates this Vm disk where input
@@ -737,6 +713,17 @@ func (m *VMDiskWhereInput) validateBus(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Bus != nil {
+		if err := m.Bus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -764,6 +751,17 @@ func (m *VMDiskWhereInput) validateBusIn(formats strfmt.Registry) error {
 func (m *VMDiskWhereInput) validateBusNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.BusNot) { // not required
 		return nil
+	}
+
+	if m.BusNot != nil {
+		if err := m.BusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -795,12 +793,34 @@ func (m *VMDiskWhereInput) validateElfImage(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.ElfImage != nil {
+		if err := m.ElfImage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_image")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDiskWhereInput) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxBandwidthPolicy) { // not required
 		return nil
+	}
+
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -832,6 +852,17 @@ func (m *VMDiskWhereInput) validateMaxBandwidthPolicyNot(formats strfmt.Registry
 		return nil
 	}
 
+	if m.MaxBandwidthPolicyNot != nil {
+		if err := m.MaxBandwidthPolicyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -859,6 +890,17 @@ func (m *VMDiskWhereInput) validateMaxBandwidthPolicyNotIn(formats strfmt.Regist
 func (m *VMDiskWhereInput) validateMaxIopsPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxIopsPolicy) { // not required
 		return nil
+	}
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -890,6 +932,17 @@ func (m *VMDiskWhereInput) validateMaxIopsPolicyNot(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.MaxIopsPolicyNot != nil {
+		if err := m.MaxIopsPolicyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -919,12 +972,34 @@ func (m *VMDiskWhereInput) validateSvtImage(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.SvtImage != nil {
+		if err := m.SvtImage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("svt_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("svt_image")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDiskWhereInput) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -956,6 +1031,17 @@ func (m *VMDiskWhereInput) validateTypeNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -985,12 +1071,34 @@ func (m *VMDiskWhereInput) validateVM(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDiskWhereInput) validateVMVolume(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMVolume) { // not required
 		return nil
+	}
+
+	if m.VMVolume != nil {
+		if err := m.VMVolume.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volume")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volume")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1160,6 +1268,17 @@ func (m *VMDiskWhereInput) contextValidateOR(ctx context.Context, formats strfmt
 
 func (m *VMDiskWhereInput) contextValidateBus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Bus != nil {
+		if err := m.Bus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1182,6 +1301,17 @@ func (m *VMDiskWhereInput) contextValidateBusIn(ctx context.Context, formats str
 }
 
 func (m *VMDiskWhereInput) contextValidateBusNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BusNot != nil {
+		if err := m.BusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bus_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1206,10 +1336,32 @@ func (m *VMDiskWhereInput) contextValidateBusNotIn(ctx context.Context, formats 
 
 func (m *VMDiskWhereInput) contextValidateElfImage(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ElfImage != nil {
+		if err := m.ElfImage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_image")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDiskWhereInput) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1234,6 +1386,17 @@ func (m *VMDiskWhereInput) contextValidateMaxBandwidthPolicyIn(ctx context.Conte
 
 func (m *VMDiskWhereInput) contextValidateMaxBandwidthPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxBandwidthPolicyNot != nil {
+		if err := m.MaxBandwidthPolicyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1256,6 +1419,17 @@ func (m *VMDiskWhereInput) contextValidateMaxBandwidthPolicyNotIn(ctx context.Co
 }
 
 func (m *VMDiskWhereInput) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1280,6 +1454,17 @@ func (m *VMDiskWhereInput) contextValidateMaxIopsPolicyIn(ctx context.Context, f
 
 func (m *VMDiskWhereInput) contextValidateMaxIopsPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxIopsPolicyNot != nil {
+		if err := m.MaxIopsPolicyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1303,10 +1488,32 @@ func (m *VMDiskWhereInput) contextValidateMaxIopsPolicyNotIn(ctx context.Context
 
 func (m *VMDiskWhereInput) contextValidateSvtImage(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.SvtImage != nil {
+		if err := m.SvtImage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("svt_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("svt_image")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDiskWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1331,6 +1538,17 @@ func (m *VMDiskWhereInput) contextValidateTypeIn(ctx context.Context, formats st
 
 func (m *VMDiskWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1354,10 +1572,32 @@ func (m *VMDiskWhereInput) contextValidateTypeNotIn(ctx context.Context, formats
 
 func (m *VMDiskWhereInput) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDiskWhereInput) contextValidateVMVolume(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMVolume != nil {
+		if err := m.VMVolume.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volume")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volume")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

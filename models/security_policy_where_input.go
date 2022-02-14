@@ -72,9 +72,7 @@ type SecurityPolicyWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// everoute cluster
-	EverouteCluster struct {
-		EverouteClusterWhereInput
-	} `json:"everoute_cluster,omitempty"`
+	EverouteCluster *EverouteClusterWhereInput `json:"everoute_cluster,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -119,19 +117,13 @@ type SecurityPolicyWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// name
 	Name *string `json:"name,omitempty"`
@@ -297,12 +289,34 @@ func (m *SecurityPolicyWhereInput) validateEverouteCluster(formats strfmt.Regist
 		return nil
 	}
 
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SecurityPolicyWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsEvery) { // not required
 		return nil
+	}
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -313,12 +327,34 @@ func (m *SecurityPolicyWhereInput) validateLabelsNone(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SecurityPolicyWhereInput) validateLabelsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsSome) { // not required
 		return nil
+	}
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -424,20 +460,64 @@ func (m *SecurityPolicyWhereInput) contextValidateOR(ctx context.Context, format
 
 func (m *SecurityPolicyWhereInput) contextValidateEverouteCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SecurityPolicyWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *SecurityPolicyWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *SecurityPolicyWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

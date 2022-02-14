@@ -40,9 +40,7 @@ type VMDisk struct {
 	Disabled *bool `json:"disabled,omitempty"`
 
 	// elf image
-	ElfImage struct {
-		NestedElfImage
-	} `json:"elf_image,omitempty"`
+	ElfImage *NestedElfImage `json:"elf_image,omitempty"`
 
 	// id
 	// Required: true
@@ -55,25 +53,19 @@ type VMDisk struct {
 	MaxBandwidth *float64 `json:"max_bandwidth,omitempty"`
 
 	// max bandwidth policy
-	MaxBandwidthPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_bandwidth_policy,omitempty"`
+	MaxBandwidthPolicy *VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
 	MaxIops *int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
-	MaxIopsPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_iops_policy,omitempty"`
+	MaxIopsPolicy *VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
 
 	// serial
 	Serial *string `json:"serial,omitempty"`
 
 	// svt image
-	SvtImage struct {
-		NestedSvtImage
-	} `json:"svt_image,omitempty"`
+	SvtImage *NestedSvtImage `json:"svt_image,omitempty"`
 
 	// type
 	// Required: true
@@ -93,9 +85,7 @@ type VMDisk struct {
 	VM *NestedVM `json:"vm"`
 
 	// vm volume
-	VMVolume struct {
-		NestedVMVolume
-	} `json:"vm_volume,omitempty"`
+	VMVolume *NestedVMVolume `json:"vm_volume,omitempty"`
 }
 
 // Validate validates this Vm disk
@@ -186,6 +176,17 @@ func (m *VMDisk) validateElfImage(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.ElfImage != nil {
+		if err := m.ElfImage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_image")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -203,6 +204,17 @@ func (m *VMDisk) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -211,12 +223,34 @@ func (m *VMDisk) validateMaxIopsPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDisk) validateSvtImage(formats strfmt.Registry) error {
 	if swag.IsZero(m.SvtImage) { // not required
 		return nil
+	}
+
+	if m.SvtImage != nil {
+		if err := m.SvtImage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("svt_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("svt_image")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -269,6 +303,17 @@ func (m *VMDisk) validateVM(formats strfmt.Registry) error {
 func (m *VMDisk) validateVMVolume(formats strfmt.Registry) error {
 	if swag.IsZero(m.VMVolume) { // not required
 		return nil
+	}
+
+	if m.VMVolume != nil {
+		if err := m.VMVolume.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volume")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volume")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -334,20 +379,64 @@ func (m *VMDisk) contextValidateBus(ctx context.Context, formats strfmt.Registry
 
 func (m *VMDisk) contextValidateElfImage(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ElfImage != nil {
+		if err := m.ElfImage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("elf_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("elf_image")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDisk) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VMDisk) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMDisk) contextValidateSvtImage(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SvtImage != nil {
+		if err := m.SvtImage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("svt_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("svt_image")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -385,6 +474,17 @@ func (m *VMDisk) contextValidateVM(ctx context.Context, formats strfmt.Registry)
 }
 
 func (m *VMDisk) contextValidateVMVolume(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VMVolume != nil {
+		if err := m.VMVolume.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm_volume")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm_volume")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

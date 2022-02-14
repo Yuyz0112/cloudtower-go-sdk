@@ -78,9 +78,7 @@ type UsbDeviceWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// host
-	Host struct {
-		HostWhereInput
-	} `json:"host,omitempty"`
+	Host *HostWhereInput `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -299,17 +297,13 @@ type UsbDeviceWhereInput struct {
 	SizeNotIn []float64 `json:"size_not_in,omitempty"`
 
 	// status
-	Status struct {
-		UsbDeviceStatus
-	} `json:"status,omitempty"`
+	Status *UsbDeviceStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []UsbDeviceStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		UsbDeviceStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *UsbDeviceStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []UsbDeviceStatus `json:"status_not_in,omitempty"`
@@ -357,9 +351,7 @@ type UsbDeviceWhereInput struct {
 	UsbTypeStartsWith *string `json:"usb_type_starts_with,omitempty"`
 
 	// vm
-	VM struct {
-		VMWhereInput
-	} `json:"vm,omitempty"`
+	VM *VMWhereInput `json:"vm,omitempty"`
 }
 
 // Validate validates this usb device where input
@@ -491,12 +483,34 @@ func (m *UsbDeviceWhereInput) validateHost(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UsbDeviceWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -528,6 +542,17 @@ func (m *UsbDeviceWhereInput) validateStatusNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -555,6 +580,17 @@ func (m *UsbDeviceWhereInput) validateStatusNotIn(formats strfmt.Registry) error
 func (m *UsbDeviceWhereInput) validateVM(formats strfmt.Registry) error {
 	if swag.IsZero(m.VM) { // not required
 		return nil
+	}
+
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -668,10 +704,32 @@ func (m *UsbDeviceWhereInput) contextValidateOR(ctx context.Context, formats str
 
 func (m *UsbDeviceWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UsbDeviceWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -696,6 +754,17 @@ func (m *UsbDeviceWhereInput) contextValidateStatusIn(ctx context.Context, forma
 
 func (m *UsbDeviceWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -718,6 +787,17 @@ func (m *UsbDeviceWhereInput) contextValidateStatusNotIn(ctx context.Context, fo
 }
 
 func (m *UsbDeviceWhereInput) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

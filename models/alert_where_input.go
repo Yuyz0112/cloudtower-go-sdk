@@ -30,9 +30,7 @@ type AlertWhereInput struct {
 	OR []*AlertWhereInput `json:"OR,omitempty"`
 
 	// alert rule
-	AlertRule struct {
-		AlertRuleWhereInput
-	} `json:"alert_rule,omitempty"`
+	AlertRule *AlertRuleWhereInput `json:"alert_rule,omitempty"`
 
 	// cause
 	Cause *string `json:"cause,omitempty"`
@@ -77,9 +75,7 @@ type AlertWhereInput struct {
 	CauseStartsWith *string `json:"cause_starts_with,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// create time
 	CreateTime *string `json:"create_time,omitempty"`
@@ -106,9 +102,7 @@ type AlertWhereInput struct {
 	CreateTimeNotIn []string `json:"create_time_not_in,omitempty"`
 
 	// disk
-	Disk struct {
-		DiskWhereInput
-	} `json:"disk,omitempty"`
+	Disk *DiskWhereInput `json:"disk,omitempty"`
 
 	// ended
 	Ended *bool `json:"ended,omitempty"`
@@ -117,9 +111,7 @@ type AlertWhereInput struct {
 	EndedNot *bool `json:"ended_not,omitempty"`
 
 	// host
-	Host struct {
-		HostWhereInput
-	} `json:"host,omitempty"`
+	Host *HostWhereInput `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -572,19 +564,13 @@ type AlertWhereInput struct {
 	ValueNotIn []float64 `json:"value_not_in,omitempty"`
 
 	// vms every
-	VmsEvery struct {
-		VMWhereInput
-	} `json:"vms_every,omitempty"`
+	VmsEvery *VMWhereInput `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone struct {
-		VMWhereInput
-	} `json:"vms_none,omitempty"`
+	VmsNone *VMWhereInput `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome struct {
-		VMWhereInput
-	} `json:"vms_some,omitempty"`
+	VmsSome *VMWhereInput `json:"vms_some,omitempty"`
 }
 
 // Validate validates this alert where input
@@ -720,12 +706,34 @@ func (m *AlertWhereInput) validateAlertRule(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.AlertRule != nil {
+		if err := m.AlertRule.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rule")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertWhereInput) validateCluster(formats strfmt.Registry) error {
 	if swag.IsZero(m.Cluster) { // not required
 		return nil
+	}
+
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -736,12 +744,34 @@ func (m *AlertWhereInput) validateDisk(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Disk != nil {
+		if err := m.Disk.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertWhereInput) validateHost(formats strfmt.Registry) error {
 	if swag.IsZero(m.Host) { // not required
 		return nil
+	}
+
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -752,6 +782,17 @@ func (m *AlertWhereInput) validateVmsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -760,12 +801,34 @@ func (m *AlertWhereInput) validateVmsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertWhereInput) validateVmsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsSome) { // not required
 		return nil
+	}
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -883,35 +946,112 @@ func (m *AlertWhereInput) contextValidateOR(ctx context.Context, formats strfmt.
 
 func (m *AlertWhereInput) contextValidateAlertRule(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AlertRule != nil {
+		if err := m.AlertRule.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rule")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *AlertWhereInput) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Disk != nil {
+		if err := m.Disk.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *AlertWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

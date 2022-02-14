@@ -21,23 +21,17 @@ import (
 type ElfImage struct {
 
 	// cluster
-	Cluster struct {
-		NestedCluster
-	} `json:"cluster,omitempty"`
+	Cluster *NestedCluster `json:"cluster,omitempty"`
 
 	// content library image
-	ContentLibraryImage struct {
-		NestedContentLibraryImage
-	} `json:"content_library_image,omitempty"`
+	ContentLibraryImage *NestedContentLibraryImage `json:"content_library_image,omitempty"`
 
 	// description
 	// Required: true
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -67,9 +61,7 @@ type ElfImage struct {
 	Size *float64 `json:"size"`
 
 	// upload task
-	UploadTask struct {
-		NestedUploadTask
-	} `json:"upload_task,omitempty"`
+	UploadTask *NestedUploadTask `json:"upload_task,omitempty"`
 
 	// vm disks
 	VMDisks []*NestedVMDisk `json:"vm_disks,omitempty"`
@@ -156,12 +148,34 @@ func (m *ElfImage) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ElfImage) validateContentLibraryImage(formats strfmt.Registry) error {
 	if swag.IsZero(m.ContentLibraryImage) { // not required
 		return nil
+	}
+
+	if m.ContentLibraryImage != nil {
+		if err := m.ContentLibraryImage.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_image")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -179,6 +193,17 @@ func (m *ElfImage) validateDescription(formats strfmt.Registry) error {
 func (m *ElfImage) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -267,6 +292,17 @@ func (m *ElfImage) validateSize(formats strfmt.Registry) error {
 func (m *ElfImage) validateUploadTask(formats strfmt.Registry) error {
 	if swag.IsZero(m.UploadTask) { // not required
 		return nil
+	}
+
+	if m.UploadTask != nil {
+		if err := m.UploadTask.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("upload_task")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("upload_task")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -394,15 +430,48 @@ func (m *ElfImage) ContextValidate(ctx context.Context, formats strfmt.Registry)
 
 func (m *ElfImage) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ElfImage) contextValidateContentLibraryImage(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ContentLibraryImage != nil {
+		if err := m.ContentLibraryImage.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_image")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_image")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ElfImage) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -428,6 +497,17 @@ func (m *ElfImage) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 }
 
 func (m *ElfImage) contextValidateUploadTask(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UploadTask != nil {
+		if err := m.UploadTask.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("upload_task")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("upload_task")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

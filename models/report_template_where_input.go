@@ -246,19 +246,13 @@ type ReportTemplateWhereInput struct {
 	TaskNumNotIn []int32 `json:"task_num_not_in,omitempty"`
 
 	// tasks every
-	TasksEvery struct {
-		ReportTaskWhereInput
-	} `json:"tasks_every,omitempty"`
+	TasksEvery *ReportTaskWhereInput `json:"tasks_every,omitempty"`
 
 	// tasks none
-	TasksNone struct {
-		ReportTaskWhereInput
-	} `json:"tasks_none,omitempty"`
+	TasksNone *ReportTaskWhereInput `json:"tasks_none,omitempty"`
 
 	// tasks some
-	TasksSome struct {
-		ReportTaskWhereInput
-	} `json:"tasks_some,omitempty"`
+	TasksSome *ReportTaskWhereInput `json:"tasks_some,omitempty"`
 }
 
 // Validate validates this report template where input
@@ -378,6 +372,17 @@ func (m *ReportTemplateWhereInput) validateTasksEvery(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.TasksEvery != nil {
+		if err := m.TasksEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tasks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("tasks_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -386,12 +391,34 @@ func (m *ReportTemplateWhereInput) validateTasksNone(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.TasksNone != nil {
+		if err := m.TasksNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tasks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("tasks_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ReportTemplateWhereInput) validateTasksSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.TasksSome) { // not required
 		return nil
+	}
+
+	if m.TasksSome != nil {
+		if err := m.TasksSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tasks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("tasks_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -493,15 +520,48 @@ func (m *ReportTemplateWhereInput) contextValidateOR(ctx context.Context, format
 
 func (m *ReportTemplateWhereInput) contextValidateTasksEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.TasksEvery != nil {
+		if err := m.TasksEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tasks_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("tasks_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ReportTemplateWhereInput) contextValidateTasksNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.TasksNone != nil {
+		if err := m.TasksNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tasks_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("tasks_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *ReportTemplateWhereInput) contextValidateTasksSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TasksSome != nil {
+		if err := m.TasksSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tasks_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("tasks_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

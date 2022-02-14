@@ -32,17 +32,13 @@ type GetBackupRestorePointsConnectionRequestBody struct {
 	Last *int32 `json:"last,omitempty"`
 
 	// order by
-	OrderBy struct {
-		BackupRestorePointOrderByInput
-	} `json:"orderBy,omitempty"`
+	OrderBy *BackupRestorePointOrderByInput `json:"orderBy,omitempty"`
 
 	// skip
 	Skip *int32 `json:"skip,omitempty"`
 
 	// where
-	Where struct {
-		BackupRestorePointWhereInput
-	} `json:"where,omitempty"`
+	Where *BackupRestorePointWhereInput `json:"where,omitempty"`
 }
 
 // Validate validates this get backup restore points connection request body
@@ -68,12 +64,34 @@ func (m *GetBackupRestorePointsConnectionRequestBody) validateOrderBy(formats st
 		return nil
 	}
 
+	if m.OrderBy != nil {
+		if err := m.OrderBy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("orderBy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("orderBy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GetBackupRestorePointsConnectionRequestBody) validateWhere(formats strfmt.Registry) error {
 	if swag.IsZero(m.Where) { // not required
 		return nil
+	}
+
+	if m.Where != nil {
+		if err := m.Where.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -99,10 +117,32 @@ func (m *GetBackupRestorePointsConnectionRequestBody) ContextValidate(ctx contex
 
 func (m *GetBackupRestorePointsConnectionRequestBody) contextValidateOrderBy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.OrderBy != nil {
+		if err := m.OrderBy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("orderBy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("orderBy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *GetBackupRestorePointsConnectionRequestBody) contextValidateWhere(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Where != nil {
+		if err := m.Where.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("where")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("where")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

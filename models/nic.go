@@ -24,9 +24,7 @@ type Nic struct {
 	Driver *string `json:"driver,omitempty"`
 
 	// driver state
-	DriverState struct {
-		NicDriverState
-	} `json:"driver_state,omitempty"`
+	DriverState *NicDriverState `json:"driver_state,omitempty"`
 
 	// gateway ip
 	GatewayIP *string `json:"gateway_ip,omitempty"`
@@ -97,9 +95,7 @@ type Nic struct {
 	TotalVfNum *int32 `json:"total_vf_num,omitempty"`
 
 	// type
-	Type struct {
-		NetworkType
-	} `json:"type,omitempty"`
+	Type *NetworkType `json:"type,omitempty"`
 
 	// up
 	// Required: true
@@ -109,9 +105,7 @@ type Nic struct {
 	UsedVfNum *int32 `json:"used_vf_num,omitempty"`
 
 	// vds
-	Vds struct {
-		NestedVds
-	} `json:"vds,omitempty"`
+	Vds *NestedVds `json:"vds,omitempty"`
 }
 
 // Validate validates this nic
@@ -179,6 +173,17 @@ func (m *Nic) Validate(formats strfmt.Registry) error {
 func (m *Nic) validateDriverState(formats strfmt.Registry) error {
 	if swag.IsZero(m.DriverState) { // not required
 		return nil
+	}
+
+	if m.DriverState != nil {
+		if err := m.DriverState.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("driver_state")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("driver_state")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -298,6 +303,17 @@ func (m *Nic) validateType(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -313,6 +329,17 @@ func (m *Nic) validateUp(formats strfmt.Registry) error {
 func (m *Nic) validateVds(formats strfmt.Registry) error {
 	if swag.IsZero(m.Vds) { // not required
 		return nil
+	}
+
+	if m.Vds != nil {
+		if err := m.Vds.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vds")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vds")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -349,6 +376,17 @@ func (m *Nic) ContextValidate(ctx context.Context, formats strfmt.Registry) erro
 }
 
 func (m *Nic) contextValidateDriverState(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DriverState != nil {
+		if err := m.DriverState.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("driver_state")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("driver_state")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -391,10 +429,32 @@ func (m *Nic) contextValidateLabels(ctx context.Context, formats strfmt.Registry
 
 func (m *Nic) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *Nic) contextValidateVds(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Vds != nil {
+		if err := m.Vds.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vds")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vds")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

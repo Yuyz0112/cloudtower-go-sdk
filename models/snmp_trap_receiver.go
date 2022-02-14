@@ -23,9 +23,7 @@ type SnmpTrapReceiver struct {
 	AuthPassPhrase *string `json:"auth_pass_phrase,omitempty"`
 
 	// auth protocol
-	AuthProtocol struct {
-		SnmpAuthProtocol
-	} `json:"auth_protocol,omitempty"`
+	AuthProtocol *SnmpAuthProtocol `json:"auth_protocol,omitempty"`
 
 	// cluster
 	// Required: true
@@ -42,9 +40,7 @@ type SnmpTrapReceiver struct {
 	EngineID *string `json:"engine_id,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// host
 	// Required: true
@@ -78,9 +74,7 @@ type SnmpTrapReceiver struct {
 	PrivacyPassPhrase *string `json:"privacy_pass_phrase,omitempty"`
 
 	// privacy protocol
-	PrivacyProtocol struct {
-		SnmpPrivacyProtocol
-	} `json:"privacy_protocol,omitempty"`
+	PrivacyProtocol *SnmpPrivacyProtocol `json:"privacy_protocol,omitempty"`
 
 	// protocol
 	// Required: true
@@ -165,6 +159,17 @@ func (m *SnmpTrapReceiver) validateAuthProtocol(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.AuthProtocol != nil {
+		if err := m.AuthProtocol.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth_protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -200,6 +205,17 @@ func (m *SnmpTrapReceiver) validateDisabled(formats strfmt.Registry) error {
 func (m *SnmpTrapReceiver) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -286,6 +302,17 @@ func (m *SnmpTrapReceiver) validatePort(formats strfmt.Registry) error {
 func (m *SnmpTrapReceiver) validatePrivacyProtocol(formats strfmt.Registry) error {
 	if swag.IsZero(m.PrivacyProtocol) { // not required
 		return nil
+	}
+
+	if m.PrivacyProtocol != nil {
+		if err := m.PrivacyProtocol.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("privacy_protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -379,6 +406,17 @@ func (m *SnmpTrapReceiver) ContextValidate(ctx context.Context, formats strfmt.R
 
 func (m *SnmpTrapReceiver) contextValidateAuthProtocol(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.AuthProtocol != nil {
+		if err := m.AuthProtocol.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth_protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth_protocol")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -400,6 +438,17 @@ func (m *SnmpTrapReceiver) contextValidateCluster(ctx context.Context, formats s
 
 func (m *SnmpTrapReceiver) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -420,6 +469,17 @@ func (m *SnmpTrapReceiver) contextValidateLanguageCode(ctx context.Context, form
 }
 
 func (m *SnmpTrapReceiver) contextValidatePrivacyProtocol(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PrivacyProtocol != nil {
+		if err := m.PrivacyProtocol.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("privacy_protocol")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("privacy_protocol")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

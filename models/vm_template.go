@@ -33,9 +33,7 @@ type VMTemplate struct {
 	Cluster *NestedCluster `json:"cluster"`
 
 	// content library vm template
-	ContentLibraryVMTemplate struct {
-		NestedContentLibraryVMTemplate
-	} `json:"content_library_vm_template,omitempty"`
+	ContentLibraryVMTemplate *NestedContentLibraryVMTemplate `json:"content_library_vm_template,omitempty"`
 
 	// cpu
 	// Required: true
@@ -50,9 +48,7 @@ type VMTemplate struct {
 	Description *string `json:"description"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// firmware
 	// Required: true
@@ -67,9 +63,7 @@ type VMTemplate struct {
 	ID *string `json:"id"`
 
 	// io policy
-	IoPolicy struct {
-		VMDiskIoPolicy
-	} `json:"io_policy,omitempty"`
+	IoPolicy *VMDiskIoPolicy `json:"io_policy,omitempty"`
 
 	// labels
 	Labels []*NestedLabel `json:"labels,omitempty"`
@@ -85,17 +79,13 @@ type VMTemplate struct {
 	MaxBandwidth *float64 `json:"max_bandwidth,omitempty"`
 
 	// max bandwidth policy
-	MaxBandwidthPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_bandwidth_policy,omitempty"`
+	MaxBandwidthPolicy *VMDiskIoRestrictType `json:"max_bandwidth_policy,omitempty"`
 
 	// max iops
 	MaxIops *int32 `json:"max_iops,omitempty"`
 
 	// max iops policy
-	MaxIopsPolicy struct {
-		VMDiskIoRestrictType
-	} `json:"max_iops_policy,omitempty"`
+	MaxIopsPolicy *VMDiskIoRestrictType `json:"max_iops_policy,omitempty"`
 
 	// memory
 	// Required: true
@@ -287,6 +277,17 @@ func (m *VMTemplate) validateContentLibraryVMTemplate(formats strfmt.Registry) e
 		return nil
 	}
 
+	if m.ContentLibraryVMTemplate != nil {
+		if err := m.ContentLibraryVMTemplate.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_vm_template")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_vm_template")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -331,6 +332,17 @@ func (m *VMTemplate) validateDescription(formats strfmt.Registry) error {
 func (m *VMTemplate) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -383,6 +395,17 @@ func (m *VMTemplate) validateIoPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.IoPolicy != nil {
+		if err := m.IoPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -426,12 +449,34 @@ func (m *VMTemplate) validateMaxBandwidthPolicy(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMTemplate) validateMaxIopsPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxIopsPolicy) { // not required
 		return nil
+	}
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -626,6 +671,17 @@ func (m *VMTemplate) contextValidateCluster(ctx context.Context, formats strfmt.
 
 func (m *VMTemplate) contextValidateContentLibraryVMTemplate(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ContentLibraryVMTemplate != nil {
+		if err := m.ContentLibraryVMTemplate.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("content_library_vm_template")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("content_library_vm_template")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -647,6 +703,17 @@ func (m *VMTemplate) contextValidateCPU(ctx context.Context, formats strfmt.Regi
 
 func (m *VMTemplate) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -667,6 +734,17 @@ func (m *VMTemplate) contextValidateFirmware(ctx context.Context, formats strfmt
 }
 
 func (m *VMTemplate) contextValidateIoPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IoPolicy != nil {
+		if err := m.IoPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("io_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("io_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -693,10 +771,32 @@ func (m *VMTemplate) contextValidateLabels(ctx context.Context, formats strfmt.R
 
 func (m *VMTemplate) contextValidateMaxBandwidthPolicy(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.MaxBandwidthPolicy != nil {
+		if err := m.MaxBandwidthPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_bandwidth_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_bandwidth_policy")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VMTemplate) contextValidateMaxIopsPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.MaxIopsPolicy != nil {
+		if err := m.MaxIopsPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("max_iops_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

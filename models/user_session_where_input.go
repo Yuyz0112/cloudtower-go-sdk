@@ -120,9 +120,7 @@ type UserSessionWhereInput struct {
 	UpdatedAtNotIn []string `json:"updatedAt_not_in,omitempty"`
 
 	// user
-	User struct {
-		UserWhereInput
-	} `json:"user,omitempty"`
+	User *UserWhereInput `json:"user,omitempty"`
 }
 
 // Validate validates this user session where input
@@ -234,6 +232,17 @@ func (m *UserSessionWhereInput) validateUser(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.User != nil {
+		if err := m.User.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -324,6 +333,17 @@ func (m *UserSessionWhereInput) contextValidateOR(ctx context.Context, formats s
 }
 
 func (m *UserSessionWhereInput) contextValidateUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.User != nil {
+		if err := m.User.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -114,51 +114,37 @@ type UserRoleNextWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// platform
-	Platform struct {
-		UserRolePlatform
-	} `json:"platform,omitempty"`
+	Platform *UserRolePlatform `json:"platform,omitempty"`
 
 	// platform in
 	PlatformIn []UserRolePlatform `json:"platform_in,omitempty"`
 
 	// platform not
-	PlatformNot struct {
-		UserRolePlatform
-	} `json:"platform_not,omitempty"`
+	PlatformNot *UserRolePlatform `json:"platform_not,omitempty"`
 
 	// platform not in
 	PlatformNotIn []UserRolePlatform `json:"platform_not_in,omitempty"`
 
 	// preset
-	Preset struct {
-		UserRolePreset
-	} `json:"preset,omitempty"`
+	Preset *UserRolePreset `json:"preset,omitempty"`
 
 	// preset in
 	PresetIn []UserRolePreset `json:"preset_in,omitempty"`
 
 	// preset not
-	PresetNot struct {
-		UserRolePreset
-	} `json:"preset_not,omitempty"`
+	PresetNot *UserRolePreset `json:"preset_not,omitempty"`
 
 	// preset not in
 	PresetNotIn []UserRolePreset `json:"preset_not_in,omitempty"`
 
 	// users every
-	UsersEvery struct {
-		UserWhereInput
-	} `json:"users_every,omitempty"`
+	UsersEvery *UserWhereInput `json:"users_every,omitempty"`
 
 	// users none
-	UsersNone struct {
-		UserWhereInput
-	} `json:"users_none,omitempty"`
+	UsersNone *UserWhereInput `json:"users_none,omitempty"`
 
 	// users some
-	UsersSome struct {
-		UserWhereInput
-	} `json:"users_some,omitempty"`
+	UsersSome *UserWhereInput `json:"users_some,omitempty"`
 }
 
 // Validate validates this user role next where input
@@ -310,6 +296,17 @@ func (m *UserRoleNextWhereInput) validatePlatform(formats strfmt.Registry) error
 		return nil
 	}
 
+	if m.Platform != nil {
+		if err := m.Platform.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("platform")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -337,6 +334,17 @@ func (m *UserRoleNextWhereInput) validatePlatformIn(formats strfmt.Registry) err
 func (m *UserRoleNextWhereInput) validatePlatformNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.PlatformNot) { // not required
 		return nil
+	}
+
+	if m.PlatformNot != nil {
+		if err := m.PlatformNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("platform_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -368,6 +376,17 @@ func (m *UserRoleNextWhereInput) validatePreset(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Preset != nil {
+		if err := m.Preset.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("preset")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -395,6 +414,17 @@ func (m *UserRoleNextWhereInput) validatePresetIn(formats strfmt.Registry) error
 func (m *UserRoleNextWhereInput) validatePresetNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.PresetNot) { // not required
 		return nil
+	}
+
+	if m.PresetNot != nil {
+		if err := m.PresetNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("preset_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -426,6 +456,17 @@ func (m *UserRoleNextWhereInput) validateUsersEvery(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.UsersEvery != nil {
+		if err := m.UsersEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("users_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("users_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -434,12 +475,34 @@ func (m *UserRoleNextWhereInput) validateUsersNone(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.UsersNone != nil {
+		if err := m.UsersNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("users_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("users_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserRoleNextWhereInput) validateUsersSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.UsersSome) { // not required
 		return nil
+	}
+
+	if m.UsersSome != nil {
+		if err := m.UsersSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("users_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("users_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -573,6 +636,17 @@ func (m *UserRoleNextWhereInput) contextValidateOR(ctx context.Context, formats 
 
 func (m *UserRoleNextWhereInput) contextValidatePlatform(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Platform != nil {
+		if err := m.Platform.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("platform")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -595,6 +669,17 @@ func (m *UserRoleNextWhereInput) contextValidatePlatformIn(ctx context.Context, 
 }
 
 func (m *UserRoleNextWhereInput) contextValidatePlatformNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PlatformNot != nil {
+		if err := m.PlatformNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("platform_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("platform_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -619,6 +704,17 @@ func (m *UserRoleNextWhereInput) contextValidatePlatformNotIn(ctx context.Contex
 
 func (m *UserRoleNextWhereInput) contextValidatePreset(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Preset != nil {
+		if err := m.Preset.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("preset")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -641,6 +737,17 @@ func (m *UserRoleNextWhereInput) contextValidatePresetIn(ctx context.Context, fo
 }
 
 func (m *UserRoleNextWhereInput) contextValidatePresetNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PresetNot != nil {
+		if err := m.PresetNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("preset_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("preset_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -665,15 +772,48 @@ func (m *UserRoleNextWhereInput) contextValidatePresetNotIn(ctx context.Context,
 
 func (m *UserRoleNextWhereInput) contextValidateUsersEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.UsersEvery != nil {
+		if err := m.UsersEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("users_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("users_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserRoleNextWhereInput) contextValidateUsersNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.UsersNone != nil {
+		if err := m.UsersNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("users_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("users_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *UserRoleNextWhereInput) contextValidateUsersSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UsersSome != nil {
+		if err := m.UsersSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("users_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("users_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

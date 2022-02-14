@@ -61,14 +61,10 @@ type NvmfNamespace struct {
 	BpsWrMaxLength *float64 `json:"bps_wr_max_length"`
 
 	// consistency group
-	ConsistencyGroup struct {
-		NestedConsistencyGroup
-	} `json:"consistency_group,omitempty"`
+	ConsistencyGroup *NestedConsistencyGroup `json:"consistency_group,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// id
 	// Required: true
@@ -134,9 +130,7 @@ type NvmfNamespace struct {
 	Name *string `json:"name"`
 
 	// namespace group
-	NamespaceGroup struct {
-		NestedNamespaceGroup
-	} `json:"namespace_group,omitempty"`
+	NamespaceGroup *NestedNamespaceGroup `json:"namespace_group,omitempty"`
 
 	// namespace id
 	// Required: true
@@ -448,12 +442,34 @@ func (m *NvmfNamespace) validateConsistencyGroup(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.ConsistencyGroup != nil {
+		if err := m.ConsistencyGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NvmfNamespace) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -625,6 +641,17 @@ func (m *NvmfNamespace) validateNamespaceGroup(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NamespaceGroup != nil {
+		if err := m.NamespaceGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespace_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespace_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -770,10 +797,32 @@ func (m *NvmfNamespace) ContextValidate(ctx context.Context, formats strfmt.Regi
 
 func (m *NvmfNamespace) contextValidateConsistencyGroup(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.ConsistencyGroup != nil {
+		if err := m.ConsistencyGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consistency_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consistency_group")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NvmfNamespace) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -799,6 +848,17 @@ func (m *NvmfNamespace) contextValidateLabels(ctx context.Context, formats strfm
 }
 
 func (m *NvmfNamespace) contextValidateNamespaceGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NamespaceGroup != nil {
+		if err := m.NamespaceGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("namespace_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("namespace_group")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

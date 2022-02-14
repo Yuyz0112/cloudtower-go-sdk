@@ -336,9 +336,7 @@ type IscsiTargetWhereInput struct {
 	ChapSecretStartsWith *string `json:"chap_secret_starts_with,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// description
 	Description *string `json:"description,omitempty"`
@@ -383,17 +381,13 @@ type IscsiTargetWhereInput struct {
 	DescriptionStartsWith *string `json:"description_starts_with,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -819,19 +813,13 @@ type IscsiTargetWhereInput struct {
 	IqnWhitelistStartsWith *string `json:"iqn_whitelist_starts_with,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -876,19 +864,13 @@ type IscsiTargetWhereInput struct {
 	LocalIDStartsWith *string `json:"local_id_starts_with,omitempty"`
 
 	// luns every
-	LunsEvery struct {
-		IscsiLunWhereInput
-	} `json:"luns_every,omitempty"`
+	LunsEvery *IscsiLunWhereInput `json:"luns_every,omitempty"`
 
 	// luns none
-	LunsNone struct {
-		IscsiLunWhereInput
-	} `json:"luns_none,omitempty"`
+	LunsNone *IscsiLunWhereInput `json:"luns_none,omitempty"`
 
 	// luns some
-	LunsSome struct {
-		IscsiLunWhereInput
-	} `json:"luns_some,omitempty"`
+	LunsSome *IscsiLunWhereInput `json:"luns_some,omitempty"`
 
 	// name
 	Name *string `json:"name,omitempty"`
@@ -1160,12 +1142,34 @@ func (m *IscsiTargetWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1197,6 +1201,17 @@ func (m *IscsiTargetWhereInput) validateEntityAsyncStatusNot(formats strfmt.Regi
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1226,12 +1241,34 @@ func (m *IscsiTargetWhereInput) validateLabelsEvery(formats strfmt.Registry) err
 		return nil
 	}
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) validateLabelsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsNone) { // not required
 		return nil
+	}
+
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1242,12 +1279,34 @@ func (m *IscsiTargetWhereInput) validateLabelsSome(formats strfmt.Registry) erro
 		return nil
 	}
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) validateLunsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.LunsEvery) { // not required
 		return nil
+	}
+
+	if m.LunsEvery != nil {
+		if err := m.LunsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1258,12 +1317,34 @@ func (m *IscsiTargetWhereInput) validateLunsNone(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.LunsNone != nil {
+		if err := m.LunsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) validateLunsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.LunsSome) { // not required
 		return nil
+	}
+
+	if m.LunsSome != nil {
+		if err := m.LunsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1397,10 +1478,32 @@ func (m *IscsiTargetWhereInput) contextValidateOR(ctx context.Context, formats s
 
 func (m *IscsiTargetWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1425,6 +1528,17 @@ func (m *IscsiTargetWhereInput) contextValidateEntityAsyncStatusIn(ctx context.C
 
 func (m *IscsiTargetWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1448,30 +1562,96 @@ func (m *IscsiTargetWhereInput) contextValidateEntityAsyncStatusNotIn(ctx contex
 
 func (m *IscsiTargetWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) contextValidateLunsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LunsEvery != nil {
+		if err := m.LunsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) contextValidateLunsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LunsNone != nil {
+		if err := m.LunsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *IscsiTargetWhereInput) contextValidateLunsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LunsSome != nil {
+		if err := m.LunsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("luns_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("luns_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

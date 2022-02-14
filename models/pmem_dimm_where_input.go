@@ -96,30 +96,22 @@ type PmemDimmWhereInput struct {
 	DeviceLocatorStartsWith *string `json:"device_locator_starts_with,omitempty"`
 
 	// disk
-	Disk struct {
-		DiskWhereInput
-	} `json:"disk,omitempty"`
+	Disk *DiskWhereInput `json:"disk,omitempty"`
 
 	// health status
-	HealthStatus struct {
-		DiskHealthStatus
-	} `json:"health_status,omitempty"`
+	HealthStatus *DiskHealthStatus `json:"health_status,omitempty"`
 
 	// health status in
 	HealthStatusIn []DiskHealthStatus `json:"health_status_in,omitempty"`
 
 	// health status not
-	HealthStatusNot struct {
-		DiskHealthStatus
-	} `json:"health_status_not,omitempty"`
+	HealthStatusNot *DiskHealthStatus `json:"health_status_not,omitempty"`
 
 	// health status not in
 	HealthStatusNotIn []DiskHealthStatus `json:"health_status_not_in,omitempty"`
 
 	// host
-	Host struct {
-		HostWhereInput
-	} `json:"host,omitempty"`
+	Host *HostWhereInput `json:"host,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -509,12 +501,34 @@ func (m *PmemDimmWhereInput) validateDisk(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Disk != nil {
+		if err := m.Disk.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *PmemDimmWhereInput) validateHealthStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.HealthStatus) { // not required
 		return nil
+	}
+
+	if m.HealthStatus != nil {
+		if err := m.HealthStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -546,6 +560,17 @@ func (m *PmemDimmWhereInput) validateHealthStatusNot(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.HealthStatusNot != nil {
+		if err := m.HealthStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -573,6 +598,17 @@ func (m *PmemDimmWhereInput) validateHealthStatusNotIn(formats strfmt.Registry) 
 func (m *PmemDimmWhereInput) validateHost(formats strfmt.Registry) error {
 	if swag.IsZero(m.Host) { // not required
 		return nil
+	}
+
+	if m.Host != nil {
+		if err := m.Host.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -686,10 +722,32 @@ func (m *PmemDimmWhereInput) contextValidateOR(ctx context.Context, formats strf
 
 func (m *PmemDimmWhereInput) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Disk != nil {
+		if err := m.Disk.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *PmemDimmWhereInput) contextValidateHealthStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HealthStatus != nil {
+		if err := m.HealthStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -714,6 +772,17 @@ func (m *PmemDimmWhereInput) contextValidateHealthStatusIn(ctx context.Context, 
 
 func (m *PmemDimmWhereInput) contextValidateHealthStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.HealthStatusNot != nil {
+		if err := m.HealthStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("health_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("health_status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -736,6 +805,17 @@ func (m *PmemDimmWhereInput) contextValidateHealthStatusNotIn(ctx context.Contex
 }
 
 func (m *PmemDimmWhereInput) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Host != nil {
+		if err := m.Host.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("host")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("host")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

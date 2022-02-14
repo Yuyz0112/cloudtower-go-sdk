@@ -72,30 +72,22 @@ type VdsWhereInput struct {
 	BondModeStartsWith *string `json:"bond_mode_starts_with,omitempty"`
 
 	// cluster
-	Cluster struct {
-		ClusterWhereInput
-	} `json:"cluster,omitempty"`
+	Cluster *ClusterWhereInput `json:"cluster,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
 
 	// everoute cluster
-	EverouteCluster struct {
-		EverouteClusterWhereInput
-	} `json:"everoute_cluster,omitempty"`
+	EverouteCluster *EverouteClusterWhereInput `json:"everoute_cluster,omitempty"`
 
 	// id
 	ID *string `json:"id,omitempty"`
@@ -146,19 +138,13 @@ type VdsWhereInput struct {
 	InternalNot *bool `json:"internal_not,omitempty"`
 
 	// labels every
-	LabelsEvery struct {
-		LabelWhereInput
-	} `json:"labels_every,omitempty"`
+	LabelsEvery *LabelWhereInput `json:"labels_every,omitempty"`
 
 	// labels none
-	LabelsNone struct {
-		LabelWhereInput
-	} `json:"labels_none,omitempty"`
+	LabelsNone *LabelWhereInput `json:"labels_none,omitempty"`
 
 	// labels some
-	LabelsSome struct {
-		LabelWhereInput
-	} `json:"labels_some,omitempty"`
+	LabelsSome *LabelWhereInput `json:"labels_some,omitempty"`
 
 	// local id
 	LocalID *string `json:"local_id,omitempty"`
@@ -245,19 +231,13 @@ type VdsWhereInput struct {
 	NameStartsWith *string `json:"name_starts_with,omitempty"`
 
 	// nics every
-	NicsEvery struct {
-		NicWhereInput
-	} `json:"nics_every,omitempty"`
+	NicsEvery *NicWhereInput `json:"nics_every,omitempty"`
 
 	// nics none
-	NicsNone struct {
-		NicWhereInput
-	} `json:"nics_none,omitempty"`
+	NicsNone *NicWhereInput `json:"nics_none,omitempty"`
 
 	// nics some
-	NicsSome struct {
-		NicWhereInput
-	} `json:"nics_some,omitempty"`
+	NicsSome *NicWhereInput `json:"nics_some,omitempty"`
 
 	// ovsbr name
 	OvsbrName *string `json:"ovsbr_name,omitempty"`
@@ -302,30 +282,22 @@ type VdsWhereInput struct {
 	OvsbrNameStartsWith *string `json:"ovsbr_name_starts_with,omitempty"`
 
 	// type
-	Type struct {
-		NetworkType
-	} `json:"type,omitempty"`
+	Type *NetworkType `json:"type,omitempty"`
 
 	// type in
 	TypeIn []NetworkType `json:"type_in,omitempty"`
 
 	// type not
-	TypeNot struct {
-		NetworkType
-	} `json:"type_not,omitempty"`
+	TypeNot *NetworkType `json:"type_not,omitempty"`
 
 	// type not in
 	TypeNotIn []NetworkType `json:"type_not_in,omitempty"`
 
 	// vlans every
-	VlansEvery struct {
-		VlanWhereInput
-	} `json:"vlans_every,omitempty"`
+	VlansEvery *VlanWhereInput `json:"vlans_every,omitempty"`
 
 	// vlans none
-	VlansNone struct {
-		VlanWhereInput
-	} `json:"vlans_none,omitempty"`
+	VlansNone *VlanWhereInput `json:"vlans_none,omitempty"`
 
 	// vlans num
 	VlansNum *int32 `json:"vlans_num,omitempty"`
@@ -352,9 +324,7 @@ type VdsWhereInput struct {
 	VlansNumNotIn []int32 `json:"vlans_num_not_in,omitempty"`
 
 	// vlans some
-	VlansSome struct {
-		VlanWhereInput
-	} `json:"vlans_some,omitempty"`
+	VlansSome *VlanWhereInput `json:"vlans_some,omitempty"`
 
 	// work mode
 	WorkMode *string `json:"work_mode,omitempty"`
@@ -580,12 +550,34 @@ func (m *VdsWhereInput) validateCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Cluster != nil {
+		if err := m.Cluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -617,6 +609,17 @@ func (m *VdsWhereInput) validateEntityAsyncStatusNot(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -646,12 +649,34 @@ func (m *VdsWhereInput) validateEverouteCluster(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) validateLabelsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsEvery) { // not required
 		return nil
+	}
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -662,12 +687,34 @@ func (m *VdsWhereInput) validateLabelsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) validateLabelsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.LabelsSome) { // not required
 		return nil
+	}
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -678,12 +725,34 @@ func (m *VdsWhereInput) validateNicsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NicsEvery != nil {
+		if err := m.NicsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) validateNicsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.NicsNone) { // not required
 		return nil
+	}
+
+	if m.NicsNone != nil {
+		if err := m.NicsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -694,12 +763,34 @@ func (m *VdsWhereInput) validateNicsSome(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.NicsSome != nil {
+		if err := m.NicsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -731,6 +822,17 @@ func (m *VdsWhereInput) validateTypeNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -760,6 +862,17 @@ func (m *VdsWhereInput) validateVlansEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VlansEvery != nil {
+		if err := m.VlansEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -768,12 +881,34 @@ func (m *VdsWhereInput) validateVlansNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VlansNone != nil {
+		if err := m.VlansNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) validateVlansSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VlansSome) { // not required
 		return nil
+	}
+
+	if m.VlansSome != nil {
+		if err := m.VlansSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -939,10 +1074,32 @@ func (m *VdsWhereInput) contextValidateOR(ctx context.Context, formats strfmt.Re
 
 func (m *VdsWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Cluster != nil {
+		if err := m.Cluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -967,6 +1124,17 @@ func (m *VdsWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Context, 
 
 func (m *VdsWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -990,40 +1158,128 @@ func (m *VdsWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context.Contex
 
 func (m *VdsWhereInput) contextValidateEverouteCluster(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateLabelsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsEvery != nil {
+		if err := m.LabelsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateLabelsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LabelsNone != nil {
+		if err := m.LabelsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateLabelsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LabelsSome != nil {
+		if err := m.LabelsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("labels_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateNicsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NicsEvery != nil {
+		if err := m.NicsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateNicsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NicsNone != nil {
+		if err := m.NicsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateNicsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.NicsSome != nil {
+		if err := m.NicsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("nics_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nics_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1048,6 +1304,17 @@ func (m *VdsWhereInput) contextValidateTypeIn(ctx context.Context, formats strfm
 
 func (m *VdsWhereInput) contextValidateTypeNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.TypeNot != nil {
+		if err := m.TypeNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1071,15 +1338,48 @@ func (m *VdsWhereInput) contextValidateTypeNotIn(ctx context.Context, formats st
 
 func (m *VdsWhereInput) contextValidateVlansEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VlansEvery != nil {
+		if err := m.VlansEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateVlansNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VlansNone != nil {
+		if err := m.VlansNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *VdsWhereInput) contextValidateVlansSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VlansSome != nil {
+		if err := m.VlansSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vlans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vlans_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

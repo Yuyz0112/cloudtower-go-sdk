@@ -32,23 +32,17 @@ type NestedEverouteControllerStatus struct {
 	Message *string `json:"message"`
 
 	// metrics
-	Metrics struct {
-		NestedEverouteClusterVMMetrics
-	} `json:"metrics,omitempty"`
+	Metrics *NestedEverouteClusterVMMetrics `json:"metrics,omitempty"`
 
 	// phase
-	Phase struct {
-		EverouteClusterPhase
-	} `json:"phase,omitempty"`
+	Phase *EverouteClusterPhase `json:"phase,omitempty"`
 
 	// reason
 	// Required: true
 	Reason *string `json:"reason"`
 
 	// vm
-	VM struct {
-		NestedVM
-	} `json:"vm,omitempty"`
+	VM *NestedVM `json:"vm,omitempty"`
 
 	// vm ID
 	// Required: true
@@ -129,12 +123,34 @@ func (m *NestedEverouteControllerStatus) validateMetrics(formats strfmt.Registry
 		return nil
 	}
 
+	if m.Metrics != nil {
+		if err := m.Metrics.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metrics")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metrics")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NestedEverouteControllerStatus) validatePhase(formats strfmt.Registry) error {
 	if swag.IsZero(m.Phase) { // not required
 		return nil
+	}
+
+	if m.Phase != nil {
+		if err := m.Phase.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -152,6 +168,17 @@ func (m *NestedEverouteControllerStatus) validateReason(formats strfmt.Registry)
 func (m *NestedEverouteControllerStatus) validateVM(formats strfmt.Registry) error {
 	if swag.IsZero(m.VM) { // not required
 		return nil
+	}
+
+	if m.VM != nil {
+		if err := m.VM.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -190,15 +217,48 @@ func (m *NestedEverouteControllerStatus) ContextValidate(ctx context.Context, fo
 
 func (m *NestedEverouteControllerStatus) contextValidateMetrics(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Metrics != nil {
+		if err := m.Metrics.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metrics")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metrics")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NestedEverouteControllerStatus) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.Phase != nil {
+		if err := m.Phase.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *NestedEverouteControllerStatus) contextValidateVM(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VM != nil {
+		if err := m.VM.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vm")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vm")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

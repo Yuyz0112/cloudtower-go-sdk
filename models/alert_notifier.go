@@ -35,18 +35,14 @@ type AlertNotifier struct {
 	ID *string `json:"id"`
 
 	// language code
-	LanguageCode struct {
-		NotifierLanguageCode
-	} `json:"language_code,omitempty"`
+	LanguageCode *NotifierLanguageCode `json:"language_code,omitempty"`
 
 	// notice severities
 	// Required: true
 	NoticeSeverities []string `json:"notice_severities"`
 
 	// security mode
-	SecurityMode struct {
-		NotifierSecurityMode
-	} `json:"security_mode,omitempty"`
+	SecurityMode *NotifierSecurityMode `json:"security_mode,omitempty"`
 
 	// smtp server host
 	SMTPServerHost *string `json:"smtp_server_host,omitempty"`
@@ -124,6 +120,17 @@ func (m *AlertNotifier) validateLanguageCode(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.LanguageCode != nil {
+		if err := m.LanguageCode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -139,6 +146,17 @@ func (m *AlertNotifier) validateNoticeSeverities(formats strfmt.Registry) error 
 func (m *AlertNotifier) validateSecurityMode(formats strfmt.Registry) error {
 	if swag.IsZero(m.SecurityMode) { // not required
 		return nil
+	}
+
+	if m.SecurityMode != nil {
+		if err := m.SecurityMode.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_mode")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -164,10 +182,32 @@ func (m *AlertNotifier) ContextValidate(ctx context.Context, formats strfmt.Regi
 
 func (m *AlertNotifier) contextValidateLanguageCode(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LanguageCode != nil {
+		if err := m.LanguageCode.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("language_code")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("language_code")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *AlertNotifier) contextValidateSecurityMode(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SecurityMode != nil {
+		if err := m.SecurityMode.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("security_mode")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("security_mode")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

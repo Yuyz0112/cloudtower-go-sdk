@@ -79,9 +79,7 @@ type LogCollection struct {
 	Status *LogCollectionStatus `json:"status"`
 
 	// witness
-	Witness struct {
-		NestedWitness
-	} `json:"witness,omitempty"`
+	Witness *NestedWitness `json:"witness,omitempty"`
 }
 
 // Validate validates this log collection
@@ -328,6 +326,17 @@ func (m *LogCollection) validateWitness(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.Witness != nil {
+		if err := m.Witness.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witness")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -410,6 +419,17 @@ func (m *LogCollection) contextValidateStatus(ctx context.Context, formats strfm
 }
 
 func (m *LogCollection) contextValidateWitness(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Witness != nil {
+		if err := m.Witness.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("witness")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("witness")
+			}
+			return err
+		}
+	}
 
 	return nil
 }

@@ -30,35 +30,25 @@ type BackupPlanWhereInput struct {
 	OR []*BackupPlanWhereInput `json:"OR,omitempty"`
 
 	// backup delay option
-	BackupDelayOption struct {
-		BackupPlanDelayOption
-	} `json:"backup_delay_option,omitempty"`
+	BackupDelayOption *BackupPlanDelayOption `json:"backup_delay_option,omitempty"`
 
 	// backup delay option in
 	BackupDelayOptionIn []BackupPlanDelayOption `json:"backup_delay_option_in,omitempty"`
 
 	// backup delay option not
-	BackupDelayOptionNot struct {
-		BackupPlanDelayOption
-	} `json:"backup_delay_option_not,omitempty"`
+	BackupDelayOptionNot *BackupPlanDelayOption `json:"backup_delay_option_not,omitempty"`
 
 	// backup delay option not in
 	BackupDelayOptionNotIn []BackupPlanDelayOption `json:"backup_delay_option_not_in,omitempty"`
 
 	// backup plan executions every
-	BackupPlanExecutionsEvery struct {
-		BackupPlanExecutionWhereInput
-	} `json:"backup_plan_executions_every,omitempty"`
+	BackupPlanExecutionsEvery *BackupPlanExecutionWhereInput `json:"backup_plan_executions_every,omitempty"`
 
 	// backup plan executions none
-	BackupPlanExecutionsNone struct {
-		BackupPlanExecutionWhereInput
-	} `json:"backup_plan_executions_none,omitempty"`
+	BackupPlanExecutionsNone *BackupPlanExecutionWhereInput `json:"backup_plan_executions_none,omitempty"`
 
 	// backup plan executions some
-	BackupPlanExecutionsSome struct {
-		BackupPlanExecutionWhereInput
-	} `json:"backup_plan_executions_some,omitempty"`
+	BackupPlanExecutionsSome *BackupPlanExecutionWhereInput `json:"backup_plan_executions_some,omitempty"`
 
 	// backup restore point count
 	BackupRestorePointCount *int32 `json:"backup_restore_point_count,omitempty"`
@@ -85,29 +75,19 @@ type BackupPlanWhereInput struct {
 	BackupRestorePointCountNotIn []int32 `json:"backup_restore_point_count_not_in,omitempty"`
 
 	// backup restore points every
-	BackupRestorePointsEvery struct {
-		BackupRestorePointWhereInput
-	} `json:"backup_restore_points_every,omitempty"`
+	BackupRestorePointsEvery *BackupRestorePointWhereInput `json:"backup_restore_points_every,omitempty"`
 
 	// backup restore points none
-	BackupRestorePointsNone struct {
-		BackupRestorePointWhereInput
-	} `json:"backup_restore_points_none,omitempty"`
+	BackupRestorePointsNone *BackupRestorePointWhereInput `json:"backup_restore_points_none,omitempty"`
 
 	// backup restore points some
-	BackupRestorePointsSome struct {
-		BackupRestorePointWhereInput
-	} `json:"backup_restore_points_some,omitempty"`
+	BackupRestorePointsSome *BackupRestorePointWhereInput `json:"backup_restore_points_some,omitempty"`
 
 	// backup service
-	BackupService struct {
-		BackupServiceWhereInput
-	} `json:"backup_service,omitempty"`
+	BackupService *BackupServiceWhereInput `json:"backup_service,omitempty"`
 
 	// backup store repository
-	BackupStoreRepository struct {
-		BackupStoreRepositoryWhereInput
-	} `json:"backup_store_repository,omitempty"`
+	BackupStoreRepository *BackupStoreRepositoryWhereInput `json:"backup_store_repository,omitempty"`
 
 	// backup total size
 	BackupTotalSize *float64 `json:"backup_total_size,omitempty"`
@@ -140,17 +120,13 @@ type BackupPlanWhereInput struct {
 	CompressionNot *bool `json:"compression_not,omitempty"`
 
 	// delete strategy
-	DeleteStrategy struct {
-		BackupPlanDeleteStrategy
-	} `json:"delete_strategy,omitempty"`
+	DeleteStrategy *BackupPlanDeleteStrategy `json:"delete_strategy,omitempty"`
 
 	// delete strategy in
 	DeleteStrategyIn []BackupPlanDeleteStrategy `json:"delete_strategy_in,omitempty"`
 
 	// delete strategy not
-	DeleteStrategyNot struct {
-		BackupPlanDeleteStrategy
-	} `json:"delete_strategy_not,omitempty"`
+	DeleteStrategyNot *BackupPlanDeleteStrategy `json:"delete_strategy_not,omitempty"`
 
 	// delete strategy not in
 	DeleteStrategyNotIn []BackupPlanDeleteStrategy `json:"delete_strategy_not_in,omitempty"`
@@ -204,17 +180,13 @@ type BackupPlanWhereInput struct {
 	EnableWindowNot *bool `json:"enable_window_not,omitempty"`
 
 	// entity async status
-	EntityAsyncStatus struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus,omitempty"`
+	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
 
 	// entity async status in
 	EntityAsyncStatusIn []EntityAsyncStatus `json:"entityAsyncStatus_in,omitempty"`
 
 	// entity async status not
-	EntityAsyncStatusNot struct {
-		EntityAsyncStatus
-	} `json:"entityAsyncStatus_not,omitempty"`
+	EntityAsyncStatusNot *EntityAsyncStatus `json:"entityAsyncStatus_not,omitempty"`
 
 	// entity async status not in
 	EntityAsyncStatusNotIn []EntityAsyncStatus `json:"entityAsyncStatus_not_in,omitempty"`
@@ -244,17 +216,13 @@ type BackupPlanWhereInput struct {
 	FullIntervalNotIn []int32 `json:"full_interval_not_in,omitempty"`
 
 	// full period
-	FullPeriod struct {
-		BackupPlanPeriod
-	} `json:"full_period,omitempty"`
+	FullPeriod *BackupPlanPeriod `json:"full_period,omitempty"`
 
 	// full period in
 	FullPeriodIn []BackupPlanPeriod `json:"full_period_in,omitempty"`
 
 	// full period not
-	FullPeriodNot struct {
-		BackupPlanPeriod
-	} `json:"full_period_not,omitempty"`
+	FullPeriodNot *BackupPlanPeriod `json:"full_period_not,omitempty"`
 
 	// full period not in
 	FullPeriodNotIn []BackupPlanPeriod `json:"full_period_not_in,omitempty"`
@@ -302,33 +270,25 @@ type BackupPlanWhereInput struct {
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
 	// incremental period
-	IncrementalPeriod struct {
-		BackupPlanPeriod
-	} `json:"incremental_period,omitempty"`
+	IncrementalPeriod *BackupPlanPeriod `json:"incremental_period,omitempty"`
 
 	// incremental period in
 	IncrementalPeriodIn []BackupPlanPeriod `json:"incremental_period_in,omitempty"`
 
 	// incremental period not
-	IncrementalPeriodNot struct {
-		BackupPlanPeriod
-	} `json:"incremental_period_not,omitempty"`
+	IncrementalPeriodNot *BackupPlanPeriod `json:"incremental_period_not,omitempty"`
 
 	// incremental period not in
 	IncrementalPeriodNotIn []BackupPlanPeriod `json:"incremental_period_not_in,omitempty"`
 
 	// keep policy
-	KeepPolicy struct {
-		BackupPlanKeepPolicy
-	} `json:"keep_policy,omitempty"`
+	KeepPolicy *BackupPlanKeepPolicy `json:"keep_policy,omitempty"`
 
 	// keep policy in
 	KeepPolicyIn []BackupPlanKeepPolicy `json:"keep_policy_in,omitempty"`
 
 	// keep policy not
-	KeepPolicyNot struct {
-		BackupPlanKeepPolicy
-	} `json:"keep_policy_not,omitempty"`
+	KeepPolicyNot *BackupPlanKeepPolicy `json:"keep_policy_not,omitempty"`
 
 	// keep policy not in
 	KeepPolicyNotIn []BackupPlanKeepPolicy `json:"keep_policy_not_in,omitempty"`
@@ -358,9 +318,7 @@ type BackupPlanWhereInput struct {
 	KeepPolicyValueNotIn []int32 `json:"keep_policy_value_not_in,omitempty"`
 
 	// last execute status
-	LastExecuteStatus struct {
-		BackupPlanExecutionStatus
-	} `json:"last_execute_status,omitempty"`
+	LastExecuteStatus *BackupPlanExecutionStatus `json:"last_execute_status,omitempty"`
 
 	// last execute status in
 	LastExecuteStatusIn []BackupPlanExecutionStatus `json:"last_execute_status_in,omitempty"`
@@ -408,9 +366,7 @@ type BackupPlanWhereInput struct {
 	LastExecuteStatusMessageStartsWith *string `json:"last_execute_status_message_starts_with,omitempty"`
 
 	// last execute status not
-	LastExecuteStatusNot struct {
-		BackupPlanExecutionStatus
-	} `json:"last_execute_status_not,omitempty"`
+	LastExecuteStatusNot *BackupPlanExecutionStatus `json:"last_execute_status_not,omitempty"`
 
 	// last execute status not in
 	LastExecuteStatusNotIn []BackupPlanExecutionStatus `json:"last_execute_status_not_in,omitempty"`
@@ -596,17 +552,13 @@ type BackupPlanWhereInput struct {
 	NextExecuteTimeNotIn []string `json:"next_execute_time_not_in,omitempty"`
 
 	// phase
-	Phase struct {
-		BackupPlanPhase
-	} `json:"phase,omitempty"`
+	Phase *BackupPlanPhase `json:"phase,omitempty"`
 
 	// phase in
 	PhaseIn []BackupPlanPhase `json:"phase_in,omitempty"`
 
 	// phase not
-	PhaseNot struct {
-		BackupPlanPhase
-	} `json:"phase_not,omitempty"`
+	PhaseNot *BackupPlanPhase `json:"phase_not,omitempty"`
 
 	// phase not in
 	PhaseNotIn []BackupPlanPhase `json:"phase_not_in,omitempty"`
@@ -633,35 +585,25 @@ type BackupPlanWhereInput struct {
 	ResourceVersionNotIn []int32 `json:"resource_version_not_in,omitempty"`
 
 	// status
-	Status struct {
-		BackupPlanStatus
-	} `json:"status,omitempty"`
+	Status *BackupPlanStatus `json:"status,omitempty"`
 
 	// status in
 	StatusIn []BackupPlanStatus `json:"status_in,omitempty"`
 
 	// status not
-	StatusNot struct {
-		BackupPlanStatus
-	} `json:"status_not,omitempty"`
+	StatusNot *BackupPlanStatus `json:"status_not,omitempty"`
 
 	// status not in
 	StatusNotIn []BackupPlanStatus `json:"status_not_in,omitempty"`
 
 	// vms every
-	VmsEvery struct {
-		VMWhereInput
-	} `json:"vms_every,omitempty"`
+	VmsEvery *VMWhereInput `json:"vms_every,omitempty"`
 
 	// vms none
-	VmsNone struct {
-		VMWhereInput
-	} `json:"vms_none,omitempty"`
+	VmsNone *VMWhereInput `json:"vms_none,omitempty"`
 
 	// vms some
-	VmsSome struct {
-		VMWhereInput
-	} `json:"vms_some,omitempty"`
+	VmsSome *VMWhereInput `json:"vms_some,omitempty"`
 
 	// window end
 	WindowEnd *string `json:"window_end,omitempty"`
@@ -1041,6 +983,17 @@ func (m *BackupPlanWhereInput) validateBackupDelayOption(formats strfmt.Registry
 		return nil
 	}
 
+	if m.BackupDelayOption != nil {
+		if err := m.BackupDelayOption.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_delay_option")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1068,6 +1021,17 @@ func (m *BackupPlanWhereInput) validateBackupDelayOptionIn(formats strfmt.Regist
 func (m *BackupPlanWhereInput) validateBackupDelayOptionNot(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupDelayOptionNot) { // not required
 		return nil
+	}
+
+	if m.BackupDelayOptionNot != nil {
+		if err := m.BackupDelayOptionNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_delay_option_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option_not")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1099,12 +1063,34 @@ func (m *BackupPlanWhereInput) validateBackupPlanExecutionsEvery(formats strfmt.
 		return nil
 	}
 
+	if m.BackupPlanExecutionsEvery != nil {
+		if err := m.BackupPlanExecutionsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan_executions_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan_executions_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) validateBackupPlanExecutionsNone(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupPlanExecutionsNone) { // not required
 		return nil
+	}
+
+	if m.BackupPlanExecutionsNone != nil {
+		if err := m.BackupPlanExecutionsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan_executions_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan_executions_none")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1115,12 +1101,34 @@ func (m *BackupPlanWhereInput) validateBackupPlanExecutionsSome(formats strfmt.R
 		return nil
 	}
 
+	if m.BackupPlanExecutionsSome != nil {
+		if err := m.BackupPlanExecutionsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan_executions_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan_executions_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) validateBackupRestorePointsEvery(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupRestorePointsEvery) { // not required
 		return nil
+	}
+
+	if m.BackupRestorePointsEvery != nil {
+		if err := m.BackupRestorePointsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_every")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1131,12 +1139,34 @@ func (m *BackupPlanWhereInput) validateBackupRestorePointsNone(formats strfmt.Re
 		return nil
 	}
 
+	if m.BackupRestorePointsNone != nil {
+		if err := m.BackupRestorePointsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) validateBackupRestorePointsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.BackupRestorePointsSome) { // not required
 		return nil
+	}
+
+	if m.BackupRestorePointsSome != nil {
+		if err := m.BackupRestorePointsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1147,6 +1177,17 @@ func (m *BackupPlanWhereInput) validateBackupService(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.BackupService != nil {
+		if err := m.BackupService.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1155,12 +1196,34 @@ func (m *BackupPlanWhereInput) validateBackupStoreRepository(formats strfmt.Regi
 		return nil
 	}
 
+	if m.BackupStoreRepository != nil {
+		if err := m.BackupStoreRepository.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_store_repository")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_store_repository")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) validateDeleteStrategy(formats strfmt.Registry) error {
 	if swag.IsZero(m.DeleteStrategy) { // not required
 		return nil
+	}
+
+	if m.DeleteStrategy != nil {
+		if err := m.DeleteStrategy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("delete_strategy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1192,6 +1255,17 @@ func (m *BackupPlanWhereInput) validateDeleteStrategyNot(formats strfmt.Registry
 		return nil
 	}
 
+	if m.DeleteStrategyNot != nil {
+		if err := m.DeleteStrategyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("delete_strategy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1219,6 +1293,17 @@ func (m *BackupPlanWhereInput) validateDeleteStrategyNotIn(formats strfmt.Regist
 func (m *BackupPlanWhereInput) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
+	}
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1250,6 +1335,17 @@ func (m *BackupPlanWhereInput) validateEntityAsyncStatusNot(formats strfmt.Regis
 		return nil
 	}
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1277,6 +1373,17 @@ func (m *BackupPlanWhereInput) validateEntityAsyncStatusNotIn(formats strfmt.Reg
 func (m *BackupPlanWhereInput) validateFullPeriod(formats strfmt.Registry) error {
 	if swag.IsZero(m.FullPeriod) { // not required
 		return nil
+	}
+
+	if m.FullPeriod != nil {
+		if err := m.FullPeriod.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("full_period")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("full_period")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1308,6 +1415,17 @@ func (m *BackupPlanWhereInput) validateFullPeriodNot(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.FullPeriodNot != nil {
+		if err := m.FullPeriodNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("full_period_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("full_period_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1335,6 +1453,17 @@ func (m *BackupPlanWhereInput) validateFullPeriodNotIn(formats strfmt.Registry) 
 func (m *BackupPlanWhereInput) validateIncrementalPeriod(formats strfmt.Registry) error {
 	if swag.IsZero(m.IncrementalPeriod) { // not required
 		return nil
+	}
+
+	if m.IncrementalPeriod != nil {
+		if err := m.IncrementalPeriod.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("incremental_period")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("incremental_period")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1366,6 +1495,17 @@ func (m *BackupPlanWhereInput) validateIncrementalPeriodNot(formats strfmt.Regis
 		return nil
 	}
 
+	if m.IncrementalPeriodNot != nil {
+		if err := m.IncrementalPeriodNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("incremental_period_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("incremental_period_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1393,6 +1533,17 @@ func (m *BackupPlanWhereInput) validateIncrementalPeriodNotIn(formats strfmt.Reg
 func (m *BackupPlanWhereInput) validateKeepPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.KeepPolicy) { // not required
 		return nil
+	}
+
+	if m.KeepPolicy != nil {
+		if err := m.KeepPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("keep_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1424,6 +1575,17 @@ func (m *BackupPlanWhereInput) validateKeepPolicyNot(formats strfmt.Registry) er
 		return nil
 	}
 
+	if m.KeepPolicyNot != nil {
+		if err := m.KeepPolicyNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("keep_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1451,6 +1613,17 @@ func (m *BackupPlanWhereInput) validateKeepPolicyNotIn(formats strfmt.Registry) 
 func (m *BackupPlanWhereInput) validateLastExecuteStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.LastExecuteStatus) { // not required
 		return nil
+	}
+
+	if m.LastExecuteStatus != nil {
+		if err := m.LastExecuteStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_execute_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1482,6 +1655,17 @@ func (m *BackupPlanWhereInput) validateLastExecuteStatusNot(formats strfmt.Regis
 		return nil
 	}
 
+	if m.LastExecuteStatusNot != nil {
+		if err := m.LastExecuteStatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_execute_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1509,6 +1693,17 @@ func (m *BackupPlanWhereInput) validateLastExecuteStatusNotIn(formats strfmt.Reg
 func (m *BackupPlanWhereInput) validatePhase(formats strfmt.Registry) error {
 	if swag.IsZero(m.Phase) { // not required
 		return nil
+	}
+
+	if m.Phase != nil {
+		if err := m.Phase.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1540,6 +1735,17 @@ func (m *BackupPlanWhereInput) validatePhaseNot(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.PhaseNot != nil {
+		if err := m.PhaseNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1567,6 +1773,17 @@ func (m *BackupPlanWhereInput) validatePhaseNotIn(formats strfmt.Registry) error
 func (m *BackupPlanWhereInput) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1598,6 +1815,17 @@ func (m *BackupPlanWhereInput) validateStatusNot(formats strfmt.Registry) error 
 		return nil
 	}
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1627,6 +1855,17 @@ func (m *BackupPlanWhereInput) validateVmsEvery(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1635,12 +1874,34 @@ func (m *BackupPlanWhereInput) validateVmsNone(formats strfmt.Registry) error {
 		return nil
 	}
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) validateVmsSome(formats strfmt.Registry) error {
 	if swag.IsZero(m.VmsSome) { // not required
 		return nil
+	}
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1918,6 +2179,17 @@ func (m *BackupPlanWhereInput) contextValidateOR(ctx context.Context, formats st
 
 func (m *BackupPlanWhereInput) contextValidateBackupDelayOption(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupDelayOption != nil {
+		if err := m.BackupDelayOption.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_delay_option")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1940,6 +2212,17 @@ func (m *BackupPlanWhereInput) contextValidateBackupDelayOptionIn(ctx context.Co
 }
 
 func (m *BackupPlanWhereInput) contextValidateBackupDelayOptionNot(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupDelayOptionNot != nil {
+		if err := m.BackupDelayOptionNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_delay_option_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_delay_option_not")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -1964,45 +2247,144 @@ func (m *BackupPlanWhereInput) contextValidateBackupDelayOptionNotIn(ctx context
 
 func (m *BackupPlanWhereInput) contextValidateBackupPlanExecutionsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupPlanExecutionsEvery != nil {
+		if err := m.BackupPlanExecutionsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan_executions_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan_executions_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateBackupPlanExecutionsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupPlanExecutionsNone != nil {
+		if err := m.BackupPlanExecutionsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan_executions_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan_executions_none")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateBackupPlanExecutionsSome(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupPlanExecutionsSome != nil {
+		if err := m.BackupPlanExecutionsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_plan_executions_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_plan_executions_some")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateBackupRestorePointsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupRestorePointsEvery != nil {
+		if err := m.BackupRestorePointsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_every")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateBackupRestorePointsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupRestorePointsNone != nil {
+		if err := m.BackupRestorePointsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateBackupRestorePointsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BackupRestorePointsSome != nil {
+		if err := m.BackupRestorePointsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_restore_points_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_restore_points_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateBackupService(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupService != nil {
+		if err := m.BackupService.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_service")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_service")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateBackupStoreRepository(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.BackupStoreRepository != nil {
+		if err := m.BackupStoreRepository.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("backup_store_repository")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("backup_store_repository")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateDeleteStrategy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DeleteStrategy != nil {
+		if err := m.DeleteStrategy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("delete_strategy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -2027,6 +2409,17 @@ func (m *BackupPlanWhereInput) contextValidateDeleteStrategyIn(ctx context.Conte
 
 func (m *BackupPlanWhereInput) contextValidateDeleteStrategyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.DeleteStrategyNot != nil {
+		if err := m.DeleteStrategyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("delete_strategy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("delete_strategy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2049,6 +2442,17 @@ func (m *BackupPlanWhereInput) contextValidateDeleteStrategyNotIn(ctx context.Co
 }
 
 func (m *BackupPlanWhereInput) contextValidateEntityAsyncStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EntityAsyncStatus != nil {
+		if err := m.EntityAsyncStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -2073,6 +2477,17 @@ func (m *BackupPlanWhereInput) contextValidateEntityAsyncStatusIn(ctx context.Co
 
 func (m *BackupPlanWhereInput) contextValidateEntityAsyncStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.EntityAsyncStatusNot != nil {
+		if err := m.EntityAsyncStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("entityAsyncStatus_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("entityAsyncStatus_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2095,6 +2510,17 @@ func (m *BackupPlanWhereInput) contextValidateEntityAsyncStatusNotIn(ctx context
 }
 
 func (m *BackupPlanWhereInput) contextValidateFullPeriod(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.FullPeriod != nil {
+		if err := m.FullPeriod.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("full_period")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("full_period")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -2119,6 +2545,17 @@ func (m *BackupPlanWhereInput) contextValidateFullPeriodIn(ctx context.Context, 
 
 func (m *BackupPlanWhereInput) contextValidateFullPeriodNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.FullPeriodNot != nil {
+		if err := m.FullPeriodNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("full_period_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("full_period_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2141,6 +2578,17 @@ func (m *BackupPlanWhereInput) contextValidateFullPeriodNotIn(ctx context.Contex
 }
 
 func (m *BackupPlanWhereInput) contextValidateIncrementalPeriod(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IncrementalPeriod != nil {
+		if err := m.IncrementalPeriod.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("incremental_period")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("incremental_period")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -2165,6 +2613,17 @@ func (m *BackupPlanWhereInput) contextValidateIncrementalPeriodIn(ctx context.Co
 
 func (m *BackupPlanWhereInput) contextValidateIncrementalPeriodNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.IncrementalPeriodNot != nil {
+		if err := m.IncrementalPeriodNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("incremental_period_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("incremental_period_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2187,6 +2646,17 @@ func (m *BackupPlanWhereInput) contextValidateIncrementalPeriodNotIn(ctx context
 }
 
 func (m *BackupPlanWhereInput) contextValidateKeepPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.KeepPolicy != nil {
+		if err := m.KeepPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("keep_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -2211,6 +2681,17 @@ func (m *BackupPlanWhereInput) contextValidateKeepPolicyIn(ctx context.Context, 
 
 func (m *BackupPlanWhereInput) contextValidateKeepPolicyNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.KeepPolicyNot != nil {
+		if err := m.KeepPolicyNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("keep_policy_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("keep_policy_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2233,6 +2714,17 @@ func (m *BackupPlanWhereInput) contextValidateKeepPolicyNotIn(ctx context.Contex
 }
 
 func (m *BackupPlanWhereInput) contextValidateLastExecuteStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LastExecuteStatus != nil {
+		if err := m.LastExecuteStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_execute_status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -2257,6 +2749,17 @@ func (m *BackupPlanWhereInput) contextValidateLastExecuteStatusIn(ctx context.Co
 
 func (m *BackupPlanWhereInput) contextValidateLastExecuteStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.LastExecuteStatusNot != nil {
+		if err := m.LastExecuteStatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("last_execute_status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("last_execute_status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2279,6 +2782,17 @@ func (m *BackupPlanWhereInput) contextValidateLastExecuteStatusNotIn(ctx context
 }
 
 func (m *BackupPlanWhereInput) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Phase != nil {
+		if err := m.Phase.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -2303,6 +2817,17 @@ func (m *BackupPlanWhereInput) contextValidatePhaseIn(ctx context.Context, forma
 
 func (m *BackupPlanWhereInput) contextValidatePhaseNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.PhaseNot != nil {
+		if err := m.PhaseNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phase_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phase_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2325,6 +2850,17 @@ func (m *BackupPlanWhereInput) contextValidatePhaseNotIn(ctx context.Context, fo
 }
 
 func (m *BackupPlanWhereInput) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
@@ -2349,6 +2885,17 @@ func (m *BackupPlanWhereInput) contextValidateStatusIn(ctx context.Context, form
 
 func (m *BackupPlanWhereInput) contextValidateStatusNot(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.StatusNot != nil {
+		if err := m.StatusNot.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status_not")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status_not")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -2372,15 +2919,48 @@ func (m *BackupPlanWhereInput) contextValidateStatusNotIn(ctx context.Context, f
 
 func (m *BackupPlanWhereInput) contextValidateVmsEvery(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsEvery != nil {
+		if err := m.VmsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_every")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateVmsNone(ctx context.Context, formats strfmt.Registry) error {
 
+	if m.VmsNone != nil {
+		if err := m.VmsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_none")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
 func (m *BackupPlanWhereInput) contextValidateVmsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VmsSome != nil {
+		if err := m.VmsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vms_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vms_some")
+			}
+			return err
+		}
+	}
 
 	return nil
 }
