@@ -163,7 +163,7 @@ type VMUpdateDiskParamsData struct {
 	Bus Bus `json:"bus,omitempty"`
 
 	// elf image id
-	ElfImageID string `json:"elf_image_id,omitempty"`
+	ElfImageID *string `json:"elf_image_id"`
 
 	// vm disk id
 	// Required: true
